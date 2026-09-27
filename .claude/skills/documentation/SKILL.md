@@ -38,7 +38,7 @@ description: Rules for writing documentation in ulx3s-klod — where docs go, th
 | Reviewed at | <commit short hash> (upstream date YYYY-MM-DD), reviewed YYYY-MM-DD |
 | License | … |
 | HDL / framework | Verilog / VHDL / SpinalHDL / LiteX / Amaranth / … |
-| Toolchain | yosys+nextpnr-ecp5+ecppack / Diamond / … (versions if pinned) |
+| Toolchain | `open` (yosys+nextpnr-ecp5+ecppack) / `diamond` (Lattice) / `both` — details, versions if pinned |
 | Programmer | openFPGALoader / fujprog / … |
 | Target FPGA(s) | 12F / 25F / 45F / 85F |
 | Board revision(s) | v1.7 / v2.x / v3.x / unknown |

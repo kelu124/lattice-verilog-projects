@@ -11,6 +11,8 @@ clones it and runs `claude` here picks up where the work stopped.
 - [Board reference for gateware developers](docs/board-reference.md): peripherals, signal names, constraint files, build/load, pitfalls
 - Reviewed projects:
   - [emard/ulx3s: board hardware + manual](docs/projects/emard__ulx3s.md)
+  - [emard/ulx3s-bin: prebuilt bitstreams, self-test, bootloaders](docs/projects/emard__ulx3s-bin.md)
+  - [openFPGALoader: programmer](docs/projects/trabucayre__openfpgaloader.md)
 
 ## Project registry
 [`.claude/memory/projects.md`](.claude/memory/projects.md) lists every known ULX3S project with its

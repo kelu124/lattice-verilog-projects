@@ -16,11 +16,20 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
    git rev-list --count HEAD               # commit count
    git shortlog -sn | head                 # main authors
    ```
+   **Pitfall**: on this machine the RTK hook rewrites `git log` and filters its output
+   (it once reported a wrong first-commit date). For history statistics use
+   `rtk proxy git log ...` / `rtk proxy git rev-list ...` to get raw output.
 4. **Toolchain**: look at `Makefile`s, `*.mk`, `*.lpf`, `*.py` (LiteX/Amaranth),
    `build.sbt` (SpinalHDL), `*.ldf`/`*.lpf` + `.xcf` (Diamond), CI files.
    Record synthesis / P&R / packing / programmer, and pinned versions if any.
 5. **Target**: FPGA size (`--12k/--25k/--45k/--85k`, `LFE5U-xxF`), package
    (`CABGA381`), board revision from the `.lpf` name.
+5b. **Mandatory catalogue fields** (the owner asked for these on every gateware repo):
+   - **FPGA**: ECP5 size(s) supported (12F/25F/45F/85F, or `UM`/`UM5G` variants), from Makefiles/LPF/nextpnr flags.
+   - **Toolchain**: `open` (yosys+nextpnr-ecp5+ecppack, incl. via LiteX/apio/ghdl-yosys-plugin),
+     `diamond` (Lattice Diamond: `.ldf`, `.xcf`, `diamond`/`pnmainc` scripts), or `both`.
+   - **HDL**: Verilog, SystemVerilog, VHDL, or generator (SpinalHDL, Migen/LiteX, Amaranth,
+     Silice, Clash, Chisel…); list all present, main one first.
 6. **Functions**: list what the gateware does (one bullet per function, with top
    module path). Use the vocabulary in `.claude/memory/projects.md` → "Function tags"
    so projects are comparable; add a new tag there if needed.
