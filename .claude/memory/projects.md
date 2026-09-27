@@ -31,7 +31,7 @@ The per-repo facts (kind, name, fork/preferred copy, ULX3S build path, **FPGA**,
 [`catalogue.tsv`](catalogue.tsv), one row per slug in `sources.tsv`. Render the human view with
 `.claude/skills/review-gateware-project/gen_catalogue.py` → `docs/catalogue.md`.
 
-Status as of 2026-09-27: **290 ULX3S/ULX4M repos cloned and catalogued** (ULX5M-GS repos were added then removed on owner request, 2026-09-27; see [[ulx5m-board]]) (71 pre-survey — the board repo,
+Status as of 2026-09-27: **302 repos cloned and catalogued: 290 ULX3S/ULX4M + 12 on other ECP5 boards** (top 14 of `docs/ecp5-boards-survey.md`, 2 of which were already in) (ULX5M-GS repos were added then removed on owner request, 2026-09-27; see [[ulx5m-board]]) (71 pre-survey — the board repo,
 ulx3s-bin, openFPGALoader, plus 68 of the 69 ulx3s.github.io "Projects and examples" links (one is a
 404) — + 155 from GitHub-search category A + 64 more from categories B (51, all ULX3S-dedicated), D
 (11, forks with own commits) and the 2 ULX4M-specific repos in E; first pass by read-only agents over

@@ -12,7 +12,7 @@ metadata:
 | emard/ulx3s-bin folder sources | 2026-09-27 | see docs/projects/emard__ulx3s-bin.md |
 | GitHub search (repo/topic/readme/fork queries; code search not possible without auth) | 2026-09-27 | ≈297 candidates → `docs/github-survey.md`: A 155 verified, B 51, C 69 multi-board, D 11 forks, E 11 links. A+B+D+2(E, ULX4M) = 219 now cloned (see [[projects]]) — the other ~78 (C, and E minus the 2 ULX4M repos) skipped as not device-dedicated. How to repeat: skill `github-survey` |
 | GitHub search `ulx5m` (repo, readme, forks, `ulx5m-gs`) | 2026-09-27 | 5 own repos + 7 forks + mentions → `docs/github-survey.md` group F; 3 were cloned then removed on owner request the same day; ULX5M is GateMate, not ECP5 |
-| GitHub search, other ECP5 boards (OrangeCrab, LUNA/Cynthion, iCESugar-Pro, HAD2019 badge, Colorlight, ButterStick, ECPIX-5, Logicbone, Versa/EVN, …), 53 queries | 2026-09-27 | 114 repos, ~85 verified by file list (.lpf + HDL), 24 recommended → `docs/ecp5-boards-survey.md`; nothing cloned yet |
+| GitHub search, other ECP5 boards (OrangeCrab, LUNA/Cynthion, iCESugar-Pro, HAD2019 badge, Colorlight, ButterStick, ECPIX-5, Logicbone, Versa/EVN, …), 53 queries | 2026-09-27 | 114 repos, ~85 verified by file list (.lpf + HDL), 24 recommended → `docs/ecp5-boards-survey.md`; top 14 cloned + catalogued 2026-09-27 (12 new; danodus__ecp5_hdmi_audio_video and wuxx__colorlight-fpga-projects were already in, rows refreshed) |
 
 The ulx3s.github.io page also has a "Gitee examples" section (Chinese mirror/examples), not yet harvested.
 

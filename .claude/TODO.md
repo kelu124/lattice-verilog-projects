@@ -3,13 +3,15 @@
 ## In progress
 
 ## Next
-- [ ] Clone + catalogue the 24 "recommended to clone first" non-ULX3S ECP5 repos in docs/ecp5-boards-survey.md (waiting for owner go-ahead; ~14 GB disk free) (added 2026-09-27)
 - [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)
 - [ ] Clone the remaining candidates in projects.md (litex-boards, SaxonSoc, neorv32-setups, fujprog, had2019-playground, ulx4m-ls) (added 2026-09-27)
 - [ ] Harvest the "Gitee examples" section of ulx3s.github.io (added 2026-09-27)
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)
 
 ## Backlog
+- [ ] Clone items 15–24 of the "recommended" list in docs/ecp5-boards-survey.md if wanted (added 2026-09-27)
+- [ ] Shallow clones have no submodules: USB cores in orangecrab-fpga__orangecrab-examples, fdarling__orangecrab-usb-cdc-demo, mangelajo__orangecrab-usb and SoC parts of ultraembedded__ecpix-5 are unreviewed; decide whether clone.sh should fetch submodules (--depth 1) (added 2026-09-27)
+- [ ] gen_catalogue.py / docs/catalogue.md intro are ULX3S-worded; consider a `board` column now that non-ULX3S ECP5 repos are in (board currently in `board_rev`) (added 2026-09-27)
 - [ ] Clone/catalogue the remaining ~78 GitHub-survey repos (group C multi-board, group E minus ULX4M) if wanted (added 2026-09-27)
 - [ ] Record history stats (first commit, commit count) for the 155+64=219 GitHub-survey repos in history.tsv via GitHub API (added 2026-09-27)
 - [ ] Spot-check a sample of the heuristic test-scan results (tests column) by hand; the scan is name/path only, not proof tests run or pass (added 2026-09-27)

@@ -5,7 +5,7 @@ metadata:
   type: reference
 ---
 
-From the 2026-09-27 survey of 290 repos (details in `docs/catalogue.md`, source `catalogue.tsv`).
+From the 2026-09-27 survey of 302 repos (290 ULX3S/ULX4M + 12 other ECP5 boards) (details in `docs/catalogue.md`, source `catalogue.tsv`).
 Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalogue-fields]].
 
 | Need | Best source (language, license) | Also |
@@ -25,6 +25,12 @@ Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalog
 | Ethernet (LAN8720 RMII on GP/GN 9–13) | ulx3s-misc `examples/eth/rmii`; hdl4fpga `library/mii` (full ARP/IP/UDP/DHCP stack, VHDL, Diamond) | — |
 | Onboard ADC MAX11125 | ulx3s-misc `examples/adc` | hdl4fpga ScopeIO oscilloscope |
 | CPUs | Z80 tv80 (many); 6502: chrismoos__m6502 (SV, MIT, verified by tests); RISC-V: picorv32 (fpga-odysseus), kianV (Linux), Silice fire-v/ice-v, NEORV32 (VHDL, BSD-3, no ULX3S target in repo), VexRiscv via LiteX; RISC-V/MIPS: f32c (BSD-2); 68000 fx68k (lawrie examples); TMS99000 (pnru__ti99, public domain); CDP1802 SpinalHDL | — |
+| DDR3 on ECP5 (not ULX3S: it has SDR SDRAM) | ultraembedded__orangecrab `ddr_test/src_v/ddr3_*.v` (Verilog, Apache-2.0) | — |
+| QSPI/QPI PSRAM | spritetm__hadbadge2019_fpgasoc `soc/qpi_cache/` (ECP5 primitives; per-file licenses) | — |
+| HDMI with audio | danodus__ecp5_hdmi_audio_video `rtl/` (Verilog, MIT, ULX3S top in `boards/ulx3s/`) | tallenintegsys__hdmi-orangecrab (SV, synlig, no license) |
+| USB CDC-ACM device (soft PHY, US2) | fdarling__orangecrab-usb-cdc-demo / orangecrab-examples `usb_acm_device` (wrap tinyfpga_bx_usbserial, submodule not in shallow clone) | gregdavill__luna-usb-serial-acm (Amaranth-generated Verilog, needs ULPI PHY) |
+| ECP5 JTAGG user-JTAG | tomverbeure__ecp5_jtag (write-up + demo, no license) | — |
+| SGMII/RGMII gigabit Ethernet | sefbkn__versa-ecp5-demo (Verilog, CERN-OHL-S-2.0, Versa ECP5-5G DCU) | — |
 | Linux on ULX3S | linux-on-litex-vexriscv (`./make.py --board=ulx3s`); kianV (85F); SaxonSoc (docker recipes stale since 2020) | — |
 
 Cross-project facts:

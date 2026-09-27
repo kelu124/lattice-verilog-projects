@@ -23,6 +23,7 @@ brunolevy__tordboyau	https://github.com/BrunoLevy/TordBoyau	574b7db01df8794091d4
 carlosedp__chiselv	https://github.com/carlosedp/chiselv	01305a20f80bd09281ffb7053d7c85d0725bdc96	2026-09-14	2026-09-27
 carlraymond__ulx3s-container	https://github.com/CarlRaymond/ulx3s-container	1030c8474d6ed48af16d8f0eab5d79887ef2e21a	2026-03-23	2026-09-27
 c-elegans__ulx3s_sdram	https://github.com/C-Elegans/ulx3s_sdram	a4bd4cd54128104c3bf9542acb5726482c3378d2	2021-02-08	2026-09-27
+cheyao__icepi-zero	https://github.com/cheyao/icepi-zero	e01faa2bd35dcb7269827f8420b845d46c78c869	2026-09-18	2026-09-27
 cheyao__nes_ecp5	https://github.com/cheyao/nes_ecp5	e8dd1eb7f9f440a552cd24c0b936e58705a272e7	2025-07-27	2026-09-27
 cheyao__oberon	https://github.com/cheyao/oberon	07511b33357a95d68db67fc9351c86a13d106ecf	2026-06-23	2026-09-27
 cheyao__sega-sms	https://github.com/cheyao/sega-sms	c37e846d94f88eb9a95f44b15f2b23019aa25a26	2025-09-15	2026-09-27
@@ -108,6 +109,7 @@ f32c__arduino	https://github.com/f32c/arduino	7d8cbb33fab873e2d2c6660be4eb42e09a
 f32c__f32c	https://github.com/f32c/f32c	7dbf56d42a94ae599eabfd1e7fa15db14a10afd7	2026-09-22	2026-09-27
 f32c__fpgarduino	https://github.com/f32c/fpgarduino	765be1c145c372b862d904c7d4b2f9aa9e3002e0	2019-08-05	2026-09-27
 f32c__tools	https://github.com/f32c/tools	e2f63f8d2630d39ab97c2f8cdd3e33fcb0da8b14	2026-05-11	2026-09-27
+fdarling__orangecrab-usb-cdc-demo	https://github.com/fdarling/orangecrab-usb-cdc-demo	36a88f010f2589c73cce547ba0f87f4c6f586125	2022-10-02	2026-09-27
 fedy0__neo	https://github.com/fedy0/neo	1fcd64bba20ddbd263b9274bccb89604c7252152	2024-06-07	2026-09-27
 fedy0__zta	https://github.com/fedy0/zta	66618afbb937bef5f9687499c7510fa0e461950e	2024-07-12	2026-09-27
 felipesanches__anotherworld_fpga	https://github.com/felipesanches/AnotherWorld_FPGA	61dc2512597ec0e183afd360d95e2a3b1e759e66	2020-04-06	2026-09-27
@@ -132,6 +134,7 @@ goran-mahovlic__odysseus_sprites	https://github.com/goran-mahovlic/odysseus_spri
 goran-mahovlic__prjtrellis-led64x64	https://github.com/goran-mahovlic/prjtrellis-led64x64	ffa935a32df75f6b93442cb0ce7e5c70da3e794c	2019-01-13	2026-09-27
 goran-mahovlic__ulx3s-pmod	https://github.com/goran-mahovlic/ulx3s-PMOD	e40e76ac9fefc5821d9be046c94c1b8111ea6c4c	2023-08-24	2026-09-27
 gornjas__dvi_test	https://github.com/gornjas/dvi_test	f75f004a9c41adf23bce4e1698970dc9cd36fd7b	2025-03-02	2026-09-27
+gregdavill__luna-usb-serial-acm	https://github.com/gregdavill/luna-usb-serial-acm	ef1d7dcb0d3e7c8d68141940a71b8774f64f9dd4	2026-01-31	2026-09-27
 guztech__ulx3s-nmigen-examples	https://github.com/GuzTech/ulx3s-nmigen-examples	f2bed3208ac2c8847a3cbad24660ed17a43150b6	2020-11-26	2026-09-27
 hanseo03__ulx3s-custom-riscv-cpu	https://github.com/hanseo03/ulx3s-custom-riscv-cpu	dfe89b43bcfe548af73b8f770c9c4176faf8c760	2026-07-07	2026-09-27
 hanseo03__ulx3s-vexriscv-soc	https://github.com/hanseo03/ulx3s-vexriscv-soc	29b4f43f3b5b74bf2ccac97ed8d64687455fd2e1	2026-06-04	2026-09-27
@@ -193,6 +196,7 @@ litex-hub__linux-on-litex-vexriscv	https://github.com/litex-hub/linux-on-litex-v
 logoposeidon__ulx3sjukebox	https://github.com/LogoPoseidon/Ulx3sJukeBox	0a4c0a6faf01a45ff74693e16087c25c686114d4	2024-10-19	2026-09-27
 machdyne__nes_ecp5	https://github.com/machdyne/nes_ecp5	ff331d4b9c422e0b792560dd7b2b67a28622f67f	2026-01-11	2026-09-27
 machdyne__zeitlos	https://github.com/machdyne/zeitlos	a7e7e85ee0ad1fd0cfff4129e24b2aa528d444e8	2026-09-27	2026-09-27
+mangelajo__orangecrab-usb	https://github.com/mangelajo/orangecrab-usb	c4a8293fcd37a9a3c05a4e4217fdfdfa83e9911b	2024-02-25	2026-09-27
 marinsiric__ulx3s	https://github.com/marinsiric/ulx3s	b807c99376c149c074b8c8bd51ee56eb95b3fcc9	2020-01-23	2026-09-27
 markus-zzz__myc64	https://github.com/markus-zzz/myc64	7ab3c5414caf193b0979b322d94e71cf6c8f8405	2020-09-20	2026-09-27
 marph91__pocket-bnn	https://github.com/marph91/pocket-bnn	04e092f48931857980bf1462df08d7b54866a85e	2021-06-13	2026-09-27
@@ -212,6 +216,7 @@ nklabs__libnklabs-ulx3s	https://github.com/nklabs/libnklabs-ulx3s	6b6a6b2c50cff5
 nullobject__counter-ulx3s	https://github.com/nullobject/counter-ulx3s	429d9c47053611682db390c45a13d22699f1649a	2025-02-01	2026-09-27
 nullobject__m68k-ulx3s	https://github.com/nullobject/m68k-ulx3s	761a95e944b4d1c8b196a1c42ef38a67e6d36088	2025-06-06	2026-09-27
 nullobject__riscv-ulx3s	https://github.com/nullobject/riscv-ulx3s	f344cef2a29b795cfd3ef4596277d61df9954ab9	2025-07-13	2026-09-27
+orangecrab-fpga__orangecrab-examples	https://github.com/orangecrab-fpga/orangecrab-examples	eefbafa8729e7807fb64357c306a635a40fa8b34	2024-05-08	2026-09-27
 osresearch__spispy	https://github.com/osresearch/spispy	cbf8d48e2a303c3b764affb947b7177f7b824a6a	2019-10-01	2026-09-27
 pcotret__ulx3s-examples	https://github.com/pcotret/ULX3S-examples	33b0052443b8c9233661ff9a925526e8facb35dc	2020-11-13	2026-09-27
 pepijndevos__rust-litex-example	https://github.com/pepijndevos/rust-litex-example	d2f56536ceb2cbb66f897ada43180e470d89c659	2022-04-27	2026-09-27
@@ -234,12 +239,14 @@ rob-ng15__pawsv2	https://github.com/rob-ng15/PAWSv2	d3d959759ecb2f3b51ff2277b952
 ruebenschus__atari-fpcartridge	https://github.com/Ruebenschus/Atari-FPCartridge	3d4c2533417b2f1ec1a3f315716900cc60771f4c	2026-06-25	2026-09-27
 sangwoojun__ulx3s_bsv	https://github.com/sangwoojun/ulx3s_bsv	a3652e203c2a4f78bc54bdbecd1eedc804d4eab4	2025-03-09	2026-09-27
 saul-rodriguez__ulx3s	https://github.com/saul-rodriguez/ulx3s	03e925470e966e3c97a51cd32559b5a3053f4faa	2021-05-17	2026-09-27
+sefbkn__versa-ecp5-demo	https://github.com/sefbkn/versa-ecp5-demo	1d6d4cb535e11f935c1afa707b35ded5df4d658d	2026-03-11	2026-09-27
 semify-eda__waveform-generator	https://github.com/semify-eda/waveform-generator	3afa6c9c8eb7268c48bfb7fba8a825d9a69643f2	2022-07-18	2026-09-27
 seminlim__bluerv32	https://github.com/SeMinLim/bluerv32	ff87bc0f36fdfda7b76bd385c14d689347142cee	2026-08-14	2026-09-27
 speccery__icy99	https://github.com/Speccery/icy99	512915b98e8088e6a23d63ffd55bed9a84c25634	2023-11-28	2026-09-27
 spinalhdl__saxonsoc	https://github.com/SpinalHDL/SaxonSoc	227b8686b734c7995b10ce81e193a01b010d2407	2025-03-16	2026-09-27
 splinedrive__kianriscv	https://github.com/splinedrive/kianRiscV	da994e6c25b0667d6579922f4bab8d800d19e944	2026-05-30	2026-09-27
 splinedrive__my_hdmi_device	https://github.com/splinedrive/my_hdmi_device	16a93372a9e07d27b23cf093a649dc870c208851	2025-08-28	2026-09-27
+spritetm__hadbadge2019_fpgasoc	https://github.com/Spritetm/hadbadge2019_fpgasoc	6e706d52ecdc007e9179bda01d8eac60d55b7c45	2023-11-30	2026-09-27
 stefanhaslhofer__hardwaredesign	https://github.com/StefanHaslhofer/HardwareDesign	6236ef113f10a22d0b703a162c1e179b1cfc2e33	2024-12-26	2026-09-27
 stereoninja__stereoninjafpga	https://github.com/StereoNinja/StereoNinjaFPGA	2def6f03fb93285817ced475b7c67dee756ac51a	2023-05-15	2026-09-27
 stnolting__neorv32	https://github.com/stnolting/neorv32	90a4c8675de567c67b385cfa7f3441cec13a63cc	2026-09-20	2026-09-27
@@ -247,6 +254,7 @@ stnolting__neorv32-setups	https://github.com/stnolting/neorv32-setups	57f86d5ad3
 stuij__odyssey	https://github.com/stuij/odyssey	e74caa83d9fb9e21f96ac63e0fdd0d7b945dbfe1	2023-02-03	2026-09-27
 sylefeb__a5k	https://github.com/sylefeb/a5k	19c2e341ec62c3d081743b91bb3edfb0563fee4a	2023-10-06	2026-09-27
 sylefeb__silice	https://github.com/sylefeb/Silice	620487d6b83035dd98299734c8c8fccf8f636005	2026-06-18	2026-09-27
+tallenintegsys__hdmi-orangecrab	https://github.com/tallenintegsys/hdmi-orangecrab	59436568a4276f52fd9dc2979128a898485b8b29	2024-07-07	2026-09-27
 tarik-hamedovic__sdr-hls	https://github.com/tarik-hamedovic/SDR-HLS	334f7074eb51dc7d4910a439ba62c85c2668e706	2024-10-31	2026-09-27
 td0034__fpga	https://github.com/td0034/fpga	476fe356f880d6b8254094a3966e34b9edac7c62	2026-03-05	2026-09-27
 techprototyper__trs80-rev-z	https://github.com/TechPrototyper/trs80-rev-z	ea8bca2509407d8d483c779265980100ff876701	2026-08-27	2026-09-27
@@ -263,9 +271,12 @@ thorkn__vga_clock_1	https://github.com/ThorKn/vga_clock_1	5708288299b1cb3c59c2ed
 thorkn__vga_pong	https://github.com/ThorKn/vga_pong	8b4ca37f15691097d54a445a799b38c7a3901e3c	2023-11-27	2026-09-27
 tom7980__ulxws	https://github.com/tom7980/ulxws	f71581987d854b4eea497975ba4d7634d7de0135	2026-04-04	2026-09-27
 tommythorn__bluespec_blink	https://github.com/tommythorn/bluespec_blink	4917bc635ffc4a278e99580d6c35105ce3adddae	2025-03-09	2026-09-27
+tomverbeure__ecp5_jtag	https://github.com/tomverbeure/ecp5_jtag	6a2302e079d003ddce8335a5300172fdbb2bd1b5	2021-07-23	2026-09-27
 trabucayre__openfpgaloader	https://github.com/trabucayre/openFPGALoader	676e53ec73d2261c974d610b7cf0693117c8d2ef	2026-09-23	2026-09-27
 tristanitschner__ulx3s-examples	https://github.com/tristanitschner/ulx3s-examples	523edf8ad59316c45340d77112ec7cea1a458ef6	2022-10-01	2026-09-27
 tucanae47__ulx3s-experiments	https://github.com/tucanae47/ulx3s-experiments	f696bf152b910293ef3a4e1e642a2ea95e88f078	2022-09-24	2026-09-27
+ultraembedded__ecpix-5	https://github.com/ultraembedded/ecpix-5	17c1f633f101d0d0f6509e5359bbc98c74840e8a	2020-07-05	2026-09-27
+ultraembedded__orangecrab	https://github.com/ultraembedded/orangecrab	685d601556deb8bfa4c0a24bf47b96ae60819c04	2020-08-21	2026-09-27
 ulx3s__anotherworld_fpga	https://github.com/ulx3s/AnotherWorld_FPGA	44e0a2af75296842787c6275b3f4e519bc64a761	2020-02-28	2026-09-27
 ulx3s__apple2fpga	https://github.com/ulx3s/apple2fpga	b19e79be5cbbbadd3f7a31708425da9bfcfed78f	2020-01-20	2026-09-27
 ulx3s__blink	https://github.com/ulx3s/blink	46c8ec1cb5ee3a36448924ed4378e860b944a91e	2022-05-16	2026-09-27
@@ -284,6 +295,7 @@ w531t4__fpga_led_display	https://github.com/w531t4/fpga_led_display	7ba06f8f6dd7
 wren6991__hazard3	https://github.com/Wren6991/Hazard3	8af992930f71a69b0e06c38734c1094f41a05ca0	2026-03-12	2026-09-27
 wren6991__hazard3-swd-soc	https://github.com/Wren6991/Hazard3-SWD-SoC	6f3bfe190a9dd20185913ec8e97bd2eaea75a788	2023-04-20	2026-09-27
 wuxx__colorlight-fpga-projects	https://github.com/wuxx/Colorlight-FPGA-Projects	5042201f6ae848d4269680cc289c7bde3ab8cf71	2026-09-15	2026-09-27
+wuxx__icesugar-pro	https://github.com/wuxx/icesugar-pro	087e48d9e0b0a0168ce165a961cba306335c4cf2	2025-09-16	2026-09-27
 yope__cpuv2	https://github.com/yope/cpuv2	f489766dad2a77c63517115f25d357943daf5e28	2021-03-17	2026-09-27
 yowasp__toolchain-demo	https://github.com/YoWASP/toolchain-demo	6cf31d22dd49aca669a07c11f00eb72c197cc7ba	2024-01-01	2026-09-27
 zipotron__neorv32-complex-setups	https://github.com/zipotron/neorv32-complex-setups	55152b5d770ffe5635d2036a4a208e4c8fc51ef7	2021-11-28	2026-09-27

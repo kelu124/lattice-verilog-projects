@@ -2,6 +2,18 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — docs(catalogue): catalogue 14 gateware repos for other ECP5 boards
+- **What**: shallow-cloned and pinned items 1–14 of the "recommended" list in `docs/ecp5-boards-survey.md`
+  (OrangeCrab, iCESugar-Pro, HAD2019 badge, Colorlight, ECPIX-5, Versa ECP5-5G, IcePi Zero, LUNA). 12 are new; 2
+  (`danodus__ecp5_hdmi_audio_video`, `wuxx__colorlight-fpga-projects`) were already catalogued at the same commit
+  and their rows were replaced by the fuller new ones. Rows written by 3 parallel Sonnet agents from source, board
+  recorded in `board_rev` as "(not ULX3S)"; 290 → 302 rows, 1:1 with `sources.tsv`. Added 6 rows to `reusable-cores.md`.
+- **Why**: owner asked for ECP5 gateware from other boards, Verilog/open toolchain first, and then to clone
+  and catalogue "the 14".
+- **Notes**: corrected one agent claim (ULX3S has SDR SDRAM, not DDR3). Several USB cores are in git submodules not
+  fetched by the shallow clone (TODO). `ultraembedded__orangecrab` and `ultraembedded__ecpix-5` ship no build
+  script, so their toolchain/FPGA columns say `unknown`.
+
 ## 2026-09-27 — chore(catalogue): remove ULX5M-GS repos on owner request
 - **What**: removed `intergalaktik__ulx5m-gs`, `goran-mahovlic__ulx5m-litex-ai`, `pu-cc__ulx5m_gpiocheck` from
   `catalogue.tsv`, `sources.tsv` and `original_sources/`; regenerated `docs/catalogue.md` (293 → 290); counts back
