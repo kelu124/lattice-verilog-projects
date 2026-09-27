@@ -16,8 +16,8 @@ Last run: 2026-09-27 → `docs/github-survey.md` (≈297 candidates in groups A�
   1000 results/query, core 60/h).
 
 ## Evidence levels
-- **A (verified)**: a ULX3S `.lpf`, top or `ulx3s/` board dir exists (`tree:` recursive tree, `root:` top listing).
-- **B**: ULX3S-dedicated by name/description/topic, HDL present, no LPF at root.
+- **A (verified)**: a ULX3S `.lpf` exists at the repo root or in a `ulx3s/` board dir (`tree:` recursive tree, `root:` top listing).
+- **B**: ULX3S-dedicated by name/description/topic, HDL present, no `.lpf` at root.
 - **C**: multi-board, README states a ULX3S target.
 - **D**: forks with substantial own commits.
 - **E**: linked from ulx3s-links, relevance to check.

@@ -10,7 +10,7 @@ metadata:
 | https://ulx3s.github.io/ section "Projects and examples" (between "ULX3S manual" and "Gitee examples") | 2026-09-27 | 69 git URLs; 68 cloned. `emard/ulx3s-examples` is 404 (use `ulx3s/ulx3s-examples`). Not clonable: BLE gist (vmedea), YouTube logic-analyzer video, bonfirecpu.eu blog, nxlab.fer.hr FPGArduino page |
 | emard/ulx3s README + MANUAL links | 2026-09-27 | candidates in [[projects]] |
 | emard/ulx3s-bin folder sources | 2026-09-27 | see docs/projects/emard__ulx3s-bin.md |
-| GitHub search (repo/topic/readme/fork queries; code search not possible without auth) | 2026-09-27 | ≈297 candidates → `docs/github-survey.md`: A 155 verified, B 51, C 69 multi-board, D 11 forks, E 11 links. Not cloned yet (disk 98 % full). How to repeat: skill `github-survey` |
+| GitHub search (repo/topic/readme/fork queries; code search not possible without auth) | 2026-09-27 | ≈297 candidates → `docs/github-survey.md`: A 155 verified (cloned, see [[projects]]), B 51, C 69 multi-board, D 11 forks, E 11 links — the other 142 (B–E) not cloned yet (disk 98 % full). How to repeat: skill `github-survey` |
 
 The ulx3s.github.io page also has a "Gitee examples" section (Chinese mirror/examples), not yet harvested.
 

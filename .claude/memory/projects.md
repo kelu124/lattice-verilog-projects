@@ -10,8 +10,9 @@ metadata:
 Keep in sync with `.claude/memory/sources.tsv` (pinned clones) and `docs/projects/<slug>.md`
 (details). Update the row + detail block in the same commit as the review.
 
-Status values: `candidate` (known to exist, not cloned) → `cloned` → `reviewed`
-(→ `stale` when upstream moved past the pinned commit and has not been re-reviewed).
+Status values: `candidate` (known to exist, not cloned) → `cloned` → `catalogued`
+(TSV row filled in) → `reviewed` (full docs page) (→ `stale` when upstream moved
+past the pinned commit and has not been re-reviewed).
 
 ## Function tags (shared vocabulary so projects are comparable)
 `board-hw` (PCB/schematics), `constraints` (LPF), `video-dvi` (GPDI/HDMI/DVI out),
@@ -30,10 +31,13 @@ The per-repo facts (kind, name, fork/preferred copy, ULX3S build path, **FPGA**,
 [`catalogue.tsv`](catalogue.tsv), one row per slug in `sources.tsv`. Render the human view with
 `.claude/skills/review-gateware-project/gen_catalogue.py` → `docs/catalogue.md`.
 
-Status as of 2026-09-27: **226 repos cloned and catalogued** (69 from ulx3s.github.io + 155 from a
-GitHub-wide search, first pass by read-only agents over Makefiles, LPFs, READMEs, license files and a
-testbench heuristic; not built). Only the three below also have a full docs page (`reviewed`); the
-rest are `catalogued`. About 300 more candidates (unverified) are listed in `docs/github-survey.md`.
+Status as of 2026-09-27: **226 repos cloned and catalogued** (71 pre-survey — the board repo,
+ulx3s-bin, openFPGALoader, plus 68 of the 69 ulx3s.github.io "Projects and examples" links (one is a
+404) — + 155 from a GitHub-wide search, first pass by read-only agents over Makefiles, LPFs, READMEs,
+license files and a testbench heuristic; not built). Only the three below also have a full docs page
+(`reviewed`); the
+rest are `catalogued`. The GitHub survey found ≈297 candidates in total; its other ~142 (categories
+B–E, unverified) are listed in `docs/github-survey.md` but not yet cloned.
 Cross-project map of reusable cores: [[reusable-cores]].
 
 ## Detail blocks
@@ -81,4 +85,4 @@ Cross-project map of reusable cores: [[reusable-cores]].
 | lawrie__jupiter_ace, alangarf__apple-one, basman74__oberon_sdram | upstreams of cloned forks |
 | gitee ULX3S examples | section after "Projects and examples" on ulx3s.github.io |
 
-GitHub-wide search results (2026-09-27) are added in [[source-lists]] once the search finishes.
+GitHub-wide search results (2026-09-27) are recorded in [[source-lists]].

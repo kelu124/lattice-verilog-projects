@@ -24,7 +24,7 @@ doc/constraints/*.lpf), 2026-09-27. Full human reference: `docs/board-reference.
   channel (`audio_l/r/v[3:0]`), 75 Ω. Sony-wired cables are wrong.
 - ADC: MAX11125 8-ch 12-bit 1 MSa/s total (SPI `adc_*`). Shares J2 GP/GN 14–17.
 - OLED/LCD header: 7 pin CS DC RES SDA SCL VCC GND (ST7789, SSD1331, SSD1351, SSD1306).
-- 7 buttons `btn[6:0]` = PWRn(active-low, pull-up), FIRE1, FIRE2, UP, DOWN, LEFT, RIGHT
+- 7 buttons `btn[6:0]` = PWRn (active-low, pull-up), FIRE1, FIRE2, UP, DOWN, LEFT, RIGHT
   (active-high, pull-down) — verified in ulx3s_v20.lpf;
   8 LEDs, 4 DIP switches `sw[3:0]`.
 - GPIO: 56 pins on J1/J2 (`gp/gn[27:0]`), 3.3 V, **not 5 V tolerant**.

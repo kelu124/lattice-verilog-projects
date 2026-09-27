@@ -2,6 +2,25 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — docs(repo): proofread and fix cross-file inconsistencies across the markdown docs
+- **What**: 4 parallel agents proofread all 26 hand-maintained markdown files (CLAUDE.md, README.md, 6
+  skill files, 10 memory files, 5 docs pages, TODO/DONE/COMMIT_LOG) for clarity, consistency and
+  formatting, with instructions not to change facts or remove content. `docs/catalogue.md` was left
+  untouched (generated file). Fixed: a stale "not cloned yet" claim about the 155 GitHub-survey repos
+  that are in fact cloned (MEMORY.md, source-lists.md); a broken `[[projects]]` cross-reference
+  (project-goal.md pointed at a "Reuse notes" section that doesn't exist); an undeclared `catalogued`
+  status value used but never defined (projects.md); a missing `github-survey` skill entry in CLAUDE.md's
+  layout table and rules section; assorted typos and spacing. Also resolved, by hand, a flagged
+  69-vs-68-vs-71 repo-count discrepancy in projects.md: 68 of 69 ulx3s.github.io links were clonable
+  (one 404) plus the 3 initial review targets (board repo, ulx3s-bin, openFPGALoader) = 71 pre-survey,
+  matching `history.tsv`; reworded projects.md to state that explicitly instead of the wrong "69".
+- **Why**: requested by the owner after the catalogue-merge push, to catch drift accumulated over a long
+  incremental session before it misleads a future session.
+- **Notes**: one agent's proposed "grammar fix" in COMMIT_LOG.md ("flearadio/rdsfpga are ULX2S-only" →
+  "is") was actually wrong — that's a compound subject (two separate repos) — and was reverted by hand
+  before committing. A reminder that agent-proposed prose fixes still need a human/parent check, especially
+  around domain facts.
+
 ## 2026-09-27 — memory(repo): refresh stale repo counts after the survey catalogue merge
 - **What**: updated `.claude/memory/MEMORY.md`, `projects.md`, `reusable-cores.md` and `README.md`,
   which still said "71 repos cloned/catalogued" after the merge that brought the total to 226

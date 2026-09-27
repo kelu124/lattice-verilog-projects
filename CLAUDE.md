@@ -24,7 +24,7 @@ exact state it was left in. Do **not** rely on the per-user memory in
 | Path | Role | Tracked in git |
 |------|------|----------------|
 | `CLAUDE.md` | This file — entry point and rules summary | yes |
-| `.claude/skills/*/SKILL.md` | Repeatable workflows (clone, commit, document, track, review) | yes |
+| `.claude/skills/*/SKILL.md` | Repeatable workflows (survey, clone, commit, document, track, review) | yes |
 | `.claude/memory/MEMORY.md` | Index of memory files (one line each) | yes |
 | `.claude/memory/projects.md` | **Project registry**: every ULX3S gateware project, its functions, toolchain, last update, review status | yes |
 | `.claude/memory/catalogue.tsv` | **Catalogue**: one row per cloned repo with FPGA, toolchain, HDL, license, functions, reusable blocks, preferred fork. Rendered to `docs/catalogue.md` by `gen_catalogue.py` | yes |
@@ -40,6 +40,10 @@ exact state it was left in. Do **not** rely on the per-user memory in
 
 ## Rules (details in the skills)
 
+- **Surveying GitHub for new projects** → skill `github-survey`. Search GitHub for
+  ULX3S repos, diff candidates against `.claude/memory/sources.tsv`, and regenerate
+  `docs/github-survey.md`; clone the chosen ones (skill `clone-original-source`) and
+  catalogue them (skill `review-gateware-project`, step 7b).
 - **Cloning upstream code** → skill `clone-original-source`. Always into
   `original_sources/<owner>__<repo>`, always via `clone.sh` so it is pinned in
   `sources.tsv`. Never modify cloned code; never commit it. **All clones are

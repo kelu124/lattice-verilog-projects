@@ -9,4 +9,4 @@
 - [Toolchain & programming](toolchain-and-programming.md) — yosys/nextpnr/ecppack, openFPGALoader/fujprog/DFU/ESP32, multiboot 0x200000
 - [Catalogue fields](catalogue-fields.md) — every gateware repo must record FPGA size, toolchain (diamond/open/both), HDL language, license, tests
 - [Source lists](source-lists.md) — where ULX3S project lists come from (ulx3s.github.io, GitHub search) and when last harvested
-- [GitHub survey](../../docs/github-survey.md) — ≈297 ULX3S repos found on GitHub 2026-09-27 (A 155 verified), not cloned yet
+- [GitHub survey](../../docs/github-survey.md) — ≈297 ULX3S repos found on GitHub on 2026-09-27; category A's 155 verified repos are already cloned (see [[projects]]), the remaining ~142 (B–E) are not

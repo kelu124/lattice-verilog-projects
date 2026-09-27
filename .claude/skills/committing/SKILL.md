@@ -26,7 +26,7 @@ description: Rules for making git commits in ulx3s-klod — message format, what
 
 <why: 1–3 lines — the motivation, not a restatement of the diff>
 
-Co-Authored-By: ...   (attribution line required by the harness, if any)
+Co-Authored-By: ... (attribution line required by the harness, if any)
 ```
 Types: `review` (project reviewed), `source` (clone/pin/update upstream),
 `docs`, `memory` (facts / registry only), `skill` (skill or CLAUDE.md rules),

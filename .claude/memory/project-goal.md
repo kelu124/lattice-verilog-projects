@@ -19,7 +19,7 @@ never only in `~/.claude/projects/...`.
 
 **How to apply:**
 - When reviewing a project, record *reusable building blocks* (cores, drivers,
-  pin usage, tricks), not only a summary — see [[projects]] "Reuse notes".
+  pin usage, tricks), not only a summary — see the "Reuse" notes in [[projects]].
 - When a user asks to build something new, first search [[projects]] and
   `docs/` for prior art and board constraints ([[board-hardware]], [[board-revisions]]).
 - Hardware ground truth comes from the board repo and its manual: [[board-hardware]].
