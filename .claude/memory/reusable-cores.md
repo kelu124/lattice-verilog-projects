@@ -5,7 +5,7 @@ metadata:
   type: reference
 ---
 
-From the 2026-09-27 survey of 71 repos (details in `docs/catalogue.md`, source `catalogue.tsv`).
+From the 2026-09-27 survey of 226 repos (details in `docs/catalogue.md`, source `catalogue.tsv`).
 Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalogue-fields]].
 
 | Need | Best source (language, license) | Also |

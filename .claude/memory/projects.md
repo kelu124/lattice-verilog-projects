@@ -30,9 +30,10 @@ The per-repo facts (kind, name, fork/preferred copy, ULX3S build path, **FPGA**,
 [`catalogue.tsv`](catalogue.tsv), one row per slug in `sources.tsv`. Render the human view with
 `.claude/skills/review-gateware-project/gen_catalogue.py` → `docs/catalogue.md`.
 
-Status as of 2026-09-27: **71 repos cloned and catalogued** (a first pass by read-only agents over
-Makefiles, LPFs, READMEs and license files; not built). Only the three below also have a full
-docs page (`reviewed`); the rest are `catalogued`.
+Status as of 2026-09-27: **226 repos cloned and catalogued** (69 from ulx3s.github.io + 155 from a
+GitHub-wide search, first pass by read-only agents over Makefiles, LPFs, READMEs, license files and a
+testbench heuristic; not built). Only the three below also have a full docs page (`reviewed`); the
+rest are `catalogued`. About 300 more candidates (unverified) are listed in `docs/github-survey.md`.
 Cross-project map of reusable cores: [[reusable-cores]].
 
 ## Detail blocks

@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-27
+- [x] Fix stale repo counts (71 → 226) across MEMORY.md, projects.md, reusable-cores.md, README.md → commit "memory(repo): refresh stale repo counts after the survey catalogue merge"
 - [x] Catalogue the 155 GitHub-survey repos (FPGA/toolchain/HDL/license/functions/reuse) via a 6-agent workflow on Sonnet 5, merge into catalogue.tsv (now 226 repos) → commit "docs(catalogue): catalogue 155 more ULX3S repos from the GitHub survey"
 - [x] Add a `tests` column (heuristic testbench/simulation scan) to catalogue.tsv for all 226 repos, render a "Testbenches and simulation" section in docs/catalogue.md → same commit
 - [x] Shallow-clone the 155 verified GitHub-survey repos (group A), pin them; convert the 71 existing clones to shallow; make shallow the only clone mode → commit "source(survey): shallow-clone 155 verified ULX3S repos, all clones shallow"

@@ -2,6 +2,15 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — memory(repo): refresh stale repo counts after the survey catalogue merge
+- **What**: updated `.claude/memory/MEMORY.md`, `projects.md`, `reusable-cores.md` and `README.md`,
+  which still said "71 repos cloned/catalogued" after the merge that brought the total to 226
+  (69 ulx3s.github.io + 155 GitHub-survey group A). README's "Wider survey" section also wrongly
+  implied the 155 verified repos were still uncatalogued.
+- **Why**: requested before pushing to main — stale counts in memory are worse than no counts, since
+  they read as confirmed facts to a future session.
+- **Notes**: none.
+
 ## 2026-09-27 — docs(catalogue): catalogue 155 more ULX3S repos from the GitHub survey
 - **What**: ran a 6-agent Workflow (Sonnet 5) to catalogue all 155 group-A repos from `docs/github-survey.md`
   (kind, name, fork/preferred copy, ULX3S build path, FPGA, toolchain, HDL, license, LPF, functions, reuse,

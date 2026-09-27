@@ -12,5 +12,5 @@ other refs dropped, and gc run.
 **Why:** the owner asked for it explicitly on 2026-09-27. The disk was 97–99 % full (about 4 GB free after 226 clones).
 
 **How to apply:** never unshallow or full-clone. Activity stats that need history (first commit, commit count)
-are in `.claude/memory/history.tsv` for the first 71 repos. For newer repos use the GitHub API (created_at, and
+are in `.claude/memory/history.tsv` for the first 71 repos (the GitHub-survey 155 still need this — see TODO). For newer repos use the GitHub API (created_at, and
 contributors or commits pagination) and add them there. `gen_catalogue.py` reads history.tsv. See [[source-lists]].
