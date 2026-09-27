@@ -31,7 +31,7 @@ The per-repo facts (kind, name, fork/preferred copy, ULX3S build path, **FPGA**,
 [`catalogue.tsv`](catalogue.tsv), one row per slug in `sources.tsv`. Render the human view with
 `.claude/skills/review-gateware-project/gen_catalogue.py` → `docs/catalogue.md`.
 
-Status as of 2026-09-27: **290 repos cloned and catalogued** (71 pre-survey — the board repo,
+Status as of 2026-09-27: **293 repos cloned and catalogued** (the last 3 are ULX5M/GateMate repos, see [[ulx5m-board]] and survey group F) (71 pre-survey — the board repo,
 ulx3s-bin, openFPGALoader, plus 68 of the 69 ulx3s.github.io "Projects and examples" links (one is a
 404) — + 155 from GitHub-search category A + 64 more from categories B (51, all ULX3S-dedicated), D
 (11, forks with own commits) and the 2 ULX4M-specific repos in E; first pass by read-only agents over
@@ -82,6 +82,7 @@ Cross-project map of reusable cores: [[reusable-cores]].
 | emard__ulx2s | Predecessor board |
 | emard__had2019-playground, smunaut__had2019-playground | DFU bootloader source |
 | intergalaktik__ulx4m-ls | ULX4M successor board |
+| ULX5M not-cloned repos (ulx5m-m2, ESY, ulx5m-gh, openCologne, live-bitsream) | `docs/github-survey.md` group F |
 | litex-hub__litex-boards | `radiona_ulx3s` platform/target used by linux-on-litex |
 | alangarf__apple-one, basman74__oberon_sdram | upstreams of already-cloned forks |
 | gitee ULX3S examples | section after "Projects and examples" on ulx3s.github.io |

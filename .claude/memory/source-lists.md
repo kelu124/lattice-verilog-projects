@@ -11,6 +11,7 @@ metadata:
 | emard/ulx3s README + MANUAL links | 2026-09-27 | candidates in [[projects]] |
 | emard/ulx3s-bin folder sources | 2026-09-27 | see docs/projects/emard__ulx3s-bin.md |
 | GitHub search (repo/topic/readme/fork queries; code search not possible without auth) | 2026-09-27 | ≈297 candidates → `docs/github-survey.md`: A 155 verified, B 51, C 69 multi-board, D 11 forks, E 11 links. A+B+D+2(E, ULX4M) = 219 now cloned (see [[projects]]) — the other ~78 (C, and E minus the 2 ULX4M repos) skipped as not device-dedicated. How to repeat: skill `github-survey` |
+| GitHub search `ulx5m` (repo, readme, forks, `ulx5m-gs`) | 2026-09-27 | 5 own repos + 7 forks + mentions → `docs/github-survey.md` group F; cloned 3 (ulx5m-gs, ulx5m-litex-ai, ulx5m_gpiocheck). ULX5M is GateMate, not ECP5 |
 
 The ulx3s.github.io page also has a "Gitee examples" section (Chinese mirror/examples), not yet harvested.
 

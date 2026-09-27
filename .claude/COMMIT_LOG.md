@@ -2,6 +2,17 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — docs(catalogue): add ULX5M (GateMate) repos as survey group F
+- **What**: searched GitHub for `ulx5m` (repo name, README, forks, `ulx5m-gs`); recorded 5 own repos, the
+  forks and related projects as group F in `docs/github-survey.md`. Shallow-cloned and pinned 3:
+  `intergalaktik__ulx5m-gs` (board hardware), `goran-mahovlic__ulx5m-litex-ai` (LiteX Linux SBC + SerDes),
+  `pu-cc__ulx5m_gpiocheck` (GPIO test with the only public `.ccf` pin file). Added their catalogue rows
+  (290 → 293), regenerated `docs/catalogue.md`, new memory `ulx5m-board.md`, counts in MEMORY/projects/source-lists.
+- **Why**: owner asked whether ULX5M repos could be added to the catalogue.
+- **Notes**: ULX5M uses a **Cologne Chip GateMate CCGM1A1, not an ECP5**, so its rows say "NOT ECP5" in the
+  fpga column and ECP5 cores do not port as-is. Hardware-only / bitstream-only / 118 MB student repos left
+  uncloned (disk 94 % full), listed with reasons in group F.
+
 ## 2026-09-27 — docs(catalogue): catalogue 64 ULX3S/ULX4M-dedicated repos from survey groups B/D/E
 - **What**: shallow-cloned and pinned 64 more repos from `docs/github-survey.md` — all 51 of group B
   (ULX3S-dedicated by name/description), all 11 of group D (forks with substantial own commits), and

@@ -328,3 +328,24 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [lawrie/ulx4m_examples](https://github.com/lawrie/ulx4m_examples) | Verilog | 10 | 2022-04-22 | none | Verilog examples for the Ulx4M FPGA board | in ulx3s-links (unverified) |
 | [lawrie/ulx4m_amaranth_examples](https://github.com/lawrie/ulx4m_amaranth_examples) | Python (Amaranth/LiteX) | 6 | 2022-05-11 | none | Amaranth HDL examples for the Ulx4m FPGA board | in ulx3s-links (unverified) |
 | [rhobbie/Library704](https://github.com/rhobbie/Library704) | C# | 1 | 2026-09-06 | MIT | Verilog simulation of an IBM 704 | in ulx3s-links (unverified) |
+
+### F. ULX5M repos (searched 2026-09-27: `ulx5m`, `ulx5m in:readme`, `ulx5m fork:true`, `ulx5m-gs`) — 5 own repos + forks
+
+ULX5M uses a **Cologne Chip GateMate CCGM1A1, not an ECP5** (see `.claude/memory/ulx5m-board.md`).
+The three marked *cloned* are in `sources.tsv` and `docs/catalogue.md`.
+
+| full_name | lang/HDL | stars | last push | license | what it is | status |
+|---|---|---|---|---|---|---|
+| [intergalaktik/ulx5m-gs](https://github.com/intergalaktik/ulx5m-gs) | KiCad | 62 | 2026-08-20 | CERN-OHL-S-2.0+ | ULX5M-GS board hardware (ground truth) | cloned |
+| [goran-mahovlic/ulx5m-litex-ai](https://github.com/goran-mahovlic/ulx5m-litex-ai) | LiteX, Verilog | 1 | 2026-09-27 | BSD-2-Clause | Linux SBC (VexRiscv, GbE, DVI, USB host) + SerDes BER link GS↔M2 | cloned |
+| [pu-cc/ulx5m_gpiocheck](https://github.com/pu-cc/ulx5m_gpiocheck) | Verilog | 0 | 2025-09-16 | none | GPIO toggle test; has the `top.ccf` pin file | cloned |
+| [intergalaktik/ulx5m-m2](https://github.com/intergalaktik/ulx5m-m2) | KiCad | 4 | 2026-06-23 | none | ULX5M-M2 board (GateMate on M.2), hardware only | not cloned |
+| [goran-mahovlic/ulx5m-live-bitsream](https://github.com/goran-mahovlic/ulx5m-live-bitsream) | bitstreams | 1 | 2025-08-09 | none | remote test rig: push a .bit, get a camera picture back; no HDL | not cloned |
+| [lufla/ESY](https://github.com/lufla/ESY) | Verilog | 0 | 2026-03-20 | none | university project (winter 2025/26): GateMate code (from a master thesis) on a ULX5M-GS SOM + own base board; 118 MB | not cloned |
+| [pu-cc/ulx5m-gh](https://github.com/pu-cc/ulx5m-gh) | KiCad | 1 | 2026-02-23 | none | fork of ulx5m-gs, 13 commits ahead (hardware changes) | not cloned |
+| [chili-chips-ba/openCologne](https://github.com/chili-chips-ba/openCologne) | Verilog | 105 | 2026-05-08 | BSD-3-Clause | umbrella GateMate project that funded ULX5M (`6.PCB.advanced/`) | not cloned |
+| litex-hub/litex-boards `intergalaktik_ulx5m_gs.py` | Python | — | — | BSD-2-Clause | LiteX platform file | not cloned (already a candidate) |
+
+Forks with no own work skipped: intergalaktik/ulx5m-litex-ai (fork of goran-mahovlic's), 25mmHg, chrisKanthak,
+throwoutofcoffeeexception, mfkiwl, Odie8683 `/ulx5m-gs`. Curated list: PythonLinks/awesome-gatemate.
+

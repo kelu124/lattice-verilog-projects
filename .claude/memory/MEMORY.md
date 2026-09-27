@@ -1,6 +1,6 @@
 - [Project goal](project-goal.md) — why this repo exists: cloneable memory of all ULX3S work, to help build new things
 - [Project registry](projects.md) — every ULX3S project: functions, toolchain, target, last update, review status + candidates queue
-- [Catalogue](catalogue.tsv) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 290 cloned repos (render: gen_catalogue.py)
+- [Catalogue](catalogue.tsv) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 293 cloned repos (290 ULX3S/ULX4M + 3 ULX5M) (render: gen_catalogue.py)
 - [Reusable cores](reusable-cores.md) — best source repo for each building block (PLL, DVI, ESP32 OSD, USB host, SDRAM, displays, CPUs, Linux)
 - [Shallow clones rule](shallow-clones.md) — all clones --depth 1 (owner rule); history stats in history.tsv
 - [Pinned sources](sources.tsv) — upstream repos cloned in original_sources/ with pinned commits (restore with clone.sh --restore)
@@ -10,3 +10,4 @@
 - [Catalogue fields](catalogue-fields.md) — every gateware repo must record FPGA size, toolchain (diamond/open/both), HDL language, license, tests
 - [Source lists](source-lists.md) — where ULX3S project lists come from (ulx3s.github.io, GitHub search) and when last harvested
 - [GitHub survey](../../docs/github-survey.md) — ≈297 ULX3S repos found on GitHub on 2026-09-27; 219 (A's 155 + B's 51 + D's 11 + 2 ULX4M from E) are cloned (see [[projects]]), the remaining ~78 (C, multi-board, + E minus ULX4M) are not
+- [ULX5M board](ulx5m-board.md) — ULX5M-GS is GateMate CCGM1A1 (not ECP5): .ccf constraints, nextpnr-himbaechel + gmpack, 1.8 V GPIO
