@@ -332,13 +332,14 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 ### F. ULX5M repos (searched 2026-09-27: `ulx5m`, `ulx5m in:readme`, `ulx5m fork:true`, `ulx5m-gs`) — 5 own repos + forks
 
 ULX5M uses a **Cologne Chip GateMate CCGM1A1, not an ECP5** (see `.claude/memory/ulx5m-board.md`).
-The three marked *cloned* are in `sources.tsv` and `docs/catalogue.md`.
+**Excluded from the catalogue on owner request (2026-09-27)**: the three marked *removed* were cloned and catalogued, then
+taken out again. This table is kept only as a record of the search.
 
 | full_name | lang/HDL | stars | last push | license | what it is | status |
 |---|---|---|---|---|---|---|
-| [intergalaktik/ulx5m-gs](https://github.com/intergalaktik/ulx5m-gs) | KiCad | 62 | 2026-08-20 | CERN-OHL-S-2.0+ | ULX5M-GS board hardware (ground truth) | cloned |
-| [goran-mahovlic/ulx5m-litex-ai](https://github.com/goran-mahovlic/ulx5m-litex-ai) | LiteX, Verilog | 1 | 2026-09-27 | BSD-2-Clause | Linux SBC (VexRiscv, GbE, DVI, USB host) + SerDes BER link GS↔M2 | cloned |
-| [pu-cc/ulx5m_gpiocheck](https://github.com/pu-cc/ulx5m_gpiocheck) | Verilog | 0 | 2025-09-16 | none | GPIO toggle test; has the `top.ccf` pin file | cloned |
+| [intergalaktik/ulx5m-gs](https://github.com/intergalaktik/ulx5m-gs) | KiCad | 62 | 2026-08-20 | CERN-OHL-S-2.0+ | ULX5M-GS board hardware (ground truth) | removed |
+| [goran-mahovlic/ulx5m-litex-ai](https://github.com/goran-mahovlic/ulx5m-litex-ai) | LiteX, Verilog | 1 | 2026-09-27 | BSD-2-Clause | Linux SBC (VexRiscv, GbE, DVI, USB host) + SerDes BER link GS↔M2 | removed |
+| [pu-cc/ulx5m_gpiocheck](https://github.com/pu-cc/ulx5m_gpiocheck) | Verilog | 0 | 2025-09-16 | none | GPIO toggle test; has the `top.ccf` pin file | removed |
 | [intergalaktik/ulx5m-m2](https://github.com/intergalaktik/ulx5m-m2) | KiCad | 4 | 2026-06-23 | none | ULX5M-M2 board (GateMate on M.2), hardware only | not cloned |
 | [goran-mahovlic/ulx5m-live-bitsream](https://github.com/goran-mahovlic/ulx5m-live-bitsream) | bitstreams | 1 | 2025-08-09 | none | remote test rig: push a .bit, get a camera picture back; no HDL | not cloned |
 | [lufla/ESY](https://github.com/lufla/ESY) | Verilog | 0 | 2026-03-20 | none | university project (winter 2025/26): GateMate code (from a master thesis) on a ULX5M-GS SOM + own base board; 118 MB | not cloned |

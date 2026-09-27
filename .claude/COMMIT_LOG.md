@@ -2,6 +2,13 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — chore(catalogue): remove ULX5M-GS repos on owner request
+- **What**: removed `intergalaktik__ulx5m-gs`, `goran-mahovlic__ulx5m-litex-ai`, `pu-cc__ulx5m_gpiocheck` from
+  `catalogue.tsv`, `sources.tsv` and `original_sources/`; regenerated `docs/catalogue.md` (293 → 290); counts back
+  to 290 in MEMORY/projects/README; survey group F marked "removed" and kept as a search record; ULX5M TODO dropped.
+- **Why**: owner asked to remove the ULX5M-GS from the list (it is a GateMate board, outside the ECP5 scope).
+- **Notes**: `ulx5m-board.md` memory kept as board knowledge, with the exclusion decision written at the top.
+
 ## 2026-09-27 — docs(survey): record GitHub survey of non-ULX3S ECP5 board gateware
 - **What**: `docs/ecp5-boards-survey.md` — 114 repos for OrangeCrab, LUNA/Cynthion, iCESugar-Pro, Hackaday 2019
   badge, Colorlight, ButterStick, ECPIX-5, Logicbone, Versa/EVN and others (53 unauthenticated searches, ~85

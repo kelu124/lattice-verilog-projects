@@ -10,7 +10,6 @@
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)
 
 ## Backlog
-- [ ] ULX5M: decide whether to clone lufla/ESY, intergalaktik/ulx5m-m2, chili-chips-ba/openCologne (survey group F); check litex-boards `intergalaktik_ulx5m_gs.py` pins against pu-cc `top.ccf` (added 2026-09-27)
 - [ ] Clone/catalogue the remaining ~78 GitHub-survey repos (group C multi-board, group E minus ULX4M) if wanted (added 2026-09-27)
 - [ ] Record history stats (first commit, commit count) for the 155+64=219 GitHub-survey repos in history.tsv via GitHub API (added 2026-09-27)
 - [ ] Spot-check a sample of the heuristic test-scan results (tests column) by hand; the scan is name/path only, not proof tests run or pass (added 2026-09-27)

@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-27
+- [x] Remove the ULX5M-GS repos from the catalogue, sources.tsv and original_sources/ (owner request); drop the ULX5M TODO → commit "chore(catalogue): remove ULX5M-GS repos on owner request"
 - [x] Survey GitHub for gateware of other ECP5 boards (OrangeCrab, LUNA/Cynthion, iCESugar-Pro, Hackaday 2019 badge, Colorlight, ButterStick, ECPIX-5, …): 114 repos, 24 recommended → docs/ecp5-boards-survey.md, commit "docs(survey): record GitHub survey of non-ULX3S ECP5 board gateware"
 - [x] Search GitHub for ULX5M repos (found GateMate, not ECP5): survey group F, clone + catalogue 3 (intergalaktik__ulx5m-gs, goran-mahovlic__ulx5m-litex-ai, pu-cc__ulx5m_gpiocheck), memory ulx5m-board.md → commit "docs(catalogue): add ULX5M (GateMate) repos as survey group F"
 - [x] Clone and catalogue the 64 ULX3S/ULX4M-dedicated GitHub-survey repos (group B: 51, group D: 11, ULX4M from group E: 2), via a 3-agent workflow; merge into catalogue.tsv (now 290 repos), add tests column, regenerate docs/catalogue.md, refresh memory counts → commit "docs(catalogue): catalogue 64 ULX3S/ULX4M-dedicated repos from survey groups B/D/E"

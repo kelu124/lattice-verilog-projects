@@ -5,6 +5,9 @@ metadata:
   type: reference
 ---
 
+**Owner decision 2026-09-27: ULX5M-GS is excluded from the catalogue and sources** (its 3 repos were
+added, then removed on request). Kept here only as board knowledge; do not re-add without asking.
+
 ULX5M = third board of the ULX3S → ULX4M line, built under the openCologne (NLnet) project.
 The Lattice ECP5 is **replaced by a Cologne Chip GateMate CCGM1A1**; form factor is the Raspberry Pi
 Compute Module 4 (like ULX4M). Variants: **ULX5M-GS** (CM4 module, SDRAM) and **ULX5M-M2** (GateMate on an
