@@ -1,5 +1,8 @@
 # DONE
 
+## 2026-09-28
+- [x] Search GitHub for UP5K gateware, clone + catalogue 8 repos (+11 gateware submodules) via 2 subagents; 308 → 316 → commit "docs(catalogue): catalogue 8 iCE40 UP5K gateware repos from GitHub"
+
 ## 2026-09-27
 - [x] Add `clone.sh --submodule` + `submodules.tsv` allowlist (gateware-only submodules, owner rule); fetch 30 gateware submodules in 22 repos; refresh their catalogue rows (3 agents) → commit "source(submodules): fetch gateware submodules and refresh their catalogue rows"
 - [x] Add joshajohnson/ecp5-mini-projects, kbeckmann/pergola_projects (ECP5), iCEBreaker org repos + damdoy/ice40_ultraplus_examples (iCE40 UP5K, marked NOT ECP5; icecrash dropped: no HDL); gen_catalogue lists non-ECP5 repos → same commit

@@ -1,6 +1,6 @@
 - [Project goal](project-goal.md) — why this repo exists: cloneable memory of all ULX3S work, to help build new things
 - [Project registry](projects.md) — every ULX3S project: functions, toolchain, target, last update, review status + candidates queue
-- [Catalogue](catalogue.tsv) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 308 repos (290 ULX3S/ULX4M + 14 on other ECP5 boards + 4 iCE40 UP5K) (render: gen_catalogue.py)
+- [Catalogue](catalogue.tsv) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 316 repos (290 ULX3S/ULX4M + 14 on other ECP5 boards + 12 iCE40 UP5K) (render: gen_catalogue.py)
 - [Reusable cores](reusable-cores.md) — best source repo for each building block (PLL, DVI, ESP32 OSD, USB host, SDRAM, displays, CPUs, Linux)
 - [Shallow clones rule](shallow-clones.md) — all clones --depth 1 (owner rule); history stats in history.tsv; gateware-only submodules via clone.sh --submodule
 - [Fetched submodules](submodules.tsv) — allowlist of gateware submodules fetched inside clones (slug, path, url, commit, reason)

@@ -12,6 +12,7 @@ gojimmypi__z80386-ulx3s-doom	third_party/z386_MiSTer	https://github.com/nand2mar
 icebreaker-fpga__icetwang	soc/cores/no2ice40	https://github.com/no2fpga/no2ice40.git	e2a0c694e0565ca8e065d27ac82f6746c3cb28a0	no2ice40 iCE40 primitive/IO cores (Verilog), used by the SoC
 icebreaker-fpga__icetwang	soc/cores/no2misc	https://github.com/no2fpga/no2misc.git	7096e0c6bb217b9c01f7d7ffb20b70832b597e59	no2misc bus/utility cores (Verilog), used by the SoC
 icebreaker-fpga__icetwang	soc/cores/no2usb	https://github.com/no2fpga/no2usb.git	0507086270e00e4ef2e4b0006aabce34cbbccf9d	no2usb USB device core (Verilog, tnt), used by the icetwang SoC
+jamchamb__cojiro	osdvu	https://github.com/cyrozap/osdvu.git	276dd06ee5c01fc49e522272ceef088a15af3fe5	osdvu UART core (Verilog, cyrozap), used by the design
 kulp__tenyr	3rdparty/wb_intercon	https://github.com/olofk/wb_intercon.git	3c5d2fc7e6e04f75b4a48cca941d543e7c160e2d	Wishbone interconnect generator/cores (olofk)
 mangelajo__orangecrab-usb	ip/FPGA-USB-Device	https://github.com/WangXuan95/FPGA-USB-Device	6cfd6fb0da1b99386cd5123b5acc9fa649ec7010	USB 1.1 device core (Verilog, WangXuan95), the core of the demos
 marph91__pocket-bnn	submodules/icestick-uart	https://github.com/marph91/icestick-uart.git	426b25dee1441911d5f1d3de7d1aa8322d7a95d4	UART core (VHDL)
@@ -20,6 +21,13 @@ orangecrab-fpga__orangecrab-examples	litex/deps/valentyusb	https://github.com/gr
 orangecrab-fpga__orangecrab-examples	verilog/usb_acm_device/blocks/usbserial	https://github.com/davidthings/tinyfpga_bx_usbserial.git	00608c23488a3e79325df997cc50148b94961861	USB CDC-ACM device core (Verilog, tinyfpga_bx_usbserial) used by usb_acm_device
 remyciterin__3driscv	UberDDR3	git@github.com:AngeloJacobo/UberDDR3.git	a1258e2eedefa6fba1a425becaded83928c78709	DDR3 controller (Verilog, UberDDR3)
 robinsonb5__eightthirtytwodemos	EightThirtyTwo	https://github.com/robinsonb5/EightThirtyTwo.git	c42d06fb622cf987d72c86eea4f2376609037875	EightThirtyTwo CPU core, the core of the demos
+smunaut__ice40-playground	cores/no2hub75	https://github.com/no2fpga/no2hub75.git	3f384d83e64cf9c766ee3238d294317f6d2606c7	no2hub75 HUB75 LED-panel driver (Verilog)
+smunaut__ice40-playground	cores/no2hyperbus	https://github.com/no2fpga/no2hyperbus.git	32bb71827ab1f1126746c803b6dc0070f01e3133	no2hyperbus HyperRAM controller (Verilog)
+smunaut__ice40-playground	cores/no2ice40	https://github.com/no2fpga/no2ice40.git	97413633237ef5ad899f04e0b4b22679c5f6f6bb	no2ice40 iCE40 IO/PLL/SPRAM wrappers (Verilog)
+smunaut__ice40-playground	cores/no2memcache	https://github.com/no2fpga/no2memcache.git	3d899af41352996a264be9c71182336c63a8b921	no2memcache memory cache (Verilog)
+smunaut__ice40-playground	cores/no2misc	https://github.com/no2fpga/no2misc.git	eb5448b60a2de550c01c6002be4531c2495af8da	no2misc bus/utility cores (Verilog)
+smunaut__ice40-playground	cores/no2qpimem	https://github.com/no2fpga/no2qpimem.git	c8acabf2f9ef0f8677943ecd1292ccfe62ed02a5	no2qpimem QSPI/QPI PSRAM/flash memory controller (Verilog)
+smunaut__ice40-playground	cores/no2usb	https://github.com/no2fpga/no2usb.git	d359102614762fbd6506024ab19331e30da27cf5	no2usb USB full-speed device core (Verilog), used by many projects
 splinedrive__kianriscv	linux_socs/LinuxSoC_v2/engineering/kianv-rv32-linuxcore	https://github.com/splinedrive/kianv-rv32-linuxcore	e9640ba01fa356db8e72b184cdc40de47c992843	KianV RV32 Linux-capable CPU core (Verilog)
 spritetm__hadbadge2019_fpgasoc	soc/picorv32	https://github.com/cliffordwolf/picorv32.git	e0baf2e0bd49fdddef2e3440c1f6364478655154	PicoRV32 CPU core used by the badge SoC
 sylefeb__silice	projects/tinygpus	https://github.com/sylefeb/tinygpus.git	498be1b803d0950328ae5f0138ce4e97805ca4cb	tinygpus GPU projects (Silice)
@@ -29,3 +37,6 @@ ultraembedded__ecpix-5	src/riscv	https://github.com/ultraembedded/riscv.git	c17c
 ulx3s__hazard3	example_soc/libfpga	https://github.com/ulx3s/Hazard3-libfpga/	2c430246892d52c41c610bfdb2afc88992986e00	libfpga peripherals/build scripts needed by the ULX3S example SoC (Verilog)
 wren6991__hazard3-swd-soc	lib/libfpga	https://github.com/Wren6991/libfpga.git	061d96dc5625681e05a46f1a0d141a9af4891e1b	libfpga peripherals (Verilog) for the SWD SoC
 wren6991__hazard3-swd-soc	lib/opendap	https://github.com/Wren6991/OpenDAP.git	0fdf995be06c9f26379d811d08d0cbc104f34c03	OpenDAP SWD debug probe core
+wuxx__icesugar	src/advanced/iceZ0mb1e	https://github.com/wuxx/iceZ0mb1e.git	5a5d25e3006fb52fa0ae7d0a106617ac3492ee5f	TV80 Z80 SoC for iCE40 (Verilog, fork of abnoname/iceZ0mb1e)
+wuxx__icesugar	src/advanced/up5k_6502	https://github.com/wuxx/up5k_6502.git	28862a7c3f9633e8a284980141e862cb3076b420	6502 system for UP5K (Verilog, fork of emeb/up5k_6502)
+wuxx__icesugar	src/advanced/up5k-demos	https://github.com/wuxx/up5k-demos.git	93e942e1c3acc6303648de82516fbe1044a92ab5	UltraPlus demos (Verilog, fork of lawrie/up5k-demos)

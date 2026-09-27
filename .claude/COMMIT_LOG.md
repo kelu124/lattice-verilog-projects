@@ -2,6 +2,18 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(catalogue): catalogue 8 iCE40 UP5K gateware repos from GitHub
+- **What**: GitHub search (`up5k`, `icebreaker`, `ice40up5k`, `upduino`, topic `icebreaker`; Verilog, by stars) →
+  cloned smunaut/ice40-playground, smunaut/iCE40linux, osresearch/up5k, bit-hack/icesid, bnossum/midgetv,
+  kbob/icebreaker-candy, jamchamb/cojiro, wuxx/icesugar, plus 11 gateware submodules (no2usb, no2hyperbus, no2qpimem,
+  no2memcache, no2hub75, no2ice40, no2misc under ice40-playground; osdvu; wuxx forks of up5k_6502, up5k-demos,
+  iceZ0mb1e). Rows by 2 Sonnet subagents, FPGA column `iCE40 UP5K (NOT ECP5)`; 308 → 316. reusable-cores gets
+  the no2fpga library, no2hyperbus (HyperRAM) and icesid rows.
+- **Why**: owner asked for a few UP5K gateware examples from GitHub.
+- **Notes**: iCE40linux uses the same no2 cores, fetched once under ice40-playground (its own pins not checked out).
+  osresearch/up5k also has a tinyfpga-bx (iCE40 LP8K) target, midgetv an iceblink40 (HX1K) target and an iCEcube2 path.
+  Search hit the unauthenticated rate limit, so the list is by stars, not exhaustive.
+
 ## 2026-09-27 — source(submodules): fetch gateware submodules and refresh their catalogue rows
 - **What**: new `clone.sh --submodule <slug> <path> <reason>` (shallow, at the superproject's pinned commit, ssh URLs
   rewritten to https) and `.claude/memory/submodules.tsv` allowlist, re-fetched by `--restore`. Fetched 30 gateware
