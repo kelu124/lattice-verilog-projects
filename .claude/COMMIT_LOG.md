@@ -2,6 +2,21 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — source(submodules): fetch gateware submodules and refresh their catalogue rows
+- **What**: new `clone.sh --submodule <slug> <path> <reason>` (shallow, at the superproject's pinned commit, ssh URLs
+  rewritten to https) and `.claude/memory/submodules.tsv` allowlist, re-fetched by `--restore`. Fetched 30 gateware
+  submodules in 22 repos (USB, CPU, DDR3, HyperRAM, I2C/UART, sound, GPU cores); skipped frameworks, software, tests,
+  KiCad libs and upstreams already cloned. 3 Sonnet agents rewrote the 21 affected rows (icetwang, damdoy covered by the iCE40 agent) (hdl, license, functions, reuse,
+  notes, tests). Also added joshajohnson__ecp5-mini-projects and kbeckmann__pergola_projects (ECP5), and 4 iCE40 UP5K
+  repos (iCEBreaker verilog-examples/workshop/icetwang from codeberg, damdoy__ice40_ultraplus_examples) with `NOT ECP5`
+  in the FPGA column; `gen_catalogue.py` lists non-ECP5 repos in the summary. 302 → 308 rows. Memory: shallow-clones,
+  catalogue-fields (family rule), reusable-cores (HyperRAM, USB device cores, nMigen DVI), source-lists; CLAUDE.md layout.
+- **Why**: owner asked to allow submodules when explicitly gateware, then to add those files to the catalogue, and to
+  add ecp5-mini-projects, pergola_projects, the iCEBreaker repos and damdoy's UP5K examples, marking the UP5K difference.
+- **Notes**: licenses often differ between repo and submodule (e.g. mangelajo no license + GPL-3.0 USB core; ecpix-5
+  GPL-2.0/LGPL-2.1/BSD). The remyciterin__dooom submodule was fetched then dropped (unused by its Makefile). icecrash
+  (KiCad only) cloned then dropped. Nested submodules (z386 CPU, ACoreBase) still unfetched → TODO.
+
 ## 2026-09-27 — docs(catalogue): catalogue 14 gateware repos for other ECP5 boards
 - **What**: shallow-cloned and pinned items 1–14 of the "recommended" list in `docs/ecp5-boards-survey.md`
   (OrangeCrab, iCESugar-Pro, HAD2019 badge, Colorlight, ECPIX-5, Versa ECP5-5G, IcePi Zero, LUNA). 12 are new; 2

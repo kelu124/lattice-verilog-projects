@@ -5,7 +5,7 @@ metadata:
   type: reference
 ---
 
-From the 2026-09-27 survey of 302 repos (290 ULX3S/ULX4M + 12 other ECP5 boards) (details in `docs/catalogue.md`, source `catalogue.tsv`).
+From the 2026-09-27 survey of 308 repos (290 ULX3S/ULX4M + 14 on other ECP5 boards + 4 iCE40 UP5K); iCE40 cores use SB_* primitives and need porting (details in `docs/catalogue.md`, source `catalogue.tsv`).
 Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalogue-fields]].
 
 | Need | Best source (language, license) | Also |
@@ -31,6 +31,9 @@ Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalog
 | USB CDC-ACM device (soft PHY, US2) | fdarling__orangecrab-usb-cdc-demo / orangecrab-examples `usb_acm_device` (wrap tinyfpga_bx_usbserial, submodule not in shallow clone) | gregdavill__luna-usb-serial-acm (Amaranth-generated Verilog, needs ULPI PHY) |
 | ECP5 JTAGG user-JTAG | tomverbeure__ecp5_jtag (write-up + demo, no license) | — |
 | SGMII/RGMII gigabit Ethernet | sefbkn__versa-ecp5-demo (Verilog, CERN-OHL-S-2.0, Versa ECP5-5G DCU) | — |
+| HyperRAM (ULX3S has none: add-on board) | asinghani__pifive-cpu `soc/third_party/hyperram/hyper_xface.v` (Black Mesa Labs, Verilog, fabric clk/4, CERN-OHL claimed in-file only, instance commented out in pifive) | joshajohnson__ecp5-mini-projects `litex/soc-hr` (LiteX litehyperbus, 8 MB); not cloned: markus-zzz/hyperram-test (ULX3S add-on board test, same hyper_xface.v) |
+| USB device cores (Verilog) | tinyfpga_bx_usbserial (fdarling__orangecrab-usb-cdc-demo submodule, Apache-2.0; copy in joshajohnson__ecp5-mini-projects `verilog/common/usb`); no2usb (icebreaker-fpga__icetwang submodule, LGPL-3.0+, iCE40 SB_* IO); FPGA-USB-Device (mangelajo__orangecrab-usb submodule, GPL-3.0 at pinned commit) | valentyusb (Migen, BSD-3, orangecrab-examples submodule) |
+| DVI/TMDS in nMigen, DVI input | kbeckmann__pergola_projects `pergola/gateware/{tmds,vga2dvid,dvid2vga}.py` (BSD-2) | — |
 | Linux on ULX3S | linux-on-litex-vexriscv (`./make.py --board=ulx3s`); kianV (85F); SaxonSoc (docker recipes stale since 2020) | — |
 
 Cross-project facts:

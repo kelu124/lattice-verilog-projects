@@ -35,6 +35,7 @@ chrismoos__m6502	https://github.com/chrismoos/m6502	447194414b4cb184d2d2b9ea77e3
 circuit-killer__fpga-usbhid-host	https://github.com/Circuit-killer/fpga-usbhid-host	166e991b17db73b5a1158969ca7c8b9a4cecfb36	2018-12-17	2026-09-27
 circuit-killer__fpga-usbserial	https://github.com/Circuit-killer/fpga-usbserial	bc9e18e84df7025315bd08c71bc4d17b0b5b6a0b	2019-02-23	2026-09-27
 cronokirby__ck-snes	https://github.com/cronokirby/ck-snes	3341c86441aa9922b385c81a9e637bddeaf99dac	2026-04-05	2026-09-27
+damdoy__ice40_ultraplus_examples	https://github.com/damdoy/ice40_ultraplus_examples	c0a11f49bdddb760f9a508b1522fa0c270dcb52b	2022-04-11	2026-09-27
 danodus__ecp5_hdmi_audio_video	https://github.com/danodus/ecp5_hdmi_audio_video	a4710f9e7986fe9aafde765b8b3f264ca61631be	2026-05-19	2026-09-27
 danodus__msx_fpga	https://github.com/danodus/msx_fpga	f3266f78762094ab3eb5621279011efb504c69df	2025-05-03	2026-09-27
 danodus__ulx3s_68k	https://github.com/danodus/ulx3s_68k	ee10339210d0c302143745d3cc584a21a4878ace	2020-07-13	2026-09-27
@@ -141,6 +142,9 @@ hanseo03__ulx3s-vexriscv-soc	https://github.com/hanseo03/ulx3s-vexriscv-soc	29b4
 hassan2203__system-on-chip-soc-design-and-verification	https://github.com/Hassan2203/System-On-Chip-SOC-Design-and-verification	f4fa639aa86ab3867d2dd1644a289a6e57797270	2026-06-19	2026-09-27
 hdl4fpga__hdl4fpga	https://github.com/hdl4fpga/hdl4fpga	662986ba0f17b7ce3a066ddcb799d42fa1b24dea	2025-08-17	2026-09-27
 hsa-ees__piconut	https://github.com/hsa-ees/piconut	826460dc12cd22c2b6e177182b9d63abdc1eabe0	2026-09-01	2026-09-27
+icebreaker-fpga__icebreaker-verilog-examples	https://codeberg.org/icebreaker-fpga/icebreaker-verilog-examples	8d0892bf62dd5d8ae59c48c882d9ebebd1cab9c2	2021-09-25	2026-09-27
+icebreaker-fpga__icebreaker-workshop	https://codeberg.org/icebreaker-fpga/icebreaker-workshop	0ccd1f27c0bcdd81d9c15961a2bccd0a4d81a761	2021-10-27	2026-09-27
+icebreaker-fpga__icetwang	https://codeberg.org/icebreaker-fpga/icetwang	a4915ff538be621d8cab4a9d82c555ee8627e0c3	2021-12-07	2026-09-27
 ironsteel__nes_ecp5	https://github.com/ironsteel/nes_ecp5	ff331d4b9c422e0b792560dd7b2b67a28622f67f	2026-01-11	2026-09-27
 jadephilipoom__ulx3s-experiments	https://github.com/jadephilipoom/ulx3s-experiments	8c8d0c4d6b78939956446633105c7857afd7a2aa	2026-06-06	2026-09-27
 jamesrosssharp__1_bit_am	https://github.com/jamesrosssharp/1_bit_AM	ce7e9fcc70fd98d23083b7ae7ae43111528c0e87	2024-09-28	2026-09-27
@@ -151,6 +155,8 @@ jlopezr__mini-gpu	https://github.com/jlopezr/mini-gpu	5c50faef39e53dadacede43ea8
 joaln27__koti	https://github.com/joaln27/koti	9fb88761388653c3c18f70edd0deae74f2f6e94c	2026-08-20	2026-09-27
 johnazoidberg__ulx3s-espi-analyzer	https://github.com/JohnAZoidberg/ulx3s-espi-analyzer	4331dbd4b0e6ebab2096a4f797b0dafb9f7fe1a5	2026-03-08	2026-09-27
 john-k__spinose	https://github.com/John-K/spinose	801f22056fdccf6343ee2e998bf4ae106ddff134	2020-04-11	2026-09-27
+joshajohnson__ecp5-mini-projects	https://github.com/joshajohnson/ecp5-mini-projects	4e8622882b6c749df9d699c39391216df27fe29f	2021-08-29	2026-09-27
+kbeckmann__pergola_projects	https://github.com/kbeckmann/pergola_projects	1bb4e1318de40cd6a5ad131de50cdb01ce81a8ac	2021-06-23	2026-09-27
 kost__ulx3s-ghdl-examples	https://github.com/kost/ulx3s-ghdl-examples	3bff90aea422bf920cd12f5e02da52fb1939c701	2020-10-07	2026-09-27
 krishkc5__trng-ring-oscillator	https://github.com/krishkc5/trng-ring-oscillator	446dcd058b693f415aabb7688a2475626ca07461	2026-02-08	2026-09-27
 kulp__tenyr	https://github.com/kulp/tenyr	348605e985805dcbe00b8e3766662b343e991b78	2026-08-15	2026-09-27

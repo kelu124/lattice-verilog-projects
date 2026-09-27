@@ -1,0 +1,31 @@
+slug	path	url	commit	reason
+asinghani__pifive-cpu	soc/third_party/hyperram	https://github.com/blackmesalabs/hyperram	70b464849d79b87a5fbd91f9f9b216ef981280f0	HyperRAM controller (Verilog, blackmesalabs)
+asinghani__pifive-cpu	soc/third_party/verilog-i2c	https://github.com/alexforencich/verilog-i2c	b6ebb7d1d1ff69ce73e826b65366e2fb5b1bafbc	I2C master/slave cores (Verilog, alexforencich)
+chiplet__acorechip-ulx3s	ACoreChip	git@gitlab.com:a-core/a-core_chisel/ACoreChip.git	ee96327b7eced7d3b9a78bbe3e9c5b3bc86a2be4	A-Core RISC-V CPU (Chisel), the core of the design
+damdoy__ice40_ultraplus_examples	riscv/simple_riscv_cpu	https://github.com/damdoy/simple_riscv_cpu.git	bde76c95d4dbea5249f01bff2d13d8fed51f37dd	simple RISC-V CPU core (Verilog), the core of the riscv example
+danodus__xgsoc	external/graphite	https://github.com/danodus/graphite	a721810fe6b784386e42eee962baace830df71c3	Graphite 3D GPU core used by the SoC
+dlobato__cps1-musicbox	gateware/rtl/jt51	git@github.com:jotego/jt51.git	b6d90af2c4e70dea4f017b132e5b13a0e48fbaf5	YM2151 FM sound core (jotego)
+dlobato__cps1-musicbox	gateware/rtl/jt6295	git@github.com:jotego/jt6295.git	44be9a827febd576a91773625145e59faf40303e	OKI MSM6295 ADPCM core (jotego)
+emeb__ulx3s_6502	verilog-6502	https://github.com/Arlet/verilog-6502.git	a11631082b20e8a0746cd5cc4ae8bbe68bff79c4	6502 CPU core (Verilog, Arlet)
+fdarling__orangecrab-usb-cdc-demo	tinyfpga_bx_usbserial	https://github.com/davidthings/tinyfpga_bx_usbserial.git	00608c23488a3e79325df997cc50148b94961861	USB CDC-ACM device core (Verilog), the core of the demo
+gojimmypi__z80386-ulx3s-doom	third_party/z386_MiSTer	https://github.com/nand2mario/z386_MiSTer.git	5a11fe819661d661732d3e5c0725807b65584319	z386 x86 CPU/PC core (MiSTer), the core of the design
+icebreaker-fpga__icetwang	soc/cores/no2ice40	https://github.com/no2fpga/no2ice40.git	e2a0c694e0565ca8e065d27ac82f6746c3cb28a0	no2ice40 iCE40 primitive/IO cores (Verilog), used by the SoC
+icebreaker-fpga__icetwang	soc/cores/no2misc	https://github.com/no2fpga/no2misc.git	7096e0c6bb217b9c01f7d7ffb20b70832b597e59	no2misc bus/utility cores (Verilog), used by the SoC
+icebreaker-fpga__icetwang	soc/cores/no2usb	https://github.com/no2fpga/no2usb.git	0507086270e00e4ef2e4b0006aabce34cbbccf9d	no2usb USB device core (Verilog, tnt), used by the icetwang SoC
+kulp__tenyr	3rdparty/wb_intercon	https://github.com/olofk/wb_intercon.git	3c5d2fc7e6e04f75b4a48cca941d543e7c160e2d	Wishbone interconnect generator/cores (olofk)
+mangelajo__orangecrab-usb	ip/FPGA-USB-Device	https://github.com/WangXuan95/FPGA-USB-Device	6cfd6fb0da1b99386cd5123b5acc9fa649ec7010	USB 1.1 device core (Verilog, WangXuan95), the core of the demos
+marph91__pocket-bnn	submodules/icestick-uart	https://github.com/marph91/icestick-uart.git	426b25dee1441911d5f1d3de7d1aa8322d7a95d4	UART core (VHDL)
+mcejp__poly94	lib/verilog-uart	https://github.com/alexforencich/verilog-uart.git	b973f08697b03a17ce56b90783622c7b7a28fa2a	UART core (Verilog, alexforencich)
+orangecrab-fpga__orangecrab-examples	litex/deps/valentyusb	https://github.com/gregdavill/valentyusb	c595e1cdf7ccaa48305b89879e6ee54a2aafb6b6	ValentyUSB USB device core (Migen, hw_cdc_eptri branch) used by the LiteX examples
+orangecrab-fpga__orangecrab-examples	verilog/usb_acm_device/blocks/usbserial	https://github.com/davidthings/tinyfpga_bx_usbserial.git	00608c23488a3e79325df997cc50148b94961861	USB CDC-ACM device core (Verilog, tinyfpga_bx_usbserial) used by usb_acm_device
+remyciterin__3driscv	UberDDR3	git@github.com:AngeloJacobo/UberDDR3.git	a1258e2eedefa6fba1a425becaded83928c78709	DDR3 controller (Verilog, UberDDR3)
+robinsonb5__eightthirtytwodemos	EightThirtyTwo	https://github.com/robinsonb5/EightThirtyTwo.git	c42d06fb622cf987d72c86eea4f2376609037875	EightThirtyTwo CPU core, the core of the demos
+splinedrive__kianriscv	linux_socs/LinuxSoC_v2/engineering/kianv-rv32-linuxcore	https://github.com/splinedrive/kianv-rv32-linuxcore	e9640ba01fa356db8e72b184cdc40de47c992843	KianV RV32 Linux-capable CPU core (Verilog)
+spritetm__hadbadge2019_fpgasoc	soc/picorv32	https://github.com/cliffordwolf/picorv32.git	e0baf2e0bd49fdddef2e3440c1f6364478655154	PicoRV32 CPU core used by the badge SoC
+sylefeb__silice	projects/tinygpus	https://github.com/sylefeb/tinygpus.git	498be1b803d0950328ae5f0138ce4e97805ca4cb	tinygpus GPU projects (Silice)
+ultraembedded__ecpix-5	src/core_soc	https://github.com/ultraembedded/core_soc.git	9fceff0738799fabb308b0a90acbe4f4c3ab8829	SoC peripherals (Verilog) of the RISC-V system
+ultraembedded__ecpix-5	src/dbg_bridge	https://github.com/ultraembedded/core_dbg_bridge.git	a601c650e17a44f7d054ad87c7d5dff5f3d7bbb4	UART-to-AXI debug bridge (Verilog)
+ultraembedded__ecpix-5	src/riscv	https://github.com/ultraembedded/riscv.git	c17cfba055af24a753e3b10d54968dd38c5690eb	RISC-V CPU core (Verilog, ultraembedded biriscv/riscv)
+ulx3s__hazard3	example_soc/libfpga	https://github.com/ulx3s/Hazard3-libfpga/	2c430246892d52c41c610bfdb2afc88992986e00	libfpga peripherals/build scripts needed by the ULX3S example SoC (Verilog)
+wren6991__hazard3-swd-soc	lib/libfpga	https://github.com/Wren6991/libfpga.git	061d96dc5625681e05a46f1a0d141a9af4891e1b	libfpga peripherals (Verilog) for the SWD SoC
+wren6991__hazard3-swd-soc	lib/opendap	https://github.com/Wren6991/OpenDAP.git	0fdf995be06c9f26379d811d08d0cbc104f34c03	OpenDAP SWD debug probe core

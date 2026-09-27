@@ -189,7 +189,7 @@ and ULX*/iCE40/Gowin/Xilinx hits, **114 repos** are listed below.
 | [ECP5-PCIe/ECP5-PCIe](https://github.com/ECP5-PCIe/ECP5-PCIe) | Python | 103 | 2023-05-16 | none | amaranth | PCIe core for ECP5 SERDES (mirror of Codeberg) | partial (71 .py, 0 HDL, no lpf) @c511d2eafa |
 ## Recommended to clone first (24)
 
-**Status 2026-09-27:** items 1–14 are cloned and in `docs/catalogue.md` (items 2 and 11 were already there from the ULX3S survey). Items 15–24 are not cloned.
+**Status 2026-09-27:** items 1–14 are cloned and in `docs/catalogue.md` (items 2 and 11 were already there from the ULX3S survey). Items 15–24 are not cloned, except item 21 (joshajohnson/ecp5-mini-projects), added on request with kbeckmann/pergola_projects (its upstream).
 
 Priority goes to plain Verilog, the open toolchain, reusable cores and good board examples.
 1. **Spritetm/hadbadge2019_fpgasoc**: the largest open-flow ECP5 SoC seen. Dual PicoRV32, LCD/video,

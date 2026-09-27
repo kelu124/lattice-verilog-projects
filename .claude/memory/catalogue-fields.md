@@ -7,6 +7,9 @@ metadata:
 
 For every gateware repo, the catalogue [[projects]] must say:
 1. **FPGA**: which ECP5 size(s) it targets/supports (12F/25F/45F/85F…).
+   If the target is **not an ECP5**, the column must start with the family and "(NOT ECP5)", e.g.
+   `iCE40 UP5K (NOT ECP5) - SG48` (iCEBreaker, owner request 2026-09-27) or `Xilinx XC7A50T (NOT ECP5)`.
+   iCE40 designs use SB_* primitives (SB_PLL40, SB_SPRAM256KA, SB_RGBA_DRV, SB_IO) and must be ported for ECP5.
 2. **Toolchain**: Lattice Diamond (`diamond`), the open-source flow (`open`: yosys + nextpnr-ecp5 +
    ecppack, also via LiteX/apio/ghdl plugin), or `both`.
 3. **HDL**: Verilog, VHDL, SystemVerilog, or generator language (SpinalHDL, Migen/LiteX, Silice…).

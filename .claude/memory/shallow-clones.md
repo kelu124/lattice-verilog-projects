@@ -9,6 +9,12 @@ All upstream clones in this repo must be **shallow** (`--depth 1`). This is the 
 full-clone mode. On 2026-09-27 the 71 existing full clones were converted in place: the pinned commit was kept,
 other refs were dropped, and `git gc` was run.
 
+**Submodules** (owner rule, 2026-09-27): not fetched by default. A submodule is fetched only when it is explicitly
+gateware (e.g. a USB, CPU, DDR3 or UART core the repo is built around), with
+`clone.sh --submodule <slug> <path> "<reason>"`: shallow, at the commit the superproject pins, recorded in
+`.claude/memory/submodules.tsv` so `--restore` re-fetches it. Never fetch frameworks/generators (LiteX, migen,
+SpinalHDL, jtframe), software, test suites, hardware libraries, or upstreams already cloned as their own slug.
+
 **Why:** the owner asked for it explicitly on 2026-09-27. The disk was 97–99 % full (about 4 GB free after 226 clones).
 
 **How to apply:** never unshallow or full-clone. Activity stats that need history (first commit, commit count)

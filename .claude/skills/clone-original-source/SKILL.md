@@ -22,7 +22,12 @@ description: Clone (or restore) an upstream ULX3S gateware repository into origi
    is nearly full). Never run a plain `git clone` or `git fetch --unshallow` here. `git log -1` still gives the
    last-update date. If first-commit date or commit count is needed, get it from the GitHub API or
    from a temporary clone outside the repo, and record it in `.claude/memory/history.tsv`.
-6. Check free space (`df -h /`) before large batches.
+6. **Submodules**: not fetched by default. Fetch one only when it is explicitly gateware (a USB/CPU/DDR3/UART
+   core the repo is built around), with `clone.sh --submodule <slug> <path> "<reason>"`. It is shallow, at
+   the superproject's pinned commit, and recorded in `.claude/memory/submodules.tsv` (restored by `--restore`).
+   Don't fetch frameworks/generators (LiteX, migen, SpinalHDL, jtframe), software, tests, KiCad libs, or
+   upstreams already cloned under their own slug. Then update the repo's catalogue row (hdl, license, reuse, notes).
+7. Check free space (`df -h /`) before large batches.
 
 ## Commands
 
@@ -32,6 +37,9 @@ description: Clone (or restore) an upstream ULX3S gateware repository into origi
 
 # Re-create every pinned source at its recorded commit (fresh checkout of this repo)
 .claude/skills/clone-original-source/clone.sh --restore
+
+# Fetch one gateware submodule (shallow, pinned in submodules.tsv)
+.claude/skills/clone-original-source/clone.sh --submodule <owner>__<repo> <path> "<why it is gateware>"
 
 # Pull latest upstream for one slug and re-pin
 .claude/skills/clone-original-source/clone.sh --update <owner>__<repo>

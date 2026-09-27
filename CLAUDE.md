@@ -30,6 +30,7 @@ exact state it was left in. Do **not** rely on the per-user memory in
 | `.claude/memory/catalogue.tsv` | **Catalogue**: one row per cloned repo with FPGA, toolchain, HDL, license, functions, reusable blocks, preferred fork. Rendered to `docs/catalogue.md` by `gen_catalogue.py` | yes |
 | `.claude/memory/history.tsv` | Full-history stats (first commit, commit count) recorded before clones were made shallow | yes |
 | `.claude/memory/sources.tsv` | Pinned list of cloned upstream repos (url, commit, date) — lets anyone re-create `original_sources/` | yes |
+| `.claude/memory/submodules.tsv` | Allowlist of gateware submodules fetched inside clones (slug, path, url, commit, reason); `clone.sh --restore` re-fetches them | yes |
 | `.claude/memory/*.md` | Other facts: board knowledge, toolchain notes, decisions, user preferences | yes |
 | `original_sources/` | Upstream repos cloned for review (read-only, never edited) | **no** (gitignored, re-creatable) |
 | `docs/catalogue.md` | Generated catalogue of all repos (never edit by hand) | yes |
@@ -49,6 +50,7 @@ exact state it was left in. Do **not** rely on the per-user memory in
   `sources.tsv`. Never modify cloned code; never commit it. **All clones are
   shallow (`--depth 1`)**: owner's rule, and the disk is nearly full. History stats
   (first commit, commit count) go in `.claude/memory/history.tsv`, not in the clones.
+  Submodules only when explicitly gateware (USB/CPU/DDR3 cores…), via `clone.sh --submodule`, listed in `submodules.tsv`.
 - **Committing** → skill `committing`. Small, focused commits; conventional
   prefixes; every commit gets an entry in `.claude/COMMIT_LOG.md` (what + why) in the
   same commit; memory/TODO/DONE updated in the same commit as the work.

@@ -15,7 +15,7 @@ clones it and runs `claude` here picks up where the work stopped.
   - [openFPGALoader: programmer](docs/projects/trabucayre__openfpgaloader.md)
 
 ## Catalogue
-[docs/catalogue.md](docs/catalogue.md): 302 repos (290 ULX3S/ULX4M + 12 on other ECP5 boards: OrangeCrab, iCESugar-Pro, HAD2019 badge, Colorlight, ECPIX-5, Versa, IcePi Zero, LUNA) with FPGA size, toolchain (open or Diamond),
+[docs/catalogue.md](docs/catalogue.md): 308 repos (290 ULX3S/ULX4M; 14 on other ECP5 boards: OrangeCrab, iCESugar-Pro, HAD2019 badge, Colorlight, ECPIX-5, Versa, IcePi Zero, LUNA, ECP5 Mini, Pergola; 4 iCE40 UP5K: iCEBreaker, UP5K breakout) with FPGA size, toolchain (open or Diamond),
 HDL, license, activity, preferred fork, functions, tests, and reusable cores. Start there to find prior art.
 
 ## Wider survey

@@ -70,11 +70,14 @@ out = ['# ULX3S project catalogue', '',
 tc = collections.Counter(tc_short(r['toolchain']) for r in cat if r['kind'] in ('gateware', 'examples', 'education', 'mixed'))
 lic_none = sum(1 for r in cat if r['license'].lower().startswith('none'))
 has_tests = sum(1 for r in cat if r.get('tests', 'none found').lower() != 'none found')
+not_ecp5 = sorted(r['slug'] for r in cat if 'NOT ECP5' in r['fpga'])
 out += ['## At a glance', '',
         f'- {len(cat)} repositories catalogued.',
         f'- Gateware toolchains: ' + ', '.join(f'{k} {v}' for k, v in tc.most_common()) + '.',
         f'- {lic_none} repositories have no license found.',
         f'- {has_tests} repositories have some detected testbench/simulation setup (heuristic scan; see "Testbenches and simulation" below).',
+        f'- {len(not_ecp5)} repositories target a **non-ECP5** FPGA (iCE40 UP5K etc., marked `NOT ECP5` in the FPGA column): '
+        + (', '.join(not_ecp5) or 'none') + '.',
         '']
 
 for g, rs in sections.items():

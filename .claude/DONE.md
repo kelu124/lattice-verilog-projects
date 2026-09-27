@@ -1,6 +1,8 @@
 # DONE
 
 ## 2026-09-27
+- [x] Add `clone.sh --submodule` + `submodules.tsv` allowlist (gateware-only submodules, owner rule); fetch 30 gateware submodules in 22 repos; refresh their catalogue rows (3 agents) → commit "source(submodules): fetch gateware submodules and refresh their catalogue rows"
+- [x] Add joshajohnson/ecp5-mini-projects, kbeckmann/pergola_projects (ECP5), iCEBreaker org repos + damdoy/ice40_ultraplus_examples (iCE40 UP5K, marked NOT ECP5; icecrash dropped: no HDL); gen_catalogue lists non-ECP5 repos → same commit
 - [x] Clone + catalogue the top 14 non-ULX3S ECP5 repos (12 new, 2 rows refreshed) via 3 parallel agents; reusable-cores gets DDR3, PSRAM, HDMI-audio, USB-CDC, JTAGG, SGMII rows → commit "docs(catalogue): catalogue 14 gateware repos for other ECP5 boards"
 - [x] Remove the ULX5M-GS repos from the catalogue, sources.tsv and original_sources/ (owner request); drop the ULX5M TODO → commit "chore(catalogue): remove ULX5M-GS repos on owner request"
 - [x] Survey GitHub for gateware of other ECP5 boards (OrangeCrab, LUNA/Cynthion, iCESugar-Pro, Hackaday 2019 badge, Colorlight, ButterStick, ECPIX-5, …): 114 repos, 24 recommended → docs/ecp5-boards-survey.md, commit "docs(survey): record GitHub survey of non-ULX3S ECP5 board gateware"
