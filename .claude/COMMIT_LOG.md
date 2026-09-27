@@ -2,6 +2,14 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(survey): record gateware survey of awesome-latticeFPGAs boards
+- **What**: `docs/lattice-boards-survey.md`: for each UP5K and ECP5 board in kelu124/awesome-latticeFPGAs not already
+  covered, the gateware repos found (verified = .pcf/.lpf + HDL seen in the tarball listing), boards with none found,
+  and a 20-repo clone-first list. Logged in `source-lists.md`, pointer in `MEMORY.md`, clone task in TODO.
+- **Why**: owner asked to use their awesome-latticeFPGAs list to find gateware for UP5K and ECP5 boards.
+- **Notes**: research only (1 subagent, 63 searches, 6 rate-limited retries). Two awesome-list links point to renamed repos
+  (iCEboy → rniwase/tsuraraGB; SingularitySurfer → nkrackow/…); worth fixing in that list.
+
 ## 2026-09-28 — docs(catalogue): catalogue 8 iCE40 UP5K gateware repos from GitHub
 - **What**: GitHub search (`up5k`, `icebreaker`, `ice40up5k`, `upduino`, topic `icebreaker`; Verilog, by stars) →
   cloned smunaut/ice40-playground, smunaut/iCE40linux, osresearch/up5k, bit-hack/icesid, bnossum/midgetv,
