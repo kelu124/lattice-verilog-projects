@@ -14,6 +14,10 @@ clones it and runs `claude` here picks up where the work stopped.
   - [emard/ulx3s-bin: prebuilt bitstreams, self-test, bootloaders](docs/projects/emard__ulx3s-bin.md)
   - [openFPGALoader: programmer](docs/projects/trabucayre__openfpgaloader.md)
 
+## Catalogue
+[docs/catalogue.md](docs/catalogue.md): 71 ULX3S repos with FPGA size, toolchain (open or Diamond),
+HDL, license, activity, preferred fork, functions and reusable cores. Start there to find prior art.
+
 ## Project registry
 [`.claude/memory/projects.md`](.claude/memory/projects.md) lists every known ULX3S project with its
 functions, toolchain, target and last update, plus the queue of projects still to review.

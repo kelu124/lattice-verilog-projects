@@ -27,9 +27,11 @@ exact state it was left in. Do **not** rely on the per-user memory in
 | `.claude/skills/*/SKILL.md` | Repeatable workflows (clone, commit, document, track, review) | yes |
 | `.claude/memory/MEMORY.md` | Index of memory files (one line each) | yes |
 | `.claude/memory/projects.md` | **Project registry**: every ULX3S gateware project, its functions, toolchain, last update, review status | yes |
+| `.claude/memory/catalogue.tsv` | **Catalogue**: one row per cloned repo with FPGA, toolchain, HDL, license, functions, reusable blocks, preferred fork. Rendered to `docs/catalogue.md` by `gen_catalogue.py` | yes |
 | `.claude/memory/sources.tsv` | Pinned list of cloned upstream repos (url, commit, date) — lets anyone re-create `original_sources/` | yes |
 | `.claude/memory/*.md` | Other facts: board knowledge, toolchain notes, decisions, user preferences | yes |
 | `original_sources/` | Upstream repos cloned for review (read-only, never edited) | **no** (gitignored, re-creatable) |
+| `docs/catalogue.md` | Generated catalogue of all repos (never edit by hand) | yes |
 | `docs/` | Human-readable documentation produced from reviews (`docs/projects/<slug>.md`, etc.) | yes |
 | `TODO.md` | Open work items | yes |
 | `DONE.md` | Completed work items, newest first, dated | yes |

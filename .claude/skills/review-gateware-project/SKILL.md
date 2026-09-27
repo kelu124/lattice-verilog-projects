@@ -38,6 +38,9 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
 7. **Build check (optional, only if toolchain present)**: build in a copy
    outside `original_sources/`, record result (pass/fail + error) — never flash
    hardware without the user's explicit go-ahead.
+7b. **Catalogue**: add or update the slug's row in `.claude/memory/catalogue.tsv` (all columns), then
+   run `.claude/skills/review-gateware-project/gen_catalogue.py` to regenerate `docs/catalogue.md`.
+   If the repo offers a better reusable block, update `.claude/memory/reusable-cores.md`.
 8. **Write** `docs/projects/<slug>.md` (skill `documentation` template) and
    update the project's row + detail block in `.claude/memory/projects.md`
    (status → `reviewed`, review date, commit).
