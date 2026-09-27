@@ -5,7 +5,7 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
 
 # Reviewing a ULX3S gateware project
 
-1. **TODO**: move "review <slug>" to *In progress* in `TODO.md` (add it if absent).
+1. **TODO**: move "review <slug>" to *In progress* in `.claude/TODO.md` (add it if absent).
 2. **Clone**: `.claude/skills/clone-original-source/clone.sh <url>` (skill
    `clone-original-source`). Note the pinned commit.
 3. **Activity**: from the clone
@@ -44,7 +44,7 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
 8. **Write** `docs/projects/<slug>.md` (skill `documentation` template) and
    update the project's row + detail block in `.claude/memory/projects.md`
    (status → `reviewed`, review date, commit).
-9. **Follow-ups**: every open question → `TODO.md`. Cross-project insights
+9. **Follow-ups**: every open question → `.claude/TODO.md`. Cross-project insights
    (reusable cores, common pitfalls) → a memory file + `MEMORY.md` pointer.
-10. **Close**: TODO → DONE, `COMMIT_LOG.md` entry, commit
+10. **Close**: TODO → DONE, `.claude/COMMIT_LOG.md` entry, commit
     `review(<slug>): ...` (skill `committing`).

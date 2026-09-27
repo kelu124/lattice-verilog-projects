@@ -1,6 +1,6 @@
 ---
 name: committing
-description: Rules for making git commits in ulx3s-klod — message format, what goes together in one commit, and the mandatory COMMIT_LOG.md entry recording what was done and why. Use before every commit.
+description: Rules for making git commits in ulx3s-klod — message format, what goes together in one commit, and the mandatory .claude/COMMIT_LOG.md entry recording what was done and why. Use before every commit.
 ---
 
 # Committing rules
@@ -15,8 +15,8 @@ description: Rules for making git commits in ulx3s-klod — message format, what
 ## What goes in one commit
 - The work **plus** its bookkeeping, together:
   - `.claude/memory/*` updates (registry, sources.tsv, facts learnt)
-  - `TODO.md` / `DONE.md` changes
-  - the `COMMIT_LOG.md` entry for this commit
+  - `.claude/TODO.md` / `.claude/DONE.md` changes
+  - the `.claude/COMMIT_LOG.md` entry for this commit
 - Never commit `original_sources/` content, build outputs (`*.bit`, `*.json`,
   `*.config`, `*.svf`), or secrets.
 
@@ -32,8 +32,8 @@ Types: `review` (project reviewed), `source` (clone/pin/update upstream),
 `docs`, `memory` (facts / registry only), `skill` (skill or CLAUDE.md rules),
 `chore`. Scope = project slug or area, e.g. `review(emard__ulx3s-misc): ...`.
 
-## COMMIT_LOG.md entry (mandatory)
-Prepend (newest first) to `COMMIT_LOG.md` **before** committing, in the same commit:
+## .claude/COMMIT_LOG.md entry (mandatory)
+Prepend (newest first) to `.claude/COMMIT_LOG.md` **before** committing, in the same commit:
 
 ```markdown
 ## YYYY-MM-DD — <type>(<scope>): <summary>
@@ -42,10 +42,10 @@ Prepend (newest first) to `COMMIT_LOG.md` **before** committing, in the same com
 - **Notes**: surprises, open questions, follow-ups added to TODO (optional)
 ```
 The hash is not known before committing; do not amend just to add it —
-`git log --grep "<summary>"` finds it. DONE.md items reference the summary line.
+`git log --grep "<summary>"` finds it. `.claude/DONE.md` items reference the summary line.
 
 ## Checklist before `git commit`
 1. `git status` — nothing under `original_sources/`, no build artefacts.
 2. Memory updated? (`projects.md`, `MEMORY.md` index if a file was added)
 3. TODO/DONE updated?
-4. COMMIT_LOG.md entry prepended?
+4. `.claude/COMMIT_LOG.md` entry prepended?

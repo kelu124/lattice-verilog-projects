@@ -13,7 +13,7 @@ exact state it was left in. Do **not** rely on the per-user memory in
 ## Start of every session (resume protocol)
 
 1. Read `.claude/memory/MEMORY.md` (index) and follow the links relevant to the task.
-2. Read `TODO.md` (what is left) and skim the top of `DONE.md` / `COMMIT_LOG.md` (what happened last).
+2. Read `.claude/TODO.md` (what is left) and skim the top of `.claude/DONE.md` / `.claude/COMMIT_LOG.md` (what happened last).
 3. If `original_sources/` is empty or missing repos (fresh clone of this repo),
    restore them: `.claude/skills/clone-original-source/clone.sh --restore`.
 4. Then work on the task. Before ending, update memory, TODO/DONE and commit
@@ -34,9 +34,9 @@ exact state it was left in. Do **not** rely on the per-user memory in
 | `original_sources/` | Upstream repos cloned for review (read-only, never edited) | **no** (gitignored, re-creatable) |
 | `docs/catalogue.md` | Generated catalogue of all repos (never edit by hand) | yes |
 | `docs/` | Human-readable documentation produced from reviews (`docs/projects/<slug>.md`, etc.) | yes |
-| `TODO.md` | Open work items | yes |
-| `DONE.md` | Completed work items, newest first, dated | yes |
-| `COMMIT_LOG.md` | Why/what of each meaningful commit, newest first | yes |
+| `.claude/TODO.md` | Open work items | yes |
+| `.claude/DONE.md` | Completed work items, newest first, dated | yes |
+| `.claude/COMMIT_LOG.md` | Why/what of each meaningful commit, newest first | yes |
 
 ## Rules (details in the skills)
 
@@ -46,13 +46,13 @@ exact state it was left in. Do **not** rely on the per-user memory in
   shallow (`--depth 1`)**: owner's rule, and the disk is nearly full. History stats
   (first commit, commit count) go in `.claude/memory/history.tsv`, not in the clones.
 - **Committing** → skill `committing`. Small, focused commits; conventional
-  prefixes; every commit gets an entry in `COMMIT_LOG.md` (what + why) in the
+  prefixes; every commit gets an entry in `.claude/COMMIT_LOG.md` (what + why) in the
   same commit; memory/TODO/DONE updated in the same commit as the work.
 - **Documentation** → skill `documentation`. One page per reviewed project in
   `docs/projects/`, facts cite the source file/commit, unknowns written as
   `unknown`, never guessed.
-- **TODO / DONE** → skill `todo-done`. Every task discovered goes in `TODO.md`;
-  when finished it moves to `DONE.md` with the date and commit.
+- **TODO / DONE** → skill `todo-done`. Every task discovered goes in `.claude/TODO.md`;
+  when finished it moves to `.claude/DONE.md` with the date and commit.
 - **Reviewing a project** → skill `review-gateware-project`. The end-to-end
   workflow that ties all of the above together and updates `projects.md`.
 

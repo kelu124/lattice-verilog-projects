@@ -29,5 +29,5 @@ functions, toolchain, target and last update, plus the queue of projects still t
 ## Working in this repo
 - Upstream sources are cloned (not committed) into `original_sources/`. Re-create them with
   `.claude/skills/clone-original-source/clone.sh --restore`.
-- Progress: [TODO.md](TODO.md), [DONE.md](DONE.md), [COMMIT_LOG.md](COMMIT_LOG.md).
+- Progress: [TODO.md](.claude/TODO.md), [DONE.md](.claude/DONE.md), [COMMIT_LOG.md](.claude/COMMIT_LOG.md).
 - Rules and workflows: [CLAUDE.md](CLAUDE.md) and `.claude/skills/`.

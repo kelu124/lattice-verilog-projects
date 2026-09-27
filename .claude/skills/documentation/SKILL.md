@@ -58,5 +58,5 @@ Exact commands, as found in the repo (Makefile targets), and whether they worked
 Cores worth reusing elsewhere, dependencies, gotchas.
 
 ## Open questions
-Things not verified yet (also add them to TODO.md).
+Things not verified yet (also add them to `.claude/TODO.md`).
 ```

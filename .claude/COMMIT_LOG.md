@@ -2,6 +2,13 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — chore(repo): move TODO/DONE/COMMIT_LOG under .claude/
+- **What**: moved `TODO.md`, `DONE.md`, `COMMIT_LOG.md` to `.claude/TODO.md`, `.claude/DONE.md`,
+  `.claude/COMMIT_LOG.md`; updated every reference in `CLAUDE.md`, `README.md` and the five skill files.
+- **Why**: owner asked to move them under `.claude/`, alongside the skills and memory that already
+  live there, so the repo root stays uncluttered.
+- **Notes**: none.
+
 ## 2026-09-27 — source(survey): shallow-clone 155 verified ULX3S repos, all clones shallow
 - **What**: shallow-cloned and pinned the 155 group-A repos from `docs/github-survey.md` (now 226 in `sources.tsv`);
   converted the 71 earlier full clones to shallow in place (pinned commit kept); `clone.sh` is now always `--depth 1`;
