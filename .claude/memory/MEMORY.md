@@ -11,3 +11,4 @@
 - [Source lists](source-lists.md) — where ULX3S project lists come from (ulx3s.github.io, GitHub search) and when last harvested
 - [GitHub survey](../../docs/github-survey.md) — ≈297 ULX3S repos found on GitHub on 2026-09-27; 219 (A's 155 + B's 51 + D's 11 + 2 ULX4M from E) are cloned (see [[projects]]), the remaining ~78 (C, multi-board, + E minus ULX4M) are not
 - [ULX5M board](ulx5m-board.md) — ULX5M-GS is GateMate CCGM1A1 (not ECP5): .ccf constraints, nextpnr-himbaechel + gmpack, 1.8 V GPIO
+- [ECP5 boards survey](../../docs/ecp5-boards-survey.md) — 114 non-ULX3S ECP5 board repos (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight…) found 2026-09-27, none cloned yet

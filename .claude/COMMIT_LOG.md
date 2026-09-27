@@ -2,6 +2,14 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — docs(survey): record GitHub survey of non-ULX3S ECP5 board gateware
+- **What**: `docs/ecp5-boards-survey.md` — 114 repos for OrangeCrab, LUNA/Cynthion, iCESugar-Pro, Hackaday 2019
+  badge, Colorlight, ButterStick, ECPIX-5, Logicbone, Versa/EVN and others (53 unauthenticated searches, ~85
+  verified by reading the file list for `.lpf` + HDL), plus litex-boards/amaranth-boards platform names and a
+  24-repo "clone first" list. Logged in `source-lists.md`, pointer in `MEMORY.md`.
+- **Why**: owner asked for gateware for other ECP5 boards, Verilog and open toolchain first, as reuse sources.
+- **Notes**: research only (one background agent); nothing cloned yet — waiting for the owner to pick, disk 94 % full.
+
 ## 2026-09-27 — memory(repo): refresh README repo count after the ULX5M additions
 - **What/why**: README still said 290 repos; now 293 (290 ULX3S/ULX4M + 3 ULX5M).
 
