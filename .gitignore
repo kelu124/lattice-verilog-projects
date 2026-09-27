@@ -1,0 +1,7 @@
+original_sources/*
+!original_sources/.gitkeep
+*.bit
+*.svf
+*.config
+*_out.json
+build/
