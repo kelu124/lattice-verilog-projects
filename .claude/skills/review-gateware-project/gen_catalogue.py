@@ -16,6 +16,8 @@ def read_tsv(p):
 
 cat = read_tsv(os.path.join(MEM, 'catalogue.tsv'))
 pins = {r['slug']: r for r in read_tsv(os.path.join(MEM, 'sources.tsv'))}
+hist_p = os.path.join(MEM, 'history.tsv')
+hist = {r['slug']: r for r in read_tsv(hist_p)} if os.path.exists(hist_p) else {}
 
 def git(slug, *args):
     d = os.path.join(SRC, slug)
@@ -27,10 +29,10 @@ def git(slug, *args):
         return ''
 
 def activity(slug):
-    first = git(slug, 'log', '--reverse', '--format=%cs').split('\n')[0] if git(slug, 'rev-parse', 'HEAD') else ''
-    n = git(slug, 'rev-list', '--count', 'HEAD')
+    # clones are shallow (1 commit): history stats come from history.tsv
+    h = hist.get(slug, {})
     last = pins.get(slug, {}).get('upstream_date', '')
-    return first, last, n
+    return h.get('first_commit', '?'), last, h.get('commits', '?')
 
 def esc(s):
     return s.replace('|', '\\|')

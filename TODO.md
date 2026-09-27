@@ -1,7 +1,8 @@
 # TODO
 
 ## In progress
-- [ ] Clone and catalogue the GitHub survey group A (155 verified repos), then B/D; blocked on disk space decision (added 2026-09-27)
+- [ ] Catalogue the 155 group-A repos (cloned + pinned, shallow) into catalogue.tsv. Waiting for the owner to pick a cheaper model for the agents (added 2026-09-27)
+- [ ] Record history stats (first commit, commit count) for the 155 group-A repos in history.tsv via GitHub API (added 2026-09-27)
 
 ## Next
 - [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)

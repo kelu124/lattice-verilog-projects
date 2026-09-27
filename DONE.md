@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-27
+- [x] Shallow-clone the 155 verified GitHub-survey repos (group A), pin them; convert the 71 existing clones to shallow; make shallow the only clone mode → commit "source(survey): shallow-clone 155 verified ULX3S repos, all clones shallow"
 - [x] GitHub-wide search for ULX3S gateware: ≈297 candidates in docs/github-survey.md + github-survey skill → commit "docs(survey): record GitHub-wide survey of ULX3S repos"
 - [x] Clone all repos from ulx3s.github.io "Projects and examples" (68/69; emard/ulx3s-examples is 404) → commit "source(ulx3s.github.io): clone and pin 68 projects from the projects list"
 - [x] Catalogue FPGA/toolchain/HDL/license/functions/reuse for all 71 repos, generate docs/catalogue.md, add reusable-cores memory → commit "docs(catalogue): catalogue 71 ULX3S repos with FPGA, toolchain, HDL, license"

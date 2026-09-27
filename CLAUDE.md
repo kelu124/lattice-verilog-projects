@@ -28,6 +28,7 @@ exact state it was left in. Do **not** rely on the per-user memory in
 | `.claude/memory/MEMORY.md` | Index of memory files (one line each) | yes |
 | `.claude/memory/projects.md` | **Project registry**: every ULX3S gateware project, its functions, toolchain, last update, review status | yes |
 | `.claude/memory/catalogue.tsv` | **Catalogue**: one row per cloned repo with FPGA, toolchain, HDL, license, functions, reusable blocks, preferred fork. Rendered to `docs/catalogue.md` by `gen_catalogue.py` | yes |
+| `.claude/memory/history.tsv` | Full-history stats (first commit, commit count) recorded before clones were made shallow | yes |
 | `.claude/memory/sources.tsv` | Pinned list of cloned upstream repos (url, commit, date) — lets anyone re-create `original_sources/` | yes |
 | `.claude/memory/*.md` | Other facts: board knowledge, toolchain notes, decisions, user preferences | yes |
 | `original_sources/` | Upstream repos cloned for review (read-only, never edited) | **no** (gitignored, re-creatable) |
@@ -41,7 +42,9 @@ exact state it was left in. Do **not** rely on the per-user memory in
 
 - **Cloning upstream code** → skill `clone-original-source`. Always into
   `original_sources/<owner>__<repo>`, always via `clone.sh` so it is pinned in
-  `sources.tsv`. Never modify cloned code; never commit it.
+  `sources.tsv`. Never modify cloned code; never commit it. **All clones are
+  shallow (`--depth 1`)**: owner's rule, and the disk is nearly full. History stats
+  (first commit, commit count) go in `.claude/memory/history.tsv`, not in the clones.
 - **Committing** → skill `committing`. Small, focused commits; conventional
   prefixes; every commit gets an entry in `COMMIT_LOG.md` (what + why) in the
   same commit; memory/TODO/DONE updated in the same commit as the work.

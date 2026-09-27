@@ -18,9 +18,11 @@ description: Clone (or restore) an upstream ULX3S gateware repository into origi
 4. **Pin**: the commit recorded is the one reviewed. When you `--update` a
    source, the new commit is recorded and the project must be re-checked
    (add a TODO item "re-review <slug> at <new commit>").
-5. Use shallow-ish clones for huge repos only if history is not needed; the
-   "last updated" field in `projects.md` needs `git log -1`, which works in
-   shallow clones too.
+5. **Shallow only**: `clone.sh` always clones with `--depth 1` (owner's rule, 2026-09-27; the disk
+   is nearly full). Never run a plain `git clone` or `git fetch --unshallow` here. `git log -1` still gives the
+   last-update date. If first-commit date or commit count is needed, get it from the GitHub API or
+   from a temporary clone outside the repo, and record it in `.claude/memory/history.tsv`.
+6. Check free space (`df -h /`) before large batches.
 
 ## Commands
 

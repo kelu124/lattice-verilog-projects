@@ -2,6 +2,7 @@
 - [Project registry](projects.md) — every ULX3S project: functions, toolchain, target, last update, review status + candidates queue
 - [Catalogue](catalogue.tsv) — per-repo FPGA/toolchain/HDL/license/functions/reuse for all 71 cloned repos (render: gen_catalogue.py)
 - [Reusable cores](reusable-cores.md) — best source repo for each building block (PLL, DVI, ESP32 OSD, USB host, SDRAM, displays, CPUs, Linux)
+- [Shallow clones rule](shallow-clones.md) — all clones --depth 1 (owner rule); history stats in history.tsv
 - [Pinned sources](sources.tsv) — upstream repos cloned in original_sources/ with pinned commits (restore with clone.sh --restore)
 - [Board hardware](board-hardware.md) — ULX3S peripherals, canonical signal names, GPIO sharing, power/audio/video pitfalls
 - [Board revisions](board-revisions.md) — v1.7→v3.1.7 differences and which LPF each needs

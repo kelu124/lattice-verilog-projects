@@ -2,6 +2,16 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — source(survey): shallow-clone 155 verified ULX3S repos, all clones shallow
+- **What**: shallow-cloned and pinned the 155 group-A repos from `docs/github-survey.md` (now 226 in `sources.tsv`);
+  converted the 71 earlier full clones to shallow in place (pinned commit kept); `clone.sh` is now always `--depth 1`;
+  new `history.tsv` holds the first-commit date and commit count captured before shallowing; `gen_catalogue.py` reads it;
+  memory `shallow-clones.md`; CLAUDE.md and the clone skill updated.
+- **Why**: the owner asked to add the survey results to the collection, then to keep only shallow clones and make
+  shallow the default. The disk was 98 % full.
+- **Notes**: original_sources is 5.8 GB, with about 4 GB free. The largest is jderobot__fpga-robotics (1.5 GB even shallow). The 155 new repos are
+  not catalogued yet (TODO).
+
 ## 2026-09-27 — docs(survey): record GitHub-wide survey of ULX3S repos
 - **What**: `docs/github-survey.md` (≈297 candidate repos in 5 evidence groups with stars, last push, license,
   evidence path); skill `github-survey` (queries, evidence levels, procedure); `source-lists.md` updated with the
