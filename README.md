@@ -15,7 +15,7 @@ clones it and runs `claude` here picks up where the work stopped.
   - [openFPGALoader: programmer](docs/projects/trabucayre__openfpgaloader.md)
 
 ## Catalogue
-[docs/catalogue.md](docs/catalogue.md): 290 ULX3S/ULX4M repos with FPGA size, toolchain (open or Diamond),
+[docs/catalogue.md](docs/catalogue.md): 293 repos (290 ULX3S/ULX4M + 3 ULX5M) with FPGA size, toolchain (open or Diamond),
 HDL, license, activity, preferred fork, functions, tests, and reusable cores. Start there to find prior art.
 
 ## Wider survey

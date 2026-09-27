@@ -2,6 +2,9 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — memory(repo): refresh README repo count after the ULX5M additions
+- **What/why**: README still said 290 repos; now 293 (290 ULX3S/ULX4M + 3 ULX5M).
+
 ## 2026-09-27 — docs(catalogue): add ULX5M (GateMate) repos as survey group F
 - **What**: searched GitHub for `ulx5m` (repo name, README, forks, `ulx5m-gs`); recorded 5 own repos, the
   forks and related projects as group F in `docs/github-survey.md`. Shallow-cloned and pinned 3:
