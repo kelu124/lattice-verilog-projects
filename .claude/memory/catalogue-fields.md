@@ -13,9 +13,12 @@ For every gateware repo, the catalogue [[projects]] must say:
 4. **License**: SPDX id (look for LICENSE/COPYING at any depth, README, file headers); `none found` if
    absent. That means *all rights reserved* by default, which matters for reuse. The owner explicitly
    praised keeping licenses (2026-09-27): keep doing it.
+5. **Tests**: any testbench/simulation setup found (test/sim dirs, testbench-named files, simulator
+   mentions). `none found` if nothing turns up. Owner asked for this on 2026-09-27 too — a heuristic
+   name/path scan is enough (`scan_tests.sh`), it doesn't need to confirm the tests pass.
 
 **Why:** asked explicitly by the repo owner on 2026-09-27 (license added the same day). These are the first filters someone
 uses to decide whether a design can be reused (their chip size, their toolchain, their language).
 
-**How to apply:** always fill these four columns in the summary table; write `unknown` if not
+**How to apply:** always fill these five columns in the summary table; write `unknown` if not
 determinable, never guess. The skill `review-gateware-project` step 5b spells out how to detect them.

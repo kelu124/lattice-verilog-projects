@@ -32,6 +32,10 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
      Silice, Clash, Chisel…); list all present, main one first.
    - **License**: SPDX id from LICENSE/COPYING (any depth), README or file headers; `none found`
      otherwise (= all rights reserved; flag it for reuse). Mixed licenses (e.g. ROMs) noted.
+   - **Tests**: any testbench/simulation setup (tb/test/sim dirs, `*_tb.v`/`tb_*.vhd`/`*_test.py` files,
+     iverilog/Verilator/GHDL-sim/cocotb/VUnit mentions in build scripts). Run
+     `.claude/skills/review-gateware-project/scan_tests.sh <original_sources/slug>` for a quick heuristic
+     pass, then note by hand whether the tests actually look runnable (found ≠ passing — verify before relying on one).
 6. **Functions**: list what the gateware does (one bullet per function, with top
    module path). Use the vocabulary in `.claude/memory/projects.md` → "Function tags"
    so projects are comparable; add a new tag there if needed.

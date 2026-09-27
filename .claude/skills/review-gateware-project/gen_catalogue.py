@@ -69,10 +69,13 @@ out = ['# ULX3S project catalogue', '',
 
 tc = collections.Counter(tc_short(r['toolchain']) for r in cat if r['kind'] in ('gateware', 'examples', 'education', 'mixed'))
 lic_none = sum(1 for r in cat if r['license'].lower().startswith('none'))
+has_tests = sum(1 for r in cat if r.get('tests', 'none found').lower() != 'none found')
 out += ['## At a glance', '',
         f'- {len(cat)} repositories catalogued.',
         f'- Gateware toolchains: ' + ', '.join(f'{k} {v}' for k, v in tc.most_common()) + '.',
-        f'- {lic_none} repositories have no license found.', '']
+        f'- {lic_none} repositories have no license found.',
+        f'- {has_tests} repositories have some detected testbench/simulation setup (heuristic scan; see "Testbenches and simulation" below).',
+        '']
 
 for g, rs in sections.items():
     if not rs: continue
@@ -87,13 +90,26 @@ for g, rs in sections.items():
             f"{f} → {l}, {n}", r['fork_of']]) + ' |')
     out.append('')
 
+tested = [r for r in cat if r.get('tests', 'none found').lower() != 'none found']
+out += ['## Testbenches and simulation', '',
+        'Heuristic scan (`.claude/skills/review-gateware-project/scan_tests.sh`, 2026-09-27) over each shallow '
+        'clone for test/sim directories (`tb/`, `test/`, `sim/`, ...), testbench-named files '
+        '(`*_tb.v`, `tb_*.vhd`, `*_test.py`, ...) and simulator mentions (iverilog, Verilator, GHDL, cocotb, '
+        'VUnit) in build scripts. It is a name/path heuristic, not proof the tests run or pass — verify before '
+        'relying on one. Repos not listed here had nothing matching.', '',
+        '| Repo | Detected test/sim setup |', '|---|---|']
+for r in tested:
+    out.append(f"| [{r['slug']}]({pins.get(r['slug'], {}).get('url', '').rstrip('/')}) | {esc(r['tests'])} |")
+out.append('')
+
 out += ['## Functions and reusable blocks', '',
-        'Per repo: function tags, where the ULX3S build lives, the constraint file, reusable cores, and notes.', '']
+        'Per repo: function tags, where the ULX3S build lives, the constraint file, reusable cores, tests, and notes.', '']
 for r in cat:
     out += [f"### {r['slug']}",
             f"- **Functions**: {r['functions']}",
             f"- **ULX3S build**: {r['ulx3s_path']} (LPF: {r['board_rev']})",
             f"- **Reuse**: {r['reuse']}",
+            f"- **Tests**: {r.get('tests', 'unknown')}",
             f"- **Notes**: {r['notes']}", '']
 
 # Function index

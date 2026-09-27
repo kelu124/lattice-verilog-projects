@@ -2,6 +2,21 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — docs(catalogue): catalogue 155 more ULX3S repos from the GitHub survey
+- **What**: ran a 6-agent Workflow (Sonnet 5) to catalogue all 155 group-A repos from `docs/github-survey.md`
+  (kind, name, fork/preferred copy, ULX3S build path, FPGA, toolchain, HDL, license, LPF, functions, reuse,
+  notes); merged into `.claude/memory/catalogue.tsv` (71 → 226 rows, verified 1:1 against `sources.tsv`).
+  Added a heuristic `tests` column (`.claude/skills/review-gateware-project/scan_tests.sh`: detects tb/test/sim
+  dirs, testbench-named files, and iverilog/Verilator/GHDL-sim/cocotb/VUnit mentions) for all 226 repos, and a
+  new "Testbenches and simulation" section in `docs/catalogue.md` (107/226 repos have something detected).
+  `catalogue-fields.md` and the review skill now require the tests field too.
+- **Why**: owner asked to catalogue the survey repos once on a cheaper model, and separately asked to record
+  available testbenches/tests per repo in the docs.
+- **Notes**: the tests scan is a name/path heuristic (dirs/filenames/tool mentions), not proof anything actually
+  runs or passes — flagged as such in the generated docs. A few repos surfaced real problems worth following up:
+  emard__vhdl_c64_c1541_sd's own README says the ULX3S port "doesn't work... I give up"; ironsteel__nes_ecp5 was
+  already known broken; several repos bundle copyrighted ROMs with no license file.
+
 ## 2026-09-27 — chore(repo): move TODO/DONE/COMMIT_LOG under .claude/
 - **What**: moved `TODO.md`, `DONE.md`, `COMMIT_LOG.md` to `.claude/TODO.md`, `.claude/DONE.md`,
   `.claude/COMMIT_LOG.md`; updated every reference in `CLAUDE.md`, `README.md` and the five skill files.
