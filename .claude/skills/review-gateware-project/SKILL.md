@@ -30,6 +30,8 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
      `diamond` (Lattice Diamond: `.ldf`, `.xcf`, `diamond`/`pnmainc` scripts), or `both`.
    - **HDL**: Verilog, SystemVerilog, VHDL, or generator (SpinalHDL, Migen/LiteX, Amaranth,
      Silice, Clash, Chisel…); list all present, main one first.
+   - **License**: SPDX id from LICENSE/COPYING (any depth), README or file headers; `none found`
+     otherwise (= all rights reserved; flag it for reuse). Mixed licenses (e.g. ROMs) noted.
 6. **Functions**: list what the gateware does (one bullet per function, with top
    module path). Use the vocabulary in `.claude/memory/projects.md` → "Function tags"
    so projects are comparable; add a new tag there if needed.
