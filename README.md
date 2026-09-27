@@ -18,6 +18,10 @@ clones it and runs `claude` here picks up where the work stopped.
 [docs/catalogue.md](docs/catalogue.md): 71 ULX3S repos with FPGA size, toolchain (open or Diamond),
 HDL, license, activity, preferred fork, functions and reusable cores. Start there to find prior art.
 
+## Wider survey
+[docs/github-survey.md](docs/github-survey.md): about 300 more ULX3S repos found on GitHub (155 verified),
+not cloned or catalogued yet.
+
 ## Project registry
 [`.claude/memory/projects.md`](.claude/memory/projects.md) lists every known ULX3S project with its
 functions, toolchain, target and last update, plus the queue of projects still to review.

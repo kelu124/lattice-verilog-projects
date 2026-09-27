@@ -2,6 +2,14 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — docs(survey): record GitHub-wide survey of ULX3S repos
+- **What**: `docs/github-survey.md` (≈297 candidate repos in 5 evidence groups with stars, last push, license,
+  evidence path); skill `github-survey` (queries, evidence levels, procedure); `source-lists.md` updated with the
+  run, frameworks with ULX3S support, and notable candidates; TODO for cloning (blocked on disk space).
+- **Why**: the owner asked which other GitHub repos used the ULX3S for Verilog gateware. The list is saved in-repo
+  so the survey is not lost with the session scratchpad.
+- **Notes**: unauthenticated API only (no gh CLI), so no code search. Disk at 98 % (6.1 GB free), so nothing cloned yet.
+
 ## 2026-09-27 — docs(catalogue): catalogue 71 ULX3S repos with FPGA, toolchain, HDL, license
 - **What**: `.claude/memory/catalogue.tsv` (one row per cloned repo: kind, fork/preferred copy, ULX3S build path,
   FPGA, toolchain, HDL, license, LPF, function tags, reusable blocks, notes); generator

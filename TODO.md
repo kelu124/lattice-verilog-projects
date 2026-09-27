@@ -1,7 +1,7 @@
 # TODO
 
 ## In progress
-- [ ] GitHub-wide search for other ULX3S Verilog gateware; clone and catalogue the good ones (added 2026-09-27)
+- [ ] Clone and catalogue the GitHub survey group A (155 verified repos), then B/D; blocked on disk space decision (added 2026-09-27)
 
 ## Next
 - [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)
@@ -21,3 +21,4 @@
 - [ ] Decide whether to check that example builds pass with a local oss-cad-suite (is it installed?) (added 2026-09-27)
 
 ## Blocked
+- [ ] Authenticated GitHub code search (`filename:ulx3s_v20.lpf`) to find repos that never say "ulx3s" in name/README (blocked: needs `gh auth login`) (added 2026-09-27)

@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-27
+- [x] GitHub-wide search for ULX3S gateware: ≈297 candidates in docs/github-survey.md + github-survey skill → commit "docs(survey): record GitHub-wide survey of ULX3S repos"
 - [x] Clone all repos from ulx3s.github.io "Projects and examples" (68/69; emard/ulx3s-examples is 404) → commit "source(ulx3s.github.io): clone and pin 68 projects from the projects list"
 - [x] Catalogue FPGA/toolchain/HDL/license/functions/reuse for all 71 repos, generate docs/catalogue.md, add reusable-cores memory → commit "docs(catalogue): catalogue 71 ULX3S repos with FPGA, toolchain, HDL, license"
 - [x] Clone and review emard__ulx3s-bin (quickstart/self-test kit, catalogue of early demos) and trabucayre__openfpgaloader (ULX3S board IDs) → commit "review(ulx3s-bin,openfpgaloader): add binaries kit and programmer"
