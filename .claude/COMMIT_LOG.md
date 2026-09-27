@@ -2,6 +2,29 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-27 — docs(catalogue): catalogue 64 ULX3S/ULX4M-dedicated repos from survey groups B/D/E
+- **What**: shallow-cloned and pinned 64 more repos from `docs/github-survey.md` — all 51 of group B
+  (ULX3S-dedicated by name/description), all 11 of group D (forks with substantial own commits), and
+  the 2 ULX4M-specific repos in group E (`lawrie/ulx4m_examples`, `lawrie/ulx4m_amaranth_examples`).
+  Deliberately skipped group C (69 multi-board projects where ULX3S is one of many targets) and the 9
+  non-ULX4M links in group E. Catalogued all 64 with a 3-agent workflow (FPGA, toolchain, HDL, license,
+  functions, reuse, notes), added the heuristic `tests` column, merged into `.claude/memory/catalogue.tsv`
+  (226 → 290 rows, verified 1:1 against `sources.tsv`), regenerated `docs/catalogue.md`, and refreshed
+  repo counts in `MEMORY.md`, `projects.md`, `reusable-cores.md`, `source-lists.md` and `README.md`.
+- **Why**: owner asked to prioritise the repos that are actually about ULX3S/ULX4M devices from the
+  wider GitHub survey, over generic multi-board frameworks that merely support the board among many.
+- **Notes**: because this batch's survey evidence was weaker (name/description match or fork activity,
+  not a confirmed `.lpf`), the cataloguing agents were told to verify honestly — 7 of the 64 turned out
+  to have **no real ULX3S/ULX4M build** despite matching the survey (`mkvenkit__ulx3s_examples`,
+  `lawrie__ulx3s_pdp_11`, `pepijndevos__rust-litex-example`, `dpks2003__dice_crap_game`,
+  `pfontvilanova__pfforthmachine`, `tom7980__ulxws`, `cheyao__sega-sms` — the last now targets Machdyne's
+  icepi-zero instead), plus 2 more (`ghaworth__ulx3s-bldc-foc`, `ghaworth__ulx3s-tinyai`) are empty
+  skeleton repos. Also found byte-identical forks already covered by other slugs (`danodus__ulx3s_68k`/
+  `_sms` mirror `lawrie__ulx3s_68k`/`_sms`; `machdyne__nes_ecp5` mirrors `ironsteel__nes_ecp5`) — kept
+  in the catalogue with `fork_of` noting the duplicate, not removed. `spinalhdl__saxonsoc`,
+  `stnolting__neorv32-setups` and `lawrie__jupiter_ace` were removed from the candidates list in
+  `projects.md` — they turned out to already be cloned via the earlier GitHub-search batch.
+
 ## 2026-09-27 — docs(repo): proofread and fix cross-file inconsistencies across the markdown docs
 - **What**: 4 parallel agents proofread all 26 hand-maintained markdown files (CLAUDE.md, README.md, 6
   skill files, 10 memory files, 5 docs pages, TODO/DONE/COMMIT_LOG) for clarity, consistency and

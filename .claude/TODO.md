@@ -1,7 +1,6 @@
 # TODO
 
 ## In progress
-- [ ] Record history stats (first commit, commit count) for the 155 group-A repos in history.tsv via GitHub API (added 2026-09-27)
 
 ## Next
 - [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)
@@ -10,6 +9,8 @@
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)
 
 ## Backlog
+- [ ] Clone/catalogue the remaining ~78 GitHub-survey repos (group C multi-board, group E minus ULX4M) if wanted (added 2026-09-27)
+- [ ] Record history stats (first commit, commit count) for the 155+64=219 GitHub-survey repos in history.tsv via GitHub API (added 2026-09-27)
 - [ ] Spot-check a sample of the heuristic test-scan results (tests column) by hand; the scan is name/path only, not proof tests run or pass (added 2026-09-27)
 - [ ] Find the sources of the ulx3s-bin demos with unknown origin: memtest, emi, oled, rtc, usb, c64, oberon, flashblink (added 2026-09-27)
 - [ ] Check whether openFPGALoader `ulx3s_esp` (ESP32-S3 USB-JTAG) works, and on which hardware (added 2026-09-27)
