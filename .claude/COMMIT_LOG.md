@@ -2,6 +2,18 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — skill(clone): add prune.py and prune non-gateware files from clones
+- **What**: `.claude/skills/clone-original-source/prune.py` (dry run by default, `--apply`, `--all` or slugs) deletes
+  bitstreams, build outputs (rpt/log/sdf/ncd/vcd, yosys JSON, trellis .config, icestorm .asc), tool binaries, PCB/3D
+  files, documents, videos, images > 256 KiB, archives/disk images > 1 MiB (archives kept in sim/test dirs); never
+  README/LICENSE or HDL/constraints/ROM files. Per-slug rules in `prune.tsv` (MDCCode: delete Tools/, Other/, keep
+  Other/ExampleSDRAMControllers). Ran it: MDCCode 622 MB, then all clones 4.4 GB more; original_sources/ 9.3 → 4.5 GB,
+  free disk 11.0 → 16.0 GB. Memory prune-clones.md, clone skill rule 8, MEMORY index updated.
+- **Why**: owner rule (2026-09-28) to free disk before the HX8K/HX4K clone batch; clones themselves are never committed.
+- **Notes**: `.git` packs are untouched (deletions are unstaged changes); re-run after each clone batch and `--restore`.
+  Biggest wins: jderobot__fpga-robotics 1.1 GB of committed iCEcube/Diamond build outputs, f32c__fpgarduino 430 MB of
+  toolchain archives.
+
 ## 2026-09-28 — chore(todo): add ordered start-of-session checklist for the next chat
 - **What/why**: owner is restarting in a new chat; TODO now opens with the ordered handoff steps (prune clones, 3 missing
   rows, HX8K/HX4K batch).

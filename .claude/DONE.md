@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-28
+- [x] Write prune.py + prune.tsv and prune all clones of non-gateware files: 5.0 GB of working-tree files deleted (MDCCode 622 MB), free disk 11.0 → 16.0 GB → commit "skill(clone): add prune.py and prune non-gateware files from clones"
 - [x] Add `make_tests` column: scan_make_tests.py candidates (112 repos) checked by 5 subagents; 67 have a make target that runs a testbench/sim/formal check → commit "docs(catalogue): add make_tests column, HX survey, prune rule; handoff"
 - [x] Survey HX8K/HX4K board gateware from awesome-latticeFPGAs → docs/hx-boards-survey.md (same commit)
 - [x] Clone gatecat/TrellisBoard, ZipCPU/sdspi, toasterllc/MDCCode (rows pending) (same commit)

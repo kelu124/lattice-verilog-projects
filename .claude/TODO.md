@@ -2,9 +2,7 @@
 
 ## Start here next session (handoff 2026-09-28, in this order)
 1. Resume protocol (CLAUDE.md). Check `git status` is clean and `df -h /` (~11 GB free on 2026-09-28).
-2. **Prune clones first** (frees disk before more cloning): write `.claude/skills/clone-original-source/prune.sh`
-   per memory `prune-clones.md` (dry-run default, `--apply`), run on toasterllc__mdccode (Tools/, Other/, PCB/) then
-   `--all`; report working-tree vs total space saved; commit the script + a COMMIT_LOG entry (clones themselves never committed).
+2. ~~Prune clones~~ done 2026-09-28 (prune.py, 5 GB freed).
 3. **Write the 3 missing catalogue rows** (gatecat__trellisboard, zipcpu__sdspi, toasterllc__mdccode): sources.tsv has 339
    pins vs 336 rows. One subagent, mixed-family rules (`NOT ECP5` for non-ECP5), fill `make_tests` via scan_make_tests.py.
 4. **HX8K/HX4K batch** (owner approved): clone the 20 recommended repos of `docs/hx-boards-survey.md` minus
@@ -18,7 +16,6 @@
 ## Next
 - [ ] Write catalogue rows for gatecat__trellisboard, zipcpu__sdspi, toasterllc__mdccode (cloned + pinned 2026-09-28; the agent was stopped by a classifier outage). For MDCCode look only at Code/ICE40, Sim, Other/ExampleSDRAMControllers; run scan_make_tests.py for make_tests. Mixed-family brief rules: non-ECP5 rows say `NOT ECP5` (added 2026-09-28)
 - [ ] Clone + catalogue the 20 recommended repos of docs/hx-boards-survey.md (owner approved; skip abnoname/iceZ0mb1e; FPGA column `iCE40 HX8K (NOT ECP5)`; fetch gateware submodules only; fill make_tests too) (added 2026-09-28)
-- [ ] Write .claude/skills/clone-original-source/prune.sh and prune all clones of non-gateware files (see memory prune-clones.md); report space saved; start with toasterllc__mdccode (Tools/, Other/, PCB/) (added 2026-09-28)
 - [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)
 - [ ] Clone the remaining candidates in projects.md (litex-boards, SaxonSoc, neorv32-setups, fujprog, had2019-playground, ulx4m-ls) (added 2026-09-27)
 - [ ] Harvest the "Gitee examples" section of ulx3s.github.io (added 2026-09-27)

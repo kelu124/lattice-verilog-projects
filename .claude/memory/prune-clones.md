@@ -18,8 +18,11 @@ sources built into the bitstream, READMEs and LICENSE/COPYING files (licenses ar
 **Why:** disk was 95 % full (11 GB free) after ~340 clones; e.g. toasterllc__mdccode is 963 MB shallow (Tools/ 441 MB
 prebuilt toolchains, Other/ 189 MB) while its gateware is under Code/ICE40 (a few MB).
 
-**How to apply:** not done yet (TODO): write `.claude/skills/clone-original-source/prune.sh` (dry-run by default,
-`--apply` to delete, per-slug or `--all`), run it, log working-tree and total savings. Deleting working-tree files does
-not shrink `.git` (the shallow pack keeps compressed blobs), so report both numbers. When checking a clone is unmodified,
-ignore deletions (`git status --porcelain | grep -v '^ D'`). `--restore` re-creates full clones: re-run the prune after.
-Don't prune while subagents are reading the clones. See also [[shallow-clones]].
+**How to apply:** run `.claude/skills/clone-original-source/prune.py [--apply] (--all | <slug>...)` (dry run by
+default). Generic rules by extension/size/content live in the script; per-slug folders (delete/keep) in `prune.tsv`
+next to it (`keep` wins). First run 2026-09-28: 5.0 GB of working-tree files deleted (MDCCode 622 MB, then all clones
+4.4 GB: build outputs 1.36 GB, bitstreams 0.75, images 0.75, archives 0.56, documents 0.39, PCB 0.22…);
+original_sources/ 9.3 → 4.5 GB, free disk 11.0 → 16.0 GB. Deleting working-tree files does not shrink `.git`. When
+checking a clone is unmodified, ignore deletions (`git status --porcelain | grep -v '^ D'`). **Re-run `prune.py
+--apply` after every new clone batch and after `clone.sh --restore`.** Don't prune while subagents are reading the
+clones. See also [[shallow-clones]].

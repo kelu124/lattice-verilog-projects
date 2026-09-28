@@ -15,4 +15,4 @@
 - [ECP5 boards survey](../../docs/ecp5-boards-survey.md) — 114 non-ULX3S ECP5 board repos (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight…) found 2026-09-27; top 14 + #21 (ecp5-mini-projects) + pergola_projects cloned
 - [Lattice boards survey](../../docs/lattice-boards-survey.md) — gateware for UP5K/ECP5 boards from kelu124/awesome-latticeFPGAs (2026-09-28), 20 recommended, all cloned + catalogued 2026-09-28
 - [HX8K/HX4K survey](../../docs/hx-boards-survey.md) — gateware for iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (2026-09-28), 20 recommended, owner approved adding them, NOT cloned yet
-- [Prune clones rule](prune-clones.md) — owner: delete non-gateware files (tools, bitstreams, PCB, PDFs, images) from local clones, never commit to them; report space saved (script TODO)
+- [Prune clones rule](prune-clones.md) — owner: delete non-gateware files (tools, bitstreams, PCB, PDFs, images) from local clones, never commit to them; report space saved; `prune.py --apply --all` after each clone batch (first run freed 5 GB)

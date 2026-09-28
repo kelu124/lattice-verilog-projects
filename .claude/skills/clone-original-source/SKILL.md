@@ -28,6 +28,9 @@ description: Clone (or restore) an upstream ULX3S gateware repository into origi
    Don't fetch frameworks/generators (LiteX, migen, SpinalHDL, jtframe), software, tests, KiCad libs, or
    upstreams already cloned under their own slug. Then update the repo's catalogue row (hdl, license, reuse, notes).
 7. Check free space (`df -h /`) before large batches.
+8. **Prune** after cloning (owner rule, memory `prune-clones.md`): `prune.py --apply --all` deletes
+   non-gateware files (bitstreams, build outputs, tools, PCB/3D, PDFs, big images/archives) from the working
+   trees, never commits. Per-slug folders go in `prune.tsv` (`delete`/`keep`). Dry run without `--apply`.
 
 ## Commands
 

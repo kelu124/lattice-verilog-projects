@@ -1,0 +1,4 @@
+slug	path	action	reason
+toasterllc__mdccode	Tools	delete	prebuilt toolchains (441 MB)
+toasterllc__mdccode	Other	delete	datasheets, MCU vendor code, photos
+toasterllc__mdccode	Other/ExampleSDRAMControllers	keep	third-party SDRAM controller HDL
