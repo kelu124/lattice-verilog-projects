@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/lawrie__ulx3s_examples.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "lawrie__ulx3s_examples"
+parent: "Project reviews"
+nav_order: 8
+---
+<!-- Generated from data/projects/lawrie__ulx3s_examples.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # Lawrie Griffiths' ULX3S examples (`lawrie__ulx3s_examples`)
 
 | Field | Value |
@@ -125,3 +131,4 @@ carry real per-file license headers even though there is no repo-level `LICENSE`
   in the catalogue row for them); contents unverified beyond directory listing.
 - `hdmi/tmds_encoder.v` and `fake_differential.v` have no explicit license comment (only `vga2dvid.v` in
   the same directory states MIT) — unclear whether they inherit the same terms.
+{% endraw %}

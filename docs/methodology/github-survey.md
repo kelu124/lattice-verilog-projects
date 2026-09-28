@@ -1,5 +1,11 @@
-<!-- Generated from data/pages/github-survey.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "GitHub ULX3S survey"
+parent: "Methodology"
+nav_order: 2
+---
+<!-- Generated from data/pages/github-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # GitHub survey of ULX3S repositories (2026-09-27)
 
 Candidates found by a GitHub-wide search that were **not yet** in `.claude/memory/sources.tsv`
@@ -351,3 +357,4 @@ taken out again. This table is kept only as a record of the search.
 
 Forks with no own work skipped: intergalaktik/ulx5m-litex-ai (fork of goran-mahovlic's), 25mmHg, chrisKanthak,
 throwoutofcoffeeexception, mfkiwl, Odie8683 `/ulx5m-gs`. Curated list: PythonLinks/awesome-gatemate.
+{% endraw %}

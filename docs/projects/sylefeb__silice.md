@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/sylefeb__silice.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "sylefeb__silice"
+parent: "Project reviews"
+nav_order: 12
+---
+<!-- Generated from data/projects/sylefeb__silice.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # Silice (`sylefeb__silice`)
 
 | Field | Value |
@@ -171,3 +177,4 @@ for the compiler that processes it) still governs redistribution of the source.
 - Whether any of the ~19 other `projects/` demos not reviewed here (DooM-chip,
   terrain, wolfpga, qpsram, etc.) have licensing or vendor-primitive quirks
   different from the pattern seen in `common/` — not checked.
+{% endraw %}

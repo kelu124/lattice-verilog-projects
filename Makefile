@@ -11,8 +11,15 @@ catalogue:
 	python3 $(SK)/review-gateware-project/gen_catalogue.py
 
 pages:
-	python3 $(SK)/documentation/gen_pages.py
+	python3 $(SK)/documentation/gen_site.py
 
 lpfs:
 	python3 $(SK)/review-gateware-project/scan_lpfs.py
 	python3 $(SK)/review-gateware-project/gen_lpf_catalogue.py
+
+.PHONY: usage check
+usage:
+	python3 $(SK)/review-gateware-project/scan_core_usage.py
+
+check:
+	python3 $(SK)/documentation/check_data.py

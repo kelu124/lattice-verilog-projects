@@ -14,19 +14,21 @@ and runs `claude` here picks up exactly where the work stopped.
 
 ## Start here
 
+**Website:** <https://kelu124.github.io/ulx3s-klod/> (GitHub Pages, generated from [`data/`](data/) into [`docs/`](docs/)).
+
 | If you want to… | Open |
 |---|---|
-| Find the best existing core for a function (PLL, DVI, USB, SDRAM, HyperRAM, CPU, Linux…) | [`.claude/memory/reusable-cores.md`](.claude/memory/reusable-cores.md) |
-| Browse every catalogued repo (FPGA, toolchain, HDL, license, functions, tests, reuse) | [`docs/catalogue.md`](docs/catalogue.md) |
-| Learn the ULX3S hardware: pins, signal names, constraint files, build and load, pitfalls | [`docs/board-reference.md`](docs/board-reference.md) |
-| Read a full review of a project, with per-block reuse notes (module, ports, primitives, license, what to change for ULX3S) | [`docs/projects/`](docs/projects/): 18 pages, e.g. [ulx3s-misc](docs/projects/emard__ulx3s-misc.md), [ulx3s_sms OSD](docs/projects/lawrie__ulx3s_sms.md), [f32c](docs/projects/f32c__f32c.md), [hdl4fpga](docs/projects/hdl4fpga__hdl4fpga.md), [Silice](docs/projects/sylefeb__silice.md), [usb_cdc](docs/projects/ulixxe__usb_cdc.md), [ecp5_hdmi_audio_video](docs/projects/danodus__ecp5_hdmi_audio_video.md), [sdspi](docs/projects/zipcpu__sdspi.md), [PicoRV32](docs/projects/yosyshq__picorv32.md), [no2fpga cores](docs/projects/smunaut__ice40-playground.md), [HAD2019 SoC](docs/projects/spritetm__hadbadge2019_fpgasoc.md) |
-| Load bitstreams over USB (DFU), or add a DFU bootloader to a design | [`docs/DFUs.md`](docs/DFUs.md): the ULX3S/ULX4M US2 bootloader (source, alt settings, flash layout, recovery) and the OrangeCrab, Fomu, no2bootloader, pico-ice, BlackIce flows |
-| Find a pin map (LPF) for a board/revision, or see which peripherals a design constrains | [`docs/lpf-catalogue.md`](docs/lpf-catalogue.md) + [`data/lpfs.json`](data/lpfs.json): all 883 LPFs (455 distinct) with URL, board/rev, FPGA size and LUTs, chips (SDRAM, flash, SD, ESP32, HDMI…) |
-| See how the collection was found, and what is not cloned yet | the surveys below |
+| Find the best existing core for a function (HDMI, VGA, SDRAM, SD, USB, UART, SPI, I2C, ADC, DAC, audio, radio, CPUs…), with links to the original files and the projects that use it | [Cores by function](docs/functions/index.md) (data: [`data/cores.json`](data/cores.json), [`data/core_usage.json`](data/core_usage.json)) |
+| Learn a board: FPGA, constraint files, cores seen on it, projects | [Boards](docs/boards/index.md): ULX3S, ULX4M, OrangeCrab, Colorlight, IcePi Zero, iCESugar-Pro; iCEBreaker, UPduino, iCESugar, Fomu, pico-ice; HX8K breakout, BlackIce, iceFUN, Olimex HX8K-EVB, IcoBoard |
+| Learn the ULX3S hardware: pins, signal names, constraint files, pitfalls | [ULX3S board page](docs/boards/ulx3s.md) |
+| Build and load a bitstream, use DFU, port an iCE40 core to ECP5 | [Guides](docs/guides/index.md): [toolchain](docs/guides/toolchain.md), [USB DFU](docs/guides/DFUs.md), [porting iCE40 → ECP5](docs/guides/porting-ice40-to-ecp5.md) |
+| Read an in-depth review with per-block reuse notes | [Project reviews](docs/projects/index.md) (18 repos) |
+| Browse every catalogued repo, or every LPF pin map | [Full catalogue](docs/methodology/catalogue.md), [LPF catalogue](docs/methodology/lpf-catalogue.md) (data: [`data/catalogue.json`](data/catalogue.json), [`data/lpfs.json`](data/lpfs.json)) |
+| See how the collection was found | [Methodology](docs/methodology/index.md) and the surveys below |
 
 ## The catalogue
 
-[`docs/catalogue.md`](docs/catalogue.md) is generated from
+The [full catalogue](docs/methodology/catalogue.md) is generated from
 [`data/catalogue.json`](data/catalogue.json) (one object per repo) by
 `.claude/skills/review-gateware-project/gen_catalogue.py`. It currently covers **376 repos**:
 
@@ -48,24 +50,35 @@ the sources at a pinned commit.
 
 | File | What |
 |---|---|
-| [`docs/github-survey.md`](docs/github-survey.md) | GitHub-wide search for ULX3S repos (groups A–F). A, B, D and the ULX4M part of E are cloned; C (multi-board) is not. F = ULX5M (GateMate, excluded) |
-| [`docs/ecp5-boards-survey.md`](docs/ecp5-boards-survey.md) | Gateware for other ECP5 boards (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5…), 114 repos, all 24 recommended catalogued |
-| [`docs/lattice-boards-survey.md`](docs/lattice-boards-survey.md) | Gateware for the UP5K and ECP5 boards of awesome-latticeFPGAs (20 recommended, all catalogued) |
-| [`docs/hx-boards-survey.md`](docs/hx-boards-survey.md) | Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (20 recommended + 8 honourable mentions, all catalogued; iceZ0mb1e is a submodule) |
+| [`github-survey`](docs/methodology/github-survey.md) | GitHub-wide search for ULX3S repos (groups A–F). A, B, D and the ULX4M part of E are cloned; C (multi-board) is not. F = ULX5M (GateMate, excluded) |
+| [`ecp5-boards-survey`](docs/methodology/ecp5-boards-survey.md) | Gateware for other ECP5 boards (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5…), 114 repos, all 24 recommended catalogued |
+| [`lattice-boards-survey`](docs/methodology/lattice-boards-survey.md) | Gateware for the UP5K and ECP5 boards of awesome-latticeFPGAs (20 recommended, all catalogued) |
+| [`hx-boards-survey`](docs/methodology/hx-boards-survey.md) | Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (20 recommended + 8 honourable mentions, all catalogued; iceZ0mb1e is a submodule) |
 
 ## Data and the GitHub Pages site
 
-Everything gathered is stored as JSON in [`data/`](data/); [`docs/`](docs/) is generated from it and is meant
-to be published with GitHub Pages (Settings → Pages → source: `main`, folder `/docs`; `docs/_config.yml`).
+Everything gathered is stored as JSON in [`data/`](data/); [`docs/`](docs/) is **generated** from it and published
+with GitHub Pages (just-the-docs theme; Settings → Pages → source `main`, folder `/docs`; config in
+`docs/_config.yml`). Never edit `docs/` by hand.
+
+| Data | What | Site |
+|---|---|---|
+| `data/functions.json` | 33 functions (ADC, SPI, DAC, VGA, HDMI…) | [Cores by function](docs/functions/index.md) |
+| `data/cores.json` | 153 reusable cores: repo, files, top module, license, FPGA/primitives, tests, ULX3S notes | function pages |
+| `data/core_usage.json` | which repos copy or instantiate each core (scan) | "Used by" lists |
+| `data/boards.json` | 16 boards in 3 families (ECP5, UP5K, HX) | [Boards](docs/boards/index.md) |
+| `data/pages/*.json`, `data/projects/*.json` | guides, surveys, methodology, home intro, 18 reviews | Guides, Project reviews, Methodology |
+| `data/catalogue.json`, `data/lpfs.json` | every cloned repo, every LPF | Methodology data views |
 
 ```bash
-make docs    # data/*.json -> docs/*.md (catalogue, LPF catalogue, guides, surveys, project pages, index)
-make lpfs    # rescan every *.lpf in original_sources/ into data/lpfs.json, then render it
+make check   # validate data/ (core files exist in the clones, ids, pins vs rows)
+make usage   # rescan which repos use each core -> data/core_usage.json
+make lpfs    # rescan every *.lpf in original_sources/ -> data/lpfs.json
+make docs    # render the whole site into docs/
 ```
 
-Scripts: `gen_catalogue.py` (catalogue; `--merge rows.tsv` adds rows), `scan_lpfs.py` + `gen_lpf_catalogue.py`
-(LPFs), `gen_pages.py` (pages, index; page model in `mdjson.py`), `md2json.py` (import a markdown draft as page
-JSON). Tables in the page JSON are row objects, so survey candidates and project fields are queryable.
+Scripts: `.claude/skills/documentation/{gen_site.py,mdjson.py,md2json.py,check_data.py}`,
+`.claude/skills/review-gateware-project/{gen_catalogue.py,scan_core_usage.py,scan_lpfs.py,gen_lpf_catalogue.py}`.
 
 ## Upstream sources
 
@@ -95,8 +108,8 @@ freed 5 GB.
 | [`.claude/memory/projects.md`](.claude/memory/projects.md) | Project registry: status and the queue of candidates still to review |
 | [`.claude/memory/source-lists.md`](.claude/memory/source-lists.md) | Where each batch of repos came from, and when |
 | [`data/`](data/) | **All gathered data as JSON** (source of truth): `catalogue.json`, `lpfs.json`, `pages/*.json` (surveys, guides), `projects/*.json` (review pages) |
-| [`docs/`](docs/) | **Generated** GitHub Pages site (`docs/index.md` is the landing page); never edit by hand |
-| [`Makefile`](Makefile) | `make docs` renders `docs/` from `data/`; `make lpfs` rescans every LPF in the clones |
+| [`docs/`](docs/) | **Generated** GitHub Pages site (just-the-docs); never edit by hand |
+| [`Makefile`](Makefile) | `make check`, `make usage`, `make lpfs`, `make docs` |
 | [`.claude/skills/`](.claude/skills/) | Repeatable workflows: GitHub survey, clone + prune, review/catalogue, document, commit, TODO/DONE |
 | [`.claude/TODO.md`](.claude/TODO.md), [`DONE.md`](.claude/DONE.md), [`COMMIT_LOG.md`](.claude/COMMIT_LOG.md) | Open work, finished work, and the why of each commit |
 
@@ -106,4 +119,4 @@ freed 5 GB.
    restore `original_sources/` if empty).
 2. To add a project, ask for a review (skill `review-gateware-project`): it clones, catalogues, documents and
    commits with a `COMMIT_LOG.md` entry.
-3. Never edit files under `original_sources/`, and never edit `docs/catalogue.md` by hand (regenerate it).
+3. Never edit files under `original_sources/`, and never edit anything under `docs/` by hand (edit `data/`, then `make docs`).

@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/danodus__ecp5_hdmi_audio_video.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "danodus__ecp5_hdmi_audio_video"
+parent: "Project reviews"
+nav_order: 2
+---
+<!-- Generated from data/projects/danodus__ecp5_hdmi_audio_video.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # ECP5 HDMI Audio + Video Transmitter (`danodus__ecp5_hdmi_audio_video`)
 
 | Field | Value |
@@ -122,3 +128,4 @@ audio sample rate drifts (README).
 - No `hdmi_packet_assembler.v`/`hdmi_packet_picker.v` internals were read
   beyond line counts; infoframe payload correctness (EDID/CEC interplay) not
   verified against the HDMI spec.
+{% endraw %}

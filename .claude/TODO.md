@@ -3,8 +3,10 @@
 ## In progress
 
 ## Next
-- [ ] GitHub Pages: agree the site structure with the owner (discussion opened 2026-09-28), enable Pages (main, /docs), check rendering of the big tables (added 2026-09-28)
-- [ ] DFU follow-ups (docs/DFUs.md open questions): clone smunaut/had2019-playground original, no2bootloader, OrangeCrab bootloader, foboot, tinydfu to verify their layouts; which board emard__esp32ecp5 dfu.py targets; ULX4M DFU entry (BTN3 vs SW1 disagreement) (added 2026-09-28)
+- [ ] GitHub Pages: enable Pages (Settings → Pages → main, /docs) if not yet, then check the first just-the-docs build (nav, search, {% raw %} wrapper, core anchors, big catalogue table); Jekyll could not be tested locally (added 2026-09-28)
+- [ ] Cores: licensing pass on cores with "none found" (lawrie sn76489, ulx3s-misc dacpwm, osd.v/spi_osd.v, greybadge sha256, several CORDIC/CIC); verify the core_usage heuristic on a sample (name collisions) (added 2026-09-28)
+- [ ] Board pages: verify the short descriptions of non-ULX3S boards against vendor docs (currently summaries, marked as such); add PCF clocks (added 2026-09-28)
+- [ ] DFU follow-ups (docs/guides/DFUs.md open questions): clone smunaut/had2019-playground original, no2bootloader, OrangeCrab bootloader, foboot, tinydfu to verify their layouts; which board emard__esp32ecp5 dfu.py targets; ULX4M DFU entry (BTN3 vs SW1 disagreement) (added 2026-09-28)
 - [ ] Docs pages follow-ups: open questions at the end of each new docs/projects/*.md (15 pages, 2026-09-28); license-verify the ulx3s-misc dirs only listed (usbhid, ch376, qspi, jtag_slave, dvi_in, dvi_osd, ov7670_dvi, adxl355) (added 2026-09-28)
 - [ ] LPF catalogue: 134 ULX3S LPFs have unknown revision (<90 % pin match: renamed signals); consider matching on sites only, and a PCF catalogue for the iCE40 repos (added 2026-09-28)
 - [ ] Clone the remaining candidates in projects.md (litex-boards, SaxonSoc, neorv32-setups, fujprog, had2019-playground, ulx4m-ls) (added 2026-09-27)
@@ -16,7 +18,7 @@
 - [ ] scan_tests.sh misses CMake/Verilator harnesses (CMakeLists.txt, verilator/ dirs), e.g. bit-hack__icesid; extend it and re-run (added 2026-09-28)
 - [ ] Nested gateware submodules not fetched (clone.sh --submodule only takes top-level paths): z386 CPU (gojimmypi__z80386-ulx3s-doom third_party/z386_MiSTer/src/z386), ACoreBase CPU (chiplet__acorechip-ulx3s ACoreChip/…) (added 2026-09-27)
 - [ ] Consider cloning markus-zzz/hyperram-test (ULX3S HyperRAM add-on test, github-survey group C) (added 2026-09-27)
-- [ ] gen_catalogue.py / docs/catalogue.md intro are ULX3S-worded; consider a `board` column now that non-ULX3S ECP5 repos are in (board currently in `board_rev`) (added 2026-09-27)
+- [ ] gen_catalogue.py / docs/methodology/catalogue.md intro are ULX3S-worded; consider a `board` column now that non-ULX3S ECP5 repos are in (board currently in `board_rev`) (added 2026-09-27)
 - [ ] Clone/catalogue the remaining ~78 GitHub-survey repos (group C multi-board, group E minus ULX4M) if wanted (added 2026-09-27)
 - [ ] Record history stats (first commit, commit count) for the 155+64=219 GitHub-survey repos in history.tsv via GitHub API (added 2026-09-27)
 - [ ] Spot-check a sample of the heuristic test-scan results (tests column) by hand; the scan is name/path only, not proof tests run or pass (added 2026-09-27)

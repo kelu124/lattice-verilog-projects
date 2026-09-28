@@ -1,0 +1,107 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "guide",
+ "slug": "porting-ice40-to-ecp5",
+ "title": "Porting iCE40 cores to ECP5",
+ "description": "Checklist and primitive map (SB_* to ECP5) for reusing iCE40 cores on the ULX3S.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Many of the best small cores in the collection were written for iCE40 boards (iCEBreaker, UPduino, BlackIce, HX8K breakout). Their logic is usually portable Verilog; only the instantiated `SB_*` primitives and the clocking need changing. This page collects what the reviews found; the primitive table comes from the [ice40-playground review](projects/smunaut__ice40-playground.md)."
+  }
+ ],
+ "sections": [
+  {
+   "title": "Checklist",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": true,
+     "items": [
+      "`grep -n \"SB_\" -r rtl/` to list the iCE40 primitives the core instantiates. Cores listed as `fpga: any` in [Cores by function](functions/index.md) have none.",
+      "Replace the PLL: `SB_PLL40_*` (parameters from `icepll`) becomes `EHXPLLL` on ECP5. Use emard's parametric `ecp5pll` wrapper or Project Trellis `ecppll` to compute dividers (see [PLLs and clocking](functions/pll-clock.md)).",
+      "Re-check clock frequencies: iCE40 boards run from 12 MHz (iCEBreaker, HX8K breakout) or other crystals, the ULX3S from 25 MHz (`clk_25mhz`). Baud-rate dividers, video timings and USB 48 MHz clocks must be recomputed.",
+      "Replace IO and memory primitives (table below), then the pin constraints: `.pcf` (`set_io name pin`) becomes `.lpf` (`LOCATE COMP \"name\" SITE \"pin\"; IOBUF PORT \"name\" IO_TYPE=LVCMOS33;`). Start from the reference [ULX3S LPF](board-reference.md).",
+      "Replace the internal oscillator `SB_HFOSC`/`SB_LFOSC` with the board clock (or ECP5 `OSCG`), and `SB_WARMBOOT` with the ECP5 reboot mechanism of your board (the ULX3S DFU bootloader pulls PROGRAMN, see the [DFU guide](DFUs.md))."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Primitive map",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "iCE40 primitive",
+      "Used for",
+      "ECP5 equivalent"
+     ],
+     "rows": [
+      {
+       "iCE40 primitive": "`SB_IO`",
+       "Used for": "IO pads, tristate, registered and DDR IO (PHYs of USB, HyperRAM, QPI, HUB75, SPI, I2C cores)",
+       "ECP5 equivalent": "`TRELLIS_IO` or `BB` (tristate pad) + `ODDRX1F`/`IDDRX1F` for DDR, `OFS1P3DX`/`IFS1P3DX` for registered IO; already done natively in the HAD2019 badge SoC and ultraembedded's OrangeCrab DDR3 PHY"
+      },
+      {
+       "iCE40 primitive": "`SB_PLL40_CORE`, `SB_PLL40_PAD`, `SB_PLL40_2F_*`",
+       "Used for": "Clock synthesis",
+       "ECP5 equivalent": "`EHXPLLL`"
+      },
+      {
+       "iCE40 primitive": "`SB_GB`",
+       "Used for": "Global clock buffer",
+       "ECP5 equivalent": "usually automatic in nextpnr-ecp5; `ECLKSYNCB`/`CLKDIVF` for edge clocks"
+      },
+      {
+       "iCE40 primitive": "`SB_RAM40_4K`",
+       "Used for": "4 Kbit block RAM (often instantiated for USB endpoint buffers)",
+       "ECP5 equivalent": "`DP16KD` (16 Kbit): remap depth/width and init parameters, or let yosys infer from a plain array"
+      },
+      {
+       "iCE40 primitive": "`SB_SPRAM256KA`",
+       "Used for": "256 Kbit single-port RAM (UP5K only)",
+       "ECP5 equivalent": "no equivalent: build from several `DP16KD`, or use the SDRAM"
+      },
+      {
+       "iCE40 primitive": "`SB_MAC16`",
+       "Used for": "DSP multiply-accumulate (UP5K)",
+       "ECP5 equivalent": "`MULT18X18D` / `ALU54B`, or inferred `*`"
+      },
+      {
+       "iCE40 primitive": "`SB_LUT4`, `SB_CARRY`, `SB_DFF*`",
+       "Used for": "Hand-placed logic, carry chains, flip-flops",
+       "ECP5 equivalent": "`LUT4`, `CCU2C`, inferred flip-flops (or let synthesis infer them)"
+      },
+      {
+       "iCE40 primitive": "`SB_RGBA_DRV`, `SB_LEDDA_IP`",
+       "Used for": "Constant-current RGB LED driver (UP5K)",
+       "ECP5 equivalent": "no hard macro: PWM on a GPIO plus resistors"
+      },
+      {
+       "iCE40 primitive": "`SB_HFOSC`, `SB_LFOSC`",
+       "Used for": "Internal oscillators",
+       "ECP5 equivalent": "board clock, or `OSCG`"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Examples of ports already in the collection",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "[smunaut__ice40-playground](projects/smunaut__ice40-playground.md): the no2 cores separate a portable controller from a small `SB_IO` PHY; the HAD2019 badge SoC has ECP5 versions of the same PHY pattern ([review](projects/spritetm__hadbadge2019_fpgasoc.md)).",
+      "[yosyshq__picorv32](projects/yosyshq__picorv32.md): the core is primitive-free; only the board tops use `SB_IO` and `SB_SPRAM256KA`.",
+      "[wren6991__smoldvi](projects/wren6991__smoldvi.md): only `ddr_out` needs an `ODDRX1F` version."
+     ]
+    }
+   ]
+  }
+ ],
+ "nav_order": 2,
+ "nav_title": "Porting iCE40 to ECP5"
+}

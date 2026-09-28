@@ -1,4 +1,23 @@
-# GitHub Pages (Jekyll) config. Source: main branch, /docs folder. Pages are generated: run `make docs`.
+# GitHub Pages (Jekyll) config. Pages source: branch main, folder /docs.
+# Every page is generated from data/*.json by `make docs`: do not edit the .md files here.
 title: ulx3s-klod
-description: Open gateware for the ULX3S (ECP5) and small Lattice boards — catalogue, reusable cores, pin maps
-theme: jekyll-theme-minimal
+description: Reusable open gateware for the ULX3S (ECP5) and small Lattice boards, by function, with links to the original sources.
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+  - jekyll-relative-links
+  - jekyll-seo-tag
+relative_links:
+  enabled: true
+  collections: false
+search_enabled: true
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "Back to top"
+aux_links:
+  "ulx3s-klod on GitHub":
+    - "https://github.com/kelu124/ulx3s-klod"
+aux_links_new_tab: true
+footer_content: "Generated from the JSON in <a href=\"https://github.com/kelu124/ulx3s-klod/tree/main/data\">data/</a> by the scripts in .claude/skills. Facts cite the upstream file at the reviewed commit; verify before reuse."
+exclude:
+  - "*.json"

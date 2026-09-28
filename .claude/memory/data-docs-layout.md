@@ -8,14 +8,23 @@ metadata:
 All data gathered in this repo is stored as **JSON in `data/`** and **`docs/` is generated** from it for a GitHub
 Pages site (owner request, 2026-09-28: "the docs folder will be about pushing to a gh page").
 
-- `data/catalogue.json` (was `.claude/memory/catalogue.tsv`) → `docs/catalogue.md` via `gen_catalogue.py`
+- `data/catalogue.json` (was `.claude/memory/catalogue.tsv`) → `docs/methodology/catalogue.md` via `gen_catalogue.py`
   (`--merge rows.tsv|rows.json` upserts agent rows).
-- `data/lpfs.json` (from `scan_lpfs.py` over the clones) → `docs/lpf-catalogue.md` via `gen_lpf_catalogue.py`.
-- `data/pages/*.json` (surveys, board reference, DFU guide, index intro) and `data/projects/*.json` (review pages)
-  → `docs/*.md`, `docs/projects/*.md`, `docs/index.md` via `documentation/gen_pages.py` (page model in `mdjson.py`;
-  tables are row objects; outward links rewritten to GitHub URLs).
-- `make docs` renders everything; `make lpfs` rescans LPFs. `docs/_config.yml` = Jekyll config (Pages source:
+- `data/lpfs.json` (from `scan_lpfs.py` over the clones) → `docs/methodology/lpf-catalogue.md` via `gen_lpf_catalogue.py`.
+- `data/pages/*.json` (guides, surveys, ULX3S board reference, methodology, index intro) and `data/projects/*.json`
+  (review pages) → `docs/guides/`, `docs/methodology/`, `docs/boards/ulx3s.md`, `docs/projects/`, `docs/index.md`
+  via `documentation/gen_site.py` (page model in `mdjson.py`; tables are row objects; links remapped).
+- `make check` validates, `make usage` rescans core usage, `make lpfs` rescans LPFs, `make docs` renders everything. `docs/_config.yml` = Jekyll config (Pages source:
   main, `/docs`). `.claude/memory/{sources,submodules,history}.tsv` stay in memory: they drive `clone.sh`.
+
+**Site (owner decisions 2026-09-28, English, just-the-docs theme):** not a list of all repos but the
+**reusable cores and the projects that use them**, organised **by function** (`data/functions.json`, 33 functions:
+ADC, SPI, DAC, VGA, HDMI…), each core linking to its original files upstream at the pinned commit
+(`data/cores.json`, usage from `scan_core_usage.py` → `data/core_usage.json`). Boards: only the most relevant, in
+3 families ECP5 / UP5K / HX (`data/boards.json`, 16 boards). Guides (toolchain, porting iCE40→ECP5, DFU), the
+in-depth project reviews, and a methodology section linking to the raw material on GitHub (data files, memory,
+skills). Generator: `documentation/gen_site.py` (front matter for nav, `{% raw %}` wrapper, explicit
+`{#core-<id>}` anchors); validation: `documentation/check_data.py` (`make check`).
 
 **Why:** the owner wants `docs/` to be a publishable GitHub Pages site and the data to be machine-readable.
 

@@ -1,0 +1,105 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "guide",
+ "slug": "toolchain",
+ "title": "Build and load bitstreams (open toolchain)",
+ "description": "Build with yosys/nextpnr/ecppack (or nextpnr-ice40) and load with openFPGALoader, fujprog, OpenOCD, the ESP32 or DFU.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Source: the ULX3S [MANUAL](https://github.com/emard/ulx3s/blob/master/doc/MANUAL.md) (emard/ulx3s @ 6a92cec, read 2026-09-27) and the programmers catalogued here ([openFPGALoader review](projects/trabucayre__openfpgaloader.md))."
+  }
+ ],
+ "sections": [
+  {
+   "title": "Build (ECP5)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "yosys `synth_ecp5` → nextpnr-ecp5 → ecppack (Project Trellis):"
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "yosys -p \"synth_ecp5 -top top -json top.json\" top.v\nnextpnr-ecp5 --85k --package CABGA381 --lpf ulx3s_v20.lpf --json top.json --textcfg top.config\necppack top.config top.bit"
+    },
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Pick `--12k`, `--25k`, `--45k` or `--85k` for your chip; the ULX3S package is always `CABGA381`.",
+      "Use `ulx3s_v20.lpf` for boards v2.x/v3.0.x and `ulx3s_v316.lpf` for v3.1.6/v3.1.7 (see the [ULX3S board page](board-reference.md) and the [LPF catalogue](lpf-catalogue.md)).",
+      "A common trick: build with `--25k` and pass `--idcode 0x21111043` to ecppack to load the bitstream on a 12F (same die).",
+      "Toolchain bundle recommended by the manual: YosysHQ **oss-cad-suite-build** (also ships fujprog and openFPGALoader). Lattice Diamond is only needed for Diamond-only historical projects and `.vme` files."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Build (iCE40)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "yosys `synth_ice40` → nextpnr-ice40 (`--up5k --package sg48`, `--hx8k --package ct256`, HX4K boards: `--hx8k --package tq144:4k`) → icepack. Older designs use arachne-pnr instead of nextpnr-ice40."
+    }
+   ]
+  },
+  {
+   "title": "Load (ULX3S)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "Tool",
+      "SRAM",
+      "Flash",
+      "Notes"
+     ],
+     "rows": [
+      {
+       "Tool": "openFPGALoader",
+       "SRAM": "`openFPGALoader -b ulx3s top.bit`",
+       "Flash": "`openFPGALoader -b ulx3s -f top.bit`",
+       "Notes": "Recommended; accepts `.bit.gz`. `-b ulx3s_dfu` uses the US2 DFU bootloader"
+      },
+      {
+       "Tool": "fujprog",
+       "SRAM": "`fujprog top.bit`",
+       "Flash": "`fujprog -j flash top.bit`",
+       "Notes": "Successor of ujprog; FT231X on US1"
+      },
+      {
+       "Tool": "OpenOCD",
+       "SRAM": "`ft232r` driver (slow)",
+       "Flash": "",
+       "Notes": "Or an external FT2232 on the J4 JTAG header"
+      },
+      {
+       "Tool": "ESP32",
+       "SRAM": "emard/esp32ecp5 (MicroPython, FTP/web)",
+       "Flash": "yes",
+       "Notes": "Can also write the SD card"
+      },
+      {
+       "Tool": "dfu-util",
+       "SRAM": "",
+       "Flash": "`dfu-util -a0 -D top.bit`",
+       "Notes": "Needs the [DFU bootloader](DFUs.md); user image at flash 0x200000"
+      }
+     ]
+    },
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "The LPF line `SYSCONFIG ... MASTER_SPI_PORT=ENABLE` lets JTAG write the flash at any time; set `MASTER_SPI_PORT=DISABLE` if the user bitstream must drive the flash pins.",
+      "Linux udev: FT231X is `0403:6015` (group `dialout`).",
+      "The ESP32 needs the **passthru** bitstream in FPGA flash (emard/ulx3s-passthru) to be flashed from US1. A bitstream that holds `wifi_en` asserted plus ESP32 firmware that grabs JTAG can lock JTAG out; jumper J3 disables the ESP32."
+     ]
+    }
+   ]
+  }
+ ],
+ "nav_order": 1,
+ "nav_title": "Build and load"
+}

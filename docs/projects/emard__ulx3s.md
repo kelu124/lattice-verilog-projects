@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/emard__ulx3s.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "emard__ulx3s"
+parent: "Project reviews"
+nav_order: 5
+---
+<!-- Generated from data/projects/emard__ulx3s.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # ULX3S board hardware (`emard__ulx3s`)
 
 | Field | Value |
@@ -42,7 +48,7 @@ Not a gateware project. PCB: `kicad ulx3s.pro`; gerbers: `gerbv -p plot/ulx3s.gv
 ## Reuse notes
 
 - Start any new design from the LPF matching the board revision; see
-  [`docs/board-reference.md`](../board-reference.md) for the condensed pin/peripheral reference.
+  [`docs/board-reference.md`](../boards/ulx3s.md) for the condensed pin/peripheral reference.
 - The signal names in `ulx3s_v20.lpf` (`clk_25mhz`, `led`, `btn`, `gp/gn`, `gpdi_dp/dn`,
   `sdram_*`, `usb_fpga_*`, `wifi_*`, `audio_*`, `oled_*`, `sd_*`, `adc_*`, `shutdown`, …)
   are the de-facto top-level port names across the community.
@@ -55,3 +61,4 @@ Not a gateware project. PCB: `kicad ulx3s.pro`; gerbers: `gerbv -p plot/ulx3s.gv
   Check whether v3.1.7 is now the mainstream shipping revision (Mouser listing).
 - The manual mentions a `v18` LPF compatibility class, but no v1.8 LPF exists in the repo.
 - `doc/TODO.txt` not yet read.
+{% endraw %}

@@ -1,5 +1,11 @@
-<!-- Generated from data/pages/ecp5-boards-survey.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "ECP5 boards survey"
+parent: "Methodology"
+nav_order: 1
+---
+<!-- Generated from data/pages/ecp5-boards-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # ECP5 (non-ULX3S) gateware survey on GitHub
 
 Survey date: 2026-09-27. Research only: nothing cloned. Scope: Lattice ECP5 boards other than
@@ -255,3 +261,4 @@ Gaps and notes:
   CFU-Playground and microwatt forks, and gregdavill/foboot.
 - Dropped as out of scope: lawrie/tinyfpga_examples (TinyFPGA BX, iCE40 `.pcf`),
   gmejiamtz/ecp5-project-template (ULX3S target), and any ULX3S/ULX4M/ULX5M(-GS) repos.
+{% endraw %}

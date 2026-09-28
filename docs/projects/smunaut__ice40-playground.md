@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/smunaut__ice40-playground.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "smunaut__ice40-playground"
+parent: "Project reviews"
+nav_order: 10
+---
+<!-- Generated from data/projects/smunaut__ice40-playground.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # no2fpga iCE40 core library (`smunaut__ice40-playground`)
 
 | Field | Value |
@@ -150,3 +156,4 @@ here.
   verified from source alone (no test log in this clone).
 - Commit count / first-commit date for full-history stats not recorded in
   `.claude/memory/history.tsv`.
+{% endraw %}

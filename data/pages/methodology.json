@@ -1,0 +1,82 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "methodology",
+ "slug": "methodology",
+ "title": "Methodology",
+ "description": "How the data was gathered and where the raw material lives on GitHub.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "How the collection was built, and where the raw material lives in the [GitHub repository](https://github.com/kelu124/ulx3s-klod)."
+  }
+ ],
+ "sections": [
+  {
+   "title": "How the data was gathered",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": true,
+     "items": [
+      "**Find** candidate repos: the ulx3s.github.io project list, GitHub-wide searches, and the board lists of awesome-latticeFPGAs (see the surveys below). Each search is recorded with its date and queries.",
+      "**Clone** each chosen repo shallowly (`--depth 1`) and **pin** its commit in `sources.tsv`. Gateware submodules are fetched only when the repo is built around them. Non-gateware files (prebuilt bitstreams, PCB files, datasheets) are deleted locally to save disk; nothing is ever committed to the clones.",
+      "**Catalogue** each repo by reading its Makefiles, constraint files, READMEs, license files and sources: FPGA and size, toolchain, HDL, license, functions, reusable blocks, tests. Facts cite a path at the pinned commit; anything not verified is written `unknown`. Nothing is built or simulated.",
+      "**Scan** the clones with scripts: every LPF (board, revision, peripherals), testbench heuristics, Makefile test targets, and which repos copy or instantiate each reusable core.",
+      "**Review** the repos with the most reusable gateware in depth (per-block module, ports, primitives, license, what to change for ULX3S).",
+      "**Publish**: all data is JSON in `data/`; this site is generated from it (`make docs`). Pages are never edited by hand."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Raw material on GitHub",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "What",
+      "Where"
+     ],
+     "rows": [
+      {
+       "What": "Catalogue of every cloned repo",
+       "Where": "[data/catalogue.json](../data/catalogue.json)"
+      },
+      {
+       "What": "Reusable cores and their usage",
+       "Where": "[data/cores.json](../data/cores.json), [data/core_usage.json](../data/core_usage.json), [data/functions.json](../data/functions.json)"
+      },
+      {
+       "What": "Boards",
+       "Where": "[data/boards.json](../data/boards.json)"
+      },
+      {
+       "What": "Every LPF in the clones",
+       "Where": "[data/lpfs.json](../data/lpfs.json)"
+      },
+      {
+       "What": "Page sources (guides, surveys, reviews)",
+       "Where": "[data/pages/](../data/pages), [data/projects/](../data/projects)"
+      },
+      {
+       "What": "Pinned upstream commits",
+       "Where": "[.claude/memory/sources.tsv](../.claude/memory/sources.tsv), [submodules.tsv](../.claude/memory/submodules.tsv), [history.tsv](../.claude/memory/history.tsv)"
+      },
+      {
+       "What": "Distilled knowledge (board, revisions, toolchain, decisions)",
+       "Where": "[.claude/memory/](../.claude/memory/MEMORY.md)"
+      },
+      {
+       "What": "Workflows and generator scripts",
+       "Where": "[.claude/skills/](../.claude/skills)"
+      },
+      {
+       "What": "Change log (what and why)",
+       "Where": "[.claude/COMMIT_LOG.md](../.claude/COMMIT_LOG.md)"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

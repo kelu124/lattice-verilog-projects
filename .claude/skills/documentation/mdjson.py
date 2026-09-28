@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Markdown <-> JSON page model for ulx3s-klod (shared by md2json.py and gen_pages.py).
+"""Markdown <-> JSON page model for ulx3s-klod (shared by md2json.py and gen_site.py).
 
 Page JSON (schema "ulx3s-klod/page/v1"):
   {"schema", "kind", "slug", "title", "description", "fields": {..} | absent, "blocks": [..], "sections": [..]}

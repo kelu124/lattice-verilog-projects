@@ -5,34 +5,49 @@ description: Rules for writing documentation in ulx3s-klod — data/ JSON is the
 
 # Documentation rules
 
-## Data first, docs generated (owner rule 2026-09-28)
-Everything gathered lives as **JSON in `data/`**; **`docs/` is the GitHub Pages site and is generated**. Never edit
-`docs/` by hand: edit the JSON, then `make docs`.
+## Data first, docs generated (owner rules 2026-09-28)
+Everything gathered lives as **JSON in `data/`**; **`docs/` is the GitHub Pages site (just-the-docs theme), fully
+generated**. Never edit `docs/` by hand: edit the JSON, then `make docs`. The site is organised around **reusable
+cores by function** (not a list of all repos), with links to the original files upstream at the pinned commit and the
+projects that use each core; boards only for the most relevant ones in 3 families (ECP5, UP5K, HX); a methodology
+section that links to the raw material on GitHub. Site language: English.
 
 | Data (source of truth) | Rendered to | By |
 |---|---|---|
-| `data/catalogue.json` (one object per repo, 15 fields, `functions` = list) | `docs/catalogue.md` | `review-gateware-project/gen_catalogue.py` (`--merge rows.tsv\|rows.json` upserts rows) |
-| `data/lpfs.json` (every LPF in the clones) | `docs/lpf-catalogue.md` | `review-gateware-project/scan_lpfs.py` (scan clones → JSON), `gen_lpf_catalogue.py` |
-| `data/pages/<slug>.json` (guides, references, surveys) | `docs/<slug>.md` | `documentation/gen_pages.py` |
-| `data/pages/index.json` (intro) | `docs/index.md` (+ generated lists) | `documentation/gen_pages.py` |
-| `data/projects/<owner>__<repo>.json` (one review per project) | `docs/projects/<slug>.md` | `documentation/gen_pages.py` |
+| `data/functions.json` (function taxonomy: id, title, group, catalogue_tags) | `docs/functions/index.md`, `docs/functions/<id>.md` | `documentation/gen_site.py` |
+| `data/cores.json` (reusable cores: repo, files, top, license, primitives, usage_patterns…) | function pages | `gen_site.py` |
+| `data/core_usage.json` (which repos copy/instantiate each core) | "Used by" lists | `review-gateware-project/scan_core_usage.py` (scan clones) |
+| `data/boards.json` (families + curated boards, match regex) | `docs/boards/…` | `gen_site.py` (+ `data/lpfs.json`, PCF scan) |
+| `data/pages/<slug>.json` kind `guide` / `survey` / `reference` / `methodology` / `index` | `docs/guides/`, `docs/methodology/`, ULX3S board page, `docs/index.md` | `gen_site.py` |
+| `data/projects/<owner>__<repo>.json` (in-depth reviews) | `docs/projects/<slug>.md` | `gen_site.py` |
+| `data/catalogue.json` (every repo) | `docs/methodology/catalogue.md` | `review-gateware-project/gen_catalogue.py` (`--merge rows.tsv\|json`) |
+| `data/lpfs.json` (every LPF) | `docs/methodology/lpf-catalogue.md` | `scan_lpfs.py` (scan) + `gen_lpf_catalogue.py` |
 
-Page JSON model (`documentation/mdjson.py`, schema `ulx3s-klod/page/v1`): `kind` (project | guide | reference |
-survey | index), `slug`, `title`, `description` (one line, shown on the index), `fields` (project header table),
-`blocks` and nested `sections` (`title`, `blocks`, `sections`). Blocks: `paragraph` (inline markdown text),
-`table` (`columns` + `rows` as objects keyed by column), `list` (`items`: strings or `{text, items}`), `code`
-(`lang`, `text`), `hr`. Links in text are relative to the rendered page (`docs/` or `docs/projects/`); links that
-leave `docs/` are rewritten to GitHub URLs at render time.
+`make docs` renders everything; `make lpfs` rescans LPFs; `make usage` rescans core usage. Generated pages carry
+just-the-docs front matter (title/parent/grand_parent/nav_order) and a `{% raw %}` wrapper (Verilog `{{…}}` would
+break Liquid). `docs/_config.yml` holds the theme config (Pages source: main, `/docs`).
 
-**Writing a new page**: draft it in markdown (following the template below; agents may write the draft to the
-scratchpad), import it with `documentation/md2json.py draft.md data/projects/<slug>.json --kind project
-[--description "..."]`, then `make docs`. Editing an existing page: edit its JSON (or render, edit the markdown
-copy, re-import). Survey tables are data: update the row objects (e.g. a `status` cell) instead of prose.
+Page JSON model (`documentation/mdjson.py`, schema `ulx3s-klod/page/v1`): `kind`, `slug`, `title`, optional
+`nav_title`/`nav_order`, `description` (one line for indexes), `fields` (project header table), `blocks` and nested
+`sections`. Blocks: `paragraph`, `table` (`columns` + `rows` as objects), `list`, `code`, `hr`. **Links in page
+text are written relative to the legacy flat layout** (`docs/<slug>.md` for data/pages, `docs/projects/` for
+data/projects, e.g. `DFUs.md`, `projects/x.md`, `../data/x.json`); `gen_site.py` remaps them to the site tree and
+turns links that leave `docs/` into GitHub URLs.
+
+Core records (`data/cores.json`): `id`, `name`, `functions` (ids, first = main), `rank` (best/alternative), `repo`,
+`files` (paths that must exist in the clone), `top`, `language`, `license`, `fpga`, `primitives`, `summary`,
+`ulx3s_notes`, `tests`, `usage_patterns` {`files`, `modules`} (distinctive names only). Validate with
+`make check` (every file path exists in its clone, function ids known, one best per function).
+
+**Writing a new page**: draft in markdown (template below; agents may write drafts to the scratchpad), import with
+`documentation/md2json.py draft.md data/projects/<slug>.json --kind project [--description "..."]`, then `make docs`.
+Survey tables are data: update the row objects instead of prose. Adding a core: add its record to
+`data/cores.json`, `make usage docs`.
 
 ## Where things go
 - `data/projects/<owner>__<repo>.json` → `docs/projects/<owner>__<repo>.md` — one page per reviewed project (template below).
-- `data/pages/<topic>.json` → `docs/<topic>.md` — cross-project topics (surveys, board reference, DFU guide).
-  The index (`docs/index.md`) lists them automatically; also link important ones from `README.md`.
+- `data/pages/<topic>.json` → `docs/guides/` (kind guide), `docs/methodology/` (kind survey); the section indexes and
+  the home page list them automatically; also link important ones from `README.md`.
 - `.claude/memory/projects.md` — the **summary row** for each project (the
   registry). The docs page holds details; the registry holds the one-liner.
   Keep both in sync in the same commit.

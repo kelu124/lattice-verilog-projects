@@ -1,5 +1,11 @@
-<!-- Generated from data/pages/hx-boards-survey.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "HX8K/HX4K survey"
+parent: "Methodology"
+nav_order: 3
+---
+<!-- Generated from data/pages/hx-boards-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # iCE40 HX4K / HX8K gateware survey (from awesome-latticeFPGAs)
 
 **Status 2026-09-28:** owner approved adding HX4K/HX8K gateware and demos to the catalogue; 19 of the 20 recommended repos were cloned and catalogued on 2026-09-28 (abnoname/iceZ0mb1e skipped: already present as the wuxx__icesugar submodule), and the 8 honourable mentions the same day. See the [catalogue](catalogue.md).
@@ -357,3 +363,4 @@ Honourable mentions (not in the 20; all 8 cloned + catalogued 2026-09-28): Glasg
 - **Rate limits**: 13 search calls, 7 s apart; no "rate limit exceeded" encountered; 0 core API calls (metadata came from search results; file lists came from codeload tarballs, which do not count).
 - **Already in collection with HX targets**: `alangarf__apple-one`, `lawrie__apple-one` (Olimex HX8K-EVB), `speccery__icy99` (BlackIce), `lawrie__ice40logicsniffer` (BlackIce, same lineage as hoglet67/Ice40LogicSniffer), `machdyne__zeitlos` (Machdyne HX boards), `splinedrive__my_hdmi_device` (icoboard/blackice targets), `wren6991__*`.
 - **Not covered**: excluded per brief — iCEstick, Nandland Go, Olimex HX1K, TinyFPGA B2/BX (LP8K), UPduino (UP5K). The search was repo-level only (unauthenticated code search is not available), so repos that name HX8K only inside a Makefile, and not in their name, description or readme, may be missed.
+{% endraw %}

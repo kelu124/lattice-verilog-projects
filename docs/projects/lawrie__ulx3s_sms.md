@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/lawrie__ulx3s_sms.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "lawrie__ulx3s_sms"
+parent: "Project reviews"
+nav_order: 9
+---
+<!-- Generated from data/projects/lawrie__ulx3s_sms.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # Sega Master System / SG-1000 for ULX3S (`lawrie__ulx3s_sms`)
 
 | Field | Value |
@@ -146,3 +152,4 @@ is vendor-portable; only the surrounding PLL (`ecp5pll.sv`) and HDMI serializer 
   `ld_*` module (the `.endswith(".sms")` check at `esp32/osd/osd.py:183` was found, but the actual
   transfer/load code path for `.sms` was not traced end-to-end in this pass).
 - No testbenches exist in this repo; correctness (beyond the README's own known-bugs list) is unverified.
+{% endraw %}

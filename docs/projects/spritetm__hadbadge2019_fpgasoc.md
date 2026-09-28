@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/spritetm__hadbadge2019_fpgasoc.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "spritetm__hadbadge2019_fpgasoc"
+parent: "Project reviews"
+nav_order: 11
+---
+<!-- Generated from data/projects/spritetm__hadbadge2019_fpgasoc.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # Hackaday Supercon 2019 badge SoC (`spritetm__hadbadge2019_fpgasoc`)
 
 | Field | Value |
@@ -155,3 +161,4 @@ Self-checking testbenches (iverilog, `$display` mismatch + `$finish`), not run h
 - Commit count / first-commit date for full-history stats not recorded in
   `.claude/memory/history.tsv`.
 - DFU bootloader details are covered separately; see `../DFUs.md`.
+{% endraw %}

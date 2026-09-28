@@ -1,7 +1,7 @@
 - [Project goal](project-goal.md) — why this repo exists: cloneable memory of all ULX3S work, to help build new things
 - [Project registry](projects.md) — every ULX3S project: functions, toolchain, target, last update, review status + candidates queue
 - [Catalogue](../../data/catalogue.json) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 376 repos (292 ULX3S/ULX4M + 26 on other ECP5 boards + 58 non-ECP5: iCE40 UP5K, HX8K/HX4K) (render: gen_catalogue.py; moved from catalogue.tsv 2026-09-28)
-- [Reusable cores](reusable-cores.md) — best source repo for each building block (PLL, DVI, ESP32 OSD, USB host, SDRAM, displays, CPUs, Linux)
+- [Reusable cores](reusable-cores.md) — pointer to data/cores.json (153 cores by function, best + alternatives, usage in data/core_usage.json) + cross-project facts
 - [Shallow clones rule](shallow-clones.md) — all clones --depth 1 (owner rule); history stats in history.tsv; gateware-only submodules via clone.sh --submodule
 - [Fetched submodules](submodules.tsv) — allowlist of gateware submodules fetched inside clones (slug, path, url, commit, reason)
 - [Pinned sources](sources.tsv) — upstream repos cloned in original_sources/ with pinned commits (restore with clone.sh --restore)
@@ -10,12 +10,12 @@
 - [Toolchain & programming](toolchain-and-programming.md) — yosys/nextpnr/ecppack, openFPGALoader/fujprog/DFU/ESP32, multiboot 0x200000
 - [Catalogue fields](catalogue-fields.md) — every gateware repo must record FPGA size, toolchain (diamond/open/both), HDL language, license, tests
 - [Source lists](source-lists.md) — where ULX3S project lists come from (ulx3s.github.io, GitHub search) and when last harvested
-- [GitHub survey](../../docs/github-survey.md) — ≈297 ULX3S repos found on GitHub on 2026-09-27; 219 (A's 155 + B's 51 + D's 11 + 2 ULX4M from E) are cloned (see [[projects]]), the remaining ~78 (C, multi-board, + E minus ULX4M) are not
+- [GitHub survey](../../docs/methodology/github-survey.md) — ≈297 ULX3S repos found on GitHub on 2026-09-27; 219 (A's 155 + B's 51 + D's 11 + 2 ULX4M from E) are cloned (see [[projects]]), the remaining ~78 (C, multi-board, + E minus ULX4M) are not
 - [ULX5M board](ulx5m-board.md) — ULX5M-GS is GateMate CCGM1A1 (not ECP5): .ccf constraints, nextpnr-himbaechel + gmpack, 1.8 V GPIO; excluded from the catalogue by owner
-- [ECP5 boards survey](../../docs/ecp5-boards-survey.md) — 114 non-ULX3S ECP5 board repos (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight…) found 2026-09-27; all 24 recommended cloned + catalogued (15–20, 22–24 on 2026-09-28) + pergola_projects
-- [Lattice boards survey](../../docs/lattice-boards-survey.md) — gateware for UP5K/ECP5 boards from kelu124/awesome-latticeFPGAs (2026-09-28), 20 recommended, all cloned + catalogued 2026-09-28
-- [HX8K/HX4K survey](../../docs/hx-boards-survey.md) — gateware for iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (2026-09-28), 20 recommended + 8 honourable mentions, all cloned + catalogued 2026-09-28 (iceZ0mb1e already a submodule)
+- [ECP5 boards survey](../../docs/methodology/ecp5-boards-survey.md) — 114 non-ULX3S ECP5 board repos (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight…) found 2026-09-27; all 24 recommended cloned + catalogued (15–20, 22–24 on 2026-09-28) + pergola_projects
+- [Lattice boards survey](../../docs/methodology/lattice-boards-survey.md) — gateware for UP5K/ECP5 boards from kelu124/awesome-latticeFPGAs (2026-09-28), 20 recommended, all cloned + catalogued 2026-09-28
+- [HX8K/HX4K survey](../../docs/methodology/hx-boards-survey.md) — gateware for iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (2026-09-28), 20 recommended + 8 honourable mentions, all cloned + catalogued 2026-09-28 (iceZ0mb1e already a submodule)
 - [Prune clones rule](prune-clones.md) — owner: delete non-gateware files (tools, bitstreams, PCB, PDFs, images) from local clones, never commit to them; report space saved; `prune.py --apply --all` after each clone batch (first run freed 5 GB)
 - [LPF catalogue](../../data/lpfs.json) — every LPF in the clones: URL at pinned commit, board/rev by pin match, FPGA size/LUTs, chips; `make lpfs` after cloning
-- [DFU bootloaders](../../docs/DFUs.md) — USB DFU on ULX3S/ULX4M (had2019-playground bootloader, 1d50:614b, user image 0x200000, alt settings) and other boards
-- [Data/docs layout](data-docs-layout.md) — owner rule: gathered data is JSON in data/, docs/ is the generated GitHub Pages site (`make docs`); never edit docs/ by hand
+- [DFU bootloaders](../../docs/guides/DFUs.md) — USB DFU on ULX3S/ULX4M (had2019-playground bootloader, 1d50:614b, user image 0x200000, alt settings) and other boards
+- [Data/docs layout](data-docs-layout.md) — owner rules: data is JSON in data/; docs/ is a generated just-the-docs GitHub Pages site built around reusable cores by function, 16 board pages in 3 families, guides, reviews, methodology (`make check usage docs`)

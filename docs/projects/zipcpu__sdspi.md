@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/zipcpu__sdspi.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "zipcpu__sdspi"
+parent: "Project reviews"
+nav_order: 18
+---
+<!-- Generated from data/projects/zipcpu__sdspi.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # SD-Card controller (`zipcpu__sdspi`)
 
 | Field | Value |
@@ -124,3 +130,4 @@ top-level module instantiating `sdspi` (or `sdio`) and a `.lpf`.
   `CKDIV_BITS`/`INITIAL_CLKDIV` choice and card tolerance) — unknown, would need bench
   testing on real hardware.
 - Commit count / first-commit date: unknown (not in `history.tsv`, clone is shallow).
+{% endraw %}

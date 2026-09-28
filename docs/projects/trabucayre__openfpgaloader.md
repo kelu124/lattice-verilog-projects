@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/trabucayre__openfpgaloader.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "trabucayre__openfpgaloader"
+parent: "Project reviews"
+nav_order: 13
+---
+<!-- Generated from data/projects/trabucayre__openfpgaloader.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # openFPGALoader (`trabucayre__openfpgaloader`)
 
 | Field | Value |
@@ -47,3 +53,4 @@ and ULX3S/ULX4M DFU 1d50:614b.
 ## Open questions
 
 - Does `ulx3s_esp` (ESP32-S3 USB-JTAG) work now? What ESP32-S3 hardware does it target (not the onboard ESP32)?
+{% endraw %}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Scan every *.lpf (ECP5 constraint file) in original_sources/ into data/lpfs.json.
 
-usage: scan_lpfs.py      -> writes data/lpfs.json; then run gen_lpf_catalogue.py to render docs/lpf-catalogue.md
+usage: scan_lpfs.py      -> writes data/lpfs.json; then run gen_lpf_catalogue.py to render docs/methodology/lpf-catalogue.md
 
 One JSON entry per distinct file content (sha256); every copy (repo, path, URL at the pinned commit) is listed
 under it. For each LPF: signals (active LOCATE lines vs commented-out ones), IO standards, clock FREQUENCY,

@@ -1,0 +1,350 @@
+{
+ "schema": "ulx3s-klod/functions/v1",
+ "description": "Function taxonomy of the site: each reusable core in data/cores.json lists one or more of these ids; catalogue_tags map to data/catalogue.json functions tags.",
+ "functions": [
+  {
+   "id": "hdmi-dvi",
+   "title": "HDMI / DVI output",
+   "group": "Video",
+   "order": 1,
+   "description": "TMDS encoders, serializers and DVI/HDMI transmitters (with or without audio), for the GPDI port.",
+   "catalogue_tags": [
+    "video-dvi"
+   ]
+  },
+  {
+   "id": "vga",
+   "title": "VGA and video timing",
+   "group": "Video",
+   "order": 2,
+   "description": "VGA timing generators, framebuffers and text modes; 6845 CRTC, scandoublers.",
+   "catalogue_tags": [
+    "video-vga",
+    "vga"
+   ]
+  },
+  {
+   "id": "composite-video",
+   "title": "Composite video (CVBS)",
+   "group": "Video",
+   "order": 3,
+   "description": "PAL/NTSC composite video generation.",
+   "catalogue_tags": [
+    "video-composite"
+   ]
+  },
+  {
+   "id": "spi-display",
+   "title": "SPI OLED / LCD displays",
+   "group": "Video",
+   "order": 4,
+   "description": "Drivers for ST7789, SSD1331, SSD1351, SSD1306 and similar small SPI displays.",
+   "catalogue_tags": [
+    "oled-lcd"
+   ]
+  },
+  {
+   "id": "esp32-osd",
+   "title": "ESP32 OSD and loading",
+   "group": "Video",
+   "order": 5,
+   "description": "On-screen display and ROM/disk loading driven by the ULX3S ESP32 over SPI.",
+   "catalogue_tags": [
+    "esp32"
+   ]
+  },
+  {
+   "id": "camera",
+   "title": "Camera input",
+   "group": "Video",
+   "order": 6,
+   "description": "Camera sensor capture (OV7670 etc.) and video input.",
+   "catalogue_tags": [
+    "camera",
+    "video-input"
+   ]
+  },
+  {
+   "id": "sdram",
+   "title": "SDRAM controllers",
+   "group": "Memory and storage",
+   "order": 7,
+   "description": "SDR SDRAM controllers (the ULX3S has 32 MB SDR SDRAM).",
+   "catalogue_tags": [
+    "sdram"
+   ]
+  },
+  {
+   "id": "ddr-memory",
+   "title": "DDR3 memory",
+   "group": "Memory and storage",
+   "order": 8,
+   "description": "DDR3 controllers and PHYs for ECP5 boards that have DDR3.",
+   "catalogue_tags": [
+    "ddr3"
+   ]
+  },
+  {
+   "id": "psram-hyperram",
+   "title": "PSRAM and HyperRAM",
+   "group": "Memory and storage",
+   "order": 9,
+   "description": "QSPI/QPI PSRAM and HyperBus controllers (add-on memories).",
+   "catalogue_tags": [
+    "psram",
+    "hyperram"
+   ]
+  },
+  {
+   "id": "sd-card",
+   "title": "SD card",
+   "group": "Memory and storage",
+   "order": 10,
+   "description": "SD card controllers (SPI mode, SDIO) and FAT helpers.",
+   "catalogue_tags": [
+    "sdcard"
+   ]
+  },
+  {
+   "id": "spi-flash",
+   "title": "SPI flash",
+   "group": "Memory and storage",
+   "order": 11,
+   "description": "SPI/QSPI flash readers, XIP controllers and flash writers.",
+   "catalogue_tags": [
+    "flash-spi"
+   ]
+  },
+  {
+   "id": "uart",
+   "title": "UART",
+   "group": "Interfaces",
+   "order": 12,
+   "description": "Serial transmit/receive cores and UART bridges.",
+   "catalogue_tags": [
+    "uart"
+   ]
+  },
+  {
+   "id": "spi",
+   "title": "SPI master / slave",
+   "group": "Interfaces",
+   "order": 13,
+   "description": "Generic SPI master and slave cores.",
+   "catalogue_tags": [
+    "spi"
+   ]
+  },
+  {
+   "id": "i2c",
+   "title": "I2C",
+   "group": "Interfaces",
+   "order": 14,
+   "description": "I2C master/slave cores (RTC, HDMI DDC, sensors).",
+   "catalogue_tags": [
+    "i2c"
+   ]
+  },
+  {
+   "id": "usb-device",
+   "title": "USB device",
+   "group": "Interfaces",
+   "order": 15,
+   "description": "USB full-speed device stacks and CDC-ACM serial on the US2 port.",
+   "catalogue_tags": [
+    "usb-device"
+   ]
+  },
+  {
+   "id": "usb-host",
+   "title": "USB host",
+   "group": "Interfaces",
+   "order": 16,
+   "description": "USB low/full-speed host (HID keyboards, mice, gamepads).",
+   "catalogue_tags": [
+    "usb-host"
+   ]
+  },
+  {
+   "id": "bootloader-dfu",
+   "title": "Bootloaders and DFU",
+   "group": "Interfaces",
+   "order": 17,
+   "description": "USB DFU and other FPGA bootloaders, multiboot.",
+   "catalogue_tags": [
+    "bootloader"
+   ]
+  },
+  {
+   "id": "ethernet",
+   "title": "Ethernet",
+   "group": "Interfaces",
+   "order": 18,
+   "description": "RMII/RGMII/SGMII MACs and IP/UDP stacks, PTP.",
+   "catalogue_tags": [
+    "ethernet"
+   ]
+  },
+  {
+   "id": "ps2",
+   "title": "PS/2 keyboard and mouse",
+   "group": "Interfaces",
+   "order": 19,
+   "description": "PS/2 keyboard and mouse interfaces.",
+   "catalogue_tags": [
+    "ps2"
+   ]
+  },
+  {
+   "id": "jtag-debug",
+   "title": "JTAG and debug",
+   "group": "Interfaces",
+   "order": 20,
+   "description": "User JTAG access, debug bridges, logic analysers.",
+   "catalogue_tags": [
+    "jtag",
+    "debug-bridge",
+    "logic-analyzer",
+    "debug-instrument"
+   ]
+  },
+  {
+   "id": "bus-fabric",
+   "title": "Buses and interconnect",
+   "group": "Interfaces",
+   "order": 21,
+   "description": "Wishbone/AXI interconnects, arbiters, bridges.",
+   "catalogue_tags": [
+    "bus-fabric",
+    "wishbone-bus"
+   ]
+  },
+  {
+   "id": "adc",
+   "title": "ADC",
+   "group": "Audio, analog and radio",
+   "order": 22,
+   "description": "ADC interfaces (onboard MAX11125 and external ADCs).",
+   "catalogue_tags": [
+    "adc"
+   ]
+  },
+  {
+   "id": "dac",
+   "title": "DAC, PWM and sigma-delta",
+   "group": "Audio, analog and radio",
+   "order": 23,
+   "description": "Sigma-delta/PWM/PDM DACs and external DAC interfaces.",
+   "catalogue_tags": [
+    "audio-dac",
+    "dac"
+   ]
+  },
+  {
+   "id": "audio-digital",
+   "title": "I2S and S/PDIF",
+   "group": "Audio, analog and radio",
+   "order": 24,
+   "description": "Digital audio interfaces: I2S, S/PDIF, PDM microphones.",
+   "catalogue_tags": [
+    "audio-i2s",
+    "audio-spdif"
+   ]
+  },
+  {
+   "id": "sound-chips",
+   "title": "Sound chips and synths",
+   "group": "Audio, analog and radio",
+   "order": 25,
+   "description": "Sound chip reimplementations (SID, SN76489, AY, YM) and synthesizers.",
+   "catalogue_tags": [
+    "synth-audio"
+   ]
+  },
+  {
+   "id": "radio",
+   "title": "Radio (FM/RDS, SDR)",
+   "group": "Audio, analog and radio",
+   "order": 26,
+   "description": "FM/RDS transmitters, SDR receive chains, radio front ends.",
+   "catalogue_tags": [
+    "radio-tx",
+    "radio-rx",
+    "fm-transmitter",
+    "dsp-sdr"
+   ]
+  },
+  {
+   "id": "dsp",
+   "title": "DSP",
+   "group": "Audio, analog and radio",
+   "order": 27,
+   "description": "FFT, CIC/FIR filters, NCOs, CORDIC.",
+   "catalogue_tags": [
+    "dsp",
+    "dsp-sdr"
+   ]
+  },
+  {
+   "id": "cpu-riscv",
+   "title": "RISC-V CPUs and SoCs",
+   "group": "Processors and systems",
+   "order": 28,
+   "description": "RISC-V cores and small SoCs.",
+   "catalogue_tags": [
+    "soc-cpu"
+   ]
+  },
+  {
+   "id": "cpu-retro",
+   "title": "Retro CPUs",
+   "group": "Processors and systems",
+   "order": 29,
+   "description": "6502, Z80, 8080, 68000, 1802 and other classic CPUs.",
+   "catalogue_tags": [
+    "retro-computer",
+    "retro-console",
+    "retro-arcade"
+   ]
+  },
+  {
+   "id": "linux",
+   "title": "Linux-capable SoCs",
+   "group": "Processors and systems",
+   "order": 30,
+   "description": "SoCs that boot Linux.",
+   "catalogue_tags": [
+    "linux"
+   ]
+  },
+  {
+   "id": "pll-clock",
+   "title": "PLLs and clocking",
+   "group": "Clocks and misc",
+   "order": 31,
+   "description": "ECP5 EHXPLLL wrappers and PLL parameter calculators.",
+   "catalogue_tags": []
+  },
+  {
+   "id": "led-drivers",
+   "title": "LED drivers",
+   "group": "Clocks and misc",
+   "order": 32,
+   "description": "HUB75 panels, WS2812 strips, LED matrices.",
+   "catalogue_tags": [
+    "led-matrix",
+    "led"
+   ]
+  },
+  {
+   "id": "crypto",
+   "title": "Crypto and hashing",
+   "group": "Clocks and misc",
+   "order": 33,
+   "description": "Hash and cipher cores.",
+   "catalogue_tags": [
+    "crypto"
+   ]
+  }
+ ]
+}

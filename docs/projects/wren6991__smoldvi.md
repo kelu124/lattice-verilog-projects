@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/wren6991__smoldvi.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "wren6991__smoldvi"
+parent: "Project reviews"
+nav_order: 16
+---
+<!-- Generated from data/projects/wren6991__smoldvi.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # SmolDVI (`wren6991__smoldvi`)
 
 | Field | Value |
@@ -112,3 +118,4 @@ No ECP5/ULX3S Makefile exists in this repo.
   iCE40-specific behaviour (e.g. LUT-based shift register inference) was not
   checked line-by-line; the author's "everything in hdl/smoldvi is portable"
   claim is unverified beyond the explicit `ddr_out` callout.
+{% endraw %}

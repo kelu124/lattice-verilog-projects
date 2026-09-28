@@ -2,6 +2,25 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(site): generate a just-the-docs site of reusable cores by function
+- **What**: new data: `data/functions.json` (33 functions in 6 groups), `data/cores.json` (153 cores: 1 best +
+  alternatives per function, repo/files/top/language/license/FPGA/primitives/tests/ULX3S notes/usage patterns;
+  researched by 5 Sonnet agents, every file path verified in the clones), `data/core_usage.json`
+  (`scan_core_usage.py`: file copies + module instances in 17,424 HDL files → 481 core-repo uses; generic patterns
+  removed), `data/boards.json` (16 boards: ECP5 ULX3S/ULX4M/OrangeCrab/Colorlight/IcePi Zero/iCESugar-Pro, UP5K
+  iCEBreaker/UPduino/iCESugar/Fomu/pico-ice, HX breakout/BlackIce/iceFUN/Olimex/IcoBoard), pages toolchain,
+  porting-ice40-to-ecp5, methodology. `gen_pages.py` → `gen_site.py`: just-the-docs tree (Home, Cores by function,
+  Boards > family > board, Guides, Project reviews, Methodology with surveys + full catalogue + LPF catalogue),
+  front matter, `{% raw %}` wrapper, `{#core-id}` anchors, links to upstream files at the pinned commit, legacy link
+  remapping. `check_data.py` (`make check`), `make usage`. `docs/_config.yml` → remote_theme just-the-docs.
+  Catalogue fixes from the research (emard__oberon sdram.v LGPL-2.1+, detegr composite tag). reusable-cores memory
+  now points to data/cores.json; skills (documentation, review, github-survey), CLAUDE.md, README, memory updated.
+- **Why**: owner: site in English with just-the-docs, organised by function (ADC, SPI, DAC, VGA, HDMI…) with links to
+  the original files, showing reusable cores and the projects that use them (not a list of all repos); boards only
+  the most relevant in 3 families; methodology linking to the GitHub materials; then push.
+- **Notes**: Jekyll could not be run locally (gem native build failed), so the first real render is on GitHub
+  Pages. Usage is a name heuristic. Non-ULX3S board descriptions are summaries (marked on the pages).
+
 ## 2026-09-28 — docs(data): move gathered data to data/ JSON, generate docs/ for GitHub Pages
 - **What**: new `data/`: `catalogue.json` (was `.claude/memory/catalogue.tsv`; `functions` now a list),
   `lpfs.json` (was `docs/lpf-catalogue.json`), `pages/*.json` (board reference, DFU guide, 4 surveys, index intro),

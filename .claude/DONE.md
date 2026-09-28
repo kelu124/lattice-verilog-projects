@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-28
+- [x] GitHub Pages site (just-the-docs, English) built around reusable cores by function: data/functions.json (33), data/cores.json (153 cores from 5 research agents, paths verified), data/core_usage.json (scan_core_usage.py, 481 uses), data/boards.json (16 boards, 3 families), guides (toolchain, porting iCE40→ECP5, DFU), reviews, methodology linking GitHub materials; gen_site.py + check_data.py + make check/usage/docs; skills, memory, README updated → commit "docs(site): generate a just-the-docs site of reusable cores by function"
 - [x] Move gathered data to data/ as JSON (catalogue.json, lpfs.json, pages/*.json, projects/*.json) and generate docs/ (GitHub Pages) with scripts (gen_catalogue.py --merge, scan_lpfs.py + gen_lpf_catalogue.py, gen_pages.py, md2json.py, Makefile); skills + memory updated → commit "docs(data): move gathered data to data/ JSON, generate docs/ for GitHub Pages"
 - [x] Clone + catalogue the 8 HX-survey honourable mentions (+2 submodules) and ECP5-survey items 15–20, 22–24 (5 agents); 359 → 376 rows → same commit
 - [x] docs/DFUs.md (USB DFU bootloaders + flows; cloned emard__had2019-playground, catalogued), 15 full docs pages for the most reusable repos, LPF catalogue (gen_lpf_catalogue.py → docs/lpf-catalogue.{json,md}); catalogue license/reuse corrections from the reviews → commit "docs(reuse): add DFU guide, LPF catalogue and 15 reusable-core pages"

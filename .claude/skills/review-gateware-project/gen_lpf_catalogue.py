@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render docs/lpf-catalogue.md from data/lpfs.json (written by scan_lpfs.py).
+"""Render docs/methodology/lpf-catalogue.md from data/lpfs.json (written by scan_lpfs.py).
 
 usage: gen_lpf_catalogue.py
 """
@@ -8,7 +8,9 @@ from collections import Counter
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 IN_JSON = os.path.join(ROOT, "data", "lpfs.json")
-OUT_MD = os.path.join(ROOT, "docs", "lpf-catalogue.md")
+OUT_MD = os.path.join(ROOT, "docs", "methodology", "lpf-catalogue.md")
+FRONT = ('---\ntitle: "LPF catalogue"\nparent: "Methodology"\nnav_order: 11\n---\n'
+         '<!-- Generated from data/lpfs.json by .claude/skills/review-gateware-project/gen_lpf_catalogue.py; do not edit. -->\n\n')
 
 
 def write_md(doc):
@@ -49,7 +51,8 @@ def write_md(doc):
         if e["board"] != "ULX3S":
             c = e["copies"][0]
             L.append(f"| [`{e['name']}`]({c['url']}) | {e['board'][:60]} | {'/'.join(e['devices_seen'])} | {', '.join(e['chips'])} | {c['repo']} |")
-    open(OUT_MD, "w").write("\n".join(L) + "\n")
+    os.makedirs(os.path.dirname(OUT_MD), exist_ok=True)
+    open(OUT_MD, "w").write(FRONT + "{% raw %}\n" + "\n".join(L) + "\n{% endraw %}\n")
 
 
 

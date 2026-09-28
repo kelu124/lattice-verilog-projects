@@ -48,9 +48,10 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
 7b. **Catalogue**: add or update the slug's object in `data/catalogue.json` (all 15 fields). Agents usually hand
    back TSV rows (15 columns, header of `data/catalogue.json` `fields`): merge them with
    `.claude/skills/review-gateware-project/gen_catalogue.py --merge rows.tsv` (upsert by slug; it also renders
-   `docs/catalogue.md` and warns about slugs pinned in `sources.tsv` without a row). Then `make lpfs` to rescan all
+   `docs/methodology/catalogue.md` and warns about slugs pinned in `sources.tsv` without a row). Then `make lpfs` to rescan all
    LPFs into `data/lpfs.json` and `make docs` to rebuild the site.
-   If the repo offers a better reusable block, update `.claude/memory/reusable-cores.md`.
+   If the repo offers a better or new reusable block, add/update its record in `data/cores.json` (skill
+   `documentation`, core record fields), then `make check usage docs`.
 8. **Write** the page (skill `documentation` template) as a markdown draft, import it to
    `data/projects/<slug>.json` with `documentation/md2json.py`, run `make docs`, and
    update the project's row + detail block in `.claude/memory/projects.md`

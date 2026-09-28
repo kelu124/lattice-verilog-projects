@@ -1,5 +1,11 @@
-<!-- Generated from data/pages/DFUs.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "USB DFU"
+parent: "Guides"
+nav_order: 3
+---
+<!-- Generated from data/pages/DFUs.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # USB DFU bootloaders and DFU programming flows
 
 USB DFU (Device Firmware Upgrade, USB class 0xFE/0x01) lets a host tool (`dfu-util`,
@@ -153,7 +159,7 @@ dfu-util -l                          # list alt settings
 openFPGALoader defines `ulx3s_dfu` and `ulx4m_dfu` as `DFU_BOARD(..., 0x1d50, 0x614b, 0)`
 (`trabucayre__openfpgaloader/src/board.hpp:275,277` @ 676e53e). They are flash-only
 (`doc/boards.yml:990-1002`: `Memory: NA`, `Flash: OK`). See
-[trabucayre__openfpgaloader](projects/trabucayre__openfpgaloader.md).
+[trabucayre__openfpgaloader](../projects/trabucayre__openfpgaloader.md).
 
 udev rule from the README (Linux, non-root):
 
@@ -434,3 +440,4 @@ bootloader from a running design:
 - The RTC alt (zone 6) in the ULX3S firmware is unreachable with the committed descriptor.
   Whether any build exposes it is unknown.
 - None of the bootloaders were built or run during this review.
+{% endraw %}

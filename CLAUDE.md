@@ -28,16 +28,16 @@ exact state it was left in. Do **not** rely on the per-user memory in
 | `.claude/skills/*/SKILL.md` | Repeatable workflows (survey, clone, commit, document, track, review) | yes |
 | `.claude/memory/MEMORY.md` | Index of memory files (one line each) | yes |
 | `.claude/memory/projects.md` | **Project registry**: every ULX3S gateware project, its functions, toolchain, last update, review status | yes |
-| `data/catalogue.json` | **Catalogue**: one object per cloned repo with FPGA, toolchain, HDL, license, functions, reusable blocks, tests, preferred fork. Rendered to `docs/catalogue.md` by `gen_catalogue.py` (`--merge` to add rows) | yes |
+| `data/catalogue.json` | **Catalogue**: one object per cloned repo with FPGA, toolchain, HDL, license, functions, reusable blocks, tests, preferred fork. Rendered to `docs/methodology/catalogue.md` by `gen_catalogue.py` (`--merge` to add rows) | yes |
 | `.claude/memory/history.tsv` | Full-history stats (first commit, commit count) recorded before clones were made shallow | yes |
 | `.claude/memory/sources.tsv` | Pinned list of cloned upstream repos (url, commit, date) — lets anyone re-create `original_sources/` | yes |
 | `.claude/memory/submodules.tsv` | Allowlist of gateware submodules fetched inside clones (slug, path, url, commit, reason); `clone.sh --restore` re-fetches them | yes |
 | `.claude/memory/*.md` | Other facts: board knowledge, toolchain notes, decisions, user preferences | yes |
 | `original_sources/` | Upstream repos cloned for review (read-only, never edited) | **no** (gitignored, re-creatable) |
-| `docs/catalogue.md` | Generated catalogue of all repos (never edit by hand) | yes |
-| `data/` | **All gathered data as JSON** (source of truth): `catalogue.json`, `lpfs.json` (every LPF), `pages/*.json` (surveys, guides, index), `projects/*.json` (review pages) | yes |
-| `docs/` | **Generated** GitHub Pages site (`make docs`); never edit by hand | yes |
-| `Makefile` | `make docs` (render docs/ from data/), `make lpfs` (rescan LPFs in the clones) | yes |
+| `docs/methodology/catalogue.md` | Generated catalogue of all repos (never edit by hand) | yes |
+| `data/` | **All gathered data as JSON** (source of truth): `catalogue.json`, `cores.json` + `core_usage.json` + `functions.json` (reusable cores by function), `boards.json`, `lpfs.json` (every LPF), `pages/*.json` (guides, surveys, methodology, index), `projects/*.json` (reviews) | yes |
+| `docs/` | **Generated** GitHub Pages site (just-the-docs; cores by function, boards, guides, reviews, methodology) — `make docs`; never edit by hand | yes |
+| `Makefile` | `make check` (validate data), `make usage` (core usage scan), `make lpfs` (LPF scan), `make docs` (render the site) | yes |
 | `.claude/TODO.md` | Open work items | yes |
 | `.claude/DONE.md` | Completed work items, newest first, dated | yes |
 | `.claude/COMMIT_LOG.md` | Why/what of each meaningful commit, newest first | yes |
@@ -46,7 +46,7 @@ exact state it was left in. Do **not** rely on the per-user memory in
 
 - **Surveying GitHub for new projects** → skill `github-survey`. Search GitHub for
   ULX3S repos, diff candidates against `.claude/memory/sources.tsv`, and regenerate
-  `docs/github-survey.md`; clone the chosen ones (skill `clone-original-source`) and
+  `docs/methodology/github-survey.md`; clone the chosen ones (skill `clone-original-source`) and
   catalogue them (skill `review-gateware-project`, step 7b).
 - **Cloning upstream code** → skill `clone-original-source`. Always into
   `original_sources/<owner>__<repo>`, always via `clone.sh` so it is pinned in
@@ -83,7 +83,7 @@ Ground truth for the hardware is the board repo `emard/ulx3s` and its
 [MANUAL](https://github.com/emard/ulx3s/blob/master/doc/MANUAL.md)
 (`original_sources/emard__ulx3s/doc/MANUAL.md`). Distilled into
 `.claude/memory/board-hardware.md`, `board-revisions.md`, `toolchain-and-programming.md`
-and the human-facing `docs/board-reference.md`. Read those before advising on any design.
+and the human-facing `docs/boards/ulx3s.md`. Read those before advising on any design.
 
 - ULX3S = Lattice ECP5 LFE5U-12F/25F/45F/85F (CABGA381), 25 MHz clock, 32 MB SDRAM (typical),
   QSPI flash, GPDI video, US1 FT231X + US2 direct USB, SD, ESP32, ADC, OLED header, 56 GPIO.

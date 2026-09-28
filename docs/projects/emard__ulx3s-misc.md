@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/emard__ulx3s-misc.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "emard__ulx3s-misc"
+parent: "Project reviews"
+nav_order: 4
+---
+<!-- Generated from data/projects/emard__ulx3s-misc.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # ULX3S miscellaneous/advanced examples (`emard__ulx3s-misc`)
 
 | Field | Value |
@@ -148,3 +154,4 @@ specific files are GPL/LGPL so a reuser can avoid them in a closed design, or ac
   license/port details — candidates for a follow-up deeper pass if reused.
 - `clocks/` and `multiplatform/` top-level directories were not explored in this pass.
 - `nmigen/dvi/` (Python/Amaranth-predecessor port) not evaluated for correctness or completeness.
+{% endraw %}

@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/yosyshq__picorv32.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "yosyshq__picorv32"
+parent: "Project reviews"
+nav_order: 17
+---
+<!-- Generated from data/projects/yosyshq__picorv32.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # PicoRV32 (`yosyshq__picorv32`)
 
 | Field | Value |
@@ -117,3 +123,4 @@ Not run (per repo instructions: read-only review). Commands as found:
 - Achievable clock frequency on ECP5 25F/45F/85F after `synth_ecp5 -abc9`: not measured
   (would need an actual build).
 - Commit count / first-commit date: unknown (not in `history.tsv`, clone is shallow).
+{% endraw %}

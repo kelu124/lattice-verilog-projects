@@ -1340,7 +1340,7 @@
    "license": "CC-BY-4.0",
    "board_rev": "box/ulx3s_v20.lpf",
    "functions": [
-    "video-composite",
+    "video-dvi",
     "board-hw",
     "constraints",
     "examples"
@@ -2068,7 +2068,7 @@
    "fpga": "85F trellis / 12F diamond",
    "toolchain": "both (trellis default)",
    "hdl": "Verilog, SystemVerilog, VHDL, Python",
-   "license": "none found (Project Oberon permissive notice in RISC5 files)",
+   "license": "no repo LICENSE; per file: Project Oberon permissive notice in RISC5 files, hdl/sdram.v + cache_controller.v LGPL-2.1-or-later (Next186/opencores header)",
    "board_rev": "ulx3s_v20.lpf, ulx3s_v31.lpf",
    "functions": [
     "soc-cpu",

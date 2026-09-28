@@ -1,0 +1,4515 @@
+{
+ "schema": "ulx3s-klod/cores/v1",
+ "description": "Reusable gateware cores by function (see data/functions.json). files are paths in the upstream repo at the commit pinned in .claude/memory/sources.tsv. usage_patterns feed scan_core_usage.py (-> data/core_usage.json). Researched 2026-09-28 by 5 agents from the clones, reviews and catalogue; every file path verified to exist.",
+ "cores": [
+  {
+   "id": "emard-vga2dvid-tmds",
+   "name": "vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD)",
+   "functions": [
+    "hdmi-dvi"
+   ],
+   "rank": "best",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/dvi/hdl/vga2dvid.vhd",
+    "examples/dvi/hdl/tmds_encoder.vhd",
+    "examples/dvi/hdl/fake_differential.v"
+   ],
+   "top": "vga2dvid",
+   "language": "VHDL, Verilog",
+   "license": "MIT (vga2dvid.vhd, tmds_encoder.vhd headers, Copyright 2012 Mike Field); fake_differential.v BSD-style (EMARD, no repo LICENSE file)",
+   "fpga": "ECP5",
+   "primitives": [
+    "ODDRX1F"
+   ],
+   "summary": "Converts VGA-style RGB+HV+blank into 8b/10b TMDS-encoded DDR/SDR bitstreams for the GPDI port; fake_differential wraps ECP5 ODDRX1F for the 4 pseudo-differential pairs. Copied into dozens of repos in this collection.",
+   "ulx3s_notes": "Drop-in for GPDI: instantiate vga2dvid with fake_differential(C_ddr=1) at 25 MHz pixel clock x5 shift clock.",
+   "tests": "none found (top/top_vgatest.v is a synthesis smoke test, not self-checking)",
+   "usage_patterns": {
+    "files": [
+     "vga2dvid.vhd",
+     "tmds_encoder.vhd",
+     "fake_differential.v"
+    ],
+    "modules": [
+     "vga2dvid",
+     "tmds_encoder",
+     "fake_differential"
+    ]
+   }
+  },
+  {
+   "id": "hdl4fpga-tmds-encoder",
+   "name": "hdl4fpga TMDS encoder (video component library)",
+   "functions": [
+    "hdmi-dvi"
+   ],
+   "rank": "alternative",
+   "repo": "hdl4fpga__hdl4fpga",
+   "files": [
+    "library/video/tmds_encoder.vhd"
+   ],
+   "top": "tmds_encoder",
+   "language": "VHDL",
+   "license": "MIT (LICENSE; file header confirms same permissive terms, Copyright 2015 Miguel Angel Sagreras)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Reusable TMDS 8b/10b encoder entity from the hdl4fpga component library; encoder logic only, no serializer, meant to be paired with a board PHY (hdl4fpga ships ECP5 PHY files elsewhere in library/).",
+   "ulx3s_notes": "Pair with an ECP5 ODDRX1F/ODDRX2F serializer to drive GPDI; VHDL-only, hdl4fpga's own build scripts assume Diamond but the entity itself is toolchain-neutral.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "danodus-hdmi-audio",
+   "name": "HDMI TX with audio (danodus ecp5_hdmi_audio_video)",
+   "functions": [
+    "hdmi-dvi"
+   ],
+   "rank": "alternative",
+   "repo": "danodus__ecp5_hdmi_audio_video",
+   "files": [
+    "rtl/hdmi.v",
+    "rtl/hdmi_tmds_channel.v",
+    "rtl/hdmi_serializer_ecp5.v",
+    "boards/ulx3s/ulx3s_top.v"
+   ],
+   "top": "hdmi",
+   "language": "Verilog",
+   "license": "MIT (LICENSE, Copyright 2026 Daniel Cliche / 2019 Sameer Puri)",
+   "fpga": "ECP5",
+   "primitives": [
+    "ODDRX1F"
+   ],
+   "summary": "Full HDMI TX stack with audio and info-frame packet insertion (clock regeneration, AVI/audio packets); ULX3S top-level wiring already provided in boards/ulx3s/.",
+   "ulx3s_notes": "boards/ulx3s/ulx3s_top.v + hdmi_pll*.v are ready-made for GPDI; pick the hdmi_pll variant matching your target resolution.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "hdmi_tmds_channel.v",
+     "hdmi_serializer_ecp5.v"
+    ],
+    "modules": [
+     "hdmi_tmds_channel",
+     "hdmi_serializer_ecp5"
+    ]
+   }
+  },
+  {
+   "id": "splinedrive-hdmi-device",
+   "name": "my_hdmi_device TMDS encoder + video timing (chip_balls)",
+   "functions": [
+    "hdmi-dvi"
+   ],
+   "rank": "alternative",
+   "repo": "splinedrive__my_hdmi_device",
+   "files": [
+    "tmds_encoder.v",
+    "hdmi_device.v",
+    "video_timings.v",
+    "chip_balls.v"
+   ],
+   "top": "chip_balls",
+   "language": "Verilog",
+   "license": "ISC (LICENSE.md, Copyright 2021 Hirosh Dabui)",
+   "fpga": "ECP5",
+   "primitives": [
+    "ODDRX1F"
+   ],
+   "summary": "hdmi_device.v does 8b/10b TMDS encoding from an incoming VGA-style RGB+sync stream; chip_balls.v wires it to ECP5 ODDRX1F for GPDI output. Builds against ulx3s_v20.lpf at --85k.",
+   "ulx3s_notes": "Already has a ulx3s_v20.lpf and Makefile target (PROJ=chip_balls, --85k, CABGA381); pair with ecp5pll.sv (also in this repo) for the pixel/shift clocks.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "chip_balls.v",
+     "video_timings.v"
+    ],
+    "modules": [
+     "hdmi_device"
+    ]
+   }
+  },
+  {
+   "id": "smoldvi-dvi",
+   "name": "smoldvi small portable DVI core",
+   "functions": [
+    "hdmi-dvi"
+   ],
+   "rank": "alternative",
+   "repo": "wren6991__smoldvi",
+   "files": [
+    "hdl/smoldvi/smoldvi.v",
+    "hdl/smoldvi/smoldvi_tmds_encode.v",
+    "hdl/smoldvi/smoldvi_timing.v",
+    "hdl/smoldvi/smoldvi_serialiser.v"
+   ],
+   "top": "smoldvi",
+   "language": "Verilog",
+   "license": "CC0-1.0 (LICENSE.md)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Minimal DVI TX (~20 LUTs/lane TMDS encoder); timing/encode/gearbox logic is vendor-neutral per the author, only the final serialiser targets a specific FPGA's DDR output primitive.",
+   "ulx3s_notes": "Port smoldvi_serialiser.v/smoldvi_clock_driver.v from iCE40 SB_IO to ECP5 ODDRX2F/ECLKSYNCB; the rest is drop-in.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "smoldvi.v",
+     "smoldvi_tmds_encode.v",
+     "smoldvi_serialiser.v"
+    ],
+    "modules": [
+     "smoldvi",
+     "smoldvi_tmds_encode"
+    ]
+   }
+  },
+  {
+   "id": "mebner86-tmds-serializer",
+   "name": "sound2fft TMDS encoder + ECP5 DVI serializer",
+   "functions": [
+    "hdmi-dvi"
+   ],
+   "rank": "alternative",
+   "repo": "mebner86__icesugar-pro_sound2fft",
+   "files": [
+    "rtl/tmds_encoder.v",
+    "rtl/tmds_serializer.v"
+   ],
+   "top": "tmds_serializer",
+   "language": "Verilog",
+   "license": "MIT (LICENSE, root)",
+   "fpga": "ECP5",
+   "primitives": [
+    "ODDRX1F"
+   ],
+   "summary": "8b/10b TMDS encoder plus an ECP5 ODDRX1F-based DVI serializer, part of a larger FFT+PDM-mic+HDMI pipeline built for an ECP5 25F board (iCEsugar-Pro).",
+   "ulx3s_notes": "Board is ECP5 25F like the ULX3S 25F variant; only GPDI pin remapping should be needed.",
+   "tests": "waveform-only tb: projects/02_hdmi_test/hdmi_test_tb.v (no PASS/FAIL assertions found for tmds specifically)",
+   "usage_patterns": {
+    "files": [
+     "tmds_serializer.v"
+    ],
+    "modules": [
+     "tmds_serializer"
+    ]
+   }
+  },
+  {
+   "id": "lawrie-apple1-vga",
+   "name": "Apple 1 VGA text-mode framebuffer core (vga/vram/font_rom)",
+   "functions": [
+    "vga"
+   ],
+   "rank": "best",
+   "repo": "lawrie__apple-one",
+   "files": [
+    "rtl/vga/vga.v",
+    "rtl/vga/vram.v",
+    "rtl/vga/font_rom.v",
+    "rtl/boards/ulx3s/vga2dvid.v"
+   ],
+   "top": "vga",
+   "language": "Verilog",
+   "license": "Apache-2.0 (LICENSE, root; core inherited unchanged from upstream alangarf/apple-one)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "VGA timing generator driving a character-cell text framebuffer (vram.v) and 8x8 font ROM (font_rom.v); board-agnostic core wired to ULX3S GPDI via the sibling rtl/boards/ulx3s/vga2dvid.v.",
+   "ulx3s_notes": "Already targets ULX3S 25F (boards/ulx3s/yosys/, ulx3s_v20.lpf, prebuilt bitstream committed); feed vga.v output into rtl/boards/ulx3s/vga2dvid.v for GPDI.",
+   "tests": "iverilog tb, no self-checking pass/fail: tools/iverilog/vga_tb.v (run via run_vga_tb.sh, not `make`)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "schlae-crtc6845",
+   "name": "6845 CRTC reimplementation (Graphics Gremlin)",
+   "functions": [
+    "vga"
+   ],
+   "rank": "alternative",
+   "repo": "schlae__graphics-gremlin",
+   "files": [
+    "verilog/crtc6845.v"
+   ],
+   "top": "crtc6845",
+   "language": "Verilog",
+   "license": "CC-BY-SA-4.0 (LICENSE; file header confirms)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Cycle-accurate Motorola 6845 CRTC reimplementation with an ISA-bus register interface, generating MDA/CGA-style character-cell video timing (hsync/vsync/cursor); board-agnostic, no vendor primitives.",
+   "ulx3s_notes": "Replace the ISA-bus register shim with a simple MMIO/CPU interface; the timing-generator half is directly usable standalone.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "crtc6845.v"
+    ],
+    "modules": [
+     "crtc6845"
+    ]
+   }
+  },
+  {
+   "id": "f32c-vga-textmode",
+   "name": "f32c VGA timing + hardware text-mode overlay",
+   "functions": [
+    "vga"
+   ],
+   "rank": "alternative",
+   "repo": "f32c__f32c",
+   "files": [
+    "rtl/soc/vgahdmi/vga.vhd",
+    "rtl/soc/vgahdmi/VGA_textmode.vhd"
+   ],
+   "top": "VGA_textmode",
+   "language": "VHDL",
+   "license": "MIT-style permissive header (vga.vhd: Copyright 2015 Davor Jadrijevic, LICENSE=BSD; VGA_textmode.vhd: Copyright 2015 Ken Jordan, MIT-text)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "VGA timing generator (vga.vhd) plus a full color text-mode overlay with selectable font ROM and optional SRAM/SDRAM bitmap plane (VGA_textmode.vhd), designed for the f32c SoC bus.",
+   "ulx3s_notes": "Not self-contained: expects f32c's video_cache_d/videofifo signal conventions; proven on ULX3S 12F/25F/45F/85F via rtl/lattice/ulx3s/top/top_ulx3s_12f_xram_sdram_tv.vhd and siblings.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "VGA_textmode.vhd"
+    ],
+    "modules": [
+     "VGA_textmode"
+    ]
+   }
+  },
+  {
+   "id": "hoglet67-mist-scandoubler",
+   "name": "MiST composite/RGB scandoubler (15kHz to VGA)",
+   "functions": [
+    "vga"
+   ],
+   "rank": "alternative",
+   "repo": "hoglet67__ice40beeb",
+   "files": [
+    "src/mist_scandoubler.v"
+   ],
+   "top": "mist_scandoubler",
+   "language": "Verilog",
+   "license": "GPL-3.0-or-later (file header, Copyright 2015 Till Harbaum, MiST project)",
+   "fpga": "iCE40",
+   "primitives": [],
+   "summary": "Converts 15.7kHz composite/RGB-timed video into standard 31.4kHz VGA timing; vendored from the MiST project into an iCE40 HX4K design but the file itself instantiates no vendor primitives.",
+   "ulx3s_notes": "Portable structural Verilog; should synthesize unchanged for ECP5 with no primitive porting.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "mist_scandoubler.v"
+    ],
+    "modules": [
+     "mist_scandoubler"
+    ]
+   }
+  },
+  {
+   "id": "icebreaker-vga-core",
+   "name": "vga_core / vga_timing portable VGA generator (Black Mesa Labs)",
+   "functions": [
+    "vga"
+   ],
+   "rank": "alternative",
+   "repo": "icebreaker-fpga__icebreaker-verilog-examples",
+   "files": [
+    "icebreaker/dvi-24bit/vga_core.v",
+    "icebreaker/dvi-24bit/vga_timing.v"
+   ],
+   "top": "vga_core",
+   "language": "Verilog",
+   "license": "CERN-OHL v1.2 (file header, Copyright 2017 Kevin M. Hubbard / Black Mesa Labs)",
+   "fpga": "iCE40",
+   "primitives": [],
+   "summary": "Portable VGA timing generator (vga_timing.v) and test-pattern/framebuffer core (vga_core.v), originally written for Xilinx then ported to iCE40 without vendor primitives per the repo README.",
+   "ulx3s_notes": "No porting needed for this pair of files; only the separate DVI serializer stage (not included) is board-specific.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "vga_timing.v"
+    ],
+    "modules": [
+     "vga_timing",
+     "vga_core"
+    ]
+   }
+  },
+  {
+   "id": "thorkn-vgasyncgen",
+   "name": "VgaSyncGen SpinalHDL VGA timing generator",
+   "functions": [
+    "vga"
+   ],
+   "rank": "alternative",
+   "repo": "thorkn__vga_clock_1",
+   "files": [
+    "spinalHDL/src/spinal/vgaclock/VgaSyncGen.scala",
+    "spinalHDL/src/spinal/vgaclock/ClockCounters.scala"
+   ],
+   "top": "VgaSyncGen",
+   "language": "SpinalHDL (Scala, elaborates to Verilog)",
+   "license": "Apache-2.0 (LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "SpinalHDL VGA sync-timing generator and clock-cycle counter components, proven on ULX3S 85F (ulx3s/Makefile CHIP:=85k); reused unchanged in the author's vga_pong project.",
+   "ulx3s_notes": "Requires the SpinalHDL/Scala toolchain to elaborate to Verilog before synthesis; generator parameters cover standard VGA modes.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "VgaSyncGen.scala",
+     "ClockCounters.scala"
+    ],
+    "modules": [
+     "VgaSyncGen"
+    ]
+   }
+  },
+  {
+   "id": "f32c-cvbs",
+   "name": "f32c PAL composite video (CVBS) generator",
+   "functions": [
+    "composite-video"
+   ],
+   "rank": "best",
+   "repo": "f32c__f32c",
+   "files": [
+    "rtl/soc/cvbs.vhd"
+   ],
+   "top": "cvbs",
+   "language": "VHDL",
+   "license": "BSD-2-Clause (file header, Copyright 2013 Marko Zec / University of Zagreb)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Generates PAL composite video (luma/chroma/sync encoding) from RGB framebuffer pixel data for direct resistor-DAC output; wired into f32c's own ULX3S top (rtl/lattice/ulx3s/top/top_ulx3s_12f_xram_sdram_tv.vhd).",
+   "ulx3s_notes": "ULX3S has no dedicated composite DAC pin; needs a resistor-ladder DAC on spare GPIO exactly as f32c's own 12f_..._tv top does.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "cvbs.vhd"
+    ],
+    "modules": [
+     "cvbs"
+    ]
+   }
+  },
+  {
+   "id": "hoglet67-composite-scandoubler",
+   "name": "MiST composite/RGB scandoubler (composite-video input side)",
+   "functions": [
+    "composite-video"
+   ],
+   "rank": "alternative",
+   "repo": "hoglet67__ice40beeb",
+   "files": [
+    "src/mist_scandoubler.v"
+   ],
+   "top": "mist_scandoubler",
+   "language": "Verilog",
+   "license": "GPL-3.0-or-later (file header, Copyright 2015 Till Harbaum, MiST project)",
+   "fpga": "iCE40",
+   "primitives": [],
+   "summary": "Converts 15.7kHz composite/RGB-timed video (the format retro cores generate internally) up to 31.4kHz VGA timing; complementary to composite generation rather than a PAL/NTSC generator itself. No other true composite-out generator besides f32c's cvbs.vhd was found in this collection.",
+   "ulx3s_notes": "Useful when a retro core's internal video is composite-timed and needs converting for HDMI/VGA display rather than driven out as analog PAL/NTSC.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "mist_scandoubler.v"
+    ],
+    "modules": [
+     "mist_scandoubler"
+    ]
+   }
+  },
+  {
+   "id": "emard-spi-display",
+   "name": "lcd_video / spi_display multi-panel SPI LCD driver",
+   "functions": [
+    "spi-display"
+   ],
+   "rank": "best",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/spi_display/hdl/spi_display_verilog/lcd_video.v",
+    "examples/spi_display/hdl/spi_display_vhdl/spi_display.vhd"
+   ],
+   "top": "lcd_video",
+   "language": "Verilog, VHDL",
+   "license": "BSD (file headers: \"AUTHORS=EMARD,MMICKO and Lawrie Griffiths / LICENSE=BSD\"; VHDL twin \"AUTHOR=EMARD / LICENSE=BSD\")",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "VGA-clocked-in, SPI-clocked-out display driver; swaps ST7789/SSD1331/SSD1351/SSD1306 panels via a selectable init byte-sequence .mem file, free-running or synced to hsync/vsync/blank.",
+   "ulx3s_notes": "Pick the matching *_linit*.mem for your panel/orientation; c_clk_spi_mhz up to 125 MHz for the ST7789 default parameters.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "lcd_video.v"
+    ],
+    "modules": [
+     "lcd_video",
+     "spi_display"
+    ]
+   }
+  },
+  {
+   "id": "mikeakohn-display-spi",
+   "name": "bit-bang SPI LCD driver (Apollo 11 FPGA)",
+   "functions": [
+    "spi-display"
+   ],
+   "rank": "alternative",
+   "repo": "mikeakohn__apollo11_fpga",
+   "files": [
+    "src/display_spi.v"
+   ],
+   "top": "display_spi",
+   "language": "Verilog",
+   "license": "MIT (LICENSE, Copyright 2024 Michael Kohn)",
+   "fpga": "iCE40",
+   "primitives": [],
+   "summary": "Small bit-banged SPI LCD driver, plain Verilog with no vendor primitives; built for an iCE40 HX8K AGC (Apollo Guidance Computer) replica board.",
+   "ulx3s_notes": "No porting needed for the SPI logic itself; only clock/reset wiring needs adapting to ULX3S.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "display_spi.v"
+    ],
+    "modules": [
+     "display_spi"
+    ]
+   }
+  },
+  {
+   "id": "rastericer-display-spi",
+   "name": "RasteriCEr SPI display controller",
+   "functions": [
+    "spi-display"
+   ],
+   "rank": "alternative",
+   "repo": "toni3141__rastericer",
+   "files": [
+    "rtl/Display/DisplayControllerSpi.v",
+    "rtl/3rdParty/SPI_Slave.v"
+   ],
+   "top": "DisplayControllerSpi",
+   "language": "Verilog",
+   "license": "GPL-3.0-or-later (LICENSE, repo root; per-file headers confirm GPLv3-or-later, Copyright 2021 ToNi3141)",
+   "fpga": "iCE40",
+   "primitives": [],
+   "summary": "Streams a rasterizer's pixel output to a small SPI LCD via a generic SPI-slave-to-parallel bridge (SPI_Slave.v) feeding DisplayControllerSpi.v; built for an iCE40 UP5K board but neither file instantiates vendor primitives.",
+   "ulx3s_notes": "Portable logic; verify clock-domain assumptions before reuse on ECP5.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "DisplayControllerSpi.v"
+    ],
+    "modules": [
+     "DisplayControllerSpi"
+    ]
+   }
+  },
+  {
+   "id": "silice-oled-drivers",
+   "name": "Silice OLED drivers (ST7789/SSD1351/SSD1331)",
+   "functions": [
+    "spi-display"
+   ],
+   "rank": "alternative",
+   "repo": "sylefeb__silice",
+   "files": [
+    "projects/common/oled_st7789.si",
+    "projects/common/oled_ssd1351.si",
+    "projects/common/oled_ssd1331.si"
+   ],
+   "top": "oled",
+   "language": "Silice",
+   "license": "MIT (per-file header, \"MIT license, see LICENSE_MIT in Silice repo root\")",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Silice `algorithm oled(...)` SPI display drivers for three common OLED controllers, part of Silice's ULX3S board framework and used across several Silice projects (oled_test, oled_sdcard_test, doomchip).",
+   "ulx3s_notes": "Requires the Silice compiler (compiles to Verilog); proven on ULX3S via Silice's own board support.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "oled_st7789.si",
+     "oled_ssd1351.si",
+     "oled_ssd1331.si"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "slabboy-st7789",
+   "name": "SlabBoy ST7789 SpinalHDL LCD driver",
+   "functions": [
+    "spi-display"
+   ],
+   "rank": "alternative",
+   "repo": "lawrie__slabboy",
+   "files": [
+    "src/main/scala/slabboy/ST7789.scala"
+   ],
+   "top": "ST7789",
+   "language": "SpinalHDL (Scala)",
+   "license": "MIT (LICENSE, Copyright 2018 Craig Bishop)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "SpinalHDL SPI driver component for an ST7789 LCD, part of the SlabBoy Game Boy core (idcode 12F, ULX3S-class ECP5 board).",
+   "ulx3s_notes": "Requires the SpinalHDL/Scala toolchain to elaborate to Verilog; check its bus/register interface against your design.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ST7789.scala"
+    ],
+    "modules": [
+     "ST7789"
+    ]
+   }
+  },
+  {
+   "id": "nullobject-oled-ssd1322",
+   "name": "SSD1322 OLED framebuffer driver (m68k-ulx3s)",
+   "functions": [
+    "spi-display"
+   ],
+   "rank": "alternative",
+   "repo": "nullobject__m68k-ulx3s",
+   "files": [
+    "hdl/oled.v"
+   ],
+   "top": "oled",
+   "language": "Verilog",
+   "license": "none found (no repo-level LICENSE; only the vendored lib/fx68k CPU core has its own separate LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "SSD1322 grayscale OLED driver: on reset runs the panel init sequence, then continually copies the framebuffer to the display via a small SPI-like tx sub-module (oled_tx).",
+   "ulx3s_notes": "Proven on ULX3S 85F (Makefile DEVICE=85k); targets SSD1322 rather than ST7789/SSDxxx1/1331 — adapt init bytes for other panels.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "oled.v"
+    ],
+    "modules": [
+     "oled_tx"
+    ]
+   }
+  },
+  {
+   "id": "lawrie-esp32-spi-osd",
+   "name": "ESP32 SPI OSD + spirw_slave ROM/disk loading stack",
+   "functions": [
+    "esp32-osd"
+   ],
+   "rank": "best",
+   "repo": "lawrie__ulx3s_sms",
+   "files": [
+    "src/osd/osd.v",
+    "src/osd/spi_osd.v",
+    "src/osd/spirw_slave_v.v",
+    "esp32/osd/osd.py"
+   ],
+   "top": "osd",
+   "language": "Verilog, MicroPython",
+   "license": "osd.v and spi_osd.v: none found; spirw_slave_v.v: BSD (\"AUTHOR=EMARD\")",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Intercepts the video stream to draw a text OSD window (osd.v) driven by an SPI slave register interface (spi_osd.v) that the ESP32 writes into; a generic SPI RW slave (spirw_slave_v.v) is what the ESP32-side MicroPython (osd.py) uses to browse/select ROMs on SD and push them into FPGA BRAM.",
+   "ulx3s_notes": "The de-facto ESP32<->FPGA OSD/loader stack, reused nearly verbatim across nes_ecp5, trs_80, apple2fpga, msx, sega-sms, sg_1000, ql, gamegear, vic_20; wire spi_osd into the video pipeline and spirw_slave_v to a SPI-mapped BRAM/register block.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "spirw_slave_v.v",
+     "spi_osd.v"
+    ],
+    "modules": [
+     "spirw_slave_v",
+     "spi_osd"
+    ]
+   }
+  },
+  {
+   "id": "danrodrigues-esp32-spi-gamepad",
+   "name": "esp32_spi_gamepad minimal ESP32 SPI state receiver",
+   "functions": [
+    "esp32-osd"
+   ],
+   "rank": "alternative",
+   "repo": "dan-rodrigues__ulx3s-bluetooth-gamepad",
+   "files": [
+    "esp32_spi_gamepad.v"
+   ],
+   "top": "esp32_spi_gamepad",
+   "language": "Verilog",
+   "license": "MIT (SPDX header, Copyright 2020 Dan Rodrigues)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Minimal SPI receiver decoding ESP32-side Bluetooth-gamepad button/axis state into FPGA registers; a smaller alternative pattern to the full OSD stack for simple ESP32->FPGA control-word links (no video overlay).",
+   "ulx3s_notes": "Good template for any small ESP32->FPGA state link that doesn't need the OSD video overlay machinery.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "esp32_spi_gamepad.v"
+    ],
+    "modules": [
+     "esp32_spi_gamepad"
+    ]
+   }
+  },
+  {
+   "id": "emard-esp32ecp5-loader",
+   "name": "esp32ecp5 MicroPython FPGA loader package",
+   "functions": [
+    "esp32-osd"
+   ],
+   "rank": "alternative",
+   "repo": "emard__esp32ecp5",
+   "files": [
+    "pypi/ecp5.py",
+    "pypi/uftpd.py",
+    "pypi/sdraw.py"
+   ],
+   "top": "",
+   "language": "MicroPython",
+   "license": "MIT (pypi/LICENSE.txt, \"AUTHOR=EMARD LICENSE=MIT\")",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "ESP32-side MicroPython package for loading ECP5 bitstreams over SPI (ecp5.py), a micro-FTP server for pushing files to ESP32 flash/SD (uftpd.py), and raw SD block read/write (sdraw.py) — the ESP32 half of the ULX3S ESP32<->FPGA loading path.",
+   "ulx3s_notes": "Runs on the ULX3S's onboard ESP32; pairs with an FPGA-side SPI slave (e.g. spirw_slave_v.v) to receive the loaded data.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "uftpd.py",
+     "sdraw.py"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "emard-spi-ram-slave",
+   "name": "SPI RAM slave (ESP32 <-> FPGA memory-mapped link)",
+   "functions": [
+    "esp32-osd"
+   ],
+   "rank": "alternative",
+   "repo": "emard__uk101onfpga",
+   "files": [
+    "rtl_emard/spi_ram/spi_ram_slave.vhd"
+   ],
+   "top": "spi_ram_slave",
+   "language": "VHDL",
+   "license": "BSD (\"AUTHOR=EMARD LICENSE=BSD\")",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Presents FPGA BRAM as a Microchip-23K-style SPI RAM device to the ESP32 — an alternative transport (memory-mapped SPI RAM rather than the OSD register protocol) for ESP32-driven data/ROM loading.",
+   "ulx3s_notes": "Simpler than spirw_slave_v.v when the ESP32 only needs to fill/read a block of FPGA memory without an OSD protocol layer on top.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "spi_ram_slave.vhd"
+    ],
+    "modules": [
+     "spi_ram_slave"
+    ]
+   }
+  },
+  {
+   "id": "msrraju07-ov7670-pipeline",
+   "name": "OV7670 camera capture + SCCB config core",
+   "functions": [
+    "camera"
+   ],
+   "rank": "best",
+   "repo": "msrraju07__iop",
+   "files": [
+    "src/camera_interface.v",
+    "src/i2c_top.v"
+   ],
+   "top": "camera_interface",
+   "language": "Verilog",
+   "license": "MIT (LICENSE, Copyright 2021 Angelo Jacobo)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Captures OV7670 parallel PCLK/HREF/VSYNC/D[7:0] video into a FIFO with brightness/contrast controls, alongside a combined I2C/SCCB master (i2c_top.v, no external pull-ups needed) for camera register configuration; part of a full OV7670->Sobel->SDRAM->HDMI pipeline proven on ULX3S 85F.",
+   "ulx3s_notes": "Needs an OV7670 PMOD/breakout wired to GPIO; requires driving cmos_xclk and tuning the i2c_top SCCB timing per camera revision.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "camera_interface.v"
+    ],
+    "modules": [
+     "camera_interface",
+     "i2c_top"
+    ]
+   }
+  },
+  {
+   "id": "lawrie-camera85-nmigen",
+   "name": "camera85 nMigen OV7670 capture + image pipeline",
+   "functions": [
+    "camera"
+   ],
+   "rank": "alternative",
+   "repo": "lawrie__ulx3s-nmigen-examples",
+   "files": [
+    "camera85/camera.py",
+    "camera85/sccb.py",
+    "camera85/ov7670_config.py"
+   ],
+   "top": "",
+   "language": "nMigen (Python)",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "nMigen OV7670 capture (camera.py), SCCB register bus (sccb.py) and camera register table (ov7670_config.py), part of a larger image-processing chain (ROI/statistics/gamma/color control) selectable to any ULX3S FPGA size at build time.",
+   "ulx3s_notes": "Requires the nMigen/amaranth-boards toolchain; camconfig.py + camread.py glue the pieces together.",
+   "tests": "sim_imc.py/sim_conv.py/sim_extend.py present, waveform-only (no assert/PASS-FAIL found)",
+   "usage_patterns": {
+    "files": [
+     "ov7670_config.py"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "toasterllc-img-controller",
+   "name": "ImgController + ImgI2CMaster image-sensor interface (iCE40)",
+   "functions": [
+    "camera"
+   ],
+   "rank": "alternative",
+   "repo": "toasterllc__mdccode",
+   "files": [
+    "Code/ICE40/Shared/ImgController.v",
+    "Code/ICE40/Shared/ImgI2CMaster.v"
+   ],
+   "top": "ImgController",
+   "language": "Verilog",
+   "license": "public domain (LICENSE.md, one line, no SPDX id)",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_IO"
+   ],
+   "summary": "Image-sensor (parallel-bus) capture controller with an accompanying I2C master for sensor register configuration; uses iCE40 SB_IO primitives for the pixel-bus and I2C pins.",
+   "ulx3s_notes": "Needs SB_IO instances ported to ECP5 TRELLIS_IO; logic/FSM is otherwise portable.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ImgController.v",
+     "ImgI2CMaster.v"
+    ],
+    "modules": [
+     "ImgController",
+     "ImgI2CMaster"
+    ]
+   }
+  },
+  {
+   "id": "tucanae47-ov7670-capture",
+   "name": "OV7670 capture + SCCB master (ulx3s-experiments)",
+   "functions": [
+    "camera"
+   ],
+   "rank": "alternative",
+   "repo": "tucanae47__ulx3s-experiments",
+   "files": [
+    "cam/ov7670_capture.v",
+    "cam/sccb_master.v"
+   ],
+   "top": "ov7670_capture",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "OV7670 capture core (ov7670_capture.v) with a dedicated SCCB master (sccb_master.v) plus an async-FIFO clock-domain-crossing stack, proven on ULX3S 85F via apio.",
+   "ulx3s_notes": "Comes with a matching vga_display.v/oled_video.v output stage in the same directory for a live preview.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sccb_master.v"
+    ],
+    "modules": [
+     "sccb_master"
+    ]
+   }
+  },
+  {
+   "id": "jderobot-ov7670-colorfilter",
+   "name": "OV7670 RGB/YUV capture + color-filter + VGA preview (ULX3S apio)",
+   "functions": [
+    "camera"
+   ],
+   "rank": "alternative",
+   "repo": "jderobot__fpga-robotics",
+   "files": [
+    "phys_fpga/ulx3s/apio/ov7670_rgb_yuv_320x240_colorfilter/ov7670_capture.v",
+    "phys_fpga/ulx3s/apio/ov7670_rgb_yuv_320x240_colorfilter/ov7670_ctrl_reg.v",
+    "phys_fpga/ulx3s/apio/ov7670_rgb_yuv_320x240_colorfilter/ov7670_top_ctrl.v",
+    "phys_fpga/ulx3s/apio/ov7670_rgb_yuv_320x240_colorfilter/sccb_master.v"
+   ],
+   "top": "ov7670_top_ctrl",
+   "language": "Verilog",
+   "license": "GPL-3.0-or-later (LICENSE.md, software); repo also carries CERN-OHL-S-2.0 for hardware/PCB design",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "OV7670 RGB/YUV capture with on-the-fly colour filtering and a live VGA preview; one of many near-identical board variants (ULX3S/Alhambra II/Nexys4) in this repo sharing the same capture core, this is the apio/ULX3S build.",
+   "ulx3s_notes": "apio.ini + ulx3s_v20.lpf (or ulx3s_v20_pmodcam.lpf.txt) targets ULX3S directly; the repo has sibling variants (sobel, color-centroid tracking) using the same capture files.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "hdl4fpga-sdram-ctlr",
+   "name": "hdl4fpga generation-generic SDRAM controller",
+   "functions": [
+    "sdram"
+   ],
+   "rank": "best",
+   "repo": "hdl4fpga__hdl4fpga",
+   "files": [
+    "library/sdram/sdram_ctlr.vhd",
+    "library/latticesemi/ecp5/ecp5_sdrphy.vhd"
+   ],
+   "top": "sdram_ctlr",
+   "language": "VHDL",
+   "license": "MIT (LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [
+    "oddrx1f",
+    "fd1s3ax"
+   ],
+   "summary": "Chip-table-driven SDR/DDR/DDR2/DDR3 controller; ULX3S apps (graphics, scopeio) instantiate it with chip_data=\"MT48LC16M16MA2-7E\", the ULX3S's real SDR chip, paired with the ecp5_sdrphy gearbox PHY.",
+   "ulx3s_notes": "Use chip_data=\"MT48LC16M16MA2-7E\"; only the SDR path applies. Needs hdo/base + sdrampkg package dependencies.",
+   "tests": "waveform-only: boards/ULX3S/testbenches/graphics.vhd + graphics_structure.do (ModelSim)",
+   "usage_patterns": {
+    "files": [
+     "sdram_ctlr.vhd",
+     "ecp5_sdrphy.vhd"
+    ],
+    "modules": [
+     "sdram_ctlr",
+     "ecp5_sdrphy"
+    ]
+   }
+  },
+  {
+   "id": "c-elegans-sdram-controller3",
+   "name": "c-elegans ULX3S SDRAM controller",
+   "functions": [
+    "sdram"
+   ],
+   "rank": "alternative",
+   "repo": "c-elegans__ulx3s_sdram",
+   "files": [
+    "sdram_controller3.v"
+   ],
+   "top": "sdram_controller3",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Standalone ULX3S SDRAM controller derived from the hamsterworks DE0-Nano FSM design, built and simulated with an IS42S16160.v chip model specifically for the ULX3S board.",
+   "ulx3s_notes": "Direct ULX3S reference controller; repo has no LICENSE file, treat as all-rights-reserved unless clarified.",
+   "tests": "waveform-only: testbench.v, driver_tb.v (no $display/assert pass-fail found)",
+   "usage_patterns": {
+    "files": [
+     "sdram_controller3.v"
+    ],
+    "modules": [
+     "sdram_controller3"
+    ]
+   }
+  },
+  {
+   "id": "f32c-sdram-vhdl",
+   "name": "f32c generic SDR SDRAM controller",
+   "functions": [
+    "sdram"
+   ],
+   "rank": "alternative",
+   "repo": "f32c__f32c",
+   "files": [
+    "rtl/soc/sdram.vhd"
+   ],
+   "top": "sdram",
+   "language": "VHDL",
+   "license": "MIT (Mike Field, file header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Generic SDR SDRAM command sequencer with a C_ports-generic multi-port arbiter, no vendor primitives; used across all f32c ULX3S SoC targets (12F/25F/45F/85F).",
+   "ulx3s_notes": "Plain clk/reset + C_clk_freq generic; drop-in SDRAM controller for a new ULX3S design.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "kianriscv-mt48lc16m16a2-ctrl",
+   "name": "KianV mt48lc16m16a2_ctrl SDRAM controller",
+   "functions": [
+    "sdram"
+   ],
+   "rank": "alternative",
+   "repo": "splinedrive__kianriscv",
+   "files": [
+    "linux_socs/kianv_harris_mcycle_edition/sdram/mt48lc16m16a2_ctrl.v"
+   ],
+   "top": "mt48lc16m16a2_ctrl",
+   "language": "Verilog",
+   "license": "ISC-style (LICENSE.md, Hirosh Dabui, permissive notice matching ISC wording)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "SDRAM controller for the MT48LC16M16A2 chip used by the Linux-capable KianV RISC-V SoC (85F default, 12k..um-85k targets); part of a maintained, actively used Linux-on-ULX3S project.",
+   "ulx3s_notes": "Designed for the exact SDR chip ULX3S ships with; check icache/dcache wiring in the same sdram/ directory if reusing the whole memory subsystem.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "mt48lc16m16a2_ctrl.v"
+    ],
+    "modules": [
+     "mt48lc16m16a2_ctrl"
+    ]
+   }
+  },
+  {
+   "id": "emard-oberon-sdram-cache",
+   "name": "Oberon SDRAM_16bit controller + cache",
+   "functions": [
+    "sdram"
+   ],
+   "rank": "alternative",
+   "repo": "emard__oberon",
+   "files": [
+    "hdl/sdram.v",
+    "hdl/cache_controller.v"
+   ],
+   "top": "SDRAM_16bit",
+   "language": "Verilog",
+   "license": "LGPL-2.1-or-later (Next186/opencores.org, Nicolae Dumitrache, file header)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Next186-derived 16-bit SDRAM controller paired with a direct-mapped cache_controller.v, used by the Project Oberon RISC5 ULX3S build (85F trellis / 12F diamond).",
+   "ulx3s_notes": "Copyleft (LGPL-2.1+): fine to link against, modifications to the file itself must stay LGPL.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "cache_controller.v"
+    ],
+    "modules": [
+     "cache_controller"
+    ]
+   }
+  },
+  {
+   "id": "emard-misc-sdram-pnru",
+   "name": "sdram_pnru simplistic SDRAM controller",
+   "functions": [
+    "sdram"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/sdram/sdram_pnru/sdram_pnru.v"
+   ],
+   "top": "sdram_pnru",
+   "language": "Verilog",
+   "license": "public domain (explicit header statement)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Simplistic public-domain SDR SDRAM controller for 4x4Mx16 chips (e.g. MT48LC16M16A2): one access per system access, all 4 banks kept open, distributed refresh; part of EMARD's ULX3S example library.",
+   "ulx3s_notes": "Smallest/simplest of the seven sdram/ variants in ulx3s-misc; good starting point when a full-featured controller is overkill.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sdram_pnru.v"
+    ],
+    "modules": [
+     "sdram_pnru"
+    ]
+   }
+  },
+  {
+   "id": "orangecrab-ddr3-axi",
+   "name": "Lightweight DDR3 AXI4 memory controller (ECP5)",
+   "functions": [
+    "ddr-memory"
+   ],
+   "rank": "best",
+   "repo": "ultraembedded__orangecrab",
+   "files": [
+    "ddr_test/src_v/ddr3_axi.v",
+    "ddr_test/src_v/ddr3_axi_core.v",
+    "ddr_test/src_v/ddr3_axi_retime.v",
+    "ddr_test/src_v/ddr3_dfi_seq.v",
+    "ddr_test/src_v/ddr3_dfi_phy.v"
+   ],
+   "top": "ddr3_axi",
+   "language": "Verilog",
+   "license": "Apache-2.0 (LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [
+    "ODDRX1F",
+    "IDDRX1F",
+    "BB"
+   ],
+   "summary": "Complete AXI4 DDR3 controller (Ultra-Embedded.com) proven on OrangeCrab r0.2 (ECP5): JEDEC DFI sequencer + plain-IO PHY (no DQSBUFM/DELAYF hardware read-training). Not for stock ULX3S (SDR SDRAM only), only for ECP5 boards/add-ons with DDR3.",
+   "ulx3s_notes": "Demonstrated only at a conservative 24 MHz DDR clock; re-tune DQ_IN_DELAY_INIT/TPHY_RDLAT for production speed. Needs a full LPF rewrite for any other board's DDR3 pinout.",
+   "tests": "none found (no build script or testbench in this clone)",
+   "usage_patterns": {
+    "files": [
+     "ddr3_axi.v",
+     "ddr3_dfi_phy.v",
+     "ddr3_dfi_seq.v"
+    ],
+    "modules": [
+     "ddr3_axi",
+     "ddr3_dfi_phy"
+    ]
+   }
+  },
+  {
+   "id": "uberddr3-controller",
+   "name": "UberDDR3 controller + ECP5 PHY",
+   "functions": [
+    "ddr-memory"
+   ],
+   "rank": "alternative",
+   "repo": "remyciterin__3driscv",
+   "files": [
+    "UberDDR3/rtl/ddr3_controller.v",
+    "UberDDR3/rtl/ddr3_phy.v",
+    "UberDDR3/rtl/ecp5_phy/ddr3_phy_ecp5.v"
+   ],
+   "top": "ddr3_controller",
+   "language": "Verilog",
+   "license": "GPL-3.0 (UberDDR3/LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [
+    "BB",
+    "DELAYG"
+   ],
+   "summary": "DDR3 controller with a dedicated ecp5_phy/ddr3_phy_ecp5.v PHY (fabric-clocked BB/DELAYG, no PLL in-file); wired into the 3driscv RV32IMA SoC's Wishbone DDR3 path via a Blarney (Core.hs) wrapper.",
+   "ulx3s_notes": "GPL-3.0 copyleft vs. the parent project's MIT; check compatibility before reuse. Has SymbiYosys formal proofs and icarus/vivado regression tests, unlike most other DDR3 options here.",
+   "tests": "formal (SymbiYosys, UberDDR3/formal/*.sby) + icarus/vivado regression scripts (UberDDR3/testbench/)",
+   "usage_patterns": {
+    "files": [
+     "ddr3_phy_ecp5.v"
+    ],
+    "modules": [
+     "ddr3_controller",
+     "ddr3_phy_ecp5"
+    ]
+   }
+  },
+  {
+   "id": "hadbadge-qpi-cache",
+   "name": "Hackaday badge QPI-PSRAM PHY + cache (ECP5-native)",
+   "functions": [
+    "psram-hyperram"
+   ],
+   "rank": "best",
+   "repo": "spritetm__hadbadge2019_fpgasoc",
+   "files": [
+    "soc/qpi_cache/qspi_phy_2x_ecp5.v",
+    "soc/qpi_cache/qpimem_iface_2x2w.v",
+    "soc/qpi_cache/qpimem_cache.v",
+    "soc/qpi_cache/qpimem_arbiter.v",
+    "soc/qpi_cache/qpimem_dma_rdr.v"
+   ],
+   "top": "qpimem_cache",
+   "language": "Verilog",
+   "license": "BSD-3 (per-file headers, LICENSE.bsd)",
+   "fpga": "ECP5",
+   "primitives": [
+    "ODDRX1F",
+    "IDDRX1F",
+    "TRELLIS_IO",
+    "OFS1P3DX"
+   ],
+   "summary": "Cleanly layered QPI-PSRAM stack for two interleaved Lyontek LY68L6400 8 MB QPI chips (16 MB total): only qspi_phy_2x_ecp5.v touches ECP5 DDR-IO primitives, qpimem_cache/arbiter/dma_rdr above it are portable logic. Ships on real 45F badge silicon.",
+   "ulx3s_notes": "ULX3S has no on-board QPI PSRAM; only useful pairing with a compatible add-on board. Runs at 48 MHz interleaved; new LPF and pin remap required either way.",
+   "tests": "self-checking iverilog testbenches: qpimem_cache_testbench.v, qpimem_iface_testbench.v, qpimem_interleave_testbench.v",
+   "usage_patterns": {
+    "files": [
+     "qspi_phy_2x_ecp5.v",
+     "qpimem_iface_2x2w.v",
+     "qpimem_cache.v"
+    ],
+    "modules": [
+     "qspi_phy_2x_ecp5",
+     "qpimem_iface_2x2w",
+     "qpimem_cache"
+    ]
+   }
+  },
+  {
+   "id": "gtjennings1-hbc",
+   "name": "hbc portable HyperBus/HyperRAM controller",
+   "functions": [
+    "psram-hyperram"
+   ],
+   "rank": "alternative",
+   "repo": "gtjennings1__hyperbus",
+   "files": [
+    "standalone/hbc.v",
+    "standalone/hbc_io.v"
+   ],
+   "top": "hbc",
+   "language": "Verilog",
+   "license": "MIT-style (embedded header, Gnarly Grey LLC 2017; no repo LICENSE/COPYING file)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Self-contained HyperBus/HyperRAM controller in plain Verilog with no vendor primitives in the core FSM (hbc.v); written for iCE40 UP5K boards but architecturally the most portable HyperRAM core in the collection.",
+   "ulx3s_notes": "No ULX3S/ECP5 target exists; needs a new top-level with ECP5 tristate DQ IO and timing closure at the board's clock.",
+   "tests": "self-checking testbench: sim/hbc_tb.v ($display PASS/FAIL per byte)",
+   "usage_patterns": {
+    "files": [
+     "hbc.v",
+     "hbc_io.v"
+    ],
+    "modules": [
+     "hbc"
+    ]
+   }
+  },
+  {
+   "id": "asinghani-hyper-xface",
+   "name": "hyper_xface HyperRAM DWORD interface",
+   "functions": [
+    "psram-hyperram"
+   ],
+   "rank": "alternative",
+   "repo": "asinghani__pifive-cpu",
+   "files": [
+    "soc/third_party/hyperram/hyper_xface.v",
+    "soc/third_party/hyperram/hyper_dword.v"
+   ],
+   "top": "hyper_xface",
+   "language": "Verilog",
+   "license": "CERN-OHL-1.2 (claimed in-file header only, Kevin M. Hubbard 2018; not formalized at repo level)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "DWORD-granularity HyperRAM interface (targets Cypress S27KL0641), optimized for RTL portability over bandwidth; DRAM clock is fabric-clock/4. Vendored into the pifive-cpu SoC but its instance is commented out there.",
+   "ulx3s_notes": "Portable Verilog-2001, no vendor primitives; needs its own top-level pin mapping and has not been exercised end-to-end in the parent project (instantiation commented out).",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "hyper_xface.v",
+     "hyper_dword.v"
+    ],
+    "modules": [
+     "hyper_xface",
+     "hyper_dword"
+    ]
+   }
+  },
+  {
+   "id": "no2hyperbus",
+   "name": "no2fpga HyperRAM controller (no2hyperbus)",
+   "functions": [
+    "psram-hyperram"
+   ],
+   "rank": "alternative",
+   "repo": "smunaut__ice40-playground",
+   "files": [
+    "cores/no2hyperbus/rtl/hbus_memctrl.v",
+    "cores/no2hyperbus/rtl/hbus_dline.v",
+    "cores/no2hyperbus/rtl/hbus_phy_ice40.v"
+   ],
+   "top": "hbus_memctrl",
+   "language": "Verilog",
+   "license": "CERN-OHL-P-2.0 (cores/no2hyperbus/LICENSE)",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_IO"
+   ],
+   "summary": "Wishbone-facing HyperRAM controller from Sylvain Munaut's no2fpga library: hbus_memctrl.v and hbus_dline.v are primitive-free link-layer logic, only hbus_phy_ice40.v instantiates iCE40 SB_IO for the physical DQ/RWDS pins.",
+   "ulx3s_notes": "Only hbus_phy_ice40.v needs an ECP5 rewrite (TRELLIS_IO/ODDRX1F in place of SB_IO); memctrl/dline logic is vendor-neutral as-is.",
+   "tests": "sim/hbus_memctrl_tb.v against a bundled sim/s27kl0642.v behavioral model",
+   "usage_patterns": {
+    "files": [
+     "hbus_memctrl.v",
+     "hbus_dline.v"
+    ],
+    "modules": [
+     "hbus_memctrl",
+     "hbus_dline"
+    ]
+   }
+  },
+  {
+   "id": "zipcpu-sdspi",
+   "name": "ZipCPU sdspi SPI-mode SD controller",
+   "functions": [
+    "sd-card"
+   ],
+   "rank": "best",
+   "repo": "zipcpu__sdspi",
+   "files": [
+    "rtl/spi/sdspi.v",
+    "rtl/spi/llsdspi.v",
+    "rtl/spi/spicmd.v",
+    "rtl/spi/spirxdata.v",
+    "rtl/spi/spitxdata.v"
+   ],
+   "top": "sdspi",
+   "language": "Verilog",
+   "license": "GPL-3.0 (per-file headers)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Wishbone-B4 SPI-mode SD/MMC controller, no vendor primitives, ~60 SymbiYosys formal proofs. \"Silicon proven\" per the author. Maps directly onto the ULX3S sd_clk/sd_cmd/sd_d[0]/sd_d[3] pins (shared with the ESP32).",
+   "ulx3s_notes": "Wire o_sck->sd_clk, o_mosi->sd_cmd, i_miso<-sd_d[0], o_cs_n->sd_d[3] per ulx3s_v20.lpf; ESP32 firmware must release these pins first.",
+   "tests": "formal (SymbiYosys, ~60 proofs in bench/formal/); Verilator/Icarus models in bench/cpp, bench/verilog",
+   "usage_patterns": {
+    "files": [
+     "sdspi.v",
+     "llsdspi.v"
+    ],
+    "modules": [
+     "sdspi",
+     "llsdspi"
+    ]
+   }
+  },
+  {
+   "id": "gojimmypi-mister-sd-card",
+   "name": "MiSTer sd_card.sv (Harbaum/Sorgelig)",
+   "functions": [
+    "sd-card"
+   ],
+   "rank": "alternative",
+   "repo": "gojimmypi__z80386-ulx3s-doom",
+   "files": [
+    "third_party/z386_MiSTer/sys/sd_card.sv"
+   ],
+   "top": "sd_card",
+   "language": "SystemVerilog",
+   "license": "LGPL-3.0-or-later (Till Harbaum 2014 / Sorgelig 2015-2018, file header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "The well-known MiSTer-framework SD-card core (WIDE/OCTAL parameters), vendored as part of the ao486-derived PC-SoC peripheral set; not yet wired into the ULX3S probe top in this repo (CPU-only today).",
+   "ulx3s_notes": "Widely used and battle-tested across the MiSTer ecosystem; LGPL-3.0+ copyleft on modifications to the file itself.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "lawrie-cpm-sd-controller",
+   "name": "sd_controller (Searle/Edwards derived) SD reader",
+   "functions": [
+    "sd-card"
+   ],
+   "rank": "alternative",
+   "repo": "lawrie__ulx3s_cpm_z80",
+   "files": [
+    "src/Components/SDCARD/sd_controller.v"
+   ],
+   "top": "sd_controller",
+   "language": "Verilog",
+   "license": "custom permissive (Grant Searle acknowledgement clause: free to use, must credit, must not charge)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Single-block SD read/write stream controller adapted from Steven Merrifield's design via the Apple II emulator (Stephen Edwards) and Grant Searle's Z80 boards; used to load CP/M disk images on the ULX3S CP/M-Z80 build.",
+   "ulx3s_notes": "License requires attribution to Grant Searle and forbids charging for the file; simple enough to read/port in an afternoon.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sd_controller.v"
+    ],
+    "modules": [
+     "sd_controller"
+    ]
+   }
+  },
+  {
+   "id": "logoposeidon-sdkarte",
+   "name": "SDKarte SD card reader",
+   "functions": [
+    "sd-card"
+   ],
+   "rank": "alternative",
+   "repo": "logoposeidon__ulx3sjukebox",
+   "files": [
+    "SDKartenLeser.v"
+   ],
+   "top": "SDKarte",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Standalone SD card reader feeding a FIFO for a ULX3S MP3/audio jukebox project (song selection via buttons); small, single-purpose block.",
+   "ulx3s_notes": "No license header; treat as all-rights-reserved until clarified with the author before reuse.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "SDKartenLeser.v"
+    ],
+    "modules": [
+     "SDKarte"
+    ]
+   }
+  },
+  {
+   "id": "silice-sdcard",
+   "name": "Silice sdcard SPI controller",
+   "functions": [
+    "sd-card"
+   ],
+   "rank": "alternative",
+   "repo": "sylefeb__silice",
+   "files": [
+    "projects/common/sdcard.si"
+   ],
+   "top": "sdcard",
+   "language": "Silice",
+   "license": "MIT (file header + LICENSE_MIT)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "SDHC/SDXC-only SD controller written in Silice, kept in slow-transfer mode throughout; author reports it tested working at 25, 50 and 100 MHz. Part of the ULX3S-supporting Silice board framework.",
+   "ulx3s_notes": "Requires the Silice compiler (yosys+nextpnr-ecp5 backend, GPL-3.0) rather than being usable as plain Verilog/VHDL.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sdcard.si"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "picorv32-spimemio",
+   "name": "spimemio SPI/QSPI flash XIP controller",
+   "functions": [
+    "spi-flash"
+   ],
+   "rank": "best",
+   "repo": "yosyshq__picorv32",
+   "files": [
+    "picosoc/spimemio.v"
+   ],
+   "top": "spimemio",
+   "language": "Verilog",
+   "license": "ISC (COPYING; per-file header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Memory-mapped SPI-flash execute-in-place controller from PicoSoC: no vendor primitives, expects four bidirectional flash_io[0:3] pins split into oe/do/di triples. Widely reused, well-tested reference XIP controller.",
+   "ulx3s_notes": "Needs a board-side tristate wrapper (ECP5 generic inout/BB instead of the reference tops' iCE40 SB_IO) for the shared ULX3S config-flash pins.",
+   "tests": "root Makefile self-checking testbenches (test/test_wb/test_synth/...) exercise picosoc including spimemio via firmware; no standalone spimemio testbench found",
+   "usage_patterns": {
+    "files": [
+     "spimemio.v"
+    ],
+    "modules": [
+     "spimemio"
+    ]
+   }
+  },
+  {
+   "id": "mb-sat-mappedspiflash",
+   "name": "MappedSPIFlash read-only XIP driver",
+   "functions": [
+    "spi-flash"
+   ],
+   "rank": "alternative",
+   "repo": "mb-sat__ulx3s-longwave-sdr",
+   "files": [
+    "logic/common-verilog/MappedSPIFlash.v"
+   ],
+   "top": "MappedSPIFlash",
+   "language": "Verilog",
+   "license": "GPL-3.0 (repo LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Minimal read-only SPI-flash-in-memory-space driver from Bruno Levy's FemtoRV32 project, vendored to run the FemtoRV32 core on the ULX3S 85F longwave-SDR design.",
+   "ulx3s_notes": "Read-only (no write/erase); smallest option here when a design only needs to execute firmware from flash.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "MappedSPIFlash.v"
+    ],
+    "modules": [
+     "MappedSPIFlash"
+    ]
+   }
+  },
+  {
+   "id": "neorv32-ulx3s-xip",
+   "name": "NEORV32 ULX3S XIP flash-execute top",
+   "functions": [
+    "spi-flash"
+   ],
+   "rank": "alternative",
+   "repo": "fedy0__neo",
+   "files": [
+    "top/neorv32_ULX3S_xip.vhd"
+   ],
+   "top": "neorv32_ULX3S_xip",
+   "language": "VHDL",
+   "license": "BSD-3-Clause (NEORV32, Stephan Nolting 2023)",
+   "fpga": "ECP5",
+   "primitives": [
+    "USRMCLK"
+   ],
+   "summary": "ULX3S 85F board top pairing the NEORV32 RISC-V core's built-in XIP module with the ECP5 config-flash pins (USRMCLK), so firmware executes directly from SPI flash instead of block RAM.",
+   "ulx3s_notes": "Built via a dedicated Makefile.xip target; simplest path to XIP-from-flash on ULX3S if already using NEORV32.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "neorv32_ULX3S_xip.vhd"
+    ],
+    "modules": [
+     "neorv32_ULX3S_xip"
+    ]
+   }
+  },
+  {
+   "id": "had2019-qspi-phy-ecp5",
+   "name": "qspi_phy_ecp5 QSPI flash PHY (ECP5-native)",
+   "functions": [
+    "spi-flash"
+   ],
+   "rank": "alternative",
+   "repo": "emard__had2019-playground",
+   "files": [
+    "projects/bootloader/rtl/qspi_phy_ecp5.v"
+   ],
+   "top": "qspi_phy_ecp5",
+   "language": "Verilog",
+   "license": "BSD-3-clause (Sylvain Munaut 2019, file header + LICENSE.bsd)",
+   "fpga": "ECP5",
+   "primitives": [
+    "USRMCLK",
+    "TRELLIS_IO",
+    "IFS1P3DX",
+    "OFS1P3DX"
+   ],
+   "summary": "ECP5-native QSPI flash PHY (drives USRMCLK and the shared config-flash IO through TRELLIS_IO/IFS1P3DX/OFS1P3DX) used by the PicoRV32-based USB DFU bootloader that ships bitstreams into ULX3S flash from the US2 port.",
+   "ulx3s_notes": "Proven in production on ULX3S (emard's DFU bootloader, 1d50:614b); pairs with picorv32/picosoc for a full XIP+DFU stack.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "qspi_phy_ecp5.v"
+    ],
+    "modules": [
+     "qspi_phy_ecp5"
+    ]
+   }
+  },
+  {
+   "id": "emard-misc-wbqspiflash",
+   "name": "Wishbone Quad-SPI flash controller (Gisselquist-derived)",
+   "functions": [
+    "spi-flash"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/qspi/hdl/wbspiflash.v",
+    "examples/qspi/hdl/eqspiflash.v",
+    "examples/qspi/hdl/llqspi.v"
+   ],
+   "top": "wbqspiflash",
+   "language": "Verilog",
+   "license": "GPL-3.0 (Gisselquist Technology LLC 2015-2016, file header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "ZipCPU/Gisselquist eqspiflash core (originally for the Arty board) wrapped as a Wishbone slave (wbqspiflash), ported into EMARD's ULX3S example library with read/write/erase register control and XIP support.",
+   "ulx3s_notes": "GPL-3.0 copyleft; has a bench/busmaster.v simulation harness for standalone verification before wiring into a SoC.",
+   "tests": "bench/busmaster.v simulation harness (not confirmed self-checking)",
+   "usage_patterns": {
+    "files": [
+     "eqspiflash.v",
+     "wbspiflash.v"
+    ],
+    "modules": [
+     "eqspiflash",
+     "wbqspiflash"
+    ]
+   }
+  },
+  {
+   "id": "pifive-wbuart",
+   "name": "wbuart Wishbone UART",
+   "functions": [
+    "uart"
+   ],
+   "rank": "best",
+   "repo": "asinghani__pifive-cpu",
+   "files": [
+    "soc/rtl/verilog/wbuart.sv",
+    "soc/rtl/verilog/uart_tx.sv",
+    "soc/rtl/verilog/uart_rx.sv",
+    "soc/rtl/verilog/uart_fifo.sv"
+   ],
+   "top": "wbuart",
+   "language": "SystemVerilog",
+   "license": "Apache-2.0 (repo LICENSE; no per-file header)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Wishbone-mapped 8N1 UART: separate tx/rx byte engines plus FIFOs behind a wbuart register-file wrapper. Built for the pifive-cpu SoC on ULX3S 85F.",
+   "ulx3s_notes": "Proven on ULX3S 85F via fpga/ulx3s/Makefile (yosys+nextpnr-ecp5+ecppack); wire wbuart into any Wishbone SoC.",
+   "tests": "scripts/tests/test_uart.py, cpu/tests/legacy/test_uart.py (cocotb, self-checking)",
+   "usage_patterns": {
+    "files": [
+     "wbuart.sv"
+    ],
+    "modules": [
+     "wbuart"
+    ]
+   }
+  },
+  {
+   "id": "f32c-sio",
+   "name": "f32c sio serial I/O",
+   "functions": [
+    "uart"
+   ],
+   "rank": "alternative",
+   "repo": "f32c__f32c",
+   "files": [
+    "rtl/soc/sio.vhd"
+   ],
+   "top": "sio",
+   "language": "VHDL",
+   "license": "BSD-2-Clause (file header, Copyright Marko Zec)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "f32c SoC's UART peripheral, memory-mapped, used across many f32c ULX3S/ECP5 boards for the boot loader console.",
+   "ulx3s_notes": "VHDL, no vendor primitives; f32c's own build is Diamond-only but this file is portable to an open ghdl-yosys flow.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sio.vhd"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "hazard3-sao-uart-phy",
+   "name": "SAO UART phy (minimal 8N1)",
+   "functions": [
+    "uart"
+   ],
+   "rank": "alternative",
+   "repo": "ulx3s__hazard3",
+   "files": [
+    "example_soc/soc/sao_uart_phy.v"
+   ],
+   "top": "sao_uart_phy",
+   "language": "Verilog",
+   "license": "Apache-2.0 (repo LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Minimal byte-oriented 8N1 UART interface used by the ULX3S example SoC's ESP32 SAO sideband link.",
+   "ulx3s_notes": "Actually instantiated in ulx3s__hazard3's example_soc.v build for ULX3S 85F/ULX4M-LD; simplest place to start for a tiny UART.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sao_uart_phy.v"
+    ],
+    "modules": [
+     "sao_uart_phy"
+    ]
+   }
+  },
+  {
+   "id": "verilog-tomverbeure-uart-tx",
+   "name": "Solderpad uart_tx (Tom Verbeure)",
+   "functions": [
+    "uart"
+   ],
+   "rank": "alternative",
+   "repo": "lawrie__ulx3s_examples",
+   "files": [
+    "ps2/uart_tx.v"
+   ],
+   "top": "uart_tx",
+   "language": "Verilog",
+   "license": "Solderpad Hardware License v0.51 (file header, Copyright 2018 Tom Verbeure)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Simple UART transmitter copied across several lawrie ULX3S example/retro-computer repos alongside the PS/2 examples.",
+   "ulx3s_notes": "Weak-reciprocal license (Solderpad), not pure permissive; check terms before closed-source reuse.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "volnirr-verilog-uart",
+   "name": "verilog-uart tx/rx",
+   "functions": [
+    "uart"
+   ],
+   "rank": "alternative",
+   "repo": "volnirr__verilog-uart",
+   "files": [
+    "rtl/uart_tx.v",
+    "rtl/uart_rx.v"
+   ],
+   "top": "",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Small dedicated, board-independent UART tx/rx pair with a well-specified README (exact baud error, framing/noise handling).",
+   "ulx3s_notes": "ulx3s.lpf present but no committed build script; drop the two files into a project and instantiate directly.",
+   "tests": "tb/receiver_tb.v, tb/transmitter_tb.v (iverilog, self-checking status not confirmed)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "hazard3-apb-sd-spi",
+   "name": "APB SPI master (microSD)",
+   "functions": [
+    "spi"
+   ],
+   "rank": "best",
+   "repo": "ulx3s__hazard3",
+   "files": [
+    "example_soc/soc/apb_sd_spi.v"
+   ],
+   "top": "apb_sd_spi",
+   "language": "Verilog",
+   "license": "Apache-2.0 (repo LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Small software-driven APB SPI master (mode 0, MSB-first, no FIFO/DMA) built for the ULX3S micro-SD socket.",
+   "ulx3s_notes": "Actually wired into ulx3s__hazard3's example_soc for ULX3S 85F; CLKDIV register sets SCLK from clk/2*(CLKDIV+1).",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "apb_sd_spi.v"
+    ],
+    "modules": [
+     "apb_sd_spi"
+    ]
+   }
+  },
+  {
+   "id": "glasgow-spi",
+   "name": "glasgow SPI controller (Amaranth)",
+   "functions": [
+    "spi"
+   ],
+   "rank": "alternative",
+   "repo": "glasgowembedded__glasgow",
+   "files": [
+    "software/glasgow/gateware/spi.py"
+   ],
+   "top": "",
+   "language": "Python (Amaranth)",
+   "license": "0BSD OR Apache-2.0 (repo LICENSE-*.txt)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Pure-Amaranth SPI controller core, part of Glasgow's gateware library; elaborates to plain Verilog with no vendor primitives.",
+   "ulx3s_notes": "Needs an Amaranth build flow (glasgow CLI / YoWASP toolchain) to elaborate; ECP5 platform support already exists in the repo.",
+   "tests": "software/tests (cocotb-style, not spi.py-specific in this pass)",
+   "usage_patterns": {
+    "files": [
+     "spi.py"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "zipcpu-llsdspi",
+   "name": "llsdspi low-level SPI engine",
+   "functions": [
+    "spi"
+   ],
+   "rank": "alternative",
+   "repo": "zipcpu__sdspi",
+   "files": [
+    "rtl/spi/llsdspi.v",
+    "rtl/spi/sdspi.v"
+   ],
+   "top": "sdspi",
+   "language": "Verilog",
+   "license": "GPL-3.0 (per-file header, no top-level LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Portable low-level SPI-mode engine (originally for SD cards) plus a byte/command-level sdspi wrapper; vendor-neutral, no synthesis flow bundled.",
+   "ulx3s_notes": "Heaviest formal verification of any SPI core in the collection (~60 SymbiYosys proofs); GPL-3.0 copyleft.",
+   "tests": "bench/formal/*.sby SymbiYosys proofs; bench/cpp verilator C++ tb (self-checking)",
+   "usage_patterns": {
+    "files": [
+     "llsdspi.v"
+    ],
+    "modules": [
+     "llsdspi"
+    ]
+   }
+  },
+  {
+   "id": "buspirateultrahdl-spimaster",
+   "name": "SPI master (Bus Pirate NextGen Ultra)",
+   "functions": [
+    "spi"
+   ],
+   "rank": "alternative",
+   "repo": "dangerousprototypes__buspirateultrahdl",
+   "files": [
+    "hdl/spimaster.v"
+   ],
+   "top": "spimaster",
+   "language": "Verilog",
+   "license": "GPL-3.0 (repo LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Configurable SPI master written for the Bus Pirate NextGen Ultra debug probe; no vendor primitives in the file itself.",
+   "ulx3s_notes": "Repo builds for iCE40 HX8K, but spimaster.v has no SB_* instantiation, so it drops onto ECP5 unmodified.",
+   "tests": "components/spi has a standalone testbench, not wired into hdl/Makefile",
+   "usage_patterns": {
+    "files": [
+     "spimaster.v"
+    ],
+    "modules": [
+     "spimaster"
+    ]
+   }
+  },
+  {
+   "id": "pifive-verilog-i2c",
+   "name": "verilog-i2c (alexforencich)",
+   "functions": [
+    "i2c"
+   ],
+   "rank": "best",
+   "repo": "asinghani__pifive-cpu",
+   "files": [
+    "soc/third_party/verilog-i2c/rtl/i2c_master.v",
+    "soc/third_party/verilog-i2c/rtl/i2c_master_wbs_8.v",
+    "soc/third_party/verilog-i2c/rtl/i2c_master_wbs_16.v",
+    "soc/third_party/verilog-i2c/rtl/i2c_slave.v",
+    "soc/third_party/verilog-i2c/rtl/i2c_slave_wbm.v",
+    "soc/third_party/verilog-i2c/rtl/i2c_init.v"
+   ],
+   "top": "i2c_master",
+   "language": "Verilog",
+   "license": "MIT (submodule COPYING, Alex Forencich)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Well-known alexforencich I2C master/slave IP with ready-made Wishbone and AXI-Lite register wrappers and an init sequencer.",
+   "ulx3s_notes": "Vendored as a git submodule in a repo whose fpga/ulx3s/Makefile targets ULX3S 85F (yosys+nextpnr-ecp5+ecppack); pick the wbs_8/16 wrapper for a Wishbone SoC.",
+   "tests": "soc/third_party/verilog-i2c/tb/test_i2c_master.py + friends (cocotb, self-checking)",
+   "usage_patterns": {
+    "files": [
+     "i2c_master_wbs_8.v",
+     "i2c_master_wbs_16.v",
+     "i2c_slave_wbm.v"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "beaglewire-i2c-master",
+   "name": "BeagleWire i2c-master",
+   "functions": [
+    "i2c"
+   ],
+   "rank": "alternative",
+   "repo": "pmezydlo__beaglewire",
+   "files": [
+    "components/i2c-master.v"
+   ],
+   "top": "i2c_master",
+   "language": "Verilog",
+   "license": "GPL-2.0 (repo LICENSE; note pcf header claims gplv3, inconsistent)",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_IO"
+   ],
+   "summary": "Self-contained I2C master for the BeagleWire cape, using two SB_IO instances for the open-drain SDA/SCL pads.",
+   "ulx3s_notes": "Replace the two SB_IO tristate instances with ECP5 BB/TRISTATE_IO primitives; the FSM logic itself is portable.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "i2c-master.v"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "glasgow-i2c",
+   "name": "glasgow I2C core (Amaranth)",
+   "functions": [
+    "i2c"
+   ],
+   "rank": "alternative",
+   "repo": "glasgowembedded__glasgow",
+   "files": [
+    "software/glasgow/gateware/i2c.py"
+   ],
+   "top": "",
+   "language": "Python (Amaranth)",
+   "license": "0BSD OR Apache-2.0 (repo LICENSE-*.txt)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Pure-Amaranth I2C controller/target gateware; part of Glasgow's actively maintained protocol library.",
+   "ulx3s_notes": "Needs the Amaranth/glasgow build flow; ECP5 platform support already present (rev D board).",
+   "tests": "software/tests (not i2c.py-specific in this pass)",
+   "usage_patterns": {
+    "files": [
+     "i2c.py"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "hazard3-sao-i2c-engine",
+   "name": "SAO I2C command engine",
+   "functions": [
+    "i2c"
+   ],
+   "rank": "alternative",
+   "repo": "ulx3s__hazard3",
+   "files": [
+    "example_soc/soc/sao_i2c_engine.v"
+   ],
+   "top": "sao_i2c_engine",
+   "language": "Verilog",
+   "license": "Apache-2.0 (SPDX header + repo LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Low-level I2C command engine with open-drain SDA/SCL controls, driving the ULX3S example SoC's SAO bridge.",
+   "ulx3s_notes": "Actually built into ulx3s__hazard3's example_soc for ULX3S 85F; board-level wrapper supplies the tri-state I/O.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sao_i2c_engine.v"
+    ],
+    "modules": [
+     "sao_i2c_engine"
+    ]
+   }
+  },
+  {
+   "id": "emard-had2019-usb-device",
+   "name": "no2usb-derived ECP5 USB FS device core (had2019 bootloader)",
+   "functions": [
+    "usb-device"
+   ],
+   "rank": "best",
+   "repo": "emard__had2019-playground",
+   "files": [
+    "cores/usb/rtl"
+   ],
+   "top": "usb",
+   "language": "Verilog",
+   "license": "LGPL-3.0-or-later (LICENSE.lgpl3; header in cores/usb/rtl/usb.v)",
+   "fpga": "ECP5",
+   "primitives": [
+    "TRELLIS_IO",
+    "OFS1P3DX",
+    "IDDRX1F"
+   ],
+   "summary": "Early ECP5-ported snapshot of Sylvain Munaut's no2usb: full-speed USB device MAC/PHY (EP buffers, CRC, transaction engine) driving the US2 pins directly; the core shipped as the fielded ULX3S DFU bootloader's USB device.",
+   "ulx3s_notes": "Runs at 48 MHz from a 25->48MHz EHXPLLL (sysmgr.v); wire to usb_fpga_bd_dp/dn + usb_fpga_pu_dp on US2.",
+   "tests": "waveform-only (cores/usb/sim/*_tb.v via iverilog, never run to a pass/fail check)",
+   "usage_patterns": {
+    "files": [
+     "usb_ep_buf.v",
+     "usb_ep_status.v"
+    ],
+    "modules": [
+     "usb_ep_buf",
+     "usb_ep_status"
+    ]
+   }
+  },
+  {
+   "id": "circuit-killer-usbserial",
+   "name": "circuit-killer USB FS serial device (VHDL, ULX3S-built)",
+   "functions": [
+    "usb-device"
+   ],
+   "rank": "alternative",
+   "repo": "circuit-killer__fpga-usbserial",
+   "files": [
+    "usb_serial",
+    "usb11_phy_vhdl"
+   ],
+   "top": "usb_serial",
+   "language": "VHDL",
+   "license": "GPL-2.0 (usb_serial/COPYING)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "USB CDC-ACM device core with its own soft PHY (usb11_phy_vhdl, no vendor primitives) plus an optional ULPI wrapper; the repo ships ULX3S v2.0/v3.1.7 LPFs and 12F/25F/45F/85F build dirs.",
+   "ulx3s_notes": "Use usb11_phy_vhdl (direct US2 pins), not ulpi_wrapper (needs an external ULPI PHY chip).",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "usb_control.vhd",
+     "usb_packet.vhd",
+     "usb_transact.vhd"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "f32c-usb-serial",
+   "name": "f32c USB CDC-ACM device + soft PHY",
+   "functions": [
+    "usb-device"
+   ],
+   "rank": "alternative",
+   "repo": "f32c__f32c",
+   "files": [
+    "rtl/soc/usb_serial",
+    "rtl/soc/usb11_phy"
+   ],
+   "top": "usb_serial",
+   "language": "VHDL",
+   "license": "BSD-2-Clause (repo fallback, no per-file header on usb_serial.vhd); usb11_phy is OpenCores-permissive (Copyright 2000-2002 Rudolf Usselmann)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "USB 2.0 CDC-ACM device entity (usb_serial.vhd) over a UTMI-style soft PHY (usb11_phy, ported from Verilog), wired into f32c SoCs proven across ULX3S 12F-85F.",
+   "ulx3s_notes": "Same core family as emard__ulx3s-misc/examples/usb/usbcdc; check docs/projects/f32c__f32c.md before reuse (license per-file uncertainty).",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "usb_transact.vhd",
+     "usbsio.vhd"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "hdl4fpga-usbdev",
+   "name": "hdl4fpga USB 1.1 device core",
+   "functions": [
+    "usb-device"
+   ],
+   "rank": "alternative",
+   "repo": "hdl4fpga__hdl4fpga",
+   "files": [
+    "library/usb/usbdev.vhd",
+    "library/usb/usbphy.vhd"
+   ],
+   "top": "usbdev",
+   "language": "VHDL",
+   "license": "MIT (LICENSE, Miguel Angel Sagreras)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Portable USB 1.1 device core with no vendor primitives, switchable device/host role via a build constant; used on real ULX3S hardware by boards/ULX3S/apps/ser_debug.vhd on the US2 pins.",
+   "ulx3s_notes": "Set the usb_device constant true in a ser_debug.vhd-style top; needs the matching usbphy.vhd PHY.",
+   "tests": "waveform tb in boards/ULX3S/testbenches (12 tb files across boards, not all self-checking)",
+   "usage_patterns": {
+    "files": [
+     "usbdev.vhd",
+     "usbphy.vhd"
+    ],
+    "modules": [
+     "usbdev",
+     "usbphy"
+    ]
+   }
+  },
+  {
+   "id": "ulixxe-usb-cdc",
+   "name": "ulixxe USB CDC-ACM device core",
+   "functions": [
+    "usb-device"
+   ],
+   "rank": "alternative",
+   "repo": "ulixxe__usb_cdc",
+   "files": [
+    "usb_cdc"
+   ],
+   "top": "usb_cdc",
+   "language": "Verilog",
+   "license": "MIT (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Self-contained full-speed USB CDC-ACM device (SIE, control/bulk endpoints, PHY rx/tx) with no BRAM/vendor primitives, shipped with pin files for 21 boards (Fomu, TinyFPGA-BX, iCEBreaker...).",
+   "ulx3s_notes": "No ULX3S pin file yet; add one for usb_fpga_bd_dp/dn + pull-up, following an existing board example.",
+   "tests": "self-checking: examples/{TinyFPGA-BX,Fomu}/.../tb_demo.v uses assert_error macros (iverilog)",
+   "usage_patterns": {
+    "files": [
+     "usb_cdc.v",
+     "phy_rx.v",
+     "phy_tx.v"
+    ],
+    "modules": [
+     "usb_cdc"
+    ]
+   }
+  },
+  {
+   "id": "ulx3s-misc-usbcdc",
+   "name": "ulx3s-misc USB CDC-ACM device (VHDL)",
+   "functions": [
+    "usb-device"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/usb/usbcdc"
+   ],
+   "top": "usb_serial",
+   "language": "VHDL",
+   "license": "GPL-2.0-or-later (examples/usb/usbcdc/README.txt)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Same usb_serial.vhd device entity family as f32c, packaged as a standalone ULX3S example with a Windows .inf driver file; this copy documents itself as GPL, unlike the BSD-2 fallback claimed for the f32c copy.",
+   "ulx3s_notes": "examples/usb/usbcdc/usbtest.vhd is the ready-to-build ULX3S top.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "ulx3s-misc-usbhost",
+   "name": "Ultra-Embedded USB FS host (ulx3s-misc copy)",
+   "functions": [
+    "usb-host"
+   ],
+   "rank": "best",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/usb/usbhost/usbh_sie.v",
+    "examples/usb/usbhost/usbh_host_hid.v"
+   ],
+   "top": "usbh_sie",
+   "language": "Verilog, VHDL (usbh_sie_vhdl.vhd, usbh_host_hid.vhd variants also present)",
+   "license": "GPL-2.0-or-later (file header, Ultra-Embedded.com, Copyright 2015-2019)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Ultra-Embedded's full-speed USB host SIE plus a HID-report host driver; the most reused USB-host core in the collection, copied into emard's NES/Apple-1/Minimig/Next186/Papilio-Arcade/Phoenix/Apple2fpga cores for keyboard/gamepad input.",
+   "ulx3s_notes": "Drop-in on ULX3S US2 pins; pair with a report_decoder for the target gamepad/keyboard (see emard__nes_ecp5/usb/report_decoder).",
+   "tests": "none found in this copy",
+   "usage_patterns": {
+    "files": [
+     "usbh_sie.v",
+     "usbh_host_hid.v"
+    ],
+    "modules": [
+     "usbh_sie",
+     "usbh_host_hid"
+    ]
+   }
+  },
+  {
+   "id": "circuit-killer-usbhid-host",
+   "name": "circuit-killer minimal USB HID host",
+   "functions": [
+    "usb-host"
+   ],
+   "rank": "alternative",
+   "repo": "circuit-killer__fpga-usbhid-host",
+   "files": [
+    "usbhid_host.vhd",
+    "usb_req_gen_func_pack.vhd"
+   ],
+   "top": "usbhid_host",
+   "language": "VHDL",
+   "license": "none found (no LICENSE/COPYING file)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Minimal single-file USB HID host state machine with CRC5/CRC16 helper functions, built for ULX3S 45F/85F (saitek/dragonrise-oled projects) with dedicated OLED demo tops.",
+   "ulx3s_notes": "No license file: get owner clearance before reuse.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "usbhid_host.vhd",
+     "usb_req_gen_func_pack.vhd"
+    ],
+    "modules": [
+     "usbhid_host"
+    ]
+   }
+  },
+  {
+   "id": "emard-usb-host-soc",
+   "name": "emard standalone USB1.1 host PHY/SIE (usb_host repo)",
+   "functions": [
+    "usb-host"
+   ],
+   "rank": "alternative",
+   "repo": "emard__usb_host",
+   "files": [
+    "usb11/phy.v",
+    "usb11/sie.v",
+    "usb11/regs.v"
+   ],
+   "top": "SIE",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Standalone USB1.1 host PHY + SIE + register block, packaged as its own small ULX3S 12F demo with a BRAM firmware loader (ucmem/), separate from the ulx3s-misc/nes_ecp5 usbh_sie lineage.",
+   "ulx3s_notes": "Demo bitstream targets ULX3S 12F (soc/build.sh --12k).",
+   "tests": "1 tb file in ./tb (not confirmed self-checking)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "nes-ecp5-usb-gamepad",
+   "name": "emard USB host + gamepad report decoders",
+   "functions": [
+    "usb-host"
+   ],
+   "rank": "alternative",
+   "repo": "emard__nes_ecp5",
+   "files": [
+    "usb/usbhost",
+    "usb/report_decoder"
+   ],
+   "top": "usbh_sie",
+   "language": "Verilog",
+   "license": "GPL-2.0-or-later (same Ultra-Embedded usbh_sie.v core)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Same usbh_sie host core as the ulx3s-misc copy, plus five ready HID report decoders for specific gamepads (NES-style, Saitek, Darfon, Xbox 360), the piece usually missing when reusing the bare host core.",
+   "ulx3s_notes": "Use report_decoder/usbh_report_decoder_xbox360.v (or another pad's file) to parse usbh_host_hid's output into button state.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "usbh_report_decoder_xbox360.v",
+     "usbh_report_decoder_saitek.v"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "hdl4fpga-usbhost",
+   "name": "hdl4fpga USB 1.1 host core",
+   "functions": [
+    "usb-host"
+   ],
+   "rank": "alternative",
+   "repo": "hdl4fpga__hdl4fpga",
+   "files": [
+    "library/usb/usbhost.vhd",
+    "library/usb/usbphy.vhd"
+   ],
+   "top": "usbhost",
+   "language": "VHDL",
+   "license": "MIT (LICENSE, Miguel Angel Sagreras)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Portable USB 1.1 host core, no vendor primitives, sharing a PHY with the device core (usbdev.vhd) via a build-time role switch; used on real ULX3S hardware in boards/ULX3S/apps/ser_debug.vhd.",
+   "ulx3s_notes": "Set usb_device=false to select host mode in a ser_debug-style top.",
+   "tests": "waveform tb in boards/ULX3S/testbenches",
+   "usage_patterns": {
+    "files": [
+     "usbhost.vhd"
+    ],
+    "modules": [
+     "usbhost",
+     "usbhostdvr"
+    ]
+   }
+  },
+  {
+   "id": "had2019-dfu-bootloader",
+   "name": "ULX3S/ULX4M USB DFU bootloader (had2019-playground)",
+   "functions": [
+    "bootloader-dfu"
+   ],
+   "rank": "best",
+   "repo": "emard__had2019-playground",
+   "files": [
+    "projects/bootloader/rtl",
+    "projects/bootloader/fw",
+    "cores/usb/rtl"
+   ],
+   "top": "top",
+   "language": "Verilog, C",
+   "license": "per file: bootloader RTL BSD-3-Clause, USB core + DFU firmware LGPL-3.0-or-later, picorv32.v ISC (see docs/DFUs.md)",
+   "fpga": "ECP5",
+   "primitives": [
+    "TRELLIS_IO",
+    "OFS1P3DX",
+    "IDDRX1F",
+    "USRMCLK"
+   ],
+   "summary": "The gateware ULX3S/ULX4M ship from flash address 0: PicoRV32 + no2usb-derived USB device core enumerating as DFU 1d50:614b, writing the user bitstream to flash 0x200000 via a QSPI master, with a 6-zone alt-setting layout. Fully documented in docs/DFUs.md.",
+   "ulx3s_notes": "USER_BITSTREAM_ADDR, dfu_zones[0] (fw/usb_dfu.c) and ecpmulti --address must all agree; PROGRAMN (LPF site M4) must loop back for hand-off.",
+   "tests": "none found (cores/usb/sim + project tbs are waveform-only, never run to a pass/fail check)",
+   "usage_patterns": {
+    "files": [
+     "usb_dfu.c",
+     "usb_desc_dfu.c",
+     "fw_dfu.c"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "hazard3-doom-dfu-bootloader",
+   "name": "Hazard3-Doom vendored DFU bootloader (ULX4M-LD validated)",
+   "functions": [
+    "bootloader-dfu"
+   ],
+   "rank": "alternative",
+   "repo": "ulx3s__hazard3-doom",
+   "files": [
+    "bootloader/rtl",
+    "bootloader/fw",
+    "bootloader/cores"
+   ],
+   "top": "top",
+   "language": "Verilog, C",
+   "license": "provenance in LICENSES/HAD2019-Bootloader-NOTICE.md; per-file licenses match the emard original (BSD-3/LGPL-3.0+/ISC)",
+   "fpga": "ECP5",
+   "primitives": [
+    "TRELLIS_IO",
+    "OFS1P3DX",
+    "IDDRX1F",
+    "USRMCLK"
+   ],
+   "summary": "Self-contained fork of the had2019 bootloader (own mk/, cores/, no external Makefile deps), remapped buttons, validated on real ULX4M-LD v0.0.3 (LFE5UM-85F) hardware, with a byte-for-byte readback recovery procedure documented in README_ULX4M_BOOTLOADER.md.",
+   "ulx3s_notes": "Prefer this copy over the emard original for a self-contained tree; same USER_BITSTREAM_ADDR/dfu_zones agreement rule applies.",
+   "tests": "none found (same iverilog-compile-only sim rule as the original)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "no2usb-dfu-helper",
+   "name": "no2usb DFU runtime + dfu_helper.v (iCE40)",
+   "functions": [
+    "bootloader-dfu"
+   ],
+   "rank": "alternative",
+   "repo": "smunaut__ice40-playground",
+   "files": [
+    "projects/riscv_usb/rtl/dfu_helper.v"
+   ],
+   "top": "dfu_helper",
+   "language": "Verilog",
+   "license": "mixed CERN-OHL-P-2.0/LGPL-3.0-or-later/MIT per file (doc/LICENSE-*.txt)",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_WARMBOOT"
+   ],
+   "summary": "Button debouncer that reboots into the no2bootloader DFU image via SB_WARMBOOT (long press) or resets the app (short press); the DFU class firmware itself (usb_dfu.c/usb_dfu_rt.c) lives in the fetched no2usb submodule.",
+   "ulx3s_notes": "iCE40-only (SB_WARMBOOT multiboot); porting to ECP5 needs a different warm-boot mechanism plus the no2bootloader project, which is not in this collection.",
+   "tests": "none found for dfu_helper.v itself",
+   "usage_patterns": {
+    "files": [
+     "dfu_helper.v"
+    ],
+    "modules": [
+     "dfu_helper"
+    ]
+   }
+  },
+  {
+   "id": "hdl4fpga-mii-ipoe",
+   "name": "mii_ipoe ARP/IP/UDP/DHCP stack",
+   "functions": [
+    "ethernet"
+   ],
+   "rank": "best",
+   "repo": "hdl4fpga__hdl4fpga",
+   "files": [
+    "library/mii/mii_ipoe.vhd"
+   ],
+   "top": "mii_ipoe",
+   "language": "VHDL",
+   "license": "MIT (LICENSE; header spot-checked on mii_ipoe.vhd)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Full MII-level protocol stack (eth_rx/tx, ARP, IPv4, UDP, ICMP, DHCP client) built from library/mii/*.vhd, generic RMII/MII pad-independent.",
+   "ulx3s_notes": "This is the exact stack behind emard__ulx3s-bin's prebuilt DHCP+ping-responder bitstream on the ULX3S LAN8720 RMII PHY (GP/GN 9-13); pair with ulx3s-misc's examples/eth/rmii for the board-side pad wiring. Repo toolchain is Diamond-only, but this file has no vendor primitives.",
+   "tests": "boards/ULX3S/testbenches/eth_tb.vhd (ModelSim/Aldec .do script, waveform-based)",
+   "usage_patterns": {
+    "files": [
+     "mii_ipoe.vhd"
+    ],
+    "modules": [
+     "mii_ipoe"
+    ]
+   }
+  },
+  {
+   "id": "datanoisetv-eth-mac-rgmii",
+   "name": "Gigabit RGMII MAC",
+   "functions": [
+    "ethernet"
+   ],
+   "rank": "alternative",
+   "repo": "datanoisetv__colorlight-i9-aes67",
+   "files": [
+    "rtl/eth/eth_mac.v",
+    "rtl/eth/rgmii_rx.v",
+    "rtl/eth/rgmii_tx.v"
+   ],
+   "top": "eth_mac",
+   "language": "Verilog",
+   "license": "MIT (SPDX headers)",
+   "fpga": "ECP5",
+   "primitives": [
+    "ODDRX1F"
+   ],
+   "summary": "Complete Gigabit Ethernet MAC with RGMII PHY interface, AXI-Stream data ports and PTP timestamp triggers.",
+   "ulx3s_notes": "Built for a Colorlight i9 (LFE5U-45F); rgmii_tx.v genuinely instantiates ECP5 ODDRX1F, but rgmii_rx.v uses behavioral posedge/negedge sampling rather than a real IDDRX1F (comment says so explicitly) — verify RX timing before reuse.",
+   "tests": "sim/tb_ptp_clock.v (not eth_mac-specific; waveform-only, no assert/PASS-FAIL)",
+   "usage_patterns": {
+    "files": [
+     "eth_mac.v",
+     "rgmii_rx.v",
+     "rgmii_tx.v"
+    ],
+    "modules": [
+     "eth_mac",
+     "rgmii_rx",
+     "rgmii_tx"
+    ]
+   }
+  },
+  {
+   "id": "sefbkn-mdio",
+   "name": "MDIO Clause-22 management controller",
+   "functions": [
+    "ethernet"
+   ],
+   "rank": "alternative",
+   "repo": "sefbkn__versa-ecp5-demo",
+   "files": [
+    "rtl/ethernet/mdio/mdio_master.v",
+    "rtl/ethernet/mdio/mdio_paged.v"
+   ],
+   "top": "mdio_master",
+   "language": "Verilog",
+   "license": "CERN-OHL-S-2.0 (SPDX headers)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "IEEE 802.3 Clause-22 MDIO read/write controller plus a paged wrapper for 88E1512-style PHY register maps.",
+   "ulx3s_notes": "Built for a Lattice Versa ECP5-5G board (SGMII/RGMII bring-up demo); the MDIO logic itself is board-agnostic and reusable for any PHY needing register access over MDIO.",
+   "tests": "sim/ has 1 iverilog tb file, not confirmed MDIO-specific",
+   "usage_patterns": {
+    "files": [
+     "mdio_master.v",
+     "mdio_paged.v"
+    ],
+    "modules": [
+     "mdio_master",
+     "mdio_paged"
+    ]
+   }
+  },
+  {
+   "id": "emard-eth-rmii-hexdemo",
+   "name": "RMII hex-dump packet sniffer",
+   "functions": [
+    "ethernet"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/eth/rmii/proj/top/top_eth_hex_demo.v"
+   ],
+   "top": "top_eth_hex_demo",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Self-contained single-file RMII receiver that hex-dumps captured LAN8720 packets to OLED/DVI; includes an ARP-reply memory skeleton, not a full MAC.",
+   "ulx3s_notes": "Documents the exact ULX3S LAN8720 RMII pinout (gn9/gp10/gn10/gp13 TX, gp11/gn11/gp12/gn12 RX, gn13 MDIO) referenced by other RMII cores in this collection.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "top_eth_hex_demo.v"
+    ],
+    "modules": [
+     "top_eth_hex_demo"
+    ]
+   }
+  },
+  {
+   "id": "lawrie-ps2-intf",
+   "name": "ps2_intf keyboard decoder",
+   "functions": [
+    "ps2"
+   ],
+   "rank": "best",
+   "repo": "lawrie__ulx3s_examples",
+   "files": [
+    "ps2/ps2.v"
+   ],
+   "top": "ps2_intf",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Input-only PS/2 keyboard interface: clock filtering, 11-bit frame shift-in, byte-valid strobe. The most widely-copied PS/2 core in the collection.",
+   "ulx3s_notes": "Same file copied verbatim into hoglet67__ice40beeb, hoglet67__ice40atom, lawrie__ulx3s_bbc_micro, lawrie__ulx3s_acorn_atom, lawrie__blackicemxbook, lawrie__verilog_examples.",
+   "tests": "ps2/ps2_test.v exists but is waveform-only, no PASS/FAIL",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "ps2_intf"
+    ]
+   }
+  },
+  {
+   "id": "f32c-ps2",
+   "name": "f32c ps2 VHDL core",
+   "functions": [
+    "ps2"
+   ],
+   "rank": "alternative",
+   "repo": "f32c__f32c",
+   "files": [
+    "rtl/soc/ps2.vhd"
+   ],
+   "top": "ps2",
+   "language": "VHDL",
+   "license": "MIT (file header, Copyright 2015 Ken Jordan)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "PS/2 keyboard/mouse interface entity used in the f32c SoC library.",
+   "ulx3s_notes": "VHDL, no vendor primitives; pair with f32c's own SoC memory map or lift standalone.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "lawrie-ps2-port",
+   "name": "ps2_port bidirectional PS/2",
+   "functions": [
+    "ps2"
+   ],
+   "rank": "alternative",
+   "repo": "lawrie__ulx3s_examples",
+   "files": [
+    "ps2port/ps2_port.v"
+   ],
+   "top": "ps2_port",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Bidirectional PS/2 port (adds host-to-device writes, e.g. keyboard LEDs) built on the same ps2_intf lineage.",
+   "ulx3s_notes": "Use when a design needs to set keyboard LEDs or otherwise talk back on the PS/2 bus, not just decode input.",
+   "tests": "ps2port/ps2_test.v exists, waveform-only",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "ps2_port"
+    ]
+   }
+  },
+  {
+   "id": "emard-ps2kbd-ps2mouse",
+   "name": "ps2kbd + ps2mouse (EMARD)",
+   "functions": [
+    "ps2"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/ps2/kbd/hdl/ps2kbd.v",
+    "examples/ps2/mouse/hdl/ps2mouse.v"
+   ],
+   "top": "ps2kbd",
+   "language": "Verilog",
+   "license": "BSD (ps2kbd.v header: AUTHOR=Paul Ruiz, LICENSE=BSD); ps2mouse.v: none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Separate keyboard decoder and a full 3-byte PS/2 mouse controller with automatic power-up initialization.",
+   "ulx3s_notes": "ps2kbd.v reused in stuij__odyssey and danodus__xgsoc; ps2mouse.v reused in danodus__xgsoc and the emard/linuxjedi minimig_ecs forks.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ps2kbd.v",
+     "ps2mouse.v"
+    ],
+    "modules": [
+     "ps2kbd",
+     "ps2mouse"
+    ]
+   }
+  },
+  {
+   "id": "emard-jtag-slave",
+   "name": "OpenCores JTAG TAP + JTAGG bridge",
+   "functions": [
+    "jtag-debug"
+   ],
+   "rank": "best",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/jtag_slave/hdl/jtag_slave.v",
+    "examples/jtag_slave/hdl/jtag_slave_clk.v",
+    "examples/jtag_slave/hdl/tap_defines.v",
+    "examples/jtag_slave/hdl/top/top_jtagg_slave.v"
+   ],
+   "top": "jtag_slave",
+   "language": "Verilog",
+   "license": "LGPL-2.1-or-later (jtag_slave.v OpenCores tap_top.v header, Igor Mohor/Nathan Yawn); top_jtagg_slave.v: none found",
+   "fpga": "ECP5",
+   "primitives": [
+    "JTAGG",
+    "ODDRX1F"
+   ],
+   "summary": "Generic OpenCores JTAG TAP (jtag_slave.v, vendor-neutral) plus a demo top that bridges it through the ECP5 JTAGG primitive so user logic gets its own JTAG chain via the board's existing FTDI/ESP32 JTAG.",
+   "ulx3s_notes": "top_jtagg_slave.v is a real ULX3S example (clk_25mhz, btn/led/oled/gpdi ports); ODDRX1F instances are only in the demo's DVI/OLED wiring, not the TAP itself.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "jtag_slave.v"
+    ],
+    "modules": [
+     "jtag_slave"
+    ]
+   }
+  },
+  {
+   "id": "tomverbeure-ecp5-jtag",
+   "name": "ECP5 JTAGG demo (Ecp5JtagDemo)",
+   "functions": [
+    "jtag-debug"
+   ],
+   "rank": "alternative",
+   "repo": "tomverbeure__ecp5_jtag",
+   "files": [
+    "verilog/top.v",
+    "tb/src/JTAGG.v"
+   ],
+   "top": "Ecp5JtagDemo",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [
+    "JTAGG"
+   ],
+   "summary": "Minimal, well-documented instantiation of the ECP5 JTAGG primitive with a reverse-engineering write-up of its TCK/TDI/TDO timing.",
+   "ulx3s_notes": "Built for a Colorlight i5 (ECP5-25F); pin remap only needed to reuse on ULX3S.",
+   "tests": "tb/ iverilog testbench, waveform-only ($dumpvars, no PASS/FAIL)",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "Ecp5JtagDemo"
+    ]
+   }
+  },
+  {
+   "id": "johnazoidberg-espi-analyzer",
+   "name": "eSPI bus capture + packet decoder",
+   "functions": [
+    "jtag-debug"
+   ],
+   "rank": "alternative",
+   "repo": "johnazoidberg__ulx3s-espi-analyzer",
+   "files": [
+    "hdl/espi_capture.v",
+    "hdl/espi_packet_decoder.v"
+   ],
+   "top": "espi_capture",
+   "language": "Verilog",
+   "license": "none found (repo-wide; only ecp5pll.sv credited BSD to EMARD)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "eSPI (Enhanced SPI) bus signal capture with CDC double-registering and single/dual/quad IO decode, plus a packet decoder pipeline.",
+   "ulx3s_notes": "Nix-flake reproducible ULX3S build (default 12F, also 25/45/85); a purpose-built protocol logic analyzer, not a generic one.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "espi_capture.v",
+     "espi_packet_decoder.v"
+    ],
+    "modules": [
+     "espi_capture",
+     "espi_packet_decoder"
+    ]
+   }
+  },
+  {
+   "id": "opendap-sw-dp",
+   "name": "OpenDAP SW-DP + Mem-AP (SWD debug probe)",
+   "functions": [
+    "jtag-debug"
+   ],
+   "rank": "alternative",
+   "repo": "wren6991__hazard3-swd-soc",
+   "files": [
+    "lib/opendap/hdl/opendap_sw_dp.v",
+    "lib/opendap/hdl/opendap_mem_ap_apb.v"
+   ],
+   "top": "opendap_sw_dp",
+   "language": "Verilog",
+   "license": "CC0-1.0 (file header + submodule LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "ADIv5.2 SW-DP (Serial Wire Debug) and APB Mem-AP implementation: an alternative to JTAG for debugging soft cores.",
+   "ulx3s_notes": "Repo's own README calls the SoC experimental (\"no idea how to program it\"); the DP/Mem-AP cores themselves are standalone and CC0.",
+   "tests": "lib/opendap/test/{dp,dap}/testcase (cxxrtl, self-checking tb_assert)",
+   "usage_patterns": {
+    "files": [
+     "opendap_sw_dp.v",
+     "opendap_mem_ap_apb.v"
+    ],
+    "modules": [
+     "opendap_sw_dp",
+     "opendap_mem_ap_apb"
+    ]
+   }
+  },
+  {
+   "id": "lawrie-ice40logicsniffer",
+   "name": "SUMP logic analyzer core (ECP5-ported)",
+   "functions": [
+    "jtag-debug"
+   ],
+   "rank": "alternative",
+   "repo": "lawrie__ice40logicsniffer",
+   "files": [
+    "src/Logic_Sniffer.v",
+    "src/core.v",
+    "src/sampler.v",
+    "src/rle_enc.v",
+    "src/trigger.v",
+    "src/ecp5_pll.v"
+   ],
+   "top": "Logic_Sniffer",
+   "language": "Verilog",
+   "license": "GPL-2.0-or-later (file headers, Copyright 2006 Michael Poppitz)",
+   "fpga": "ECP5",
+   "primitives": [
+    "EHXPLLL"
+   ],
+   "summary": "Classic openbench SUMP-protocol logic analyzer (sampler, RLE encoder, trigger, BRAM ring buffer) already re-targeted to ECP5 via ecp5_pll.v (an SB_PLL40_CORE version, pll.v, also exists for iCE40).",
+   "ulx3s_notes": "Built --25k with an idcode for 12F in this repo; BRAM-based capture buffer, not SDRAM-backed.",
+   "tests": "src/Logic_Sniffer_tb.v present, not confirmed self-checking",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "Logic_Sniffer"
+    ]
+   }
+  },
+  {
+   "id": "kulp-tenyr-wb-intercon",
+   "name": "wb_intercon Wishbone mux/arbiter (olofk)",
+   "functions": [
+    "bus-fabric"
+   ],
+   "rank": "best",
+   "repo": "kulp__tenyr",
+   "files": [
+    "3rdparty/wb_intercon/rtl/verilog/wb_mux.v",
+    "3rdparty/wb_intercon/rtl/verilog/wb_arbiter.v"
+   ],
+   "top": "wb_mux",
+   "language": "Verilog",
+   "license": "ISC (file headers, Copyright Olof Kindgren)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Standard olofk/wb_intercon Wishbone crossbar mux and round-robin arbiter, wired into tenyr's own CPU SoC.",
+   "ulx3s_notes": "Fetched as a git submodule; actually used in hw/verilog/top.v for a ULX3S 12F build (yosys+nextpnr-ecp5+ecppack).",
+   "tests": "3rdparty/wb_intercon/bench/{wb_mux_tb.v,wb_arbiter_tb.v} (iverilog)",
+   "usage_patterns": {
+    "files": [
+     "wb_mux.v",
+     "wb_arbiter.v"
+    ],
+    "modules": [
+     "wb_mux",
+     "wb_arbiter"
+    ]
+   }
+  },
+  {
+   "id": "hazard3-ahbl-busfabric",
+   "name": "AHB-Lite crossbar/arbiter/APB bridge",
+   "functions": [
+    "bus-fabric"
+   ],
+   "rank": "alternative",
+   "repo": "ulx3s__hazard3",
+   "files": [
+    "example_soc/libfpga/busfabric/ahbl_crossbar.v",
+    "example_soc/libfpga/busfabric/ahbl_arbiter.v",
+    "example_soc/libfpga/busfabric/ahbl_to_apb.v",
+    "example_soc/libfpga/busfabric/ahbl_splitter.v"
+   ],
+   "top": "ahbl_crossbar",
+   "language": "Verilog",
+   "license": "WTFPL (file headers, Copyright 2018 Luke Wren)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "AHB-Lite crossbar, arbiter, splitter and an AHB-Lite-to-APB bridge, connecting the Hazard3 CPU to its peripherals.",
+   "ulx3s_notes": "Actually instantiated in example_soc/soc/example_soc.v for the ULX3S 85F / ULX4M-LD build; fetched via the Hazard3-libfpga submodule.",
+   "tests": "no unit test of the crossbar/arbiter themselves; indirectly exercised by test/sim SoC-level cxxrtl tests (coremark, riscv-tests)",
+   "usage_patterns": {
+    "files": [
+     "ahbl_crossbar.v",
+     "ahbl_to_apb.v"
+    ],
+    "modules": [
+     "ahbl_crossbar",
+     "ahbl_arbiter",
+     "ahbl_to_apb"
+    ]
+   }
+  },
+  {
+   "id": "rschlaikjer-wb-intercon",
+   "name": "wb_intercon (olofk), iCE40 copy",
+   "functions": [
+    "bus-fabric"
+   ],
+   "rank": "alternative",
+   "repo": "rschlaikjer__fpga-3-softcores",
+   "files": [
+    "vendor/wb_intercon/rtl/verilog/wb_mux.v",
+    "vendor/wb_intercon/rtl/verilog/wb_arbiter.v"
+   ],
+   "top": "wb_mux",
+   "language": "Verilog",
+   "license": "ISC (vendor/wb_intercon/LICENSE)",
+   "fpga": "iCE40",
+   "primitives": [],
+   "summary": "Same olofk/wb_intercon library as kulp__tenyr, vendored directly (not a submodule) alongside a VexRiscv SoC.",
+   "ulx3s_notes": "Files contain no SB_* primitives; only the board's PCF/PLL needs porting, the bus logic is vendor-neutral.",
+   "tests": "vendor/wb_intercon/bench/{wb_mux_tb.v,wb_arbiter_tb.v}",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "emard-max1112x-adc",
+   "name": "MAX1112x ADC reader (ulx3s-misc)",
+   "functions": [
+    "adc"
+   ],
+   "rank": "best",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/adc/max1112x/hdl/max1112x_reader_shift.vhd",
+    "examples/adc/max1112x/hdl/max1112x_reader_array.vhd",
+    "examples/adc/max1112x/hdl/max1112x_init_pack.vhd"
+   ],
+   "top": "max1112x_reader_shift",
+   "language": "VHDL",
+   "license": "BSD (`-- AUTHOR=EMARD` / `-- LICENSE=BSD` header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Init+read core for the onboard MAX1112x (MAX11125-family) SPI ADC used on the ULX3S; shift and array register variants.",
+   "ulx3s_notes": "Drop-in for the ULX3S onboard MAX11125 ADC pins; verified in docs/projects/emard__ulx3s-misc.md.",
+   "tests": "none found (repo-wide: only examples/audio/testbench/sinewave.c is a non-HDL C reference model)",
+   "usage_patterns": {
+    "files": [
+     "max1112x_reader_shift.vhd",
+     "max1112x_reader_array.vhd",
+     "max1112x_init_pack.vhd"
+    ],
+    "modules": [
+     "max1112x_reader_shift",
+     "max1112x_reader_array"
+    ]
+   }
+  },
+  {
+   "id": "emeb-orangecrab-adc-ddc",
+   "name": "Digital down-converter + AM/FM demod chain (post-ADC)",
+   "functions": [
+    "adc",
+    "dsp",
+    "radio"
+   ],
+   "rank": "alternative",
+   "repo": "emeb__orangecrab_adc",
+   "files": [
+    "gateware/verilog/src/ddc_14.v",
+    "gateware/verilog/src/demods.v",
+    "gateware/verilog/src/tuner_2.v",
+    "gateware/verilog/src/cic_dec_4.v",
+    "gateware/verilog/src/fir8dec_par.v"
+   ],
+   "top": "ddc_14",
+   "language": "Verilog",
+   "license": "none found (no LICENSE file in repo)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Digital down-converter, tuner NCO, AM/FM demodulators plus CIC decimator and FIR filter, fed from an external fast ADC on OrangeCrab 25F; no vendor primitives seen.",
+   "ulx3s_notes": "Needs an external high-speed ADC on ULX3S (no onboard equivalent); the DSP chain itself (CIC/FIR/demod) is portable.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ddc_14.v",
+     "demods.v",
+     "tuner_2.v",
+     "cic_dec_4.v",
+     "fir8dec_par.v"
+    ],
+    "modules": [
+     "ddc_14"
+    ]
+   }
+  },
+  {
+   "id": "emard-max1112x-emi",
+   "name": "MAX1112x ADC reader (ulx3s-emi copy)",
+   "functions": [
+    "adc"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s-emi",
+   "files": [
+    "hdl/max1112x_reader_array.vhd",
+    "hdl/max1112x_init_pack.vhd"
+   ],
+   "top": "max1112x_reader_array",
+   "language": "VHDL",
+   "language_note": "",
+   "license": "BSD (`-- AUTHOR=EMARD` / `-- LICENSE=BSD` header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Same EMARD MAX1112x ADC init/read core vendored into the ulx3s-emi (12F) example board design.",
+   "ulx3s_notes": "Same core as ulx3s-misc; use if you want the ulx3s-emi top-level wiring as a starting point.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "max1112x_reader_array.vhd",
+     "max1112x_init_pack.vhd"
+    ],
+    "modules": [
+     "max1112x_reader_array"
+    ]
+   }
+  },
+  {
+   "id": "buspirate-adc",
+   "name": "SPI ADC core (Bus Pirate Ultra HDL)",
+   "functions": [
+    "adc"
+   ],
+   "rank": "alternative",
+   "repo": "dangerousprototypes__buspirateultrahdl",
+   "files": [
+    "hdl/adc.v"
+   ],
+   "top": "adc",
+   "language": "Verilog",
+   "license": "GPL-3.0 (repo LICENSE)",
+   "fpga": "iCE40 HX8K",
+   "primitives": [],
+   "summary": "Standalone 14-bit SPI ADC read/calibration core for the Bus Pirate Ultra's onboard ADC channel.",
+   "ulx3s_notes": "adc.v itself is plain Verilog (no SB_* seen); the board's pll.v/buspirate.v use iCE40 SB_PLL40_CORE/SB_IO and would need ECP5 equivalents if reused wholesale.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "machdyne-fpga-dac-audio",
+   "name": "Sigma-delta PCM audio DAC (fpga-dac)",
+   "functions": [
+    "dac"
+   ],
+   "rank": "best",
+   "repo": "machdyne__fpga-dac",
+   "files": [
+    "rtl/audio.v"
+   ],
+   "top": "audio",
+   "language": "Verilog",
+   "license": "1-clause BSD-like (LICENSE.md, Lone Dynamics Corporation)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "First-order sigma-delta stereo audio DAC that streams 48kHz 16-bit signed PCM from SPI flash; simple phase accumulator, no vendor primitives in audio.v itself.",
+   "ulx3s_notes": "Self-contained modulator (l_pwm_acc/r_pwm_acc); reuse just the sigma-delta block and drive it from any PCM source (SDRAM, ESP32, etc.) instead of SPI flash. rtl/pll.v is board-specific and needs re-deriving for 25 MHz ULX3S input.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "spritetm-hadbadge-pdm",
+   "name": "PDM audio DAC (hadbadge2019 soc/audio)",
+   "functions": [
+    "dac"
+   ],
+   "rank": "alternative",
+   "repo": "spritetm__hadbadge2019_fpgasoc",
+   "files": [
+    "soc/audio/pdm.v"
+   ],
+   "top": "pdm",
+   "language": "Verilog",
+   "license": "BSD-3-Clause (in-file header, `LICENSE.bsd`, Sylvain Munaut 2019)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "First-order pulse-density-modulation DAC core with dither, used for the hadbadge2019 SoC's audio synth output.",
+   "ulx3s_notes": "Pairs well with soc/audio/synth_core.v in the same repo; plain Verilog, no ECP5-specific primitives.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "emard-ulx3s-misc-dacpwm",
+   "name": "Resistor+PWM hybrid DAC (dacpwm)",
+   "functions": [
+    "dac"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/audio/hdl/dacpwm.v",
+    "examples/audio/hdl/dacpwm_vhdl.vhd"
+   ],
+   "top": "dacpwm",
+   "language": "Verilog, VHDL",
+   "license": "none found (no header in file; repo has no LICENSE file)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Combines a coarse resistor-ladder DAC (upper bits) with a PWM output (lower bits) to raise effective DAC resolution from a small pin count.",
+   "ulx3s_notes": "Parametric C_pcm_bits/C_dac_bits; used in the ULX3S audio example (examples/audio/hdl/top_audio.v) with 25 MHz clock.",
+   "tests": "waveform-only (examples/audio/testbench/sinewave.c is a plain C reference model, not a Verilog tb)",
+   "usage_patterns": {
+    "files": [
+     "dacpwm.v"
+    ],
+    "modules": [
+     "dacpwm"
+    ]
+   }
+  },
+  {
+   "id": "emard-synthowheel-sigmadelta",
+   "name": "Sigma-delta DAC (synthowheel)",
+   "functions": [
+    "dac"
+   ],
+   "rank": "alternative",
+   "repo": "emard__synthowheel",
+   "files": [
+    "sigmadelta.vhd"
+   ],
+   "top": "sigmadelta",
+   "language": "VHDL",
+   "license": "BSD (LICENSE.txt: AUTHOR=EMARD LICENSE=BSD)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Standalone sigma-delta modulator used to drive the audio output of the synthowheel ULX3S synth project.",
+   "ulx3s_notes": "Pairs with synth.vhd in the same repo; single-bit output suitable for a simple RC lowpass to line-out.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sigmadelta.vhd"
+    ],
+    "modules": [
+     "sigmadelta"
+    ]
+   }
+  },
+  {
+   "id": "daveshah1-sigma-delta-dac",
+   "name": "Sigma-delta DAC (up5k-demos)",
+   "functions": [
+    "dac"
+   ],
+   "rank": "alternative",
+   "repo": "daveshah1__up5k-demos",
+   "files": [
+    "nes/sigma_delta_dac.v"
+   ],
+   "top": "sigma_delta_dac",
+   "language": "Verilog",
+   "license": "none found (repo has no LICENSE/COPYING file; nes.v claims GPL but no license text present)",
+   "fpga": "iCE40 UP5K",
+   "primitives": [],
+   "summary": "Tiny parametric-width sigma-delta DAC (delta/sigma adder pair) used for the NES APU audio output.",
+   "ulx3s_notes": "Plain Verilog, no SB_* primitives; drops onto ECP5 unchanged, only the surrounding NES top-level is iCE40-specific.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sigma_delta_dac.v"
+    ],
+    "modules": [
+     "sigma_delta_dac"
+    ]
+   }
+  },
+  {
+   "id": "emard-ulx3s-misc-i2s",
+   "name": "I2S audio interface (ulx3s-misc)",
+   "functions": [
+    "audio-digital"
+   ],
+   "rank": "best",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/audio/hdl/i2s.vhd",
+    "examples/audio/hdl/i2s_v.v"
+   ],
+   "top": "i2s",
+   "language": "VHDL (wrapper), Verilog",
+   "license": "BSD (`-- AUTHOR=EMARD` / `-- LICENSE=BSD` header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Parametric I2S transmit core (fmt/clk_hz/lrck_hz generics) demonstrated in the ULX3S audio example, VHDL wrapper over a Verilog core.",
+   "ulx3s_notes": "clk_hz=25000000 matches the ULX3S board oscillator; see examples/audio/hdl/top_audio.v for a complete instantiation.",
+   "tests": "waveform-only (testbench/sinewave.c is a non-HDL C reference model)",
+   "usage_patterns": {
+    "files": [
+     "i2s_v.v"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "orangecrab-usb-i2s-rx",
+   "name": "I2S receiver (orangecrab-usb)",
+   "functions": [
+    "audio-digital"
+   ],
+   "rank": "alternative",
+   "repo": "mangelajo__orangecrab-usb",
+   "files": [
+    "hdl/i2s/i2s.v"
+   ],
+   "top": "i2s",
+   "language": "Verilog",
+   "license": "none found (repo has no LICENSE/COPYING file)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Small I2S receiver: deserializes left/right 32-bit channel data from an external I2S codec given a 64fs input clock.",
+   "ulx3s_notes": "Plain Verilog, portable; pairs with hdl/clkdiv/clkdiv.v in the same repo for MCLK/BCLK generation.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "icesugar-pro-i2s-pdm",
+   "name": "I2S RX/TX + PDM/CIC mic front-end (sound2fft)",
+   "functions": [
+    "audio-digital"
+   ],
+   "rank": "alternative",
+   "repo": "mebner86__icesugar-pro_sound2fft",
+   "files": [
+    "rtl/i2s_rx.v",
+    "rtl/i2s_tx.v",
+    "rtl/pdm_cic.v",
+    "rtl/pdm_modulator.v"
+   ],
+   "top": "i2s_rx",
+   "language": "Verilog",
+   "license": "MIT (LICENSE, repo root)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "I2S receiver/transmitter plus a PDM-microphone CIC decimator and PDM modulator, part of a cocotb bit-exact-tested audio+FFT+HDMI pipeline for iCESugar-Pro (ECP5 25F).",
+   "ulx3s_notes": "Portable front-end; only the TMDS serializer elsewhere in the repo needs ECP5 ODDRX1F, not these audio blocks.",
+   "tests": "cocotb, bit-exact vs numpy (per repo README; test scripts not individually re-verified here)",
+   "usage_patterns": {
+    "files": [
+     "pdm_cic.v",
+     "pdm_modulator.v"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "f32c-spdif-tx",
+   "name": "S/PDIF transmitter (f32c)",
+   "functions": [
+    "audio-digital"
+   ],
+   "rank": "alternative",
+   "repo": "f32c__f32c",
+   "files": [
+    "rtl/soc/spdif_tx.vhd"
+   ],
+   "top": "spdif_tx",
+   "language": "VHDL",
+   "license": "BSD-2-Clause (repo-level per docs/projects/f32c__f32c.md; file itself carries no SPDX header, same ackspace.nl/EMARD-derived source)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Same ackspace.nl-derived S/PDIF transmitter as synthowheel's, vendored into the f32c SoC's peripheral set.",
+   "ulx3s_notes": "Used from the f32c SoC's audio/CPU bus glue; can be lifted standalone like the synthowheel copy.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "emard-synthowheel-spdif",
+   "name": "S/PDIF transmitter (synthowheel)",
+   "functions": [
+    "audio-digital"
+   ],
+   "rank": "alternative",
+   "repo": "emard__synthowheel",
+   "files": [
+    "spdif_tx.vhd"
+   ],
+   "top": "spdif_tx",
+   "language": "VHDL",
+   "license": "BSD (LICENSE.txt: AUTHOR=EMARD LICENSE=BSD)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "S/PDIF biphase-mark transmitter, derived from the ackspace.nl SPDIF project with EMARD's clock-divider modification; 24-bit signed PCM in, 25 MHz/48 kHz defaults.",
+   "ulx3s_notes": "C_clk_freq=25000000 matches the ULX3S oscillator directly; single-bit spdif_out needs a coax/TOSLINK line driver off-board.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "spdif_tx.vhd"
+    ],
+    "modules": [
+     "spdif_tx"
+    ]
+   }
+  },
+  {
+   "id": "lawrie-sn76489",
+   "name": "SN76489 PSG (sound chip)",
+   "functions": [
+    "sound-chips"
+   ],
+   "rank": "best",
+   "repo": "lawrie__ulx3s_sms",
+   "files": [
+    "src/sn76489.v"
+   ],
+   "top": "sn76489",
+   "language": "Verilog",
+   "license": "none found (no header in file; repo has no LICENSE/COPYING)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Texas Instruments SN76489 programmable sound generator (3 tone channels + noise), the Sega Master System/BBC Micro PSG; parametric AUDIO_RES output width.",
+   "ulx3s_notes": "Proven on ULX3S 85F in lawrie__ulx3s_sms, cheyao__sega-sms and danodus__ulx3s_sms; feed audio_out into an I2S/DAC block from this same collection.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sn76489.v"
+    ],
+    "modules": [
+     "sn76489"
+    ]
+   }
+  },
+  {
+   "id": "jt51-ym2151",
+   "name": "JT51 (YM2151 FM synth core)",
+   "functions": [
+    "sound-chips"
+   ],
+   "rank": "alternative",
+   "repo": "dlobato__cps1-musicbox",
+   "files": [
+    "gateware/rtl/jt51/hdl"
+   ],
+   "top": "jt51",
+   "language": "Verilog",
+   "license": "GPL-3.0 (gateware/rtl/jt51/LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Jotego's cycle-accurate reimplementation of the Yamaha YM2151 FM synthesizer (used in many arcade boards incl. CPS1); ships its own `ver/` verification testbenches.",
+   "ulx3s_notes": "Used as the CPS1 music core over a LiteX SoC targeting ULX3S (radiona_ulx3s.py); GPL-3.0 copyleft applies.",
+   "tests": "ver/ directory with per-module testbenches (jotego JT-series standard test harness; not individually re-run here)",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "jt51"
+    ]
+   }
+  },
+  {
+   "id": "danodus-jt89-ay8910",
+   "name": "JT89 (AY-3-8910-like PSG)",
+   "functions": [
+    "sound-chips"
+   ],
+   "rank": "alternative",
+   "repo": "danodus__ulx3s_68k",
+   "files": [
+    "src/jt89/jt89.v",
+    "src/jt89/jt89_tone.v",
+    "src/jt89/jt89_vol.v",
+    "src/jt89/jt89_noise.v",
+    "src/jt89/jt89_mixer.v"
+   ],
+   "top": "jt89",
+   "language": "Verilog",
+   "license": "GPL-3.0-or-later (in-file header, Jose Tejada / jotego)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Jotego's AY-3-8910-compatible 3-channel PSG core (tone/noise/volume/mixer), used as the sound chip in the Atari ST-style ULX3S 68000 project.",
+   "ulx3s_notes": "Proven on ULX3S 85F alongside src/fx68k.sv (68000 core) in the same repo.",
+   "tests": "none found in this pass",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "jt89"
+    ]
+   }
+  },
+  {
+   "id": "daglem-redip-sid",
+   "name": "SID (MOS 6581/8580) reimplementation, technology-independent",
+   "functions": [
+    "sound-chips"
+   ],
+   "rank": "alternative",
+   "repo": "daglem__redip-sid",
+   "files": [
+    "gateware/sid_voice.sv",
+    "gateware/sid_waveform.sv",
+    "gateware/sid_envelope.sv",
+    "gateware/sid_filter.sv",
+    "gateware/sid_dac.sv",
+    "gateware/sid_api.sv"
+   ],
+   "top": "sid_api",
+   "language": "SystemVerilog",
+   "license": "CERN-OHL-S-2.0 (LICENSE, root; matching header in gateware/*.sv, Dag Lem 2022-2023)",
+   "fpga": "iCE40 UP5K",
+   "primitives": [],
+   "summary": "Reference-quality Commodore 64 SID sound chip DSP core (waveform/envelope/filter/voice/DAC), technology-independent with no SB_* primitives in the listed files.",
+   "ulx3s_notes": "Core logic ports directly to ECP5; needs an I2S/sigma-delta output stage from this collection and the surrounding reDIP-SID board glue rewritten.",
+   "tests": "none found in this pass",
+   "usage_patterns": {
+    "files": [
+     "sid_voice.sv",
+     "sid_waveform.sv",
+     "sid_envelope.sv",
+     "sid_filter.sv",
+     "sid_dac.sv",
+     "sid_api.sv"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "bithack-icesid",
+   "name": "SID reimplementation (icesid)",
+   "functions": [
+    "sound-chips"
+   ],
+   "rank": "alternative",
+   "repo": "bit-hack__icesid",
+   "files": [
+    "icesid/sid.v",
+    "icesid/voice.v",
+    "icesid/env.v",
+    "icesid/filter.v",
+    "icesid/dac.v"
+   ],
+   "top": "sid",
+   "language": "Verilog",
+   "license": "CERN-OHL-S-2.0 (LICENCE, root; matching SPDX header, Sylvain Munaut)",
+   "fpga": "iCE40 UP5K",
+   "primitives": [],
+   "summary": "Alternate technology-independent Verilog SID core (dac/env/voice/filter/mult/output split into separate modules), no SB_* primitives.",
+   "ulx3s_notes": "Same porting story as redip-sid: DSP core is portable, needs a ULX3S audio output stage.",
+   "tests": "none found in this pass",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "jamesrosssharp-1bit-am",
+   "name": "1-bit AM transceiver chain (ULX3S-proven)",
+   "functions": [
+    "radio"
+   ],
+   "rank": "best",
+   "repo": "jamesrosssharp__1_bit_am",
+   "files": [
+    "src/am_gen.v",
+    "src/am_demod.v",
+    "src/mixer.v",
+    "src/nco.v",
+    "src/cic.v",
+    "impl/ulx3s/top.v",
+    "impl/ulx3s/ulx3s_v316.lpf"
+   ],
+   "top": "top",
+   "language": "Verilog",
+   "license": "MIT (LICENSE.txt)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Complete 1-bit AM transmit+receive chain (NCO, mixer, AM generator/demodulator, CIC decimation) with a real ULX3S top-level and LPF, taking RF in/out on GPIO pins and I2S audio out.",
+   "ulx3s_notes": "impl/ulx3s/top.v is a direct ULX3S build target (gp9 RF in, gp8 RF out, gp1-4 I2S); impl/ulx3s/Makefile builds it as-is.",
+   "tests": "none found (no tb/ directory found in this pass)",
+   "usage_patterns": {
+    "files": [
+     "am_gen.v",
+     "am_demod.v"
+    ],
+    "modules": [
+     "am_gen",
+     "am_demod"
+    ]
+   }
+  },
+  {
+   "id": "nicocavallu-dds-lo",
+   "name": "DDS local oscillator",
+   "functions": [
+    "radio",
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "nicocavallu__rf-dds-lo",
+   "files": [
+    "src/dds_top.v",
+    "src/phase_accumulator.v",
+    "src/sine_lut.v"
+   ],
+   "top": "dds_top",
+   "language": "Verilog",
+   "license": "none found (no LICENSE file)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Generic phase-accumulator DDS core with a sine lookup table, intended as a local-oscillator source for an RF mixer front-end.",
+   "ulx3s_notes": "Board-independent; repo ships a ulx3s.lpf but no explicit nextpnr device size was found.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "dds_top.v",
+     "phase_accumulator.v"
+    ],
+    "modules": [
+     "dds_top"
+    ]
+   }
+  },
+  {
+   "id": "emard-fm-rds",
+   "name": "FM stereo transmitter with RDS",
+   "functions": [
+    "radio"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/fm/hdl/fm.vhd",
+    "examples/fm/hdl/fmgen.vhd",
+    "examples/fm/hdl/rds.vhd",
+    "examples/fm/hdl/fir.vhd",
+    "examples/fm/hdl/lowpass.vhd",
+    "examples/fm/hdl/bram_rds.vhd",
+    "examples/fm/hdl/message_ps.vhd",
+    "examples/fm/hdl/message_ps_rt.vhd"
+   ],
+   "top": "fm",
+   "language": "VHDL",
+   "license": "BSD (`-- (c) Marko Zec` / `-- LICENSE=BSD` on fmgen.vhd; other files in the set not individually re-checked)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Stereo FM transmitter with RDS (DBPSK) subcarrier generation, FIR/lowpass filters and RDS message RAM; demonstrated in the ULX3S fm example.",
+   "ulx3s_notes": "examples/fm/top/top_fm.v is the ULX3S-ready top; has its own hdl/test/fmgen_test.vhd (VHDL testbench, waveform-only per repo convention).",
+   "tests": "hdl/test/fmgen_test.vhd (VHDL testbench, waveform-only; not individually re-run here)",
+   "usage_patterns": {
+    "files": [
+     "fmgen.vhd",
+     "bram_rds.vhd"
+    ],
+    "modules": [
+     "fmgen"
+    ]
+   }
+  },
+  {
+   "id": "emard-rdsfpga-rds",
+   "name": "Standalone RDS DBPSK modulator",
+   "functions": [
+    "radio"
+   ],
+   "rank": "alternative",
+   "repo": "emard__rdsfpga",
+   "files": [
+    "rds.vhd",
+    "fmgen.vhd"
+   ],
+   "top": "rds",
+   "language": "VHDL",
+   "license": "BSD in headers (`-- LICENSE=BSD`; no repo-level LICENSE file)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "RDS modulator with DBPSK (by Davor Jadrijevic), circulates a memory address to fetch 8-bit RDS data words, MSB first.",
+   "ulx3s_notes": "Per project memory this repo's board target is ULX2S-only; the rds.vhd/fmgen.vhd modules themselves are board-independent and match the ones bundled in ulx3s-misc's fm/ example.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "jamesrosssharp-mixer-pcb-superhet",
+   "name": "Superheterodyne AM/FM receive chain with per-block testbenches",
+   "functions": [
+    "radio"
+   ],
+   "rank": "alternative",
+   "repo": "jamesrosssharp__ulx3s_mixer_pcb",
+   "files": [
+    "hdl/src/mixer.v",
+    "hdl/src/am_demod.v",
+    "hdl/src/fm_demod.v",
+    "hdl/src/dpll.v",
+    "hdl/src/bandpass_19khz.v",
+    "hdl/src/cic.v",
+    "hdl/src/aud_cic.v",
+    "hdl/src/nco.v",
+    "hdl/impl/ulx3s/top.v"
+   ],
+   "top": "top",
+   "language": "Verilog",
+   "license": "MIT (hdl/LICENSE.txt)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Mixer, AM/FM demodulators, 19kHz pilot bandpass filter and DPLL for a superheterodyne receiver, built against an external RF mixer add-on PCB on the ULX3S.",
+   "ulx3s_notes": "hdl/impl/ulx3s/top.v is a real ULX3S target; each DSP block has its own testbench under hdl/test/<NNN_NAME>/tb.v.",
+   "tests": "per-block testbenches under hdl/test/ (e.g. 001_NCO/tb.v, 008_DPLL/tb.v); waveform-dump only (`$dumpvars`/VCD), no self-checking assertions seen",
+   "usage_patterns": {
+    "files": [
+     "bandpass_19khz.v"
+    ],
+    "modules": [
+     "am_demod",
+     "fm_demod"
+    ]
+   }
+  },
+  {
+   "id": "semify-wfg-stim-sine",
+   "name": "Waveform-generator DDS sine core (AXI-Stream, cocotb-tested)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "best",
+   "repo": "semify-eda__waveform-generator",
+   "files": [
+    "design/wfg_stim_sine/rtl/wfg_stim_sine.sv",
+    "design/wfg_stim_sine/rtl/wfg_stim_sine_top.sv",
+    "design/wfg_stim_sine/testbench/test_wfg_stim_sine.py"
+   ],
+   "top": "wfg_stim_sine",
+   "language": "SystemVerilog",
+   "license": "Apache-2.0 (SPDX header in-file, semify)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Parametric NCO/DDS sine generator with AXI-Stream output (angular increment, gain, offset registers), part of a modular Wishbone waveform-generator SoC built for ULX3S.",
+   "ulx3s_notes": "fpga/ulx3s_soc/ and fpga/ulx3s_barebones/ are real ULX3S build targets in this repo; each wfg_* subcore (wfg_core, wfg_subcore, wfg_interconnect, wfg_drive_spi, wfg_stim_mem, wfg_drive_pat) has its own cocotb testbench under the same pattern.",
+   "tests": "cocotb (design/wfg_stim_sine/testbench/test_wfg_stim_sine.py + sim/Makefile)",
+   "usage_patterns": {
+    "files": [
+     "wfg_stim_sine.sv"
+    ],
+    "modules": [
+     "wfg_stim_sine"
+    ]
+   }
+  },
+  {
+   "id": "mebner86-fft256",
+   "name": "256-point radix-2 FFT core",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "mebner86__icesugar-pro_sound2fft",
+   "files": [
+    "rtl/fft256.v",
+    "rtl/fft_real512.v"
+   ],
+   "top": "fft256",
+   "language": "Verilog",
+   "license": "MIT (LICENSE, repo root)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "256-point radix-2 decimation-in-time FFT, streams in 16-bit signed samples, computes 8 butterfly stages and outputs magnitude for spectrum display; uses ECP5 EBR-inferring dual-port RAM.",
+   "ulx3s_notes": "Requires a generated twiddle.hex (gen_twiddle.py in repo); part of a cocotb bit-exact-tested pipeline built for iCESugar-Pro (ECP5 25F), directly portable to ULX3S.",
+   "tests": "cocotb, bit-exact vs numpy (per repo README, not individually re-run here)",
+   "usage_patterns": {
+    "files": [
+     "fft256.v",
+     "fft_real512.v"
+    ],
+    "modules": [
+     "fft256"
+    ]
+   }
+  },
+  {
+   "id": "emeb-cic-fir-decimator",
+   "name": "CIC decimator + FIR decimation filter",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "emeb__orangecrab_adc",
+   "files": [
+    "gateware/verilog/src/cic_dec_4.v",
+    "gateware/verilog/src/fir8dec_par.v"
+   ],
+   "top": "cic_dec_4",
+   "language": "Verilog",
+   "license": "none found (no LICENSE file in repo)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "4-stage pipelined CIC decimator (parametric stage count/growth/word sizes) followed by an 8-tap parallel FIR decimation filter; classic SDR sample-rate-reduction front end.",
+   "ulx3s_notes": "Plain parametric Verilog, no vendor primitives seen; combine with an NCO/mixer from this collection for a full DDC.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "cic_dec_4.v",
+     "fir8dec_par.v"
+    ],
+    "modules": [
+     "cic_dec_4"
+    ]
+   }
+  },
+  {
+   "id": "osresearch-cordic",
+   "name": "CORDIC sin/cos core",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "osresearch__up5k",
+   "files": [
+    "cordic.v"
+   ],
+   "top": "cordic",
+   "language": "Verilog",
+   "license": "none found (no LICENSE/COPYING file; README states none)",
+   "fpga": "iCE40 UP5K",
+   "primitives": [],
+   "summary": "Parametric CORDIC rotator producing sin/cos outputs; plain Verilog with no SB_* primitives.",
+   "ulx3s_notes": "Standalone module, portable to ECP5 as-is; only the surrounding up5k board top-levels are iCE40-specific.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "cordic.v"
+    ],
+    "modules": [
+     "cordic"
+    ]
+   }
+  },
+  {
+   "id": "jamesrosssharp-nco-cic",
+   "name": "NCO + CIC building blocks (mixer_pcb)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "jamesrosssharp__ulx3s_mixer_pcb",
+   "files": [
+    "hdl/src/nco.v",
+    "hdl/src/cic.v",
+    "hdl/src/aud_cic.v",
+    "hdl/src/mult.v"
+   ],
+   "top": "nco",
+   "language": "Verilog",
+   "license": "MIT (hdl/LICENSE.txt)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Numerically-controlled oscillator (sin/cos outputs) and CIC decimators used as generic DSP building blocks in the ULX3S mixer-PCB SDR chain.",
+   "ulx3s_notes": "Each block has a standalone testbench (hdl/test/001_NCO/tb.v etc., waveform-dump only); reusable independently of the radio-specific demod blocks.",
+   "tests": "per-block testbenches under hdl/test/ (waveform-dump only, no assertions)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "yosyshq-picorv32",
+   "name": "PicoRV32 RISC-V core",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "best",
+   "repo": "yosyshq__picorv32",
+   "files": [
+    "picorv32.v"
+   ],
+   "top": "picorv32",
+   "language": "Verilog",
+   "license": "ISC (COPYING)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Single-file RV32I(MC) core, board- and vendor-agnostic, the most-reused RISC-V core in the collection (had2019/hazard3-doom bootloaders, hadbadge2019, wuxx__icesugar, racerxdl__colorlight-picorv32, nklabs, lawrie examples...).",
+   "ulx3s_notes": "No board dependency; wrap with picosoc.v-style memory-mapped peripherals and a BRAM/flash for firmware.",
+   "tests": "self-checking: make test/test_wb/test_ez/test_axi (iverilog) and test_verilator, magic-MMIO pass/fail check",
+   "usage_patterns": {
+    "files": [
+     "picorv32.v"
+    ],
+    "modules": [
+     "picorv32"
+    ]
+   }
+  },
+  {
+   "id": "f32c-core",
+   "name": "f32c RISC-V/MIPS-compatible core",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "f32c__f32c",
+   "files": [
+    "rtl/cpu/f32c_core.vhd",
+    "rtl/cpu/idecode_rv32.vhd",
+    "rtl/cpu/idecode_mi32.vhd"
+   ],
+   "top": "f32c_core",
+   "language": "VHDL",
+   "license": "BSD-2-Clause (most files, per docs/projects/f32c__f32c.md)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Pipelined core that decodes either RISC-V (RV32IM) or a MIPS-compatible ISA (MI32) at build time (idecode_rv32.vhd/idecode_mi32.vhd), backing an entire SoC family (UART/SDRAM/DVI/USB/audio) proven across ULX3S 12F-85F for over a decade.",
+   "ulx3s_notes": "Select ISA via the defs_f32c.vhd generic; comes with its own SoC glue, not a bare drop-in CPU.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "f32c_core.vhd"
+    ],
+    "modules": [
+     "f32c_core"
+    ]
+   }
+  },
+  {
+   "id": "wren6991-hazard3",
+   "name": "Hazard3 RV32IMAC core",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "wren6991__hazard3",
+   "files": [
+    "hdl/hazard3_core.v",
+    "hdl/hazard3_csr.v",
+    "hdl/hazard3_pmp.v"
+   ],
+   "top": "hazard3_core",
+   "language": "Verilog",
+   "license": "Apache-2.0 (root LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Pipelined RV32IMAC core with CSR/PMP/debug support, board-agnostic; the ulx3s__hazard3 build validates it on real ULX3S 85F and ULX4M-LD hardware with documented Fmax/build steps.",
+   "ulx3s_notes": "12F is too small (BRAM); use 85F. See ulx3s__hazard3/doc/ulx3s-ulx4m-build-and-validation.md.",
+   "tests": "self-checking: test/sim/test.py via cxxrtl, PASS/FAIL + CPU exit code",
+   "usage_patterns": {
+    "files": [
+     "hazard3_core.v",
+     "hazard3_csr.v"
+    ],
+    "modules": [
+     "hazard3_core",
+     "hazard3_csr"
+    ]
+   }
+  },
+  {
+   "id": "kianv-sv32-core",
+   "name": "KianV RV32IMA+Sv32 core (Linux-capable)",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "splinedrive__kianriscv",
+   "files": [
+    "linux_socs/LinuxSoC_v2/engineering/kianv-rv32-linuxcore/kianv_sv32.v"
+   ],
+   "top": "kianv_sv32",
+   "language": "Verilog",
+   "license": "Apache-2.0 (SPDX header in file)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Standalone SoC-independent RV32IMA core with an Sv32 MMU, the CPU used by splinedrive's Linux-on-ULX3S SoC; reusable on its own wherever an MMU-capable RV32 core is needed, not just with kianriscv's own bus.",
+   "ulx3s_notes": "Pair with the repo's sdram/icache/dcache/clint/plic modules for a full SoC (85F default).",
+   "tests": "1 tb file present (not confirmed self-checking)",
+   "usage_patterns": {
+    "files": [
+     "kianv_sv32.v"
+    ],
+    "modules": [
+     "kianv_sv32"
+    ]
+   }
+  },
+  {
+   "id": "stnolting-neorv32",
+   "name": "NEORV32 RV32 core (VHDL)",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "stnolting__neorv32",
+   "files": [
+    "rtl/core"
+   ],
+   "top": "neorv32_top",
+   "language": "VHDL (+ generated Verilog wrapper in rtl/verilog)",
+   "license": "BSD-3-Clause",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Full-featured RV32 microcontroller core (CSR, on-chip debugger, rich peripheral set), vendor-agnostic; stnolting__neorv32-setups provides a generic open-toolchain osflow that builds it for ULX3S (BOARD=ULX3S).",
+   "ulx3s_notes": "No ULX3S target ships inside this repo itself; use the neorv32-setups osflow or fedy0__neo's neorv32_ULX3S_BoardTop_MinimalBoot.vhd top.",
+   "tests": "self-checking: make -C rtl/verilog sim (ghdl->Verilog, checks for 'Simulation successful!' vs timeout)",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "neorv32_top"
+    ]
+   }
+  },
+  {
+   "id": "rschlaikjer-vexriscv",
+   "name": "VexRiscv (SpinalHDL-generated Verilog)",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "rschlaikjer__fpga-3-softcores",
+   "files": [
+    "vendor/vexriscv/VexRiscv.v"
+   ],
+   "top": "VexRiscv",
+   "language": "Verilog (SpinalHDL-generated)",
+   "license": "MIT (upstream VexRiscv/SpinalHDL project; repo LICENSE.md is MIT, no per-file header on the generated .v)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Vendored single-file Verilog output of a VexRiscv RV32 configuration, wired to a Wishbone SoC in this repo; the same generate-a-.v-snapshot pattern also appears in hanseo03__ulx3s-vexriscv-soc and thorkn's ULX3S VexRiscv examples.",
+   "ulx3s_notes": "Regenerate with GenVexRiscv.scala for a different pipeline/extension config; the checked-in .v is a fixed snapshot.",
+   "tests": "waveform tb in ./test, ./sim (8 files, not confirmed self-checking)",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "VexRiscv"
+    ]
+   }
+  },
+  {
+   "id": "chrismoos-m6502",
+   "name": "cpu_6502 (Klaus Dormann-verified 6502 core)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "best",
+   "repo": "chrismoos__m6502",
+   "files": [
+    "rtl/cpu_6502.sv",
+    "rtl/cpu_6502_alu.sv",
+    "rtl/cpu_6502_ir_decoder.sv",
+    "rtl/cpu_6502_microcode.sv"
+   ],
+   "top": "cpu_6502",
+   "language": "SystemVerilog",
+   "license": "MIT (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "6502-compatible core, and the most reusable/tested CPU of any family in this collection: 9 cocotb test suites plus a Klaus Dormann full-opcode functional test, with ready-made ULX3S and Fomu targets/ dirs.",
+   "ulx3s_notes": "targets/ulx3s/ is a direct ULX3S build; no porting needed.",
+   "tests": "self-checking: make test (9 cocotb suites, python asserts) + make test-klaus (Klaus Dormann functional ROM)",
+   "usage_patterns": {
+    "files": [
+     "cpu_6502.sv",
+     "cpu_6502_microcode.sv"
+    ],
+    "modules": [
+     "cpu_6502"
+    ]
+   }
+  },
+  {
+   "id": "cdp1802-fpgacosmacelf",
+   "name": "CDP1802-compatible core (SpinalHDL)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "alternative",
+   "repo": "lawrie__fpgacosmacelf",
+   "files": [
+    "src/main/scala/Spinal1802/CDP1802.scala"
+   ],
+   "top": "CDP1802",
+   "language": "Scala (SpinalHDL)",
+   "license": "GPL-3.0",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "'Others' family pick #2: a COSMAC ELF (CDP1802 CPU + CDP1861 video) reimplementation in SpinalHDL, elaborated to Verilog/VHDL at build time; built for ULX3S 12F default (12-85 range).",
+   "ulx3s_notes": "Needs sbt+SpinalHDL to elaborate before synthesis, unlike the plain-HDL cores above.",
+   "tests": "./verification dir present; self-checking status not confirmed",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "CDP1802"
+    ]
+   }
+  },
+  {
+   "id": "fx68k-m68k-ulx3s",
+   "name": "fx68k 68000-compatible core (nullobject vendored copy)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "alternative",
+   "repo": "nullobject__m68k-ulx3s",
+   "files": [
+    "lib/fx68k/fx68k.v",
+    "lib/fx68k/fx68kAlu.v"
+   ],
+   "top": "fx68k",
+   "language": "Verilog",
+   "license": "GPL-3.0 (lib/fx68k/LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "The 68000-family pick: fx68k is used throughout the collection (also in lawrie__ulx3s_examples/test68, danodus__ulx3s_68k, lawrie__ulx3s_mac128/ql); this copy is the one with an explicit vendored LICENSE file, unlike the widely-copied lawrie__ulx3s_examples/test68/fx68k.v which carries none.",
+   "ulx3s_notes": "Built for ULX3S 85F (Makefile DEVICE=85k) with a GPU/OLED SoC wrapped around it; the CPU files alone are reusable.",
+   "tests": "none found for fx68k itself (repo's make sim only exercises hdl/gpu.v)",
+   "usage_patterns": {
+    "files": [
+     "fx68k.v",
+     "fx68kAlu.v"
+    ],
+    "modules": [
+     "fx68k"
+    ]
+   }
+  },
+  {
+   "id": "i8080-altair",
+   "name": "i8080-compatible core (Bashkiria-2M-derived)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "alternative",
+   "repo": "lawrie__ulx3s_examples",
+   "files": [
+    "computer/i8080.v"
+   ],
+   "top": "i8080",
+   "language": "Verilog",
+   "license": "modified BSD (Copyright (C) 2010 Dmitry Tselikov, LICENSE.TXT referenced in-file)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "8080-compatible core lifted from the Bashkiria-2M FPGA replica, wired here into an Altair 8800 emulator (computer/altair.v, computer/top_altair.v) built for ULX3S 25F/85F.",
+   "ulx3s_notes": "computer/top_altair.v is the ready ULX3S top; no other i8080 core was found in the collection.",
+   "tests": "waveform-only tb present elsewhere in repo (test68/ps2send), none specific to i8080.v",
+   "usage_patterns": {
+    "files": [
+     "i8080.v"
+    ],
+    "modules": [
+     "i8080"
+    ]
+   }
+  },
+  {
+   "id": "tms99000-ti99",
+   "name": "TMS9900-family CPU core (public domain)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "alternative",
+   "repo": "pnru__ti99",
+   "files": [
+    "ti99_2/tms99000.v"
+   ],
+   "top": "tms99000",
+   "language": "Verilog",
+   "license": "public domain (file header)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "'Others' family pick: a public-domain TMS99xxx CPU core (TI-99/4A lineage) built into a complete ULX3S 25F home-computer replica with HDMI, PS/2 and SD card.",
+   "ulx3s_notes": "speccery__icy99 is a second TMS9900-family repo (own core, license none found) if a different implementation is wanted.",
+   "tests": "1 tb file present",
+   "usage_patterns": {
+    "files": [
+     "tms99000.v"
+    ],
+    "modules": [
+     "tms99000"
+    ]
+   }
+  },
+  {
+   "id": "tv80-galaksija",
+   "name": "TV80 Z80-compatible core (emard__ulx3s_galaksija copy)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ulx3s_galaksija",
+   "files": [
+    "tv80n.v",
+    "tv80_alu.v",
+    "tv80_reg.v",
+    "tv80_mcode.v",
+    "tv80_core.v"
+   ],
+   "top": "tv80n",
+   "language": "Verilog",
+   "license": "MIT (OpenCores-style header, Copyright (c) 2004 Guy Hutchison, based on Daniel Wallner's VHDL T80)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "The Z80-family pick: a Verilog port (TV80) of the well-known T80 VHDL Z80 core, no vendor primitives, and by far the most reused retro CPU in the collection (galaksija, jupiter_ace, msx_fpga, sms/sg-1000/gamegear, trs_80, yazsof...).",
+   "ulx3s_notes": "This copy already carries a standalone ULX3S build (FPGA_SIZE 12/25/45/85).",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "tv80n.v",
+     "tv80_mcode.v"
+    ],
+    "modules": [
+     "tv80n"
+    ]
+   }
+  },
+  {
+   "id": "litex-vexriscv-linux",
+   "name": "linux-on-litex-vexriscv (ULX3S board target)",
+   "functions": [
+    "linux"
+   ],
+   "rank": "best",
+   "repo": "litex-hub__linux-on-litex-vexriscv",
+   "files": [
+    "boards.py"
+   ],
+   "top": "",
+   "language": "Python (LiteX board description)",
+   "license": "BSD-2-Clause (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "The de-facto standard 'Linux on an FPGA' project: boards.py's ULX3S class wires LiteX's VexRiscv SoC generator to litex_boards' radiona_ulx3s target via make.py --board=ulx3s, with a buildroot Linux image in the wider LiteX ecosystem.",
+   "ulx3s_notes": "Needs the external litex/litex-boards/migen toolchain (not vendored here); 45F/85F in practice for enough BRAM/SDRAM.",
+   "tests": "2 tb files in ./test (scope unclear, likely LiteX-side unit tests, not ULX3S-specific)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "flix-v-kianv-apio",
+   "name": "flix-v KianV-Apio (ULX3S-12F, apio flow)",
+   "functions": [
+    "linux"
+   ],
+   "rank": "alternative",
+   "repo": "fpgawars__flix-v",
+   "files": [
+    "Hardware/KianV-Apio"
+   ],
+   "top": "kianv_harris_mc_edition",
+   "language": "Verilog",
+   "license": "LGPL-2.1",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "KianV RV32 core (Harris multicycle edition) plus SDRAM controller and UART, packaged as an apio project targeting ulx3s-12f directly (apio.ini board = ulx3s-12f), a lighter-weight alternative to the 85F Linux SoCs.",
+   "ulx3s_notes": "apio.ini already selects ulx3s-12f; verify current Linux-boot capability, as 12F apio flows are typically limited to bare-metal by BRAM size.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "kianriscv-linux-soc",
+   "name": "KianV Linux/XV6 SoC",
+   "functions": [
+    "linux"
+   ],
+   "rank": "alternative",
+   "repo": "splinedrive__kianriscv",
+   "files": [
+    "linux_socs/LinuxSoC_v2"
+   ],
+   "top": "",
+   "language": "Verilog",
+   "license": "mixed: ISC (LICENSE.md), Apache-2.0/BSD-2/GPL-2.0 per-file SPDX; kianv_sv32.v itself Apache-2.0",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Full SoC around kianv_sv32.v (SDRAM controllers, icache/dcache, CLINT/PLIC, QSPI, UART) built to run Linux and XV6, with board targets from 12k up to um-85k.",
+   "ulx3s_notes": "85F default; the standalone kianv_sv32.v core alone is catalogued separately under cpu-riscv.",
+   "tests": "1 tb file present",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "koti-linux-soc",
+   "name": "Koti RV32IMA+MMU SoC (mainline Linux 6.12 on ULX3S 85F)",
+   "functions": [
+    "linux"
+   ],
+   "rank": "alternative",
+   "repo": "joaln27__koti",
+   "files": [
+    "src/koti_core.sv"
+   ],
+   "top": "koti_core",
+   "language": "SystemVerilog",
+   "license": "Apache-2.0",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "RV32IMA core with TLB/icache/dcache/MMU that the repo documents booting mainline Linux 6.12 (buildroot, busybox) to a userspace console on a ULX3S 85F, with vendored USB HID host, SD-SPI and DVI TX peripherals.",
+   "ulx3s_notes": "README shows a boot-log screenshot; single-author project, verify current build status before depending on it.",
+   "tests": "23 cocotb tb files in ./test, including a full Linux boot simulated on every push (per README)",
+   "usage_patterns": {
+    "files": [
+     "koti_core.sv"
+    ],
+    "modules": [
+     "koti_core"
+    ]
+   }
+  },
+  {
+   "id": "saxonsoc-radiona-ulx3s",
+   "name": "SaxonSoc Linux/U-Boot BSP for ULX3S",
+   "functions": [
+    "linux"
+   ],
+   "rank": "alternative",
+   "repo": "spinalhdl__saxonsoc",
+   "files": [
+    "bsp/radiona/ulx3s"
+   ],
+   "top": "",
+   "language": "Scala (SpinalHDL SoC generator) + C/config",
+   "license": "MIT (LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Board support package wiring SpinalHDL's SaxonSoc BMB-bus generator to the ULX3S, with minimal and smp U-Boot/Linux configs; lawrie__spinalulx3s ships prebuilt saxon-bin/ bitstreams from the same generator (minimal/sdram/linux variants).",
+   "ulx3s_notes": "12F for minimal (--12k), 25F for smp (FPGA_KS=25k); dok3r__ulx3s-saxonsoc/ulx3s__ulx3s-saxonsoc hold the build.sh/buildsmp.sh recipes.",
+   "tests": "tb dirs present (./test, ./software/standalone/test); no self-checking make target found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "emard-ecp5pll",
+   "name": "ecp5pll parametric PLL",
+   "functions": [
+    "pll-clock"
+   ],
+   "rank": "best",
+   "repo": "emard__ulx3s-misc",
+   "files": [
+    "examples/ecp5pll/hdl/sv/ecp5pll.sv",
+    "examples/ecp5pll/hdl/vhd/ecp5pll.vhd"
+   ],
+   "top": "ecp5pll",
+   "language": "SystemVerilog, VHDL",
+   "license": "BSD (// (c)EMARD / License=BSD, file header)",
+   "fpga": "ECP5",
+   "primitives": [
+    "EHXPLLL"
+   ],
+   "summary": "Computes EHXPLLL divider/phase parameters from requested in/out frequencies at elaboration time; up to 4 outputs with independent phase, actual achieved frequency reported in the trellis/Diamond build log. Copied into dozens of other repos in this collection.",
+   "ulx3s_notes": "Drop-in on ULX3S: in_hz=25000000 (board oscillator); no other configuration needed.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ecp5pll.sv",
+     "ecp5pll.vhd"
+    ],
+    "modules": [
+     "ecp5pll"
+    ]
+   }
+  },
+  {
+   "id": "bqqbarbhg-blip-pll",
+   "name": "blip nMigen ECP5 PLL wrapper",
+   "functions": [
+    "pll-clock"
+   ],
+   "rank": "alternative",
+   "repo": "bqqbarbhg__blipv1",
+   "files": [
+    "blip/rtl/pll.py",
+    "blip/rtl/ecp5/pll.py"
+   ],
+   "top": "",
+   "language": "Python (nMigen)",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [
+    "EHXPLLL"
+   ],
+   "summary": "nMigen PLL wrapper (PllClock) with an ECP5-specific backend, built directly against nmigen_boards' ULX3S_85F_Platform for the blip engine's ULX3S target.",
+   "ulx3s_notes": "Requires the nMigen/Amaranth flow and nmigen-boards' ULX3S platform definition rather than plain Verilog/VHDL.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "glasgow-ecp5-pll",
+   "name": "Glasgow ECP5 PLL parameter solver (Amaranth)",
+   "functions": [
+    "pll-clock"
+   ],
+   "rank": "alternative",
+   "repo": "glasgowembedded__glasgow",
+   "files": [
+    "software/glasgow/gateware/pll/ecp5.py"
+   ],
+   "top": "",
+   "language": "Python (Amaranth)",
+   "license": "0BSD OR Apache-2.0 (LICENSE-0BSD.txt, LICENSE-Apache-2.0.txt)",
+   "fpga": "ECP5",
+   "primitives": [
+    "EHXPLLL",
+    "FD1S3AX"
+   ],
+   "summary": "Amaranth-based EHXPLLL parameter solver derived from Project Trellis' PLL calculations, instantiating EHXPLLL plus an FD1S3AX loss-of-lock flop and reset-synchronizer flops; used by Glasgow revD which is itself an ECP5 25F board.",
+   "ulx3s_notes": "Needs an Amaranth flow (not plain yosys/nextpnr from Verilog/VHDL sources); complements rather than replaces emard-ecp5pll for HDL-only designs.",
+   "tests": "software/glasgow/gateware/pll/bench.py (benchmark/consistency script, not a synthesis test)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "hdl4fpga-ecp5-clockgen",
+   "name": "hdl4fpga ecp5_videodcm / ecp5_sdramdcm clock generators",
+   "functions": [
+    "pll-clock"
+   ],
+   "rank": "alternative",
+   "repo": "hdl4fpga__hdl4fpga",
+   "files": [
+    "library/apps/ecp5_videodcm.vhd",
+    "library/apps/ecp5_sdramdcm.vhd"
+   ],
+   "top": "ecp5_videodcm",
+   "language": "VHDL",
+   "license": "MIT (LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [
+    "EHXPLLL"
+   ],
+   "summary": "Two purpose-built EHXPLLL wrappers (video pixel-clock and SDRAM clock) that all three ULX3S hdl4fpga apps instantiate from a single 25 MHz clk_25mhz input, confirmed against the real ulx3s_v20.lpf pin name.",
+   "ulx3s_notes": "Ready-made for hdl4fpga-based designs; for a generic new design emard-ecp5pll is more self-contained (single generic module vs. two purpose-specific entities).",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ecp5_videodcm.vhd",
+     "ecp5_sdramdcm.vhd"
+    ],
+    "modules": [
+     "ecp5_videodcm",
+     "ecp5_sdramdcm"
+    ]
+   }
+  },
+  {
+   "id": "w531t4-hub75-display-core",
+   "name": "HUB75(e) LED matrix driver (fpga_led_display)",
+   "functions": [
+    "led-drivers"
+   ],
+   "rank": "best",
+   "repo": "w531t4__fpga_led_display",
+   "files": [
+    "src/display_core.sv",
+    "src/matrix_scan.sv",
+    "src/hub75_rgb_pack.sv",
+    "src/gamma_correct.sv",
+    "src/framebuffer_fabric.sv",
+    "src/fm6126init.sv",
+    "src/top_ulx3s.sv",
+    "src/constraints/ulx3s_v316.lpf"
+   ],
+   "top": "top_ulx3s",
+   "language": "SystemVerilog",
+   "license": "MIT (LICENSE, SPDX header in files)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Board-agnostic HUB75(e) RGB LED panel display_core with gamma correction, double-buffered framebuffer fabric, FM6126 panel init and a watchdog; built with `make BOARD=ulx3s`.",
+   "ulx3s_notes": "top_ulx3s.sv is the real ULX3S build target (ESP32 wifi_gpio SPI control link); src/constraints/ulx3s_v316.lpf ships in-repo.",
+   "tests": "none found in this pass",
+   "usage_patterns": {
+    "files": [
+     "matrix_scan.sv",
+     "hub75_rgb_pack.sv"
+    ],
+    "modules": [
+     "display_core",
+     "matrix_scan"
+    ]
+   }
+  },
+  {
+   "id": "goran-mahovlic-ledscan-64x64",
+   "name": "64x64 LED panel scanner (ledscan)",
+   "functions": [
+    "led-drivers"
+   ],
+   "rank": "alternative",
+   "repo": "goran-mahovlic__prjtrellis-led64x64",
+   "files": [
+    "emard/ledscan.vhd"
+   ],
+   "top": "ledscan",
+   "language": "VHDL",
+   "license": "BSD (`-- (c)EMARD` / `-- LICENSE=BSD` header)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "EMARD's VHDL scan-out driver for 64x64 indoor RGB LED panel modules (P2.5/P3/P4), proven on ULX3S 12F with prjtrellis.",
+   "ulx3s_notes": "Small, self-contained driver; pair with sprite_rom.v in the same repo for a framebuffer source.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ledscan.vhd"
+    ],
+    "modules": [
+     "ledscan"
+    ]
+   }
+  },
+  {
+   "id": "lucysrausch-hub75-ledpanel",
+   "name": "HUB75e LED panel driver (colorlight-led-cube)",
+   "functions": [
+    "led-drivers"
+   ],
+   "rank": "alternative",
+   "repo": "lucysrausch__colorlight-led-cube",
+   "files": [
+    "fpga/ledpanel.v",
+    "fpga/udp_panel_writer.v"
+   ],
+   "top": "ledpanel",
+   "language": "Verilog",
+   "license": "GPL-3.0 (LICENSE, root)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "HUB75e RGB LED panel scan-out driver plus a UDP-payload-to-framebuffer writer, originally from Clifford Wolf's c3demo, adapted for a Colorlight-driven LED cube.",
+   "ulx3s_notes": "Proven on Colorlight 5A-75B (ECP5 25F); fpga/pll.v (25->125MHz + 52MHz panel clock) uses ECP5 EHXPLLL and needs reparameterizing, ledpanel.v itself is plain Verilog.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ledpanel.v",
+     "udp_panel_writer.v"
+    ],
+    "modules": [
+     "ledpanel"
+    ]
+   }
+  },
+  {
+   "id": "no2hub75-led-panel",
+   "name": "no2hub75 HUB75 panel core (no2fpga library)",
+   "functions": [
+    "led-drivers"
+   ],
+   "rank": "alternative",
+   "repo": "smunaut__ice40-playground",
+   "files": [
+    "cores/no2hub75/rtl/hub75_top.v",
+    "cores/no2hub75/rtl/hub75_scan.v",
+    "cores/no2hub75/rtl/hub75_bcm.v",
+    "cores/no2hub75/rtl/hub75_colormap.v",
+    "cores/no2hub75/rtl/hub75_gamma.v",
+    "cores/no2hub75/rtl/hub75_framebuffer.v",
+    "cores/no2hub75/rtl/hub75_phy.v"
+   ],
+   "top": "hub75_top",
+   "language": "Verilog",
+   "license": "CERN-OHL-W-2.0 (cores/no2hub75/LICENSE)",
+   "fpga": "iCE40 UP5K",
+   "primitives": [
+    "SB_IO"
+   ],
+   "summary": "Full-featured HUB75 driver library (scan, binary-code-modulation gamma, colormap, framebuffer, PHY) from smunaut's no2fpga core collection.",
+   "ulx3s_notes": "Only hub75_phy.v/hub75_phy_ddr.v instantiate SB_IO and need an ECP5 IO-primitive rewrite; hub75_scan.v/hub75_bcm.v/hub75_colormap.v/hub75_gamma.v/hub75_framebuffer.v are portable.",
+   "tests": "sim/hub75_init_inject_tb.v (waveform-only, not individually re-run here)",
+   "usage_patterns": {
+    "files": [
+     "hub75_bcm.v",
+     "hub75_colormap.v"
+    ],
+    "modules": [
+     "hub75_top"
+    ]
+   }
+  },
+  {
+   "id": "kbob-led-pwm-pdm-gamma",
+   "name": "PWM/PDM gamma-corrected LED brightness drivers",
+   "functions": [
+    "led-drivers"
+   ],
+   "rank": "alternative",
+   "repo": "kbob__icebreaker-candy",
+   "files": [
+    "include/led-pwm-gamma.v",
+    "include/led-pdm-gamma.v",
+    "include/led-simple.v"
+   ],
+   "top": "",
+   "language": "Verilog",
+   "license": "GPL-3.0 (LICENSE, root; no per-file SPDX headers)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Technology-independent PWM and PDM gamma-corrected LED brightness drivers (led_main pipeline) for RGB LED panels, plus a simple un-gamma-corrected variant.",
+   "ulx3s_notes": "No vendor primitives in these include/ files; client instantiates led_main and supplies a painter24 module plus a generated gamma table hex.",
+   "tests": "none found in this pass",
+   "usage_patterns": {
+    "files": [
+     "led-pwm-gamma.v",
+     "led-pdm-gamma.v"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "marph91-yaaes",
+   "name": "yaaes AES core (VHDL, cocotb/vunit tested)",
+   "functions": [
+    "crypto"
+   ],
+   "rank": "best",
+   "repo": "marph91__yaaes",
+   "files": [
+    "src/aes.vhd",
+    "src/cipher.vhd",
+    "src/key_expansion.vhd",
+    "src/aes_pkg.vhd",
+    "src/input_conversion.vhd",
+    "src/output_conversion.vhd"
+   ],
+   "top": "aes",
+   "language": "VHDL",
+   "license": "LGPL-3.0 (LICENSE, root)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "AES-128/192/256 cipher core (key expansion + cipher datapath) built for ECP5 85F, with a VUnit/cocotb-based testbench suite for verification.",
+   "ulx3s_notes": "Vendor-neutral VHDL; synth.sh targets nextpnr-ecp5 --85k --package CABGA381 which matches the ULX3S 85F.",
+   "tests": "VUnit testbench suite (sim/vunit/); self-checking per repo structure, not individually re-run here",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "greybadge25-aes-sha256-des",
+   "name": "AES / SHA-256 / DES crypto cores (greybadge25 uart coprocessor)",
+   "functions": [
+    "crypto"
+   ],
+   "rank": "alternative",
+   "repo": "nusgreyhats__greybadge25",
+   "files": [
+    "firmware/ecp5/uart_coprocessor/src/aes/aes_cipher_top.v",
+    "firmware/ecp5/uart_coprocessor/src/aes/aes_inv_cipher_top.v",
+    "firmware/ecp5/uart_coprocessor/src/aes/aes_key_expand_128.v",
+    "firmware/ecp5/main/src/computation/sha256.v",
+    "firmware/ecp5/main/src/computation/tl_des.v"
+   ],
+   "top": "aes_cipher_top",
+   "language": "Verilog",
+   "license": "OpenCores permissive redistribution clause (in-file header, Rudolf Usselmann 2000-2002) for the AES core; sha256.v ported from github.com/russm/sha2-verilog (no separate header found); no repo-wide LICENSE file",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Bundle of three classic crypto cores (AES cipher/inverse-cipher, SHA-256 block processor, DES) wired to a UART coprocessor on the ECP5 25F greybadge25 badge.",
+   "ulx3s_notes": "Built for ECP5 25F (--25k); review timing/reset behaviour before reuse per the catalogue note, and re-check licensing carefully since the repo itself carries no LICENSE file.",
+   "tests": "none found in this pass",
+   "usage_patterns": {
+    "files": [
+     "aes_cipher_top.v",
+     "aes_inv_cipher_top.v"
+    ],
+    "modules": [
+     "aes_cipher_top"
+    ]
+   }
+  },
+  {
+   "id": "xtrinch-sha256-miner",
+   "name": "Pipelined double-SHA256 hasher",
+   "functions": [
+    "crypto"
+   ],
+   "rank": "alternative",
+   "repo": "xtrinch__fpga-bitcoin-miner",
+   "files": [
+    "src/sha256_transform.v",
+    "src/sha256_functions.v"
+   ],
+   "top": "sha256_transform",
+   "language": "Verilog",
+   "license": "MIT (LICENSE, root)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Pipelined, parametrically-unrolled double-SHA256 hasher (one 256-bit hash every LOOP cycles) originally for a bitcoin miner; pure portable Verilog.",
+   "ulx3s_notes": "Built for the ECP5-EVN board (LFE5UM5G-85F, --um5g-85k); the hasher itself has no board dependency and drops onto ULX3S 85F.",
+   "tests": "self-checking `make test-miner`/`make test-uart`/`make test-top` targets plus helpers/test_hasher.py",
+   "usage_patterns": {
+    "files": [
+     "sha256_transform.v"
+    ],
+    "modules": [
+     "sha256_transform"
+    ]
+   }
+  },
+  {
+   "id": "krishkc5-trng-ring-oscillator",
+   "name": "Ring-oscillator TRNG",
+   "functions": [
+    "crypto"
+   ],
+   "rank": "alternative",
+   "repo": "krishkc5__trng-ring-oscillator",
+   "files": [
+    "rtl/ring_oscillator.sv",
+    "rtl/trng_core.sv"
+   ],
+   "top": "trng_core",
+   "language": "SystemVerilog",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "True-random-number-generator entropy core: 8 ring oscillators of varied inverter counts XORed and sampled through a sync chain.",
+   "ulx3s_notes": "Built with `nextpnr-ecp5 --85k` by default (Makefile notes 12F/25F/45F are selectable); board-independent entropy source, not tied to a fixed FPGA size.",
+   "tests": "none found in this pass",
+   "usage_patterns": {
+    "files": [
+     "trng_core.sv",
+     "ring_oscillator.sv"
+    ],
+    "modules": [
+     "trng_core"
+    ]
+   }
+  }
+ ]
+}

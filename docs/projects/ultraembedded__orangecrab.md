@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/ultraembedded__orangecrab.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "ultraembedded__orangecrab"
+parent: "Project reviews"
+nav_order: 15
+---
+<!-- Generated from data/projects/ultraembedded__orangecrab.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # OrangeCrab DDR3 memory test (`ultraembedded__orangecrab`)
 
 | Field | Value |
@@ -94,3 +100,4 @@ write their own yosys/nextpnr-ecp5/ecppack flow from scratch.
   path exercised by `top.v`).
 - Commit count / first-commit date for full-history stats not recorded in
   `.claude/memory/history.tsv`.
+{% endraw %}

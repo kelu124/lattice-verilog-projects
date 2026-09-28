@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/emard__ulx3s-bin.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "emard__ulx3s-bin"
+parent: "Project reviews"
+nav_order: 3
+---
+<!-- Generated from data/projects/emard__ulx3s-bin.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # ULX3S prebuilt binaries (`emard__ulx3s-bin`)
 
 | Field | Value |
@@ -72,3 +78,4 @@ Enter it by holding BTN1 while plugging US2 (LEDs D0–D2 on).
 ## Open questions
 
 - Sources for memtest, emi, oled, rtc, usb, c64, oberon, flashblink need to be located.
+{% endraw %}

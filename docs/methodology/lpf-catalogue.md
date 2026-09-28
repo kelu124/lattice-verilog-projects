@@ -1,3 +1,11 @@
+---
+title: "LPF catalogue"
+parent: "Methodology"
+nav_order: 11
+---
+<!-- Generated from data/lpfs.json by .claude/skills/review-gateware-project/gen_lpf_catalogue.py; do not edit. -->
+
+{% raw %}
 # LPF catalogue
 
 Generated 2026-09-28 by `.claude/skills/review-gateware-project/scan_lpfs.py` from every `*.lpf` in `original_sources/` (scan), rendered by `.claude/skills/review-gateware-project/gen_lpf_catalogue.py`; do not edit by hand. Data: [`data/lpfs.json`](https://github.com/kelu124/ulx3s-klod/blob/main/data/lpfs.json).
@@ -248,3 +256,4 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 | [`usb_hid_host_demo.lpf`](https://github.com/machdyne/zeitlos/blob/a7e7e85ee0ad1fd0cfff4129e24b2aa528d444e8/rtl/ext/usb_hid_host/boards/icesugar-pro/usb_hid_host_demo.lpf) | iCESugar-Pro | 25k | ftdi-uart, led, usb | machdyne__zeitlos |
 | [`versa_rgmii.lpf`](https://github.com/sefbkn/versa-ecp5-demo/blob/1d6d4cb535e11f935c1afa707b35ded5df4d658d/constraints/versa_rgmii.lpf) | Versa ECP5 | 45k | ftdi-uart, led, serdes-pcie-sata | sefbkn__versa-ecp5-demo |
 | [`versa_sgmii.lpf`](https://github.com/sefbkn/versa-ecp5-demo/blob/1d6d4cb535e11f935c1afa707b35ded5df4d658d/constraints/versa_sgmii.lpf) | Versa ECP5 | 45k | ftdi-uart, led, serdes-pcie-sata | sefbkn__versa-ecp5-demo |
+{% endraw %}

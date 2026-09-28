@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/hdl4fpga__hdl4fpga.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "hdl4fpga__hdl4fpga"
+parent: "Project reviews"
+nav_order: 7
+---
+<!-- Generated from data/projects/hdl4fpga__hdl4fpga.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # hdl4fpga (`hdl4fpga__hdl4fpga`)
 
 | Field | Value |
@@ -208,3 +214,4 @@ clean was not verified (no Diamond available here).
   correctly named; catalogue `license` cell ("mixed: MIT (LICENSE) vs
   GPL-3.0-or-later headers") should be corrected per the License field above:
   the mix is MIT-source vs. GPL-headed **Makefiles**, not mixed HDL.
+{% endraw %}

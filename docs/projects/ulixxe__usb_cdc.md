@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/ulixxe__usb_cdc.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "ulixxe__usb_cdc"
+parent: "Project reviews"
+nav_order: 14
+---
+<!-- Generated from data/projects/ulixxe__usb_cdc.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # USB_CDC (`ulixxe__usb_cdc`)
 
 | Field | Value |
@@ -120,3 +126,4 @@ Makefile references ECP5 parts or an ULX3S `.lpf`.
   schematic.
 - No `iCEcube2` project or `.pcf` was read in detail (Lattice-only flow, out
   of scope for the open-flow toolchain this repo's catalogue entry targets).
+{% endraw %}

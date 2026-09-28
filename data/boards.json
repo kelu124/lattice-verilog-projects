@@ -1,0 +1,215 @@
+{
+ "schema": "ulx3s-klod/boards/v1",
+ "description": "Curated board pages (most relevant boards per family). `match` is a regex over catalogue fields (board_rev, name, fpga, ulx3s_path) after removing 'not <board>' phrases; `page` = optional data/pages/<slug>.json used as the page body.",
+ "families": [
+  {
+   "id": "ecp5",
+   "title": "ECP5 boards",
+   "description": "Lattice ECP5 (LFE5U/LFE5UM): 12k–85k LUTs, DSP blocks, SERDES on 5G parts; open flow yosys + nextpnr-ecp5 + ecppack."
+  },
+  {
+   "id": "up5k",
+   "title": "iCE40 UP5K boards",
+   "description": "Lattice iCE40 UltraPlus UP5K: 5.3k LUTs, 128 KB SPRAM, DSP, RGB driver; open flow yosys + nextpnr-ice40 + icepack. Cores use SB_* primitives."
+  },
+  {
+   "id": "hx",
+   "title": "iCE40 HX8K / HX4K boards",
+   "description": "Lattice iCE40 HX8K/HX4K (HX4K is the HX8K die, built with --hx8k --package ...:4k): 7.7k LUTs; open flow yosys + nextpnr-ice40 (older designs: arachne-pnr)."
+  }
+ ],
+ "boards": [
+  {
+   "id": "ulx3s",
+   "name": "ULX3S",
+   "family": "ecp5",
+   "full_name": "Radiona ULX3S",
+   "fpga": "LFE5U-12F/25F/45F/85F, CABGA381",
+   "fpga_evidence": "emard/ulx3s MANUAL + reference LPFs (doc/constraints)",
+   "match": "ulx3s",
+   "clock": "25 MHz (clk_25mhz, reference LPF)",
+   "description": "The main board of this collection: 32 MB SDR SDRAM, GPDI (HDMI) port, ESP32, US1 FT231X + US2 direct USB, SD card, MAX11125 ADC, OLED header, 56 GPIO.",
+   "page": "board-reference"
+  },
+  {
+   "id": "ulx4m",
+   "name": "ULX4M",
+   "family": "ecp5",
+   "full_name": "Radiona ULX4M (CM4-format ECP5 module)",
+   "fpga": "LFE5UM-85F (ECP5-5G) on the variants catalogued",
+   "fpga_evidence": "catalogue rows (e.g. lawrie__ulx4m_examples)",
+   "match": "ulx4m",
+   "clock": "unknown",
+   "description": "ULX3S successor in Raspberry Pi CM4 module format; most ULX3S designs port with the ulx4m_v002.lpf constraint file.",
+   "page": null
+  },
+  {
+   "id": "orangecrab",
+   "name": "OrangeCrab",
+   "family": "ecp5",
+   "full_name": "OrangeCrab (Feather format)",
+   "fpga": "LFE5U-25F or 85F, CSFBGA285",
+   "fpga_evidence": "catalogue rows (orangecrab-fpga__orangecrab-examples, emeb__orangecrab_adc)",
+   "match": "orangecrab",
+   "clock": "unknown",
+   "description": "Feather-format ECP5 board with DDR3 and native USB; DFU bootloader.",
+   "page": null
+  },
+  {
+   "id": "colorlight",
+   "name": "Colorlight 5A-75B/E, i5, i9",
+   "family": "ecp5",
+   "full_name": "Colorlight LED-receiver cards and SODIMM modules",
+   "fpga": "LFE5U-25F (5A-75B/E, i5), LFE5U-45F (i9), CABGA256/CABGA381",
+   "fpga_evidence": "catalogue rows (wuxx__colorlight-fpga-projects, datanoisetv__colorlight-i9-aes67)",
+   "match": "colorlight|5a-75",
+   "clock": "25 MHz (catalogue notes)",
+   "description": "Cheap ECP5 boards with gigabit Ethernet PHYs and SDRAM, repurposed from LED-panel receivers.",
+   "page": null
+  },
+  {
+   "id": "icepi-zero",
+   "name": "IcePi Zero",
+   "family": "ecp5",
+   "full_name": "IcePi Zero (Raspberry Pi Zero format)",
+   "fpga": "LFE5U-25F, CABGA256",
+   "fpga_evidence": "catalogue rows (cheyao__icepi-zero)",
+   "match": "icepi",
+   "clock": "50 MHz (catalogue notes)",
+   "description": "Raspberry Pi Zero-sized ECP5 board with HDMI, SDRAM and USB; many ULX3S retro ports target it.",
+   "page": null
+  },
+  {
+   "id": "icesugar-pro",
+   "name": "iCESugar-Pro",
+   "family": "ecp5",
+   "full_name": "MuseLab iCESugar-Pro (SODIMM module)",
+   "fpga": "LFE5U-25F, CABGA256",
+   "fpga_evidence": "catalogue rows (wuxx__icesugar-pro, mebner86__icesugar-pro_sound2fft)",
+   "match": "icesugar.?pro",
+   "clock": "unknown",
+   "description": "SODIMM-format ECP5 module with SDRAM and HDMI on the carrier.",
+   "page": null
+  },
+  {
+   "id": "icebreaker",
+   "name": "iCEBreaker",
+   "family": "up5k",
+   "full_name": "iCEBreaker (1BitSquared)",
+   "fpga": "iCE40 UP5K, SG48",
+   "fpga_evidence": "catalogue rows (icebreaker-fpga__*)",
+   "match": "icebreaker",
+   "clock": "12 MHz (catalogue notes)",
+   "description": "The reference open-source UP5K board, with PMOD ports and many workshop examples.",
+   "page": null
+  },
+  {
+   "id": "upduino",
+   "name": "UPduino",
+   "family": "up5k",
+   "full_name": "UPduino v2/v3 (tinyVision.ai)",
+   "fpga": "iCE40 UP5K, SG48",
+   "fpga_evidence": "catalogue rows (osresearch__up5k, daveshah1__up5k-demos)",
+   "match": "upduino",
+   "clock": "unknown",
+   "description": "Low-cost UP5K board in DIP format.",
+   "page": null
+  },
+  {
+   "id": "icesugar",
+   "name": "iCESugar",
+   "family": "up5k",
+   "full_name": "MuseLab iCESugar v1.5",
+   "fpga": "iCE40 UP5K, SG48",
+   "fpga_evidence": "catalogue rows (wuxx__icesugar)",
+   "match": "icesugar(?!.?pro)",
+   "clock": "12 MHz (catalogue notes)",
+   "description": "Small UP5K board with a drag-and-drop programmer.",
+   "page": null
+  },
+  {
+   "id": "fomu",
+   "name": "Fomu",
+   "family": "up5k",
+   "full_name": "Fomu (in-USB-port board)",
+   "fpga": "iCE40 UP5K, UWG30",
+   "fpga_evidence": "catalogue rows (im-tomu__fomu-workshop)",
+   "match": "fomu",
+   "clock": "unknown",
+   "description": "UP5K board that fits inside a USB port; foboot DFU bootloader.",
+   "page": null
+  },
+  {
+   "id": "pico-ice",
+   "name": "pico-ice",
+   "family": "up5k",
+   "full_name": "pico-ice (tinyVision.ai, RP2040 + iCE40)",
+   "fpga": "iCE40 UP5K, SG48",
+   "fpga_evidence": "catalogue rows (tinyvision-ai-inc__pico-ice-sdk)",
+   "match": "pico.?ice",
+   "clock": "unknown",
+   "description": "RP2040 microcontroller plus UP5K; the RP2040 programs the FPGA (DFU on the MCU).",
+   "page": null
+  },
+  {
+   "id": "hx8k-breakout",
+   "name": "iCE40-HX8K Breakout",
+   "family": "hx",
+   "full_name": "Lattice iCE40-HX8K Breakout Board",
+   "fpga": "iCE40 HX8K, CT256",
+   "fpga_evidence": "catalogue rows (nesl__ice40_examples, msinger__iceboy)",
+   "match": "hx8k.?breakout|breakout board|hx8k_brk",
+   "clock": "12 MHz (catalogue notes)",
+   "description": "Lattice's HX8K evaluation board, target of many IceStorm-era examples.",
+   "page": null
+  },
+  {
+   "id": "blackice",
+   "name": "BlackIce II / Mx",
+   "family": "hx",
+   "full_name": "myStorm BlackIce II and BlackIce Mx",
+   "fpga": "iCE40 HX4K, TQ144 (built as --hx8k --package tq144:4k)",
+   "fpga_evidence": "catalogue rows (mystorm-org__blackice-ii, hoglet67__ice40atom)",
+   "match": "blackice",
+   "clock": "unknown",
+   "description": "HX4K + STM32 board (the MCU loads the FPGA); retro computers by hoglet67 and lawrie's examples.",
+   "page": null
+  },
+  {
+   "id": "icefun",
+   "name": "iceFUN",
+   "family": "hx",
+   "full_name": "Devantech iceFUN",
+   "fpga": "iCE40 HX8K, CB132",
+   "fpga_evidence": "catalogue rows (mikeakohn__riscv_fpga, mikeakohn__apollo11_fpga)",
+   "match": "icefun",
+   "clock": "unknown",
+   "description": "Small HX8K board used by mikeakohn's CPU projects.",
+   "page": null
+  },
+  {
+   "id": "olimex-hx8k",
+   "name": "Olimex iCE40HX8K-EVB",
+   "family": "hx",
+   "full_name": "Olimex iCE40HX8K-EVB",
+   "fpga": "iCE40 HX8K, CT256",
+   "fpga_evidence": "catalogue rows (x653__xv6-riscv-fpga, alangarf__apple-one)",
+   "match": "olimex|hx8k-evb",
+   "clock": "unknown",
+   "description": "Olimex HX8K evaluation board with SRAM; xv6 RISC-V computer and Apple-1 ports.",
+   "page": null
+  },
+  {
+   "id": "icoboard",
+   "name": "IcoBoard",
+   "family": "hx",
+   "full_name": "IcoBoard (Raspberry Pi HAT)",
+   "fpga": "iCE40 HX8K, CT256",
+   "fpga_evidence": "catalogue rows (cliffordwolf__icotools)",
+   "match": "icoboard",
+   "clock": "unknown",
+   "description": "HX8K Raspberry Pi HAT with SRAM; icosoc SoC generator.",
+   "page": null
+  }
+ ]
+}

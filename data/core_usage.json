@@ -1,0 +1,4662 @@
+{
+ "schema": "ulx3s-klod/core-usage/v1",
+ "generator": ".claude/skills/review-gateware-project/scan_core_usage.py",
+ "note": "Heuristic: file-name copies and module instantiations found in other clones; verify before relying on it.",
+ "hdl_files_scanned": 17424,
+ "usage": {
+  "emard-vga2dvid-tmds": [
+   {
+    "repo": "adrmcintyre__vixen",
+    "copy": [
+     "video/fake_differential.v"
+    ],
+    "instance": [
+     "video/hdmi_video.v",
+     "video/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "advikbahadur__ulx3s-superresolution-cnn",
+    "copy": [],
+    "instance": [
+     "src/hdmi_device.v"
+    ]
+   },
+   {
+    "repo": "alangarf__apple-one",
+    "copy": [],
+    "instance": [
+     "rtl/boards/icepi_zero/vga2tmds.sv"
+    ]
+   },
+   {
+    "repo": "angelojacobo__ulx3s_fpga_camera_streaming",
+    "copy": [],
+    "instance": [
+     "src/hdmi_device.v"
+    ]
+   },
+   {
+    "repo": "angelojacobo__ulx3s_fpga_sobel_edge_detection_ov7670",
+    "copy": [],
+    "instance": [
+     "src/hdmi_device.v"
+    ]
+   },
+   {
+    "repo": "brunolevy__learn-fpga",
+    "copy": [],
+    "instance": [
+     "Basic/ULX3S/ULX3S_SDRAM_hdmi/SDRAM_HDMI_test.v",
+     "Basic/ULX3S/ULX3S_hdmi/HDMI_test_DDR.v",
+     "Basic/ULX3S/ULX3S_hdmi/HDMI_test_hires.v"
+    ]
+   },
+   {
+    "repo": "cheyao__icepi-zero",
+    "copy": [
+     "gateware/third-party/dvi/hdl/fake_differential.v",
+     "gateware/third-party/dvi/hdl/tmds_encoder.vhd",
+     "gateware/third-party/dvi/hdl/vga2dvid.vhd"
+    ],
+    "instance": [
+     "gateware/dvi/hdl/vga2tmds.sv",
+     "gateware/rpi/pixelpaint/vga2tmds.sv",
+     "gateware/third-party/dvi/hdl/top_vgatest.v"
+    ]
+   },
+   {
+    "repo": "cheyao__nes_ecp5",
+    "copy": [],
+    "instance": [
+     "top.v",
+     "vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "cheyao__oberon",
+    "copy": [
+     "hdl/dvi/fake_differential.v",
+     "hdl/dvi/tmds_encoder.vhd",
+     "hdl/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "hdl/dvi/vga2dvid.v",
+     "hdl/dvi/vga2dvid.vhd",
+     "hdl/top/FleaFPGA_2v4_top.v"
+    ]
+   },
+   {
+    "repo": "cheyao__sega-sms",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "chriscamacho__yazsof",
+    "copy": [
+     "video/fake_differential.v"
+    ],
+    "instance": [
+     "video/dvi.v",
+     "video/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "dan-rodrigues__icestation-32",
+    "copy": [],
+    "instance": [
+     "hardware/ulx3s/hdmi_encoder.v"
+    ]
+   },
+   {
+    "repo": "danodus__msx_fpga",
+    "copy": [],
+    "instance": [
+     "src/msx.v",
+     "ulx3s/hdmi.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_68k",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_sms",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "danodus__xgsoc",
+    "copy": [],
+    "instance": [
+     "rtl/dvi/hdmi_interface.v"
+    ]
+   },
+   {
+    "repo": "daveshah1__prjtrellis-dvi",
+    "copy": [
+     "hdl/fake_differential.v",
+     "hdl/tmds_encoder.vhd",
+     "hdl/vga2dvid.vhd"
+    ],
+    "instance": [
+     "hdl/top_vgatest_1024x1024.v",
+     "hdl/top_vgatest_1024x768.v",
+     "hdl/top_vgatest_1280x1024.v"
+    ]
+   },
+   {
+    "repo": "doctorwkt__ulx3s-blinky",
+    "copy": [],
+    "instance": [
+     "TestPattern/llhdmi.v"
+    ]
+   },
+   {
+    "repo": "doctorwkt__verilog_tic-tac-toe",
+    "copy": [],
+    "instance": [
+     "HDMI/DVI_3x3.v"
+    ]
+   },
+   {
+    "repo": "emard__apple-one",
+    "copy": [
+     "rtl/boards/ulx3s/fake_differential.v"
+    ],
+    "instance": [
+     "rtl/boards/ulx3s/apple1_dvi.v",
+     "rtl/boards/ulx3s/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "emard__apple2fpga",
+    "copy": [
+     "rtl_emard/dvi/tmds_encoder.vhd",
+     "rtl_emard/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "rtl_emard/dvi/vga2dvid.vhd",
+     "rtl_emard/lattice/top/ulx3s_v20_apple2.vhd",
+     "rtl_emard/lattice/top/ulx3s_v31_apple2.vhd"
+    ]
+   },
+   {
+    "repo": "emard__galaksija",
+    "copy": [
+     "rtl_emard/dvi/fake_differential.v",
+     "rtl_emard/dvi/tmds_encoder.vhd",
+     "rtl_emard/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "proj/lattice/ulx3s-universal-make/top/galaksija_ulx3s.v",
+     "rtl_emard/dvi/vga2dvid.vhd"
+    ]
+   },
+   {
+    "repo": "emard__jupiter_ace",
+    "copy": [],
+    "instance": [
+     "src/sys/dvi.v",
+     "src/top/jupiter_ace_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "emard__minimig_ecs",
+    "copy": [
+     "rtl_emard/vga/hdmi/tmds_encoder.vhd",
+     "rtl_emard/vga/hdmi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "proj/altera/ffm-c5a4-sd-lcdif/top/amiga_ffm_c5a4_sd.vhd",
+     "proj/altera/ffm-c5a4-sd-lcse/top/amiga_ffm_c5a4_sd.vhd",
+     "proj/lattice/fleafpga-ohm-ps2kbd/top/minimig_fleafpga_ohm.vhd"
+    ]
+   },
+   {
+    "repo": "emard__nes_ecp5",
+    "copy": [],
+    "instance": [
+     "top.v",
+     "vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "emard__next186",
+    "copy": [
+     "emard/dvi/fake_differential.v",
+     "emard/dvi/tmds_encoder.vhd",
+     "emard/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "emard/dvi/vga2dvid.vhd",
+     "emard/top/ffmlfe5_next186.v",
+     "emard/top/ulx3s_next186.v"
+    ]
+   },
+   {
+    "repo": "emard__oberon",
+    "copy": [
+     "hdl/dvi/fake_differential.v",
+     "hdl/dvi/tmds_encoder.vhd",
+     "hdl/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "hdl/dvi/vga2dvid.vhd",
+     "hdl/top/FleaFPGA_2v4_top.v",
+     "hdl/top/ffm_top.v"
+    ]
+   },
+   {
+    "repo": "emard__papilio-arcade",
+    "copy": [
+     "scramble_rel001_papilio/source/vga/hdmi/tmds_encoder.vhd",
+     "scramble_rel001_papilio/source/vga/hdmi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_12f/top/pacman_ulx3s.vhd",
+     "pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_25f/top/pacman_ulx3s.vhd",
+     "pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_45f/top/pacman_ulx3s.vhd"
+    ]
+   },
+   {
+    "repo": "emard__snes_mister_ulx3s",
+    "copy": [],
+    "instance": [
+     "ulx3s/top/ulx3s_top.v",
+     "ulx3s/video/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "emard__uk101onfpga",
+    "copy": [
+     "rtl_emard/vga/hdmi/tmds_encoder.vhd",
+     "rtl_emard/vga/hdmi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "Components/HDMI/HDMI_OraoGraphDisplay8K.v",
+     "Components/HDMI/HDMI_UK101TextDisplay2K.v",
+     "proj/lattice/orao_ulx3s_dvi/top/orao64k_ulx3s.vhd"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s-emi",
+    "copy": [
+     "hdl/tmds_encoder.vhd",
+     "hdl/vga2dvid.vhd"
+    ],
+    "instance": [
+     "hdl/top/top_memtest_emi.v",
+     "hdl/vga2dvid.vhd"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_c64",
+    "copy": [
+     "rtl/dvi/tmds_encoder.vhd",
+     "rtl/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "rtl/dvi/vga2dvid.vhd",
+     "rtl/test/top_victest.vhd",
+     "rtl/top_ulx3s_v20_c64.vhd"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_galaksija",
+    "copy": [
+     "rtl_emard/dvi/fake_differential.v",
+     "rtl_emard/dvi/tmds_encoder.vhd",
+     "rtl_emard/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "proj/lattice/ulx3s-universal-make/top/galaksija_ulx3s.v",
+     "rtl_emard/dvi/vga2dvid.vhd"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_vic_20",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/vic20.v"
+    ]
+   },
+   {
+    "repo": "emard__verilog_tic-tac-toe",
+    "copy": [],
+    "instance": [
+     "DVI_3x3.v"
+    ]
+   },
+   {
+    "repo": "emard__vhdl_c64_c1541_sd",
+    "copy": [
+     "rtl_emard/vga/hdmi/tmds_encoder.vhd",
+     "rtl_emard/vga/hdmi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "proj/lattice/ulx3s/top/c64_ulx3s.vhd",
+     "rtl_emard/vga/hdmi/vga2dvid.vhd"
+    ]
+   },
+   {
+    "repo": "emard__vhdl_phoenix",
+    "copy": [
+     "rtl_emard/vga/hdmi/tmds_encoder.vhd",
+     "rtl_emard/vga/hdmi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "proj/altera/de2/top/phoenix_de2.vhd",
+     "proj/altera/ep4ce6mb/top/phoenix_tb276.vhd",
+     "proj/altera/reverse-u16/top/phoenix_reverseu16.vhd"
+    ]
+   },
+   {
+    "repo": "evansm7__arcdvi",
+    "copy": [],
+    "instance": [
+     "external-src/vga2dvid.v",
+     "src/soc_top.v"
+    ]
+   },
+   {
+    "repo": "f32c__f32c",
+    "copy": [
+     "rtl/soc/vgahdmi/TMDS_encoder.vhd",
+     "rtl/soc/vgahdmi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "rtl/generic/glue_xram.vhd",
+     "rtl/generic/glue_xram_vector.vhd",
+     "rtl/soc/dvi_fb.vhd"
+    ]
+   },
+   {
+    "repo": "felipesanches__anotherworld_fpga",
+    "copy": [
+     "hdl/fake_differential.v",
+     "hdl/tmds_encoder.vhd",
+     "hdl/vga2dvid.vhd"
+    ],
+    "instance": [
+     "hdl/anotherworld_cpu.v",
+     "hdl/vga2dvid.vhd"
+    ]
+   },
+   {
+    "repo": "gatecat__snes_mister_ulx3s",
+    "copy": [],
+    "instance": [
+     "ulx3s/top/ulx3s_top.v",
+     "ulx3s/video/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "goran-mahovlic__odysseus_sprites",
+    "copy": [
+     "src/fake_differential.v"
+    ],
+    "instance": [
+     "src/hdmi_video.v",
+     "src/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "gornjas__dvi_test",
+    "copy": [
+     "tmds_encoder.vhd",
+     "vga2dvid.vhd"
+    ],
+    "instance": [
+     "dvi_test.vhd",
+     "vga2dvid.vhd"
+    ]
+   },
+   {
+    "repo": "guztech__ulx3s-nmigen-examples",
+    "copy": [],
+    "instance": [
+     "dvi/top_vgatest.py",
+     "dvi/vga2dvid.py"
+    ]
+   },
+   {
+    "repo": "hdl4fpga__hdl4fpga",
+    "copy": [
+     "library/video/tmds_encoder.vhd"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "ironsteel__nes_ecp5",
+    "copy": [],
+    "instance": [
+     "top.v",
+     "vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "joaln27__koti",
+    "copy": [],
+    "instance": [
+     "vendor/dvi_tx.sv"
+    ]
+   },
+   {
+    "repo": "kbeckmann__pergola_projects",
+    "copy": [],
+    "instance": [
+     "pergola/applets/dvid/__init__.py",
+     "pergola/applets/dvid_overlay/__init__.py",
+     "pergola/applets/gfxdemo/__init__.py"
+    ]
+   },
+   {
+    "repo": "l0r3m1psum__videogame_verilog",
+    "copy": [],
+    "instance": [
+     "ulx3s_game.v"
+    ]
+   },
+   {
+    "repo": "lawrie__apple-one",
+    "copy": [
+     "rtl/boards/ulx3s/fake_differential.v",
+     "rtl/boards/ulx4m/fake_differential.v"
+    ],
+    "instance": [
+     "rtl/boards/ulx3s/apple1_dvi.v",
+     "rtl/boards/ulx3s/vga2dvid.v",
+     "rtl/boards/ulx4m/apple1_dvi.v"
+    ]
+   },
+   {
+    "repo": "lawrie__jupiter_ace",
+    "copy": [],
+    "instance": [
+     "src/sys/hdmi.v",
+     "src/top/jupiter_ace_ulx3s.v",
+     "src/top/jupiter_ace_ulx4m.v"
+    ]
+   },
+   {
+    "repo": "lawrie__spinalulx3s",
+    "copy": [],
+    "instance": [
+     "hdmi.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s-nmigen-examples",
+    "copy": [],
+    "instance": [
+     "camera/camera.py",
+     "camera/dvi/vga2dvid.py",
+     "camera85/camera.py"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_68k",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_acorn_atom",
+    "copy": [],
+    "instance": [
+     "src/atom.v",
+     "src/hdmi.v",
+     "src/ulx4m_atom.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_altair_8800",
+    "copy": [],
+    "instance": [
+     "src/sys/hdmi.v",
+     "src/top/top_altair.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_amstrad_cpc",
+    "copy": [],
+    "instance": [
+     "src/top.v",
+     "src/ulx4m_top.v",
+     "src/video/hdmi.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_atari_2600",
+    "copy": [],
+    "instance": [
+     "src/atari_2600.v",
+     "src/ulx4m_atari_2600.v",
+     "src/video/hdmi.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_ay_3_8500",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_colecovision",
+    "copy": [],
+    "instance": [
+     "src/coleco.v",
+     "src/hdmi.v",
+     "src/ulx4m_coleco.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_cpm_z80",
+    "copy": [],
+    "instance": [
+     "src/Microcomputer/Microcomputer.v",
+     "src/hdmi.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [
+     "hdmi/fake_differential.v",
+     "pong-hdmi/fake_differential.v"
+    ],
+    "instance": [
+     "hdmi/hdmi_video.v",
+     "hdmi/vga2dvid.v",
+     "pong-hdmi/hdmi_video.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_gamegear",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_mac128",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/mac128.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_msx",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/msx.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_ql",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/ql.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sg_1000",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/sg1000.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sms",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_trs_80",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/trs80.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_vic_20",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/vic20.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_template",
+    "copy": [],
+    "instance": [
+     "src/top.v",
+     "src/video/hdmi.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_trs80",
+    "copy": [],
+    "instance": [
+     "src/top.v",
+     "src/video/hdmi.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_zx81",
+    "copy": [],
+    "instance": [
+     "src/sys/hdmi.v",
+     "src/top/zx81_ulx3s.v",
+     "src/top/zx81_ulx4m.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_zx_spectrum",
+    "copy": [],
+    "instance": [
+     "src/hdmi.v",
+     "src/spectrum.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_amaranth_examples",
+    "copy": [],
+    "instance": [
+     "dvi/top_vgatest.py",
+     "dvi/vga2dvid.py",
+     "life/life.py"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_examples",
+    "copy": [
+     "hdmi/fake_differential.v"
+    ],
+    "instance": [
+     "hdmi/hdmi_video.v",
+     "hdmi/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "linuxjedi__minimig_ecs",
+    "copy": [
+     "rtl_emard/vga/hdmi/tmds_encoder.vhd",
+     "rtl_emard/vga/hdmi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "proj/altera/ffm-c5a4-sd-lcdif/top/amiga_ffm_c5a4_sd.vhd",
+     "proj/altera/ffm-c5a4-sd-lcse/top/amiga_ffm_c5a4_sd.vhd",
+     "proj/lattice/fleafpga-ohm-ps2kbd/top/minimig_fleafpga_ohm.vhd"
+    ]
+   },
+   {
+    "repo": "machdyne__nes_ecp5",
+    "copy": [],
+    "instance": [
+     "top.v",
+     "vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "machdyne__zeitlos",
+    "copy": [],
+    "instance": [
+     "rtl/gpu/gpu_ddmi.v"
+    ]
+   },
+   {
+    "repo": "markus-zzz__myc64",
+    "copy": [],
+    "instance": [
+     "rtl/myc64-soc/myc64-soc-top.v"
+    ]
+   },
+   {
+    "repo": "mb-sat__ulx3s-longwave-sdr",
+    "copy": [],
+    "instance": [
+     "logic/ulx3s-stream-verilog/ulx3s.v"
+    ]
+   },
+   {
+    "repo": "mcejp__poly94",
+    "copy": [
+     "rtl/fake_differential.v"
+    ],
+    "instance": [
+     "rtl/hdmi_video.v",
+     "rtl/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "mebner86__icesugar-pro_sound2fft",
+    "copy": [],
+    "instance": [
+     "projects/02_hdmi_test/hdmi_test.v",
+     "projects/05_hdmi_graph/hdmi_graph.v",
+     "projects/06_live_fft/live_fft.v"
+    ]
+   },
+   {
+    "repo": "msrraju07__iop",
+    "copy": [],
+    "instance": [
+     "src/hdmi_device.v"
+    ]
+   },
+   {
+    "repo": "pnru__ti99",
+    "copy": [],
+    "instance": [
+     "ti99_2/hdmi.v"
+    ]
+   },
+   {
+    "repo": "remyciterin__3driscv",
+    "copy": [
+     "simulation/fake_differential.v"
+    ],
+    "instance": [
+     "simulation/dvi.v",
+     "simulation/vga2dvid.v",
+     "src/Top_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "remyciterin__dooom",
+    "copy": [
+     "src/fake_differential.v"
+    ],
+    "instance": [
+     "src/Top.v",
+     "src/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "rj45__vdp",
+    "copy": [],
+    "instance": [
+     "rtl/hdmi.sv",
+     "rtl/tmds_encoder.sv"
+    ]
+   },
+   {
+    "repo": "robinsonb5__eightthirtytwodemos",
+    "copy": [],
+    "instance": [
+     "RTL/Video/dvi.v"
+    ]
+   },
+   {
+    "repo": "speccery__icy99",
+    "copy": [],
+    "instance": [
+     "src/dvi.v",
+     "src/vga2dvid.v",
+     "top_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "spinalhdl__saxonsoc",
+    "copy": [],
+    "instance": [
+     "hardware/synthesis/deprecated/ulx3s/hdmi.v",
+     "hardware/synthesis/radiona/ulx3s/smp/hdmi.v"
+    ]
+   },
+   {
+    "repo": "splinedrive__my_hdmi_device",
+    "copy": [],
+    "instance": [
+     "hdmi_device.v"
+    ]
+   },
+   {
+    "repo": "spritetm__hadbadge2019_fpgasoc",
+    "copy": [
+     "soc/hdmi/fake_differential.v"
+    ],
+    "instance": [
+     "soc/hdmi/hdmi-encoder.v",
+     "soc/hdmi/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "stereoninja__stereoninjafpga",
+    "copy": [],
+    "instance": [
+     "old/Componets/HDMI_Transciever/HDMI_Transciever/HDMI_Transciever.v",
+     "old/Componets/MIPI-CSI-Transciever/MIPI_Reciever(IDDR1)/HDMI_Transciever.v",
+     "old/Componets/MIPI-CSI-Transciever/MIPI_Reciever(IDDR1)/HDMI_Transciever_Sync_reg.v"
+    ]
+   },
+   {
+    "repo": "sylefeb__silice",
+    "copy": [],
+    "instance": [
+     "projects/common/hdmi.si",
+     "tests/divint_hdmi/verilog/dvi_encoder.v"
+    ]
+   },
+   {
+    "repo": "techprototyper__trs80-rev-z",
+    "copy": [],
+    "instance": [
+     "boards/ulx3s/rtl/ulx3s_top.v",
+     "boards/ulx3s/sim/tb_tmds.sv"
+    ]
+   },
+   {
+    "repo": "ulx3s__apple2fpga",
+    "copy": [
+     "rtl_emard/dvi/tmds_encoder.vhd",
+     "rtl_emard/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "rtl_emard/dvi/vga2dvid.vhd",
+     "rtl_emard/lattice/top/ulx3s_apple2.vhd"
+    ]
+   },
+   {
+    "repo": "ulx3s__fpga-odysseus",
+    "copy": [
+     "tutorials/04-Video/fake_differential.v"
+    ],
+    "instance": [
+     "tutorials/04-Video/hdmi_video.v",
+     "tutorials/04-Video/vga2dvid.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__galaksija",
+    "copy": [
+     "rtl_emard/dvi/fake_differential.v",
+     "rtl_emard/dvi/tmds_encoder.vhd",
+     "rtl_emard/dvi/vga2dvid.vhd"
+    ],
+    "instance": [
+     "proj/lattice/ulx3s-universal-make/top/galaksija_ulx3s.v",
+     "rtl_emard/dvi/vga2dvid.vhd"
+    ]
+   },
+   {
+    "repo": "ulx3s__ulx3s_zx81",
+    "copy": [],
+    "instance": [
+     "src/sys/hdmi.v",
+     "src/top/zx81_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "wuxx__colorlight-fpga-projects",
+    "copy": [],
+    "instance": [
+     "src/i5/hdmi_test_pattern/llhdmi.v"
+    ]
+   },
+   {
+    "repo": "wuxx__icesugar-pro",
+    "copy": [],
+    "instance": [
+     "src/hdmi_test_pattern/llhdmi.v"
+    ]
+   },
+   {
+    "repo": "yope__cpuv2",
+    "copy": [
+     "hdmi/fake_differential.v"
+    ],
+    "instance": [
+     "hdmi/hdmi_video.v",
+     "hdmi/vga2dvid.v"
+    ]
+   }
+  ],
+  "hdl4fpga-tmds-encoder": [],
+  "danodus-hdmi-audio": [],
+  "splinedrive-hdmi-device": [
+   {
+    "repo": "advikbahadur__ulx3s-superresolution-cnn",
+    "copy": [],
+    "instance": [
+     "src/vga_interface.v"
+    ]
+   },
+   {
+    "repo": "angelojacobo__ulx3s_fpga_camera_streaming",
+    "copy": [],
+    "instance": [
+     "src/vga_interface.v"
+    ]
+   },
+   {
+    "repo": "angelojacobo__ulx3s_fpga_sobel_edge_detection_ov7670",
+    "copy": [],
+    "instance": [
+     "src/vga_interface.v"
+    ]
+   },
+   {
+    "repo": "msrraju07__iop",
+    "copy": [],
+    "instance": [
+     "src/vga_interface.v"
+    ]
+   }
+  ],
+  "smoldvi-dvi": [
+   {
+    "repo": "rj45__vdp",
+    "copy": [
+     "rtl/smoldvi.v",
+     "rtl/smoldvi_serialiser.v",
+     "rtl/smoldvi_tmds_encode.v"
+    ],
+    "instance": [
+     "rtl/smoldvi.v",
+     "ulx3s/top_ulx3s.sv"
+    ]
+   },
+   {
+    "repo": "ulx3s__hazard3",
+    "copy": [
+     "example_soc/libfpga/video/smoldvi_tmds_encode.v"
+    ],
+    "instance": [
+     "example_soc/libfpga/video/dvi_tx_parallel.v"
+    ]
+   },
+   {
+    "repo": "wren6991__hazard3-swd-soc",
+    "copy": [
+     "lib/libfpga/video/smoldvi_tmds_encode.v"
+    ],
+    "instance": [
+     "lib/libfpga/video/dvi_tx_parallel.v"
+    ]
+   },
+   {
+    "repo": "wren6991__riscboy",
+    "copy": [
+     "hdl/libfpga/video/smoldvi_tmds_encode.v"
+    ],
+    "instance": [
+     "hdl/libfpga/video/dvi_tx_parallel.v"
+    ]
+   }
+  ],
+  "mebner86-tmds-serializer": [],
+  "lawrie-apple1-vga": [],
+  "schlae-crtc6845": [],
+  "f32c-vga-textmode": [],
+  "hoglet67-mist-scandoubler": [
+   {
+    "repo": "lawrie__ulx3s_bbc_micro",
+    "copy": [
+     "src/mist_scandoubler.v"
+    ],
+    "instance": [
+     "src/beeb.v"
+    ]
+   }
+  ],
+  "icebreaker-vga-core": [
+   {
+    "repo": "dan-rodrigues__icestation-32",
+    "copy": [],
+    "instance": [
+     "hardware/vdp/vdp.v"
+    ]
+   },
+   {
+    "repo": "joaln27__koti",
+    "copy": [],
+    "instance": [
+     "src/vga_text.sv"
+    ]
+   },
+   {
+    "repo": "lawrie__verilog_examples",
+    "copy": [
+     "fpga4fun/ponghdmi/vga_timing.v",
+     "fpga4fun/ponghdmi640/vga_timing.v"
+    ],
+    "instance": [
+     "fpga4fun/ponghdmi/pong.v",
+     "fpga4fun/ponghdmi640/pong.v"
+    ]
+   }
+  ],
+  "thorkn-vgasyncgen": [
+   {
+    "repo": "thorkn__vga_pong",
+    "copy": [
+     "spinalHDL/src/spinal/vgapong/ClockCounters.scala",
+     "spinalHDL/src/spinal/vgapong/VgaSyncGen.scala"
+    ],
+    "instance": [
+     "spinalHDL/VgaPong.v",
+     "spinalHDL/src/spinal/vgapong/VgaPong.scala",
+     "spinalHDL/src/spinal/vgapong/VgaSyncGen.scala"
+    ]
+   }
+  ],
+  "f32c-cvbs": [],
+  "hoglet67-composite-scandoubler": [
+   {
+    "repo": "lawrie__ulx3s_bbc_micro",
+    "copy": [
+     "src/mist_scandoubler.v"
+    ],
+    "instance": [
+     "src/beeb.v"
+    ]
+   }
+  ],
+  "emard-spi-display": [
+   {
+    "repo": "cheyao__sega-sms",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "danodus__ulx3s_68k",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_sms",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "emard__apple2fpga",
+    "copy": [],
+    "instance": [
+     "rtl_emard/lattice/top/ulx3s_v20_apple2.vhd"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_c64",
+    "copy": [],
+    "instance": [
+     "rtl/top_ulx3s_v20_c64.vhd"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_vic_20",
+    "copy": [
+     "src/lcd/lcd_video.v"
+    ],
+    "instance": [
+     "src/vic20.v"
+    ]
+   },
+   {
+    "repo": "lawrie__fpga_pio",
+    "copy": [],
+    "instance": [
+     "src/top/uart_rx.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_68k",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_amstrad_cpc",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/top.v",
+     "src/ulx4m_top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_atari_2600",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/atari_2600.v",
+     "src/ulx4m_atari_2600.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [
+     "sdram16/spi_display/lcd_video.v",
+     "usbemard/lcd_video.v",
+     "usbhost/lcd_video.v"
+    ],
+    "instance": [
+     "sdram16/testram.v",
+     "usbemard/ulx3s_usbhost_test.v",
+     "usbhost/ulx3s_usbhost_test.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_gamegear",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_mac128",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/mac128.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_ql",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/ql.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sms",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_template",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_trs80",
+    "copy": [
+     "src/spi_display/lcd_video.v"
+    ],
+    "instance": [
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "stuij__odyssey",
+    "copy": [
+     "verilog/lcd_video.v"
+    ],
+    "instance": [
+     "verilog/odyssey_top.v"
+    ]
+   }
+  ],
+  "mikeakohn-display-spi": [],
+  "rastericer-display-spi": [],
+  "silice-oled-drivers": [],
+  "slabboy-st7789": [
+   {
+    "repo": "emard__st7789py_mpy",
+    "copy": [],
+    "instance": [
+     "st7789py.py"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s-misc",
+    "copy": [],
+    "instance": [
+     "examples/lcd_st7789/micropython/st7789_240x240/esp32/st7789py.py",
+     "examples/lcd_st7789/micropython/st7789_240x240_polyline/proj/hdl/draw_polyline.v"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_vic_20",
+    "copy": [],
+    "instance": [
+     "src/vic20.v"
+    ]
+   },
+   {
+    "repo": "lawrie__spinalulx3s",
+    "copy": [
+     "src/main/scala/mylib/ST7789.scala"
+    ],
+    "instance": [
+     "src/main/scala/mylib/ST7789.scala"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s-nmigen-examples",
+    "copy": [],
+    "instance": [
+     "image/st7789.py",
+     "ov7670/camtest.py",
+     "ov7670/st7789.py"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_amaranth_examples",
+    "copy": [],
+    "instance": [
+     "st7789/gamepi15.py",
+     "st7789/st7789.py",
+     "st7789/st7789_sim.py"
+    ]
+   }
+  ],
+  "nullobject-oled-ssd1322": [
+   {
+    "repo": "brunolevy__learn-fpga",
+    "copy": [
+     "Basic/ICESTICK/Oled/oled.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "nullobject__riscv-ulx3s",
+    "copy": [
+     "hdl/oled.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "nusgreyhats__greybadge25",
+    "copy": [
+     "firmware/ecp5/tests/pmod_oled_test/src/oled/oled.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "osresearch__up5k",
+    "copy": [
+     "oled.v"
+    ],
+    "instance": []
+   }
+  ],
+  "lawrie-esp32-spi-osd": [
+   {
+    "repo": "cheyao__icepi-zero",
+    "copy": [
+     "gateware/third-party/dvi_osd/hdl/spirw_slave_v.v"
+    ],
+    "instance": [
+     "gateware/third-party/dvi_osd/hdl/spi_osd_v.v",
+     "gateware/third-party/dvi_osd/hdl/spi_ram_btn_v.v",
+     "gateware/third-party/dvi_osd/top/top_spi_char.v"
+    ]
+   },
+   {
+    "repo": "cheyao__nes_ecp5",
+    "copy": [
+     "osd/spi_osd.v",
+     "osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "osd/spi_osd.v",
+     "osd/spi_ram_btn.v"
+    ]
+   },
+   {
+    "repo": "cheyao__sega-sms",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_68k",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_sms",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "emard__apple2fpga",
+    "copy": [
+     "rtl_emard/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "rtl_emard/lattice/top/ulx3s_v20_apple2.vhd",
+     "rtl_emard/lattice/top/ulx3s_v31_apple2.vhd",
+     "rtl_emard/osd/spi_osd_v.v"
+    ]
+   },
+   {
+    "repo": "emard__nes_ecp5",
+    "copy": [
+     "osd/spi_osd.v",
+     "osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "osd/spi_osd.v",
+     "osd/spi_ram_btn.v",
+     "top.v"
+    ]
+   },
+   {
+    "repo": "emard__snes_mister_ulx3s",
+    "copy": [
+     "ulx3s/osd/spi_osd.v",
+     "ulx3s/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "ulx3s/osd/spi_osd.v",
+     "ulx3s/osd/spi_ram_btn.v",
+     "ulx3s/top/ulx3s_top.v"
+    ]
+   },
+   {
+    "repo": "emard__uk101onfpga",
+    "copy": [
+     "rtl_emard/osd/spi_osd.v",
+     "rtl_emard/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "rtl_emard/osd/spi_osd.v",
+     "rtl_emard/osd/spi_osd_vhd.vhd",
+     "rtl_emard/osd/spi_ram_btn.v"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s-misc",
+    "copy": [
+     "examples/spi_slave/hdl/spirw_slave_v.v"
+    ],
+    "instance": [
+     "examples/adxl355/projbig/top/top_adxl355log.v",
+     "examples/dvi_osd/hdl/spi_osd_v.v",
+     "examples/dvi_osd/hdl/spi_ram_btn_v.v"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_c64",
+    "copy": [
+     "rtl/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "rtl/osd/spi_osd_v.v",
+     "rtl/osd/spi_ram_btn_v.v",
+     "rtl/osd/spirw_slave.vhd"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_vic_20",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/vic20.v"
+    ]
+   },
+   {
+    "repo": "ironsteel__nes_ecp5",
+    "copy": [
+     "osd/spi_osd.v",
+     "osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "osd/spi_osd.v",
+     "osd/spi_ram_btn.v",
+     "top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_68k",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_altair_8800",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/top/top_altair.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_amstrad_cpc",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_atari_2600",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/atari_2600.v",
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_colecovision",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/coleco.v",
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_gamegear",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_mac128",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/mac128.v",
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_msx",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/msx.v",
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_ql",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/ql.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sg_1000",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/sg1000.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_trs_80",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/trs80.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_vic_20",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/vic20.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_template",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_trs80",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_zx_spectrum",
+    "copy": [
+     "src/osd/spi_osd.v",
+     "src/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "src/osd/spi_osd.v",
+     "src/osd/spi_ram_btn.v",
+     "src/spectrum.v"
+    ]
+   },
+   {
+    "repo": "machdyne__nes_ecp5",
+    "copy": [
+     "osd/spi_osd.v",
+     "osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "osd/spi_osd.v",
+     "osd/spi_ram_btn.v",
+     "top.v"
+    ]
+   },
+   {
+    "repo": "speccery__icy99",
+    "copy": [
+     "osd/spi_osd.v",
+     "osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "osd/spi_osd.v",
+     "osd/spi_ram_btn.v",
+     "top_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__apple2fpga",
+    "copy": [
+     "rtl_emard/osd/spirw_slave_v.v"
+    ],
+    "instance": [
+     "rtl_emard/lattice/top/ulx3s_apple2.vhd",
+     "rtl_emard/osd/spi_osd_v.v",
+     "rtl_emard/osd/spirw_slave.vhd"
+    ]
+   }
+  ],
+  "danrodrigues-esp32-spi-gamepad": [
+   {
+    "repo": "dan-rodrigues__icestation-32",
+    "copy": [
+     "hardware/ulx3s/esp32_spi_gamepad.v"
+    ],
+    "instance": [
+     "hardware/ulx3s/ulx3s_gamepad_state.v"
+    ]
+   }
+  ],
+  "emard-esp32ecp5-loader": [
+   {
+    "repo": "emard__ulx3s-bin",
+    "copy": [
+     "esp32/micropython/sdraw.py",
+     "esp32/micropython/uftpd.py"
+    ],
+    "instance": []
+   }
+  ],
+  "emard-spi-ram-slave": [
+   {
+    "repo": "emard__ulx3s-misc",
+    "copy": [
+     "examples/spi_ram/hdl/spi_ram_slave.vhd"
+    ],
+    "instance": [
+     "examples/spi_ram/hdl/top/ulx3s_spi_ram_oled.vhd"
+    ]
+   }
+  ],
+  "msrraju07-ov7670-pipeline": [
+   {
+    "repo": "advikbahadur__ulx3s-superresolution-cnn",
+    "copy": [
+     "src/camera_interface.v"
+    ],
+    "instance": [
+     "src/camera_interface.v",
+     "src/i2c_top.v",
+     "src/top_module.v"
+    ]
+   },
+   {
+    "repo": "angelojacobo__ulx3s_fpga_camera_streaming",
+    "copy": [
+     "src/camera_interface.v"
+    ],
+    "instance": [
+     "src/camera_interface.v",
+     "src/i2c_top.v"
+    ]
+   },
+   {
+    "repo": "angelojacobo__ulx3s_fpga_sobel_edge_detection_ov7670",
+    "copy": [
+     "src/camera_interface.v"
+    ],
+    "instance": [
+     "src/camera_interface.v",
+     "src/i2c_top.v"
+    ]
+   }
+  ],
+  "lawrie-camera85-nmigen": [],
+  "toasterllc-img-controller": [],
+  "tucanae47-ov7670-capture": [
+   {
+    "repo": "jderobot__fpga-robotics",
+    "copy": [
+     "phys_fpga/alhambra_ii/apio/ov7670_rgb444_80x60/sccb_master.v",
+     "phys_fpga/alhambra_ii/apio/ov7670_rgb444_80x60_color_centroid/sccb_master.v",
+     "phys_fpga/alhambra_ii/apio/ov7670_rgb444_80x60_color_proc/sccb_master.v"
+    ],
+    "instance": [
+     "phys_fpga/alhambra_ii/apio/ov7670_rgb444_80x60/ov7670_top_ctrl.v",
+     "phys_fpga/alhambra_ii/apio/ov7670_rgb444_80x60_color_centroid/ov7670_top_ctrl.v",
+     "phys_fpga/alhambra_ii/apio/ov7670_rgb444_80x60_color_proc/ov7670_top_ctrl.v"
+    ]
+   }
+  ],
+  "jderobot-ov7670-colorfilter": [],
+  "hdl4fpga-sdram-ctlr": [],
+  "c-elegans-sdram-controller3": [],
+  "f32c-sdram-vhdl": [],
+  "kianriscv-mt48lc16m16a2-ctrl": [
+   {
+    "repo": "darklife__darkriscv",
+    "copy": [
+     "rtl/lib/sdram/mt48lc16m16a2_ctrl.v"
+    ],
+    "instance": [
+     "rtl/darksocv.v"
+    ]
+   },
+   {
+    "repo": "fpgawars__flix-v",
+    "copy": [
+     "Hardware/KianV-Apio/mt48lc16m16a2_ctrl.v",
+     "Hardware/KianV-Icestudio/Level-00/mt48lc16m16a2_ctrl.v",
+     "Hardware/KianV-Icestudio/Level-01/mt48lc16m16a2_ctrl.v"
+    ],
+    "instance": [
+     "Hardware/KianV-Apio/soc-top.v",
+     "Hardware/KianV-Icestudio/Level-00/soc-top.v"
+    ]
+   }
+  ],
+  "emard-oberon-sdram-cache": [
+   {
+    "repo": "cheyao__oberon",
+    "copy": [
+     "hdl/cache_controller.v"
+    ],
+    "instance": [
+     "hdl/RISC5Top.OStation.v"
+    ]
+   },
+   {
+    "repo": "danodus__xgsoc",
+    "copy": [
+     "rtl/cache_controller.v"
+    ],
+    "instance": [
+     "rtl/soc_top.sv"
+    ]
+   },
+   {
+    "repo": "emard__next186",
+    "copy": [],
+    "instance": [
+     "emard/replace/ddr_186.v"
+    ]
+   }
+  ],
+  "emard-misc-sdram-pnru": [
+   {
+    "repo": "mcejp__poly94",
+    "copy": [
+     "rtl/ip/sdram_pnru.v"
+    ],
+    "instance": [
+     "rtl/top.sv"
+    ]
+   }
+  ],
+  "orangecrab-ddr3-axi": [],
+  "uberddr3-controller": [
+   {
+    "repo": "machdyne__zeitlos",
+    "copy": [
+     "rtl/mem/ddr3_phy_ecp5.v"
+    ],
+    "instance": [
+     "rtl/mem/ddr3.v"
+    ]
+   }
+  ],
+  "hadbadge-qpi-cache": [],
+  "gtjennings1-hbc": [],
+  "asinghani-hyper-xface": [],
+  "no2hyperbus": [
+   {
+    "repo": "smunaut__ice40linux",
+    "copy": [],
+    "instance": [
+     "gateware/riscv_linux/rtl/top.v"
+    ]
+   }
+  ],
+  "zipcpu-sdspi": [],
+  "gojimmypi-mister-sd-card": [],
+  "lawrie-cpm-sd-controller": [
+   {
+    "repo": "logoposeidon__ulx3sjukebox",
+    "copy": [
+     "sd_controller.v"
+    ],
+    "instance": [
+     "SDKartenLeser.v"
+    ]
+   }
+  ],
+  "logoposeidon-sdkarte": [],
+  "silice-sdcard": [],
+  "picorv32-spimemio": [
+   {
+    "repo": "gtjennings1__hyperbus",
+    "copy": [
+     "riscv32/hardware/spimemio.v"
+    ],
+    "instance": [
+     "riscv32/hardware/picosoc.v"
+    ]
+   },
+   {
+    "repo": "im-tomu__fomu-workshop",
+    "copy": [
+     "litex/rtl/spimemio.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "mkvenkit__learn_fpga",
+    "copy": [
+     "ice40up5k/picosoc_gpio/spimemio.v"
+    ],
+    "instance": [
+     "ice40up5k/picosoc_gpio/picosoc.v"
+    ]
+   },
+   {
+    "repo": "nklabs__libnklabs-ulx3s",
+    "copy": [
+     "rtl/spimemio.v"
+    ],
+    "instance": [
+     "rtl/bus_spiflash.v",
+     "rtl/spiflashtb.v"
+    ]
+   },
+   {
+    "repo": "spritetm__hadbadge2019_fpgasoc",
+    "copy": [
+     "soc/picorv32/picosoc/spimemio.v"
+    ],
+    "instance": [
+     "soc/picorv32/picosoc/picosoc.v"
+    ]
+   },
+   {
+    "repo": "wuxx__icesugar",
+    "copy": [
+     "src/advanced/picorv32/picosoc/spimemio.v"
+    ],
+    "instance": [
+     "src/advanced/picorv32/picosoc/picosoc.v"
+    ]
+   }
+  ],
+  "mb-sat-mappedspiflash": [
+   {
+    "repo": "brunolevy__learn-fpga",
+    "copy": [
+     "FemtoRV/RTL/DEVICES/MappedSPIFlash.v"
+    ],
+    "instance": [
+     "FemtoRV/RTL/femtosoc.v",
+     "FemtoRV/RTL/femtosoc_icestick_mecrisp_quintus.v",
+     "FemtoRV/TUTORIALS/FROM_BLINKER_TO_RISCV/step22.v"
+    ]
+   }
+  ],
+  "neorv32-ulx3s-xip": [],
+  "had2019-qspi-phy-ecp5": [
+   {
+    "repo": "ulx3s__hazard3-doom",
+    "copy": [
+     "bootloader/rtl/qspi_phy_ecp5.v"
+    ],
+    "instance": [
+     "bootloader/rtl/top-ulx3s.v",
+     "bootloader/rtl/top-ulx4m.v",
+     "bootloader/rtl/top.v"
+    ]
+   }
+  ],
+  "emard-misc-wbqspiflash": [],
+  "pifive-wbuart": [
+   {
+    "repo": "zipcpu__icozip",
+    "copy": [],
+    "instance": [
+     "rtl/uart/speechfifo.v"
+    ]
+   }
+  ],
+  "f32c-sio": [],
+  "hazard3-sao-uart-phy": [],
+  "verilog-tomverbeure-uart-tx": [],
+  "volnirr-verilog-uart": [],
+  "hazard3-apb-sd-spi": [],
+  "glasgow-spi": [
+   {
+    "repo": "asinghani__pifive-cpu",
+    "copy": [
+     "soc/rtl/periphs/spi.py"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "cheyao__icepi-zero",
+    "copy": [
+     "gateware/spi/rpi/spi.py"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "greatscottgadgets__luna",
+    "copy": [
+     "luna/gateware/interface/spi.py"
+    ],
+    "instance": []
+   }
+  ],
+  "zipcpu-llsdspi": [],
+  "buspirateultrahdl-spimaster": [
+   {
+    "repo": "egorxe__openglory",
+    "copy": [],
+    "instance": [
+     "hw/litex/radiona_ulx3s.py"
+    ]
+   },
+   {
+    "repo": "litex-hub__linux-on-litex-vexriscv",
+    "copy": [],
+    "instance": [
+     "soc_linux.py"
+    ]
+   },
+   {
+    "repo": "pablogs9__rocketfpga",
+    "copy": [],
+    "instance": [
+     "Software/FPGA Sample Code/Codec/configurator.v"
+    ]
+   },
+   {
+    "repo": "spinalhdl__saxonsoc",
+    "copy": [],
+    "instance": [
+     "hardware/deprecated/blackice/BlackiceSocArduino.scala",
+     "hardware/deprecated/blackicemx/BlackiceMxMinimal.scala",
+     "hardware/deprecated/blackicemx/BlackiceMxSocSdram.scala"
+    ]
+   },
+   {
+    "repo": "w531t4__fpga_led_display",
+    "copy": [],
+    "instance": [
+     "src/include/tb_spi_streamer.svh"
+    ]
+   }
+  ],
+  "pifive-verilog-i2c": [],
+  "beaglewire-i2c-master": [],
+  "glasgow-i2c": [
+   {
+    "repo": "asinghani__pifive-cpu",
+    "copy": [
+     "soc/rtl/periphs/i2c.py",
+     "soc/third_party/verilog-i2c/tb/i2c.py"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "greatscottgadgets__luna",
+    "copy": [
+     "luna/gateware/interface/i2c.py"
+    ],
+    "instance": []
+   }
+  ],
+  "hazard3-sao-i2c-engine": [],
+  "emard-had2019-usb-device": [
+   {
+    "repo": "icebreaker-fpga__icetwang",
+    "copy": [
+     "soc/cores/no2usb/rtl/usb_ep_buf.v",
+     "soc/cores/no2usb/rtl/usb_ep_status.v"
+    ],
+    "instance": [
+     "soc/cores/no2usb/rtl/usb.v",
+     "soc/cores/no2usb/sim/usb_ep_buf_tb.v"
+    ]
+   },
+   {
+    "repo": "smunaut__ice40-playground",
+    "copy": [
+     "cores/no2usb/rtl/usb_ep_buf.v",
+     "cores/no2usb/rtl/usb_ep_status.v"
+    ],
+    "instance": [
+     "cores/no2usb/rtl/usb.v",
+     "cores/no2usb/sim/usb_ep_buf_tb.v"
+    ]
+   },
+   {
+    "repo": "spritetm__hadbadge2019_fpgasoc",
+    "copy": [
+     "soc/usb/usb_ep_buf.v",
+     "soc/usb/usb_ep_status.v"
+    ],
+    "instance": [
+     "soc/usb/usb.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__hazard3-doom",
+    "copy": [
+     "bootloader/cores/usb/rtl/usb_ep_buf.v",
+     "bootloader/cores/usb/rtl/usb_ep_status.v"
+    ],
+    "instance": [
+     "bootloader/cores/usb/rtl/usb.v",
+     "bootloader/cores/usb/sim/usb_ep_buf_tb.v"
+    ]
+   }
+  ],
+  "circuit-killer-usbserial": [
+   {
+    "repo": "emard__ulx3s-misc",
+    "copy": [
+     "examples/usb/usbcdc/usb_control.vhd",
+     "examples/usb/usbcdc/usb_packet.vhd",
+     "examples/usb/usbcdc/usb_transact.vhd"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "f32c__f32c",
+    "copy": [
+     "rtl/soc/usb_serial/usb_control.vhd",
+     "rtl/soc/usb_serial/usb_packet.vhd",
+     "rtl/soc/usb_serial/usb_transact.vhd"
+    ],
+    "instance": []
+   }
+  ],
+  "f32c-usb-serial": [
+   {
+    "repo": "circuit-killer__fpga-usbserial",
+    "copy": [
+     "usb_serial/usb_transact.vhd"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "emard__ulx3s-misc",
+    "copy": [
+     "examples/usb/usbcdc/usb_transact.vhd"
+    ],
+    "instance": []
+   }
+  ],
+  "hdl4fpga-usbdev": [
+   {
+    "repo": "greatscottgadgets__luna",
+    "copy": [],
+    "instance": [
+     "applets/clear_endpoint_halt_test.py",
+     "examples/usb/counter_device.py",
+     "examples/usb/interrupt_device.py"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [],
+    "instance": [
+     "usbhost/usbh_host_hid.v"
+    ]
+   },
+   {
+    "repo": "orangecrab-fpga__orangecrab-examples",
+    "copy": [],
+    "instance": [
+     "litex/deps/valentyusb/sim/test-cdc-eptri.py"
+    ]
+   },
+   {
+    "repo": "spinalhdl__saxonsoc",
+    "copy": [],
+    "instance": [
+     "hardware/scala/saxon/board/digilent/ArtyA7SmpLinux.scala",
+     "hardware/scala/saxon/board/radiona/ulx3s/Ulx3sSmp.scala"
+    ]
+   }
+  ],
+  "ulixxe-usb-cdc": [
+   {
+    "repo": "machdyne__zeitlos",
+    "copy": [
+     "rtl/ext/usb_cdc/phy_rx.v",
+     "rtl/ext/usb_cdc/phy_tx.v",
+     "rtl/ext/usb_cdc/usb_cdc.v"
+    ],
+    "instance": [
+     "rtl/csrs.vh",
+     "rtl/usb_cdc_uart.v"
+    ]
+   },
+   {
+    "repo": "mb-sat__ulx3s-longwave-sdr",
+    "copy": [
+     "logic/common-verilog/usb_cdc/phy_rx.v",
+     "logic/common-verilog/usb_cdc/phy_tx.v",
+     "logic/common-verilog/usb_cdc/usb_cdc.v"
+    ],
+    "instance": [
+     "logic/ulx3s-stream-verilog/ulx3s.v"
+    ]
+   }
+  ],
+  "ulx3s-misc-usbcdc": [],
+  "ulx3s-misc-usbhost": [
+   {
+    "repo": "cheyao__nes_ecp5",
+    "copy": [
+     "usb/usbhost/usbh_host_hid.v",
+     "usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "top.v",
+     "usb/usbhost/usbh_host_hid.v"
+    ]
+   },
+   {
+    "repo": "dan-rodrigues__icestation-32",
+    "copy": [
+     "hardware/usb/usbh_host_hid.v",
+     "hardware/usb/usbh_sie.v"
+    ],
+    "instance": [
+     "hardware/usb/gamepads/usb_gamepad_reader.v",
+     "hardware/usb/usbh_host_hid.v"
+    ]
+   },
+   {
+    "repo": "emard__apple2fpga",
+    "copy": [
+     "rtl_emard/usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "rtl_emard/lattice/top/ulx3s_v20_apple2.vhd",
+     "rtl_emard/usb/usbhost/usbh_sie_vhdl.vhd"
+    ]
+   },
+   {
+    "repo": "emard__minimig_ecs",
+    "copy": [
+     "rtl_emard/usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "rtl_emard/usb/usbhost/usbh_host.v",
+     "rtl_emard/usb/usbhost/usbh_sie_vhdl.vhd"
+    ]
+   },
+   {
+    "repo": "emard__nes_ecp5",
+    "copy": [
+     "usb/usbhost/usbh_host_hid.v",
+     "usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "top.v",
+     "usb/usbhost/usbh_host_hid.v"
+    ]
+   },
+   {
+    "repo": "emard__vhdl_phoenix",
+    "copy": [
+     "rtl_emard/usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "rtl_emard/usb/usbhost/usbh_host.v",
+     "rtl_emard/usb/usbhost/usbh_sie_vhdl.vhd"
+    ]
+   },
+   {
+    "repo": "ironsteel__nes_ecp5",
+    "copy": [
+     "usb/usbhost/usbh_host_hid.v",
+     "usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "top.v",
+     "usb/usbhost/usbh_host_hid.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [
+     "usbemard/usbh_host_hid.v",
+     "usbemard/usbh_sie.v",
+     "usbhost/usbh_host_hid.v"
+    ],
+    "instance": [
+     "usbemard/ulx3s_usbhost_test.v",
+     "usbemard/usbh_host_hid.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_zx_spectrum",
+    "copy": [
+     "src/usb/usbhost/usbh_host_hid.v",
+     "src/usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "src/spectrum.v",
+     "src/usb/usbhost/usbh_host_hid.v"
+    ]
+   },
+   {
+    "repo": "linuxjedi__minimig_ecs",
+    "copy": [
+     "rtl_emard/usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "rtl_emard/usb/usbhost/usbh_host.v",
+     "rtl_emard/usb/usbhost/usbh_sie_vhdl.vhd"
+    ]
+   },
+   {
+    "repo": "machdyne__nes_ecp5",
+    "copy": [
+     "usb/usbhost/usbh_host_hid.v",
+     "usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "top.v",
+     "usb/usbhost/usbh_host_hid.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__apple2fpga",
+    "copy": [
+     "rtl_emard/usb/usbhost/usbh_sie.v"
+    ],
+    "instance": [
+     "rtl_emard/usb/usbhost/usbh_sie_vhdl.vhd"
+    ]
+   }
+  ],
+  "circuit-killer-usbhid-host": [
+   {
+    "repo": "emard__papilio-arcade",
+    "copy": [
+     "scramble_rel001_papilio/source/usbhid/usb_req_gen_func_pack.vhd",
+     "scramble_rel001_papilio/source/usbhid/usbhid_host.vhd"
+    ],
+    "instance": []
+   }
+  ],
+  "emard-usb-host-soc": [],
+  "nes-ecp5-usb-gamepad": [
+   {
+    "repo": "cheyao__nes_ecp5",
+    "copy": [
+     "usb/report_decoder/usbh_report_decoder_saitek.v",
+     "usb/report_decoder/usbh_report_decoder_xbox360.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "ironsteel__nes_ecp5",
+    "copy": [
+     "usb/report_decoder/usbh_report_decoder_saitek.v",
+     "usb/report_decoder/usbh_report_decoder_xbox360.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "lawrie__ulx3s_zx_spectrum",
+    "copy": [
+     "src/usb/report_decoder/usbh_report_decoder_saitek.v",
+     "src/usb/report_decoder/usbh_report_decoder_xbox360.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "machdyne__nes_ecp5",
+    "copy": [
+     "usb/report_decoder/usbh_report_decoder_saitek.v",
+     "usb/report_decoder/usbh_report_decoder_xbox360.v"
+    ],
+    "instance": []
+   }
+  ],
+  "hdl4fpga-usbhost": [
+   {
+    "repo": "lawrie__spinalulx3s",
+    "copy": [],
+    "instance": [
+     "src/main/scala/mylib/UsbHidTest.scala",
+     "src/main/scala/mylib/UsbHostHid.scala"
+    ]
+   },
+   {
+    "repo": "spinalhdl__saxonsoc",
+    "copy": [],
+    "instance": [
+     "hardware/deprecated/ulx3s/peripheral/UsbHostHid.scala"
+    ]
+   }
+  ],
+  "had2019-dfu-bootloader": [],
+  "hazard3-doom-dfu-bootloader": [],
+  "no2usb-dfu-helper": [
+   {
+    "repo": "icebreaker-fpga__icebreaker-verilog-examples",
+    "copy": [
+     "icebitsy/common/dfu_helper.v"
+    ],
+    "instance": [
+     "icebitsy/blink_count_shift/blink_count_shift.v",
+     "icebitsy/charlieplexing-tomk/pmodcharlie.v",
+     "icebitsy/dvi-12bit/dvi-12bit.v"
+    ]
+   },
+   {
+    "repo": "icebreaker-fpga__icetwang",
+    "copy": [
+     "soc/ice-twang/rtl/dfu_helper.v"
+    ],
+    "instance": [
+     "soc/ice-twang/rtl/top.v",
+     "soc/ice-twang/sim/dfu_helper_tb.v"
+    ]
+   },
+   {
+    "repo": "osmocom__osmo-e1-hardware",
+    "copy": [
+     "gateware/common/rtl/dfu_helper.v"
+    ],
+    "instance": [
+     "gateware/e1-tracer/rtl/misc.v",
+     "gateware/icE1usb-proto/rtl/misc.v",
+     "gateware/icE1usb/rtl/misc.v"
+    ]
+   }
+  ],
+  "hdl4fpga-mii-ipoe": [],
+  "datanoisetv-eth-mac-rgmii": [
+   {
+    "repo": "hdl4fpga__hdl4fpga",
+    "copy": [],
+    "instance": [
+     "boards/ULX4M_LD/apps/graphics.vhd"
+    ]
+   },
+   {
+    "repo": "sefbkn__versa-ecp5-demo",
+    "copy": [
+     "rtl/ethernet/rgmii/rgmii_rx.v",
+     "rtl/ethernet/rgmii/rgmii_tx.v"
+    ],
+    "instance": [
+     "rtl/ethernet/rgmii/rgmii_port.v"
+    ]
+   }
+  ],
+  "sefbkn-mdio": [
+   {
+    "repo": "datanoisetv__colorlight-i9-aes67",
+    "copy": [
+     "rtl/eth/mdio_master.v"
+    ],
+    "instance": [
+     "rtl/aes67_top.v"
+    ]
+   }
+  ],
+  "emard-eth-rmii-hexdemo": [],
+  "lawrie-ps2-intf": [
+   {
+    "repo": "emard__uk101onfpga",
+    "copy": [],
+    "instance": [
+     "Components/PS2KB/UK101keyboard.vhd",
+     "Components/PS2KB/UK101keyboard_buttons.vhd",
+     "Components/PS2KB/orao_keyboard_buttons.vhd"
+    ]
+   },
+   {
+    "repo": "hoglet67__ice40atom",
+    "copy": [],
+    "instance": [
+     "src/keyboard.v"
+    ]
+   },
+   {
+    "repo": "hoglet67__ice40beeb",
+    "copy": [],
+    "instance": [
+     "src/keyboard.v"
+    ]
+   },
+   {
+    "repo": "lawrie__blackicemxbook",
+    "copy": [],
+    "instance": [
+     "examples/input/ps2/ps2_test.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_acorn_atom",
+    "copy": [],
+    "instance": [
+     "src/keyboard.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_bbc_micro",
+    "copy": [],
+    "instance": [
+     "src/keyboard.v"
+    ]
+   },
+   {
+    "repo": "lawrie__verilog_examples",
+    "copy": [],
+    "instance": [
+     "fpga/computer/vga_test.v",
+     "fpga/ps2/ps2_test.v"
+    ]
+   }
+  ],
+  "f32c-ps2": [],
+  "lawrie-ps2-port": [],
+  "emard-ps2kbd-ps2mouse": [
+   {
+    "repo": "danodus__xgsoc",
+    "copy": [
+     "rtl/ps2kbd.v",
+     "rtl/ps2mouse.v"
+    ],
+    "instance": [
+     "rtl/soc_top.sv"
+    ]
+   },
+   {
+    "repo": "emard__minimig_ecs",
+    "copy": [],
+    "instance": [
+     "source_emard/Userio.v"
+    ]
+   },
+   {
+    "repo": "linuxjedi__minimig_ecs",
+    "copy": [],
+    "instance": [
+     "source_emard/Userio.v"
+    ]
+   },
+   {
+    "repo": "pnru__ti99",
+    "copy": [],
+    "instance": [
+     "ti99_2/ps2kb.v"
+    ]
+   },
+   {
+    "repo": "speccery__icy99",
+    "copy": [],
+    "instance": [
+     "src/ps2kb.v"
+    ]
+   },
+   {
+    "repo": "stuij__odyssey",
+    "copy": [
+     "verilog/ps2kbd.v"
+    ],
+    "instance": [
+     "verilog/odyssey_top.v"
+    ]
+   }
+  ],
+  "emard-jtag-slave": [],
+  "tomverbeure-ecp5-jtag": [],
+  "johnazoidberg-espi-analyzer": [],
+  "opendap-sw-dp": [],
+  "lawrie-ice40logicsniffer": [],
+  "kulp-tenyr-wb-intercon": [
+   {
+    "repo": "daveshah1__ulx3s",
+    "copy": [],
+    "instance": [
+     "rtl/verilog/wb_intercon.v",
+     "rtl/verilog/wb_intercon_dbg.v"
+    ]
+   },
+   {
+    "repo": "machdyne__zeitlos",
+    "copy": [],
+    "instance": [
+     "rtl/sysctl.v",
+     "rtl/tb/tb_arbiter_main.v"
+    ]
+   },
+   {
+    "repo": "osmocom__osmo-e1-hardware",
+    "copy": [
+     "gateware/common/rtl/wb_arbiter.v"
+    ],
+    "instance": [
+     "gateware/common/rtl/soc_iobuf.v"
+    ]
+   },
+   {
+    "repo": "rschlaikjer__fpga-3-softcores",
+    "copy": [
+     "vendor/wb_intercon/rtl/verilog/wb_arbiter.v",
+     "vendor/wb_intercon/rtl/verilog/wb_mux.v"
+    ],
+    "instance": [
+     "rtl/gen/wb_intercon.v",
+     "vendor/wb_intercon/bench/wb_arbiter_tb.v",
+     "vendor/wb_intercon/bench/wb_intercon_tb.v"
+    ]
+   }
+  ],
+  "hazard3-ahbl-busfabric": [
+   {
+    "repo": "wren6991__hazard3",
+    "copy": [],
+    "instance": [
+     "example_soc/soc/example_soc.v"
+    ]
+   },
+   {
+    "repo": "wren6991__hazard3-swd-soc",
+    "copy": [
+     "lib/libfpga/busfabric/ahbl_crossbar.v",
+     "lib/libfpga/busfabric/ahbl_to_apb.v"
+    ],
+    "instance": [
+     "hdl/soc/soc.v",
+     "lib/libfpga/busfabric/ahbl_crossbar.v"
+    ]
+   },
+   {
+    "repo": "wren6991__riscboy",
+    "copy": [
+     "hdl/libfpga/busfabric/ahbl_crossbar.v",
+     "hdl/libfpga/busfabric/ahbl_to_apb.v"
+    ],
+    "instance": [
+     "hdl/libfpga/busfabric/ahbl_crossbar.v",
+     "hdl/riscboy_core/riscboy_core.v",
+     "test/ahbl_arbiter/tb.v"
+    ]
+   }
+  ],
+  "rschlaikjer-wb-intercon": [],
+  "emard-max1112x-adc": [
+   {
+    "repo": "emard__ulx3s-emi",
+    "copy": [
+     "hdl/max1112x_init_pack.vhd",
+     "hdl/max1112x_reader_array.vhd"
+    ],
+    "instance": []
+   }
+  ],
+  "emeb-orangecrab-adc-ddc": [],
+  "emard-max1112x-emi": [
+   {
+    "repo": "emard__ulx3s-misc",
+    "copy": [
+     "examples/adc/max1112x/hdl/max1112x_init_pack.vhd",
+     "examples/adc/max1112x/hdl/max1112x_reader_array.vhd"
+    ],
+    "instance": []
+   }
+  ],
+  "buspirate-adc": [],
+  "machdyne-fpga-dac-audio": [],
+  "spritetm-hadbadge-pdm": [],
+  "emard-ulx3s-misc-dacpwm": [
+   {
+    "repo": "dan-rodrigues__icestation-32",
+    "copy": [
+     "hardware/ulx3s/dacpwm.v"
+    ],
+    "instance": [
+     "hardware/ulx3s/ics32_top_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "dan-rodrigues__ics-adpcm",
+    "copy": [
+     "demo/dacpwm.v"
+    ],
+    "instance": [
+     "demo/adpcm_demo_top.v"
+    ]
+   },
+   {
+    "repo": "dlobato__cps1-musicbox",
+    "copy": [],
+    "instance": [
+     "gateware/dacpwm.py",
+     "radiona_ulx3s.py"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_c64",
+    "copy": [],
+    "instance": [
+     "rtl/top_ulx3s_v20_c64.vhd"
+    ]
+   },
+   {
+    "repo": "f32c__f32c",
+    "copy": [],
+    "instance": [
+     "rtl/generic/glue_xram_vector.vhd"
+    ]
+   },
+   {
+    "repo": "lawrie__spinalulx3s",
+    "copy": [],
+    "instance": [
+     "src/main/scala/mylib/DacPwm.scala"
+    ]
+   },
+   {
+    "repo": "logoposeidon__ulx3sjukebox",
+    "copy": [
+     "dacpwm.v"
+    ],
+    "instance": [
+     "audio_test.v"
+    ]
+   }
+  ],
+  "emard-synthowheel-sigmadelta": [
+   {
+    "repo": "f32c__f32c",
+    "copy": [
+     "rtl/soc/sigmadelta.vhd"
+    ],
+    "instance": [
+     "rtl/generic/glue_xram.vhd",
+     "rtl/generic/glue_xram_vector.vhd"
+    ]
+   },
+   {
+    "repo": "glasgowembedded__glasgow",
+    "copy": [],
+    "instance": [
+     "software/glasgow/applet/audio/dac/__init__.py"
+    ]
+   },
+   {
+    "repo": "tarik-hamedovic__sdr-hls",
+    "copy": [],
+    "instance": [
+     "3.Testing/1bitADCLattice/Lattice/First_Implementation/ADC_top_prim.v"
+    ]
+   }
+  ],
+  "daveshah1-sigma-delta-dac": [
+   {
+    "repo": "cheyao__nes_ecp5",
+    "copy": [
+     "sigma_delta_dac.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "cheyao__sega-sms",
+    "copy": [],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_sms",
+    "copy": [],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "darklife__darkriscv",
+    "copy": [
+     "boards/de10nano_cyclonev_mister/sys/sigma_delta_dac.v"
+    ],
+    "instance": [
+     "boards/de10nano_cyclonev_mister/sys/audio_out.v"
+    ]
+   },
+   {
+    "repo": "emard__nes_ecp5",
+    "copy": [
+     "sigma_delta_dac.v"
+    ],
+    "instance": [
+     "top.v"
+    ]
+   },
+   {
+    "repo": "emard__snes_mister_ulx3s",
+    "copy": [
+     "sys/sigma_delta_dac.v"
+    ],
+    "instance": [
+     "sys/audio_out.v",
+     "ulx3s/top/ulx3s_top.v"
+    ]
+   },
+   {
+    "repo": "gatecat__snes_mister_ulx3s",
+    "copy": [
+     "sys/sigma_delta_dac.v"
+    ],
+    "instance": [
+     "sys/audio_out.v",
+     "ulx3s/top/ulx3s_top.v"
+    ]
+   },
+   {
+    "repo": "gojimmypi__z80386-ulx3s-doom",
+    "copy": [
+     "third_party/z386_MiSTer/sys/sigma_delta_dac.v"
+    ],
+    "instance": [
+     "third_party/z386_MiSTer/sys/audio_out.v"
+    ]
+   },
+   {
+    "repo": "ironsteel__nes_ecp5",
+    "copy": [
+     "sigma_delta_dac.v"
+    ],
+    "instance": [
+     "top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_gamegear",
+    "copy": [],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_mac128",
+    "copy": [],
+    "instance": [
+     "src/mac128.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sms",
+    "copy": [],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "machdyne__nes_ecp5",
+    "copy": [
+     "sigma_delta_dac.v"
+    ],
+    "instance": [
+     "top.v"
+    ]
+   },
+   {
+    "repo": "wifiboy__ok-ice40pro",
+    "copy": [
+     "ok-nes-vga-src/sigma_delta_dac.v"
+    ],
+    "instance": [
+     "ok-nes-vga-src/NES_okice40_pro.v"
+    ]
+   },
+   {
+    "repo": "wuxx__icesugar",
+    "copy": [
+     "src/advanced/up5k-demos/gameboy/sigma_delta_dac.v",
+     "src/advanced/up5k-demos/nes/sigma_delta_dac.v",
+     "src/advanced/up5k-demos/neshdmi/sigma_delta_dac.v"
+    ],
+    "instance": [
+     "src/advanced/up5k-demos/nes/NES_ice40.v",
+     "src/advanced/up5k-demos/neshdmi/NES_ice40.v",
+     "src/advanced/up5k-demos/nesmx/NES_ice40.v"
+    ]
+   }
+  ],
+  "emard-ulx3s-misc-i2s": [
+   {
+    "repo": "f32c__f32c",
+    "copy": [
+     "rtl/soc/i2s_v.v"
+    ],
+    "instance": []
+   }
+  ],
+  "orangecrab-usb-i2s-rx": [],
+  "icesugar-pro-i2s-pdm": [],
+  "f32c-spdif-tx": [],
+  "emard-synthowheel-spdif": [
+   {
+    "repo": "dan-rodrigues__icestation-32",
+    "copy": [],
+    "instance": [
+     "hardware/ulx3s/ics32_top_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "dan-rodrigues__ics-adpcm",
+    "copy": [],
+    "instance": [
+     "demo/adpcm_demo_top.v"
+    ]
+   },
+   {
+    "repo": "emard__minimig_ecs",
+    "copy": [
+     "rtl_emard/spdif/spdif_tx.vhd"
+    ],
+    "instance": [
+     "proj/altera/ffm-c5a4-sd-lcdif/top/amiga_ffm_c5a4_sd.vhd",
+     "proj/altera/ffm-c5a4-sd-lcse/top/amiga_ffm_c5a4_sd.vhd",
+     "proj/lattice/fleafpga-ohm-ps2kbd/top/minimig_fleafpga_ohm.vhd"
+    ]
+   },
+   {
+    "repo": "emard__papilio-arcade",
+    "copy": [
+     "scramble_rel001_papilio/source/spdif/spdif_tx.vhd"
+    ],
+    "instance": [
+     "pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_12f/top/pacman_ulx3s.vhd",
+     "pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_25f/top/pacman_ulx3s.vhd",
+     "pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_45f/top/pacman_ulx3s.vhd"
+    ]
+   },
+   {
+    "repo": "emard__uk101onfpga",
+    "copy": [
+     "rtl_emard/spdif/spdif_tx.vhd"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "emard__ulx3s-misc",
+    "copy": [
+     "examples/audio/hdl/spdif_tx.vhd"
+    ],
+    "instance": [
+     "examples/audio/hdl/top_audio.v"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_c64",
+    "copy": [
+     "rtl/spdif_tx.vhd"
+    ],
+    "instance": [
+     "rtl/top_ulx3s_v20_c64.vhd"
+    ]
+   },
+   {
+    "repo": "emard__vhdl_c64_c1541_sd",
+    "copy": [
+     "rtl_emard/spdif/spdif_tx.vhd"
+    ],
+    "instance": [
+     "proj/lattice/ulx3s/top/c64_ulx3s.vhd"
+    ]
+   },
+   {
+    "repo": "emard__vhdl_phoenix",
+    "copy": [
+     "rtl_emard/spdif/spdif_tx.vhd"
+    ],
+    "instance": [
+     "proj/lattice/ulx3s/top/phoenix_ulx3s.vhd"
+    ]
+   },
+   {
+    "repo": "f32c__f32c",
+    "copy": [
+     "rtl/soc/spdif_tx.vhd"
+    ],
+    "instance": [
+     "rtl/generic/glue_xram.vhd",
+     "rtl/generic/glue_xram_vector.vhd"
+    ]
+   },
+   {
+    "repo": "linuxjedi__minimig_ecs",
+    "copy": [
+     "rtl_emard/spdif/spdif_tx.vhd"
+    ],
+    "instance": [
+     "proj/altera/ffm-c5a4-sd-lcdif/top/amiga_ffm_c5a4_sd.vhd",
+     "proj/altera/ffm-c5a4-sd-lcse/top/amiga_ffm_c5a4_sd.vhd",
+     "proj/lattice/fleafpga-ohm-ps2kbd/top/minimig_fleafpga_ohm.vhd"
+    ]
+   }
+  ],
+  "lawrie-sn76489": [
+   {
+    "repo": "cheyao__sega-sms",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_68k",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_sms",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "hoglet67__ice40beeb",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/bbc.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_68k",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_bbc_micro",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/bbc.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_colecovision",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/coleco.v",
+     "src/ulx4m_coleco.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_gamegear",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_ql",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "lawrie__ulx3s_sg_1000",
+    "copy": [
+     "src/sn76489.v"
+    ],
+    "instance": [
+     "src/sg1000.v"
+    ]
+   }
+  ],
+  "jt51-ym2151": [],
+  "danodus-jt89-ay8910": [],
+  "daglem-redip-sid": [],
+  "bithack-icesid": [],
+  "jamesrosssharp-1bit-am": [
+   {
+    "repo": "jamesrosssharp__ulx3s_mixer_pcb",
+    "copy": [
+     "hdl/src/am_demod.v",
+     "hdl/src/am_gen.v"
+    ],
+    "instance": [
+     "hdl/impl/ulx3s/top.v",
+     "hdl/test/004_AM_DEMOD/tb.v",
+     "hdl/test/005_AM_GEN/tb.v"
+    ]
+   }
+  ],
+  "nicocavallu-dds-lo": [],
+  "emard-fm-rds": [
+   {
+    "repo": "emard__rdsfpga",
+    "copy": [
+     "bram_rds.vhd",
+     "fmgen.vhd"
+    ],
+    "instance": [
+     "main.v"
+    ]
+   },
+   {
+    "repo": "f32c__f32c",
+    "copy": [
+     "rtl/soc/fm/bram_rds.vhd",
+     "rtl/soc/fm/fmgen.vhd"
+    ],
+    "instance": [
+     "rtl/soc/fm/fm.vhd"
+    ]
+   }
+  ],
+  "emard-rdsfpga-rds": [],
+  "jamesrosssharp-mixer-pcb-superhet": [
+   {
+    "repo": "jamesrosssharp__1_bit_am",
+    "copy": [],
+    "instance": [
+     "impl/ulx3s/top.v",
+     "test/004_AM_DEMOD/tb.v"
+    ]
+   }
+  ],
+  "semify-wfg-stim-sine": [],
+  "mebner86-fft256": [],
+  "emeb-cic-fir-decimator": [],
+  "osresearch-cordic": [
+   {
+    "repo": "badgeteam__mch2022-firmware-ice40",
+    "copy": [
+     "projects/Forth/rtl/common-verilog/cordic.v",
+     "projects/Snake/rtl/common-verilog/cordic.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "bornabiro__fpga_epaper",
+    "copy": [],
+    "instance": [
+     "epaper/_math_real.vhd"
+    ]
+   },
+   {
+    "repo": "marinsiric__ulx3s",
+    "copy": [],
+    "instance": [
+     "Diamond/passthru/ulx3s-v2.0-12f/._Real_._Math_.vhd",
+     "Diamond/passthru/ulx3s-v2.0-12f/project/._Real_._Math_.vhd"
+    ]
+   },
+   {
+    "repo": "tarik-hamedovic__sdr-hls",
+    "copy": [
+     "5.NewModules/CORDIC/CORDIC-Comb/cordic.v",
+     "5.NewModules/CORDIC/CORDIC-ZIPCPU/cordic.v"
+    ],
+    "instance": [
+     "1.RTLImplementation/4.lattice/Version0-modified/sim/_math_real.vhd",
+     "1.RTLImplementation/4.lattice/Version1/IP/Multiplier/_math_real.vhd",
+     "1.RTLImplementation/4.lattice/Version1/IP/NCOAdder/_math_real.vhd"
+    ]
+   },
+   {
+    "repo": "tvelliott__dsp_ice",
+    "copy": [],
+    "instance": [
+     "firmware/fpga/src/fpga_top.v"
+    ]
+   }
+  ],
+  "jamesrosssharp-nco-cic": [],
+  "yosyshq-picorv32": [
+   {
+    "repo": "badgeteam__mch2022-firmware-ice40",
+    "copy": [
+     "projects/selftest/rtl/picorv32.v"
+    ],
+    "instance": [
+     "projects/selftest/rtl/picorv32.v",
+     "projects/selftest/rtl/soc_picorv32_base.v"
+    ]
+   },
+   {
+    "repo": "cliffordwolf__icotools",
+    "copy": [
+     "icosoc/common/picorv32.v"
+    ],
+    "instance": [
+     "icosoc/common/picorv32.v",
+     "icosoc/icosoc.py"
+    ]
+   },
+   {
+    "repo": "dan-rodrigues__icestation-32",
+    "copy": [
+     "hardware/picorv32.v"
+    ],
+    "instance": [
+     "hardware/ics32.v",
+     "hardware/picorv32.v"
+    ]
+   },
+   {
+    "repo": "emard__had2019-playground",
+    "copy": [
+     "projects/bootloader/rtl/picorv32.v"
+    ],
+    "instance": [
+     "projects/bootloader/rtl/picorv32.v",
+     "projects/bootloader/rtl/top-ulx3s.v",
+     "projects/bootloader/rtl/top-ulx4m.v"
+    ]
+   },
+   {
+    "repo": "emeb__up5k_osc",
+    "copy": [],
+    "instance": [
+     "gateware/riscv/src/system.v"
+    ]
+   },
+   {
+    "repo": "evansm7__arcdvi",
+    "copy": [
+     "external-src/picorv32.v"
+    ],
+    "instance": [
+     "external-src/picorv32.v",
+     "external-src/picosocme.v"
+    ]
+   },
+   {
+    "repo": "gtjennings1__hyperbus",
+    "copy": [],
+    "instance": [
+     "riscv32/hardware/picosoc.v",
+     "riscv32/hardware/zpicorv32.v"
+    ]
+   },
+   {
+    "repo": "icebreaker-fpga__icetwang",
+    "copy": [
+     "soc/ice-twang/rtl/picorv32.v"
+    ],
+    "instance": [
+     "soc/ice-twang/rtl/picorv32.v",
+     "soc/ice-twang/rtl/soc_picorv32_base.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [
+     "hdmi/menu/picorv32.v",
+     "riscv/picorv32.v"
+    ],
+    "instance": [
+     "hdmi/menu/attosoc.v",
+     "hdmi/menu/picorv32.v",
+     "riscv/attosoc.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_examples",
+    "copy": [
+     "hdmi/menu/picorv32.v",
+     "softcore/riscv/picorv32.v"
+    ],
+    "instance": [
+     "hdmi/menu/attosoc.v",
+     "hdmi/menu/picorv32.v",
+     "softcore/riscv/attosoc.v"
+    ]
+   },
+   {
+    "repo": "machdyne__zeitlos",
+    "copy": [
+     "rtl/cpu/picorv32/picorv32.v"
+    ],
+    "instance": [
+     "rtl/cpu/picorv32/picorv32.v",
+     "rtl/mpu.v",
+     "rtl/sysctl.v"
+    ]
+   },
+   {
+    "repo": "mkvenkit__learn_fpga",
+    "copy": [],
+    "instance": [
+     "ice40up5k/picosoc_gpio/picosoc.v"
+    ]
+   },
+   {
+    "repo": "nklabs__libnklabs-ulx3s",
+    "copy": [
+     "rtl/picorv32.v"
+    ],
+    "instance": [
+     "rtl/picorv32.v",
+     "rtl/riscv.v"
+    ]
+   },
+   {
+    "repo": "nullobject__riscv-ulx3s",
+    "copy": [
+     "hdl/picorv32.v"
+    ],
+    "instance": [
+     "hdl/picorv32.v",
+     "hdl/top.v"
+    ]
+   },
+   {
+    "repo": "osmocom__osmo-e1-hardware",
+    "copy": [
+     "gateware/common/rtl/picorv32.v"
+    ],
+    "instance": [
+     "gateware/common/rtl/picorv32.v",
+     "gateware/common/rtl/soc_base.v"
+    ]
+   },
+   {
+    "repo": "racerxdl__colorlight-picorv32",
+    "copy": [
+     "src/picorv32.v"
+    ],
+    "instance": [
+     "src/picorv32.v",
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "saul-rodriguez__ulx3s",
+    "copy": [
+     "picoRV32_rom/picorv32.v"
+    ],
+    "instance": [
+     "picoRV32_rom/picorv32.v",
+     "picoRV32_rom/vargen.v"
+    ]
+   },
+   {
+    "repo": "smunaut__ice40-playground",
+    "copy": [
+     "projects/riscv_usb/rtl/picorv32.v",
+     "projects/usb_amr/rtl/picorv32.v",
+     "projects/usb_audio/rtl/picorv32.v"
+    ],
+    "instance": [
+     "projects/riscv_usb/rtl/picorv32.v",
+     "projects/riscv_usb/rtl/soc_picorv32_base.v",
+     "projects/usb_amr/rtl/picorv32.v"
+    ]
+   },
+   {
+    "repo": "smunaut__mch2022-ice40",
+    "copy": [
+     "projects/selftest/rtl/picorv32.v"
+    ],
+    "instance": [
+     "projects/selftest/rtl/picorv32.v",
+     "projects/selftest/rtl/soc_picorv32_base.v"
+    ]
+   },
+   {
+    "repo": "spritetm__hadbadge2019_fpgasoc",
+    "copy": [
+     "soc/picorv32/picorv32.v"
+    ],
+    "instance": [
+     "soc/picorv32/dhrystone/testbench.v",
+     "soc/picorv32/dhrystone/testbench_nola.v",
+     "soc/picorv32/picorv32.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__fpga-odysseus",
+    "copy": [
+     "tutorials/08-RISCV/picorv32.v"
+    ],
+    "instance": [
+     "tutorials/08-RISCV/01-Blinky/attosoc.v",
+     "tutorials/08-RISCV/attosoc.v",
+     "tutorials/08-RISCV/picorv32.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__hazard3-doom",
+    "copy": [
+     "bootloader/rtl/picorv32.v"
+    ],
+    "instance": [
+     "bootloader/rtl/picorv32.v",
+     "bootloader/rtl/top-ulx3s.v",
+     "bootloader/rtl/top-ulx4m.v"
+    ]
+   },
+   {
+    "repo": "wifiboy__ok-ice40pro",
+    "copy": [
+     "ok-rv32-soc-src/picorv32.v"
+    ],
+    "instance": [
+     "ok-rv32-soc-src/picorv32.v",
+     "ok-rv32-soc-src/system.v"
+    ]
+   },
+   {
+    "repo": "wuxx__colorlight-fpga-projects",
+    "copy": [
+     "src/i5/picosoc/picorv32.v"
+    ],
+    "instance": [
+     "src/i5/picosoc/attosoc.v",
+     "src/i5/picosoc/picorv32.v"
+    ]
+   },
+   {
+    "repo": "wuxx__icesugar",
+    "copy": [
+     "src/advanced/picorv32/picorv32.v"
+    ],
+    "instance": [
+     "src/advanced/picorv32/dhrystone/testbench.v",
+     "src/advanced/picorv32/dhrystone/testbench_nola.v",
+     "src/advanced/picorv32/picorv32.v"
+    ]
+   }
+  ],
+  "f32c-core": [],
+  "wren6991-hazard3": [
+   {
+    "repo": "ulx3s__hazard3",
+    "copy": [
+     "hdl/hazard3_core.v",
+     "hdl/hazard3_csr.v"
+    ],
+    "instance": [
+     "hdl/hazard3_core.v",
+     "hdl/hazard3_cpu_1port.v",
+     "hdl/hazard3_cpu_2port.v"
+    ]
+   }
+  ],
+  "kianv-sv32-core": [],
+  "stnolting-neorv32": [],
+  "rschlaikjer-vexriscv": [
+   {
+    "repo": "badgeteam__mch2022-firmware-ice40",
+    "copy": [],
+    "instance": [
+     "projects/riscv_doom/rtl/top.v"
+    ]
+   },
+   {
+    "repo": "dan-rodrigues__icestation-32",
+    "copy": [],
+    "instance": [
+     "hardware/vexriscv/vexriscv_shared_bus.v"
+    ]
+   },
+   {
+    "repo": "hanseo03__ulx3s-vexriscv-soc",
+    "copy": [],
+    "instance": [
+     "GenMyVexRiscv.scala",
+     "attosoc_vex.v"
+    ]
+   },
+   {
+    "repo": "mcejp__poly94",
+    "copy": [],
+    "instance": [
+     "GenPoly94Cpu.scala",
+     "rtl/top.sv"
+    ]
+   },
+   {
+    "repo": "sefbkn__versa-ecp5-demo",
+    "copy": [],
+    "instance": [
+     "rtl/soc/control_soc.v"
+    ]
+   },
+   {
+    "repo": "smunaut__ice40-playground",
+    "copy": [],
+    "instance": [
+     "projects/riscv_doom/rtl/top.v"
+    ]
+   },
+   {
+    "repo": "smunaut__ice40linux",
+    "copy": [],
+    "instance": [
+     "gateware/riscv_linux/rtl/top.v"
+    ]
+   },
+   {
+    "repo": "smunaut__mch2022-ice40",
+    "copy": [],
+    "instance": [
+     "projects/riscv_doom/rtl/top.v"
+    ]
+   },
+   {
+    "repo": "spinalhdl__saxonsoc",
+    "copy": [],
+    "instance": [
+     "hardware/deprecated/ice40up5kbevn/Ice40up5kbevnNoXip.scala",
+     "hardware/scala/saxon/BmbApbVexRiscvGenerator.scala",
+     "hardware/scala/saxon/VexRiscvClusterGenerator.scala"
+    ]
+   },
+   {
+    "repo": "thorkn__vexriscv-ulx3s-helloworld",
+    "copy": [],
+    "instance": [
+     "vexriscv/src/main/scala/vexriscv/TestsWorkspace.scala",
+     "vexriscv/src/main/scala/vexriscv/VexRiscv.scala",
+     "vexriscv/src/main/scala/vexriscv/demo/Briey.scala"
+    ]
+   },
+   {
+    "repo": "thorkn__vexriscv-ulx3s-simple-plugin",
+    "copy": [],
+    "instance": [
+     "vexriscv/src/main/scala/vexriscv/VexRiscv.scala",
+     "vexriscv/src/main/scala/vexriscv/demo/GenFull.scala",
+     "vexriscv/src/main/scala/vexriscv/demo/Murax.scala"
+    ]
+   },
+   {
+    "repo": "ulx3s__hazard3",
+    "copy": [],
+    "instance": [
+     "example_soc/third_party/LiteDRAM/generated-vexrisc/litedram_ulx4m_cpu.v",
+     "example_soc/third_party/LiteDRAM/regenerate-ulx4m.py"
+    ]
+   },
+   {
+    "repo": "wuxx__icesugar-pro",
+    "copy": [],
+    "instance": [
+     "src/litex_linux/top.v"
+    ]
+   },
+   {
+    "repo": "zeldin__icegdrom",
+    "copy": [],
+    "instance": [
+     "fpga/source/vexriscv/vexriscv_wrapper.v"
+    ]
+   }
+  ],
+  "chrismoos-m6502": [],
+  "cdp1802-fpgacosmacelf": [],
+  "fx68k-m68k-ulx3s": [
+   {
+    "repo": "danodus__ulx3s_68k",
+    "copy": [
+     "src/fx68k.v",
+     "src/fx68kAlu.v"
+    ],
+    "instance": [
+     "src/fx68k.sv",
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_68k",
+    "copy": [
+     "src/fx68k.v",
+     "src/fx68kAlu.v"
+    ],
+    "instance": [
+     "src/fx68k.sv",
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [
+     "test68/fx68k.v",
+     "test68/fx68kAlu.v"
+    ],
+    "instance": [
+     "test68/tb.v",
+     "test68/test68.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_mac128",
+    "copy": [
+     "src/fx68k/fx68k.v",
+     "src/fx68k/fx68kAlu.v"
+    ],
+    "instance": [
+     "src/fx68k/fx68k.sv",
+     "src/mac128.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_ql",
+    "copy": [
+     "src/fx68k/fx68k.v",
+     "src/fx68k/fx68kAlu.v"
+    ],
+    "instance": [
+     "src/fx68k/fx68k.sv",
+     "src/ql.v"
+    ]
+   }
+  ],
+  "i8080-altair": [
+   {
+    "repo": "lawrie__ulx3s_altair_8800",
+    "copy": [
+     "src/cpu/i8080.v"
+    ],
+    "instance": [
+     "src/altair.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_examples",
+    "copy": [
+     "softcore/altair/i8080.v"
+    ],
+    "instance": [
+     "softcore/altair/altair.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__fpga-odysseus",
+    "copy": [
+     "tutorials/07-Computer/i8080.v"
+    ],
+    "instance": [
+     "tutorials/07-Computer/altair.v"
+    ]
+   }
+  ],
+  "tms99000-ti99": [
+   {
+    "repo": "emard__ti99_2",
+    "copy": [],
+    "instance": [
+     "evmvdp.v"
+    ]
+   }
+  ],
+  "tv80-galaksija": [
+   {
+    "repo": "cheyao__sega-sms",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "chriscamacho__yazsof",
+    "copy": [
+     "tv80_mcode.v",
+     "tv80n.v"
+    ],
+    "instance": [
+     "Z80.v"
+    ]
+   },
+   {
+    "repo": "danodus__msx_fpga",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/msx.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_sms",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "emard__galaksija",
+    "copy": [
+     "tv80_mcode.v",
+     "tv80n.v"
+    ],
+    "instance": [
+     "galaksija.v",
+     "galaksija2024.v"
+    ]
+   },
+   {
+    "repo": "emard__jupiter_ace",
+    "copy": [
+     "src/cpu/tv80_mcode.v",
+     "src/cpu/tv80n.v"
+    ],
+    "instance": [
+     "src/fpga_ace.v"
+    ]
+   },
+   {
+    "repo": "lawrie__jupiter_ace",
+    "copy": [
+     "src/cpu/tv80_mcode.v",
+     "src/cpu/tv80n.v"
+    ],
+    "instance": [
+     "src/fpga_ace.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_amstrad_cpc",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/top.v",
+     "src/ulx4m_top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_colecovision",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/coleco.v",
+     "src/ulx4m_coleco.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_cpm_z80",
+    "copy": [
+     "src/Components/Z80/tv80_mcode.v",
+     "src/Components/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/Microcomputer/Microcomputer.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_gamegear",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_msx",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/msx.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sg_1000",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/sg1000.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sms",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_trs_80",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/trs80.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_template",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_trs80",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_zx81",
+    "copy": [
+     "src/cpu/tv80_mcode.v",
+     "src/cpu/tv80n.v"
+    ],
+    "instance": [
+     "src/fpga_zx81.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_zx_spectrum",
+    "copy": [
+     "src/Z80/tv80_mcode.v",
+     "src/Z80/tv80n.v"
+    ],
+    "instance": [
+     "src/spectrum.v"
+    ]
+   },
+   {
+    "repo": "techprototyper__trs80-rev-z",
+    "copy": [
+     "rtl/vendor/tv80/tv80_mcode.v"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "ulx3s__galaksija",
+    "copy": [
+     "tv80_mcode.v",
+     "tv80n.v"
+    ],
+    "instance": [
+     "galaksija.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__ulx3s_zx81",
+    "copy": [
+     "src/cpu/tv80_mcode.v",
+     "src/cpu/tv80n.v"
+    ],
+    "instance": [
+     "src/fpga_zx81.v"
+    ]
+   },
+   {
+    "repo": "wuxx__icesugar",
+    "copy": [
+     "src/advanced/iceZ0mb1e/import/tv80/rtl/core/tv80_mcode.v",
+     "src/advanced/iceZ0mb1e/import/tv80/rtl/core/tv80n.v"
+    ],
+    "instance": []
+   }
+  ],
+  "litex-vexriscv-linux": [],
+  "flix-v-kianv-apio": [],
+  "kianriscv-linux-soc": [],
+  "koti-linux-soc": [],
+  "saxonsoc-radiona-ulx3s": [],
+  "emard-ecp5pll": [
+   {
+    "repo": "advikbahadur__ulx3s-superresolution-cnn",
+    "copy": [
+     "src/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/top_module.v"
+    ]
+   },
+   {
+    "repo": "bjonnh__ulx3s-synth",
+    "copy": [
+     "hdl/sv/ecp5pll.sv",
+     "hdl/vhd/ecp5pll.vhd"
+    ],
+    "instance": [
+     "i2s.v"
+    ]
+   },
+   {
+    "repo": "bqqbarbhg__blipv1",
+    "copy": [],
+    "instance": [
+     "blip/rtl/ecp5/io.py",
+     "blip/rtl/ecp5/pll.py",
+     "blip/test/dvi_demo.py"
+    ]
+   },
+   {
+    "repo": "cheyao__icepi-zero",
+    "copy": [
+     "gateware/sdram/memtest/ecp5pll.sv",
+     "gateware/third-party/dvi/hdl/ecp5pll.sv",
+     "gateware/third-party/dvi_osd/hdl/ecp5pll.sv"
+    ],
+    "instance": [
+     "gateware/sdram/memtest/memtest.sv",
+     "gateware/third-party/dvi/hdl/top_vgatest.v",
+     "gateware/third-party/dvi/top/top_vgatest.v"
+    ]
+   },
+   {
+    "repo": "cheyao__nes_ecp5",
+    "copy": [
+     "ecp5pll.sv"
+    ],
+    "instance": [
+     "top.v"
+    ]
+   },
+   {
+    "repo": "cheyao__oberon",
+    "copy": [
+     "hdl/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "hdl/pnru_mix/Ulx3s_Top.v",
+     "hdl/top/icepi_zero_top.v",
+     "hdl/top/ulx3s_v20_top.v"
+    ]
+   },
+   {
+    "repo": "cheyao__sega-sms",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_68k",
+    "copy": [
+     "src/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "danodus__ulx3s_sms",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "danodus__xgsoc",
+    "copy": [
+     "rtl/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "rtl/icepi-zero/icepi_zero_top.sv",
+     "rtl/ulx3s/ulx3s_v31_top.sv"
+    ]
+   },
+   {
+    "repo": "datanoisetv__colorlight-i9-aes67",
+    "copy": [],
+    "instance": [
+     "litex/soc.py"
+    ]
+   },
+   {
+    "repo": "dlobato__cps1-musicbox",
+    "copy": [],
+    "instance": [
+     "radiona_ulx3s.py"
+    ]
+   },
+   {
+    "repo": "dschaefer__fpga-template",
+    "copy": [
+     "ecp5pll.sv"
+    ],
+    "instance": [
+     "top.sv"
+    ]
+   },
+   {
+    "repo": "dulatello08__litex-cpu-testing",
+    "copy": [],
+    "instance": [
+     "scripts/gen_soc.py"
+    ]
+   },
+   {
+    "repo": "egorxe__openglory",
+    "copy": [],
+    "instance": [
+     "hw/litex/radiona_ulx3s.py"
+    ]
+   },
+   {
+    "repo": "emard__apple2fpga",
+    "copy": [
+     "rtl_emard/lattice/ecp5/clocks/ecp5pll.vhd"
+    ],
+    "instance": [
+     "rtl_emard/lattice/top/ulx3s_v20_apple2.vhd",
+     "rtl_emard/lattice/top/ulx3s_v31_apple2.vhd"
+    ]
+   },
+   {
+    "repo": "emard__galaksija",
+    "copy": [
+     "proj/lattice/ulx3s-universal-make/clocks/ecp5pll.sv"
+    ],
+    "instance": [
+     "proj/lattice/ulx3s-universal-make/top/galaksija_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "emard__minimig_ecs",
+    "copy": [
+     "rtl_emard/lattice/ulx3s/clocks/ecp5pll.vhd"
+    ],
+    "instance": [
+     "rtl_emard/lattice/ulx3s/top/amiga_ulx3s_ps2kbd.vhd",
+     "rtl_emard/lattice/ulx3s/top/amiga_ulx3s_usbjoy.vhd"
+    ]
+   },
+   {
+    "repo": "emard__nes_ecp5",
+    "copy": [
+     "ecp5pll.sv"
+    ],
+    "instance": [
+     "top.v"
+    ]
+   },
+   {
+    "repo": "emard__oberon",
+    "copy": [
+     "hdl/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "hdl/pnru_mix/Ulx3s_Top.v",
+     "hdl/top/ulx3s_v20_top.v",
+     "hdl/top/ulx3s_v31_top.v"
+    ]
+   },
+   {
+    "repo": "emard__snes_mister_ulx3s",
+    "copy": [
+     "ulx3s/pll/ecp5pll.sv"
+    ],
+    "instance": [
+     "ulx3s/top/ulx3s_top.v"
+    ]
+   },
+   {
+    "repo": "emard__ti99_2",
+    "copy": [
+     "ecp5pll.sv"
+    ],
+    "instance": [
+     "evmvdp.v"
+    ]
+   },
+   {
+    "repo": "emard__tinyfpga-bootloader-ulx3s",
+    "copy": [
+     "boards/ulx3s/ecp5pll.sv"
+    ],
+    "instance": [
+     "boards/ulx3s/bootloader_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s-emi",
+    "copy": [
+     "hdl/ecp5pll.sv"
+    ],
+    "instance": [
+     "hdl/top/top_memtest_emi.v"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_c64",
+    "copy": [
+     "rtl/ecp5/ecp5pll.vhd"
+    ],
+    "instance": [
+     "rtl/test/top_victest.vhd",
+     "rtl/top_ulx3s_v20_c64.vhd"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_galaksija",
+    "copy": [
+     "proj/lattice/ulx3s-universal-make/clocks/ecp5pll.sv"
+    ],
+    "instance": [
+     "proj/lattice/ulx3s-universal-make/top/galaksija_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "emard__ulx3s_vic_20",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/vic20.v"
+    ]
+   },
+   {
+    "repo": "evansm7__arcdvi",
+    "copy": [
+     "external-src/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/clocks.v"
+    ]
+   },
+   {
+    "repo": "f32c__f32c",
+    "copy": [
+     "rtl/lattice/chip/ecp5u/ecp5pll.vhd"
+    ],
+    "instance": [
+     "rtl/lattice/ulx3s/clocks/ecp5pll_25_169_112_96_84.vhd",
+     "rtl/lattice/ulx3s/top/top_bram.vhd",
+     "rtl/lattice/ulx3s/top/top_ulx3s_12f_xram_sdram_ghdl.vhd"
+    ]
+   },
+   {
+    "repo": "fedy0__zta",
+    "copy": [
+     "components/ecp5pll.sv"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "goran-mahovlic__odysseus_sprites",
+    "copy": [
+     "src/ecp5pll.sv"
+    ],
+    "instance": []
+   },
+   {
+    "repo": "guztech__ulx3s-nmigen-examples",
+    "copy": [],
+    "instance": [
+     "dvi/ecp5pll.py",
+     "dvi/top_vgatest.py"
+    ]
+   },
+   {
+    "repo": "ironsteel__nes_ecp5",
+    "copy": [
+     "ecp5pll.sv"
+    ],
+    "instance": [
+     "top.v"
+    ]
+   },
+   {
+    "repo": "jamesrosssharp__1_bit_am",
+    "copy": [
+     "impl/ulx3s/pll/ecp5pll.sv"
+    ],
+    "instance": [
+     "impl/ulx3s/top.v"
+    ]
+   },
+   {
+    "repo": "jamesrosssharp__ulx3s_mixer_pcb",
+    "copy": [
+     "hdl/impl/ulx3s/pll/ecp5pll.sv"
+    ],
+    "instance": [
+     "hdl/impl/ulx3s/top.v"
+    ]
+   },
+   {
+    "repo": "john-k__spinose",
+    "copy": [],
+    "instance": [
+     "spinose.py"
+    ]
+   },
+   {
+    "repo": "johnazoidberg__ulx3s-espi-analyzer",
+    "copy": [
+     "hdl/ecp5pll.sv"
+    ],
+    "instance": [
+     "hdl/espi_sniffer_top.v"
+    ]
+   },
+   {
+    "repo": "joshajohnson__ecp5-mini-projects",
+    "copy": [],
+    "instance": [
+     "litex/soc-hr/ecp5_mini.py"
+    ]
+   },
+   {
+    "repo": "kbeckmann__pergola_projects",
+    "copy": [],
+    "instance": [
+     "pergola/applets/delayf/__init__.py",
+     "pergola/applets/dvid/__init__.py",
+     "pergola/applets/dvid_overlay/__init__.py"
+    ]
+   },
+   {
+    "repo": "l0r3m1psum__videogame_verilog",
+    "copy": [],
+    "instance": [
+     "ulx3s_game.v"
+    ]
+   },
+   {
+    "repo": "lawrie__fpga_pio",
+    "copy": [],
+    "instance": [
+     "src/top/uart_rx.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s-nmigen-examples",
+    "copy": [],
+    "instance": [
+     "camera/camera.py",
+     "camera/lattice/ecp5pll.py",
+     "camera85/camera.py"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_68k",
+    "copy": [
+     "src/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/test68.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_altair_8800",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/top/top_altair.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_amstrad_cpc",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/top.v",
+     "src/ulx4m_top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_atari_2600",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/atari_2600.v",
+     "src/ulx4m_atari_2600.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_colecovision",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/coleco.v",
+     "src/ulx4m_coleco.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [
+     "sdram16/ecp5pll.sv",
+     "sdram8/ecp5pll.sv"
+    ],
+    "instance": [
+     "sdram16/testram.v",
+     "sdram8/testram.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_gamegear",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_mac128",
+    "copy": [
+     "src/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/mac128.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_msx",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/msx.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_ql",
+    "copy": [
+     "src/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/ql.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sg_1000",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/sg1000.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_sms",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/sms.v",
+     "src/ulx4m_sms.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_template",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_z80_trs80",
+    "copy": [
+     "src/lattice/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_zx81",
+    "copy": [
+     "src/sys/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/top/zx81_ulx3s.v",
+     "src/top/zx81_ulx4m.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_amaranth_examples",
+    "copy": [],
+    "instance": [
+     "dvi/ecp5pll.py",
+     "dvi/top_vgatest.py",
+     "life/ecp5pll.py"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_examples",
+    "copy": [
+     "gpi2/screen/ecp5pll.sv",
+     "sdram/sdram16/ecp5pll.sv",
+     "sdram/sdram8/ecp5pll.sv"
+    ],
+    "instance": [
+     "gpi2/screen/old_top.v",
+     "sdram/sdram16/testram.v",
+     "sdram/sdram8/testram.v"
+    ]
+   },
+   {
+    "repo": "linuxjedi__minimig_ecs",
+    "copy": [
+     "rtl_emard/lattice/ulx3s/clocks/ecp5pll.vhd"
+    ],
+    "instance": [
+     "rtl_emard/lattice/ulx3s/top/amiga_ulx3s_ps2kbd.vhd",
+     "rtl_emard/lattice/ulx3s/top/amiga_ulx3s_usbjoy.vhd"
+    ]
+   },
+   {
+    "repo": "machdyne__nes_ecp5",
+    "copy": [
+     "ecp5pll.sv"
+    ],
+    "instance": [
+     "top.v"
+    ]
+   },
+   {
+    "repo": "mcejp__poly94",
+    "copy": [
+     "rtl/ecp5/ecp5pll.sv"
+    ],
+    "instance": [
+     "rtl/top_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "orangecrab-fpga__orangecrab-examples",
+    "copy": [],
+    "instance": [
+     "litex/SoC-CircuitPython.py"
+    ]
+   },
+   {
+    "repo": "robinsonb5__eightthirtytwodemos",
+    "copy": [
+     "Board/icepi-zero/ecp5pll.sv",
+     "PLL/ECP5/ecp5pll.sv",
+     "PLL/ECP5/ecp5pll.vhd"
+    ],
+    "instance": [
+     "Board/icepi-zero/icepi-zero_top.vhd",
+     "Board/icesugarpro/icesugarpro_top.vhd",
+     "Board/mmm-v4r0_l5sd/mmm-v4r0_l5sd_top.vhd"
+    ]
+   },
+   {
+    "repo": "semify-eda__waveform-generator",
+    "copy": [],
+    "instance": [
+     "fpga/ulx3s_soc/ulx3s_soc.py"
+    ]
+   },
+   {
+    "repo": "speccery__icy99",
+    "copy": [
+     "src/ecp5pll.sv"
+    ],
+    "instance": [
+     "top_ulx3s.v"
+    ]
+   },
+   {
+    "repo": "splinedrive__my_hdmi_device",
+    "copy": [
+     "ecp5pll.sv"
+    ],
+    "instance": [
+     "chip_balls.v"
+    ]
+   },
+   {
+    "repo": "stuij__odyssey",
+    "copy": [
+     "verilog/ecp5pll.sv"
+    ],
+    "instance": [
+     "verilog/odyssey_top.v"
+    ]
+   },
+   {
+    "repo": "sylefeb__silice",
+    "copy": [],
+    "instance": [
+     "python/tests/lambdaconcept_ecpix5.py"
+    ]
+   },
+   {
+    "repo": "tarik-hamedovic__sdr-hls",
+    "copy": [
+     "1.RTLImplementation/1.hw/systemverilog/ecp5pll.sv",
+     "2.HLSImplementation/top/build/ecp5pll.sv",
+     "2.HLSImplementation/top/ecp5pll.sv"
+    ],
+    "instance": [
+     "1.RTLImplementation/1.hw/systemverilog/top.sv",
+     "1.RTLImplementation/1.hw/verilog/top.v",
+     "1.RTLImplementation/1.hw/withreset/systemverilog/top.sv"
+    ]
+   },
+   {
+    "repo": "ultraembedded__ecpix-5",
+    "copy": [
+     "src/top/ecp5pll.sv"
+    ],
+    "instance": [
+     "src/top/top.v"
+    ]
+   },
+   {
+    "repo": "ultraembedded__orangecrab",
+    "copy": [
+     "ddr_test/src_v/ecp5pll.sv"
+    ],
+    "instance": [
+     "ddr_test/src_v/top.v"
+    ]
+   },
+   {
+    "repo": "zipotron__neorv32-complex-setups",
+    "copy": [
+     "hardware_dependent/ulx3s/ecp5pll.sv"
+    ],
+    "instance": [
+     "top/neorv32_ULX3S_BoardTop_MinimalBoot.vhd"
+    ]
+   },
+   {
+    "repo": "zipotron__ulx3s_sdram8",
+    "copy": [
+     "ecp5pll.sv"
+    ],
+    "instance": [
+     "testram.v"
+    ]
+   }
+  ],
+  "bqqbarbhg-blip-pll": [],
+  "glasgow-ecp5-pll": [],
+  "hdl4fpga-ecp5-clockgen": [],
+  "w531t4-hub75-display-core": [],
+  "goran-mahovlic-ledscan-64x64": [
+   {
+    "repo": "emard__ulx3s-misc",
+    "copy": [
+     "examples/led64x64/emard/ledscan.vhd"
+    ],
+    "instance": [
+     "examples/led64x64/emard/top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [],
+    "instance": [
+     "ledpanel/top.v"
+    ]
+   },
+   {
+    "repo": "michaelbell__nanov",
+    "copy": [],
+    "instance": [
+     "top.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__fpga-odysseus",
+    "copy": [],
+    "instance": [
+     "projects/LedPanel/DualPanel/top.v"
+    ]
+   }
+  ],
+  "lucysrausch-hub75-ledpanel": [
+   {
+    "repo": "lawrie__blackicemxbook",
+    "copy": [
+     "examples/ledbaby/ledpanel.v"
+    ],
+    "instance": [
+     "examples/ledbaby/baby.v"
+    ]
+   },
+   {
+    "repo": "lawrie__verilog_examples",
+    "copy": [
+     "fpga/baby/ledpanel.v",
+     "fpga/ledbaby/ledpanel.v",
+     "fpga/ledpanel/ledpanel.v"
+    ],
+    "instance": [
+     "fpga/ledbaby/baby.v",
+     "fpga/ledpanel/paneltest.v",
+     "fpga/ledpanel2/paneltest.v"
+    ]
+   },
+   {
+    "repo": "msiddalingaiah__centurion",
+    "copy": [
+     "Verilog/LEDPanel.v"
+    ],
+    "instance": [
+     "Verilog/iCE40.v"
+    ]
+   }
+  ],
+  "no2hub75-led-panel": [],
+  "kbob-led-pwm-pdm-gamma": [],
+  "marph91-yaaes": [],
+  "greybadge25-aes-sha256-des": [],
+  "xtrinch-sha256-miner": [],
+  "krishkc5-trng-ring-oscillator": []
+ }
+}

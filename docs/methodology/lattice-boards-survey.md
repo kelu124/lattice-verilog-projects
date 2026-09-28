@@ -1,5 +1,11 @@
-<!-- Generated from data/pages/lattice-boards-survey.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "UP5K/ECP5 boards survey"
+parent: "Methodology"
+nav_order: 4
+---
+<!-- Generated from data/pages/lattice-boards-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # UP5K and ECP5 boards from awesome-latticeFPGAs: gateware survey
 
 **Status 2026-09-28:** all 20 "Recommended to clone" repos are cloned and in `docs/catalogue.md`.
@@ -261,3 +267,4 @@ ICE-V-Wireless/ICE-V-Wireless, emeb/ice-dongle, tinyvision-ai-inc/Vision-FPGA-So
 - msinger/iceboy (Game Boy clone) targets HX8K, not UP5K, so I dropped it.
 - The "fomu", "vision fpga", "schoko", "iceboy" and "picostation" queries are very noisy (unrelated repos). I filtered them by hand.
 - No evidence was found of open-flow gateware for LimeSDR Mini 2.0 or NUT2NT+. Both use Lattice Diamond.
+{% endraw %}

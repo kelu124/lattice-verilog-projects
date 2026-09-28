@@ -6,7 +6,7 @@ metadata:
 ---
 
 Verified from `original_sources/emard__ulx3s` @ 6a92cec (README.md, doc/MANUAL.md,
-doc/constraints/*.lpf), 2026-09-27. Full human reference: `docs/board-reference.md`.
+doc/constraints/*.lpf), 2026-09-27. Full human reference: `docs/boards/ulx3s.md`.
 
 - FPGA: Lattice ECP5 LFE5U-{12,25,45,85}F, package CABGA381, speed grade -6 (README).
   JTAG IDCODEs: 12F 0x21111043, 25F 0x41111043, 45F 0x41112043, 85F 0x41113043.

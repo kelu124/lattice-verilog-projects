@@ -1,5 +1,11 @@
-<!-- Generated from data/projects/chrismoos__m6502.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+---
+title: "chrismoos__m6502"
+parent: "Project reviews"
+nav_order: 1
+---
+<!-- Generated from data/projects/chrismoos__m6502.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
+{% raw %}
 # m6502 (`chrismoos__m6502`)
 
 | Field | Value |
@@ -130,3 +136,4 @@ make test-klaus       # cd test && make -f Makefile.mcu_klaus run  (Verilator C+
 - Whether `make test`'s default cocotb simulator is Verilator (per `catalogue.tsv`) is
   configured via `test/test_runner.py`/`cocotb_tools.runner` — not independently re-verified
   here.
+{% endraw %}
