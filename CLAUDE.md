@@ -28,14 +28,16 @@ exact state it was left in. Do **not** rely on the per-user memory in
 | `.claude/skills/*/SKILL.md` | Repeatable workflows (survey, clone, commit, document, track, review) | yes |
 | `.claude/memory/MEMORY.md` | Index of memory files (one line each) | yes |
 | `.claude/memory/projects.md` | **Project registry**: every ULX3S gateware project, its functions, toolchain, last update, review status | yes |
-| `.claude/memory/catalogue.tsv` | **Catalogue**: one row per cloned repo with FPGA, toolchain, HDL, license, functions, reusable blocks, preferred fork. Rendered to `docs/catalogue.md` by `gen_catalogue.py` | yes |
+| `data/catalogue.json` | **Catalogue**: one object per cloned repo with FPGA, toolchain, HDL, license, functions, reusable blocks, tests, preferred fork. Rendered to `docs/catalogue.md` by `gen_catalogue.py` (`--merge` to add rows) | yes |
 | `.claude/memory/history.tsv` | Full-history stats (first commit, commit count) recorded before clones were made shallow | yes |
 | `.claude/memory/sources.tsv` | Pinned list of cloned upstream repos (url, commit, date) — lets anyone re-create `original_sources/` | yes |
 | `.claude/memory/submodules.tsv` | Allowlist of gateware submodules fetched inside clones (slug, path, url, commit, reason); `clone.sh --restore` re-fetches them | yes |
 | `.claude/memory/*.md` | Other facts: board knowledge, toolchain notes, decisions, user preferences | yes |
 | `original_sources/` | Upstream repos cloned for review (read-only, never edited) | **no** (gitignored, re-creatable) |
 | `docs/catalogue.md` | Generated catalogue of all repos (never edit by hand) | yes |
-| `docs/` | Human-readable documentation produced from reviews (`docs/projects/<slug>.md`, etc.) | yes |
+| `data/` | **All gathered data as JSON** (source of truth): `catalogue.json`, `lpfs.json` (every LPF), `pages/*.json` (surveys, guides, index), `projects/*.json` (review pages) | yes |
+| `docs/` | **Generated** GitHub Pages site (`make docs`); never edit by hand | yes |
+| `Makefile` | `make docs` (render docs/ from data/), `make lpfs` (rescan LPFs in the clones) | yes |
 | `.claude/TODO.md` | Open work items | yes |
 | `.claude/DONE.md` | Completed work items, newest first, dated | yes |
 | `.claude/COMMIT_LOG.md` | Why/what of each meaningful commit, newest first | yes |
@@ -57,8 +59,8 @@ exact state it was left in. Do **not** rely on the per-user memory in
 - **Committing** → skill `committing`. Small, focused commits; conventional
   prefixes; every commit gets an entry in `.claude/COMMIT_LOG.md` (what + why) in the
   same commit; memory/TODO/DONE updated in the same commit as the work.
-- **Documentation** → skill `documentation`. One page per reviewed project in
-  `docs/projects/`, facts cite the source file/commit, unknowns written as
+- **Documentation** → skill `documentation`. Data in `data/*.json`, `docs/` generated with `make docs`
+  (GitHub Pages). One page per reviewed project in `data/projects/` → `docs/projects/`, facts cite the source file/commit, unknowns written as
   `unknown`, never guessed.
 - **TODO / DONE** → skill `todo-done`. Every task discovered goes in `.claude/TODO.md`;
   when finished it moves to `.claude/DONE.md` with the date and commit.

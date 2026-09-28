@@ -1,0 +1,2901 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "survey",
+ "slug": "github-survey",
+ "title": "GitHub survey of ULX3S repositories (2026-09-27)",
+ "description": "GitHub-wide search for ULX3S gateware (2026-09-27): ~297 candidates in groups A–F with evidence and clone status.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Candidates found by a GitHub-wide search that were **not yet** in `.claude/memory/sources.tsv`\non 2026-09-27. Produced with unauthenticated GitHub API repo search plus the root file listing of each repo,\nwith recursive trees checked for the top 47 repos. Not cloned yet unless listed in `sources.tsv`.\nMethod, limits and how to repeat it: `.claude/memory/source-lists.md`."
+  },
+  {
+   "type": "paragraph",
+   "text": "Evidence: `tree:` = path found in the recursive file tree; `root:` = found in the top-level listing only."
+  }
+ ],
+ "sections": [
+  {
+   "title": "A. Verified ULX3S gateware (ULX3S constraint/top/board dir found in repo tree or root listing) — 155 repos",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "full_name",
+      "lang/HDL",
+      "stars",
+      "last push",
+      "license",
+      "what it is",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "full_name": "[BrunoLevy/learn-fpga](https://github.com/BrunoLevy/learn-fpga)",
+       "lang/HDL": "Verilog",
+       "stars": "3701",
+       "last push": "2025-11-18",
+       "license": "BSD-3-Clause",
+       "what it is": "Learning FPGA, yosys, nextpnr, and RISC-V",
+       "evidence": "tree: Basic/ULX3S/ULX3S_SDRAM_hdmi/ulx3s.lpf"
+      },
+      {
+       "full_name": "[darklife/darkriscv](https://github.com/darklife/darkriscv)",
+       "lang/HDL": "Verilog",
+       "stars": "2613",
+       "last push": "2026-09-04",
+       "license": "BSD-3-Clause",
+       "what it is": "opensouce RISC-V cpu core implemented in Verilog from scratc",
+       "evidence": "tree: boards/ulx3s"
+      },
+      {
+       "full_name": "[Wren6991/Hazard3](https://github.com/Wren6991/Hazard3)",
+       "lang/HDL": "Verilog",
+       "stars": "1115",
+       "last push": "2026-08-29",
+       "license": "Apache-2.0",
+       "what it is": "3-stage RV32IMACZb* processor with debug",
+       "evidence": "tree: example_soc/synth/fpga_ulx3s.lpf"
+      },
+      {
+       "full_name": "[wuxx/Colorlight-FPGA-Projects](https://github.com/wuxx/Colorlight-FPGA-Projects)",
+       "lang/HDL": "Verilog",
+       "stars": "366",
+       "last push": "2026-09-15",
+       "license": "Apache-2.0",
+       "what it is": "current focus on Colorlight i5 and i9 & i9plus module",
+       "evidence": "tree: src/i5/hdmi_test_pattern/ULX3S_25F.json"
+      },
+      {
+       "full_name": "[lawrie/fpga_pio](https://github.com/lawrie/fpga_pio)",
+       "lang/HDL": "Verilog",
+       "stars": "321",
+       "last push": "2024-06-06",
+       "license": "BSD-2-Clause",
+       "what it is": "An attempt to recreate the RP2040 PIO in an FPGA",
+       "evidence": "tree: ulx3s/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[sylefeb/a5k](https://github.com/sylefeb/a5k)",
+       "lang/HDL": "Silice",
+       "stars": "293",
+       "last push": "2023-10-06",
+       "license": "none",
+       "what it is": "Another World on a chip",
+       "evidence": "tree: BITSTREAMs/ulx3s"
+      },
+      {
+       "full_name": "[fusesoc/blinky](https://github.com/fusesoc/blinky)",
+       "lang/HDL": "Tcl",
+       "stars": "198",
+       "last push": "2026-02-28",
+       "license": "MIT",
+       "what it is": "Example LED blinking project for your FPGA dev board of choi",
+       "evidence": "tree: ulx3s"
+      },
+      {
+       "full_name": "[mit-plv/koika](https://github.com/mit-plv/koika)",
+       "lang/HDL": "Kôika→Verilog",
+       "stars": "187",
+       "last push": "2025-12-10",
+       "license": "LGPL-2.1",
+       "what it is": "A core language for rule-based hardware design 🦑",
+       "evidence": "tree: examples/rv/etc/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[dan-rodrigues/icestation-32](https://github.com/dan-rodrigues/icestation-32)",
+       "lang/HDL": "Verilog",
+       "stars": "168",
+       "last push": "2023-11-14",
+       "license": "MIT",
+       "what it is": "Compact FPGA game console",
+       "evidence": "tree: hardware/ulx3s/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[SpinalHDL/SaxonSoc](https://github.com/SpinalHDL/SaxonSoc)",
+       "lang/HDL": "SpinalHDL",
+       "stars": "165",
+       "last push": "2025-03-16",
+       "license": "MIT",
+       "what it is": "SoC based on VexRiscv and ICE40 UP5K",
+       "evidence": "tree: hardware/synthesis/deprecated/ulx3s/ulx3s_v20_hdmi.lpf"
+      },
+      {
+       "full_name": "[antonblanchard/chiselwatt](https://github.com/antonblanchard/chiselwatt)",
+       "lang/HDL": "Chisel",
+       "stars": "117",
+       "last push": "2023-02-13",
+       "license": "NOASSERTION",
+       "what it is": "A tiny POWER Open ISA soft processor written in Chisel",
+       "evidence": "tree: constraints/ecp5-ulx3s.lpf"
+      },
+      {
+       "full_name": "[carlosedp/chiselv](https://github.com/carlosedp/chiselv)",
+       "lang/HDL": "Chisel",
+       "stars": "109",
+       "last push": "2026-09-14",
+       "license": "MIT",
+       "what it is": "A RISC-V Core (RV32I) written in Chisel HDL",
+       "evidence": "tree: constraints/ecp5-ulx3s.lpf"
+      },
+      {
+       "full_name": "[stnolting/neorv32-setups](https://github.com/stnolting/neorv32-setups)",
+       "lang/HDL": "VHDL",
+       "stars": "100",
+       "last push": "2026-09-12",
+       "license": "BSD-3-Clause",
+       "what it is": "📁 NEORV32 projects and exemplary setups for various FPGAs, b",
+       "evidence": "tree: osflow/constraints/ULX3S.lpf"
+      },
+      {
+       "full_name": "[JdeRobot/FPGA-robotics](https://github.com/JdeRobot/FPGA-robotics)",
+       "lang/HDL": "VHDL",
+       "stars": "83",
+       "last push": "2024-07-14",
+       "license": "GPL-3.0",
+       "what it is": "Verilog library for developing robotics applications using F",
+       "evidence": "tree: phys_fpga/ulx3s/apio/ov7670_rgb_yuv_320x240_colorfilter/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[BrunoLevy/TordBoyau](https://github.com/BrunoLevy/TordBoyau)",
+       "lang/HDL": "Verilog",
+       "stars": "65",
+       "last push": "2023-12-01",
+       "license": "BSD-3-Clause",
+       "what it is": "A pipelined RISC-V processor",
+       "evidence": "tree: BOARDS/ulx3s.lpf"
+      },
+      {
+       "full_name": "[machdyne/zeitlos](https://github.com/machdyne/zeitlos)",
+       "lang/HDL": "Verilog",
+       "stars": "55",
+       "last push": "2026-09-27",
+       "license": "NOASSERTION",
+       "what it is": "Zeitlos SOC/OS",
+       "evidence": "tree: boards/ulx3s.lpf"
+      },
+      {
+       "full_name": "[FPGAwars/FLIX-V](https://github.com/FPGAwars/FLIX-V)",
+       "lang/HDL": "Verilog",
+       "stars": "42",
+       "last push": "2023-11-05",
+       "license": "LGPL-2.1",
+       "what it is": "FLIX-V: FPGA, Linux and RISC-V",
+       "evidence": "tree: Hardware/KianV-Apio/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[StereoNinja/StereoNinjaFPGA](https://github.com/StereoNinja/StereoNinjaFPGA)",
+       "lang/HDL": "Verilog",
+       "stars": "34",
+       "last push": "2023-05-15",
+       "license": "none",
+       "what it is": "Experimental FPGA project for streaming two MIPI CSI camera",
+       "evidence": "root: DOCS_ULX3S"
+      },
+      {
+       "full_name": "[egorxe/openglory](https://github.com/egorxe/openglory)",
+       "lang/HDL": "VHDL + LiteX",
+       "stars": "33",
+       "last push": "2025-02-25",
+       "license": "Apache-2.0",
+       "what it is": "Open source GPU in VHDL",
+       "evidence": "tree: hw/litex/radiona_ulx3s.py"
+      },
+      {
+       "full_name": "[kulp/tenyr](https://github.com/kulp/tenyr)",
+       "lang/HDL": "C",
+       "stars": "28",
+       "last push": "2026-08-15",
+       "license": "NOASSERTION",
+       "what it is": "Simple, orthogonal 32-bit computer architecture and environm",
+       "evidence": "tree: hw/yosys/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[dan-rodrigues/ics-adpcm](https://github.com/dan-rodrigues/ics-adpcm)",
+       "lang/HDL": "Verilog",
+       "stars": "26",
+       "last push": "2020-12-28",
+       "license": "MIT",
+       "what it is": "Programmable multichannel ADPCM decoder for FPGA",
+       "evidence": "tree: demo/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[AngeloJacobo/ULX3S_FPGA_Camera_Streaming](https://github.com/AngeloJacobo/ULX3S_FPGA_Camera_Streaming)",
+       "lang/HDL": "Verilog (Icestudio)",
+       "stars": "25",
+       "last push": "2021-11-17",
+       "license": "MIT",
+       "what it is": "Verilog design files and Icestudio file for streaming the OV",
+       "evidence": "root: OV7670_ULX3S.ice"
+      },
+      {
+       "full_name": "[Speccery/icy99](https://github.com/Speccery/icy99)",
+       "lang/HDL": "Verilog",
+       "stars": "22",
+       "last push": "2025-11-29",
+       "license": "none",
+       "what it is": "TI-99/4A FPGA implementation for the Icestorm toolchain",
+       "evidence": "tree: ulx3s.lpf"
+      },
+      {
+       "full_name": "[AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670](https://github.com/AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670)",
+       "lang/HDL": "Verilog (Icestudio)",
+       "stars": "21",
+       "last push": "2021-11-17",
+       "license": "MIT",
+       "what it is": "Verilog design files and Icestudio file for Sobel Edge Detec",
+       "evidence": "root: ULX3S_SOBEL.ice"
+      },
+      {
+       "full_name": "[dan-rodrigues/mobile-fpga-bluetooth-demo](https://github.com/dan-rodrigues/mobile-fpga-bluetooth-demo)",
+       "lang/HDL": "Swift",
+       "stars": "17",
+       "last push": "2020-12-12",
+       "license": "MIT",
+       "what it is": "Simple BLE demo using an iOS app (SwiftUI), an ESP32 (Python",
+       "evidence": "tree: rtl/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[daveshah1/prjtrellis-dvi](https://github.com/daveshah1/prjtrellis-dvi)",
+       "lang/HDL": "VHDL",
+       "stars": "17",
+       "last push": "2019-01-20",
+       "license": "none",
+       "what it is": "DVI video out example for prjtrellis",
+       "evidence": "tree: constraints/ulx3s_v20_segpdi.lpf"
+      },
+      {
+       "full_name": "[Circuit-killer/fpga-usbhid-host](https://github.com/Circuit-killer/fpga-usbhid-host)",
+       "lang/HDL": "VHDL",
+       "stars": "15",
+       "last push": "2022-08-27",
+       "license": "none",
+       "what it is": "FPGA state machine for minimalistic USB HID device hosting",
+       "evidence": "tree: proj/lattice/constraints/ulx3s_v17patch.lpf"
+      },
+      {
+       "full_name": "[ulx3s/blink](https://github.com/ulx3s/blink)",
+       "lang/HDL": "Makefile",
+       "stars": "15",
+       "last push": "2022-05-16",
+       "license": "GPL-3.0",
+       "what it is": "Repository containing ULX3S blink LED binaries",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[q3k/ulx3s-foss-blinky](https://github.com/q3k/ulx3s-foss-blinky)",
+       "lang/HDL": "Verilog",
+       "stars": "14",
+       "last push": "2018-11-11",
+       "license": "none",
+       "what it is": "A template project for the ULX3S ECP5 FPGA board using only",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[mkvenkit/learn_fpga](https://github.com/mkvenkit/learn_fpga)",
+       "lang/HDL": "Verilog",
+       "stars": "13",
+       "last push": "2026-07-19",
+       "license": "MIT",
+       "what it is": "A collection of my FPGA projects and experiments.",
+       "evidence": "tree: ecp5_ulx3s/uart_tx/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[rob-ng15/PAWSv2](https://github.com/rob-ng15/PAWSv2)",
+       "lang/HDL": "Silice",
+       "stars": "13",
+       "last push": "2025-11-29",
+       "license": "MIT",
+       "what it is": "—",
+       "evidence": "tree: Programming Guide/Graphics/ULX3S-PAWSv2.gif"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_zx_spectrum](https://github.com/lawrie/ulx3s_zx_spectrum)",
+       "lang/HDL": "Verilog",
+       "stars": "12",
+       "last push": "2020-05-07",
+       "license": "none",
+       "what it is": "Minimal ZX Spectrum for Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[semify-eda/waveform-generator](https://github.com/semify-eda/waveform-generator)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "12",
+       "last push": "2022-07-18",
+       "license": "Apache-2.0",
+       "what it is": "Waveform Generator",
+       "evidence": "tree: fpga/ulx3s_barebones/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[asinghani/pifive-cpu](https://github.com/asinghani/pifive-cpu)",
+       "lang/HDL": "SystemVerilog + Migen",
+       "stars": "11",
+       "last push": "2021-12-29",
+       "license": "Apache-2.0",
+       "what it is": "RISC-V CPU in SystemVerilog & Custom Migen-based SoC Generat",
+       "evidence": "tree: fpga/ulx3s/constraints.lpf"
+      },
+      {
+       "full_name": "[hsa-ees/piconut](https://github.com/hsa-ees/piconut)",
+       "lang/HDL": "C",
+       "stars": "11",
+       "last push": "2026-09-01",
+       "license": "BSD-2-Clause",
+       "what it is": "The PicoNut project provides a minimal and at the same time",
+       "evidence": "tree: boards/ulx3s/ulx3s.lpf"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_mac128](https://github.com/lawrie/ulx3s_mac128)",
+       "lang/HDL": "Verilog",
+       "stars": "11",
+       "last push": "2022-08-08",
+       "license": "none",
+       "what it is": "Macintosh 128 on the Ulx3s ECP5 FPGA",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[Wren6991/Hazard3-SWD-SoC](https://github.com/Wren6991/Hazard3-SWD-SoC)",
+       "lang/HDL": "Verilog",
+       "stars": "11",
+       "last push": "2023-04-20",
+       "license": "Apache-2.0",
+       "what it is": "Example Hazard3 + OpenDAP RISC-V SWD SoC integration",
+       "evidence": "tree: synth/fpga_ulx3s.lpf"
+      },
+      {
+       "full_name": "[YoWASP/toolchain-demo](https://github.com/YoWASP/toolchain-demo)",
+       "lang/HDL": "Amaranth",
+       "stars": "11",
+       "last push": "2024-01-01",
+       "license": "ISC",
+       "what it is": "Demonstration of the YoWASP toolchain being used with Visual",
+       "evidence": "root: top.lpf"
+      },
+      {
+       "full_name": "[dan-rodrigues/ulx3s-bluetooth-gamepad](https://github.com/dan-rodrigues/ulx3s-bluetooth-gamepad)",
+       "lang/HDL": "Verilog",
+       "stars": "10",
+       "last push": "2020-10-24",
+       "license": "none",
+       "what it is": "Bluetooth gamepad receiver demo using ULX3S FPGA board + ESP",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[daveshah1/ulx3s](https://github.com/daveshah1/ulx3s)",
+       "lang/HDL": "Verilog",
+       "stars": "10",
+       "last push": "2018-11-06",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s.core"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_68k](https://github.com/lawrie/ulx3s_68k)",
+       "lang/HDL": "Verilog",
+       "stars": "10",
+       "last push": "2020-07-13",
+       "license": "none",
+       "what it is": "Experiments with the 68000 CPU on the Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[RemyCiterin/AdventOfFPGA](https://github.com/RemyCiterin/AdventOfFPGA)",
+       "lang/HDL": "Bluespec",
+       "stars": "9",
+       "last push": "2026-01-14",
+       "license": "Apache-2.0",
+       "what it is": "—",
+       "evidence": "root: ulx3s.lpf"
+      },
+      {
+       "full_name": "[danodus/xgsoc](https://github.com/danodus/xgsoc)",
+       "lang/HDL": "C",
+       "stars": "8",
+       "last push": "2026-08-13",
+       "license": "MIT",
+       "what it is": "FPGA-based system-on-chip",
+       "evidence": "tree: rtl/ulx3s/ulx3s_v31.lpf"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_msx](https://github.com/lawrie/ulx3s_msx)",
+       "lang/HDL": "Verilog",
+       "stars": "8",
+       "last push": "2023-05-14",
+       "license": "none",
+       "what it is": "MSX 8-bit computers on the Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[markus-zzz/myc64](https://github.com/markus-zzz/myc64)",
+       "lang/HDL": "Verilog",
+       "stars": "8",
+       "last push": "2024-04-09",
+       "license": "none",
+       "what it is": "My C64 implementation in Verilog",
+       "evidence": "tree: syn/ulx3s.lpf"
+      },
+      {
+       "full_name": "[marph91/yaaes](https://github.com/marph91/yaaes)",
+       "lang/HDL": "VHDL",
+       "stars": "8",
+       "last push": "2021-08-08",
+       "license": "LGPL-3.0",
+       "what it is": "Yet Another AES implementation in hardware.",
+       "evidence": "tree: syn/constraints/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[victor-fisyuk/voodoo-fpga-public](https://github.com/victor-fisyuk/voodoo-fpga-public)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "8",
+       "last push": "2026-09-13",
+       "license": "none",
+       "what it is": "3dfx Voodoo Graphics implementation in SystemVerilog for FPG",
+       "evidence": "tree: screenshots/ulx3s.jpg"
+      },
+      {
+       "full_name": "[marph91/pocket-bnn](https://github.com/marph91/pocket-bnn)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "7",
+       "last push": "2021-07-16",
+       "license": "MPL-2.0",
+       "what it is": "BNN-to-FPGA framework, written in VHDL and Python",
+       "evidence": "tree: syn/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[C-Elegans/ulx3s_sdram](https://github.com/C-Elegans/ulx3s_sdram)",
+       "lang/HDL": "Verilog",
+       "stars": "6",
+       "last push": "2021-02-08",
+       "license": "none",
+       "what it is": "SDRAM experiments on the ULX3S",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[lawrie/SpinalULX3S](https://github.com/lawrie/SpinalULX3S)",
+       "lang/HDL": "SpinalHDL",
+       "stars": "6",
+       "last push": "2020-03-29",
+       "license": "none",
+       "what it is": "SpinalHDL ULX3S examples",
+       "evidence": "root: ulx3s_hdmi.lpf"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_altair_8800](https://github.com/lawrie/ulx3s_altair_8800)",
+       "lang/HDL": "Verilog",
+       "stars": "6",
+       "last push": "2021-04-28",
+       "license": "none",
+       "what it is": "Altair 8800 on the Ulx3s ECP5 FPGA board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_colecovision](https://github.com/lawrie/ulx3s_colecovision)",
+       "lang/HDL": "Verilog",
+       "stars": "6",
+       "last push": "2023-05-15",
+       "license": "none",
+       "what it is": "ColecoVision console for the Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[cheyao/oberon](https://github.com/cheyao/oberon)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2026-06-23",
+       "license": "none",
+       "what it is": "Oberon recreated on the Icepi Zero",
+       "evidence": "root: proj_pnru/lattice/ulx3s/ulx3s-v20"
+      },
+      {
+       "full_name": "[dlobato/cps1-musicbox](https://github.com/dlobato/cps1-musicbox)",
+       "lang/HDL": "LiteX (Migen)",
+       "stars": "5",
+       "last push": "2022-04-07",
+       "license": "none",
+       "what it is": "RiscV + CPS1 sound chips SoC based on litex",
+       "evidence": "root: radiona_ulx3s.py"
+      },
+      {
+       "full_name": "[evansm7/ArcDVI](https://github.com/evansm7/ArcDVI)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2021-12-04",
+       "license": "none",
+       "what it is": "****DEPRECATED PROTOTYPE**** FPGA design and firmware for Ac",
+       "evidence": "tree: platform/ulx3s/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_amstrad_cpc](https://github.com/lawrie/ulx3s_amstrad_cpc)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2022-05-04",
+       "license": "none",
+       "what it is": "The Amstrad CPC on the Ulx3s Ecp5 FPGA board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_bbc_micro](https://github.com/lawrie/ulx3s_bbc_micro)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2023-02-05",
+       "license": "none",
+       "what it is": "Version of Ice40Beeb for Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_ql](https://github.com/lawrie/ulx3s_ql)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2020-09-07",
+       "license": "none",
+       "what it is": "Sinclair QL for the Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[mcejp/Poly94](https://github.com/mcejp/Poly94)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2024-03-03",
+       "license": "GPL-3.0",
+       "what it is": "Yet another faux-retro game system",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[robinsonb5/EightThirtyTwoDemos](https://github.com/robinsonb5/EightThirtyTwoDemos)",
+       "lang/HDL": "VHDL/Verilog",
+       "stars": "5",
+       "last push": "2026-09-15",
+       "license": "GPL-3.0",
+       "what it is": "Demo projects for the EightThirtyTwo CPU",
+       "evidence": "tree: Board/ulx3s_85f"
+      },
+      {
+       "full_name": "[bjonnh/ulx3s-synth](https://github.com/bjonnh/ulx3s-synth)",
+       "lang/HDL": "Verilog",
+       "stars": "4",
+       "last push": "2022-12-11",
+       "license": "none",
+       "what it is": "Playing with FPGAs to make a midi-synth",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[dstrbad/janestreet-advent-fpga](https://github.com/dstrbad/janestreet-advent-fpga)",
+       "lang/HDL": "Hardcaml",
+       "stars": "4",
+       "last push": "2026-01-15",
+       "license": "MIT",
+       "what it is": "—",
+       "evidence": "root: synth/ulx3s"
+      },
+      {
+       "full_name": "[emard/cortex](https://github.com/emard/cortex)",
+       "lang/HDL": "Verilog",
+       "stars": "4",
+       "last push": "2020-08-19",
+       "license": "none",
+       "what it is": "fork of mini-cortex FPGA project - ancient unix with tns99xx",
+       "evidence": "tree: ulx3s.lpf"
+      },
+      {
+       "full_name": "[lawrie/jupiter_ace](https://github.com/lawrie/jupiter_ace)",
+       "lang/HDL": "Verilog",
+       "stars": "4",
+       "last push": "2022-05-04",
+       "license": "none",
+       "what it is": "Jupiter Ace for the Ulx3s",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_atari_2600](https://github.com/lawrie/ulx3s_atari_2600)",
+       "lang/HDL": "Assembly",
+       "stars": "4",
+       "last push": "2022-05-08",
+       "license": "none",
+       "what it is": "Atari 2600 for the Ulx3s Ecp5 FPGA board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_ay_3_8500](https://github.com/lawrie/ulx3s_ay_3_8500)",
+       "lang/HDL": "Verilog",
+       "stars": "4",
+       "last push": "2020-05-01",
+       "license": "none",
+       "what it is": "The  AY-3-8500 Pong-on-a-chip for the Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_vic_20](https://github.com/lawrie/ulx3s_vic_20)",
+       "lang/HDL": "Verilog",
+       "stars": "4",
+       "last push": "2020-05-14",
+       "license": "none",
+       "what it is": "Minimal Commodore Vic 20 core for the Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[ThorKn/vexriscv-ulx3s-simple-plugin](https://github.com/ThorKn/vexriscv-ulx3s-simple-plugin)",
+       "lang/HDL": "SpinalHDL",
+       "stars": "4",
+       "last push": "2020-10-02",
+       "license": "none",
+       "what it is": "A simple custom instruction for the vexriscv, deploy- and de",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[acairncross/clash-ulx3s-examples](https://github.com/acairncross/clash-ulx3s-examples)",
+       "lang/HDL": "Clash",
+       "stars": "3",
+       "last push": "2023-04-26",
+       "license": "MIT",
+       "what it is": "Collection of Clash examples",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[danodus/ecp5_hdmi_audio_video](https://github.com/danodus/ecp5_hdmi_audio_video)",
+       "lang/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2026-05-19",
+       "license": "MIT",
+       "what it is": "ECP5 HDMI Audio + Video Transmitter",
+       "evidence": "tree: boards/ulx3s/ulx3s_v316.lpf"
+      },
+      {
+       "full_name": "[fedy0/neo](https://github.com/fedy0/neo)",
+       "lang/HDL": "VHDL",
+       "stars": "3",
+       "last push": "2024-06-07",
+       "license": "MIT",
+       "what it is": "NEORV32 on ULX3S",
+       "evidence": "root: ULX3S.lpf"
+      },
+      {
+       "full_name": "[jamon/jspcpu](https://github.com/jamon/jspcpu)",
+       "lang/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2021-07-16",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s.lpf"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_cpm_z80](https://github.com/lawrie/ulx3s_cpm_z80)",
+       "lang/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2020-04-18",
+       "license": "none",
+       "what it is": "A port of the Ice40CPMZ80 project to the Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_vhdl_examples](https://github.com/lawrie/ulx3s_vhdl_examples)",
+       "lang/HDL": "VHDL",
+       "stars": "3",
+       "last push": "2022-05-07",
+       "license": "none",
+       "what it is": "VHDL examples for the Ulx3s ECP5 FPGA",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_z80_template](https://github.com/lawrie/ulx3s_z80_template)",
+       "lang/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2021-02-27",
+       "license": "none",
+       "what it is": "Template for Z80 computer on the Ulx3s FPGA board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_z80_trs80](https://github.com/lawrie/ulx3s_z80_trs80)",
+       "lang/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2021-02-27",
+       "license": "none",
+       "what it is": "The TRS-80 Model 1 for the Ulx3s FPGA Ecp5 board, created fr",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lfglabs-dev/lean-silicon](https://github.com/lfglabs-dev/lean-silicon)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "3",
+       "last push": "2026-09-08",
+       "license": "Apache-2.0",
+       "what it is": "A formally verified physical scalar coprocessor for leanVM-b",
+       "evidence": "root: fpga/ulx3s"
+      },
+      {
+       "full_name": "[rj45/vdp](https://github.com/rj45/vdp)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "3",
+       "last push": "2026-01-25",
+       "license": "NOASSERTION",
+       "what it is": "A Verilog Retro-Inspired Video Display Processor for FPGA.",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[zipotron/neorv32-complex-setups](https://github.com/zipotron/neorv32-complex-setups)",
+       "lang/HDL": "VHDL",
+       "stars": "3",
+       "last push": "2021-12-04",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: hardware_dependent/ulx3s"
+      },
+      {
+       "full_name": "[emard/tinyfpga-bootloader-ulx3s](https://github.com/emard/tinyfpga-bootloader-ulx3s)",
+       "lang/HDL": "Makefile",
+       "stars": "2",
+       "last push": "2021-10-01",
+       "license": "none",
+       "what it is": "Attempt to compile for ulx3s",
+       "evidence": "root: boards/ulx3s"
+      },
+      {
+       "full_name": "[emard/usb_host](https://github.com/emard/usb_host)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2024-03-31",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "tree: soc/ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[emard/vhdl_c64_c1541_sd](https://github.com/emard/vhdl_c64_c1541_sd)",
+       "lang/HDL": "VHDL",
+       "stars": "2",
+       "last push": "2018-01-29",
+       "license": "none",
+       "what it is": "Adaptation attempt of DarFPGA's C64 for HDMI output",
+       "evidence": "tree: proj/lattice/ulx3s/constraints/ulx3s_v18.lpf"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_acorn_atom](https://github.com/lawrie/ulx3s_acorn_atom)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2022-04-20",
+       "license": "none",
+       "what it is": "Ulx3s port of Ice40Atom",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_sg_1000](https://github.com/lawrie/ulx3s_sg_1000)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2020-07-02",
+       "license": "none",
+       "what it is": "Sega SG-1000 console for the Ulx3s ECP5 board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[RemyCiterin/DOoOM](https://github.com/RemyCiterin/DOoOM)",
+       "lang/HDL": "Bluespec",
+       "stars": "2",
+       "last push": "2026-01-01",
+       "license": "GPL-2.0",
+       "what it is": "DOoOM Out-Of-Order Machine",
+       "evidence": "root: ulx3s.lpf"
+      },
+      {
+       "full_name": "[zipotron/ziposoc](https://github.com/zipotron/ziposoc)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2022-08-10",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[acairncross/euphrates](https://github.com/acairncross/euphrates)",
+       "lang/HDL": "Clash",
+       "stars": "1",
+       "last push": "2020-12-31",
+       "license": "BSD-3-Clause",
+       "what it is": "Maximum flow accelerator in Clash",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[ADVIKBAHADUR/ULX3s-Superresolution-CNN](https://github.com/ADVIKBAHADUR/ULX3s-Superresolution-CNN)",
+       "lang/HDL": "bitstream + notebooks",
+       "stars": "1",
+       "last push": "2024-08-15",
+       "license": "MIT",
+       "what it is": "This project is funded and made possible by the Laidlaw Foun",
+       "evidence": "root: ulx3s_85f_CSI.bit"
+      },
+      {
+       "full_name": "[asinghani/ulx3s-vga-example](https://github.com/asinghani/ulx3s-vga-example)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "1",
+       "last push": "2024-03-25",
+       "license": "MIT",
+       "what it is": "Example project for using ULX3S with VGA PMOD",
+       "evidence": "root: constraints.lpf"
+      },
+      {
+       "full_name": "[cronokirby/ck-snes](https://github.com/cronokirby/ck-snes)",
+       "lang/HDL": "Rust",
+       "stars": "1",
+       "last push": "2026-04-06",
+       "license": "none",
+       "what it is": "SNES Emulator",
+       "evidence": "root: platform/ulx3s"
+      },
+      {
+       "full_name": "[dulatello08/neocore-fx](https://github.com/dulatello08/neocore-fx)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "1",
+       "last push": "2026-06-08",
+       "license": "Apache-2.0",
+       "what it is": "—",
+       "evidence": "root: ulx3s-85f-min.lpf"
+      },
+      {
+       "full_name": "[gojimmypi/ttgf0p3-analog-UART-FSM-TRNG-Lab](https://github.com/gojimmypi/ttgf0p3-analog-UART-FSM-TRNG-Lab)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-07-02",
+       "license": "Apache-2.0",
+       "what it is": "ANALOG EXPERIMENTAL ttgf0p3 UART/SPI-controlled ASIC lab for",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[gornjas/dvi_test](https://github.com/gornjas/dvi_test)",
+       "lang/HDL": "VHDL",
+       "stars": "1",
+       "last push": "2025-03-02",
+       "license": "BSD-2-Clause",
+       "what it is": "Playground for ULX3S video",
+       "evidence": "root: ulx3s_fer.lpf"
+      },
+      {
+       "full_name": "[jamesrosssharp/ulx3s_mixer_pcb](https://github.com/jamesrosssharp/ulx3s_mixer_pcb)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2024-08-25",
+       "license": "none",
+       "what it is": "PCB for implementing a 100MHz PLL and mixer for ULX3s",
+       "evidence": "root: ulx3s_mixer"
+      },
+      {
+       "full_name": "[jlopezr/mini-gpu](https://github.com/jlopezr/mini-gpu)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-09-25",
+       "license": "none",
+       "what it is": "Simple GPU implemented on ULX3S FPGA",
+       "evidence": "root: 7.ulx3s_w9825g6kh_test"
+      },
+      {
+       "full_name": "[joaln27/koti](https://github.com/joaln27/koti)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "1",
+       "last push": "2026-08-20",
+       "license": "Apache-2.0",
+       "what it is": "A home computer built from the CPU up: an RV32IMA core with",
+       "evidence": "root: fpga/ulx3s"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_gamegear](https://github.com/lawrie/ulx3s_gamegear)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2021-01-16",
+       "license": "none",
+       "what it is": "Segs Game Gear for the Ulx3s ECP5 FPGA board",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[LogoPoseidon/Ulx3sJukeBox](https://github.com/LogoPoseidon/Ulx3sJukeBox)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2024-10-19",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[nklabs/libnklabs-ulx3s](https://github.com/nklabs/libnklabs-ulx3s)",
+       "lang/HDL": "C",
+       "stars": "1",
+       "last push": "2022-08-13",
+       "license": "none",
+       "what it is": "libnklabs example for PicoRV32 (RISC-V) running on ULX3S (La",
+       "evidence": "root: ulx3s.lpf"
+      },
+      {
+       "full_name": "[RemyCiterin/3DRiscV](https://github.com/RemyCiterin/3DRiscV)",
+       "lang/HDL": "Clash",
+       "stars": "1",
+       "last push": "2026-01-11",
+       "license": "MIT",
+       "what it is": "Some experimentations with the blarney DSL for hardware synt",
+       "evidence": "root: ulx3s.lpf"
+      },
+      {
+       "full_name": "[td0034/fpga](https://github.com/td0034/fpga)",
+       "lang/HDL": "HTML",
+       "stars": "1",
+       "last push": "2026-03-05",
+       "license": "none",
+       "what it is": "icesugar v1.5",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[thata/td4-ulx3s](https://github.com/thata/td4-ulx3s)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2024-12-06",
+       "license": "none",
+       "what it is": "ULX3SでTD4を動かしてみる",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[ThePerfectComputer/learn-clash](https://github.com/ThePerfectComputer/learn-clash)",
+       "lang/HDL": "Clash",
+       "stars": "1",
+       "last push": "2024-04-17",
+       "license": "none",
+       "what it is": "My first efforts to use clash lang that other will hopefully",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[ThePerfectComputer/MannaChip](https://github.com/ThePerfectComputer/MannaChip)",
+       "lang/HDL": "Bluespec",
+       "stars": "1",
+       "last push": "2025-11-22",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_fpga"
+      },
+      {
+       "full_name": "[ThorKn/vexriscv-ulx3s-helloworld](https://github.com/ThorKn/vexriscv-ulx3s-helloworld)",
+       "lang/HDL": "Assembly",
+       "stars": "1",
+       "last push": "2020-09-28",
+       "license": "none",
+       "what it is": "Vexriscv CPU on ULX3S FPGA-Board with hello_world exmaple in",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[adrmcintyre/vixen](https://github.com/adrmcintyre/vixen)",
+       "lang/HDL": "Assembly",
+       "stars": "0",
+       "last push": "2026-09-09",
+       "license": "none",
+       "what it is": "16-bit computer on an FPGA",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[ahamidi87/simpleblinky](https://github.com/ahamidi87/simpleblinky)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2024-11-01",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[AndrewCapon/SpinalTemplateSbtUlx3s](https://github.com/AndrewCapon/SpinalTemplateSbtUlx3s)",
+       "lang/HDL": "SpinalHDL",
+       "stars": "0",
+       "last push": "2020-12-22",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[ChipDesign-BV/cdriscv-32s-20](https://github.com/ChipDesign-BV/cdriscv-32s-20)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-09-18",
+       "license": "Apache-2.0",
+       "what it is": "A 32-bit RISC-V core subsystem for safety-critical mixed-sig",
+       "evidence": "root: fpga/ulx3s"
+      },
+      {
+       "full_name": "[Circuit-killer/fpga-usbserial](https://github.com/Circuit-killer/fpga-usbserial)",
+       "lang/HDL": "VHDL",
+       "stars": "0",
+       "last push": "2019-02-23",
+       "license": "none",
+       "what it is": "Second attempt to get usb-serial from opencores",
+       "evidence": "root: lattice/ulx3s"
+      },
+      {
+       "full_name": "[danodus/msx_fpga](https://github.com/danodus/msx_fpga)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-05-03",
+       "license": "MIT",
+       "what it is": "—",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[DFiantWorks/interactive-sim](https://github.com/DFiantWorks/interactive-sim)",
+       "lang/HDL": "C++",
+       "stars": "0",
+       "last push": "2026-07-23",
+       "license": "MIT",
+       "what it is": "Interactive Hardware Simulation Component (DPI/VHPI/VPI)",
+       "evidence": "root: ulx3s_demo"
+      },
+      {
+       "full_name": "[diegob94/ulx3s_blink](https://github.com/diegob94/ulx3s_blink)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2022-09-29",
+       "license": "Apache-2.0",
+       "what it is": "Example project",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[dman2021/blink](https://github.com/dman2021/blink)",
+       "lang/HDL": "Makefile",
+       "stars": "0",
+       "last push": "2025-08-01",
+       "license": "none",
+       "what it is": "Test the ulx3s functions",
+       "evidence": "root: clk_blink.lpf"
+      },
+      {
+       "full_name": "[dman2021/fpga_count](https://github.com/dman2021/fpga_count)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-07-16",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: top.lpf"
+      },
+      {
+       "full_name": "[dman2021/uart_echo](https://github.com/dman2021/uart_echo)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-07-17",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: uart_echo.lpf"
+      },
+      {
+       "full_name": "[dschaefer/fpga-template](https://github.com/dschaefer/fpga-template)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2022-11-06",
+       "license": "none",
+       "what it is": "Project template for FPGA dev",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[dschaefer/ulx3s-ghdl-adder](https://github.com/dschaefer/ulx3s-ghdl-adder)",
+       "lang/HDL": "VHDL",
+       "stars": "0",
+       "last push": "2021-09-19",
+       "license": "none",
+       "what it is": "Adder example written in VHDL",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[dulatello08/litex-cpu-testing](https://github.com/dulatello08/litex-cpu-testing)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-12-18",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v316.lpf"
+      },
+      {
+       "full_name": "[dulatello08/neocorefx-dram](https://github.com/dulatello08/neocorefx-dram)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-05-12",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s-85f-min.lpf"
+      },
+      {
+       "full_name": "[dulatello08/ulx3s-tests](https://github.com/dulatello08/ulx3s-tests)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2025-10-16",
+       "license": "GPL-3.0",
+       "what it is": "Tests for my ULX3S FPGA board, to then start working on NeoC",
+       "evidence": "root: ulx3s_85f.lpf"
+      },
+      {
+       "full_name": "[gojimmypi/nextpnr-issue235](https://github.com/gojimmypi/nextpnr-issue235)",
+       "lang/HDL": "C++",
+       "stars": "0",
+       "last push": "2019-02-25",
+       "license": "GPL-3.0",
+       "what it is": "supplement to nextpnr issue #235",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[gojimmypi/ttgf-UART-FSM-TRNG-Lab](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-09-08",
+       "license": "Apache-2.0",
+       "what it is": "Tiny Tapeout GF180 (wafer.space) shuttles - Verilog HDL Proj",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[gojimmypi/ttgf0p3-UART-FSM-TRNG-Lab](https://github.com/gojimmypi/ttgf0p3-UART-FSM-TRNG-Lab)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-06-27",
+       "license": "Apache-2.0",
+       "what it is": "EXPERIMENTAL ttgf0p3 UART/SPI-controlled ASIC lab for explor",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[gojimmypi/ttsky-UART-FSM-TRNG-Lab](https://github.com/gojimmypi/ttsky-UART-FSM-TRNG-Lab)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-07-01",
+       "license": "Apache-2.0",
+       "what it is": "Tiny Tapeout SKY130 (ChipFoundry) shuttles: Universal Asynch",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[goran-mahovlic/odysseus_sprites](https://github.com/goran-mahovlic/odysseus_sprites)",
+       "lang/HDL": "Makefile",
+       "stars": "0",
+       "last push": "2024-07-29",
+       "license": "MIT",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[hanseo03/ulx3s-custom-riscv-cpu](https://github.com/hanseo03/ulx3s-custom-riscv-cpu)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-07-06",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_12k.lpf"
+      },
+      {
+       "full_name": "[hanseo03/ulx3s-vexriscv-soc](https://github.com/hanseo03/ulx3s-vexriscv-soc)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-06-04",
+       "license": "none",
+       "what it is": "VexRiscv-based SoC on ULX3S 12K (ECP5)",
+       "evidence": "root: ulx3s_12k.lpf"
+      },
+      {
+       "full_name": "[Hassan2203/System-On-Chip-SOC-Design-and-verification](https://github.com/Hassan2203/System-On-Chip-SOC-Design-and-verification)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-06-19",
+       "license": "none",
+       "what it is": "System-on-Chip (SoC) Design: Designed a 32-bit RISC-V single",
+       "evidence": "root: build_wishbone_ulx3s.bat"
+      },
+      {
+       "full_name": "[jadephilipoom/ulx3s-experiments](https://github.com/jadephilipoom/ulx3s-experiments)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-06-05",
+       "license": "none",
+       "what it is": "learning stuff about hardware",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[krishkc5/trng-ring-oscillator](https://github.com/krishkc5/trng-ring-oscillator)",
+       "lang/HDL": "TeX",
+       "stars": "0",
+       "last push": "2026-02-08",
+       "license": "none",
+       "what it is": "FPGA-based True Random Number Generator using ring oscillato",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[l0r3m1psum/videogame_verilog](https://github.com/l0r3m1psum/videogame_verilog)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-07-22",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[lcausevic/ULX3S_FPGA_Logic_Structures](https://github.com/lcausevic/ULX3S_FPGA_Logic_Structures)",
+       "lang/HDL": "?",
+       "stars": "0",
+       "last push": "2026-09-22",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ULX3S-85F.zip"
+      },
+      {
+       "full_name": "[mpardalos/clash-blinky](https://github.com/mpardalos/clash-blinky)",
+       "lang/HDL": "Clash",
+       "stars": "0",
+       "last push": "2025-04-13",
+       "license": "none",
+       "what it is": "Programming the ulx3s with Clash",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[MSRRaju07/IOP](https://github.com/MSRRaju07/IOP)",
+       "lang/HDL": "Verilog (Icestudio)",
+       "stars": "0",
+       "last push": "2024-03-27",
+       "license": "MIT",
+       "what it is": "—",
+       "evidence": "root: ULX3S_SOBEL.ice"
+      },
+      {
+       "full_name": "[nicocavallu/rf-dds-lo](https://github.com/nicocavallu/rf-dds-lo)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-08-06",
+       "license": "none",
+       "what it is": "FGPA Direct Digital Synthesis",
+       "evidence": "root: ulx3s.lpf"
+      },
+      {
+       "full_name": "[nullobject/counter-ulx3s](https://github.com/nullobject/counter-ulx3s)",
+       "lang/HDL": "Makefile",
+       "stars": "0",
+       "last push": "2025-02-01",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[nullobject/m68k-ulx3s](https://github.com/nullobject/m68k-ulx3s)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-06-07",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[nullobject/riscv-ulx3s](https://github.com/nullobject/riscv-ulx3s)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-07-13",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[punchthatface/tinyDMA](https://github.com/punchthatface/tinyDMA)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-04-29",
+       "license": "none",
+       "what it is": "TinyDMA-2C is a programmable two-channel direct memory acces",
+       "evidence": "root: constraints.lpf"
+      },
+      {
+       "full_name": "[RichardEGeorge/ULX3S-Chase](https://github.com/RichardEGeorge/ULX3S-Chase)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2021-02-11",
+       "license": "GPL-3.0",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[RichardEGeorge/ULX3S-Flipflop](https://github.com/RichardEGeorge/ULX3S-Flipflop)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2021-02-13",
+       "license": "none",
+       "what it is": "A D-type flip-flop for the ULX3S board",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[RichardEGeorge/ULX3S-Passthru](https://github.com/RichardEGeorge/ULX3S-Passthru)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2021-02-13",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[SeMinLim/bluerv32](https://github.com/SeMinLim/bluerv32)",
+       "lang/HDL": "Bluespec",
+       "stars": "0",
+       "last push": "2026-08-14",
+       "license": "none",
+       "what it is": "Boilerplate codebase for synthesizable RV32 soft processor v",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[StefanHaslhofer/HardwareDesign](https://github.com/StefanHaslhofer/HardwareDesign)",
+       "lang/HDL": "VHDL",
+       "stars": "0",
+       "last push": "2024-12-26",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[stuij/odyssey](https://github.com/stuij/odyssey)",
+       "lang/HDL": "Makefile",
+       "stars": "0",
+       "last push": "2023-02-03",
+       "license": "none",
+       "what it is": "odyssey",
+       "evidence": "root: ulx3s_v20_segpdi.lpf"
+      },
+      {
+       "full_name": "[TechPrototyper/trs80-rev-z](https://github.com/TechPrototyper/trs80-rev-z)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-08-27",
+       "license": "NOASSERTION",
+       "what it is": "TRS-80 Model 1 (Rev G) as open, verified hardware on ULX3S/E",
+       "evidence": "root: boards/ulx3s"
+      },
+      {
+       "full_name": "[thata/ulx3s-uart-loopback](https://github.com/thata/ulx3s-uart-loopback)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2024-11-19",
+       "license": "none",
+       "what it is": "ULX3SでUARTをループバックさせてみた",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[ThorKn/vga_clock_1](https://github.com/ThorKn/vga_clock_1)",
+       "lang/HDL": "Scala (SpinalHDL/Chisel)",
+       "stars": "0",
+       "last push": "2023-06-02",
+       "license": "Apache-2.0",
+       "what it is": "Hardware circuit with an VGA output that displays a simple c",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[ThorKn/vga_pong](https://github.com/ThorKn/vga_pong)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2023-11-27",
+       "license": "GPL-3.0",
+       "what it is": "Pong game on a VGA display. HDL for FPGA and ASIC.",
+       "evidence": "root: ulx3s"
+      },
+      {
+       "full_name": "[tommythorn/bluespec_blink](https://github.com/tommythorn/bluespec_blink)",
+       "lang/HDL": "Bluespec",
+       "stars": "0",
+       "last push": "2025-03-09",
+       "license": "none",
+       "what it is": "Blink LEDs on ULX3S using Bluespec",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[vladov3000/ulx3s](https://github.com/vladov3000/ulx3s)",
+       "lang/HDL": "C++",
+       "stars": "0",
+       "last push": "2026-03-15",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s.lpf"
+      },
+      {
+       "full_name": "[Volnirr/verilog-uart](https://github.com/Volnirr/verilog-uart)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-08-15",
+       "license": "none",
+       "what it is": "UART transceiver written in Verilog",
+       "evidence": "root: ulx3s.lpf"
+      },
+      {
+       "full_name": "[yope/cpuv2](https://github.com/yope/cpuv2)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2021-03-17",
+       "license": "none",
+       "what it is": "A very simple 32bit CPU design in verilog",
+       "evidence": "root: ulx3s_v20.lpf"
+      },
+      {
+       "full_name": "[zipotron/ulx3s_sdram8](https://github.com/zipotron/ulx3s_sdram8)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2021-10-12",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "root: ulx3s_v20.lpf"
+      }
+     ]
+    }
+   ],
+   "level": 3
+  },
+  {
+   "title": "B. ULX3S-dedicated repos (name/description/topic = ULX3S, HDL sources present, no .lpf at root) — 51 repos",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "full_name",
+      "lang/HDL",
+      "stars",
+      "last push",
+      "license",
+      "what it is",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "full_name": "[emard/ulx3s_galaksija](https://github.com/emard/ulx3s_galaksija)",
+       "lang/HDL": "Verilog",
+       "stars": "18",
+       "last push": "2025-07-06",
+       "license": "none",
+       "what it is": "Galaksija computer for FPGA",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[GuzTech/ulx3s-nmigen-examples](https://github.com/GuzTech/ulx3s-nmigen-examples)",
+       "lang/HDL": "Amaranth",
+       "stars": "16",
+       "last push": "2020-11-30",
+       "license": "none",
+       "what it is": "nMigen examples for the ULX3S board",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[sangwoojun/ulx3s_bsv](https://github.com/sangwoojun/ulx3s_bsv)",
+       "lang/HDL": "Bluespec",
+       "stars": "15",
+       "last push": "2025-03-09",
+       "license": "none",
+       "what it is": "Bluespec environment for working with the ulx3s board and it",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[gojimmypi/ulx3s-examples](https://github.com/gojimmypi/ulx3s-examples)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "12",
+       "last push": "2020-10-05",
+       "license": "none",
+       "what it is": "Collection of various ulx3s examples",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[mkvenkit/ulx3s_examples](https://github.com/mkvenkit/ulx3s_examples)",
+       "lang/HDL": "?",
+       "stars": "11",
+       "last push": "2022-04-25",
+       "license": "none",
+       "what it is": "Beginner-friendly Verilog based examples for the ULX3S FPGA",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[pepijndevos/rust-litex-example](https://github.com/pepijndevos/rust-litex-example)",
+       "lang/HDL": "LiteX + Rust",
+       "stars": "11",
+       "last push": "2022-06-16",
+       "license": "Apache-2.0",
+       "what it is": "An example application that demonstrates litex-hal on the UL",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[dstrbad/fpga-soc-ml-accelerator](https://github.com/dstrbad/fpga-soc-ml-accelerator)",
+       "lang/HDL": "LiteX",
+       "stars": "5",
+       "last push": "2026-08-04",
+       "license": "none",
+       "what it is": "FPGA SoC learning project: soft RISC-V CPU, Linux, and hardw",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[emard/ulx3s-emi](https://github.com/emard/ulx3s-emi)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2021-10-22",
+       "license": "none",
+       "what it is": "demo core for electromagnetic interference measurement",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[emard/ulx3s_c64](https://github.com/emard/ulx3s_c64)",
+       "lang/HDL": "VHDL",
+       "stars": "5",
+       "last push": "2024-04-04",
+       "license": "none",
+       "what it is": "Attempt porting parts of mister C64 to ULX3S",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[jamesrosssharp/1_bit_AM](https://github.com/jamesrosssharp/1_bit_AM)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2024-09-28",
+       "license": "MIT",
+       "what it is": "1 bit AM Radio for ULX3S",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[mb-sat/ulx3s-longwave-sdr](https://github.com/mb-sat/ulx3s-longwave-sdr)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2025-06-18",
+       "license": "GPL-3.0",
+       "what it is": "A longwave software defined radio receiver for the Radiona U",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[tarik-hamedovic/SDR-HLS](https://github.com/tarik-hamedovic/SDR-HLS)",
+       "lang/HDL": "Verilog (HLS)",
+       "stars": "5",
+       "last push": "2024-10-31",
+       "license": "none",
+       "what it is": "SDR-HLS is a Master Thesis focused on the implementation and",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[fedy0/zta](https://github.com/fedy0/zta)",
+       "lang/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2024-07-12",
+       "license": "MIT",
+       "what it is": "Ztachip on ULX3S",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[lawrie/ulx3s_pdp_11](https://github.com/lawrie/ulx3s_pdp_11)",
+       "lang/HDL": "?",
+       "stars": "3",
+       "last push": "2022-03-21",
+       "license": "none",
+       "what it is": "Experiments with the PDP 11 instruction set on the Ulx3s Ecp",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[BornaBiro/FPGA_epaper](https://github.com/BornaBiro/FPGA_epaper)",
+       "lang/HDL": "HTML",
+       "stars": "2",
+       "last push": "2023-03-03",
+       "license": "MIT",
+       "what it is": "FPGA code/implementation for driving epaper with ULX3S board",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[Detegr/ulx3s-projects](https://github.com/Detegr/ulx3s-projects)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2019-02-27",
+       "license": "CC-BY-4.0",
+       "what it is": "My projects for ULX3S FPGA",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[emard/ulx3s-jtagthru](https://github.com/emard/ulx3s-jtagthru)",
+       "lang/HDL": "Makefile",
+       "stars": "2",
+       "last push": "2019-01-28",
+       "license": "none",
+       "what it is": "ULX3S JTAG pass-thru",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[Ruebenschus/Atari-FPCartridge](https://github.com/Ruebenschus/Atari-FPCartridge)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2026-06-25",
+       "license": "none",
+       "what it is": "Use an ULX3s FPGA to emulate an Atari ST cartridge",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[tucanae47/ulx3s-experiments](https://github.com/tucanae47/ulx3s-experiments)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2022-11-30",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[ulx3s/Hazard3-Doom](https://github.com/ulx3s/Hazard3-Doom)",
+       "lang/HDL": "C (+Hazard3 Verilog)",
+       "stars": "2",
+       "last push": "2026-09-21",
+       "license": "NOASSERTION",
+       "what it is": "Educational Doom Generic on the ULX3S and ULX4M for the Haza",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[w531t4/fpga_led_display](https://github.com/w531t4/fpga_led_display)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "2",
+       "last push": "2026-07-12",
+       "license": "MIT",
+       "what it is": "Use FPGA to drive large LED matrixes at high speeds!",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[JohnAZoidberg/ulx3s-espi-analyzer](https://github.com/JohnAZoidberg/ulx3s-espi-analyzer)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-03-08",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[mithro/asus-d16-ulx3s-interface](https://github.com/mithro/asus-d16-ulx3s-interface)",
+       "lang/HDL": "LiteX",
+       "stars": "1",
+       "last push": "2026-07-20",
+       "license": "Apache-2.0",
+       "what it is": "ULX3S LiteX bench controller for the ASUS KGPE-D16 (SPI-flas",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[mmicko/ulx3s-examples](https://github.com/mmicko/ulx3s-examples)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2019-02-21",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[nh428/ULX3S-TFT-Display-Sobel-Object-Detection](https://github.com/nh428/ULX3S-TFT-Display-Sobel-Object-Detection)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-07-27",
+       "license": "none",
+       "what it is": "Verilog source code to implement Sobel image detection utili",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[pcotret/ULX3S-examples](https://github.com/pcotret/ULX3S-examples)",
+       "lang/HDL": "VHDL",
+       "stars": "1",
+       "last push": "2020-11-13",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[PietPtr/ULX3S-DSP](https://github.com/PietPtr/ULX3S-DSP)",
+       "lang/HDL": "Clash",
+       "stars": "1",
+       "last push": "2022-06-17",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[ThorKn/spinalSynth_ULX3S](https://github.com/ThorKn/spinalSynth_ULX3S)",
+       "lang/HDL": "SpinalHDL→Verilog",
+       "stars": "1",
+       "last push": "2026-06-11",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[bqqbarbhg/blipv1](https://github.com/bqqbarbhg/blipv1)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "0",
+       "last push": "2020-12-25",
+       "license": "none",
+       "what it is": "Something for ULX3S",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[CarlRaymond/ulx3s-container](https://github.com/CarlRaymond/ulx3s-container)",
+       "lang/HDL": "PowerShell",
+       "stars": "0",
+       "last push": "2026-03-23",
+       "license": "none",
+       "what it is": "Experiments with ULX3S toolchain in a Docker container",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[chiplet/acorechip-ulx3s](https://github.com/chiplet/acorechip-ulx3s)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "0",
+       "last push": "2024-11-16",
+       "license": "Apache-2.0",
+       "what it is": "ACoreChip RISC-V soft core implementation on ULX3S FPGA deve",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[chiplet/ulx3s-blinky](https://github.com/chiplet/ulx3s-blinky)",
+       "lang/HDL": "Makefile",
+       "stars": "0",
+       "last push": "2024-03-26",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[dpks2003/my_ulx3s_repo](https://github.com/dpks2003/my_ulx3s_repo)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2024-01-15",
+       "license": "none",
+       "what it is": "This repository contains all of my project implemented on ul",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[dpks2003/Dice_crap_game](https://github.com/dpks2003/Dice_crap_game)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2024-03-10",
+       "license": "none",
+       "what it is": "This repo contains Verilog Implementation of Dice Crap Game",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[EmbeddedDojo/ULX3S_Examples](https://github.com/EmbeddedDojo/ULX3S_Examples)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2022-01-18",
+       "license": "Apache-2.0",
+       "what it is": "ULX3S Lattice board examples",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[flyingoverclouds/flocs-ulx3s-samples](https://github.com/flyingoverclouds/flocs-ulx3s-samples)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2020-12-31",
+       "license": "MIT",
+       "what it is": "My samples and tests on the FGPA ULX3S board and opensource",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[fywc/ulx3s_rv32i_processor](https://github.com/fywc/ulx3s_rv32i_processor)",
+       "lang/HDL": "Bluespec",
+       "stars": "0",
+       "last push": "2023-03-15",
+       "license": "none",
+       "what it is": "a simple 4-stages pipelined rv32i processor",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[ghaworth/ulx3s-bldc-foc](https://github.com/ghaworth/ulx3s-bldc-foc)",
+       "lang/HDL": "Makefile",
+       "stars": "0",
+       "last push": "2026-06-15",
+       "license": "none",
+       "what it is": "Open-source FPGA FOC core and three-phase driver board for B",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[ghaworth/ulx3s-tinyai](https://github.com/ghaworth/ulx3s-tinyai)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-07-16",
+       "license": "NOASSERTION",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[gmejiamtz/ulx3s-components](https://github.com/gmejiamtz/ulx3s-components)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2025-08-20",
+       "license": "MIT",
+       "what it is": "A repo dedicated to getting various components on the ULX3S",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[gojimmypi/z80386-ulx3s-doom](https://github.com/gojimmypi/z80386-ulx3s-doom)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-07-29",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[John-K/spinose](https://github.com/John-K/spinose)",
+       "lang/HDL": "LiteX",
+       "stars": "0",
+       "last push": "2020-04-11",
+       "license": "BSD-2-Clause",
+       "what it is": "Litex based SPI NOR dumping gateware for ULX3S",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[marinsiric/ulx3s](https://github.com/marinsiric/ulx3s)",
+       "lang/HDL": "HTML",
+       "stars": "0",
+       "last push": "2020-01-23",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[p-kraszewski/CS-ULX3S-03](https://github.com/p-kraszewski/CS-ULX3S-03)",
+       "lang/HDL": "C++",
+       "stars": "0",
+       "last push": "2023-08-22",
+       "license": "GPL-3.0",
+       "what it is": "Materials for FPGA devboard ULX3S v3.1.8 (sold by Mouser, Ap",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[Pfontvilanova/pfforthMACHINE](https://github.com/Pfontvilanova/pfforthMACHINE)",
+       "lang/HDL": "?",
+       "stars": "0",
+       "last push": "2026-01-17",
+       "license": "none",
+       "what it is": "Hardware Forth stack machine implementation for ULX3S FPGA w",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[RiltonF/Thermal_camera_ulx3s](https://github.com/RiltonF/Thermal_camera_ulx3s)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2025-07-01",
+       "license": "GPL-3.0",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[saul-rodriguez/ulx3s](https://github.com/saul-rodriguez/ulx3s)",
+       "lang/HDL": "Assembly",
+       "stars": "0",
+       "last push": "2021-05-16",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[thata/ulx3s-playground](https://github.com/thata/ulx3s-playground)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2024-12-18",
+       "license": "NOASSERTION",
+       "what it is": "—",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[Thewbi/ULX3S](https://github.com/Thewbi/ULX3S)",
+       "lang/HDL": "HTML",
+       "stars": "0",
+       "last push": "2025-09-15",
+       "license": "none",
+       "what it is": "ULX3S Projects",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[tom7980/ulxws](https://github.com/tom7980/ulxws)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-04-04",
+       "license": "none",
+       "what it is": "Workspace for playing with the ulx3s",
+       "evidence": "name/desc (unverified)"
+      },
+      {
+       "full_name": "[tristanitschner/ulx3s-examples](https://github.com/tristanitschner/ulx3s-examples)",
+       "lang/HDL": "C",
+       "stars": "0",
+       "last push": "2022-10-01",
+       "license": "GPL-2.0",
+       "what it is": "My experiments with the ULX3S FPGA board.",
+       "evidence": "name/desc (unverified)"
+      }
+     ]
+    }
+   ],
+   "level": 3
+  },
+  {
+   "title": "C. Multi-board / other projects whose README states a ULX3S target — 69 repos",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "full_name",
+      "lang/HDL",
+      "stars",
+      "last push",
+      "license",
+      "what it is",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "full_name": "[google/CFU-Playground](https://github.com/google/CFU-Playground)",
+       "lang/HDL": "Verilog + LiteX",
+       "stars": "567",
+       "last push": "2026-02-26",
+       "license": "Apache-2.0",
+       "what it is": "Want a faster ML processor? Do it yourself! -- A framework f",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[vmware-archive/cascade](https://github.com/vmware-archive/cascade)",
+       "lang/HDL": "Verilog JIT (C++)",
+       "stars": "446",
+       "last push": "2021-07-01",
+       "license": "NOASSERTION",
+       "what it is": "A Just-In-Time Compiler for Verilog from VMware Research",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[sylefeb/tinygpus](https://github.com/sylefeb/tinygpus)",
+       "lang/HDL": "Silice",
+       "stars": "178",
+       "last push": "2026-01-24",
+       "license": "GPL-3.0",
+       "what it is": "TinyGPUs, making graphics hardware for 1990s games",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[gonsolo/Borg](https://github.com/gonsolo/Borg)",
+       "lang/HDL": "Chisel/Scala",
+       "stars": "32",
+       "last push": "2026-09-26",
+       "license": "none",
+       "what it is": "Foundational workflow for an open-source GPU",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[uttamcoomar/NN_Digits](https://github.com/uttamcoomar/NN_Digits)",
+       "lang/HDL": "Verilog",
+       "stars": "31",
+       "last push": "2026-03-22",
+       "license": "MIT",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[zyedidia/riscinator](https://github.com/zyedidia/riscinator)",
+       "lang/HDL": "Chisel",
+       "stars": "18",
+       "last push": "2023-04-14",
+       "license": "MIT",
+       "what it is": "A tiny 3-stage RISC-V core written in Chisel.",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[asinghani/advent-of-hardcaml-2024](https://github.com/asinghani/advent-of-hardcaml-2024)",
+       "lang/HDL": "Hardcaml",
+       "stars": "17",
+       "last push": "2025-02-26",
+       "license": "MIT",
+       "what it is": "Solving 2024 Advent of Code entirely on an FPGA using Hardca",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[carlosedp/chisel-fpga-pinfinder](https://github.com/carlosedp/chisel-fpga-pinfinder)",
+       "lang/HDL": "Chisel",
+       "stars": "17",
+       "last push": "2024-09-24",
+       "license": "NOASSERTION",
+       "what it is": "A Chisel implementation for an FPGA Pin Finder thru UART",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[asinghani/advent-of-hardcaml-2025](https://github.com/asinghani/advent-of-hardcaml-2025)",
+       "lang/HDL": "Hardcaml",
+       "stars": "11",
+       "last push": "2026-01-01",
+       "license": "none",
+       "what it is": "My attempts at solving Advent of Code 2025 in an FPGA",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[jerry-D/SYMPL_IEEE754-2019_ISA](https://github.com/jerry-D/SYMPL_IEEE754-2019_ISA)",
+       "lang/HDL": "Assembly",
+       "stars": "7",
+       "last push": "2023-12-08",
+       "license": "NOASSERTION",
+       "what it is": "SYMPL IEEE 754-2019 Instruction Set Architecture Compute Eng",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[dlobato/tfmicro-on-litex-vexriscv](https://github.com/dlobato/tfmicro-on-litex-vexriscv)",
+       "lang/HDL": "C++",
+       "stars": "7",
+       "last push": "2021-04-26",
+       "license": "BSD-2-Clause",
+       "what it is": "PoC running tfmicro on LiteX/VexRiscv",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[ckdur/RISCVConsole](https://github.com/ckdur/RISCVConsole)",
+       "lang/HDL": "Chisel (Chipyard)",
+       "stars": "6",
+       "last push": "2026-09-24",
+       "license": "MIT",
+       "what it is": "An attempt to do a RISCV videogame console.",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[mole99/tt05-one-sprite-pony](https://github.com/mole99/tt05-one-sprite-pony)",
+       "lang/HDL": "Verilog",
+       "stars": "6",
+       "last push": "2025-02-09",
+       "license": "Apache-2.0",
+       "what it is": "This SVGA Verilog design has exactly one trick up its sleeve",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[HeiChips/heichips25-template](https://github.com/HeiChips/heichips25-template)",
+       "lang/HDL": "Tcl",
+       "stars": "6",
+       "last push": "2026-03-01",
+       "license": "Apache-2.0",
+       "what it is": "The template for the HeiChips 2025 hackathon",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[ChipFlow/example-socs](https://github.com/ChipFlow/example-socs)",
+       "lang/HDL": "Amaranth",
+       "stars": "5",
+       "last push": "2025-01-16",
+       "license": "BSD-2-Clause",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[fm4dd/pmod-7seg9](https://github.com/fm4dd/pmod-7seg9)",
+       "lang/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2026-02-14",
+       "license": "NOASSERTION",
+       "what it is": "Single-row PMOD with nine multiplexed seven-segment LED digi",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[SeMinLim/blueyosys](https://github.com/SeMinLim/blueyosys)",
+       "lang/HDL": "Bluespec",
+       "stars": "5",
+       "last push": "2026-09-23",
+       "license": "none",
+       "what it is": "Boilerplate codebase for Embedded FPGA kernel development vi",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[srjilarious/fpga_start](https://github.com/srjilarious/fpga_start)",
+       "lang/HDL": "C++",
+       "stars": "5",
+       "last push": "2026-02-28",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[NoxHarmonium/sirc](https://github.com/NoxHarmonium/sirc)",
+       "lang/HDL": "Rust",
+       "stars": "4",
+       "last push": "2026-09-26",
+       "license": "GPL-3.0",
+       "what it is": "The best retro console that never existed",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[dicethrow/amaram](https://github.com/dicethrow/amaram)",
+       "lang/HDL": "Amaranth",
+       "stars": "3",
+       "last push": "2022-04-13",
+       "license": "none",
+       "what it is": "A HDL library providing a max-bandwidth, n-async-FIFO interf",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[secworks/CrypTkey](https://github.com/secworks/CrypTkey)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2025-02-25",
+       "license": "BSD-2-Clause",
+       "what it is": "HSM based on Cryptech and Tillitis Tkey. Implemented on the",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[danodus/onramp-fpga](https://github.com/danodus/onramp-fpga)",
+       "lang/HDL": "C",
+       "stars": "2",
+       "last push": "2026-05-26",
+       "license": "MIT",
+       "what it is": "FPGA-based system-on-chip with a 32-bit Onramp processor",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[gergoerdi/advent-of-clash-2025](https://github.com/gergoerdi/advent-of-clash-2025)",
+       "lang/HDL": "Clash",
+       "stars": "2",
+       "last push": "2026-01-13",
+       "license": "GPL-3.0",
+       "what it is": "Advent of Clash 2025",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[cgarryZA/advent-of-camel-2025](https://github.com/cgarryZA/advent-of-camel-2025)",
+       "lang/HDL": "Hardcaml",
+       "stars": "2",
+       "last push": "2026-01-19",
+       "license": "MIT",
+       "what it is": "A hardware-first exploration of Advent of Code 2025, impleme",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[dibyx/Flux](https://github.com/dibyx/Flux)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "2",
+       "last push": "2026-02-09",
+       "license": "NOASSERTION",
+       "what it is": "Educational GPU platform - Democratizing GPU building with c",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[fm4dd/pmod-charlcd](https://github.com/fm4dd/pmod-charlcd)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2024-02-24",
+       "license": "NOASSERTION",
+       "what it is": "PMOD module for connecting a HD44780-compatible character LC",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[AravindRajeshkanna/vernier-rv32](https://github.com/AravindRajeshkanna/vernier-rv32)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-09-27",
+       "license": "NOASSERTION",
+       "what it is": "vernier-rv32 is an open-source FPGA SoC design project cente",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[gildobjanschi/RISCV_PROCESSOR](https://github.com/gildobjanschi/RISCV_PROCESSOR)",
+       "lang/HDL": "Assembly",
+       "stars": "1",
+       "last push": "2024-09-06",
+       "license": "MIT",
+       "what it is": "32-bit RISC-V Processor Verilog code",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[johngannon4/riscv-cpu-portfolio](https://github.com/johngannon4/riscv-cpu-portfolio)",
+       "lang/HDL": "?",
+       "stars": "1",
+       "last push": "2026-09-24",
+       "license": "none",
+       "what it is": "RV32IM 6-stage pipelined RISC-V core in SystemVerilog with a",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[TadeoRoboticsGroup/AxiomaCore-328](https://github.com/TadeoRoboticsGroup/AxiomaCore-328)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-09-26",
+       "license": "Apache-2.0",
+       "what it is": "AxiomaCore-328, un microcontrolador de arquitectura abierta",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[titouanc/fpga-scratchpad](https://github.com/titouanc/fpga-scratchpad)",
+       "lang/HDL": "LiteX",
+       "stars": "1",
+       "last push": "2021-03-25",
+       "license": "none",
+       "what it is": "Fiddling with FPGAs, Migen, LiteX and stuffs",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[uttamcoomar/MAC-units-for-various-number-formats](https://github.com/uttamcoomar/MAC-units-for-various-number-formats)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-03-13",
+       "license": "none",
+       "what it is": "This project contains MAC units in Verilog for BF16, FP16, I",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[pepijndevos/litedhrystone](https://github.com/pepijndevos/litedhrystone)",
+       "lang/HDL": "LiteX",
+       "stars": "1",
+       "last push": "2024-10-30",
+       "license": "none",
+       "what it is": "Run the Dhrystone benchmark on LiteX",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[bhouvana/AEGIS-X86-Processor](https://github.com/bhouvana/AEGIS-X86-Processor)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "1",
+       "last push": "2026-09-10",
+       "license": "none",
+       "what it is": "Research-grade synthesizable x86-64 out-of-order core in Sys",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[SeMinLim/sway](https://github.com/SeMinLim/sway)",
+       "lang/HDL": "Bluespec",
+       "stars": "0",
+       "last push": "2026-09-26",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[SeMinLim/zfpe](https://github.com/SeMinLim/zfpe)",
+       "lang/HDL": "Bluespec",
+       "stars": "0",
+       "last push": "2021-08-20",
+       "license": "none",
+       "what it is": "Neural Network Compression for Embedded Accelerators",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[dicethrow/amtest](https://github.com/dicethrow/amtest)",
+       "lang/HDL": "Amaranth",
+       "stars": "0",
+       "last push": "2022-03-11",
+       "license": "none",
+       "what it is": "My tests for learning how to work with the Amaranth HDL",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[bonfireprocessor/bonfire-core](https://github.com/bonfireprocessor/bonfire-core)",
+       "lang/HDL": "Amaranth/VHDL (FuseSoC)",
+       "stars": "0",
+       "last push": "2026-09-21",
+       "license": "NOASSERTION",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[bonfireprocessor/bonfire-ecp5-jtagg-led-demo](https://github.com/bonfireprocessor/bonfire-ecp5-jtagg-led-demo)",
+       "lang/HDL": "Amaranth (FuseSoC)",
+       "stars": "0",
+       "last push": "2026-07-20",
+       "license": "NOASSERTION",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[businessmanraduc/Doggo-V6](https://github.com/businessmanraduc/Doggo-V6)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-07-12",
+       "license": "NOASSERTION",
+       "what it is": "6th variant of the Doggo-CPU series - PHANTOM-32",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[chrislikescisco/nes-fpga](https://github.com/chrislikescisco/nes-fpga)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-04-14",
+       "license": "none",
+       "what it is": "NES FPGA project for CEN3907",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[danielh186/6502-Tapeout](https://github.com/danielh186/6502-Tapeout)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-04-15",
+       "license": "none",
+       "what it is": "Open-Source 6502, designed for OpenROAD toolchain and IHP SG",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[fusetim/rusty-soc](https://github.com/fusetim/rusty-soc)",
+       "lang/HDL": "Rust",
+       "stars": "0",
+       "last push": "2026-02-08",
+       "license": "NOASSERTION",
+       "what it is": "System On Chip made from scratch (SoC/Hardware on FPGA, Firm",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[harrowm/mackerel_030f](https://github.com/harrowm/mackerel_030f)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-09-23",
+       "license": "MIT",
+       "what it is": "My attempt at building a mackerel 030 board in verilog for a",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[jeli180/Shape-Inference-SOC](https://github.com/jeli180/Shape-Inference-SOC)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-09-09",
+       "license": "none",
+       "what it is": "SOC for Shape Inference",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[joaln27/CORDIC](https://github.com/joaln27/CORDIC)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "0",
+       "last push": "2026-09-25",
+       "license": "Apache-2.0",
+       "what it is": "A 16-iteration CORDIC sine generator on one TinyTapeout tile",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[LucasEBSkora/wav-player](https://github.com/LucasEBSkora/wav-player)",
+       "lang/HDL": "Silice",
+       "stars": "0",
+       "last push": "2025-02-07",
+       "license": "MIT",
+       "what it is": "Wav file player SoC written in the silice language",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[markus-zzz/hyperram-test](https://github.com/markus-zzz/hyperram-test)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2021-12-30",
+       "license": "none",
+       "what it is": "Testbench for my HyperRAM board",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[markus-zzz/max9850-test](https://github.com/markus-zzz/max9850-test)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2022-01-30",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[markus-zzz/zzz-rv](https://github.com/markus-zzz/zzz-rv)",
+       "lang/HDL": "Assembly",
+       "stars": "0",
+       "last push": "2024-09-04",
+       "license": "CERN-OHL-P-2.0",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[nicocavallu/fpga-LoRa-Receiver](https://github.com/nicocavallu/fpga-LoRa-Receiver)",
+       "lang/HDL": "?",
+       "stars": "0",
+       "last push": "2026-08-18",
+       "license": "GPL-3.0",
+       "what it is": "FPGA project to decode LoRa messages on custom RISC-V Archit",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[nicocavallu/rf-fft-engine](https://github.com/nicocavallu/rf-fft-engine)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-08-21",
+       "license": "GPL-3.0",
+       "what it is": "Hardware FFT engine for LoRa Dechirper project. Provides ins",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[nicocavallu/rf-sdr-frontend](https://github.com/nicocavallu/rf-sdr-frontend)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-08-18",
+       "license": "none",
+       "what it is": "RF Frontend for LoRa Dechirper project",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[quigleyj97/nesgate](https://github.com/quigleyj97/nesgate)",
+       "lang/HDL": "VHDL",
+       "stars": "0",
+       "last push": "2025-04-20",
+       "license": "NOASSERTION",
+       "what it is": "VHDL implementation of the Nintendo Entertainment System for",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[rainbow1128/VHDL-AES-Master](https://github.com/rainbow1128/VHDL-AES-Master)",
+       "lang/HDL": "VHDL",
+       "stars": "0",
+       "last push": "2023-05-02",
+       "license": "LGPL-3.0",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[RedDocMD/klaus](https://github.com/RedDocMD/klaus)",
+       "lang/HDL": "Hardcaml",
+       "stars": "0",
+       "last push": "2026-01-16",
+       "license": "none",
+       "what it is": "AoC 2025 Hardcaml solutions",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[Seth16225/riscv-core-portfolio](https://github.com/Seth16225/riscv-core-portfolio)",
+       "lang/HDL": "C",
+       "stars": "0",
+       "last push": "2026-08-19",
+       "license": "MIT",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[ThorKn/LAYR_AUDIO](https://github.com/ThorKn/LAYR_AUDIO)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-05-14",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[tucanae47/litex_etpu](https://github.com/tucanae47/litex_etpu)",
+       "lang/HDL": "LiteX",
+       "stars": "0",
+       "last push": "2022-12-22",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[williamsharkey/Pruned-SHA256-Miner](https://github.com/williamsharkey/Pruned-SHA256-Miner)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-08-13",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[lazardjurovic/edulent_rtl](https://github.com/lazardjurovic/edulent_rtl)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2025-03-26",
+       "license": "none",
+       "what it is": "Implementation of Edulent educational CPU in SystemVerilog",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[Assured/CT-key](https://github.com/Assured/CT-key)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "0",
+       "last push": "2025-05-20",
+       "license": "BSD-2-Clause",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[eringr/nmigen_fibonacci](https://github.com/eringr/nmigen_fibonacci)",
+       "lang/HDL": "Amaranth",
+       "stars": "0",
+       "last push": "2021-10-13",
+       "license": "none",
+       "what it is": "HDL and program for a \"processor\" that computes fibonacci se",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[micki0271/maeri](https://github.com/micki0271/maeri)",
+       "lang/HDL": "Amaranth",
+       "stars": "0",
+       "last push": "2020-12-07",
+       "license": "none",
+       "what it is": "100% FOSS end to end implementation of an ML accelerator com",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[anmho/ulx3_bsv](https://github.com/anmho/ulx3_bsv)",
+       "lang/HDL": "Bluespec",
+       "stars": "0",
+       "last push": "2024-03-26",
+       "license": "none",
+       "what it is": "32-Bit RISC-V CPU implemented in Bluespec with pipelining, r",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[htfab/asicle2](https://github.com/htfab/asicle2)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2025-10-30",
+       "license": "Apache-2.0",
+       "what it is": "Wordle clone for Tiny Tapeout",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[abhinavputhran/ttysky-raycast-test](https://github.com/abhinavputhran/ttysky-raycast-test)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-05-01",
+       "license": "Apache-2.0",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[antoinevg/hello-ethernet](https://github.com/antoinevg/hello-ethernet)",
+       "lang/HDL": "Amaranth",
+       "stars": "0",
+       "last push": "2023-02-19",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      },
+      {
+       "full_name": "[callummcduff-droid/CPU](https://github.com/callummcduff-droid/CPU)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-09-19",
+       "license": "none",
+       "what it is": "—",
+       "evidence": "README (unverified)"
+      }
+     ]
+    }
+   ],
+   "level": 3
+  },
+  {
+   "title": "D. Forks with substantial own commits (ULX3S ports) — 11 repos",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "full_name",
+      "lang/HDL",
+      "stars",
+      "last push",
+      "license",
+      "what it is",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "full_name": "[gatecat/SNES_MiSTer_ulx3s](https://github.com/gatecat/SNES_MiSTer_ulx3s)",
+       "lang/HDL": "VHDL/Verilog",
+       "stars": "16",
+       "last push": "2025-09-05",
+       "license": "GPL-3.0",
+       "what it is": "SNES for MiSTer",
+       "evidence": "fork, pushed 1959 d after fork (unverified)"
+      },
+      {
+       "full_name": "[emard/SNES_MiSTer_ulx3s](https://github.com/emard/SNES_MiSTer_ulx3s)",
+       "lang/HDL": "VHDL",
+       "stars": "1",
+       "last push": "2020-10-25",
+       "license": "GPL-3.0",
+       "what it is": "SNES for MiSTer",
+       "evidence": "fork, pushed 154 d after fork (unverified)"
+      },
+      {
+       "full_name": "[lawrie/ulx3s-nmigen-examples](https://github.com/lawrie/ulx3s-nmigen-examples)",
+       "lang/HDL": "Amaranth",
+       "stars": "12",
+       "last push": "2022-05-05",
+       "license": "none",
+       "what it is": "nMigen examples for the ULX3S board",
+       "evidence": "fork, pushed 563 d after fork (unverified)"
+      },
+      {
+       "full_name": "[LinuxJedi/Minimig_ECS](https://github.com/LinuxJedi/Minimig_ECS)",
+       "lang/HDL": "VHDL",
+       "stars": "3",
+       "last push": "2022-05-18",
+       "license": "none",
+       "what it is": "Minimig project example for ULX3S",
+       "evidence": "fork, pushed 21 d after fork (unverified)"
+      },
+      {
+       "full_name": "[cheyao/nes_ecp5](https://github.com/cheyao/nes_ecp5)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "2",
+       "last push": "2025-07-27",
+       "license": "none",
+       "what it is": "NES FPGA implementation synthesized for the ulx3s ecp5 based",
+       "evidence": "fork, pushed 35 d after fork (unverified)"
+      },
+      {
+       "full_name": "[machdyne/nes_ecp5](https://github.com/machdyne/nes_ecp5)",
+       "lang/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-07-22",
+       "license": "none",
+       "what it is": "NES FPGA implementation synthesized for the ulx3s ecp5 based",
+       "evidence": "fork, pushed 349 d after fork (unverified)"
+      },
+      {
+       "full_name": "[cheyao/sega-sms](https://github.com/cheyao/sega-sms)",
+       "lang/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2025-09-15",
+       "license": "none",
+       "what it is": "Sega Master System for Ulx3s ECP5 FPGA",
+       "evidence": "fork, pushed 25 d after fork (unverified)"
+      },
+      {
+       "full_name": "[ulx3s/Hazard3](https://github.com/ulx3s/Hazard3)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-09-05",
+       "license": "Apache-2.0",
+       "what it is": "3-stage RV32IMACZb* processor with debug, with additional up",
+       "evidence": "fork, pushed 46 d after fork (unverified)"
+      },
+      {
+       "full_name": "[emard/ulx3s_vic_20](https://github.com/emard/ulx3s_vic_20)",
+       "lang/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2023-01-22",
+       "license": "none",
+       "what it is": "Minimal Commodore Vic 20 core for the Ulx3s ECP5 board",
+       "evidence": "fork, pushed 991 d after fork (unverified)"
+      },
+      {
+       "full_name": "[danodus/ulx3s_68k](https://github.com/danodus/ulx3s_68k)",
+       "lang/HDL": "?",
+       "stars": "0",
+       "last push": "2024-10-29",
+       "license": "none",
+       "what it is": "Experiments with the 68000 CPU on the Ulx3s ECP5 board",
+       "evidence": "fork, pushed 259 d after fork (unverified)"
+      },
+      {
+       "full_name": "[danodus/ulx3s_sms](https://github.com/danodus/ulx3s_sms)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2023-06-02",
+       "license": "none",
+       "what it is": "Sega Master System for Ulx3s ECP5 FPGA",
+       "evidence": "fork, pushed 17 d after fork (unverified)"
+      }
+     ]
+    }
+   ],
+   "level": 3
+  },
+  {
+   "title": "E. Repos linked from RadionaOrg/ulx3s-links not otherwise found (ULX3S relevance to check) — 11 repos",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "full_name",
+      "lang/HDL",
+      "stars",
+      "last push",
+      "license",
+      "what it is",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "full_name": "[cbalint13/e-verest](https://github.com/cbalint13/e-verest)",
+       "lang/HDL": "Verilog",
+       "stars": "37",
+       "last push": "2023-04-12",
+       "license": "Apache-2.0",
+       "what it is": "EVEREST: e-Versatile Research Stick for peoples",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[EvgenyMuryshkin/QuokkaEvaluation](https://github.com/EvgenyMuryshkin/QuokkaEvaluation)",
+       "lang/HDL": "Verilog",
+       "stars": "37",
+       "last push": "2026-03-04",
+       "license": "none",
+       "what it is": "Example projects for Quokka FPGA toolkit",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[ibm2030/IBM2030](https://github.com/ibm2030/IBM2030)",
+       "lang/HDL": "Rich Text Format",
+       "stars": "32",
+       "last push": "2025-11-25",
+       "license": "GPL-3.0",
+       "what it is": "An IBM System/360 Model 30 in VHDL",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[cube1us/IBM1410FPGA](https://github.com/cube1us/IBM1410FPGA)",
+       "lang/HDL": "VHDL",
+       "stars": "3",
+       "last push": "2026-08-21",
+       "license": "none",
+       "what it is": "VHDL Implementation of the IBM 1410 Data Processing System",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[daveshah1/pmods](https://github.com/daveshah1/pmods)",
+       "lang/HDL": "Verilog",
+       "stars": "9",
+       "last push": "2019-09-19",
+       "license": "none",
+       "what it is": "PMODs primarily for demo usage with icestorm",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[emard/fpga_snake_game](https://github.com/emard/fpga_snake_game)",
+       "lang/HDL": "VHDL",
+       "stars": "6",
+       "last push": "2019-05-06",
+       "license": "none",
+       "what it is": "Simple example of vhdl-verilog mix with vga to hdmi converte",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[emard/prjtrellis-picorv32](https://github.com/emard/prjtrellis-picorv32)",
+       "lang/HDL": "Verilog",
+       "stars": "7",
+       "last push": "2019-01-18",
+       "license": "none",
+       "what it is": "attempt to get picorv32 running",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[emard/ledstrip](https://github.com/emard/ledstrip)",
+       "lang/HDL": "VHDL",
+       "stars": "3",
+       "last push": "2016-02-10",
+       "license": "none",
+       "what it is": "Example VHDL driver for WS2812 RGB LED pixel strip",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[lawrie/ulx4m_examples](https://github.com/lawrie/ulx4m_examples)",
+       "lang/HDL": "Verilog",
+       "stars": "10",
+       "last push": "2022-04-22",
+       "license": "none",
+       "what it is": "Verilog examples for the Ulx4M FPGA board",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[lawrie/ulx4m_amaranth_examples](https://github.com/lawrie/ulx4m_amaranth_examples)",
+       "lang/HDL": "Python (Amaranth/LiteX)",
+       "stars": "6",
+       "last push": "2022-05-11",
+       "license": "none",
+       "what it is": "Amaranth HDL examples for the Ulx4m FPGA board",
+       "evidence": "in ulx3s-links (unverified)"
+      },
+      {
+       "full_name": "[rhobbie/Library704](https://github.com/rhobbie/Library704)",
+       "lang/HDL": "C#",
+       "stars": "1",
+       "last push": "2026-09-06",
+       "license": "MIT",
+       "what it is": "Verilog simulation of an IBM 704",
+       "evidence": "in ulx3s-links (unverified)"
+      }
+     ]
+    }
+   ],
+   "level": 3
+  },
+  {
+   "title": "F. ULX5M repos (searched 2026-09-27: `ulx5m`, `ulx5m in:readme`, `ulx5m fork:true`, `ulx5m-gs`) — 5 own repos + forks",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "ULX5M uses a **Cologne Chip GateMate CCGM1A1, not an ECP5** (see `.claude/memory/ulx5m-board.md`).\n**Excluded from the catalogue on owner request (2026-09-27)**: the three marked *removed* were cloned and catalogued, then\ntaken out again. This table is kept only as a record of the search."
+    },
+    {
+     "type": "table",
+     "columns": [
+      "full_name",
+      "lang/HDL",
+      "stars",
+      "last push",
+      "license",
+      "what it is",
+      "status"
+     ],
+     "rows": [
+      {
+       "full_name": "[intergalaktik/ulx5m-gs](https://github.com/intergalaktik/ulx5m-gs)",
+       "lang/HDL": "KiCad",
+       "stars": "62",
+       "last push": "2026-08-20",
+       "license": "CERN-OHL-S-2.0+",
+       "what it is": "ULX5M-GS board hardware (ground truth)",
+       "status": "removed"
+      },
+      {
+       "full_name": "[goran-mahovlic/ulx5m-litex-ai](https://github.com/goran-mahovlic/ulx5m-litex-ai)",
+       "lang/HDL": "LiteX, Verilog",
+       "stars": "1",
+       "last push": "2026-09-27",
+       "license": "BSD-2-Clause",
+       "what it is": "Linux SBC (VexRiscv, GbE, DVI, USB host) + SerDes BER link GS↔M2",
+       "status": "removed"
+      },
+      {
+       "full_name": "[pu-cc/ulx5m_gpiocheck](https://github.com/pu-cc/ulx5m_gpiocheck)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-09-16",
+       "license": "none",
+       "what it is": "GPIO toggle test; has the `top.ccf` pin file",
+       "status": "removed"
+      },
+      {
+       "full_name": "[intergalaktik/ulx5m-m2](https://github.com/intergalaktik/ulx5m-m2)",
+       "lang/HDL": "KiCad",
+       "stars": "4",
+       "last push": "2026-06-23",
+       "license": "none",
+       "what it is": "ULX5M-M2 board (GateMate on M.2), hardware only",
+       "status": "not cloned"
+      },
+      {
+       "full_name": "[goran-mahovlic/ulx5m-live-bitsream](https://github.com/goran-mahovlic/ulx5m-live-bitsream)",
+       "lang/HDL": "bitstreams",
+       "stars": "1",
+       "last push": "2025-08-09",
+       "license": "none",
+       "what it is": "remote test rig: push a .bit, get a camera picture back; no HDL",
+       "status": "not cloned"
+      },
+      {
+       "full_name": "[lufla/ESY](https://github.com/lufla/ESY)",
+       "lang/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-03-20",
+       "license": "none",
+       "what it is": "university project (winter 2025/26): GateMate code (from a master thesis) on a ULX5M-GS SOM + own base board; 118 MB",
+       "status": "not cloned"
+      },
+      {
+       "full_name": "[pu-cc/ulx5m-gh](https://github.com/pu-cc/ulx5m-gh)",
+       "lang/HDL": "KiCad",
+       "stars": "1",
+       "last push": "2026-02-23",
+       "license": "none",
+       "what it is": "fork of ulx5m-gs, 13 commits ahead (hardware changes)",
+       "status": "not cloned"
+      },
+      {
+       "full_name": "[chili-chips-ba/openCologne](https://github.com/chili-chips-ba/openCologne)",
+       "lang/HDL": "Verilog",
+       "stars": "105",
+       "last push": "2026-05-08",
+       "license": "BSD-3-Clause",
+       "what it is": "umbrella GateMate project that funded ULX5M (`6.PCB.advanced/`)",
+       "status": "not cloned"
+      },
+      {
+       "full_name": "litex-hub/litex-boards `intergalaktik_ulx5m_gs.py`",
+       "lang/HDL": "Python",
+       "stars": "—",
+       "last push": "—",
+       "license": "BSD-2-Clause",
+       "what it is": "LiteX platform file",
+       "status": "not cloned (already a candidate)"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Forks with no own work skipped: intergalaktik/ulx5m-litex-ai (fork of goran-mahovlic's), 25mmHg, chrisKanthak,\nthrowoutofcoffeeexception, mfkiwl, Odie8683 `/ulx5m-gs`. Curated list: PythonLinks/awesome-gatemate."
+    }
+   ],
+   "level": 3
+  }
+ ]
+}

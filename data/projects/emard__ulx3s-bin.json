@@ -1,0 +1,210 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "project",
+ "slug": "emard__ulx3s-bin",
+ "title": "ULX3S prebuilt binaries (`emard__ulx3s-bin`)",
+ "description": "",
+ "fields": {
+  "Upstream": "https://github.com/emard/ulx3s-bin",
+  "Reviewed at": "`2a40f50` (upstream date 2022-04-19), reviewed 2026-09-27",
+  "License": "none stated in the repo (binaries built from third-party sources, each with its own license)",
+  "HDL / framework": "n/a: prebuilt `.bit`/`.bit.gz`/`.svf`/`.vme`/`.img` files, no HDL sources",
+  "Toolchain": "Mixed: Diamond-era `.vme` (2018–2019), open flow `.bit.gz` (2020+)",
+  "Programmer": "ujprog, FleaFPGA-JTAG, openFPGALoader, OpenOCD; ESP32 serial tools",
+  "Target FPGA(s)": "12F / 25F / 45F / 85F (depends on folder), plus ECP5-5G `m85f` and ULX4M DFU images",
+  "Board revision(s)": "v1.7(patch), v1.8, v2.0/v3.0.x (`v20`), v3.1.4, v3.1.7",
+  "Activity": "327 commits, 2018-03-11 → 2022-04-19. Mostly emard, some Goran Mahovlic and davor. Dormant since 2022"
+ },
+ "blocks": [],
+ "sections": [
+  {
+   "title": "What it is",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "The **quickstart and factory-test kit** for the board: known-good bitstreams to check a\nnew board, set up the FT231X and ESP32, install bootloaders, and try demos. It is also a\n**catalogue of the earliest designs people ran on the ULX3S**. Each folder points\nto a source project."
+    }
+   ]
+  },
+  {
+   "title": "Contents (one bullet per folder, `fpga/…` unless stated)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "Folder",
+      "Function tags",
+      "What it is",
+      "Source project"
+     ],
+     "rows": [
+      {
+       "Folder": "`f32c/`",
+       "Function tags": "soc-cpu, video-dvi, rtc-power, adc, audio-dac, examples",
+       "What it is": "**Board self-test**: f32c MIPS/RISC-V SoC plus `selftest-mcp7940n.bin`. Checks RTC, EDID, ADC, DAC, buttons, switches and LEDs, and prints results on serial and DVI. Also BASIC, galaga, a synth and a slides viewer",
+       "Source project": "f32c/f32c (`rtl/proj/lattice/ulx3s`)"
+      },
+      {
+       "Folder": "`passthru/`",
+       "Function tags": "esp32, uart",
+       "What it is": "USB-serial → ESP32 bridge for flashing the ESP32, per revision and chip",
+       "Source project": "emard/ulx3s-passthru"
+      },
+      {
+       "Folder": "`dfu/`",
+       "Function tags": "bootloader, usb-device, esp32",
+       "What it is": "**Recommended bootloader**: DFU on US2 plus ESP32 passthru on US1, multiboot `.img` (12F/25F/45F/85F on v20, v314, v317; ULX4M)",
+       "Source project": "emard/had2019-playground (fork of smunaut's HAD2019 badge)"
+      },
+      {
+       "Folder": "`tinyfpgasp/`, `tinyprog/`",
+       "Function tags": "bootloader, usb-device",
+       "What it is": "Older TinyFPGA-style US2 bootloader, 2018",
+       "Source project": "tinyfpga/TinyFPGA-Bootloader fork"
+      },
+      {
+       "Folder": "`memtest/`",
+       "Function tags": "sdram",
+       "What it is": "SDRAM memory test at 112–210 MHz with various clock phases (32/64 MB), 2019",
+       "Source project": "unknown (emard)"
+      },
+      {
+       "Folder": "`emi/v3.1.7/`",
+       "Function tags": "sdram",
+       "What it is": "SDRAM memtest EMI variant for v3.1.7, 2021",
+       "Source project": "unknown"
+      },
+      {
+       "Folder": "`oled/`",
+       "Function tags": "oled-lcd",
+       "What it is": "OLED + button test (25F/45F), 2018",
+       "Source project": "unknown (emard ulx3s-misc?)"
+      },
+      {
+       "Folder": "`rtc/`",
+       "Function tags": "rtc-power, video-dvi, oled-lcd",
+       "What it is": "RTC clock shown on DVI + ST7789, set with buttons",
+       "Source project": "unknown"
+      },
+      {
+       "Folder": "`usb/`",
+       "Function tags": "usb-host, video-dvi, oled-lcd",
+       "What it is": "USB1.0 low-speed HID host on US2, shows reports as hex",
+       "Source project": "unknown (likely emard/ulx3s-misc usbhost)"
+      },
+      {
+       "Folder": "`eth/`",
+       "Function tags": "ethernet, video-dvi",
+       "What it is": "LAN8720 RMII on GP/GN 9–13; hdl4fpga DHCP + ping responder",
+       "Source project": "hdl4fpga (hdl4fpga/hdl4fpga)"
+      },
+      {
+       "Folder": "`scope/`",
+       "Function tags": "adc, video-dvi, oled-lcd, ps2, usb-device, ethernet",
+       "What it is": "**4-channel storage oscilloscope** with mouse GUI on 800×600 or OLED; USB CDC-Ethernet on US2",
+       "Source project": "hdl4fpga ScopeIO"
+      },
+      {
+       "Folder": "`slides-hdl4fpga/`",
+       "Function tags": "video-dvi, sdram, esp32",
+       "What it is": "Graphics slides viewer fed from ESP32 MicroPython",
+       "Source project": "hdl4fpga"
+      },
+      {
+       "Folder": "`c64/`",
+       "Function tags": "retro-computer, esp32",
+       "What it is": "Commodore 64 (free ROMs) for 12F/85F, PRG loader + OSD over ESP32",
+       "Source project": "unknown (FPGA64-derived?)"
+      },
+      {
+       "Folder": "`oberon/`",
+       "Function tags": "retro-computer, soc-cpu, sdram",
+       "What it is": "Project Oberon RISC5 workstation (12F, 85F; cache edition from PNRU)",
+       "Source project": "unknown (emard/oberon?)"
+      },
+      {
+       "Folder": "`litex/linux/`",
+       "Function tags": "soc-cpu, linux, sdcard, video-dvi",
+       "What it is": "**Linux on LiteX/VexRiscv**, 50 MHz, framebuffer on GPDI, rootfs on SD",
+       "Source project": "litex-hub/linux-on-litex-vexriscv"
+      },
+      {
+       "Folder": "`debugblink/flashblink`",
+       "Function tags": "flash-spi",
+       "What it is": "Probe flash pins with a wire from GP27 to check BGA soldering",
+       "Source project": "unknown"
+      },
+      {
+       "Folder": "`diamond/`",
+       "Function tags": "toolchain",
+       "What it is": "Scripts to run Lattice Diamond on Debian/Ubuntu",
+       "Source project": "—"
+      },
+      {
+       "Folder": "`esp32/` (top)",
+       "Function tags": "esp32",
+       "What it is": "esptool/espefuse, efuse burn script, websvf binaries, MicroPython v1.14 + esp32ecp5, RTC demo",
+       "Source project": "emard/LibXSVF-ESP, emard/esp32ecp5"
+      },
+      {
+       "Folder": "`usb-jtag/` (top)",
+       "Function tags": "programmer-tool",
+       "What it is": "ujprog, FleaFPGA-JTAG, OpenOCD, ftx_prog binaries for Linux/RPi/Win/macOS",
+       "Source project": "f32c/tools, emard/FleaFPGA-JTAG"
+      },
+      {
+       "Folder": "`pcb/` (top)",
+       "Function tags": "board-hw",
+       "What it is": "Gerbers for PCB v3.1.3",
+       "Source project": "emard/ulx3s"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "\"unknown\" = the source is not stated in the repo; guesses are marked with `?`."
+    }
+   ]
+  },
+  {
+   "title": "How to use (from README)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Board bring-up: program the FT231X with `ftx_prog`, load\n`f32c/…selftest…bit`, upload `f32c-bin/selftest-mcp7940n.bin` with `f32cup.py`, then read\nserial at 115200 or the DVI screen. After that: passthru to flash, burn the ESP32 efuse\n(3.3 V flash, WROOM only), upload websvf."
+    },
+    {
+     "type": "paragraph",
+     "text": "DFU bootloader install:\n`openFPGALoader -b ulx3s --unprotect-flash --file-type bin -f multiboot.img.gz`.\nEnter it by holding BTN1 while plugging US2 (LEDs D0–D2 on)."
+    }
+   ]
+  },
+  {
+   "title": "Reuse notes",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Best known-good bitstreams for **checking hardware** before debugging your own design\n(self-test, memtest, flashblink).",
+      "`memtest/` file names give a reference for how fast SDRAM runs on ULX3S (up to ~200 MHz\nwith a tuned clock phase). Pass/fail results are not recorded in the repo.",
+      "**hdl4fpga** (scope, eth, slides) is a major reusable-core source: DVI, RMII, USB CDC-ECM, PS/2. Review it.",
+      "The README's hardware bring-up notes (diode test of BGA pins, regulator jumpers RP1–3,\n< 50 mA idle current) are useful for anyone assembling boards."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Open questions",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Sources for memtest, emi, oled, rtc, usb, c64, oberon, flashblink need to be located."
+     ]
+    }
+   ]
+  }
+ ]
+}

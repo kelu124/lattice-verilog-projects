@@ -1,0 +1,135 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "project",
+ "slug": "danodus__ecp5_hdmi_audio_video",
+ "title": "ECP5 HDMI Audio + Video Transmitter (`danodus__ecp5_hdmi_audio_video`)",
+ "description": "",
+ "fields": {
+  "Upstream": "https://github.com/danodus/ecp5_hdmi_audio_video",
+  "Reviewed at": "`a4710f9` (upstream date 2026-05-19), reviewed 2026-09-28",
+  "License": "MIT (`LICENSE`: Copyright (c) 2026 Daniel Cliche, Copyright (c) 2019 Sameer Puri)",
+  "HDL / framework": "Verilog-2001 (21 `.v` files: 11 in `rtl/`, 2 shared test-app generators in `boards/common/`, 4 each in `boards/ulx3s/` and `boards/icepi_zero/`)",
+  "Toolchain": "`open` (yosys + nextpnr-ecp5 + ecppack, via oss-cad-suite; `boards/ulx3s/Makefile`)",
+  "Programmer": "`fujprog` (`make prog`, `make prog-flash`); `openFPGALoader` also mentioned in README for IcePi Zero",
+  "Target FPGA(s)": "**85F**, CABGA381, `--85k` (ULX3S) — repo also targets IcePi Zero (25F, CABGA256, `--25k`), not covered here",
+  "Board revision(s)": "v3.1.7 (`boards/ulx3s/ulx3s_v316.lpf`, also valid for v3.1.6 per this collection's board notes); comment in `ulx3s_top.v:2` says \"ULX3S v3.1.7 HDMI demo\"",
+  "Activity": "last commit 2026-05-19 (`a4710f9`, \"Add custom mode 1024x600 ~61Hz (VIC=0)\"); commit count / first commit unknown (shallow clone, repo not in `.claude/memory/history.tsv`)"
+ },
+ "blocks": [],
+ "sections": [
+  {
+   "title": "What the gateware does",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "A reusable **HDMI audio + video transmitter** stack (top module `hdmi`,\n`rtl/hdmi.v`) — TMDS video encode, HDMI data-island packets (audio sample,\naudio clock regeneration, AVI/SPD/vendor infoframes) and an ECP5-specific\nTMDS serializer — ported from the hdl-util/hdmi SystemVerilog project into\nplain Verilog-2001, plus a small test application wired up for two boards.\nFor ULX3S (`boards/ulx3s/ulx3s_top.v`, top module `ulx3s_top`), the demo\ndrives **EIA-189A colour bars** and a **440 Hz** stereo sine wave at 48 kHz\nLPCM out over HDMI, selectable at build time between four video modes (VIC):\n0 (1024×600 custom, ~61 Hz, 50 MHz pixel clock), 1 (640×480p60, 25.2 MHz,\ndefault), 4 (1280×720@~60 Hz, ~74 MHz) and 34 (1920×1080@~30 Hz, ~74 MHz)."
+    }
+   ]
+  },
+  {
+   "title": "Structure",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`rtl/` — the portable transmitter stack: `hdmi.v` (top), `hdmi_tmds_channel.v`\n(per-channel TERC4/TMDS encode), `hdmi_serializer_ecp5.v` (**ECP5-specific**,\nsee Reuse notes), `hdmi_packet_assembler.v`/`hdmi_packet_picker.v` (data\nisland scheduling), `hdmi_audio_*` (audio sample packet, clock\nregeneration packet, clk_gen), `hdmi_*_info_frame.v` (AVI, SPD, vendor\ninfoframes).",
+      "`boards/common/` — `color_bars.v`, `sine_gen.v` (shared test-pattern/tone\ngenerators), `video_config.vh` (per-VIC timing/`CLK_HZ` macros).",
+      "`boards/ulx3s/` — `ulx3s_top.v` (top), `hdmi_pll.v` / `hdmi_pll_50.v` /\n`hdmi_pll_hd.v` (one `EHXPLLL`-based PLL per VIC group), `ulx3s_v316.lpf`,\n`Makefile`.",
+      "`boards/icepi_zero/` — equivalent files for the other target board (not\nreviewed in depth here; out of scope per the brief)."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "How to build",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Not run (read-only review). From `README.md` / `boards/ulx3s/Makefile`:"
+    },
+    {
+     "type": "code",
+     "lang": "",
+     "text": "source ~/oss-cad-suite/environment\ncd boards/ulx3s\nmake VIC=1 bitstream    # default; also VIC=0, 4, 34\nmake VIC=1 prog         # fujprog\nmake VIC=1 prog-flash   # fujprog -j flash"
+    },
+    {
+     "type": "paragraph",
+     "text": "Internally: `yosys` (`synth_ecp5 -top ulx3s_top`) → `nextpnr-ecp5 --85k\n--package CABGA381 --freq 25` (`--timing-allow-fail --randomize-seed` added\nfor VIC 0/4/34, per the Makefile) → `ecppack --compress`. VIC must match\n`hdmi_pll*.v`'s `CLK_HZ` in `boards/common/video_config.vh` or the 48 kHz\naudio sample rate drifts (README)."
+    }
+   ]
+  },
+  {
+   "title": "Reusable blocks",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "Block",
+      "Path",
+      "Top module",
+      "Language",
+      "Vendor primitives",
+      "License"
+     ],
+     "rows": [
+      {
+       "Block": "HDMI transmitter (video+audio+infoframes)",
+       "Path": "`rtl/*.v`",
+       "Top module": "`hdmi`",
+       "Language": "Verilog-2001",
+       "Vendor primitives": "none directly (all vendor I/O is isolated in `hdmi_serializer_ecp5.v`)",
+       "License": "MIT"
+      },
+      {
+       "Block": "ECP5 TMDS serializer",
+       "Path": "`rtl/hdmi_serializer_ecp5.v`",
+       "Top module": "`hdmi_serializer_ecp5`",
+       "Language": "Verilog-2001",
+       "Vendor primitives": "`ODDRX1F` (×3 or ×4 depending on `TMDS_CLOCK_DDR`)",
+       "License": "MIT"
+      },
+      {
+       "Block": "ULX3S 25→pixel/serial PLL",
+       "Path": "`boards/ulx3s/hdmi_pll*.v`",
+       "Top module": "`hdmi_pll` / `hdmi_pll_50` / `hdmi_pll_hd`",
+       "Language": "Verilog",
+       "Vendor primitives": "`EHXPLLL`",
+       "License": "MIT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Reuse notes",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "**`hdmi` top ports/parameters** (`rtl/hdmi.v:4-42`): `clk_pixel_x5` (serial\nclock), `clk_pixel`, `sample_strobe` (one-cycle 48 kHz pulse), `reset`,\n`rgb[23:0]`, `audio_sample_word_0/1` (`AUDIO_BIT_WIDTH`-wide, signed),\n`tmds[2:0]`/`tmds_clock` (single-ended internal signals, unused by the\nULX3S top) and `tmds_p[3:0]`/`tmds_n[3:0]` (the ones actually driven out).\nParameters cover `VIDEO_ID_CODE` (CEA VIC), full frame/screen/sync timing,\n`TMDS_CLOCK_DDR`, `TMDS_DIFFERENTIAL`, `AUDIO_RATE`/`AUDIO_BIT_WIDTH`,\n`VENDOR_NAME`/`PRODUCT_DESCRIPTION` (SPD infoframe strings).",
+      "**`hdmi_serializer_ecp5`** (`rtl/hdmi_serializer_ecp5.v:1-103`): takes three\n10-bit TMDS-encoded channels, shifts them out 2 bits/cycle on `clk_serial`\n(5× `clk_pixel`) through `ODDRX1F` (`SCLK=clk_serial`, `RST` tied low). With\nthe defaults used by the ULX3S demo (`TMDS_CLOCK_DDR=0`,\n`TMDS_DIFFERENTIAL=0`), only `tmds_p[3:0]` is driven (clock lane is SDR,\nfed straight from `clk_pixel`) and `tmds_n` is forced to `4'b0000` — this is\nintentional, not a bug: ULX3S's GPDI pins are constrained\n`IO_TYPE=LVCMOS33D` (`boards/ulx3s/ulx3s_v316.lpf:348-355`), a true-LVDS\npad type where driving only the P leg is sufficient; the N leg is generated\nby the pad hardware, not by RTL.",
+      "**PLLs** (`boards/ulx3s/hdmi_pll.v`): each is a single `EHXPLLL` with\n`CLKI_DIV=25` (25 MHz in), producing `CLKOS` = 5× pixel clock (serial) and\n`CLKOS2` = pixel clock, e.g. 126 MHz / 25.2 MHz for VIC 1. One PLL file per\nVIC group (`hdmi_pll.v` for VIC 1, `hdmi_pll_50.v` for VIC 0, `hdmi_pll_hd.v`\nfor VIC 4/34) — reuse the `CLKI_DIV`/`CLKOS_DIV`/`CLKFB_DIV` pattern to\nretarget other pixel clocks from a 25 MHz ULX3S oscillator.",
+      "**Drop-in reuse**: this repo already targets ULX3S directly (25 MHz clock,\n`ulx3s_v316.lpf`, 85F/CABGA381), so `rtl/` + `boards/ulx3s/` can be used\nclose to as-is; swap `boards/common/color_bars.v`/`sine_gen.v` and the\n`rgb`/`audio_sample_word_*` drive in a new top-level for a real video/audio\nsource. Note `ulx3s_v316.lpf` (v3.1.6/v3.1.7 pinout) — repoint to\n`ulx3s_v20.lpf` pin names for v2.x/v3.0.x boards per this collection's\nboard notes.",
+      "**Licensing**: MIT-licensed by this repo, but portions are \"ported from\nhdl-util/hdmi\" (`README.md:67`), whose own attribution note says\n`SPDX-License-Identifier: MIT OR Apache-2.0` (`README.md:78-81`); the ECP5\nserializer is \"adapted from BrunoLevy/learn-fpga ULX3S_hdmi examples\"\n(`README.md:82`, no explicit upstream license stated for that portion). The\nREADME also carries an **HDMI Adopter licensing note**: \"for development\nand education. Commercial products with HDMI connectors may require HDMI\nAdopter licensing\" (`README.md:72-74`) — worth flagging to anyone reusing\nthis for a shipping product."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Open questions",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`boards/icepi_zero/` was not reviewed in detail (out of scope: the brief\nasked to focus on the ULX3S top).",
+      "Whether VIC 4/34 (`--timing-allow-fail`, random-seed nextpnr) close timing\nreliably was not tested — the Makefile itself documents needing to retry\nwith `make clean && make VIC=4 bitstream` on failure.",
+      "No `hdmi_packet_assembler.v`/`hdmi_packet_picker.v` internals were read\nbeyond line counts; infoframe payload correctness (EDID/CEC interplay) not\nverified against the HDMI spec."
+     ]
+    }
+   ]
+  }
+ ]
+}

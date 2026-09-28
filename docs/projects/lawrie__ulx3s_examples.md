@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/lawrie__ulx3s_examples.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # Lawrie Griffiths' ULX3S examples (`lawrie__ulx3s_examples`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | Single commit reviewed: `b6ff000992` dated 2022-05-05 (`git -C original_sources/lawrie__ulx3s_examples log -1 --format=%cs`). `.claude/memory/history.tsv`: first commit 2020-01-02, 25 commits total (clone is shallow, no further history available) |
 
 ## What the gateware does
+
 This is a **flat grab-bag of ~35 independent, self-contained example projects**, each with its own
 `Makefile`/`ulx3s.mk` and `ulx3s_v20.lpf` — not one gateware. Grouped by topic:
 
@@ -42,6 +45,7 @@ This is a **flat grab-bag of ~35 independent, self-contained example projects**,
 - **Protocols** (`protocols/{echo,serialtx,spidisplay}/`): small UART echo/serial-TX/SPI-display protocol demos.
 
 ## Structure
+
 No shared top-level source tree: every directory under the repo root is an independent example with
 its own `Makefile` (often `include ../ulx3s.mk` or a local `ulx3s.mk` copy) and its own
 `ulx3s_v20.lpf`. The only shared files are the root `ulx3s.mk` (the build-rule template most examples
@@ -51,7 +55,9 @@ common helper files locally instead of importing them (`pll.v`, `spi_video.v`, `
 dirs — confirmed via `find`/`grep -l`).
 
 ## How to build
+
 Generic pattern (root `ulx3s.mk`, and most per-example copies):
+
 ```
 yosys -p "synth_ecp5 -abc9 -top top -json toplevel.json" <verilog files>
 nextpnr-ecp5 --${DEVICE} --package CABGA381 --freq 25 --textcfg toplevel.config \
@@ -59,6 +65,7 @@ nextpnr-ecp5 --${DEVICE} --package CABGA381 --freq 25 --textcfg toplevel.config 
 ecppack --compress toplevel.config toplevel.bit
 ujprog toplevel.bit        # make prog
 ```
+
 Run from inside the example directory, e.g. `make -C st7789 compile` (`st7789/Makefile`:
 `DEVICE = 25k`, `IDCODE = 0x21111043`, top `TOP ?= top_checkered.v`). `sdram16/Makefile` and
 `sdram8/Makefile` build with `synth_ecp5 -abc9 -top testram`; `test68/ulx3s.mk` builds
@@ -105,6 +112,7 @@ individual files (ST7789 display, ECP5 PLL, PicoRV32, i8080/Altair, USB host, MI
 carry real per-file license headers even though there is no repo-level `LICENSE` file.
 
 ## Open questions
+
 - Repo-level license is genuinely absent (verified, no `LICENSE`/`COPYING` anywhere), but several
   reused-from-elsewhere files carry GPL-3.0 (`sdram.v` ×2) or other copyleft-adjacent terms — anyone
   reusing those two files specifically should treat them as GPL-3.0-or-later, not "no license".

@@ -1,3 +1,5 @@
+<!-- Generated from data/pages/DFUs.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # USB DFU bootloaders and DFU programming flows
 
 USB DFU (Device Firmware Upgrade, USB class 0xFE/0x01) lets a host tool (`dfu-util`,
@@ -34,6 +36,7 @@ and the bootloader is elsewhere), or **MCU** (DFU is not done by the FPGA).
 | BlackIce / myStorm STM32 | `lawrie__blackicemxbook/STM32Programming/STM32Programming.md` @ ff5fdb3; STM32 DFU class in `hoglet67__ice40beeb/target/blackice/Middlewares/ST/.../Class/DFU/` @ e0fe38d | BlackIce II / Mx (iCE40) | **MCU** (STM32L4; `MCU = STM32L433xx` in `hoglet67__ice40beeb/target/blackice/Src/makefile:22`) | ST USB device library | `0483:df11` (STM32 DFU) | 0 | bitstream stored in STM32 internal flash at `0x0801F000` (`lawrie__hdmi_examples/Makefile:37` @ 30e2653) | ST license (unverified) | STM32 toolchain |
 
 Not DFU, listed only so nobody looks for it here:
+
 - `emard__tinyfpga-bootloader-ulx3s` @ 8e8ab80: a ULX3S build of phdussud's 60 MHz TinyFPGA
   bootloader fork (`README.md`). The ULX3S MANUAL says it is a vendor-specific USB device
   used with `tinyfpgasp` and is "less stable" than DFU
@@ -44,7 +47,9 @@ Not DFU, listed only so nobody looks for it here:
 ## ULX3S: the US2 DFU bootloader
 
 ### What it is
+
 A bitstream stored at flash address 0. At power-on it:
+
 - instantiates a PicoRV32 (`COMPRESSED_ISA=1`, no MUL/DIV/IRQ, `rtl/top-ulx3s.v:229-239`);
 - runs 48 MHz from the 25 MHz oscillator (EHXPLLL, CLKOS output, `rtl/sysmgr.v`);
 - drives the no2usb-style USB core on the **US2** pins `usb_fpga_bd_dp/dn` with pull-up
@@ -63,6 +68,7 @@ All paths in this section are `emard__had2019-playground/projects/bootloader/` @
 unless stated otherwise.
 
 ### USB identity
+
 From `fw/usb_desc_dfu.c` and `fw/usb_str_dfu.txt`:
 
 | Field | Value |
@@ -74,19 +80,21 @@ From `fw/usb_desc_dfu.c` and `fw/usb_str_dfu.txt`:
 | Extras | MS OS 2.0 descriptor with `WINUSB` compatible ID, so Windows binds WinUSB without a driver install |
 
 ### Alt settings
+
 `dfu_zones[]` in `fw/usb_dfu.c:164-172`:
 
 | Alt | Flash range | Name string | Notes |
 |---|---|---|---|
 | 0 | `0x200000–0xFFFFFF` | User Bitstream | normal target |
-| 1 | `0x340000–0x35FFFF` | Saxonsoc fw_jump | |
-| 2 | `0x360000–0x3FFFFF` | Saxonsoc u-boot | |
-| 3 | `0x400000–0xFFFFFF` | User Data | |
-| 4 | `0x800000–0xFFFFFF` | User Data | |
+| 1 | `0x340000–0x35FFFF` | Saxonsoc fw_jump |  |
+| 2 | `0x360000–0x3FFFFF` | Saxonsoc u-boot |  |
+| 3 | `0x400000–0xFFFFFF` | User Data |  |
+| 4 | `0x800000–0xFFFFFF` | User Data |  |
 | 5 | `0x000000–0x1FFFFF` | Bootloader Bitstream | hidden unless the upgrade button is held: firmware trims the last 18 bytes (interface + DFU descriptor) off `wTotalLength` (`fw/fw_dfu.c`) |
 | (6) | `0x000000–0x0000FF` on "cart" flash | RTC | present in `dfu_zones[]` and strings, but `usb_desc_dfu.c` only declares six interfaces (alts 0–5), so unreachable as built |
 
 ### Buttons and modes (ULX3S)
+
 `rtl/top-ulx3s.v:301-308` remaps the debounced buttons into the badge's bit layout. The
 firmware tests `BTN_SELECT` (bit 6) = stay in DFU and `BTN_START` (bit 7) = bootloader
 writable (`fw/misc.h:32-33`, `fw/fw_dfu.c`):
@@ -108,6 +116,7 @@ soldering diode **D28** so that BTN0 pulls PROGRAMN and cycles to the next multi
 (`emard__ulx3s/doc/MANUAL.md:436-444` @ 6a92cec).
 
 ### Install the bootloader (first time, needs US1/JTAG)
+
 Prebuilt multiboot images are in `emard__ulx3s-bin/fpga/dfu/<size>-<rev>/multiboot.img.gz`
 @ 2a40f50, for `12f-v20`, `12f-v314`, `12f-v317`, `25f-v20`, `45f-v20`, `85f-v20`, `85f-v317`,
 `m85f-v20` (ECP5-5G) and `ulx4m-um85f-v002`. Each folder also holds a `passthru<idcode>.bit.gz`.
@@ -121,11 +130,13 @@ openFPGALoader -b ulx3s --unprotect-flash --file-type bin -f multiboot.img.gz
 ```
 
 The multiboot image is built by `ecpmulti` (`Makefile`, target `$(BUILD_TMP)/multiboot.img`):
+
 - the bootloader at `0x000000`;
 - a passthru bitstream at `0x200000` as a placeholder user image;
 - `--flashsize 128` (Mbit).
 
 ### Load user bitstreams
+
 Enter DFU mode (BTN1 or SW1 held while plugging US2), then (`README.md`,
 `emard__ulx3s-bin/fpga/dfu/README.md`, `emard__ulx3s/doc/MANUAL.md:421-425`):
 
@@ -158,6 +169,7 @@ reload lands on the bootloader. Keep `SYSCONFIG MASTER_SPI_PORT=ENABLE` and do n
 "Using ecp5wp.py").
 
 ### Build from source
+
 `Makefile` variables: `MODEL ?= ulx3s|ulx4m`, `BOARD ?= $(MODEL)-v20|-v314|-v317|-v002`,
 `DEVICE = 12k` (override on the command line), `USER_BITSTREAM_ADDR := 0x200000`. Targets:
 
@@ -174,6 +186,7 @@ prebuilt firmware hex files are committed: `fw/fw_dfu.hex-0x180000` (badge layou
 `fw/fw_dfu.hex-0x200000` (ULX3S layout). The commented `cp` line in `Makefile` suggests
 they can replace a firmware build. The user offset appears in three places that **must
 agree**:
+
 - `USER_BITSTREAM_ADDR` in `Makefile`;
 - `dfu_zones[0]` in `fw/usb_dfu.c`;
 - the `ecpmulti --address`.
@@ -183,8 +196,10 @@ For ULX4M with an `um-85k` (ECP5-5G IDCODE), `ecpmulti` needs
 Makefile automates this. Not built during this review.
 
 ### Flash write protection
+
 The firmware sets the flash's non-OTP block protection over the first 2 MB. It does this
 unless BTN2 is held (`flash_write_protect_bootloader()` in `fw/fw_dfu.c`). The README says:
+
 - this works for Winbond W25Q128 and ISSI IS25LP128;
 - the 4 MB IS25LP032 "can't protect";
 - `esp32ecp5`'s `ecp5wp.py` can set it from the ESP32, including the one-time ISSI TBS bit.
@@ -193,7 +208,9 @@ openFPGALoader "will silently remove non-OTP write protection". This is why the
 ulx3s-bin install command uses `--unprotect-flash`.
 
 ### ULX4M
+
 Two ULX4M tops exist:
+
 - `emard__had2019-playground/.../rtl/top-ulx4m.v`: button bit 7 ← `btn[2]`, bit 6 ← `btn[1]`,
   SW1 line commented out.
 - `ulx3s__hazard3-doom/bootloader/rtl/top-ulx4m.v` @ 4262159: remapped and **validated on
@@ -203,6 +220,7 @@ Two ULX4M tops exist:
 
 `bootloader/README_ULX4M_BOOTLOADER.md` is the most complete procedure in the collection. It
 covers:
+
 - the USB pins F4/E3/F5;
 - an SRAM test image (`ecppack` without `--bootaddr`);
 - backing up alt 5 with `dfu-util -a 5 -U`;
@@ -214,6 +232,7 @@ ON" (`ulx3s__hazard3/example_soc/synth/ULX4M_PORT.md:21-24` @ 3c0aca0). Which ap
 on the bootloader build and board variant, so this is unresolved (see open questions).
 
 ### ESP32-S3 alternative (MCU DFU)
+
 `emard__esp32ecp5/dfu.py` @ f6cea24 makes an ESP32-S3 running MicroPython ≥ 1.25 re-enumerate
 as DFU `1d50:614b`, with DfuSe-style addressing (`README.md:680-721`):
 
@@ -229,6 +248,7 @@ source.
 ## Other boards
 
 ### OrangeCrab (ECP5 25F/85F)
+
 The bootloader is not in the collection. Every OrangeCrab project packs `ecppack --compress
 --freq 38.8`, then adds a DFU suffix and loads alt 0
 (`orangecrab-fpga__orangecrab-examples/verilog/blink/Makefile:30-52` @ eefbafa):
@@ -249,6 +269,7 @@ suffixes with PID `5bf0`, unlike the Verilog examples. This inconsistency is rec
 resolved.
 
 ### Fomu (iCE40 UP5K)
+
 foboot, `1209:5bf0`, version 2.0.3 required by the workshop
 (`im-tomu__fomu-workshop/docs/requirements/index.rst:1-33` @ af55dff). The workshop's HDL flow
 suffixes with a different PID and loads with plain `dfu-util -D`
@@ -266,6 +287,7 @@ The same `70b1` suffix appears in `chrismoos__m6502/targets/fomu/PnR_Prog.mk` @ 
 bootloader with `SB_WARMBOOT` image 0 (`riscv-zig-blink/src/fomu/reboot.zig`).
 
 ### iCEBreaker-bitsy, reDIP-SID, icE1usb (no2bootloader, iCE40 UP5K)
+
 - **iCEBreaker-bitsy**: `dfu-util -d 1d50:6146 -a 0 -D top.bin -R`
   (`icebreaker-fpga__icebreaker-verilog-examples/main.mk:40-48` @ 8d0892b). `dfu-util -l`
   shows alt 0 "iCE40 bitstream", alt 1 "RISC-V firmware", and a runtime device `1d50:6147`
@@ -285,6 +307,7 @@ bootloader with `SB_WARMBOOT` image 0 (`riscv-zig-blink/src/fomu/reboot.zig`).
 The **runtime side** is in the collection: `dfu_helper.v`
 (`smunaut__ice40-playground/projects/riscv_usb/rtl/dfu_helper.v` @ d2fa005). It debounces a
 button:
+
 - a short press resets the app;
 - a long press drives `SB_WARMBOOT` with `S1:S0 = 01` (DFU image);
 - in bootloader mode (`DFU_MODE=1`) any press boots image `10` (app).
@@ -293,6 +316,7 @@ Firmware answers DFU_DETACH through `no2usb/fw/v0/src/usb_dfu_rt.c` and reboots 
 `(1<<2)|(1<<0)` to `0x80000000` (`projects/riscv_usb/fw/fw_app.c:61-75`).
 
 ### pico-ice / pico2-ice (RP2040/RP2350 + iCE40 UP5K)
+
 The DFU is done by the **RP2040** with TinyUSB (`tinyvision-ai-inc__pico-ice-sdk/src/ice_usb.c`
 @ f3ddedc). It enumerates as `1209:b1c0`, with alt 0 "iCE40 DFU (Flash)" and alt 1 "iCE40 DFU
 (CRAM)". The alt numbers were swapped in v1.5.0 for APIO/IceStudio (`CHANGELOG.md:8-12`).
@@ -302,6 +326,7 @@ dfu-util -d 1209:b1c0 -a 0 -D gateware.bin -R     # examples/ice_makefile_iveril
 ```
 
 ### BlackIce II / Mx (STM32 + iCE40)
+
 DFU is the **STM32** ROM/firmware DFU. It is used to reflash the myStorm firmware
 (`dfu-util -s 0x08000000:leave -a 0 -D mystorm.raw -t 1024`,
 `lawrie__blackicemxbook/STM32Programming/STM32Programming.md:19-25` @ ff5fdb3). It is also
@@ -310,6 +335,7 @@ used to store an iCE40 bitstream in STM32 flash:
 (`lawrie__hdmi_examples/Makefile:37` @ 30e2653, `wuxx__icesugar/src/advanced/icicle/boards/blackice-ii.mk:10` @ 1ebe71b).
 
 ### Machdyne Lakritz / Obst (ECP5)
+
 tinydfu, `16d0:116d`. Zeitlos documents a bootloader upgrade that shrinks the boot
 partition to 256 KB so the user partition starts at `0x040000`. It gives this warning:
 "`dfu-util` uses one [offset], `ecppack` bakes in the other, and a mismatch produces a board
@@ -348,6 +374,7 @@ DFU implementation.
 `emard__had2019-playground` bootloader. Take the Hazard3-Doom copy if you want a
 self-contained tree with vendored build rules and a validated recovery procedure. It is the
 only ECP5 DFU bootloader in the collection with full source. What to change:
+
 1. **Top and LPF**: the USB D+/D−/pull-up pins, the 25 MHz → 48 MHz PLL (`sysmgr.v` if your
    oscillator differs), the LEDs, the button remap (`btn_remap_i`), and the pin wired back to
    PROGRAMN. Without a PROGRAMN loop-back the bootloader cannot hand over.
@@ -372,6 +399,7 @@ had2019 copy, not upstream no2usb, unless you port the IO/RAM primitives yoursel
 
 **New iCE40 UP5K design:** use no2bootloader. It is not in the collection, so clone
 `no2fpga/no2bootloader` before relying on its layout. In your application:
+
 - instantiate `dfu_helper.v` (long-press → `SB_WARMBOOT` to the DFU image);
 - if the app has USB, add the DFU runtime interface from `no2usb/fw/v0/src/usb_dfu_rt.c`, so
   `dfu-util -e` / `-R` can detach without a button.
@@ -384,6 +412,7 @@ output. OrangeCrab and Fomu flows add a `dfu-suffix`, while ULX3S/ULX4M flows wr
 `.bit`: dfu-util 0.9 warns "Invalid DFU suffix" but proceeds
 (`ulx3s__hazard3-doom/bootloader/README_ULX4M_BOOTLOADER.md` §15). To return to the
 bootloader from a running design:
+
 - ECP5: pull PROGRAMN low;
 - iCE40: fire `SB_WARMBOOT`.
 

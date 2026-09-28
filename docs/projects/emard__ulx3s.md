@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/emard__ulx3s.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # ULX3S board hardware (`emard__ulx3s`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | 2732 commits, 2016-01-28 → 2025-04-27. Hardware frozen since v3.1.7 (2021); recent commits are docs only |
 
 ## What it provides
+
 - **PCB design**: `ulx3s.pro`, `ulx3s.sch` + sub-sheets (`analog`, `blinkey`, `flash`, `gpdi`,
   `gpio`, `power`, `ram`, `serdes`, `usb`, `wifi`), `ulx3s.kicad_pcb`, gerbers in `plot/`.
 - **BOM**: `doc/ulx3s_bom.csv`, `1-click-bom.tsv` (Kitspace), `doc/MINIMAL.md` for hand assembly.
@@ -27,14 +30,17 @@
 - `doc/TODO.txt`: upstream hardware TODO list (not yet reviewed here).
 
 ## Structure
+
 Top-level KiCad project, `doc/` for documentation/constraints/datasheets, `plot/` for gerbers,
 `footprints/`, `spice/`, `tools/`, `pic/` for photos, `old/` for earlier versions.
 
 ## How to build
+
 Not a gateware project. PCB: `kicad ulx3s.pro`; gerbers: `gerbv -p plot/ulx3s.gvp`,
 `zip -r /tmp/ulx3s.zip plot/ulx3s` for fabs (IPC class 3, 5/5 mil, 0.2 mm holes).
 
 ## Reuse notes
+
 - Start any new design from the LPF matching the board revision; see
   [`docs/board-reference.md`](../board-reference.md) for the condensed pin/peripheral reference.
 - The signal names in `ulx3s_v20.lpf` (`clk_25mhz`, `led`, `btn`, `gp/gn`, `gpdi_dp/dn`,
@@ -44,6 +50,7 @@ Not a gateware project. PCB: `kicad ulx3s.pro`; gerbers: `gerbv -p plot/ulx3s.gv
   AN108/AN926 fast ADC/DAC (via gojimmypi adapter), e-ink 1.54" IL3829, ST7789 LCDs.
 
 ## Open questions
+
 - The manual's "Board differences" section still calls v3.1.4/v3.1.6 "currently tested".
   Check whether v3.1.7 is now the mainstream shipping revision (Mouser listing).
 - The manual mentions a `v18` LPF compatibility class, but no v1.8 LPF exists in the repo.

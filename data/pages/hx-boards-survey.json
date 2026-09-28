@@ -1,0 +1,1909 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "survey",
+ "slug": "hx-boards-survey",
+ "title": "iCE40 HX4K / HX8K gateware survey (from awesome-latticeFPGAs)",
+ "description": "Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs: 20 recommended plus 8 honourable mentions.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Status 2026-09-28:** owner approved adding HX4K/HX8K gateware and demos to the catalogue; 19 of the 20 recommended repos were cloned and catalogued on 2026-09-28 (abnoname/iceZ0mb1e skipped: already present as the wuxx__icesugar submodule), and the 8 honourable mentions the same day. See the [catalogue](catalogue.md)."
+  },
+  {
+   "type": "paragraph",
+   "text": "Date: 2026-09-28. Source list: `kelu124/awesome-latticeFPGAs` Readme.md (HEAD), sections `## HX4K`, `## HX8K`\nand `Other commercial products / HX8K`. HX4K is the same die as HX8K (yosys/nextpnr use `--hx8k`)."
+  },
+  {
+   "type": "paragraph",
+   "text": "Method: GitHub REST search (unauthenticated, 13 search calls, 0 core calls, no rate-limit hit) +\ntarball listing via codeload (`tar tz`, nothing extracted to disk) + grep of Makefiles/.pcf/.sh/apio.ini inside\nthe tarball for `hx8k|hx4k|tq144|ct256|bg121|arachne-pnr|nextpnr-ice40|icepack|icecube`.\nStars / last push / license are from the GitHub search API on 2026-09-28."
+  },
+  {
+   "type": "paragraph",
+   "text": "**Evidence**: `verified` = .pcf + HDL seen in the tarball (build keywords noted);\n`partial` = HDL or pcf only, or proprietary flow; `unverified` = README claim only / no HDL.\nRepos already in `sources.tsv` are excluded from tables (one-line note per board)."
+  },
+  {
+   "type": "paragraph",
+   "text": "Toolchain abbreviations: `Y+N` = yosys + nextpnr-ice40 + icepack; `Y+A` = yosys + arachne-pnr + icepack;\n`iCEcube2` = Lattice proprietary."
+  },
+  {
+   "type": "hr"
+  }
+ ],
+ "sections": [
+  {
+   "title": "HX4K boards",
+   "sections": [
+    {
+     "title": "2057-ICE40HX4K-TQ144-breakout — iCE40HX4K-TQ144 — https://github.com/johnwinans/2057-ICE40HX4K-TQ144-breakout",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "johnwinans/2057-ICE40HX4K-TQ144-breakout",
+         "HDL": "Verilog",
+         "stars": "25",
+         "last push": "2025-12-28",
+         "license": "none",
+         "toolchain": "Y+N (hx4k tq144)",
+         "what it does": "Board repo + `verilog/{minimal,blinky,blinky2}` examples",
+         "evidence": "verified (3 pcf, 7 .v)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Alhambra II — iCE40HX4K-TQ144 — https://github.com/FPGAwars/Alhambra-II-FPGA",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "Obijuan/open-fpga-verilog-tutorial",
+         "HDL": "Verilog",
+         "stars": "872",
+         "last push": "2020-04-15",
+         "license": "GPL-2.0",
+         "toolchain": "Y+A / Y+N (apio)",
+         "what it does": "Large Spanish Verilog course, `tutorial/Alhambra_II/T01..` (also iCEstick)",
+         "evidence": "verified (99 pcf, 277 .v)"
+        },
+        {
+         "repo": "FPGAwars/Alhambra-II-FPGA",
+         "HDL": "Verilog",
+         "stars": "97",
+         "last push": "2024-10-29",
+         "license": "LGPL-3.0",
+         "toolchain": "Y+A / Y+N (hx8k tq144)",
+         "what it does": "Board repo; `examples/picorv32/picosoc`",
+         "evidence": "verified (1 pcf, 7 .v)"
+        },
+        {
+         "repo": "FPGAwars/apio-examples",
+         "HDL": "Verilog/SV",
+         "stars": "37",
+         "last push": "2026-09-12",
+         "license": "GPL-3.0",
+         "toolchain": "apio (Y+N)",
+         "what it does": "Multi-board apio examples incl. `alhambra-ii/*` and `alchitry-cu/*`",
+         "evidence": "verified (57 pcf, 201 .v)"
+        },
+        {
+         "repo": "adumont/ad6502",
+         "HDL": "Verilog",
+         "stars": "1",
+         "last push": "2021-03-29",
+         "license": "none",
+         "toolchain": "Y+A / Y+N",
+         "what it does": "6502 CPU; pcf for Alhambra and HX8K breakout",
+         "evidence": "verified (2 pcf)"
+        },
+        {
+         "repo": "Werni2A/Valhalla-II",
+         "HDL": "VHDL",
+         "stars": "6",
+         "last push": "2025-01-19",
+         "license": "GPL-3.0",
+         "toolchain": "ghdl-yosys + N (hx4k)",
+         "what it does": "Open-source VHDL synthesis template for Alhambra II",
+         "evidence": "verified (VHDL, not Verilog)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Azukar FPGA — iCE40HX4K — https://github.com/maxisimonazzi/Azukar-FPGA",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "maxisimonazzi/Azukar-FPGA",
+         "HDL": "none",
+         "stars": "86",
+         "last push": "2026-09-17",
+         "license": "NOASSERTION",
+         "toolchain": "n/a",
+         "what it does": "Board hardware + `docs/pinout/pinout.pcf` only",
+         "evidence": "partial (pcf, no HDL)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "BeagleWire — iCE40HX4K-TQ144 — https://www.crowdsupply.com/qwerty-embedded-design/beaglewire",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "pmezydlo/BeagleWire",
+         "HDL": "Verilog",
+         "stars": "46",
+         "last push": "2018-10-10",
+         "license": "GPL-2.0",
+         "toolchain": "Y+A (hx4k tq144)",
+         "what it does": "Examples (blink, gpio, SDRAM, PMOD...) + BeagleBone kernel drivers (GSoC 2017)",
+         "evidence": "verified (13 pcf, 23 .v)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "BlackIce II — iCE40HX4K-TQ144 — https://github.com/mystorm-org/BlackIce-II",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "mystorm-org/BlackIce-II",
+         "HDL": "Verilog",
+         "stars": "72",
+         "last push": "2020-12-29",
+         "license": "none",
+         "toolchain": "Y+A (tq144)",
+         "what it does": "Official examples (pll, sram, common pcf) + STM32 firmware",
+         "evidence": "verified (6 pcf, 52 .v)"
+        },
+        {
+         "repo": "lawrie/verilog_examples",
+         "HDL": "Verilog",
+         "stars": "33",
+         "last push": "2019-09-08",
+         "license": "none",
+         "toolchain": "Y+A (tq144)",
+         "what it does": "~60 examples from the BlackIce ebook (audio, video, sensors...)",
+         "evidence": "verified (62 pcf, 157 .v)"
+        },
+        {
+         "repo": "mattvenn/fpga-sram",
+         "HDL": "Verilog",
+         "stars": "30",
+         "last push": "2017-09-12",
+         "license": "none",
+         "toolchain": "Y+A (hx8k tq144)",
+         "what it does": "BlackIce SRAM test",
+         "evidence": "verified"
+        },
+        {
+         "repo": "mmicko/enigmaFPGA",
+         "HDL": "Verilog",
+         "stars": "29",
+         "last push": "2019-05-18",
+         "license": "MIT",
+         "toolchain": "Y+A",
+         "what it does": "Enigma machine (BlackIce + Go Board pcf)",
+         "evidence": "verified"
+        },
+        {
+         "repo": "mattvenn/fpga-virtual-graf",
+         "HDL": "Verilog",
+         "stars": "25",
+         "last push": "2019-01-16",
+         "license": "none",
+         "toolchain": "Y+A",
+         "what it does": "Virtual graffiti (camera tracking + video) on BlackIce / iCEstick",
+         "evidence": "verified"
+        },
+        {
+         "repo": "uXeBoy/GBA",
+         "HDL": "Verilog",
+         "stars": "18",
+         "last push": "2019-02-13",
+         "license": "GPL-3.0",
+         "toolchain": "unknown",
+         "what it does": "Experimental GBA cartridge in FPGA",
+         "evidence": "partial (pcf + 1 .v, no build script)"
+        },
+        {
+         "repo": "hoglet67/Ice40Atom",
+         "HDL": "Verilog (+T65)",
+         "stars": "17",
+         "last push": "2019-06-01",
+         "license": "none",
+         "toolchain": "Y+A (hx8k tq144)",
+         "what it does": "Acorn Atom",
+         "evidence": "verified"
+        },
+        {
+         "repo": "hoglet67/Ice40CPMZ80",
+         "HDL": "Verilog",
+         "stars": "17",
+         "last push": "2018-04-23",
+         "license": "none",
+         "toolchain": "Y+A (hx8k tq144)",
+         "what it does": "Multicomp Z80 CP/M",
+         "evidence": "verified"
+        },
+        {
+         "repo": "hoglet67/Ice40Beeb",
+         "HDL": "Verilog",
+         "stars": "12",
+         "last push": "2017-12-18",
+         "license": "none",
+         "toolchain": "Y+A (hx8k tq144)",
+         "what it does": "BBC Micro Model B",
+         "evidence": "verified"
+        },
+        {
+         "repo": "hoglet67/Ice40JupiterAce",
+         "HDL": "Verilog",
+         "stars": "12",
+         "last push": "2018-01-28",
+         "license": "none",
+         "toolchain": "Y+A (hx8k tq144)",
+         "what it does": "Jupiter Ace",
+         "evidence": "verified"
+        },
+        {
+         "repo": "lawrie/hdmi_examples",
+         "HDL": "Verilog",
+         "stars": "12",
+         "last push": "2022-05-12",
+         "license": "none",
+         "toolchain": "Y+A / Y+N (hx8k tq144)",
+         "what it does": "HDMI/DVI examples (pong, ball/paddle)",
+         "evidence": "verified (9 pcf)"
+        },
+        {
+         "repo": "lawrie/pico_ram_soc",
+         "HDL": "Verilog",
+         "stars": "12",
+         "last push": "2019-10-26",
+         "license": "none",
+         "toolchain": "Y+N (hx8k tq144)",
+         "what it does": "PicoSoC running from BRAM with extra peripherals",
+         "evidence": "verified"
+        },
+        {
+         "repo": "hoglet67/Ice40LogicSniffer",
+         "HDL": "Verilog",
+         "stars": "10",
+         "last push": "2018-04-23",
+         "license": "none",
+         "toolchain": "Y+A",
+         "what it does": "OpenBench Logic Sniffer port",
+         "evidence": "verified; `lawrie__ice40logicsniffer` already in collection (likely same code)"
+        },
+        {
+         "repo": "Obijuan/blackice-examples",
+         "HDL": "Verilog",
+         "stars": "5",
+         "last push": "2017-08-29",
+         "license": "LGPL-3.0",
+         "toolchain": "Y+A",
+         "what it does": "Blink examples",
+         "evidence": "verified (trivial)"
+        },
+        {
+         "repo": "piersh/opensourcefpgas",
+         "HDL": "none",
+         "stars": "8",
+         "last push": "2018-10-29",
+         "license": "none",
+         "toolchain": "n/a",
+         "what it does": "Write-up, no HDL",
+         "evidence": "unverified — drop"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "Already in collection: `speccery__icy99` (TI-99/4A, BlackIce target)."
+      }
+     ]
+    },
+    {
+     "title": "BlackIce MX / IceCore — iCE40HX4K-TQ144 — https://www.tindie.com/products/Folknology/blackice-mx/ , https://github.com/folknology/IceCore",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "folknology/IceCore",
+         "HDL": "Verilog",
+         "stars": "46",
+         "last push": "2021-01-23",
+         "license": "none",
+         "toolchain": "Y+A (tq144)",
+         "what it does": "IceCore module + STM32 firmware, `Examples/blink`, `trail`",
+         "evidence": "verified (3 pcf, 4 .v)"
+        },
+        {
+         "repo": "lawrie/blackicemxbook",
+         "HDL": "Verilog",
+         "stars": "28",
+         "last push": "2019-11-15",
+         "license": "none",
+         "toolchain": "Y+N (hx8k tq144)",
+         "what it does": "BlackIce MX book examples: audio, video, actuators, sensors...",
+         "evidence": "verified (33 pcf, 60 .v)"
+        },
+        {
+         "repo": "lawrie/blackicemx_nmigen_examples",
+         "HDL": "nMigen/Amaranth",
+         "stars": "12",
+         "last push": "2022-06-01",
+         "license": "BSD-2-Clause",
+         "toolchain": "nMigen → Y+N",
+         "what it does": "Same kind of examples in nMigen",
+         "evidence": "verified (224 .py, no pcf by design)"
+        },
+        {
+         "repo": "folknology/BlackIceMx",
+         "HDL": "none",
+         "stars": "17",
+         "last push": "2019-09-02",
+         "license": "none",
+         "toolchain": "n/a",
+         "what it does": "Carrier board hardware only",
+         "evidence": "unverified — drop"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Bus Pirate Ultra — iCE40HX (HX4K per list) — https://github.com/DangerousPrototypes/BusPirateUltraHardware",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "DangerousPrototypes/BusPirateUltraHDL",
+         "HDL": "Verilog",
+         "stars": "26",
+         "last push": "2019-12-12",
+         "license": "GPL-3.0",
+         "toolchain": "Y+A (`hx8k ct256` in Makefile)",
+         "what it does": "Bus Pirate Ultra FPGA: SPI/UART engines, MCU interface",
+         "evidence": "verified (5 pcf, 26 .v)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Eis — iCE40 (HX4K per list) — https://github.com/machdyne/eis",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "machdyne/eis",
+         "HDL": "Verilog",
+         "stars": "16",
+         "last push": "2023-04-26",
+         "license": "NOASSERTION",
+         "toolchain": "Y+N (`--hx8k bg121`)",
+         "what it does": "Board repo + blinky; runs the Machdyne Zeitlos SoC",
+         "evidence": "verified (1 pcf, 1 .v)"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "Already in collection: `machdyne__zeitlos` (SoC supporting Eis/Riegel/Kröte/Kolibri/Kuchen)."
+      }
+     ]
+    },
+    {
+     "title": "first-fpga-pcb — iCE40 HX8K/HX4K — https://github.com/mattvenn/first-fpga-pcb",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "mattvenn/first-fpga-pcb",
+         "HDL": "Verilog",
+         "stars": "83",
+         "last push": "2020-08-03",
+         "license": "none",
+         "toolchain": "Y+N (hx8k tq144)",
+         "what it does": "Board + `test/` bring-up gateware",
+         "evidence": "verified"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Glasgow Interface Explorer (revC) — iCE40HX8K-BG121 (listed in HX4K and HX8K) — https://github.com/GlasgowEmbedded/glasgow",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "GlasgowEmbedded/glasgow",
+         "HDL": "Amaranth",
+         "stars": "2216",
+         "last push": "2026-09-25",
+         "license": "0BSD",
+         "toolchain": "Amaranth → Y+N (YoWASP)",
+         "what it does": "Multi-tool: ~46 gateware applets (SPI/I2C/JTAG/UART/logic analyzer...)",
+         "evidence": "verified (Amaranth .py, pcf generated) — ranked lower (not Verilog)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Graphics Gremlin — iCE40HX4K-TQ144 — https://github.com/schlae/graphics-gremlin",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "schlae/graphics-gremlin",
+         "HDL": "Verilog",
+         "stars": "578",
+         "last push": "2024-10-24",
+         "license": "CC-BY-SA-4.0",
+         "toolchain": "Y+N (`--hx8k` tq144)",
+         "what it does": "ISA video card emulating IBM MDA + CGA",
+         "evidence": "verified (1 pcf, 21 .v)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "HX4k PMOD Breakout — iCE40HX4K-TQ144 — https://github.com/rschlaikjer/hx4k-pmod",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "rschlaikjer/fpga-3-softcores",
+         "HDL": "Verilog",
+         "stars": "13",
+         "last push": "2020-08-24",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k tq144)",
+         "what it does": "VexRiscv SoC + custom peripherals + bare-metal firmware",
+         "evidence": "verified"
+        },
+        {
+         "repo": "rschlaikjer/hx4k-pmod",
+         "HDL": "Verilog",
+         "stars": "11",
+         "last push": "2020-09-08",
+         "license": "MIT",
+         "toolchain": "Y+N",
+         "what it does": "Board + `gateware/` bring-up",
+         "evidence": "verified"
+        },
+        {
+         "repo": "rschlaikjer/fpga-2-led-panel-gifs",
+         "HDL": "Verilog",
+         "stars": "2",
+         "last push": "2020-04-05",
+         "license": "none",
+         "toolchain": "Y+N",
+         "what it does": "Animated GIFs on HUB75 RGB LED panel",
+         "evidence": "verified"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "ice40-breakout-pcb — iCE40HX4K — https://github.com/null-a/ice40-breakout-pcb",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "null-a/ice40-breakout-pcb",
+         "HDL": "Verilog",
+         "stars": "4",
+         "last push": "2021-06-07",
+         "license": "none",
+         "toolchain": "Y+N (hx4k tq144)",
+         "what it does": "Board + blinky",
+         "evidence": "verified (trivial)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "ICE40HXDevBoard — iCE40HX4K-TQ144 — https://github.com/aslak3/ICE40HXDevBoard",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "aslak3/ICE40HXDevBoard",
+         "HDL": "none",
+         "stars": "1",
+         "last push": "2025-07-26",
+         "license": "GPL-2.0",
+         "toolchain": "n/a",
+         "what it does": "Hardware only (no .v / .pcf in tarball)",
+         "evidence": "unverified — no gateware found"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "IceZero — iCE40HX4K-TQ144 (Trenz TE0876) — https://blackmesalabs.wordpress.com/2017/02/07/icezero-fpga-board-for-rasppi/",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "blackmesalabs/sump2",
+         "HDL": "Verilog",
+         "stars": "103",
+         "last push": "2018-09-05",
+         "license": "GPL-3.0",
+         "toolchain": "unknown",
+         "what it does": "SUMP2 logic analyzer (Black Mesa Labs, IceZero author)",
+         "evidence": "partial (4 .v, no pcf)"
+        },
+        {
+         "repo": "noscene/ice40_audio",
+         "HDL": "Verilog",
+         "stars": "19",
+         "last push": "2018-04-30",
+         "license": "none",
+         "toolchain": "Y+A (hx8k tq144)",
+         "what it does": "PCM5102 I2S DAC driver example (IceZero + UP5K pcf)",
+         "evidence": "verified"
+        },
+        {
+         "repo": "zymurgy/ice_zero_examples",
+         "HDL": "Verilog",
+         "stars": "2",
+         "last push": "2018-07-07",
+         "license": "none",
+         "toolchain": "Y+A (tq144)",
+         "what it does": "blink, uart_tx, spi_slave examples",
+         "evidence": "verified"
+        },
+        {
+         "repo": "dmin7/picozsoc",
+         "HDL": "Verilog",
+         "stars": "0",
+         "last push": "2018-06-14",
+         "license": "none",
+         "toolchain": "Y+A (hx8k tq144)",
+         "what it does": "PicoSoC port for IceZero",
+         "evidence": "verified"
+        },
+        {
+         "repo": "dmin7/icozsoc",
+         "HDL": "Verilog",
+         "stars": "0",
+         "last push": "2018-06-19",
+         "license": "none",
+         "toolchain": "icosoc",
+         "what it does": "icosoc port for IceZero",
+         "evidence": "partial (no pcf)"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "`cliffordwolf/icotools` also has `examples/icezero/` (see icoBoard)."
+      }
+     ]
+    },
+    {
+     "title": "Kéfir I — iCE40HX4K — http://fpgalibre.sourceforge.net/Kefir_en/index.html",
+     "blocks": [
+      {
+       "type": "paragraph",
+       "text": "No GitHub gateware found (project hosted on SourceForge / FPGA Libre; search \"kefir fpga ice40\" = 0 results)."
+      }
+     ]
+    },
+    {
+     "title": "Kolibri — iCE40 (HX4K per list) — https://github.com/machdyne/kolibri",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "machdyne/kolibri",
+         "HDL": "Verilog",
+         "stars": "8",
+         "last push": "2023-05-06",
+         "license": "NOASSERTION",
+         "toolchain": "Y+N (`--hx8k bg121`)",
+         "what it does": "Board repo + blinky + RP2040 firmware",
+         "evidence": "verified"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Kröte — iCE40HX4K — https://github.com/machdyne/krote",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "machdyne/krote",
+         "HDL": "Verilog",
+         "stars": "3",
+         "last push": "2022-02-20",
+         "license": "NOASSERTION",
+         "toolchain": "Y+N (hx4k bg121)",
+         "what it does": "Board repo + blinky",
+         "evidence": "verified (trivial)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Manila-Ice — iCE40HX4K-TQ144 — https://github.com/joshtyler/manila-ice",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "joshtyler/manila-ice",
+         "HDL": "SystemVerilog",
+         "stars": "10",
+         "last push": "2021-03-02",
+         "license": "none",
+         "toolchain": "Y+N (tq144)",
+         "what it does": "Board + `hdl/` test design",
+         "evidence": "verified (1 pcf, 16 .v/.sv)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "picohx — iCE40 HX (listed HX4K) — https://github.com/dan-rodrigues/pico-hx",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "dan-rodrigues/pico-hx",
+         "HDL": "Verilog",
+         "stars": "31",
+         "last push": "2024-05-08",
+         "license": "none",
+         "toolchain": "Y+N (Makefile: `FPGA_DEVICE = hx1k`, tq144)",
+         "what it does": "Pico + iCE40 board, example RTL + `picoprog.py`",
+         "evidence": "verified — Makefile targets HX1K, not HX4K"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Riegel — iCE40HX4K — https://github.com/machdyne/riegel",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "machdyne/riegel",
+         "HDL": "Verilog",
+         "stars": "17",
+         "last push": "2023-06-30",
+         "license": "NOASSERTION",
+         "toolchain": "Y+N (hx4k bg121)",
+         "what it does": "Board repo + blinky (v1/v2/v3 pcf)",
+         "evidence": "verified"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "un0rick — iCE40HX4K-TQ144 — http://un0rick.cc",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "kelu124/un0rick",
+         "HDL": "Verilog + VHDL",
+         "stars": "175",
+         "last push": "2026-09-12",
+         "license": "NOASSERTION",
+         "toolchain": "Y+A (`usb/verilog/impl/icestorm`) and iCEcube2 (VHDL MATTY)",
+         "what it does": "Ultrasound pulser/ADC acquisition board gateware",
+         "evidence": "verified (6 pcf, 40 .v, 30 .vhd)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "X65-SBC — iCE40HX4K + 2x UP5K — https://hackaday.io/project/194866-x65-sbc",
+     "blocks": [
+      {
+       "type": "paragraph",
+       "text": "No GitHub gateware found by search (\"x65 65c816 fpga\" = 0). unknown."
+      }
+     ]
+    },
+    {
+     "title": "Other notable HX4K gateware (board not in list)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "portlandhodl/nyan-keys-ice40hx4k-bitstream",
+         "HDL": "Verilog",
+         "stars": "38",
+         "last push": "2024-01-31",
+         "license": "none",
+         "toolchain": "Y+N (README)",
+         "what it does": "Low-latency parallel key-scanning FPGA for a 60% mech keyboard",
+         "evidence": "verified (pcf + 4 .v)"
+        },
+        {
+         "repo": "halfmanhalftaco/ice40svga",
+         "HDL": "Verilog",
+         "stars": "3",
+         "last push": "2018-01-30",
+         "license": "MIT",
+         "toolchain": "Y+A (hx8k tq144)",
+         "what it does": "800x600 SVGA colour bars",
+         "evidence": "verified (trivial)"
+        }
+       ]
+      },
+      {
+       "type": "hr"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "HX8K boards",
+   "sections": [
+    {
+     "title": "Alchitry Cu — iCE40HX8K-CB132 — https://alchitry.com/products/alchitry-cu-fpga-development-board (404)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "mufpga/MicroFPGA",
+         "HDL": "Verilog + VHDL",
+         "stars": "25",
+         "last push": "2023-02-27",
+         "license": "MIT",
+         "toolchain": "unknown (no pcf in tree)",
+         "what it does": "Microscope control (camera/laser trigger, PWM, servos) on Au/Cu",
+         "evidence": "partial"
+        },
+        {
+         "repo": "msiddalingaiah/Centurion",
+         "HDL": "Verilog",
+         "stars": "12",
+         "last push": "2022-08-02",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Centurion minicomputer (CPU6)",
+         "evidence": "verified (`ice40_alchitry_cu.pcf`)"
+        },
+        {
+         "repo": "tuppi-ovh/example-sparkfun-alchitry-cu",
+         "HDL": "SpinalHDL",
+         "stars": "7",
+         "last push": "2021-04-23",
+         "license": "GPL-3.0",
+         "toolchain": "Spinal → Y+A (hx8k)",
+         "what it does": "SpinalHDL template",
+         "evidence": "verified (pcf, Scala)"
+        },
+        {
+         "repo": "alchitry/Cu-Base-Project",
+         "HDL": "Verilog",
+         "stars": "6",
+         "last push": "2019-02-12",
+         "license": "MIT",
+         "toolchain": "iCEcube2 (Device=HX8K)",
+         "what it does": "Vendor base project",
+         "evidence": "partial (proprietary flow)"
+        },
+        {
+         "repo": "streetdogg/hardware-designs",
+         "HDL": "Verilog",
+         "stars": "5",
+         "last push": "2023-05-28",
+         "license": "MIT",
+         "toolchain": "Y+A (hx8k)",
+         "what it does": "blinky / 7-seg on Cu + iCEstick",
+         "evidence": "verified (trivial)"
+        },
+        {
+         "repo": "r1cebank/alchitry-cu-utils",
+         "HDL": "Verilog",
+         "stars": "4",
+         "last push": "2022-04-24",
+         "license": "none",
+         "toolchain": "unknown",
+         "what it does": "Personal utility modules for Cu",
+         "evidence": "verified (pcf + 6 .v)"
+        },
+        {
+         "repo": "mjoldfield/ice40-blinky",
+         "HDL": "Verilog",
+         "stars": "4",
+         "last push": "2021-01-26",
+         "license": "none",
+         "toolchain": "Y+A",
+         "what it does": "Blinky for Cu, HX8K breakout, iCEstick, Olimex HX1K",
+         "evidence": "verified (trivial)"
+        },
+        {
+         "repo": "Arvind-Srinivasan/Verilog-Projects",
+         "HDL": "Verilog",
+         "stars": "2",
+         "last push": "2022-02-21",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Counters",
+         "evidence": "verified (trivial)"
+        },
+        {
+         "repo": "Mark1626/litex-alchitry-cu-examples",
+         "HDL": "LiteX",
+         "stars": "1",
+         "last push": "2024-02-04",
+         "license": "BSD-2-Clause",
+         "toolchain": "LiteX",
+         "what it does": "LiteX examples",
+         "evidence": "partial"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "Also `FPGAwars/apio-examples` has `examples/alchitry-cu/*`."
+      }
+     ]
+    },
+    {
+     "title": "CAT Board — iCE40HX8K-CT256 — https://github.com/xesscorp/CAT-Board (redirects to devbisme/CAT-Board)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "devbisme/CAT-Board",
+         "HDL": "MyHDL/Verilog",
+         "stars": "62",
+         "last push": "2024-02-27",
+         "license": "none",
+         "toolchain": "iCEcube2 (SDRAM test) + MyHDL notebooks",
+         "what it does": "RPi HAT board + SDRAM test",
+         "evidence": "partial (1 pcf, 1 .v, iCEcube)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "DSP ICE — iCE40HX8K-CT256 — https://github.com/tvelliott/dsp_ice",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "tvelliott/dsp_ice",
+         "HDL": "Verilog",
+         "stars": "62",
+         "last push": "2017-10-04",
+         "license": "MIT",
+         "toolchain": "Y+A (hx8k ct256)",
+         "what it does": "STM32F4 + HX8K SDR dev system, `firmware/fpga/src`",
+         "evidence": "verified (1 pcf, 4 .v)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Glasgow Interface Explorer — see HX4K section."
+    },
+    {
+     "title": "iCE40-HX8K Breakout Board (ICE40HX8K-B-EVN, CT256) — Lattice page 404",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "YosysHQ/picorv32",
+         "HDL": "Verilog",
+         "stars": "4384",
+         "last push": "2026-09-07",
+         "license": "ISC",
+         "toolchain": "Y+N / Y+A (`picosoc/hx8kdemo`)",
+         "what it does": "PicoRV32 RISC-V + PicoSoC with `hx8kdemo` target",
+         "evidence": "verified (hx8kdemo.pcf)"
+        },
+        {
+         "repo": "YosysHQ/icestorm",
+         "HDL": "Verilog (examples)",
+         "stars": "1188",
+         "last push": "2026-09-21",
+         "license": "ISC",
+         "toolchain": "Y+N",
+         "what it does": "Toolchain repo; `examples/hx8kboard` blinky",
+         "evidence": "verified (tool repo, example trivial)"
+        },
+        {
+         "repo": "Wren6991/RISCBoy",
+         "HDL": "Verilog",
+         "stars": "508",
+         "last push": "2025-12-14",
+         "license": "none",
+         "toolchain": "Y+N",
+         "what it does": "Hazard5 RISC-V games console (CPU, PPU, ...), `synth/riscboy_hx8kevn.pcf`",
+         "evidence": "verified (62 .v)"
+        },
+        {
+         "repo": "grahamedgecombe/icicle",
+         "HDL": "Amaranth",
+         "stars": "313",
+         "last push": "2023-05-25",
+         "license": "ISC",
+         "toolchain": "Amaranth → Y+N",
+         "what it does": "RV32I SoC; board `icicle-ice40-hx8k-b-evn` (v1 was Verilog)",
+         "evidence": "verified (Amaranth)"
+        },
+        {
+         "repo": "jamesbowman/swapforth",
+         "HDL": "Verilog",
+         "stars": "305",
+         "last push": "2023-12-26",
+         "license": "BSD-3-Clause",
+         "toolchain": "Y+A",
+         "what it does": "J1a/J4a Forth CPU; `j1a/icestorm/j1a8k.pcf` for HX8K",
+         "evidence": "verified"
+        },
+        {
+         "repo": "zeldin/iceGDROM",
+         "HDL": "Verilog",
+         "stars": "170",
+         "last push": "2023-02-18",
+         "license": "GPL-3.0",
+         "toolchain": "Y+A (README)",
+         "what it does": "Sega Dreamcast GD-ROM emulator on HX8K breakout",
+         "evidence": "verified (pcf + 20 .v)"
+        },
+        {
+         "repo": "cliffordwolf/PonyLink",
+         "HDL": "Verilog",
+         "stars": "129",
+         "last push": "2016-07-07",
+         "license": "none",
+         "toolchain": "Y+A",
+         "what it does": "Single-wire bidirectional chip-to-chip link, `demos/ice8k`",
+         "evidence": "verified"
+        },
+        {
+         "repo": "nesl/ice40_examples",
+         "HDL": "Verilog",
+         "stars": "116",
+         "last push": "2023-04-24",
+         "license": "GPL-3.0",
+         "toolchain": "Y+A / Y+N (ct256)",
+         "what it does": "Beginner examples: blinky, buttons, UART, ...",
+         "evidence": "verified (8 pcf)"
+        },
+        {
+         "repo": "mcmayer/iCE40",
+         "HDL": "Verilog",
+         "stars": "107",
+         "last push": "2021-06-30",
+         "license": "none",
+         "toolchain": "Y+N (hx8k ct256)",
+         "what it does": "Experiments: TRNG, DAC, blinky ...",
+         "evidence": "verified (10 pcf)"
+        },
+        {
+         "repo": "abnoname/iceZ0mb1e",
+         "HDL": "Verilog",
+         "stars": "59",
+         "last push": "2023-02-03",
+         "license": "MIT",
+         "toolchain": "Y+N",
+         "what it does": "TV80 (Z80) SoC, pinmaps hx8k / hx1k / icezum / eis",
+         "evidence": "verified (7 pcf)"
+        },
+        {
+         "repo": "peepo/verilog_tutorials_BB",
+         "HDL": "Verilog",
+         "stars": "23",
+         "last push": "2016-03-02",
+         "license": "none",
+         "toolchain": "Y+A (hx8k)",
+         "what it does": "Tutorials for HX8K breakout",
+         "evidence": "verified (12 pcf)"
+        },
+        {
+         "repo": "n24bass/ice40_8bitworkshop",
+         "HDL": "Verilog",
+         "stars": "18",
+         "last push": "2019-12-31",
+         "license": "NOASSERTION",
+         "toolchain": "Y+A (hx8k ct256)",
+         "what it does": "\"Designing Video Game Hardware in Verilog\" ports",
+         "evidence": "verified"
+        },
+        {
+         "repo": "janrinze/miniatom",
+         "HDL": "Verilog",
+         "stars": "11",
+         "last push": "2023-04-30",
+         "license": "none",
+         "toolchain": "Y+A (hx8k ct256)",
+         "what it does": "Minimal Acorn Atom (HX8K breakout + icoBoard)",
+         "evidence": "verified"
+        },
+        {
+         "repo": "alangarf/tm1637-verilog",
+         "HDL": "Verilog",
+         "stars": "8",
+         "last push": "2017-12-10",
+         "license": "Apache-2.0",
+         "toolchain": "Y+A",
+         "what it does": "TM1637 7-segment driver",
+         "evidence": "verified"
+        },
+        {
+         "repo": "cfib/bf2hw",
+         "HDL": "Verilog",
+         "stars": "7",
+         "last push": "2017-03-18",
+         "license": "GPL-3.0",
+         "toolchain": "Bambu HLS + Y+A",
+         "what it does": "Brainf*** to hardware",
+         "evidence": "verified"
+        },
+        {
+         "repo": "rwmjones/icestorm-flash-leds",
+         "HDL": "Verilog",
+         "stars": "4",
+         "last push": "2018-03-17",
+         "license": "none",
+         "toolchain": "Y+A",
+         "what it does": "Hello-world LEDs",
+         "evidence": "verified (trivial)"
+        },
+        {
+         "repo": "Dreadrik/fpga-stopwatch",
+         "HDL": "Verilog",
+         "stars": "4",
+         "last push": "2021-06-30",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Breadboard stopwatch",
+         "evidence": "verified"
+        },
+        {
+         "repo": "gunnarsson901/ice40-tap",
+         "HDL": "Verilog",
+         "stars": "0",
+         "last push": "2026-04-14",
+         "license": "none",
+         "toolchain": "Y+N (hx8k ct256)",
+         "what it does": "Passive Ethernet tap LAN8720 RMII → SPI → Wireshark",
+         "evidence": "verified (new, 0 stars)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "iceFUN — iCE40HX8K-CB132 — https://en.manu-systems.com/DEV-ICEFUN.shtml",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "MichaelBell/nanoV",
+         "HDL": "Verilog",
+         "stars": "27",
+         "last push": "2024-11-17",
+         "license": "Apache-2.0",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Minimal-area RV32E core (iceFUN + pico-ice)",
+         "evidence": "verified"
+        },
+        {
+         "repo": "mikeakohn/apollo11_fpga",
+         "HDL": "Verilog",
+         "stars": "22",
+         "last push": "2024-12-25",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Apollo Guidance Computer",
+         "evidence": "verified"
+        },
+        {
+         "repo": "mikeakohn/riscv_fpga",
+         "HDL": "Verilog",
+         "stars": "19",
+         "last push": "2026-06-27",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "RISC-V CPU + peripherals",
+         "evidence": "verified"
+        },
+        {
+         "repo": "mikeakohn/micro68k",
+         "HDL": "Verilog",
+         "stars": "17",
+         "last push": "2024-03-24",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Reduced 68000",
+         "evidence": "verified"
+        },
+        {
+         "repo": "mikeakohn/powerpc_fpga",
+         "HDL": "Verilog",
+         "stars": "13",
+         "last push": "2024-09-12",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "PowerPC subset",
+         "evidence": "verified"
+        },
+        {
+         "repo": "devantech/iceFUN",
+         "HDL": "Verilog",
+         "stars": "12",
+         "last push": "2021-09-26",
+         "license": "none",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Vendor examples: blinky, LEDs, LED strip, music",
+         "evidence": "verified (9 pcf)"
+        },
+        {
+         "repo": "mikeakohn/intel_8008",
+         "HDL": "Verilog",
+         "stars": "12",
+         "last push": "2025-02-09",
+         "license": "none",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Intel 8008",
+         "evidence": "verified"
+        },
+        {
+         "repo": "mikeakohn/micro86",
+         "HDL": "Verilog",
+         "stars": "11",
+         "last push": "2025-09-24",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "Reduced 32-bit x86",
+         "evidence": "verified"
+        },
+        {
+         "repo": "mikeakohn/msp430_fpga",
+         "HDL": "Verilog",
+         "stars": "5",
+         "last push": "2026-06-25",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "MSP430",
+         "evidence": "verified"
+        },
+        {
+         "repo": "robin7g/rg-iceFUN",
+         "HDL": "Verilog",
+         "stars": "1",
+         "last push": "2023-03-26",
+         "license": "MIT",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "VGA / scrolltext examples",
+         "evidence": "verified"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "icoBoard 1.0 — iCE40HX8K-CT256 — http://icoboard.org/about-icoboard.html (unreachable)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "cliffordwolf/icotools",
+         "HDL": "Verilog",
+         "stars": "80",
+         "last push": "2021-07-13",
+         "license": "none",
+         "toolchain": "Y+A (hx8k)",
+         "what it does": "icoprog + icosoc SoC generator + examples (icoboard, icezero)",
+         "evidence": "verified"
+        },
+        {
+         "repo": "ZipCPU/icozip",
+         "HDL": "Verilog",
+         "stars": "19",
+         "last push": "2021-10-21",
+         "license": "none",
+         "toolchain": "Y+N / Y+A (hx8k ct256)",
+         "what it does": "ZipCPU demo port with flash, UART, PMODs",
+         "evidence": "verified (14 pcf, 98 .v)"
+        },
+        {
+         "repo": "jhol/otl-icoboard-pmodoledrgb-demo",
+         "HDL": "Verilog",
+         "stars": "9",
+         "last push": "2017-12-17",
+         "license": "BSD-3-Clause",
+         "toolchain": "Y+A (hx8k)",
+         "what it does": "Graphics on PmodOLEDrgb",
+         "evidence": "verified"
+        },
+        {
+         "repo": "janrinze/icoboard_sram",
+         "HDL": "Verilog",
+         "stars": "4",
+         "last push": "2017-02-19",
+         "license": "GPL-3.0",
+         "toolchain": "Y+A (hx8k)",
+         "what it does": "SRAM access module",
+         "evidence": "verified"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "iCEboy — iCE40HX8K — https://sourceforge.net/projects/iceboy/",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "msinger/iceboy",
+         "HDL": "SystemVerilog",
+         "stars": "24",
+         "last push": "2025-03-29",
+         "license": "NOASSERTION",
+         "toolchain": "yosys + icepack (hx8k ct256; P&R tool not confirmed)",
+         "what it does": "Game Boy clone (GitHub home of the SourceForge project)",
+         "evidence": "verified (12 pcf, 86 .v/.sv)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Kuchen — iCE40HX8K-CT256 — https://github.com/machdyne/kuchen",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "machdyne/kuchen",
+         "HDL": "Verilog",
+         "stars": "23",
+         "last push": "2024-06-26",
+         "license": "NOASSERTION",
+         "toolchain": "Y+N (hx8k ct256)",
+         "what it does": "Board repo + blinky (v0/v1 pcf)",
+         "evidence": "verified"
+        },
+        {
+         "repo": "machdyne/keks",
+         "HDL": "Verilog",
+         "stars": "19",
+         "last push": "2023-08-05",
+         "license": "NOASSERTION",
+         "toolchain": "Y+N (hx8k ct256)",
+         "what it does": "Keks game console (not in list) + pong",
+         "evidence": "verified"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "MiCE47 — i.MXRT1021 + iCE40HX8K — https://hackaday.io/project/166109-mice47",
+     "blocks": [
+      {
+       "type": "paragraph",
+       "text": "No GitHub gateware found. unknown."
+      }
+     ]
+    },
+    {
+     "title": "Olimex iCE40HX8K-EVB — iCE40HX8K-CT256 — https://www.olimex.com/Products/FPGA/iCE40/iCE40HX8K-EVB/open-source-hardware",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "x653/xv6-riscv-fpga",
+         "HDL": "Verilog",
+         "stars": "62",
+         "last push": "2023-03-05",
+         "license": "NOASSERTION",
+         "toolchain": "Y+N (hx8k)",
+         "what it does": "RISC-V computer running UNIX xv6, all FOSS",
+         "evidence": "verified"
+        },
+        {
+         "repo": "OLIMEX/iCE40HX8K-EVB",
+         "HDL": "Verilog",
+         "stars": "41",
+         "last push": "2026-05-25",
+         "license": "Apache-2.0",
+         "toolchain": "Y+N (hx8k ct256)",
+         "what it does": "Vendor board repo + demos (blinky, io-video)",
+         "evidence": "verified (2 pcf)"
+        },
+        {
+         "repo": "mikewolak/olimex-ice40hx8k-picorv32",
+         "HDL": "Verilog",
+         "stars": "1",
+         "last push": "2025-11-01",
+         "license": "NOASSERTION",
+         "toolchain": "Y+N (hx8k ct256)",
+         "what it does": "PicoRV32 SoC automated build system",
+         "evidence": "verified (large, 732 files)"
+        },
+        {
+         "repo": "Junkotron/fpga_memtest",
+         "HDL": "Verilog",
+         "stars": "0",
+         "last push": "2024-02-19",
+         "license": "none",
+         "toolchain": "Y+A",
+         "what it does": "SRAM test for Olimex HX1K/HX8K",
+         "evidence": "verified"
+        },
+        {
+         "repo": "iceduino/olimex-neorv32",
+         "HDL": "VHDL",
+         "stars": "0",
+         "last push": "2022-03-11",
+         "license": "BSD-3-Clause",
+         "toolchain": "ghdl-yosys + N",
+         "what it does": "NEORV32 setup for this board",
+         "evidence": "verified (VHDL)"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "Already in collection: `alangarf__apple-one` (board dir olimex_ice40hx8k), `lawrie__apple-one`."
+      }
+     ]
+    },
+    {
+     "title": "Snowflake-FPGA — iCE40HX8K — https://github.com/Wren6991/Snowflake-FPGA",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "Wren6991/Snowflake-FPGA",
+         "HDL": "none",
+         "stars": "31",
+         "last push": "2019-07-07",
+         "license": "NOASSERTION",
+         "toolchain": "n/a",
+         "what it does": "Board hardware + scripts, no .v/.pcf",
+         "evidence": "unverified — no gateware"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "Same author's `Wren6991/RISCBoy` (HX8K) is in the breakout table. Already in collection: `wren6991__hazard3`, `wren6991__smoldvi`."
+      }
+     ]
+    },
+    {
+     "title": "Valve Index / Vive (commercial) — no public gateware.",
+     "blocks": [
+      {
+       "type": "hr"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Recommended to clone (20)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "#",
+      "repo",
+      "reason"
+     ],
+     "rows": [
+      {
+       "#": "1",
+       "repo": "YosysHQ/picorv32",
+       "reason": "Reference RISC-V core + PicoSoC with `hx8kdemo`; the canonical reusable soft CPU for iCE40 (ISC)"
+      },
+      {
+       "#": "2",
+       "repo": "schlae/graphics-gremlin",
+       "reason": "Real product: ISA MDA/CGA video card, Y+N `--hx8k`, clean Verilog video/bus timing"
+      },
+      {
+       "#": "3",
+       "repo": "msinger/iceboy",
+       "reason": "Complete Game Boy in SystemVerilog on HX8K, the notable iCEboy project"
+      },
+      {
+       "#": "4",
+       "repo": "Wren6991/RISCBoy",
+       "reason": "Full console SoC (CPU, PPU, busfabric), HX8K breakout target; same author as hazard3 (already here)"
+      },
+      {
+       "#": "5",
+       "repo": "zeldin/iceGDROM",
+       "reason": "Dreamcast GD-ROM emulator, real-world interface work on HX8K breakout (GPL-3.0)"
+      },
+      {
+       "#": "6",
+       "repo": "jamesbowman/swapforth",
+       "reason": "J1a Forth CPU with HX8K (`j1a8k.pcf`) build, tiny reusable stack CPU (BSD-3)"
+      },
+      {
+       "#": "7",
+       "repo": "cliffordwolf/icotools",
+       "reason": "icosoc SoC generator + icoBoard/IceZero examples"
+      },
+      {
+       "#": "8",
+       "repo": "ZipCPU/icozip",
+       "reason": "ZipCPU port with flash/UART/PMOD cores, well-documented Verilog"
+      },
+      {
+       "#": "9",
+       "repo": "hoglet67/Ice40Atom",
+       "reason": "Acorn Atom retro computer on BlackIce (HX4K), complements lawrie ULX3S retro ports"
+      },
+      {
+       "#": "10",
+       "repo": "hoglet67/Ice40Beeb",
+       "reason": "BBC Micro on BlackIce (HX4K)"
+      },
+      {
+       "#": "11",
+       "repo": "lawrie/blackicemxbook",
+       "reason": "Large Y+N example set (33 designs: audio, video, sensors)"
+      },
+      {
+       "#": "12",
+       "repo": "lawrie/verilog_examples",
+       "reason": "~60 BlackIce II examples, many peripheral drivers"
+      },
+      {
+       "#": "13",
+       "repo": "lawrie/hdmi_examples",
+       "reason": "DVI/HDMI on iCE40 HX (tq144), comparable to the ULX3S GPDI work"
+      },
+      {
+       "#": "14",
+       "repo": "abnoname/iceZ0mb1e",
+       "reason": "TV80 SoC with pinmaps for several HX boards, MIT"
+      },
+      {
+       "#": "15",
+       "repo": "x653/xv6-riscv-fpga",
+       "reason": "RISC-V computer booting xv6 on Olimex HX8K-EVB, all FOSS"
+      },
+      {
+       "#": "16",
+       "repo": "nesl/ice40_examples",
+       "reason": "Most-starred beginner example set for HX8K breakout (GPL-3.0)"
+      },
+      {
+       "#": "17",
+       "repo": "mikeakohn/riscv_fpga",
+       "reason": "Representative of the mikeakohn iceFUN CPU family (MIT; same structure as micro68k/apollo11/powerpc)"
+      },
+      {
+       "#": "18",
+       "repo": "DangerousPrototypes/BusPirateUltraHDL",
+       "reason": "Bus Pirate protocol engines in Verilog (GPL-3.0)"
+      },
+      {
+       "#": "19",
+       "repo": "Obijuan/open-fpga-verilog-tutorial",
+       "reason": "872-star Verilog course with Alhambra II builds (GPL-2.0)"
+      },
+      {
+       "#": "20",
+       "repo": "kelu124/un0rick",
+       "reason": "Owner's own HX4K ultrasound board gateware (icestorm build)"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Honourable mentions (not in the 20; all 8 cloned + catalogued 2026-09-28): GlasgowEmbedded/glasgow (Amaranth, biggest HX8K project), mystorm-org/BlackIce-II, mikeakohn/apollo11_fpga, MichaelBell/nanoV, tvelliott/dsp_ice, msiddalingaiah/Centurion, pmezydlo/BeagleWire, rschlaikjer/fpga-3-softcores."
+    },
+    {
+     "type": "hr"
+    }
+   ]
+  },
+  {
+   "title": "Notes",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "**Boards with no GitHub gateware found**: Kéfir I (SourceForge only), MiCE47 (hackaday), X65-SBC (hackaday), ICE40HXDevBoard (hardware only), Snowflake-FPGA (hardware only), BlackIceMx carrier (hardware only), Azukar (pcf only), Valve Index/Vive (commercial).",
+      "**List placement inconsistencies**: `pico-hx` Makefile targets `hx1k` (list: HX4K). `machdyne/eis` and `machdyne/kolibri` Makefiles use `--hx8k --package bg121` (list: HX4K; an HX4K die is normally built as HX8K, so this may be consistent, but the part number is unverified). Glasgow is listed in both HX4K and HX8K (revC is HX8K). The Bus Pirate Ultra HDL Makefile uses `hx8k ct256`.",
+      "**Broken / dead links in the awesome list** (checked 2026-09-28): Lattice iCE40-HX8K Breakout page → 404; Alchitry Cu product page → 404; `icoboard.org` → no response; blackmesalabs.wordpress.com IceZero post → 403 (may be bot-blocking); `xesscorp/CAT-Board` redirects to `devbisme/CAT-Board`. Others (Olimex, iceFUN, SourceForge iceboy, Kéfir, hackaday, un0rick.cc, BeagleWire, BlackIce wiki, Tindie) → 200.",
+      "**Proprietary-flow repos**: `alchitry/Cu-Base-Project`, `devbisme/CAT-Board` SDRAM test (iCEcube2); `kelu124/un0rick` VHDL branch (iCEcube2) alongside an icestorm Verilog build.",
+      "**Rate limits**: 13 search calls, 7 s apart; no \"rate limit exceeded\" encountered; 0 core API calls (metadata came from search results; file lists came from codeload tarballs, which do not count).",
+      "**Already in collection with HX targets**: `alangarf__apple-one`, `lawrie__apple-one` (Olimex HX8K-EVB), `speccery__icy99` (BlackIce), `lawrie__ice40logicsniffer` (BlackIce, same lineage as hoglet67/Ice40LogicSniffer), `machdyne__zeitlos` (Machdyne HX boards), `splinedrive__my_hdmi_device` (icoboard/blackice targets), `wren6991__*`.",
+      "**Not covered**: excluded per brief — iCEstick, Nandland Go, Olimex HX1K, TinyFPGA B2/BX (LP8K), UPduino (UP5K). The search was repo-level only (unauthenticated code search is not available), so repos that name HX8K only inside a Makefile, and not in their name, description or readme, may be missed."
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/wren6991__smoldvi.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # SmolDVI (`wren6991__smoldvi`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | last commit 2021-07-15 (`e8b8f87`, "Port to TinyFPGA BX"); commit count / first commit unknown (shallow clone, repo not in `.claude/memory/history.tsv`) |
 
 ## What the gateware does
+
 A small, portable direct DVI/TMDS video-output core (top module `smoldvi`,
 `hdl/smoldvi/smoldvi.v`) that generates a pixel-doubled RGB666 640×480p60
 (or configurable CEA-861D) DVI signal from an RGB pixel stream, using a
@@ -24,6 +27,7 @@ designs (`hdl/fpga/smoldvi_fpga_*.v`) drive a scrolling colour-gradient test
 pattern out to a DVI PMOD on iCEBreaker, iCEstick, iCESugar and TinyFPGA BX.
 
 ## Structure
+
 - `hdl/smoldvi/` — the portable core: `smoldvi.v` (top: timing + TMDS encode +
   serialise), `smoldvi_timing.v` (CEA-861D-style H/V counters, sync/den
   generation), `smoldvi_tmds_encode.v` (the stateless TMDS trick),
@@ -40,13 +44,16 @@ pattern out to a DVI PMOD on iCEBreaker, iCEstick, iCESugar and TinyFPGA BX.
   top-levels.
 
 ## How to build
+
 Not run (read-only review; the `hdl/libfpga` submodule is also absent, so a
 build would fail as checked out). From `Readme.md`:
+
 ```
 git clone --recursive https://github.com/Wren6991/SmolDVI.git smoldvi
 cd smoldvi && . sourceme
 cd synth && make -f Icebreaker.mk prog     # also: Icestick.mk, Icesugar.mk, TinyFPGA_BX.mk
 ```
+
 No ECP5/ULX3S Makefile exists in this repo.
 
 ## Reusable blocks
@@ -56,6 +63,7 @@ No ECP5/ULX3S Makefile exists in this repo.
 | Small DVI/TMDS core | `hdl/smoldvi/*.v` | `smoldvi` | Verilog | **none in `hdl/smoldvi/` itself** — see below for the one platform-specific dependency | CC0-1.0 |
 
 ## Reuse notes
+
 - **Top module ports** (`hdl/smoldvi/smoldvi.v:18-35`): `clk_pix`/`rst_n_pix`
   (pixel-rate domain), `clk_bit`/`rst_n_bit` (bit-rate domain, must be
   **exactly 5× `clk_pix`**, common root oscillator, reset deassertion
@@ -95,6 +103,7 @@ No ECP5/ULX3S Makefile exists in this repo.
   full hdl-util/hdmi-derived stacks when audio/HDMI infoframes aren't needed.
 
 ## Open questions
+
 - `hdl/libfpga`'s exact `ddr_out.v` implementation was not read (submodule
   not fetched in this shallow clone; not in `.claude/memory/submodules.tsv`
   allowlist). The port list quoted above comes from the call site in

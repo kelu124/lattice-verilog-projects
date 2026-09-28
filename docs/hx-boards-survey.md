@@ -1,6 +1,8 @@
+<!-- Generated from data/pages/hx-boards-survey.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # iCE40 HX4K / HX8K gateware survey (from awesome-latticeFPGAs)
 
-**Status 2026-09-28:** owner approved adding HX4K/HX8K gateware and demos to the catalogue; 19 of the 20 recommended repos were cloned and catalogued on 2026-09-28 (abnoname/iceZ0mb1e skipped: already present as the wuxx__icesugar submodule). See `docs/catalogue.md`.
+**Status 2026-09-28:** owner approved adding HX4K/HX8K gateware and demos to the catalogue; 19 of the 20 recommended repos were cloned and catalogued on 2026-09-28 (abnoname/iceZ0mb1e skipped: already present as the wuxx__icesugar submodule), and the 8 honourable mentions the same day. See the [catalogue](catalogue.md).
 
 Date: 2026-09-28. Source list: `kelu124/awesome-latticeFPGAs` Readme.md (HEAD), sections `## HX4K`, `## HX8K`
 and `Other commercial products / HX8K`. HX4K is the same die as HX8K (yosys/nextpnr use `--hx8k`).
@@ -22,11 +24,13 @@ Toolchain abbreviations: `Y+N` = yosys + nextpnr-ice40 + icepack; `Y+A` = yosys 
 ## HX4K boards
 
 ### 2057-ICE40HX4K-TQ144-breakout — iCE40HX4K-TQ144 — https://github.com/johnwinans/2057-ICE40HX4K-TQ144-breakout
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | johnwinans/2057-ICE40HX4K-TQ144-breakout | Verilog | 25 | 2025-12-28 | none | Y+N (hx4k tq144) | Board repo + `verilog/{minimal,blinky,blinky2}` examples | verified (3 pcf, 7 .v) |
 
 ### Alhambra II — iCE40HX4K-TQ144 — https://github.com/FPGAwars/Alhambra-II-FPGA
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | Obijuan/open-fpga-verilog-tutorial | Verilog | 872 | 2020-04-15 | GPL-2.0 | Y+A / Y+N (apio) | Large Spanish Verilog course, `tutorial/Alhambra_II/T01..` (also iCEstick) | verified (99 pcf, 277 .v) |
@@ -36,16 +40,19 @@ Toolchain abbreviations: `Y+N` = yosys + nextpnr-ice40 + icepack; `Y+A` = yosys 
 | Werni2A/Valhalla-II | VHDL | 6 | 2025-01-19 | GPL-3.0 | ghdl-yosys + N (hx4k) | Open-source VHDL synthesis template for Alhambra II | verified (VHDL, not Verilog) |
 
 ### Azukar FPGA — iCE40HX4K — https://github.com/maxisimonazzi/Azukar-FPGA
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | maxisimonazzi/Azukar-FPGA | none | 86 | 2026-09-17 | NOASSERTION | n/a | Board hardware + `docs/pinout/pinout.pcf` only | partial (pcf, no HDL) |
 
 ### BeagleWire — iCE40HX4K-TQ144 — https://www.crowdsupply.com/qwerty-embedded-design/beaglewire
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | pmezydlo/BeagleWire | Verilog | 46 | 2018-10-10 | GPL-2.0 | Y+A (hx4k tq144) | Examples (blink, gpio, SDRAM, PMOD...) + BeagleBone kernel drivers (GSoC 2017) | verified (13 pcf, 23 .v) |
 
 ### BlackIce II — iCE40HX4K-TQ144 — https://github.com/mystorm-org/BlackIce-II
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | mystorm-org/BlackIce-II | Verilog | 72 | 2020-12-29 | none | Y+A (tq144) | Official examples (pll, sram, common pcf) + STM32 firmware | verified (6 pcf, 52 .v) |
@@ -67,6 +74,7 @@ Toolchain abbreviations: `Y+N` = yosys + nextpnr-ice40 + icepack; `Y+A` = yosys 
 Already in collection: `speccery__icy99` (TI-99/4A, BlackIce target).
 
 ### BlackIce MX / IceCore — iCE40HX4K-TQ144 — https://www.tindie.com/products/Folknology/blackice-mx/ , https://github.com/folknology/IceCore
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | folknology/IceCore | Verilog | 46 | 2021-01-23 | none | Y+A (tq144) | IceCore module + STM32 firmware, `Examples/blink`, `trail` | verified (3 pcf, 4 .v) |
@@ -75,11 +83,13 @@ Already in collection: `speccery__icy99` (TI-99/4A, BlackIce target).
 | folknology/BlackIceMx | none | 17 | 2019-09-02 | none | n/a | Carrier board hardware only | unverified — drop |
 
 ### Bus Pirate Ultra — iCE40HX (HX4K per list) — https://github.com/DangerousPrototypes/BusPirateUltraHardware
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | DangerousPrototypes/BusPirateUltraHDL | Verilog | 26 | 2019-12-12 | GPL-3.0 | Y+A (`hx8k ct256` in Makefile) | Bus Pirate Ultra FPGA: SPI/UART engines, MCU interface | verified (5 pcf, 26 .v) |
 
 ### Eis — iCE40 (HX4K per list) — https://github.com/machdyne/eis
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | machdyne/eis | Verilog | 16 | 2023-04-26 | NOASSERTION | Y+N (`--hx8k bg121`) | Board repo + blinky; runs the Machdyne Zeitlos SoC | verified (1 pcf, 1 .v) |
@@ -87,21 +97,25 @@ Already in collection: `speccery__icy99` (TI-99/4A, BlackIce target).
 Already in collection: `machdyne__zeitlos` (SoC supporting Eis/Riegel/Kröte/Kolibri/Kuchen).
 
 ### first-fpga-pcb — iCE40 HX8K/HX4K — https://github.com/mattvenn/first-fpga-pcb
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | mattvenn/first-fpga-pcb | Verilog | 83 | 2020-08-03 | none | Y+N (hx8k tq144) | Board + `test/` bring-up gateware | verified |
 
 ### Glasgow Interface Explorer (revC) — iCE40HX8K-BG121 (listed in HX4K and HX8K) — https://github.com/GlasgowEmbedded/glasgow
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | GlasgowEmbedded/glasgow | Amaranth | 2216 | 2026-09-25 | 0BSD | Amaranth → Y+N (YoWASP) | Multi-tool: ~46 gateware applets (SPI/I2C/JTAG/UART/logic analyzer...) | verified (Amaranth .py, pcf generated) — ranked lower (not Verilog) |
 
 ### Graphics Gremlin — iCE40HX4K-TQ144 — https://github.com/schlae/graphics-gremlin
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | schlae/graphics-gremlin | Verilog | 578 | 2024-10-24 | CC-BY-SA-4.0 | Y+N (`--hx8k` tq144) | ISA video card emulating IBM MDA + CGA | verified (1 pcf, 21 .v) |
 
 ### HX4k PMOD Breakout — iCE40HX4K-TQ144 — https://github.com/rschlaikjer/hx4k-pmod
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | rschlaikjer/fpga-3-softcores | Verilog | 13 | 2020-08-24 | MIT | Y+N (hx8k tq144) | VexRiscv SoC + custom peripherals + bare-metal firmware | verified |
@@ -109,16 +123,19 @@ Already in collection: `machdyne__zeitlos` (SoC supporting Eis/Riegel/Kröte/Kol
 | rschlaikjer/fpga-2-led-panel-gifs | Verilog | 2 | 2020-04-05 | none | Y+N | Animated GIFs on HUB75 RGB LED panel | verified |
 
 ### ice40-breakout-pcb — iCE40HX4K — https://github.com/null-a/ice40-breakout-pcb
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | null-a/ice40-breakout-pcb | Verilog | 4 | 2021-06-07 | none | Y+N (hx4k tq144) | Board + blinky | verified (trivial) |
 
 ### ICE40HXDevBoard — iCE40HX4K-TQ144 — https://github.com/aslak3/ICE40HXDevBoard
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | aslak3/ICE40HXDevBoard | none | 1 | 2025-07-26 | GPL-2.0 | n/a | Hardware only (no .v / .pcf in tarball) | unverified — no gateware found |
 
 ### IceZero — iCE40HX4K-TQ144 (Trenz TE0876) — https://blackmesalabs.wordpress.com/2017/02/07/icezero-fpga-board-for-rasppi/
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | blackmesalabs/sump2 | Verilog | 103 | 2018-09-05 | GPL-3.0 | unknown | SUMP2 logic analyzer (Black Mesa Labs, IceZero author) | partial (4 .v, no pcf) |
@@ -130,42 +147,51 @@ Already in collection: `machdyne__zeitlos` (SoC supporting Eis/Riegel/Kröte/Kol
 `cliffordwolf/icotools` also has `examples/icezero/` (see icoBoard).
 
 ### Kéfir I — iCE40HX4K — http://fpgalibre.sourceforge.net/Kefir_en/index.html
+
 No GitHub gateware found (project hosted on SourceForge / FPGA Libre; search "kefir fpga ice40" = 0 results).
 
 ### Kolibri — iCE40 (HX4K per list) — https://github.com/machdyne/kolibri
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | machdyne/kolibri | Verilog | 8 | 2023-05-06 | NOASSERTION | Y+N (`--hx8k bg121`) | Board repo + blinky + RP2040 firmware | verified |
 
 ### Kröte — iCE40HX4K — https://github.com/machdyne/krote
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | machdyne/krote | Verilog | 3 | 2022-02-20 | NOASSERTION | Y+N (hx4k bg121) | Board repo + blinky | verified (trivial) |
 
 ### Manila-Ice — iCE40HX4K-TQ144 — https://github.com/joshtyler/manila-ice
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | joshtyler/manila-ice | SystemVerilog | 10 | 2021-03-02 | none | Y+N (tq144) | Board + `hdl/` test design | verified (1 pcf, 16 .v/.sv) |
 
 ### picohx — iCE40 HX (listed HX4K) — https://github.com/dan-rodrigues/pico-hx
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | dan-rodrigues/pico-hx | Verilog | 31 | 2024-05-08 | none | Y+N (Makefile: `FPGA_DEVICE = hx1k`, tq144) | Pico + iCE40 board, example RTL + `picoprog.py` | verified — Makefile targets HX1K, not HX4K |
 
 ### Riegel — iCE40HX4K — https://github.com/machdyne/riegel
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | machdyne/riegel | Verilog | 17 | 2023-06-30 | NOASSERTION | Y+N (hx4k bg121) | Board repo + blinky (v1/v2/v3 pcf) | verified |
 
 ### un0rick — iCE40HX4K-TQ144 — http://un0rick.cc
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | kelu124/un0rick | Verilog + VHDL | 175 | 2026-09-12 | NOASSERTION | Y+A (`usb/verilog/impl/icestorm`) and iCEcube2 (VHDL MATTY) | Ultrasound pulser/ADC acquisition board gateware | verified (6 pcf, 40 .v, 30 .vhd) |
 
 ### X65-SBC — iCE40HX4K + 2x UP5K — https://hackaday.io/project/194866-x65-sbc
+
 No GitHub gateware found by search ("x65 65c816 fpga" = 0). unknown.
 
 ### Other notable HX4K gateware (board not in list)
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | portlandhodl/nyan-keys-ice40hx4k-bitstream | Verilog | 38 | 2024-01-31 | none | Y+N (README) | Low-latency parallel key-scanning FPGA for a 60% mech keyboard | verified (pcf + 4 .v) |
@@ -176,6 +202,7 @@ No GitHub gateware found by search ("x65 65c816 fpga" = 0). unknown.
 ## HX8K boards
 
 ### Alchitry Cu — iCE40HX8K-CB132 — https://alchitry.com/products/alchitry-cu-fpga-development-board (404)
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | mufpga/MicroFPGA | Verilog + VHDL | 25 | 2023-02-27 | MIT | unknown (no pcf in tree) | Microscope control (camera/laser trigger, PWM, servos) on Au/Cu | partial |
@@ -191,11 +218,13 @@ No GitHub gateware found by search ("x65 65c816 fpga" = 0). unknown.
 Also `FPGAwars/apio-examples` has `examples/alchitry-cu/*`.
 
 ### CAT Board — iCE40HX8K-CT256 — https://github.com/xesscorp/CAT-Board (redirects to devbisme/CAT-Board)
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | devbisme/CAT-Board | MyHDL/Verilog | 62 | 2024-02-27 | none | iCEcube2 (SDRAM test) + MyHDL notebooks | RPi HAT board + SDRAM test | partial (1 pcf, 1 .v, iCEcube) |
 
 ### DSP ICE — iCE40HX8K-CT256 — https://github.com/tvelliott/dsp_ice
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | tvelliott/dsp_ice | Verilog | 62 | 2017-10-04 | MIT | Y+A (hx8k ct256) | STM32F4 + HX8K SDR dev system, `firmware/fpga/src` | verified (1 pcf, 4 .v) |
@@ -203,6 +232,7 @@ Also `FPGAwars/apio-examples` has `examples/alchitry-cu/*`.
 ### Glasgow Interface Explorer — see HX4K section.
 
 ### iCE40-HX8K Breakout Board (ICE40HX8K-B-EVN, CT256) — Lattice page 404
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | YosysHQ/picorv32 | Verilog | 4384 | 2026-09-07 | ISC | Y+N / Y+A (`picosoc/hx8kdemo`) | PicoRV32 RISC-V + PicoSoC with `hx8kdemo` target | verified (hx8kdemo.pcf) |
@@ -225,6 +255,7 @@ Also `FPGAwars/apio-examples` has `examples/alchitry-cu/*`.
 | gunnarsson901/ice40-tap | Verilog | 0 | 2026-04-14 | none | Y+N (hx8k ct256) | Passive Ethernet tap LAN8720 RMII → SPI → Wireshark | verified (new, 0 stars) |
 
 ### iceFUN — iCE40HX8K-CB132 — https://en.manu-systems.com/DEV-ICEFUN.shtml
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | MichaelBell/nanoV | Verilog | 27 | 2024-11-17 | Apache-2.0 | Y+N (hx8k) | Minimal-area RV32E core (iceFUN + pico-ice) | verified |
@@ -239,6 +270,7 @@ Also `FPGAwars/apio-examples` has `examples/alchitry-cu/*`.
 | robin7g/rg-iceFUN | Verilog | 1 | 2023-03-26 | MIT | Y+N (hx8k) | VGA / scrolltext examples | verified |
 
 ### icoBoard 1.0 — iCE40HX8K-CT256 — http://icoboard.org/about-icoboard.html (unreachable)
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | cliffordwolf/icotools | Verilog | 80 | 2021-07-13 | none | Y+A (hx8k) | icoprog + icosoc SoC generator + examples (icoboard, icezero) | verified |
@@ -247,20 +279,24 @@ Also `FPGAwars/apio-examples` has `examples/alchitry-cu/*`.
 | janrinze/icoboard_sram | Verilog | 4 | 2017-02-19 | GPL-3.0 | Y+A (hx8k) | SRAM access module | verified |
 
 ### iCEboy — iCE40HX8K — https://sourceforge.net/projects/iceboy/
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | msinger/iceboy | SystemVerilog | 24 | 2025-03-29 | NOASSERTION | yosys + icepack (hx8k ct256; P&R tool not confirmed) | Game Boy clone (GitHub home of the SourceForge project) | verified (12 pcf, 86 .v/.sv) |
 
 ### Kuchen — iCE40HX8K-CT256 — https://github.com/machdyne/kuchen
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | machdyne/kuchen | Verilog | 23 | 2024-06-26 | NOASSERTION | Y+N (hx8k ct256) | Board repo + blinky (v0/v1 pcf) | verified |
 | machdyne/keks | Verilog | 19 | 2023-08-05 | NOASSERTION | Y+N (hx8k ct256) | Keks game console (not in list) + pong | verified |
 
 ### MiCE47 — i.MXRT1021 + iCE40HX8K — https://hackaday.io/project/166109-mice47
+
 No GitHub gateware found. unknown.
 
 ### Olimex iCE40HX8K-EVB — iCE40HX8K-CT256 — https://www.olimex.com/Products/FPGA/iCE40/iCE40HX8K-EVB/open-source-hardware
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | x653/xv6-riscv-fpga | Verilog | 62 | 2023-03-05 | NOASSERTION | Y+N (hx8k) | RISC-V computer running UNIX xv6, all FOSS | verified |
@@ -272,6 +308,7 @@ No GitHub gateware found. unknown.
 Already in collection: `alangarf__apple-one` (board dir olimex_ice40hx8k), `lawrie__apple-one`.
 
 ### Snowflake-FPGA — iCE40HX8K — https://github.com/Wren6991/Snowflake-FPGA
+
 | repo | HDL | stars | last push | license | toolchain | what it does | evidence |
 |---|---|---|---|---|---|---|---|
 | Wren6991/Snowflake-FPGA | none | 31 | 2019-07-07 | NOASSERTION | n/a | Board hardware + scripts, no .v/.pcf | unverified — no gateware |
@@ -307,7 +344,7 @@ Same author's `Wren6991/RISCBoy` (HX8K) is in the breakout table. Already in col
 | 19 | Obijuan/open-fpga-verilog-tutorial | 872-star Verilog course with Alhambra II builds (GPL-2.0) |
 | 20 | kelu124/un0rick | Owner's own HX4K ultrasound board gateware (icestorm build) |
 
-Honourable mentions (not in the 20): GlasgowEmbedded/glasgow (Amaranth, biggest HX8K project), mystorm-org/BlackIce-II, mikeakohn/apollo11_fpga, MichaelBell/nanoV, tvelliott/dsp_ice, msiddalingaiah/Centurion, pmezydlo/BeagleWire, rschlaikjer/fpga-3-softcores.
+Honourable mentions (not in the 20; all 8 cloned + catalogued 2026-09-28): GlasgowEmbedded/glasgow (Amaranth, biggest HX8K project), mystorm-org/BlackIce-II, mikeakohn/apollo11_fpga, MichaelBell/nanoV, tvelliott/dsp_ice, msiddalingaiah/Centurion, pmezydlo/BeagleWire, rschlaikjer/fpga-3-softcores.
 
 ---
 

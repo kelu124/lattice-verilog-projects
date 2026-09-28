@@ -3,6 +3,7 @@
 ## In progress
 
 ## Next
+- [ ] GitHub Pages: agree the site structure with the owner (discussion opened 2026-09-28), enable Pages (main, /docs), check rendering of the big tables (added 2026-09-28)
 - [ ] DFU follow-ups (docs/DFUs.md open questions): clone smunaut/had2019-playground original, no2bootloader, OrangeCrab bootloader, foboot, tinydfu to verify their layouts; which board emard__esp32ecp5 dfu.py targets; ULX4M DFU entry (BTN3 vs SW1 disagreement) (added 2026-09-28)
 - [ ] Docs pages follow-ups: open questions at the end of each new docs/projects/*.md (15 pages, 2026-09-28); license-verify the ulx3s-misc dirs only listed (usbhid, ch376, qspi, jtag_slave, dvi_in, dvi_osd, ov7670_dvi, adxl355) (added 2026-09-28)
 - [ ] LPF catalogue: 134 ULX3S LPFs have unknown revision (<90 % pin match: renamed signals); consider matching on sites only, and a PCF catalogue for the iCE40 repos (added 2026-09-28)
@@ -11,10 +12,8 @@
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)
 
 ## Backlog
-- [ ] Consider the HX survey honourable mentions (glasgow, BlackIce-II, apollo11_fpga, nanoV, dsp_ice, Centurion, BeagleWire, fpga-3-softcores) (added 2026-09-28)
-- [ ] scan_make_tests.py blind spots: tests run via Python orchestrators (Hazard3 test/sim/test.py), default `all`/`run` targets, shell scripts (apple-one tools/iverilog/*.sh, kelu124__un0rick sim/icarus/run_sim, toasterllc__mdccode Code/ICE40/Sim.sh), .sby files not driven by make (zipcpu__icozip bench/formal); extend it (added 2026-09-28)
+- [ ] scan_make_tests.py blind spots: tests run via Python orchestrators (Hazard3 test/sim/test.py), default `all`/`run` targets, shell scripts (apple-one tools/iverilog/*.sh, kelu124__un0rick sim/icarus/run_sim, toasterllc__mdccode Code/ICE40/Sim.sh), .sby files not driven by make (zipcpu__icozip bench/formal), `$(VLOG)` variable indirection (emeb__orangecrab_adc), unittest/pdm runners (glasgow, luna), CMake/ctest (fpga-3-softcores); extend it (added 2026-09-28)
 - [ ] scan_tests.sh misses CMake/Verilator harnesses (CMakeLists.txt, verilator/ dirs), e.g. bit-hack__icesid; extend it and re-run (added 2026-09-28)
-- [ ] Clone items 15–24 (except 21, done) of the "recommended" list in docs/ecp5-boards-survey.md if wanted (added 2026-09-27)
 - [ ] Nested gateware submodules not fetched (clone.sh --submodule only takes top-level paths): z386 CPU (gojimmypi__z80386-ulx3s-doom third_party/z386_MiSTer/src/z386), ACoreBase CPU (chiplet__acorechip-ulx3s ACoreChip/…) (added 2026-09-27)
 - [ ] Consider cloning markus-zzz/hyperram-test (ULX3S HyperRAM add-on test, github-survey group C) (added 2026-09-27)
 - [ ] gen_catalogue.py / docs/catalogue.md intro are ULX3S-worded; consider a `board` column now that non-ULX3S ECP5 repos are in (board currently in `board_rev`) (added 2026-09-27)

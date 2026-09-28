@@ -45,11 +45,14 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
    hardware without the user's explicit go-ahead.
 7a. **make_tests**: run `.claude/skills/review-gateware-project/scan_make_tests.py original_sources/<slug>` for candidate
    Makefile targets that run a simulator, then read those Makefiles and fill the `make_tests` column (see catalogue-fields).
-7b. **Catalogue**: add or update the slug's row in `.claude/memory/catalogue.tsv` (all columns), then
-   run `.claude/skills/review-gateware-project/gen_catalogue.py` to regenerate `docs/catalogue.md`, and
-   `gen_lpf_catalogue.py` to refresh `docs/lpf-catalogue.{json,md}` (all LPFs in the clones).
+7b. **Catalogue**: add or update the slug's object in `data/catalogue.json` (all 15 fields). Agents usually hand
+   back TSV rows (15 columns, header of `data/catalogue.json` `fields`): merge them with
+   `.claude/skills/review-gateware-project/gen_catalogue.py --merge rows.tsv` (upsert by slug; it also renders
+   `docs/catalogue.md` and warns about slugs pinned in `sources.tsv` without a row). Then `make lpfs` to rescan all
+   LPFs into `data/lpfs.json` and `make docs` to rebuild the site.
    If the repo offers a better reusable block, update `.claude/memory/reusable-cores.md`.
-8. **Write** `docs/projects/<slug>.md` (skill `documentation` template) and
+8. **Write** the page (skill `documentation` template) as a markdown draft, import it to
+   `data/projects/<slug>.json` with `documentation/md2json.py`, run `make docs`, and
    update the project's row + detail block in `.claude/memory/projects.md`
    (status → `reviewed`, review date, commit).
 9. **Follow-ups**: every open question → `.claude/TODO.md`. Cross-project insights

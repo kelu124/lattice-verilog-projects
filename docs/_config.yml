@@ -1,0 +1,4 @@
+# GitHub Pages (Jekyll) config. Source: main branch, /docs folder. Pages are generated: run `make docs`.
+title: ulx3s-klod
+description: Open gateware for the ULX3S (ECP5) and small Lattice boards — catalogue, reusable cores, pin maps
+theme: jekyll-theme-minimal

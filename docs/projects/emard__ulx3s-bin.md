@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/emard__ulx3s-bin.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # ULX3S prebuilt binaries (`emard__ulx3s-bin`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | 327 commits, 2018-03-11 → 2022-04-19. Mostly emard, some Goran Mahovlic and davor. Dormant since 2022 |
 
 ## What it is
+
 The **quickstart and factory-test kit** for the board: known-good bitstreams to check a
 new board, set up the FT231X and ESP32, install bootloaders, and try demos. It is also a
 **catalogue of the earliest designs people ran on the ULX3S**. Each folder points
@@ -46,6 +49,7 @@ to a source project.
 "unknown" = the source is not stated in the repo; guesses are marked with `?`.
 
 ## How to use (from README)
+
 Board bring-up: program the FT231X with `ftx_prog`, load
 `f32c/…selftest…bit`, upload `f32c-bin/selftest-mcp7940n.bin` with `f32cup.py`, then read
 serial at 115200 or the DVI screen. After that: passthru to flash, burn the ESP32 efuse
@@ -56,6 +60,7 @@ DFU bootloader install:
 Enter it by holding BTN1 while plugging US2 (LEDs D0–D2 on).
 
 ## Reuse notes
+
 - Best known-good bitstreams for **checking hardware** before debugging your own design
   (self-test, memtest, flashblink).
 - `memtest/` file names give a reference for how fast SDRAM runs on ULX3S (up to ~200 MHz
@@ -65,4 +70,5 @@ Enter it by holding BTN1 while plugging US2 (LEDs D0–D2 on).
   < 50 mA idle current) are useful for anyone assembling boards.
 
 ## Open questions
+
 - Sources for memtest, emi, oled, rtc, usb, c64, oberon, flashblink need to be located.

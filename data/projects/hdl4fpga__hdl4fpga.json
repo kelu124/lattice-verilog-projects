@@ -1,0 +1,216 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "project",
+ "slug": "hdl4fpga__hdl4fpga",
+ "title": "hdl4fpga (`hdl4fpga__hdl4fpga`)",
+ "description": "",
+ "fields": {
+  "Upstream": "https://github.com/hdl4fpga/hdl4fpga",
+  "Reviewed at": "`662986b` (upstream date 2025-08-17), reviewed 2026-09-28",
+  "License": "MIT (`LICENSE`, Miguel Angel Sagreras) for all VHDL/Verilog source checked (headers on every file spot-checked: `boards/ULX3S/common/ulx3s.vhd`, `boards/ULX3S/apps/{graphics,scopeio,ser_debug}.vhd`, `library/scope/scopeio.vhd`, `library/mii/mii_ipoe.vhd`, `library/sdram/sdram_ctlr.vhd`, `library/usb/usbhost.vhd`, `library/video/dvi.vhd`, `library/latticesemi/ecp5/ecp5_sdrphy.vhd`, `library/apps/ecp5_videodcm.vhd` — all carry the same MIT boilerplate as `LICENSE`, `grep -rl \"gnu general public license\" -i --include=*.vhd --include=*.v .` returns nothing). The GPL-3.0-or-later text only appears in the Diamond build **Makefiles** (`boards/ULX3S/diamond/Makefile`, `boards/ULX4M_LS/diamond/Makefile`, `boards/ULX4M_LD/diamond/Makefile`, `library/latticesemi/scripts/Makefile`, `library/xilinx/scripts/Makefile`), not in any HDL source — this corrects the catalogue's \"mixed MIT/GPL\" note, see Open questions.",
+  "HDL / framework": "VHDL (this repo is ~all VHDL; the catalogue's \"274\" file count and the \"Verilog, JS\" entries refer to the wider repo — Micron DDR verification models (`library/micron/ddr{,2,3}/*.v`) and non-ULX3S board tooling — not to anything used by the ULX3S apps)",
+  "Toolchain": "`diamond` only for ULX3S. `boards/ULX3S/diamond/apps.ldf` is a Lattice Diamond project (`synthesis=\"synplify\"`, `device=\"LFE5U-12F-8BG381C\"`) built via `boards/ULX3S/diamond/Makefile` (`diamondc` batch calls). No yosys/nextpnr-ecp5 flow exists for ULX3S. `boards/ULX3S/ghdl/app_graphics.sh` and `library/ghdl/*.sh` run `ghdl -a` (analysis/type-check only, `--std=02`) for the `graphics` app — this is a GHDL front-end syntax check, not a synthesis or simulation run, and there is no `nextpnr`/`yosys` call anywhere in the tree (`grep -rn \"nextpnr\\|yosys\" boards/ULX3S library` → no hits).",
+  "Programmer": "Not stated for ULX3S in this repo (Diamond produces a `.bit`/`.svf`; loading is left to the user — `openFPGALoader -b ulx3s` per CLAUDE.md convention, unverified here)",
+  "Target FPGA(s)": "12F (`apps.ldf` `device=\"LFE5U-12F-8BG381C\"`, all three apps share one project/device)",
+  "Board revision(s)": "v2.x / v3.0.x (`apps.lpf` header: `## ULX3S v2.x.x and v3.0.x`; pin names/sites match the `ulx3s_v20.lpf` convention from CLAUDE.md, e.g. `clk_25mhz` at `G2`, `gpdi_d[0..3]` at `A16/A14/A12/A17`)",
+  "Activity": "Last commit to the whole monorepo `662986b`, 2025-08-17 (`git -C original_sources/hdl4fpga__hdl4fpga log -1 --format=%cs`). First commit 2013-06-05, 11860 commits total (`.claude/memory/history.tsv`, recorded before the clone was made shallow — commit count not independently verifiable from this `--depth 1` clone)"
+ },
+ "blocks": [],
+ "sections": [
+  {
+   "title": "Scope of this page",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "hdl4fpga is a very large portable VHDL library (many boards: ULX3S, ULX4M_LS/LD,\narty, orangecrab, ml50x, …). This page covers only what is ULX3S-relevant:\nthe three `boards/ULX3S/apps/` designs and the reusable cores they pull in\n(`library/scope`, `library/mii`, `library/sdram` + `library/latticesemi/ecp5`,\n`library/usb`, `library/video`). The rest of `library/` (Xilinx/Altera\nback-ends, other boards' apps, CPU/soft-core work) is out of scope."
+    }
+   ]
+  },
+  {
+   "title": "What the gateware does",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "`boards/ULX3S/common/ulx3s.vhd` declares one entity `ulx3s` whose port list is\nthe full ULX3S pin set from `apps.lpf` (clk_25mhz, ftdi_*, leds, buttons, sw,\noled_*, adc_*, sdram_*, gpdi_*, gp/gn, usb_fpga_*, wifi_*, sd_*, audio_*).\nEach app in `boards/ULX3S/apps/` is a separate **architecture** of that same\nentity, selected as the Diamond implementation (`apps.ldf` has one\nimplementation per architecture, default `ser_debug`; `boards/ULX3S/diamond/Makefile`\nhas matching `ser_debug`/`graphics`/`scopeio` targets):"
+    },
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "**`ser_debug`** (`boards/ULX3S/apps/ser_debug.vhd`, architecture `ser_debug`) —\nserial/USB debug console. Drives an 800x600@60Hz DVI/GPDI text display\n(`hdl4fpga.ecp5_videodcm`, 40 MHz pixel clock from 25 MHz) and a bidirectional\nlink on US2 selectable at build time between USB (`usb_device` constant,\n`true`⇒`hdl4fpga.usbdev`, `false`⇒`hdl4fpga.usbhostdvr`+`hdl4fpga.usbphy`) or\nEthernet (`io_link = \"io_ipoe\"`, via `hdl4fpga.ipoepkg`/`library/mii`).",
+      "**`graphics`** (`boards/ULX3S/apps/graphics.vhd`, architecture `graphics`) —\nSDRAM-backed framebuffer/graphics demo: instantiates the generic\n`sdram_ctlr` against the ULX3S's actual SDR SDRAM chip\n(`chip_data => \"MT48LC16M16MA2-7E\"`, `sdram.dcm` 25→133 MHz via\n`hdl4fpga.ecp5_profiles.sdram_dcm`) and drives 800x600@60Hz over\nGPDI/DVI, again with a USB or Ethernet `io_link`.",
+      "**`scopeio`** (`boards/ULX3S/apps/scopeio.vhd`, architecture `scopeio`) —\nthe ScopeIO 8-input digital storage oscilloscope. Bit-bangs the onboard\nMAX1112x SPI ADC directly in this file (`adc_sclk`/`adc_csn`/`adc_mosi`/`adc_miso`,\nlines 751-957), stores samples in the SDR SDRAM (same `MT48LC16M16MA2-7E`\nchip data), and renders the waveform/grid/trigger UI at 1280x720@60Hz\n(64 MHz pixel clock) via `library/scope/scopeio.vhd`. This is the source\nfor the `scope/` prebuilt bitstream catalogued in `emard__ulx3s-bin.md`\n(mouse GUI, 4-channel storage scope claim there — this repo's `scopeio.vhd`\ntop sets `\"inputs:\" & \"8\"`, i.e. 8 channels are wired in the settings string\nthough the ulx3s-bin doc says 4; not reconciled, see Open questions)."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Structure",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`boards/ULX3S/common/ulx3s.vhd` — shared `ulx3s` entity (port list = board pins).",
+      "`boards/ULX3S/apps/{ser_debug,graphics,scopeio}.vhd` — one architecture each.",
+      "`boards/ULX3S/diamond/{apps.ldf,apps.lpf,apps_video.lpf,Makefile}` — Diamond\nproject, pin constraints (v2.x/v3.0.x), and `diamondc` batch build.",
+      "`boards/ULX3S/ghdl/app_graphics.sh` — GHDL analysis-only script for `graphics`.",
+      "`boards/ULX3S/testbenches/` — 8 files: `{ser_debug,graphics,scopeio}.vhd`\ntestbenches with matching `.do` (ModelSim/Aldec) scripts, plus `eth_tb.vhd`\nand `graphics_structure.do`.",
+      "`library/scope/` — ScopeIO core (`scopeio.vhd` + ~20 `scopeio_*` helper units:\ngrid, trigger, storage, capture, downsampler, axis, palette, textbox…).",
+      "`library/mii/` — Ethernet/IP stack (see Reuse notes).",
+      "`library/sdram/` — portable multi-generation SDRAM/DDR controller.",
+      "`library/latticesemi/ecp5/` — ECP5-specific SDRAM PHY + I/O gearbox primitives.",
+      "`library/apps/ecp5_videodcm.vhd`, `ecp5_sdramdcm.vhd` — ECP5 `EHXPLLL`-based\nclock generators for video and SDRAM.",
+      "`library/video/` — DVI/TMDS encoder, VGA/CGA text-mode helpers.",
+      "`library/usb/` — USB 1.1 device (`usbdev.vhd`) and host (`usbhost.vhd`) cores.",
+      "`library/basic/`, `library/hdlc/`, `library/sio/`, `library/uart/` — smaller\nreusable utility packages (not reviewed in depth here).",
+      "`library/micron/{ddr,ddr2,ddr3}/*.v` — Micron's own bus-functional\n**simulation models** for DDR/DDR2/DDR3 chips (verification IP, not an\nhdl4fpga controller; not ULX3S-relevant since ULX3S has SDR SDRAM)."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "How to build",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Not run (per task constraints: no make/build/simulate). As found in\n`boards/ULX3S/diamond/Makefile`:"
+    },
+    {
+     "type": "code",
+     "lang": "",
+     "text": "cd boards/ULX3S/diamond\nmake graphics     # or ser_debug / scopeio"
+    },
+    {
+     "type": "paragraph",
+     "text": "Each target does `echo prj_project open apps.ldf \\; prj_run Export -impl $@ -task Bitgen | diamondc`,\ni.e. it requires Lattice Diamond (`diamondc`) on PATH; `apps.ldf` targets\n`LFE5U-12F-8BG381C` with Synplify synthesis. Whether this currently builds\nclean was not verified (no Diamond available here)."
+    }
+   ]
+  },
+  {
+   "title": "Reuse notes",
+   "sections": [
+    {
+     "title": "Reusable blocks",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "Block",
+        "Path",
+        "Top module",
+        "Language",
+        "Vendor primitives",
+        "License"
+       ],
+       "rows": [
+        {
+         "Block": "ScopeIO oscilloscope UI/storage",
+         "Path": "`library/scope/`",
+         "Top module": "`scopeio` (`library/scope/scopeio.vhd`)",
+         "Language": "VHDL",
+         "Vendor primitives": "None directly; depends on the SDRAM PHY and video PLL below, which do",
+         "License": "MIT"
+        },
+        {
+         "Block": "Ethernet/IP stack (ARP/IP/UDP/DHCP/ICMP)",
+         "Path": "`library/mii/`",
+         "Top module": "`mii_ipoe` (`library/mii/mii_ipoe.vhd`), built from `eth_rx/eth_tx`, `arpd`, `ipv4`, `udp`, `icmpd`, `dhcpcd`",
+         "Language": "VHDL",
+         "Vendor primitives": "None found (portable MII-level logic; RMII pad wiring is board-side)",
+         "License": "MIT"
+        },
+        {
+         "Block": "SDRAM/DDR controller (generation-generic)",
+         "Path": "`library/sdram/`",
+         "Top module": "`sdram_ctlr` (`library/sdram/sdram_ctlr.vhd`)",
+         "Language": "VHDL",
+         "Vendor primitives": "None in the controller itself",
+         "License": "MIT"
+        },
+        {
+         "Block": "ECP5 SDRAM PHY (gearbox/serdes)",
+         "Path": "`library/latticesemi/ecp5/`",
+         "Top module": "`ecp5_sdrphy` → `ecp5_sdrbaphy` + `ecp5_sdrdqphy` → `ecp5_ogbx`/`ecp5_igbx`",
+         "Language": "VHDL",
+         "Vendor primitives": "`oddrx1f`, `fd1s3ax` (ECP5 primitives, via `ecp5u.components`)",
+         "License": "MIT"
+        },
+        {
+         "Block": "ECP5 PLL/clock gen (video, SDRAM)",
+         "Path": "`library/apps/`",
+         "Top module": "`ecp5_videodcm`, `ecp5_sdramdcm`",
+         "Language": "VHDL",
+         "Vendor primitives": "`EHXPLLL`",
+         "License": "MIT"
+        },
+        {
+         "Block": "USB 1.1 device + host",
+         "Path": "`library/usb/`",
+         "Top module": "`usbdev` (device), `usbhost`/`usbhostdvr` (host), `usbphy` (PHY-level)",
+         "Language": "VHDL",
+         "Vendor primitives": "None found",
+         "License": "MIT"
+        },
+        {
+         "Block": "DVI/TMDS encoder",
+         "Path": "`library/video/`",
+         "Top module": "`dvi` (`library/video/dvi.vhd`), uses `tmds_encoder.vhd`",
+         "Language": "VHDL",
+         "Vendor primitives": "None in `dvi.vhd`/`tmds_encoder.vhd` itself; final GPDI serialization goes through `ecp5_ogbx` (see above)",
+         "License": "MIT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Per-block detail",
+     "blocks": [
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "**ScopeIO** (`library/scope/scopeio.vhd`): generics `profile`, `settings`\n(a compact JSON-like config string parsed via `hdl4fpga.hdo`), `sdram_freq`,\n`fifo_size` (default 8*8192), `video_gear`, `red/green/blue_length` (default\n8/8/8). Ports split into an `si_*/so_*` serial I/O link (USB or Ethernet),\n`input_clk`/`input_data` (ADC sample stream), and a full `ctlr_*`/`ctlrphy_*`\nSDRAM controller/PHY interface it drives directly — i.e. ScopeIO expects to\nown the SDRAM controller, not share it. On ULX3S the ADC SPI bit-banging\n(MAX1112x, `adc_sclk/adc_csn/adc_mosi/adc_miso`) lives in the app file\n`boards/ULX3S/apps/scopeio.vhd`, not in `library/scope/`, so reusing ScopeIO\nelsewhere means writing your own ADC driver to feed `input_data`.",
+        "**mii/ethernet stack** (`library/mii/mii_ipoe.vhd`): generics `half_duplex`,\n`default_ipv4a` (32-bit), `my_mac` (48-bit). Ports: `mii_clk` plus a\n`plrx_*`/`pltx_*` payload link (to the app) and `miirx_*`/`miitx_*` (to the\nRMII/MII PHY pins). Confirms the catalogue's \"full ARP/IP/UDP/DHCP stack\"\nclaim: `arpd.vhd`/`arp_rx.vhd`/`arp_tx.vhd` (ARP), `ipv4.vhd`/`ipv4_rx.vhd`/`ipv4_tx.vhd`\n(IP), `udp.vhd`/`udp_rx.vhd`/`udp_tx.vhd` (UDP), `icmpd.vhd`/`icmprply_tx.vhd`/`icmprqst_rx.vhd`\n(ICMP ping), `dhcpcd.vhd`/`dhcp_dscb.vhd`/`dhcp_offer.vhd` (DHCP client). No\nRMII pad-level PHY driver is in this directory — that's board-side (e.g.\nulx3s-misc's `examples/eth/rmii` per `reusable-cores.md`).\nThis is exactly the stack used by the `eth/` prebuilt bitstream in\n`emard__ulx3s-bin.md` (DHCP + ping responder on LAN8720 RMII, GP/GN 9-13).",
+        "**SDRAM controller** (`library/sdram/sdram_ctlr.vhd`): generics `debug`,\n`ctlr_tcp` (clock period, real), `chip_data`/`phy_data` (strings naming\nentries in `sdrampkg.vhd`'s `sdram_db`/`phy_db` tables). It is\n**generation-generic**: `sdrampkg.vhd` lists chip timing for `sdr` (e.g.\n`MT48LC16M16MA2-7E` — the chip ULX3S actually has), `ddr`, `ddr2` and `ddr3`\nparts (e.g. Micron `MT41K128M16-125`). ULX3S's two ULX3S apps\n(`graphics`, `scopeio`) both instantiate it with `chip_data =>\n\"MT48LC16M16MA2-7E\"` (SDR, 2 banks/13 row/9 col/16-bit), i.e. **only the\nSDR path is exercised on ULX3S** — the DDR2/DDR3 entries in the same table\nare for other boards/chips and do not apply here (ULX3S has SDR SDRAM only,\nper CLAUDE.md). The vendor-specific part is the PHY layer\n(`library/latticesemi/ecp5/ecp5_sdrphy.vhd` and friends), which uses ECP5\n`oddrx1f`/`fd1s3ax` I/O primitives through small `ecp5_igbx`/`ecp5_ogbx`\ngearbox wrappers — this PHY is required to actually connect `sdram_ctlr` to\nECP5 pins and is not portable to other vendors as-is.",
+        "**USB device/host** (`library/usb/usbdev.vhd`, `usbhost.vhd`): used on\nULX3S by `ser_debug.vhd` on US2 (`usb_fpga_{dp,dn,bd_dp,bd_dn}`), switchable\ndevice/host via the `usb_device` constant. `library/usb/README.rst` notes\n36 MHz oversampling clock (tested 35.9-36.36 MHz). No ECP5-specific\nprimitives found in `usbdev.vhd`/`usbhost.vhd`/`usbphy*.vhd` — this core\nlooks portable.",
+        "**DVI/TMDS** (`library/video/dvi.vhd`): generic `gear` (default 10, ULX3S\napps use 2), ports `clk`, `rgb` (3×8), `hsync`/`vsync`/`blank`, `cclk`, and\nfour serialized `gear`-wide output channels `chn0/chn1/chn2/chnc`. Portable\nby itself; on ULX3S the final serialization to `gpdi_d[0..3]` again goes\nthrough the ECP5 `ecp5_ogbx` gearbox (`oddrx1f`), so dropping `dvi.vhd` into\na non-ECP5 board needs a different output stage."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Clock/reset assumptions and drop-in notes",
+     "blocks": [
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "All three ULX3S apps assume a single 25 MHz input (`clk_25mhz`, `apps.lpf`\nsite `G2`) and derive everything else (40/64 MHz pixel clocks, 133 MHz\nSDRAM clock, 36 MHz USB oversampling) via `EHXPLLL`-based `ecp5_videodcm`/\n`ecp5_sdramdcm` — this matches the ULX3S board's actual 25 MHz oscillator\n(CLAUDE.md). Reset is informal: `ser_debug.vhd` uses the `right` joystick\nbutton (`alias sys_rst is right`) as reset; `graphics.vhd`/`scopeio.vhd`\nwere not checked for an explicit reset alias (grep found none) and appear\nto rely on PLL lock signals instead.",
+        "Dependencies: every block above pulls in `library/basic/hdo.vhd` and\n`library/basic/base.vhd` (the `hdo` \"hierarchical data object\" string-based\nconfig-parsing package used pervasively for generics like `settings` and\n`chip_data` — this is unusual and adds real complexity to reusing any\nsingle block standalone; expect to need `hdo.vhd`/`base.vhd` plus whichever\n`*pkg.vhd` package (`sdrampkg`, `videopkg`, `scopeiopkg`, `ecp5_profiles`)\nthe block references).",
+        "To drop a block into a new ULX3S design targeting `ulx3s_v20.lpf`\nconventions: pin names in `boards/ULX3S/diamond/apps.lpf` already use the\nstandard ULX3S names (`clk_25mhz`, `gpdi_d[]`, `sdram_*`, `gp[]/gn[]`,\n`adc_*`), so the LPF constraints themselves are directly reusable; the main\nporting cost is pulling in the `hdo`/package dependency chain and (for\nSDRAM/DVI) the ECP5-specific PHY/gearbox files."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Open questions",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Programmer for ULX3S bitstreams from this repo is unstated (unverified:\npresumably standard `openFPGALoader -b ulx3s` per CLAUDE.md, not confirmed\nin-repo).",
+      "ScopeIO's `\"inputs:\" & \"8\"` setting in `boards/ULX3S/apps/scopeio.vhd`\n(8 analog inputs configured) vs. the \"4-channel storage oscilloscope\"\ndescription in `docs/projects/emard__ulx3s-bin.md` (from the `scope/`\nprebuilt bitstream) is not reconciled — could be a different commit/config,\nor the 4 channels described there could be a UI/display subset of the 8\nwired. Needs the `ulx3s-bin` `scope/` build's actual source commit to compare.",
+      "Whether `boards/ULX3S/diamond/apps.ldf` currently builds clean under a\npresent-day Diamond install was not tested (no build performed, per task\nconstraints).",
+      "`library/apps/ecp3_sdramdcm.vhd`, `xc3s_sdramdcm.vhd`, `xc5v_sdramdcm.vhd`,\n`xc7a_sdramdcm.vhd` show the same SDRAM-DCM pattern exists for other vendors\n(Xilinx Spartan3/Virtex5/Artix7, Lattice ECP3) — not reviewed, out of scope\nfor ULX3S but useful to know when porting.",
+      "Catalogue `reusable_blocks` cell says `library/sdram, ecp5 phys, video/tmds,\nusb/ dev+host, mii/ full eth stack, scope/` — all verified present and\ncorrectly named; catalogue `license` cell (\"mixed: MIT (LICENSE) vs\nGPL-3.0-or-later headers\") should be corrected per the License field above:\nthe mix is MIT-source vs. GPL-headed **Makefiles**, not mixed HDL."
+     ]
+    }
+   ]
+  }
+ ]
+}

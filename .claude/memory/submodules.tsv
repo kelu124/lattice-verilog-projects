@@ -23,6 +23,8 @@ orangecrab-fpga__orangecrab-examples	verilog/usb_acm_device/blocks/usbserial	htt
 osmocom__osmo-e1-hardware	gateware/cores/no2e1	https://github.com/no2fpga/no2e1.git	dac3a8b7a5d8736d867edc48a65a41965d8b78d1	no2e1 E1 (2.048 Mb/s telecom) line interface core (Verilog), the core of the design
 remyciterin__3driscv	UberDDR3	git@github.com:AngeloJacobo/UberDDR3.git	a1258e2eedefa6fba1a425becaded83928c78709	DDR3 controller (Verilog, UberDDR3)
 robinsonb5__eightthirtytwodemos	EightThirtyTwo	https://github.com/robinsonb5/EightThirtyTwo.git	c42d06fb622cf987d72c86eea4f2376609037875	EightThirtyTwo CPU core, the core of the demos
+rschlaikjer__fpga-3-softcores	vendor/verilog-arbiter	https://github.com/bmartini/verilog-arbiter.git	782bf8f34244cc6a3f279f2dbac8b5bf3f044132	round-robin arbiter RTL used by the Wishbone interconnect
+rschlaikjer__fpga-3-softcores	vendor/wb_intercon	https://github.com/olofk/wb_intercon.git	3c5d2fc7e6e04f75b4a48cca941d543e7c160e2d	Wishbone interconnect generator/RTL the SoCs are built on
 smunaut__ice40-playground	cores/no2hub75	https://github.com/no2fpga/no2hub75.git	3f384d83e64cf9c766ee3238d294317f6d2606c7	no2hub75 HUB75 LED-panel driver (Verilog)
 smunaut__ice40-playground	cores/no2hyperbus	https://github.com/no2fpga/no2hyperbus.git	32bb71827ab1f1126746c803b6dc0070f01e3133	no2hyperbus HyperRAM controller (Verilog)
 smunaut__ice40-playground	cores/no2ice40	https://github.com/no2fpga/no2ice40.git	97413633237ef5ad899f04e0b4b22679c5f6f6bb	no2ice40 iCE40 IO/PLL/SPRAM wrappers (Verilog)

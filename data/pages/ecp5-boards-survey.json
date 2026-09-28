@@ -1,0 +1,1431 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "survey",
+ "slug": "ecp5-boards-survey",
+ "title": "ECP5 (non-ULX3S) gateware survey on GitHub",
+ "description": "Gateware for other ECP5 boards (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5…): 114 repos, 24 recommended.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Survey date: 2026-09-27. Research only: nothing cloned. Scope: Lattice ECP5 boards other than\nULX3S / ULX4M / ULX5M (those are in `docs/github-survey.md`); iCE40, Gowin and Xilinx-only repos excluded.\n702 unique repos came back from 53 searches. After removing forks, empty repos, off-topic matches\nand ULX*/iCE40/Gowin/Xilinx hits, **114 repos** are listed below."
+  },
+  {
+   "type": "paragraph",
+   "text": "**Evidence column**"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "`verified (...)`: the full recursive file list was read at the shown commit. It contains a\n`.lpf` constraint file (or the `.pcf`-named LPF used by OrangeCrab/ButterStick) and HDL sources.\nWhen a Makefile was found, its build commands were read for `yosys` / `nextpnr-ecp5` / `ecppack`.",
+    "`partial`: Python/Amaranth/LiteX sources were seen but no `.lpf` file. Pins come from a framework\nboard file, so this is normal for LiteX and Amaranth.",
+    "`unverified`: name or README only, or the file list shows no constraints or HDL.",
+    "Toolchain `open` means the Makefile, build.sh or README calls yosys + nextpnr-ecp5 + ecppack.\n`(README flow)` means the README states it but no Makefile was found."
+   ]
+  },
+  {
+   "type": "paragraph",
+   "text": "**Framework board files (noted once, not counted as projects)**"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "`litex-hub/litex-boards` (BSD-2-Clause, pushed 2026-09-24), platforms: `gsd_orangecrab`, `gsd_butterstick`,\n`hackaday_hadbadge`, `muselab_icesugar_pro`, `colorlight_5a_75b`, `colorlight_5a_75e`, `colorlight_i5`,\n`colorlight_i5a_907`, `colorlight_i9plus`, `lambdaconcept_ecpix5`, `logicbone`, `lattice_ecp5_evn`,\n`lattice_ecp5_vip`, `lattice_versa_ecp5`, `trellisboard`, `icepi_zero` (verified by file list).",
+    "`amaranth-lang/amaranth-boards`: `orangecrab_r0_1`, `orangecrab_r0_2`, `butterstick`, `supercon19badge`,\n`icesugar_pro`, `colorlight_5a75b_r7_0`, `ecpix5`, `logicbone`, `versa_ecp5`, `versa_ecp5_5g`,\n`ecp5_5g_evn`, `icepi_zero` (verified by file list).",
+    "`greatscottgadgets/luna-boards` (LUNA/Cynthion board definitions, Amaranth).",
+    "Hardware-only repos (no gateware), for reference: orangecrab-fpga/orangecrab-hardware (546 stars),\nbutterstick-fpga/butterstick-hardware, greatscottgadgets/cynthion-hardware, oskirby/logicbone,\ntinyfpga/TinyFPGA-EX, Spritetm/hadbadge2019_pcb, joshajohnson/ecp5-mini, pergola-fpga/pergola.",
+    "Bootloaders: gregdavill/foboot is a **fork** (OrangeCrab DFU bootloader branch, LiteX), so it is not listed."
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "title": "OrangeCrab (gregdavill / orangecrab-fpga, ECP5 25F/85F)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[orangecrab-fpga/orangecrab-examples](https://github.com/orangecrab-fpga/orangecrab-examples)",
+       "language/HDL": "Verilog, C",
+       "stars": "111",
+       "last push": "2024-05-07",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "Official examples: Verilog blink/PWM/USB-ACM + LiteX/RISC-V C examples (constraints as orangecrab_r0.x .pcf)",
+       "evidence": "verified (3 lpf/pcf, 10 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @eefbafa872"
+      },
+      {
+       "repo": "[ultraembedded/orangecrab](https://github.com/ultraembedded/orangecrab)",
+       "language/HDL": "Verilog",
+       "stars": "9",
+       "last push": "2020-08-21",
+       "license": "Apache-2.0",
+       "toolchain": "open (lpf+Verilog; no Makefile found)",
+       "what the gateware does": "DDR3 test: ultraembedded DDR3 AXI controller + DFI PHY for ECP5, ram tester",
+       "evidence": "verified (1 lpf/pcf, 12 v/sv) @685d601556"
+      },
+      {
+       "repo": "[emeb/orangecrab_simple_6502](https://github.com/emeb/orangecrab_simple_6502)",
+       "language/HDL": "Verilog",
+       "stars": "7",
+       "last push": "2020-07-17",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "Minimal 6502 system (CPU, RAM/ROM, ACIA) on OrangeCrab",
+       "evidence": "verified (1 lpf/pcf, 6 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @4abeb827a6"
+      },
+      {
+       "repo": "[emeb/orangecrab_adc](https://github.com/emeb/orangecrab_adc)",
+       "language/HDL": "Verilog, Python",
+       "stars": "7",
+       "last push": "2020-08-18",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "ADC/audio FeatherWing gateware for SDR experiments (verilog/trellis flow)",
+       "evidence": "verified (1 lpf/pcf, 16 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @daa94e19ab"
+      },
+      {
+       "repo": "[fdarling/orangecrab-usb-cdc-demo](https://github.com/fdarling/orangecrab-usb-cdc-demo)",
+       "language/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2022-10-03",
+       "license": "Apache-2.0",
+       "toolchain": "open",
+       "what the gateware does": "USB CDC-ACM virtual COM port open core on OrangeCrab",
+       "evidence": "verified (1 lpf/pcf, 3 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @36a88f010f"
+      },
+      {
+       "repo": "[mangelajo/orangecrab-usb](https://github.com/mangelajo/orangecrab-usb)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2024-02-25",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "USB device examples based on FPGA-USB-Device core",
+       "evidence": "verified (1 lpf/pcf, 4 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @c4a8293fcd"
+      },
+      {
+       "repo": "[tallenintegsys/hdmi-orangecrab](https://github.com/tallenintegsys/hdmi-orangecrab)",
+       "language/HDL": "SystemVerilog",
+       "stars": "1",
+       "last push": "2024-07-07",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Port of Sameer Puri HDMI IP (video) to OrangeCrab 85F",
+       "evidence": "verified (1 lpf/pcf, 14 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @59436568a4"
+      },
+      {
+       "repo": "[tallenintegsys/usbTim](https://github.com/tallenintegsys/usbTim)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2023-07-01",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Base USB peripheral implementation (OrangeCrab pcf)",
+       "evidence": "verified (1 lpf/pcf, 14 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @bfee3fcacd"
+      },
+      {
+       "repo": "[tommythorn/OrangeCrab_Hello](https://github.com/tommythorn/OrangeCrab_Hello)",
+       "language/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2020-03-19",
+       "license": "Unlicense",
+       "toolchain": "open",
+       "what the gateware does": "Hello world: LED + serial IO",
+       "evidence": "verified (1 lpf/pcf, 3 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @ffb42ed5a9"
+      },
+      {
+       "repo": "[samblenny/ocfpga](https://github.com/samblenny/ocfpga)",
+       "language/HDL": "SystemVerilog/Verilog",
+       "stars": "2",
+       "last push": "2024-05-03",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Experiments series (blink, UART, picorv32, low-power)",
+       "evidence": "verified (2 lpf/pcf, 8 v/sv, Makefile: ecppack/nextpnr-ecp5/py/yosys) @376719c98a"
+      },
+      {
+       "repo": "[FormerLab/ck37-core](https://github.com/FormerLab/ck37-core)",
+       "language/HDL": "Verilog",
+       "stars": "12",
+       "last push": "2026-09-10",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "Soft-core replica of the Saab CK37 airborne computer on OrangeCrab",
+       "evidence": "verified (2 lpf/pcf, 9 v/sv, Makefile: ecppack/nextpnr-ecp5/py/yosys) @6579d0da8e"
+      },
+      {
+       "repo": "[Moonnight1027/Eyeriss-ECP5](https://github.com/Moonnight1027/Eyeriss-ECP5)",
+       "language/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-09-19",
+       "license": "MIT",
+       "toolchain": "open (build.sh)",
+       "what the gateware does": "Eyeriss row-stationary CNN accelerator on OrangeCrab",
+       "evidence": "verified (1 lpf/pcf, 37 v/sv) @890465b570"
+      },
+      {
+       "repo": "[fdarling/orangecrab-bad-reset-timer](https://github.com/fdarling/orangecrab-bad-reset-timer)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-03-20",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Small reset-timer utility design",
+       "evidence": "verified (1 lpf/pcf, 4 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @91cf09fce4"
+      },
+      {
+       "repo": "[onsdagens/orangecrab-ecp5-dram](https://github.com/onsdagens/orangecrab-ecp5-dram)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-05-20",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "DRAM template/experiment (lpf + 1 Verilog file)",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @f5516c7aa2"
+      },
+      {
+       "repo": "[onsdagens/orangecrab-ecp5-example](https://github.com/onsdagens/orangecrab-ecp5-example)",
+       "language/HDL": "n/a",
+       "stars": "0",
+       "last push": "2025-04-22",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Template project (lpf + Makefile, HDL not in .v)",
+       "evidence": "verified-constraints (1 lpf, no HDL files) @1be111df3d"
+      },
+      {
+       "repo": "[LuFore/OrangeCrab-VHDL-Blinky](https://github.com/LuFore/OrangeCrab-VHDL-Blinky)",
+       "language/HDL": "VHDL",
+       "stars": "1",
+       "last push": "2025-05-10",
+       "license": "CERN-OHL-S-2.0",
+       "toolchain": "open (ghdl-yosys)",
+       "what the gateware does": "VHDL blinky",
+       "evidence": "verified (1 lpf/pcf, 0 v/sv, 1 vhd, Makefile: ecppack/nextpnr-ecp5/yosys) @4c3bd577cc"
+      },
+      {
+       "repo": "[orangecrab-fpga/production-test-sw](https://github.com/orangecrab-fpga/production-test-sw)",
+       "language/HDL": "Python",
+       "stars": "10",
+       "last push": "2024-02-28",
+       "license": "MIT",
+       "toolchain": "litex",
+       "what the gateware does": "Production test gateware/firmware (ATE)",
+       "evidence": "partial (6 .py, 0 HDL, no lpf) @70eaca4e4a"
+      },
+      {
+       "repo": "[cr1901/orangecrab-feather](https://github.com/cr1901/orangecrab-feather)",
+       "language/HDL": "Python",
+       "stars": "0",
+       "last push": "2022-03-08",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "LiteX SoC using the Feather pins",
+       "evidence": "partial (6 .py, 0 HDL, no lpf) @9784b14106"
+      },
+      {
+       "repo": "[ASukhanov/OrangeCrab_gateware](https://github.com/ASukhanov/OrangeCrab_gateware)",
+       "language/HDL": "Python",
+       "stars": "0",
+       "last push": "2022-11-28",
+       "license": "MIT",
+       "toolchain": "litex",
+       "what the gateware does": "Unofficial LiteX gateware projects",
+       "evidence": "partial (4 .py, 0 HDL, no lpf) @7dd994d840"
+      },
+      {
+       "repo": "[azzeloof/orangecrab-litex-blink](https://github.com/azzeloof/orangecrab-litex-blink)",
+       "language/HDL": "Python",
+       "stars": "0",
+       "last push": "2020-10-25",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "LiteX blink",
+       "evidence": "partial (7 .py, 0 HDL, no lpf) @ed53ee8fb4"
+      },
+      {
+       "repo": "[TiltMeSenpai/orangecrab_sketches](https://github.com/TiltMeSenpai/orangecrab_sketches)",
+       "language/HDL": "Python",
+       "stars": "0",
+       "last push": "2020-08-03",
+       "license": "none",
+       "toolchain": "amaranth/litex (py only)",
+       "what the gateware does": "Sketches in Python HDL",
+       "evidence": "partial (12 .py, 0 HDL, no lpf) @cc621f7ff4"
+      },
+      {
+       "repo": "[google/CFU-Playground](https://github.com/google/CFU-Playground)",
+       "language/HDL": "Verilog, Python",
+       "stars": "568",
+       "last push": "2026-02-26",
+       "license": "Apache-2.0",
+       "toolchain": "litex",
+       "what the gateware does": "ML custom-function-unit framework; OrangeCrab is one supported target (many course forks exist, ignored)",
+       "evidence": "unverified"
+      },
+      {
+       "repo": "[antonblanchard/microwatt](https://github.com/antonblanchard/microwatt)",
+       "language/HDL": "VHDL",
+       "stars": "725",
+       "last push": "2026-08-12",
+       "license": "NOASSERTION",
+       "toolchain": "open (ghdl-yosys)",
+       "what the gateware does": "OpenPOWER VHDL softcore; OrangeCrab among supported boards",
+       "evidence": "unverified"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "LUNA / Cynthion (Great Scott Gadgets, ECP5 LFE5U-12F)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[greatscottgadgets/luna](https://github.com/greatscottgadgets/luna)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "1140",
+       "last push": "2026-08-19",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "USB 2.0/3.0 device/host/analyzer gateware framework; includes one plain-Verilog blinky example with .lpf",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @82a8f73329"
+      },
+      {
+       "repo": "[greatscottgadgets/cynthion](https://github.com/greatscottgadgets/cynthion)",
+       "language/HDL": "Python (Amaranth), Rust",
+       "stars": "199",
+       "last push": "2026-05-22",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "Cynthion gateware (analyzer, facedancer, SoC) + host tools",
+       "evidence": "partial (75 .py, 0 HDL, no lpf) @dd2340e20d"
+      },
+      {
+       "repo": "[greatscottgadgets/luna-soc](https://github.com/greatscottgadgets/luna-soc)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "31",
+       "last push": "2025-10-31",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "Amaranth library for USB-capable SoC designs (VexRiscv Verilog bundled)",
+       "evidence": "partial (36 .py, 5 HDL, no lpf) @7fa1cc16dd"
+      },
+      {
+       "repo": "[antoinevg/cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "4",
+       "last push": "2025-01-13",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "Cynthion gateware tutorials",
+       "evidence": "partial (54 .py, 5 HDL, no lpf) @8b711adb4c"
+      },
+      {
+       "repo": "[gregdavill/luna-usb-serial-acm](https://github.com/gregdavill/luna-usb-serial-acm)",
+       "language/HDL": "Verilog (generated)",
+       "stars": "3",
+       "last push": "2026-06-04",
+       "license": "BSD-2-Clause",
+       "toolchain": "amaranth-generated",
+       "what the gateware does": "LUNA USB serial ACM exported as a standalone Verilog module (reusable in plain-Verilog designs)",
+       "evidence": "partial (3 .py, 1 HDL, no lpf) @ef1d7dcb0d"
+      },
+      {
+       "repo": "[awtoau/cynthion-workspace](https://github.com/awtoau/cynthion-workspace)",
+       "language/HDL": "Verilog, Python",
+       "stars": "0",
+       "last push": "2026-08-14",
+       "license": "none",
+       "toolchain": "mixed",
+       "what the gateware does": "Workspace with submodules + Verilog CPU-probe gateware with .lpf for Cynthion",
+       "evidence": "verified (5 lpf/pcf, 49 v/sv) @6e46cd267c"
+      },
+      {
+       "repo": "[KarpelesLab/usbmagic-gateware](https://github.com/KarpelesLab/usbmagic-gateware)",
+       "language/HDL": "Python",
+       "stars": "0",
+       "last push": "2026-06-25",
+       "license": "NOASSERTION",
+       "toolchain": "amaranth",
+       "what the gateware does": "USB 2.0 host controller gateware for Cynthion ECP5 (early phase)",
+       "evidence": "partial (4 .py, 0 HDL, no lpf) @338ab88d73"
+      },
+      {
+       "repo": "[nchie/cynthionwhisperer](https://github.com/nchie/cynthionwhisperer)",
+       "language/HDL": "Python",
+       "stars": "0",
+       "last push": "2026-03-27",
+       "license": "none",
+       "toolchain": "amaranth",
+       "what the gateware does": "Modified analyzer gateware exposing a Python API",
+       "evidence": "partial (26 .py, 0 HDL, no lpf) @e77b99598d"
+      },
+      {
+       "repo": "[greatscottgadgets/cynthion-analyzer](https://github.com/greatscottgadgets/cynthion-analyzer)",
+       "language/HDL": "Makefile",
+       "stars": "6",
+       "last push": "2025-05-13",
+       "license": "none",
+       "toolchain": "amaranth",
+       "what the gateware does": "Integration repo for the analyzer mode",
+       "evidence": "partial (1 .py, 0 HDL, no lpf) @2924a83070"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "iCESugar-Pro (Muse Lab, ECP5 LFE5U-25F SODIMM module)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[wuxx/icesugar-pro](https://github.com/wuxx/icesugar-pro)",
+       "language/HDL": "Verilog",
+       "stars": "217",
+       "last push": "2025-09-16",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Vendor repo: blink, HDMI test pattern, SDRAM etc. examples + docs",
+       "evidence": "verified (5 lpf/pcf, 13 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @087e48d9e0"
+      },
+      {
+       "repo": "[yodalee/icesugar-playground](https://github.com/yodalee/icesugar-playground)",
+       "language/HDL": "SystemVerilog/Verilog",
+       "stars": "7",
+       "last push": "2026-09-14",
+       "license": "NOASSERTION",
+       "toolchain": "open",
+       "what the gateware does": "Personal projects: blink, UART, HDMI, ... (7 Makefiles)",
+       "evidence": "verified (5 lpf/pcf, 32 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @9d1416b6a2"
+      },
+      {
+       "repo": "[mebner86/icesugar-pro_sound2fft](https://github.com/mebner86/icesugar-pro_sound2fft)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-04-03",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "I2S mic -> FFT spectrum analyzer on HDMI, step-by-step project series (17 .lpf)",
+       "evidence": "verified (17 lpf/pcf, 56 v/sv, Makefile: py) @9b513e33c6"
+      },
+      {
+       "repo": "[mebner86/icesugar-pro_diy-anc](https://github.com/mebner86/icesugar-pro_diy-anc)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-02-24",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "Active noise cancellation with PDM mics/amps (early: blinky)",
+       "evidence": "verified (1 lpf/pcf, 3 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @f30a0d27ff"
+      },
+      {
+       "repo": "[UCR-CS122A/icesugar-pro-framebuffer](https://github.com/UCR-CS122A/icesugar-pro-framebuffer)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-05-27",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "SDRAM-backed framebuffer with test pattern (course repo; Joashy7/icesugar-pro-framebuffer_device is a derivative)",
+       "evidence": "verified (1 lpf/pcf, 8 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @f1dd998219"
+      },
+      {
+       "repo": "[robinsonb5/IceSugar-Pro_Tests](https://github.com/robinsonb5/IceSugar-Pro_Tests)",
+       "language/HDL": "VHDL",
+       "stars": "6",
+       "last push": "2022-05-31",
+       "license": "GPL-3.0",
+       "toolchain": "open (ghdl-yosys)",
+       "what the gateware does": "Test/demo projects exploring Yosys/Trellis",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv, 9 vhd, Makefile: ecppack/nextpnr-ecp5/yosys) @3518d8d29b"
+      },
+      {
+       "repo": "[robinsonb5/Minimig_Lattice](https://github.com/robinsonb5/Minimig_Lattice)",
+       "language/HDL": "Verilog, VHDL",
+       "stars": "4",
+       "last push": "2026-07-18",
+       "license": "GPL-3.0",
+       "toolchain": "diamond + open (per README Diamond)",
+       "what the gateware does": "MiST Minimig (Amiga) core ported to iCESugar-Pro and FleaFPGA Ohm",
+       "evidence": "verified (2 lpf/pcf, 207 v/sv, 74 vhd) @c1e7280f12"
+      },
+      {
+       "repo": "[jmio/ECP5_Brieysoc](https://github.com/jmio/ECP5_Brieysoc)",
+       "language/HDL": "Verilog (generated)",
+       "stars": "9",
+       "last push": "2022-03-26",
+       "license": "none",
+       "toolchain": "open (SpinalHDL-generated)",
+       "what the gateware does": "SpinalHDL Briey SoC (VexRiscv) generated Verilog on iCESugar-Pro",
+       "evidence": "verified (1 lpf/pcf, 2 v/sv, Makefile: py) @c4ac18d810"
+      },
+      {
+       "repo": "[fabbrimichele/rt68ice](https://github.com/fabbrimichele/rt68ice)",
+       "language/HDL": "VHDL, Verilog",
+       "stars": "0",
+       "last push": "2026-09-27",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "RT68 (68000 retro computer) iCESugar-Pro version",
+       "evidence": "verified (1 lpf/pcf, 7 v/sv, 6 vhd, Makefile: ecppack/nextpnr-ecp5/py/yosys) @da6b496018"
+      },
+      {
+       "repo": "[Raptor-X102-embd/FPGA-led-buttons-test](https://github.com/Raptor-X102-embd/FPGA-led-buttons-test)",
+       "language/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2026-08-24",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "First LED/button test",
+       "evidence": "verified (1 lpf/pcf, 6 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @1344b89eb3"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Hackaday Supercon 2019 badge (ECP5 LFE5U-45F)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[Spritetm/hadbadge2019_fpgasoc](https://github.com/Spritetm/hadbadge2019_fpgasoc)",
+       "language/HDL": "Verilog, C",
+       "stars": "167",
+       "last push": "2023-11-30",
+       "license": "NOASSERTION",
+       "toolchain": "open",
+       "what the gateware does": "Official badge SoC: dual PicoRV32, video/LCD, audio synth, PSRAM, USB; apps (27 Makefiles)",
+       "evidence": "verified (6 lpf/pcf, 95 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @6e706d52ec"
+      },
+      {
+       "repo": "[hexagon5un/hackaday_supercon_2019_logic_noise_FPGA_workshop](https://github.com/hexagon5un/hackaday_supercon_2019_logic_noise_FPGA_workshop)",
+       "language/HDL": "Verilog",
+       "stars": "29",
+       "last push": "2019-11-20",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Logic Noise audio synthesis workshop (oscillators, filters, DAC)",
+       "evidence": "verified (3 lpf/pcf, 22 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @1297ac5f31"
+      },
+      {
+       "repo": "[esden/hadbadge2019_workshops](https://github.com/esden/hadbadge2019_workshops)",
+       "language/HDL": "Verilog, C",
+       "stars": "49",
+       "last push": "2019-12-07",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Workshop materials incl. advanced SoC exercise",
+       "evidence": "verified (1 lpf/pcf, 2 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @b3abb63e56"
+      },
+      {
+       "repo": "[esden/hadbadge2019_fpga](https://github.com/esden/hadbadge2019_fpga)",
+       "language/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2019-11-24",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Small HDL examples: RGB LED, 7-seg PMOD",
+       "evidence": "verified (2 lpf/pcf, 2 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @646b8838df"
+      },
+      {
+       "repo": "[gregdavill/linux-on-litex-hadbadge](https://github.com/gregdavill/linux-on-litex-hadbadge)",
+       "language/HDL": "n/a",
+       "stars": "7",
+       "last push": "2020-03-24",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "Prebuilt linux-on-litex images (binaries only)",
+       "evidence": "unverified (6 files, no lpf/HDL) @259e20bc98"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Colorlight 5A-75B / 5A-75E / i5 / i9 (ECP5 25F/45F)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[wuxx/Colorlight-FPGA-Projects](https://github.com/wuxx/Colorlight-FPGA-Projects)",
+       "language/HDL": "Verilog",
+       "stars": "366",
+       "last push": "2026-09-15",
+       "license": "Apache-2.0",
+       "toolchain": "open",
+       "what the gateware does": "Vendor-style examples for 5A-75B v7.0, i5, i9, i9plus (blink, UART, ...) + docs",
+       "evidence": "verified (13 lpf/pcf, 34 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @5042201f6a"
+      },
+      {
+       "repo": "[kholia/Colorlight-5A-75B](https://github.com/kholia/Colorlight-5A-75B)",
+       "language/HDL": "Verilog",
+       "stars": "58",
+       "last push": "2026-02-26",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Notes + projects: blink, DDS/SSB radio, Docker build flow",
+       "evidence": "verified (6 lpf/pcf, 18 v/sv, Makefile: ecppack/nextpnr-ecp5/py/yosys) @9d4433be7c"
+      },
+      {
+       "repo": "[sam210723/fpga](https://github.com/sam210723/fpga)",
+       "language/HDL": "Verilog, VHDL",
+       "stars": "48",
+       "last push": "2024-05-13",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "Multi-board collection; Colorlight 5A-75B projects (also iCE40 boards)",
+       "evidence": "verified (12 lpf/pcf, 75 v/sv, 8 vhd, Makefile: nextpnr-ecp5/yosys) @b157047ddc"
+      },
+      {
+       "repo": "[Martoni/MartoniColorlight](https://github.com/Martoni/MartoniColorlight)",
+       "language/HDL": "Verilog",
+       "stars": "8",
+       "last push": "2020-08-21",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "5A-75B projects: blink, servo, pads (7 designs)",
+       "evidence": "verified (7 lpf/pcf, 13 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @1461fa3823"
+      },
+      {
+       "repo": "[lucysrausch/colorlight-led-cube](https://github.com/lucysrausch/colorlight-led-cube)",
+       "language/HDL": "Verilog",
+       "stars": "112",
+       "last push": "2023-01-11",
+       "license": "GPL-3.0",
+       "toolchain": "open + liteeth",
+       "what the gateware does": "64x64 LED cube driver (HUB75) over Ethernet with LiteEth core",
+       "evidence": "verified (2 lpf/pcf, 6 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @ebac05e1fa"
+      },
+      {
+       "repo": "[polprog/my8051](https://github.com/polprog/my8051)",
+       "language/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2022-09-27",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "8051 CPU implementation on 5A-75B",
+       "evidence": "verified (1 lpf/pcf, 9 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @8e0b71ae6e"
+      },
+      {
+       "repo": "[polprog/colorlight_hello](https://github.com/polprog/colorlight_hello)",
+       "language/HDL": "Verilog",
+       "stars": "8",
+       "last push": "2023-03-25",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Hello-world blink for 5A-75B",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @eb2ef36bc7"
+      },
+      {
+       "repo": "[racerxdl/colorlight-picorv32](https://github.com/racerxdl/colorlight-picorv32)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2021-02-28",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "PicoRV32 SoC example for Colorlight i5 (+HUB75)",
+       "evidence": "verified (1 lpf/pcf, 3 v/sv, Makefile: ecppack/nextpnr-ecp5/py/yosys) @73daf2842c"
+      },
+      {
+       "repo": "[DatanoiseTV/colorlight-i9-aes67](https://github.com/DatanoiseTV/colorlight-i9-aes67)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-04-06",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "Hardware-offloaded AES67 audio-over-IP + management softcore (i9)",
+       "evidence": "verified (1 lpf/pcf, 37 v/sv, Makefile: ecppack/nextpnr-ecp5/py/yosys) @71420b772d"
+      },
+      {
+       "repo": "[dvcirilo/colorlight-i9-examples](https://github.com/dvcirilo/colorlight-i9-examples)",
+       "language/HDL": "Verilog",
+       "stars": "4",
+       "last push": "2025-11-20",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "i9 examples: blink, matrix keyboard, pinout identifier, ...",
+       "evidence": "verified (6 lpf/pcf, 31 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @73179526f1"
+      },
+      {
+       "repo": "[nickspiker/colorlight-5a-75b](https://github.com/nickspiker/colorlight-5a-75b)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-06-19",
+       "license": "none",
+       "toolchain": "open (no Makefile; README flow)",
+       "what the gateware does": "5A-75B v8 drivers/tools, OLED framebuffer test",
+       "evidence": "verified (5 lpf/pcf, 22 v/sv) @79e67b64f6"
+      },
+      {
+       "repo": "[nickspiker/colorlight-ecp5-tools](https://github.com/nickspiker/colorlight-ecp5-tools)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-03-22",
+       "license": "none",
+       "toolchain": "open (no Makefile; README flow)",
+       "what the gateware does": "RTL tools/demos incl. pin scan (sibling of the above)",
+       "evidence": "verified (3 lpf/pcf, 18 v/sv) @b27de91f40"
+      },
+      {
+       "repo": "[kittennbfive/5A-75B-tools](https://github.com/kittennbfive/5A-75B-tools)",
+       "language/HDL": "Verilog",
+       "stars": "23",
+       "last push": "2023-10-20",
+       "license": "AGPL-3.0",
+       "toolchain": "open (README flow)",
+       "what the gateware does": "Tools/notes for 5A-75B v7.0: hello world, inputs, SDRAM",
+       "evidence": "verified (3 lpf/pcf, 2 v/sv) @e544577255"
+      },
+      {
+       "repo": "[tvlad1234/violet](https://github.com/tvlad1234/violet)",
+       "language/HDL": "Verilog",
+       "stars": "6",
+       "last push": "2025-02-22",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Virtual I/O for FPGAs (host-controlled I/O), Colorlight example",
+       "evidence": "verified (1 lpf/pcf, 5 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @17bbe1675c"
+      },
+      {
+       "repo": "[Keksgesicht/Colorlight-i5-FPGA-Projects](https://github.com/Keksgesicht/Colorlight-i5-FPGA-Projects)",
+       "language/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2022-04-17",
+       "license": "GPL-3.0",
+       "toolchain": "open",
+       "what the gateware does": "i5 projects incl. HDMI Tetris",
+       "evidence": "verified (1 lpf/pcf, 7 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @ab146869e3"
+      },
+      {
+       "repo": "[Norman-w/fpga-ecp5-sine-wave](https://github.com/Norman-w/fpga-ecp5-sine-wave)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-11-30",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "DDS sine generator on i5",
+       "evidence": "verified (1 lpf/pcf, 5 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @21e286bfa0"
+      },
+      {
+       "repo": "[wel97459/Colorlight_v8.0_ECP5_Make](https://github.com/wel97459/Colorlight_v8.0_ECP5_Make)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2023-03-28",
+       "license": "Apache-2.0",
+       "toolchain": "open",
+       "what the gateware does": "Basic Makefile template for 5A-75B v8.0",
+       "evidence": "verified (1 lpf/pcf, 2 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @be188eae7f"
+      },
+      {
+       "repo": "[roby2014/ecp5-ft232rl-example](https://github.com/roby2014/ecp5-ft232rl-example)",
+       "language/HDL": "Verilog, VHDL",
+       "stars": "3",
+       "last push": "2023-01-12",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "5A-75E: Verilog/VHDL/SpinalHDL LED examples, JTAG via FT232RL",
+       "evidence": "verified (3 lpf/pcf, 1 v/sv, 1 vhd, Makefile: ecppack/nextpnr-ecp5/yosys) @6cfd8e04e7"
+      },
+      {
+       "repo": "[Javier97sm/Colorlight-i9-v7.2](https://github.com/Javier97sm/Colorlight-i9-v7.2)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2022-10-29",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Trivial designs on i9 v7.2",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @3888eb89d3"
+      },
+      {
+       "repo": "[Open-Change/Colorlight-5A-75E_IO_test](https://github.com/Open-Change/Colorlight-5A-75E_IO_test)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2025-08-03",
+       "license": "none",
+       "toolchain": "litex?",
+       "what the gateware does": "5A-75E IO test gateware (FoXCNC)",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv) @bde99e71f8"
+      },
+      {
+       "repo": "[FPiorski/colorlight-i5-vhdl-examples](https://github.com/FPiorski/colorlight-i5-vhdl-examples)",
+       "language/HDL": "VHDL",
+       "stars": "2",
+       "last push": "2025-08-21",
+       "license": "CERN-OHL-W-2.0",
+       "toolchain": "open (ghdl-yosys)",
+       "what the gateware does": "VHDL examples for i5",
+       "evidence": "verified (2 lpf/pcf, 0 v/sv, 32 vhd) @f894a90556"
+      },
+      {
+       "repo": "[trabucayre/litexOnColorlightLab004](https://github.com/trabucayre/litexOnColorlightLab004)",
+       "language/HDL": "Python",
+       "stars": "38",
+       "last push": "2023-01-11",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "LiteX lab on 5A-75B (fpga_101 lab004)",
+       "evidence": "partial (3 .py, 0 HDL, no lpf) @428bf89d74"
+      },
+      {
+       "repo": "[siegeld/ledwall](https://github.com/siegeld/ledwall)",
+       "language/HDL": "Python, Rust",
+       "stars": "1",
+       "last push": "2026-09-21",
+       "license": "BSD-2-Clause",
+       "toolchain": "litex",
+       "what the gateware does": "LED video-wall driver: ECP5 gateware + no_std Rust",
+       "evidence": "partial (74 .py, 0 HDL, no lpf) @8080b1f852"
+      },
+      {
+       "repo": "[anarkiwi/reefervole](https://github.com/anarkiwi/reefervole)",
+       "language/HDL": "Python",
+       "stars": "0",
+       "last push": "2026-09-18",
+       "license": "Apache-2.0",
+       "toolchain": "litex",
+       "what the gateware does": "5A-75B v8.2 dev framework",
+       "evidence": "partial (26 .py, 0 HDL, no lpf) @939286889b"
+      },
+      {
+       "repo": "[manoel-serafim/phantom](https://github.com/manoel-serafim/phantom)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2024-04-14",
+       "license": "MIT",
+       "toolchain": "unknown",
+       "what the gateware does": "5-stage pipelined CPU with branch predictors (no .lpf in tree)",
+       "evidence": "unverified (6 files, no lpf/HDL) @22ef79ac22"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "ButterStick (gregdavill, ECP5 LFE5UM5G-85F)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[butterstick-fpga/verilog-examples](https://github.com/butterstick-fpga/verilog-examples)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2021-12-22",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Blink example (pcf/lpf + Makefile)",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @e0d2b76841"
+      },
+      {
+       "repo": "[butterstick-fpga/butterstick-bootloader](https://github.com/butterstick-fpga/butterstick-bootloader)",
+       "language/HDL": "Python, C",
+       "stars": "14",
+       "last push": "2023-03-13",
+       "license": "BSD-2-Clause",
+       "toolchain": "litex",
+       "what the gateware does": "DFU bootloader SoC",
+       "evidence": "partial (8 .py, 0 HDL, no lpf) @616e1be3c5"
+      },
+      {
+       "repo": "[butterstick-fpga/example-litex-gpdi](https://github.com/butterstick-fpga/example-litex-gpdi)",
+       "language/HDL": "Python",
+       "stars": "6",
+       "last push": "2021-11-20",
+       "license": "BSD-2-Clause",
+       "toolchain": "litex",
+       "what the gateware does": "LiteX GPDI/HDMI example",
+       "evidence": "partial (10 .py, 0 HDL, no lpf) @28dfa64e6a"
+      },
+      {
+       "repo": "[butterstick-fpga/dfu-runtime-soc](https://github.com/butterstick-fpga/dfu-runtime-soc)",
+       "language/HDL": "Python",
+       "stars": "2",
+       "last push": "2021-11-11",
+       "license": "BSD-2-Clause",
+       "toolchain": "litex",
+       "what the gateware does": "LiteX SoC with TinyUSB + LUNA DFU runtime",
+       "evidence": "partial (8 .py, 0 HDL, no lpf) @3407f80497"
+      },
+      {
+       "repo": "[gregdavill/ButterStick-projects](https://github.com/gregdavill/ButterStick-projects)",
+       "language/HDL": "Python",
+       "stars": "5",
+       "last push": "2020-08-28",
+       "license": "NOASSERTION",
+       "toolchain": "litex",
+       "what the gateware does": "Personal projects",
+       "evidence": "partial (18 .py, 0 HDL, no lpf) @7c3a714b6e"
+      },
+      {
+       "repo": "[bboydt/ecp5-soc](https://github.com/bboydt/ecp5-soc)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2024-03-16",
+       "license": "none",
+       "toolchain": "open? (no Makefile)",
+       "what the gateware does": "Small SoC with ButterStick r1.0 constraints",
+       "evidence": "verified (1 lpf/pcf, 11 v/sv, 1 vhd) @c630ae7568"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "ECPIX-5 (LambdaConcept, ECP5 45F/85F)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[ultraembedded/ecpix-5](https://github.com/ultraembedded/ecpix-5)",
+       "language/HDL": "Verilog",
+       "stars": "15",
+       "last push": "2020-07-05",
+       "license": "none",
+       "toolchain": "open (lpf+Verilog; no Makefile found)",
+       "what the gateware does": "RISC-V (riscv_tcm_top) AXI4 SoC + DVI framebuffer via IT6613 HDMI transmitter; C drivers; submodules (.gitmodules)",
+       "evidence": "verified (1 lpf/pcf, 19 v/sv) @17c1f633f1"
+      },
+      {
+       "repo": "[ultraembedded/ecpix5-test](https://github.com/ultraembedded/ecpix5-test)",
+       "language/HDL": "Verilog",
+       "stars": "9",
+       "last push": "2020-08-20",
+       "license": "Apache-2.0",
+       "toolchain": "open (lpf+Verilog; no Makefile found)",
+       "what the gateware does": "DDR3 test bitstream (ultraembedded DDR3 core)",
+       "evidence": "verified (1 lpf/pcf, 12 v/sv) @2eaf689c60"
+      },
+      {
+       "repo": "[maxhpc/ecpix-5](https://github.com/maxhpc/ecpix-5)",
+       "language/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2025-02-09",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "ECPIX-5 designs (11 SV/V files, 6 Makefiles)",
+       "evidence": "verified (1 lpf/pcf, 11 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @dbd64a102a"
+      },
+      {
+       "repo": "[Baldanos/ecpix5-blinky](https://github.com/Baldanos/ecpix5-blinky)",
+       "language/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2021-02-10",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Blinky",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @b3f6104d74"
+      },
+      {
+       "repo": "[goran-mahovlic/ECPIX5_blink](https://github.com/goran-mahovlic/ECPIX5_blink)",
+       "language/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2020-12-18",
+       "license": "none",
+       "toolchain": "open (build.sh)",
+       "what the gateware does": "Blinky",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv) @0d9567fda2"
+      },
+      {
+       "repo": "[lambdaconcept/ecpix5-bitsofcode](https://github.com/lambdaconcept/ecpix5-bitsofcode)",
+       "language/HDL": "Python",
+       "stars": "1",
+       "last push": "2020-07-07",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "Vendor code snippets",
+       "evidence": "partial (3 .py, 0 HDL, no lpf) @83b4e04e7f"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "TinyFPGA EX / Logicbone / ECP5-EVN / Versa ECP5",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[oskirby/logicbone-tests](https://github.com/oskirby/logicbone-tests)",
+       "language/HDL": "Verilog, Python",
+       "stars": "0",
+       "last push": "2020-07-19",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Logicbone test projects (Verilog + LiteX)",
+       "evidence": "verified (1 lpf/pcf, 3 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @b8254bc7a1"
+      },
+      {
+       "repo": "[xtrinch/fpga-bitcoin-miner](https://github.com/xtrinch/fpga-bitcoin-miner)",
+       "language/HDL": "Verilog",
+       "stars": "8",
+       "last push": "2022-04-02",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "Bitcoin miner (SHA-256) for ECP5-EVN",
+       "evidence": "verified (1 lpf/pcf, 12 v/sv, Makefile: ecppack/nextpnr-ecp5/py/yosys) @7c9ca1c377"
+      },
+      {
+       "repo": "[gromero/ecp5](https://github.com/gromero/ecp5)",
+       "language/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2021-04-20",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "ECP5-EVN code: UART passthrough, raw serial",
+       "evidence": "verified (4 lpf/pcf, 9 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @424ddf5c51"
+      },
+      {
+       "repo": "[kazkojima/sha3-fpga](https://github.com/kazkojima/sha3-fpga)",
+       "language/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2020-11-07",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "SHA3 digest on ECP5-EVN (freecores/sha3)",
+       "evidence": "verified (1 lpf/pcf, 3 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @471825dfb6"
+      },
+      {
+       "repo": "[perillamint/ecp5-hd44780](https://github.com/perillamint/ecp5-hd44780)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2018-12-02",
+       "license": "BSD-3-Clause",
+       "toolchain": "open",
+       "what the gateware does": "HD44780 LCD driver on ECP5-EVN",
+       "evidence": "verified (1 lpf/pcf, 5 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @36d612b143"
+      },
+      {
+       "repo": "[ikskuh/ecp5-quickstart](https://github.com/ikskuh/ecp5-quickstart)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2021-12-31",
+       "license": "none",
+       "toolchain": "open (build.sh)",
+       "what the gateware does": "Blinky template w/ simulation, synthesis, programming (EVN)",
+       "evidence": "verified (1 lpf/pcf, 5 v/sv) @ca20d3a1f5"
+      },
+      {
+       "repo": "[onsdagens/lattice-ecp5-template](https://github.com/onsdagens/lattice-ecp5-template)",
+       "language/HDL": "n/a",
+       "stars": "0",
+       "last push": "2025-04-17",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "EVN template (lpf + Makefile)",
+       "evidence": "verified-constraints (1 lpf, no HDL files) @810b6dd779"
+      },
+      {
+       "repo": "[sefbkn/versa-ecp5-demo](https://github.com/sefbkn/versa-ecp5-demo)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-03-14",
+       "license": "NOASSERTION",
+       "toolchain": "open",
+       "what the gateware does": "Gigabit Ethernet passthrough (RGMII/SGMII) on Versa ECP5",
+       "evidence": "verified (2 lpf/pcf, 31 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @1d6d4cb535"
+      },
+      {
+       "repo": "[C-Elegans/ethernet](https://github.com/C-Elegans/ethernet)",
+       "language/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2019-02-01",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Ethernet experiments on Versa ECP5",
+       "evidence": "verified (1 lpf/pcf, 14 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @da342f5cea"
+      },
+      {
+       "repo": "[gsomlo/yoloRISC](https://github.com/gsomlo/yoloRISC)",
+       "language/HDL": "Verilog",
+       "stars": "27",
+       "last push": "2019-08-23",
+       "license": "ISC",
+       "toolchain": "open",
+       "what the gateware does": "RocketChip rv64imac blinky on Versa ECP5 (yosys/nextpnr/trellis)",
+       "evidence": "verified (1 lpf/pcf, 4 v/sv, Makefile: ecppack/nextpnr-ecp5/py/yosys) @d794a3625f"
+      },
+      {
+       "repo": "[kazkojima/litex-lattice-ecp5-evn](https://github.com/kazkojima/litex-lattice-ecp5-evn)",
+       "language/HDL": "Python",
+       "stars": "8",
+       "last push": "2021-05-25",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "LiteX files for EVN + SDRAM add-on + SGMII",
+       "evidence": "partial (1 .py, 0 HDL, no lpf) @6c526658a7"
+      },
+      {
+       "repo": "[tinyfpga/TinyFPGA-EX](https://github.com/tinyfpga/TinyFPGA-EX)",
+       "language/HDL": "n/a",
+       "stars": "78",
+       "last push": "2019-06-02",
+       "license": "NOASSERTION",
+       "toolchain": "n/a (hardware)",
+       "what the gateware does": "Board hardware only, no gateware",
+       "evidence": "unverified (50 files, no lpf/HDL) @88fb9d455a"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Other ECP5 boards / board-agnostic ECP5 cores",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence"
+     ],
+     "rows": [
+      {
+       "repo": "[cheyao/icepi-zero](https://github.com/cheyao/icepi-zero)",
+       "language/HDL": "Verilog, VHDL",
+       "stars": "827",
+       "last push": "2026-09-18",
+       "license": "NOASSERTION",
+       "toolchain": "open",
+       "what the gateware does": "IcePi Zero (Pi-Zero form ECP5 board): 24 gateware examples (blinky, HDMI, SDRAM, ...)",
+       "evidence": "verified (24 lpf/pcf, 77 v/sv, 9 vhd, Makefile: ecppack/nextpnr-ecp5/yosys) @e01faa2bd3"
+      },
+      {
+       "repo": "[m1nl/icepi-zero-minimig](https://github.com/m1nl/icepi-zero-minimig)",
+       "language/HDL": "Verilog, VHDL",
+       "stars": "8",
+       "last push": "2026-09-21",
+       "license": "GPL-3.0",
+       "toolchain": "diamond/open",
+       "what the gateware does": "MiST Minimig AGA core for IcePi Zero (fork-lineage of robinsonb5/Minimig_Lattice)",
+       "evidence": "verified (3 lpf/pcf, 225 v/sv, 74 vhd) @2c668725d5"
+      },
+      {
+       "repo": "[danodus/ecp5_hdmi_audio_video](https://github.com/danodus/ecp5_hdmi_audio_video)",
+       "language/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2026-05-19",
+       "license": "MIT",
+       "toolchain": "open",
+       "what the gateware does": "ECP5 HDMI audio+video transmitter (IcePi Zero, also ULX3S lpf)",
+       "evidence": "verified (2 lpf/pcf, 21 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @a4710f9e79"
+      },
+      {
+       "repo": "[joshajohnson/ecp5-mini-projects](https://github.com/joshajohnson/ecp5-mini-projects)",
+       "language/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2021-08-29",
+       "license": "NOASSERTION",
+       "toolchain": "open",
+       "what the gateware does": "ECP5-Mini board projects (40 Verilog files)",
+       "evidence": "verified (2 lpf/pcf, 40 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @4e8622882b"
+      },
+      {
+       "repo": "[tomverbeure/ecp5_jtag](https://github.com/tomverbeure/ecp5_jtag)",
+       "language/HDL": "Verilog",
+       "stars": "33",
+       "last push": "2021-07-23",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Use the ECP5 JTAG port (JTAGG) to talk to user logic (Colorlight i5 example)",
+       "evidence": "verified (1 lpf/pcf, 5 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @6a2302e079"
+      },
+      {
+       "repo": "[MichaelBell/tt-ecp5](https://github.com/MichaelBell/tt-ecp5)",
+       "language/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2026-02-26",
+       "license": "Apache-2.0",
+       "toolchain": "open",
+       "what the gateware does": "Tiny Tapeout ECP5 carrier-board gateware (many designs)",
+       "evidence": "verified (11 lpf/pcf, 36 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @93873c629e"
+      },
+      {
+       "repo": "[cbalint13/e-verest](https://github.com/cbalint13/e-verest)",
+       "language/HDL": "Verilog",
+       "stars": "37",
+       "last push": "2023-04-12",
+       "license": "Apache-2.0",
+       "toolchain": "open",
+       "what the gateware does": "EVEREST research stick (ECP5) test firmware",
+       "evidence": "verified (1 lpf/pcf, 9 v/sv, Makefile: ecppack/nextpnr-ecp5/py/yosys) @a976e3954c"
+      },
+      {
+       "repo": "[dpavlin/trilby-hat-fpga](https://github.com/dpavlin/trilby-hat-fpga)",
+       "language/HDL": "SystemVerilog",
+       "stars": "2",
+       "last push": "2022-01-23",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Trilby HAT ECP5 SDR for Raspberry Pi",
+       "evidence": "verified (1 lpf/pcf, 6 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @dd49ae9b84"
+      },
+      {
+       "repo": "[robotique-ecam/ViveTracker](https://github.com/robotique-ecam/ViveTracker)",
+       "language/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2022-05-07",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Lighthouse 2.0 tracking receivers",
+       "evidence": "verified (1 lpf/pcf, 34 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @4ff899c38d"
+      },
+      {
+       "repo": "[badaboombox/SS-Handheld-Console](https://github.com/badaboombox/SS-Handheld-Console)",
+       "language/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2026-08-19",
+       "license": "NOASSERTION",
+       "toolchain": "open (README flow)",
+       "what the gateware does": "Handheld game console with custom GPU",
+       "evidence": "verified (1 lpf/pcf, 21 v/sv) @bc5a7680fc"
+      },
+      {
+       "repo": "[amin005/skywave_SDR](https://github.com/amin005/skywave_SDR)",
+       "language/HDL": "Verilog",
+       "stars": "0",
+       "last push": "2026-07-17",
+       "license": "BSD-3-Clause",
+       "toolchain": "open (README flow)",
+       "what the gateware does": "Direct-sampling HF SDR: AD9226 ADC + ULPI USB",
+       "evidence": "verified (1 lpf/pcf, 17 v/sv) @15c6b23c46"
+      },
+      {
+       "repo": "[mattvenn/basic-ecp5-pcb](https://github.com/mattvenn/basic-ecp5-pcb)",
+       "language/HDL": "Verilog",
+       "stars": "142",
+       "last push": "2021-07-17",
+       "license": "CC0-1.0",
+       "toolchain": "open",
+       "what the gateware does": "Reference ECP5 PCB + test gateware",
+       "evidence": "verified (1 lpf/pcf, 1 v/sv, Makefile: ecppack/nextpnr-ecp5/yosys) @f5ee05d1fb"
+      },
+      {
+       "repo": "[krynentechnology/sr2cb](https://github.com/krynentechnology/sr2cb)",
+       "language/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2026-02-10",
+       "license": "NOASSERTION",
+       "toolchain": "unknown",
+       "what the gateware does": "Synchronous redundant ring channel bus; ECP5U/UM lpf",
+       "evidence": "verified (2 lpf/pcf, 18 v/sv) @4ae58677c3"
+      },
+      {
+       "repo": "[mehrdadh/lora-modulator](https://github.com/mehrdadh/lora-modulator)",
+       "language/HDL": "Verilog",
+       "stars": "48",
+       "last push": "2025-02-20",
+       "license": "NOASSERTION",
+       "toolchain": "diamond",
+       "what the gateware does": "LoRa modulator for AT86RF215 I/Q radio (TinySDR)",
+       "evidence": "verified (5 lpf/pcf, 18 v/sv) @0f1016567d"
+      },
+      {
+       "repo": "[mehrdadh/fsk-modulator](https://github.com/mehrdadh/fsk-modulator)",
+       "language/HDL": "Verilog",
+       "stars": "11",
+       "last push": "2025-02-20",
+       "license": "NOASSERTION",
+       "toolchain": "diamond",
+       "what the gateware does": "FSK/BLE modulator for AT86RF215 (TinySDR)",
+       "evidence": "verified (5 lpf/pcf, 32 v/sv, 5 vhd) @d5a6565710"
+      },
+      {
+       "repo": "[jsloan256/titan_wiggle](https://github.com/jsloan256/titan_wiggle)",
+       "language/HDL": "Verilog",
+       "stars": "3",
+       "last push": "2015-10-07",
+       "license": "BSD-3-Clause",
+       "toolchain": "diamond",
+       "what the gateware does": "Titan PCIe card validation",
+       "evidence": "verified (1 lpf/pcf, 5 v/sv) @98e6e468a7"
+      },
+      {
+       "repo": "[C-Elegans/single_sdr](https://github.com/C-Elegans/single_sdr)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2019-10-28",
+       "license": "none",
+       "toolchain": "open",
+       "what the gateware does": "Single SDR channel on ECP5 (no lpf in tree)",
+       "evidence": "unverified (15 files, no lpf/HDL) @018c83a7a9"
+      },
+      {
+       "repo": "[ECP5-PCIe/ECP5-PCIe](https://github.com/ECP5-PCIe/ECP5-PCIe)",
+       "language/HDL": "Python",
+       "stars": "103",
+       "last push": "2023-05-16",
+       "license": "none",
+       "toolchain": "amaranth",
+       "what the gateware does": "PCIe core for ECP5 SERDES (mirror of Codeberg)",
+       "evidence": "partial (71 .py, 0 HDL, no lpf) @c511d2eafa"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Recommended to clone first (24)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "**Status 2026-09-28:** all 24 are cloned and in the [catalogue](catalogue.md). Items 1–14 on 2026-09-27 (items 2 and 11 were already there from the ULX3S survey), item 21 (joshajohnson/ecp5-mini-projects) on request with kbeckmann/pergola_projects (its upstream), items 15–20 and 22–24 on 2026-09-28."
+    },
+    {
+     "type": "paragraph",
+     "text": "Priority goes to plain Verilog, the open toolchain, reusable cores and good board examples."
+    },
+    {
+     "type": "list",
+     "ordered": true,
+     "items": [
+      "**Spritetm/hadbadge2019_fpgasoc**: the largest open-flow ECP5 SoC seen. Dual PicoRV32, LCD/video,\naudio synth, PSRAM (QSPI) controller and USB, with 27 Makefiles. The blocks can be reused on ULX3S.",
+      "**wuxx/Colorlight-FPGA-Projects**: vendor examples for 5A-75B, i5 and i9 (13 lpf). The most popular cheap ECP5 boards.",
+      "**wuxx/icesugar-pro**: vendor examples for iCESugar-Pro (HDMI, SDRAM, blink).",
+      "**orangecrab-fpga/orangecrab-examples**: official OrangeCrab examples in Verilog, including USB-ACM.",
+      "**ultraembedded/orangecrab**: standalone Verilog DDR3 AXI controller + DFI PHY for ECP5 (reusable).",
+      "**ultraembedded/ecpix-5**: ultraembedded RISC-V AXI4 SoC + DVI framebuffer (IT6613) on ECPIX-5, all Verilog.",
+      "**fdarling/orangecrab-usb-cdc-demo**: small pure-Verilog USB CDC-ACM core (reusable without LiteX).",
+      "**gregdavill/luna-usb-serial-acm**: LUNA USB-ACM exported as one Verilog module (reusable anywhere).",
+      "**mangelajo/orangecrab-usb**: Verilog USB device examples (FPGA-USB-Device).",
+      "**tallenintegsys/hdmi-orangecrab**: HDMI IP port for ECP5 in SystemVerilog.",
+      "**danodus/ecp5_hdmi_audio_video**: ECP5 HDMI transmitter with audio, active 2026.",
+      "**sefbkn/versa-ecp5-demo**: open-flow Gigabit Ethernet with RGMII + SGMII (rare SGMII on nextpnr).",
+      "**tomverbeure/ecp5_jtag**: JTAGG user-logic access, a reusable debug block.",
+      "**cheyao/icepi-zero**: 24 open-flow gateware examples for a popular new ECP5 board (827 stars, active).",
+      "**hexagon5un/hackaday_supercon_2019_logic_noise_FPGA_workshop**: Verilog audio/synth building blocks.",
+      "**emeb/orangecrab_adc**: ADC/audio SDR gateware on the open flow.",
+      "**mebner86/icesugar-pro_sound2fft**: I2S → FFT → HDMI in a step-by-step series (17 projects, 2026).",
+      "**DatanoiseTV/colorlight-i9-aes67**: AES67 audio-over-Ethernet on i9 (37 Verilog files, 2026).",
+      "**lucysrausch/colorlight-led-cube**: HUB75 LED driver + LiteEth core on 5A-75B (112 stars).",
+      "**kholia/Colorlight-5A-75B**: DDS/SSB radio + Docker open-flow recipes.",
+      "**joshajohnson/ecp5-mini-projects**: 40 Verilog files of open-flow examples.",
+      "**xtrinch/fpga-bitcoin-miner**: pipelined SHA-256 on ECP5-EVN (reusable hash core).",
+      "**greatscottgadgets/luna**: the reference USB framework (Amaranth). Ranked lower because it is not plain\nVerilog, but it is the only complete open USB 2.0/3.0 gateware stack for ECP5.",
+      "**racerxdl/colorlight-picorv32**: minimal PicoRV32 SoC + HUB75 on Colorlight i5."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Queries run and gaps",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Repository search API, unauthenticated, 7 s sleep between calls, per_page=100. The two largest result\nsets (`orangecrab in:readme`, `project trellis`) also got page 2.\n`orangecrab`(30), `topic:orangecrab`(2), `orangecrab in:readme`(132), `orangecrab verilog`(2),\n`orangecrab language:verilog`(8), `orange crab fpga`(3), `icesugar-pro`(14), `icesugar_pro`(14),\n`icesugarpro`(3), `icesugar pro ecp5`(3), `luna usb ecp5`(0), `luna greatscottgadgets`(1), `cynthion`(29),\n`user:greatscottgadgets`(46), `user:gregdavill`(76), `user:orangecrab-fpga`(3), `user:butterstick-fpga`(10),\n`hadbadge`(11), `supercon 2019 badge ecp5`(0), `hackaday badge ecp5`(0), `supercon badge fpga`(4),\n`2019 badge fpga`(4), `colorlight 5a-75b`(27), `colorlight 5a-75e`(6), `colorlight i5`(21),\n`colorlight i9`(23), `colorlight ecp5`(19), `topic:colorlight`(13), `5a-75b language:verilog`(8),\n`butterstick`(8), `ecpix-5`(7), `ecpix5`(6), `tinyfpga ex`(7), `logicbone`(2), `versa ecp5`(5),\n`ecp5 evaluation board`(5), `ecp5-evn`(5), `ecp5 verilog`(24), `nextpnr-ecp5`(18), `topic:ecp5`(59),\n`topic:lattice-ecp5`(1), `ecp5 yosys`(28), `project trellis`(118, mostly the unrelated Roots \"Trellis\" PHP stack),\n`ecp5 language:verilog`(80), `ecp5 language:systemverilog`(18), `lfe5u-25f`(0), `lfe5u-45f`(0),\n`lfe5u-85f`(2), `ecp5 fpga`(158), `ecp5 hdmi`(8), `ecp5 sdram`(3), `ecp5 riscv`(8), `ecp5 usb verilog`(0)."
+    },
+    {
+     "type": "paragraph",
+     "text": "Gaps and notes:"
+    },
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "No rate-limit errors (HTTP 403) on search. The core API was hardly used. File lists came from github.com's\n`tree/HEAD` + `tree-list/<oid>` JSON endpoints, which do not count against the 60/h API budget.\nMakefiles and READMEs came from raw.githubusercontent.com.",
+      "Only the first 3 Makefiles of each repo were read for toolchain calls. A repo that builds from a\nscript with another name shows no toolchain and is marked from its README.",
+      "Code search (`extension:lpf`) was not used because it needs authentication. Repos whose name,\ndescription and README never mention the board are therefore missed.",
+      "Forks that carry their own work were dropped along with trivial forks. Examples are the many\nCFU-Playground and microwatt forks, and gregdavill/foboot.",
+      "Dropped as out of scope: lawrie/tinyfpga_examples (TinyFPGA BX, iCE40 `.pcf`),\ngmejiamtz/ecp5-project-template (ULX3S target), and any ULX3S/ULX4M/ULX5M(-GS) repos."
+     ]
+    }
+   ]
+  }
+ ]
+}

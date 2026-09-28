@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/ulixxe__usb_cdc.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # USB_CDC (`ulixxe__usb_cdc`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | last commit 2024-03-10 (`6798bf4`); commit count / first commit unknown (shallow clone, repo not in `.claude/memory/history.tsv`) |
 
 ## What the gateware does
+
 A from-scratch, vendor-primitive-free Full-Speed (12 Mbit/s) USB device core
 implementing the USB Communications Device Class, Abstract Control Model
 subclass (`usb_cdc/usb_cdc.v`, top module `usb_cdc`) — i.e. a USB-to-serial
@@ -25,6 +28,7 @@ LP8K): `bootloader` (TinyFPGA bootloader replacement, `tinyprog`-compatible),
 `loopback_2ch`/`loopback_7ch`, and `soc` (FIFO bus interface for a CPU).
 
 ## Structure
+
 - `usb_cdc/` — the reusable core, 8 files, ~3260 lines total: `usb_cdc.v` (top,
   wires SIE + endpoints + FIFOs), `sie.v` (Serial Interface Engine: packet
   recognition, CRC, PID, bus reset), `phy_rx.v`/`phy_tx.v` (NRZI, bit
@@ -38,14 +42,17 @@ LP8K): `bootloader` (TinyFPGA bootloader replacement, `tinyprog`-compatible),
   project fragments.
 
 ## How to build
+
 Not run (read-only review). From `examples/README.md` and
 `examples/TinyFPGA-BX/OSS_CAD_Suite/Makefile`:
+
 ```
 cd examples/TinyFPGA-BX/OSS_CAD_Suite
 make all PROJ=demo        # yosys synth_ice40 -> nextpnr-ice40 --lp8k --package cm81 -> icepack
 make prog PROJ=demo        # tinyprog -p <bin>
 make sim PROJ=demo         # iverilog/vvp -> .fst (self-checking testbench, `assert_error` macros)
 ```
+
 Fomu flow is identical but targets `up5k`/`sg48` and programs with
 `dfu-util -D <dfu>` (`examples/Fomu/OSS_CAD_Suite/Makefile:65`). Neither
 Makefile references ECP5 parts or an ULX3S `.lpf`.
@@ -57,6 +64,7 @@ Makefile references ECP5 parts or an ULX3S `.lpf`.
 | USB FS CDC-ACM device core | `usb_cdc/*.v` | `usb_cdc` | Verilog-2001 | none (README claims no EBR use; not independently re-verified beyond reading the source, which has no `SB_*`/`EHX*` instantiations) | MIT |
 
 ## Reuse notes
+
 - **Ports** (`usb_cdc/usb_cdc.v:8-47`): `clk_i` (must run at `12 MHz *
   BIT_SAMPLES`, default `BIT_SAMPLES=4` → **48 MHz**), `rstn_i` (async,
   active-low), optional `app_clk_i` when `USE_APP_CLK=1` (lets the
@@ -102,6 +110,7 @@ Makefile references ECP5 parts or an ULX3S `.lpf`.
   ULX3S example in this repo.
 
 ## Open questions
+
 - Whether the README's "no EBR" claim holds after `synth_ecp5` (not
   synthesized here).
 - Full-speed USB timing margins for a bit-banged D+/D- pair on ULX3S's US2

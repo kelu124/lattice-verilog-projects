@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/yosyshq__picorv32.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # PicoRV32 (`yosyshq__picorv32`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | last commit 2026-09-07 (`git log -1`), likely a CI/doc touch given the README's "no longer under active development" banner (`README.md:6`), not feature work. Commit count/first commit: unknown (shallow clone; not in `history.tsv`) |
 
 ## What the gateware does
+
 - **`picorv32.v`** — a size-optimized RV32I/E/M/C RISC-V CPU core, configurable via
   Verilog parameters into RV32E, RV32I, RV32IC, RV32IM, or RV32IMC variants
   (`README.md:14-15`). No FPU. Optional IRQ, PCPI (co-processor), and RISC-V Formal
@@ -27,6 +30,7 @@
   and PicoSoC as *reusable IP*, not as a runnable ULX3S project.
 
 ## Structure
+
 - `picorv32.v` — the CPU core (single file, ~92 KB / ~2400 lines).
 - `picosoc/` — example SoC: `picosoc.v`, `spimemio.v`, `simpleuart.v`, two board tops
   (`hx8kdemo.v`, `icebreaker.v`) with matching `.pcf`/`.core`/testbenches, plus
@@ -40,7 +44,9 @@
 - `picorv32.core` — FuseSoC package descriptor for the core.
 
 ## How to build
+
 Not run (per repo instructions: read-only review). Commands as found:
+
 - Root `Makefile` self-checking testbenches (Icarus Verilog unless noted):
   `test`, `test_vcd`, `test_wb`, `test_wb_vcd`, `test_ez`, `test_ez_vcd`, `test_sp`,
   `test_axi`, `test_synth` — each builds `testbench(_wb/_ez/_synth).v` + `picorv32.v` +
@@ -48,13 +54,16 @@ Not run (per repo instructions: read-only review). Commands as found:
   (`Makefile:24-54`). `test_verilator` builds the same testbench through Verilator/C++
   (`Makefile:81`).
 - `picosoc/Makefile` (iCE40 only):
-  ```
+
+```
   make hx8kdemo.bin      # yosys synth_ice40 -> nextpnr-ice40 --hx8k --package ct256 -> icepack
   make hx8kprog          # iceprog hx8kdemo.bin; iceprog -o 1M hx8kdemo_fw.bin
   make icebreaker.bin    # yosys synth_ice40 -dsp -> nextpnr-ice40 --up5k --package sg48 -> icepack
-  ```
+```
+
   Simulation-only targets `hx8ksim`/`hx8ksynsim`/`icebsim`/`icebsynsim` run the demo SoC +
   firmware through Icarus Verilog and self-check via the simulated UART.
+
 - `scripts/vivado`/`scripts/quartus`: proprietary Vivado/Quartus TCL/QSF scripts for
   synthesis benchmarking on generic 7-series/Altera parts — not build targets for a board.
 
@@ -100,6 +109,7 @@ Not run (per repo instructions: read-only review). Commands as found:
   with a small adapter, since both are simple synchronous register-mapped interfaces.
 
 ## Open questions
+
 - No ULX3S/ECP5 fork or example using this exact PicoRV32 checkout was found in this repo
   or cross-referenced elsewhere in this session — unknown whether one exists upstream
   (the catalogue's `reusable-cores.md` lists "picorv32 (fpga-odysseus)" as a separate,

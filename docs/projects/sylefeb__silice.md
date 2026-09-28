@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/sylefeb__silice.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # Silice (`sylefeb__silice`)
 
 | Field | Value |

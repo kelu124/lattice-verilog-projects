@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/spritetm__hadbadge2019_fpgasoc.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # Hackaday Supercon 2019 badge SoC (`spritetm__hadbadge2019_fpgasoc`)
 
 | Field | Value |
@@ -13,11 +15,13 @@
 | Activity | single commit at the pinned clone depth (shallow, `--depth 1`); upstream date 2023-11-30; commit count/first commit unknown (`.claude/memory/history.tsv` has no entry) |
 
 ## What the gateware does
+
 A complete **badge SoC**: PicoRV32 RISC-V CPU, 16 MB of interleaved QPI-PSRAM as main
 memory, tile/sprite video out over HDMI/GPDI, a PDM audio synth, a soft-PHY USB2 device,
 plus a DFU/IPL boot chain and a large collection of badge apps (games, demos, a BASIC
 interpreter). Top module `top_fpga` (`soc/top_fpga.v`); the CPU/bus/peripheral glue is in
 `soc/soc.v`.
+
 - **PicoRV32 CPU + Wishbone-ish bus** — `soc/soc.v` (`module soc`), `soc/arbiter.v`. Custom
   fast multiplier via ECP5 DSP: `soc/pcpi_fastmul_dsp.v` + `soc/mul_18x18_ecp5.v`.
 - **QPI PSRAM (2× interleaved 8 MB chips, 16 MB total)** — `soc/qpi_cache/` (see Reuse
@@ -37,6 +41,7 @@ interpreter). Top module `top_fpga` (`soc/top_fpga.v`); the CPU/bus/peripheral g
   submodules) and ~14 `app-*/` directories (games/demos), out of scope here.
 
 ## Structure
+
 - `soc/Makefile` — the SoC build (badge-specific; see How to build).
 - `soc/soc.v` — CPU + bus + all peripheral instantiation and address decode.
 - `soc/top_fpga.v` — top-level pad/pin glue, instantiates `sysmgr`, `soc`, PHYs.
@@ -52,7 +57,9 @@ interpreter). Top module `top_fpga` (`soc/top_fpga.v`); the CPU/bus/peripheral g
   ULX3S ecosystem are covered separately in `../DFUs.md`.
 
 ## How to build
+
 Not run. Exact commands from `soc/Makefile`:
+
 ```
 make            # -> soc.svf (yosys synth_ecp5 -abc9 -> nextpnr-ecp5 --45k --package CABGA381
                 #    --speed 8 --freq 48 --seed 37 -> ecpbram (BRAM init) -> ecppack --svf)
@@ -60,6 +67,7 @@ make prog       # openocd -f ../openocd.cfg -c "init; svf soc.svf; exit"
 make dfu_flash  # dfu-util -d 1d50:614a,1d50:614b -a 0 -R -D soc.bit
 make verilator  # full-SoC/video simulation (SDL output), needs sdl2-config
 ```
+
 `BADGE_VER` (default 4 = prod) selects the LPF/hardware-define set. Flash timing:
 `FLASH_MODE=qspi`, `FLASH_FREQ=38.8` MHz. `TRELLIS=/usr/share/trellis` is hard-coded and
 would need overriding for other installs (same pattern as the emard "universal make" repos
@@ -89,6 +97,7 @@ Self-checking testbenches (iverilog, `$display` mismatch + `$finish`), not run h
 | Clock/reset manager | `soc/sysmgr.v` | `sysmgr` | Verilog | `EHXPLLL` | BSD-3 |
 
 ### Notes
+
 - **QPI PSRAM controller (`soc/qpi_cache/`)**: cleanly layered — `qspi_phy_2x_ecp5.v` is the
   only ECP5-primitive-dependent file (DDR IO via `ODDRX1F`/`IDDRX1F` plus `TRELLIS_IO`
   tristate buffers); everything above it (`qpimem_iface_2x2w`, `qpimem_cache`,
@@ -137,6 +146,7 @@ Self-checking testbenches (iverilog, `$display` mismatch + `$finish`), not run h
   upstream).
 
 ## Open questions
+
 - `fake_differential.v` and `hdmi-encoder.v` license is unclear (no header found); would
   need to ask upstream (Sylvain Munaut / Jeroen Domburg) before redistributing.
 - `soc/pic/` (PIC16F84 softcore) role and portability not investigated (out of brief scope).

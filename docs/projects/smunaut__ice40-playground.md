@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/smunaut__ice40-playground.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # no2fpga iCE40 core library (`smunaut__ice40-playground`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | single commit at the pinned clone depth (shallow, `--depth 1`); upstream date 2023-08-21; commit count/first commit unknown (`.claude/memory/history.tsv` has no entry) |
 
 ## What the gateware does
+
 This is **not a ULX3S project** — it is Sylvain Munaut's "no2fpga" reusable IP-core
 library for the iCE40 UP5K, plus example projects (`projects/memtest`, `hdmi_text`,
 `rgb_panel`, `riscv_doom`, `riscv_usb`, `usb_amr`, `usb_audio`) that combine those cores
@@ -22,6 +25,7 @@ misc bus utilities. The example `projects/` are not reviewed in this pass beyond
 confirming what cores they pull in.
 
 ## Structure
+
 - `cores/no2ice40/` — iCE40-specific IO/PLL/SPRAM/RGB-LED/SERDES primitive wrappers
   (the ECP5-porting bottleneck: see below).
 - `cores/no2hyperbus/` — HyperRAM controller (memctrl + iCE40 PHY, cleanly split).
@@ -50,6 +54,7 @@ confirming what cores they pull in.
   as-is.
 
 ## How to build
+
 Not run (iCE40-only, and the `build/` submodule providing `project-rules.mk` is not
 fetched in this clone). For reference, `projects/memtest/Makefile` shows the pattern used
 throughout: `PROJ_DEPS := no2misc no2ice40 no2muacm [+ no2qpimem|no2hyperbus] [+ video]`,
@@ -135,6 +140,7 @@ here.
   writing new build glue, not reusing `no2core.mk`.
 
 ## Open questions
+
 - `no2muacm` core RTL not available in this clone; portability/license unverified.
 - `cores/video/rtl/hdmi_phy_{1x,2x,4x}.v` were not grepped for `SB_*` primitives in this
   pass (out of the brief's explicit scope of USB/HyperRAM/QPI-PSRAM/cache/HUB75); assume

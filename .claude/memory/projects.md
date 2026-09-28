@@ -7,7 +7,7 @@ metadata:
 
 # ULX3S project registry
 
-Keep in sync with `.claude/memory/sources.tsv` (pinned clones) and `docs/projects/<slug>.md`
+Keep in sync with `.claude/memory/sources.tsv` (pinned clones) and `data/projects/<slug>.json` (→ `docs/projects/<slug>.md`)
 (details). Update the row + detail block in the same commit as the review.
 
 Status values: `candidate` (known to exist, not cloned) → `cloned` → `catalogued`
@@ -25,13 +25,15 @@ past the pinned commit and has not been re-reviewed).
 `pmod-hardware`, `camera`, `eink`, `lvds-display`, `led-matrix`, `video-input`, `multiboot`, `multi-board`,
 `fm-transmitter`, `debug-instrument`, `hdl-language`, `os-software` (added 2026-09-27 by the survey).
 
-## Summary table → `catalogue.tsv`
+## Summary table → `data/catalogue.json`
 The per-repo facts (kind, name, fork/preferred copy, ULX3S build path, **FPGA**, **toolchain**,
-**HDL**, **license**, LPF, function tags, reusable blocks, notes) live in
-[`catalogue.tsv`](catalogue.tsv), one row per slug in `sources.tsv`. Render the human view with
-`.claude/skills/review-gateware-project/gen_catalogue.py` → `docs/catalogue.md`.
+**HDL**, **license**, LPF, function tags, reusable blocks, notes, tests, make_tests) live in
+[`data/catalogue.json`](../../data/catalogue.json) (moved from `.claude/memory/catalogue.tsv` on 2026-09-28), one
+object per slug in `sources.tsv`. Render the human view with
+`.claude/skills/review-gateware-project/gen_catalogue.py` → `docs/catalogue.md` (`--merge rows.tsv` adds rows).
+Review pages are `data/projects/<slug>.json` rendered to `docs/projects/<slug>.md` (see [[data-docs-layout]]).
 
-Status as of 2026-09-28: **358 repos catalogued (= 358 pinned in sources.tsv): 290 ULX3S/ULX4M + 14 on other ECP5 boards** (+ gatecat__trellisboard ECP5, zipcpu__sdspi vendor-neutral, toasterllc__mdccode iCE40 HX8K, and 19 iCE40 HX8K/HX4K repos from `docs/hx-boards-survey.md` on 2026-09-28, of which wren6991__riscboy also has a ULX3S 85F target) (top 14 of `docs/ecp5-boards-survey.md`, 2 of which were already in, + ecp5-mini-projects + pergola_projects) **+ 12 iCE40 UP5K** (iCEBreaker org on codeberg + damdoy, then 8 from a GitHub search and 20 from `docs/lattice-boards-survey.md` on 2026-09-28 (2 of those are ECP5: greybadge25, machdyne fpga-dac); FPGA column says `NOT ECP5`) (ULX5M-GS repos were added then removed on owner request, 2026-09-27; see [[ulx5m-board]]) (71 pre-survey — the board repo,
+Status as of 2026-09-28: **376 repos catalogued (= 376 pinned in sources.tsv; +emard__had2019-playground, +8 HX honourable mentions, +9 ECP5-survey items 15–24 on 2026-09-28): 290 ULX3S/ULX4M + 14 on other ECP5 boards** (+ gatecat__trellisboard ECP5, zipcpu__sdspi vendor-neutral, toasterllc__mdccode iCE40 HX8K, and 19 iCE40 HX8K/HX4K repos from `docs/hx-boards-survey.md` on 2026-09-28, of which wren6991__riscboy also has a ULX3S 85F target) (top 14 of `docs/ecp5-boards-survey.md`, 2 of which were already in, + ecp5-mini-projects + pergola_projects) **+ 12 iCE40 UP5K** (iCEBreaker org on codeberg + damdoy, then 8 from a GitHub search and 20 from `docs/lattice-boards-survey.md` on 2026-09-28 (2 of those are ECP5: greybadge25, machdyne fpga-dac); FPGA column says `NOT ECP5`) (ULX5M-GS repos were added then removed on owner request, 2026-09-27; see [[ulx5m-board]]) (71 pre-survey — the board repo,
 ulx3s-bin, openFPGALoader, plus 68 of the 69 ulx3s.github.io "Projects and examples" links (one is a
 404) — + 155 from GitHub-search category A + 64 more from categories B (51, all ULX3S-dedicated), D
 (11, forks with own commits) and the 2 ULX4M-specific repos in E; first pass by read-only agents over

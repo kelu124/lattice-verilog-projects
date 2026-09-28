@@ -1,0 +1,22 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "index",
+ "slug": "index",
+ "title": "ulx3s-klod: open gateware for the ULX3S and small Lattice boards",
+ "description": "Landing page of the GitHub Pages site.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "A knowledge base of **open gateware for the [ULX3S](https://github.com/emard/ulx3s) FPGA board** (Radiona, Lattice ECP5 LFE5U-12F/25F/45F/85F) and, for reuse, other small Lattice boards (ECP5, iCE40 UP5K, iCE40 HX8K/HX4K). It records which projects exist, what their gateware does, which FPGA and toolchain they target, their license, whether they have testbenches, and which blocks can be lifted into a new design."
+  },
+  {
+   "type": "paragraph",
+   "text": "Use it to **find prior art before writing a core**: a DVI encoder, a USB device, an SDRAM or HyperRAM controller, a RISC-V SoC, an ESP32 on-screen display, a retro computer… Start with the [reusable cores map](../.claude/memory/reusable-cores.md), then the catalogue and the project pages below."
+  },
+  {
+   "type": "paragraph",
+   "text": "Every page here is generated from JSON in [`data/`](../data) (do not edit `docs/` by hand); the repo also holds Claude's working memory, see the [README](../README.md)."
+  }
+ ],
+ "sections": []
+}

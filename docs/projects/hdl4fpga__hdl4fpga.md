@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/hdl4fpga__hdl4fpga.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # hdl4fpga (`hdl4fpga__hdl4fpga`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | Last commit to the whole monorepo `662986b`, 2025-08-17 (`git -C original_sources/hdl4fpga__hdl4fpga log -1 --format=%cs`). First commit 2013-06-05, 11860 commits total (`.claude/memory/history.tsv`, recorded before the clone was made shallow — commit count not independently verifiable from this `--depth 1` clone) |
 
 ## Scope of this page
+
 hdl4fpga is a very large portable VHDL library (many boards: ULX3S, ULX4M_LS/LD,
 arty, orangecrab, ml50x, …). This page covers only what is ULX3S-relevant:
 the three `boards/ULX3S/apps/` designs and the reusable cores they pull in
@@ -21,6 +24,7 @@ the three `boards/ULX3S/apps/` designs and the reusable cores they pull in
 back-ends, other boards' apps, CPU/soft-core work) is out of scope.
 
 ## What the gateware does
+
 `boards/ULX3S/common/ulx3s.vhd` declares one entity `ulx3s` whose port list is
 the full ULX3S pin set from `apps.lpf` (clk_25mhz, ftdi_*, leds, buttons, sw,
 oled_*, adc_*, sdram_*, gpdi_*, gp/gn, usb_fpga_*, wifi_*, sd_*, audio_*).
@@ -53,6 +57,7 @@ has matching `ser_debug`/`graphics`/`scopeio` targets):
   though the ulx3s-bin doc says 4; not reconciled, see Open questions).
 
 ## Structure
+
 - `boards/ULX3S/common/ulx3s.vhd` — shared `ulx3s` entity (port list = board pins).
 - `boards/ULX3S/apps/{ser_debug,graphics,scopeio}.vhd` — one architecture each.
 - `boards/ULX3S/diamond/{apps.ldf,apps.lpf,apps_video.lpf,Makefile}` — Diamond
@@ -77,12 +82,15 @@ has matching `ser_debug`/`graphics`/`scopeio` targets):
   hdl4fpga controller; not ULX3S-relevant since ULX3S has SDR SDRAM).
 
 ## How to build
+
 Not run (per task constraints: no make/build/simulate). As found in
 `boards/ULX3S/diamond/Makefile`:
+
 ```
 cd boards/ULX3S/diamond
 make graphics     # or ser_debug / scopeio
 ```
+
 Each target does `echo prj_project open apps.ldf \; prj_run Export -impl $@ -task Bitgen | diamondc`,
 i.e. it requires Lattice Diamond (`diamondc`) on PATH; `apps.ldf` targets
 `LFE5U-12F-8BG381C` with Synplify synthesis. Whether this currently builds
@@ -91,6 +99,7 @@ clean was not verified (no Diamond available here).
 ## Reuse notes
 
 ### Reusable blocks
+
 | Block | Path | Top module | Language | Vendor primitives | License |
 |---|---|---|---|---|---|
 | ScopeIO oscilloscope UI/storage | `library/scope/` | `scopeio` (`library/scope/scopeio.vhd`) | VHDL | None directly; depends on the SDRAM PHY and video PLL below, which do | MIT |
@@ -102,6 +111,7 @@ clean was not verified (no Diamond available here).
 | DVI/TMDS encoder | `library/video/` | `dvi` (`library/video/dvi.vhd`), uses `tmds_encoder.vhd` | VHDL | None in `dvi.vhd`/`tmds_encoder.vhd` itself; final GPDI serialization goes through `ecp5_ogbx` (see above) | MIT |
 
 ### Per-block detail
+
 - **ScopeIO** (`library/scope/scopeio.vhd`): generics `profile`, `settings`
   (a compact JSON-like config string parsed via `hdl4fpga.hdo`), `sdram_freq`,
   `fifo_size` (default 8*8192), `video_gear`, `red/green/blue_length` (default
@@ -152,6 +162,7 @@ clean was not verified (no Diamond available here).
   a non-ECP5 board needs a different output stage.
 
 ### Clock/reset assumptions and drop-in notes
+
 - All three ULX3S apps assume a single 25 MHz input (`clk_25mhz`, `apps.lpf`
   site `G2`) and derive everything else (40/64 MHz pixel clocks, 133 MHz
   SDRAM clock, 36 MHz USB oversampling) via `EHXPLLL`-based `ecp5_videodcm`/
@@ -175,6 +186,7 @@ clean was not verified (no Diamond available here).
   SDRAM/DVI) the ECP5-specific PHY/gearbox files.
 
 ## Open questions
+
 - Programmer for ULX3S bitstreams from this repo is unstated (unverified:
   presumably standard `openFPGALoader -b ulx3s` per CLAUDE.md, not confirmed
   in-repo).

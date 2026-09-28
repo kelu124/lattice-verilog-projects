@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/trabucayre__openfpgaloader.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # openFPGALoader (`trabucayre__openfpgaloader`)
 
 | Field | Value |
@@ -11,6 +13,7 @@
 | Activity | 2095 commits, 2019-09-26 → 2026-09-23, very active. Latest release v1.1.1 (2026-03-11). Main author Gwenhael Goavec-Merou |
 
 ## What it does for the ULX3S
+
 Only the ULX3S-specific parts were reviewed (`src/board.hpp`, `src/cable.hpp`, `doc/boards.yml`, udev rules).
 
 | Board ID (`-b`) | Transport | Notes |
@@ -22,6 +25,7 @@ Only the ULX3S-specific parts were reviewed (`src/board.hpp`, `src/cable.hpp`, `
 | `ulx2s` | FT232RL bit-bang | Predecessor board |
 
 Common commands:
+
 ```bash
 openFPGALoader -b ulx3s design.bit             # SRAM (default, -m optional)
 openFPGALoader -b ulx3s -f design.bit          # SPI flash
@@ -30,13 +34,16 @@ openFPGALoader -b ulx3s_dfu design.bit         # via US2 DFU bootloader
 openFPGALoader -b ulx3s --unprotect-flash --file-type bin -f multiboot.img.gz   # install bootloader image
 openFPGALoader --detect -b ulx3s               # read IDCODE
 ```
+
 udev: `70-openfpgaloader.rules` (uaccess) or `99-…` (group plugdev) include FT231X 0403:6015
 and ULX3S/ULX4M DFU 1d50:614b.
 
 ## Reuse notes
-- The recommended programmer for ULX3S today, and the default in our advice ([toolchain memory](../../.claude/memory/toolchain-and-programming.md)).
+
+- The recommended programmer for ULX3S today, and the default in our advice ([toolchain memory](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/memory/toolchain-and-programming.md)).
 - Bit-banged FT231X JTAG is slow. For large 85F bitstreams, an external FT2232 on the JTAG
   header (`-c ft2232`) or DFU is faster.
 
 ## Open questions
+
 - Does `ulx3s_esp` (ESP32-S3 USB-JTAG) work now? What ESP32-S3 hardware does it target (not the onboard ESP32)?

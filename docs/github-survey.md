@@ -1,3 +1,5 @@
+<!-- Generated from data/pages/github-survey.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # GitHub survey of ULX3S repositories (2026-09-27)
 
 Candidates found by a GitHub-wide search that were **not yet** in `.claude/memory/sources.tsv`
@@ -11,7 +13,7 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 
 | full_name | lang/HDL | stars | last push | license | what it is | evidence |
 |---|---|---|---|---|---|---|
-| [BrunoLevy/learn-fpga](https://github.com/BrunoLevy/learn-fpga) | Verilog | 3701 | 2025-11-18 | BSD-3-Clause | Learning FPGA, yosys, nextpnr, and RISC-V  | tree: Basic/ULX3S/ULX3S_SDRAM_hdmi/ulx3s.lpf |
+| [BrunoLevy/learn-fpga](https://github.com/BrunoLevy/learn-fpga) | Verilog | 3701 | 2025-11-18 | BSD-3-Clause | Learning FPGA, yosys, nextpnr, and RISC-V | tree: Basic/ULX3S/ULX3S_SDRAM_hdmi/ulx3s.lpf |
 | [darklife/darkriscv](https://github.com/darklife/darkriscv) | Verilog | 2613 | 2026-09-04 | BSD-3-Clause | opensouce RISC-V cpu core implemented in Verilog from scratc | tree: boards/ulx3s |
 | [Wren6991/Hazard3](https://github.com/Wren6991/Hazard3) | Verilog | 1115 | 2026-08-29 | Apache-2.0 | 3-stage RV32IMACZb* processor with debug | tree: example_soc/synth/fpga_ulx3s.lpf |
 | [wuxx/Colorlight-FPGA-Projects](https://github.com/wuxx/Colorlight-FPGA-Projects) | Verilog | 366 | 2026-09-15 | Apache-2.0 | current focus on Colorlight i5 and i9 & i9plus module | tree: src/i5/hdmi_test_pattern/ULX3S_25F.json |
@@ -28,7 +30,7 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [BrunoLevy/TordBoyau](https://github.com/BrunoLevy/TordBoyau) | Verilog | 65 | 2023-12-01 | BSD-3-Clause | A pipelined RISC-V processor | tree: BOARDS/ulx3s.lpf |
 | [machdyne/zeitlos](https://github.com/machdyne/zeitlos) | Verilog | 55 | 2026-09-27 | NOASSERTION | Zeitlos SOC/OS | tree: boards/ulx3s.lpf |
 | [FPGAwars/FLIX-V](https://github.com/FPGAwars/FLIX-V) | Verilog | 42 | 2023-11-05 | LGPL-2.1 | FLIX-V: FPGA, Linux and RISC-V | tree: Hardware/KianV-Apio/ulx3s_v20.lpf |
-| [StereoNinja/StereoNinjaFPGA](https://github.com/StereoNinja/StereoNinjaFPGA) | Verilog | 34 | 2023-05-15 | none | Experimental FPGA project for streaming two MIPI CSI camera  | root: DOCS_ULX3S |
+| [StereoNinja/StereoNinjaFPGA](https://github.com/StereoNinja/StereoNinjaFPGA) | Verilog | 34 | 2023-05-15 | none | Experimental FPGA project for streaming two MIPI CSI camera | root: DOCS_ULX3S |
 | [egorxe/openglory](https://github.com/egorxe/openglory) | VHDL + LiteX | 33 | 2025-02-25 | Apache-2.0 | Open source GPU in VHDL | tree: hw/litex/radiona_ulx3s.py |
 | [kulp/tenyr](https://github.com/kulp/tenyr) | C | 28 | 2026-08-15 | NOASSERTION | Simple, orthogonal 32-bit computer architecture and environm | tree: hw/yosys/ulx3s_v20.lpf |
 | [dan-rodrigues/ics-adpcm](https://github.com/dan-rodrigues/ics-adpcm) | Verilog | 26 | 2020-12-28 | MIT | Programmable multichannel ADPCM decoder for FPGA | tree: demo/ulx3s_v20.lpf |
@@ -39,13 +41,13 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [daveshah1/prjtrellis-dvi](https://github.com/daveshah1/prjtrellis-dvi) | VHDL | 17 | 2019-01-20 | none | DVI video out example for prjtrellis | tree: constraints/ulx3s_v20_segpdi.lpf |
 | [Circuit-killer/fpga-usbhid-host](https://github.com/Circuit-killer/fpga-usbhid-host) | VHDL | 15 | 2022-08-27 | none | FPGA state machine for minimalistic USB HID device hosting | tree: proj/lattice/constraints/ulx3s_v17patch.lpf |
 | [ulx3s/blink](https://github.com/ulx3s/blink) | Makefile | 15 | 2022-05-16 | GPL-3.0 | Repository containing ULX3S blink LED binaries | root: ulx3s_v20.lpf |
-| [q3k/ulx3s-foss-blinky](https://github.com/q3k/ulx3s-foss-blinky) | Verilog | 14 | 2018-11-11 | none | A template project for the ULX3S ECP5 FPGA board using only  | root: ulx3s |
+| [q3k/ulx3s-foss-blinky](https://github.com/q3k/ulx3s-foss-blinky) | Verilog | 14 | 2018-11-11 | none | A template project for the ULX3S ECP5 FPGA board using only | root: ulx3s |
 | [mkvenkit/learn_fpga](https://github.com/mkvenkit/learn_fpga) | Verilog | 13 | 2026-07-19 | MIT | A collection of my FPGA projects and experiments. | tree: ecp5_ulx3s/uart_tx/ulx3s_v20.lpf |
 | [rob-ng15/PAWSv2](https://github.com/rob-ng15/PAWSv2) | Silice | 13 | 2025-11-29 | MIT | — | tree: Programming Guide/Graphics/ULX3S-PAWSv2.gif |
 | [lawrie/ulx3s_zx_spectrum](https://github.com/lawrie/ulx3s_zx_spectrum) | Verilog | 12 | 2020-05-07 | none | Minimal ZX Spectrum for Ulx3s ECP5 board | root: ulx3s |
 | [semify-eda/waveform-generator](https://github.com/semify-eda/waveform-generator) | SystemVerilog | 12 | 2022-07-18 | Apache-2.0 | Waveform Generator | tree: fpga/ulx3s_barebones/ulx3s_v20.lpf |
 | [asinghani/pifive-cpu](https://github.com/asinghani/pifive-cpu) | SystemVerilog + Migen | 11 | 2021-12-29 | Apache-2.0 | RISC-V CPU in SystemVerilog & Custom Migen-based SoC Generat | tree: fpga/ulx3s/constraints.lpf |
-| [hsa-ees/piconut](https://github.com/hsa-ees/piconut) | C | 11 | 2026-09-01 | BSD-2-Clause | The PicoNut project provides a minimal and at the same time  | tree: boards/ulx3s/ulx3s.lpf |
+| [hsa-ees/piconut](https://github.com/hsa-ees/piconut) | C | 11 | 2026-09-01 | BSD-2-Clause | The PicoNut project provides a minimal and at the same time | tree: boards/ulx3s/ulx3s.lpf |
 | [lawrie/ulx3s_mac128](https://github.com/lawrie/ulx3s_mac128) | Verilog | 11 | 2022-08-08 | none | Macintosh 128 on the Ulx3s ECP5 FPGA | root: ulx3s |
 | [Wren6991/Hazard3-SWD-SoC](https://github.com/Wren6991/Hazard3-SWD-SoC) | Verilog | 11 | 2023-04-20 | Apache-2.0 | Example Hazard3 + OpenDAP RISC-V SWD SoC integration | tree: synth/fpga_ulx3s.lpf |
 | [YoWASP/toolchain-demo](https://github.com/YoWASP/toolchain-demo) | Amaranth | 11 | 2024-01-01 | ISC | Demonstration of the YoWASP toolchain being used with Visual | root: top.lpf |
@@ -106,12 +108,12 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [gornjas/dvi_test](https://github.com/gornjas/dvi_test) | VHDL | 1 | 2025-03-02 | BSD-2-Clause | Playground for ULX3S video | root: ulx3s_fer.lpf |
 | [jamesrosssharp/ulx3s_mixer_pcb](https://github.com/jamesrosssharp/ulx3s_mixer_pcb) | Verilog | 1 | 2024-08-25 | none | PCB for implementing a 100MHz PLL and mixer for ULX3s | root: ulx3s_mixer |
 | [jlopezr/mini-gpu](https://github.com/jlopezr/mini-gpu) | Verilog | 1 | 2026-09-25 | none | Simple GPU implemented on ULX3S FPGA | root: 7.ulx3s_w9825g6kh_test |
-| [joaln27/koti](https://github.com/joaln27/koti) | SystemVerilog | 1 | 2026-08-20 | Apache-2.0 | A home computer built from the CPU up: an RV32IMA core with  | root: fpga/ulx3s |
+| [joaln27/koti](https://github.com/joaln27/koti) | SystemVerilog | 1 | 2026-08-20 | Apache-2.0 | A home computer built from the CPU up: an RV32IMA core with | root: fpga/ulx3s |
 | [lawrie/ulx3s_gamegear](https://github.com/lawrie/ulx3s_gamegear) | Verilog | 1 | 2021-01-16 | none | Segs Game Gear for the Ulx3s ECP5 FPGA board | root: ulx3s |
 | [LogoPoseidon/Ulx3sJukeBox](https://github.com/LogoPoseidon/Ulx3sJukeBox) | Verilog | 1 | 2024-10-19 | none | — | root: ulx3s_v20.lpf |
 | [nklabs/libnklabs-ulx3s](https://github.com/nklabs/libnklabs-ulx3s) | C | 1 | 2022-08-13 | none | libnklabs example for PicoRV32 (RISC-V) running on ULX3S (La | root: ulx3s.lpf |
 | [RemyCiterin/3DRiscV](https://github.com/RemyCiterin/3DRiscV) | Clash | 1 | 2026-01-11 | MIT | Some experimentations with the blarney DSL for hardware synt | root: ulx3s.lpf |
-| [td0034/fpga](https://github.com/td0034/fpga) | HTML | 1 | 2026-03-05 | none | icesugar v1.5  | root: ulx3s |
+| [td0034/fpga](https://github.com/td0034/fpga) | HTML | 1 | 2026-03-05 | none | icesugar v1.5 | root: ulx3s |
 | [thata/td4-ulx3s](https://github.com/thata/td4-ulx3s) | Verilog | 1 | 2024-12-06 | none | ULX3SでTD4を動かしてみる | root: ulx3s_v20.lpf |
 | [ThePerfectComputer/learn-clash](https://github.com/ThePerfectComputer/learn-clash) | Clash | 1 | 2024-04-17 | none | My first efforts to use clash lang that other will hopefully | root: ulx3s |
 | [ThePerfectComputer/MannaChip](https://github.com/ThePerfectComputer/MannaChip) | Bluespec | 1 | 2025-11-22 | none | — | root: ulx3s_fpga |
@@ -146,7 +148,7 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [lcausevic/ULX3S_FPGA_Logic_Structures](https://github.com/lcausevic/ULX3S_FPGA_Logic_Structures) | ? | 0 | 2026-09-22 | none | — | root: ULX3S-85F.zip |
 | [mpardalos/clash-blinky](https://github.com/mpardalos/clash-blinky) | Clash | 0 | 2025-04-13 | none | Programming the ulx3s with Clash | root: ulx3s_v20.lpf |
 | [MSRRaju07/IOP](https://github.com/MSRRaju07/IOP) | Verilog (Icestudio) | 0 | 2024-03-27 | MIT | — | root: ULX3S_SOBEL.ice |
-| [nicocavallu/rf-dds-lo](https://github.com/nicocavallu/rf-dds-lo) | Verilog | 0 | 2026-08-06 | none | FGPA Direct Digital Synthesis  | root: ulx3s.lpf |
+| [nicocavallu/rf-dds-lo](https://github.com/nicocavallu/rf-dds-lo) | Verilog | 0 | 2026-08-06 | none | FGPA Direct Digital Synthesis | root: ulx3s.lpf |
 | [nullobject/counter-ulx3s](https://github.com/nullobject/counter-ulx3s) | Makefile | 0 | 2025-02-01 | none | — | root: ulx3s_v20.lpf |
 | [nullobject/m68k-ulx3s](https://github.com/nullobject/m68k-ulx3s) | Verilog | 0 | 2025-06-07 | none | — | root: ulx3s_v20.lpf |
 | [nullobject/riscv-ulx3s](https://github.com/nullobject/riscv-ulx3s) | Verilog | 0 | 2025-07-13 | none | — | root: ulx3s_v20.lpf |
@@ -175,7 +177,7 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [GuzTech/ulx3s-nmigen-examples](https://github.com/GuzTech/ulx3s-nmigen-examples) | Amaranth | 16 | 2020-11-30 | none | nMigen examples for the ULX3S board | name/desc (unverified) |
 | [sangwoojun/ulx3s_bsv](https://github.com/sangwoojun/ulx3s_bsv) | Bluespec | 15 | 2025-03-09 | none | Bluespec environment for working with the ulx3s board and it | name/desc (unverified) |
 | [gojimmypi/ulx3s-examples](https://github.com/gojimmypi/ulx3s-examples) | Python (Amaranth/LiteX) | 12 | 2020-10-05 | none | Collection of various ulx3s examples | name/desc (unverified) |
-| [mkvenkit/ulx3s_examples](https://github.com/mkvenkit/ulx3s_examples) | ? | 11 | 2022-04-25 | none | Beginner-friendly Verilog based examples for the ULX3S FPGA  | name/desc (unverified) |
+| [mkvenkit/ulx3s_examples](https://github.com/mkvenkit/ulx3s_examples) | ? | 11 | 2022-04-25 | none | Beginner-friendly Verilog based examples for the ULX3S FPGA | name/desc (unverified) |
 | [pepijndevos/rust-litex-example](https://github.com/pepijndevos/rust-litex-example) | LiteX + Rust | 11 | 2022-06-16 | Apache-2.0 | An example application that demonstrates litex-hal on the UL | name/desc (unverified) |
 | [dstrbad/fpga-soc-ml-accelerator](https://github.com/dstrbad/fpga-soc-ml-accelerator) | LiteX | 5 | 2026-08-04 | none | FPGA SoC learning project: soft RISC-V CPU, Linux, and hardw | name/desc (unverified) |
 | [emard/ulx3s-emi](https://github.com/emard/ulx3s-emi) | Verilog | 5 | 2021-10-22 | none | demo core for electromagnetic interference measurement | name/desc (unverified) |
@@ -204,13 +206,13 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [chiplet/acorechip-ulx3s](https://github.com/chiplet/acorechip-ulx3s) | Python (Amaranth/LiteX) | 0 | 2024-11-16 | Apache-2.0 | ACoreChip RISC-V soft core implementation on ULX3S FPGA deve | name/desc (unverified) |
 | [chiplet/ulx3s-blinky](https://github.com/chiplet/ulx3s-blinky) | Makefile | 0 | 2024-03-26 | none | — | name/desc (unverified) |
 | [dpks2003/my_ulx3s_repo](https://github.com/dpks2003/my_ulx3s_repo) | Verilog | 0 | 2024-01-15 | none | This repository contains all of my project implemented on ul | name/desc (unverified) |
-| [dpks2003/Dice_crap_game](https://github.com/dpks2003/Dice_crap_game) | Verilog | 0 | 2024-03-10 | none | This repo contains Verilog Implementation of Dice Crap Game  | name/desc (unverified) |
+| [dpks2003/Dice_crap_game](https://github.com/dpks2003/Dice_crap_game) | Verilog | 0 | 2024-03-10 | none | This repo contains Verilog Implementation of Dice Crap Game | name/desc (unverified) |
 | [EmbeddedDojo/ULX3S_Examples](https://github.com/EmbeddedDojo/ULX3S_Examples) | Verilog | 0 | 2022-01-18 | Apache-2.0 | ULX3S Lattice board examples | name/desc (unverified) |
-| [flyingoverclouds/flocs-ulx3s-samples](https://github.com/flyingoverclouds/flocs-ulx3s-samples) | Verilog | 0 | 2020-12-31 | MIT | My samples and tests on the FGPA ULX3S board and opensource  | name/desc (unverified) |
-| [fywc/ulx3s_rv32i_processor](https://github.com/fywc/ulx3s_rv32i_processor) | Bluespec | 0 | 2023-03-15 | none | a simple 4-stages pipelined rv32i processor  | name/desc (unverified) |
+| [flyingoverclouds/flocs-ulx3s-samples](https://github.com/flyingoverclouds/flocs-ulx3s-samples) | Verilog | 0 | 2020-12-31 | MIT | My samples and tests on the FGPA ULX3S board and opensource | name/desc (unverified) |
+| [fywc/ulx3s_rv32i_processor](https://github.com/fywc/ulx3s_rv32i_processor) | Bluespec | 0 | 2023-03-15 | none | a simple 4-stages pipelined rv32i processor | name/desc (unverified) |
 | [ghaworth/ulx3s-bldc-foc](https://github.com/ghaworth/ulx3s-bldc-foc) | Makefile | 0 | 2026-06-15 | none | Open-source FPGA FOC core and three-phase driver board for B | name/desc (unverified) |
 | [ghaworth/ulx3s-tinyai](https://github.com/ghaworth/ulx3s-tinyai) | Verilog | 0 | 2026-07-16 | NOASSERTION | — | name/desc (unverified) |
-| [gmejiamtz/ulx3s-components](https://github.com/gmejiamtz/ulx3s-components) | SystemVerilog | 0 | 2025-08-20 | MIT | A repo dedicated to getting various components on the ULX3S  | name/desc (unverified) |
+| [gmejiamtz/ulx3s-components](https://github.com/gmejiamtz/ulx3s-components) | SystemVerilog | 0 | 2025-08-20 | MIT | A repo dedicated to getting various components on the ULX3S | name/desc (unverified) |
 | [gojimmypi/z80386-ulx3s-doom](https://github.com/gojimmypi/z80386-ulx3s-doom) | Verilog | 0 | 2026-07-29 | none | — | name/desc (unverified) |
 | [John-K/spinose](https://github.com/John-K/spinose) | LiteX | 0 | 2020-04-11 | BSD-2-Clause | Litex based SPI NOR dumping gateware for ULX3S | name/desc (unverified) |
 | [marinsiric/ulx3s](https://github.com/marinsiric/ulx3s) | HTML | 0 | 2020-01-23 | none | — | name/desc (unverified) |
@@ -247,7 +249,7 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [srjilarious/fpga_start](https://github.com/srjilarious/fpga_start) | C++ | 5 | 2026-02-28 | none | — | README (unverified) |
 | [NoxHarmonium/sirc](https://github.com/NoxHarmonium/sirc) | Rust | 4 | 2026-09-26 | GPL-3.0 | The best retro console that never existed | README (unverified) |
 | [dicethrow/amaram](https://github.com/dicethrow/amaram) | Amaranth | 3 | 2022-04-13 | none | A HDL library providing a max-bandwidth, n-async-FIFO interf | README (unverified) |
-| [secworks/CrypTkey](https://github.com/secworks/CrypTkey) | Verilog | 2 | 2025-02-25 | BSD-2-Clause | HSM based on Cryptech and Tillitis Tkey. Implemented on the  | README (unverified) |
+| [secworks/CrypTkey](https://github.com/secworks/CrypTkey) | Verilog | 2 | 2025-02-25 | BSD-2-Clause | HSM based on Cryptech and Tillitis Tkey. Implemented on the | README (unverified) |
 | [danodus/onramp-fpga](https://github.com/danodus/onramp-fpga) | C | 2 | 2026-05-26 | MIT | FPGA-based system-on-chip with a 32-bit Onramp processor | README (unverified) |
 | [gergoerdi/advent-of-clash-2025](https://github.com/gergoerdi/advent-of-clash-2025) | Clash | 2 | 2026-01-13 | GPL-3.0 | Advent of Clash 2025 | README (unverified) |
 | [cgarryZA/advent-of-camel-2025](https://github.com/cgarryZA/advent-of-camel-2025) | Hardcaml | 2 | 2026-01-19 | MIT | A hardware-first exploration of Advent of Code 2025, impleme | README (unverified) |
@@ -256,7 +258,7 @@ Evidence: `tree:` = path found in the recursive file tree; `root:` = found in th
 | [AravindRajeshkanna/vernier-rv32](https://github.com/AravindRajeshkanna/vernier-rv32) | Verilog | 1 | 2026-09-27 | NOASSERTION | vernier-rv32 is an open-source FPGA SoC design project cente | README (unverified) |
 | [gildobjanschi/RISCV_PROCESSOR](https://github.com/gildobjanschi/RISCV_PROCESSOR) | Assembly | 1 | 2024-09-06 | MIT | 32-bit RISC-V Processor Verilog code | README (unverified) |
 | [johngannon4/riscv-cpu-portfolio](https://github.com/johngannon4/riscv-cpu-portfolio) | ? | 1 | 2026-09-24 | none | RV32IM 6-stage pipelined RISC-V core in SystemVerilog with a | README (unverified) |
-| [TadeoRoboticsGroup/AxiomaCore-328](https://github.com/TadeoRoboticsGroup/AxiomaCore-328) | Verilog | 1 | 2026-09-26 | Apache-2.0 | AxiomaCore-328, un microcontrolador de arquitectura abierta  | README (unverified) |
+| [TadeoRoboticsGroup/AxiomaCore-328](https://github.com/TadeoRoboticsGroup/AxiomaCore-328) | Verilog | 1 | 2026-09-26 | Apache-2.0 | AxiomaCore-328, un microcontrolador de arquitectura abierta | README (unverified) |
 | [titouanc/fpga-scratchpad](https://github.com/titouanc/fpga-scratchpad) | LiteX | 1 | 2021-03-25 | none | Fiddling with FPGAs, Migen, LiteX and stuffs | README (unverified) |
 | [uttamcoomar/MAC-units-for-various-number-formats](https://github.com/uttamcoomar/MAC-units-for-various-number-formats) | Verilog | 1 | 2026-03-13 | none | This project contains MAC units in Verilog for BF16, FP16, I | README (unverified) |
 | [pepijndevos/litedhrystone](https://github.com/pepijndevos/litedhrystone) | LiteX | 1 | 2024-10-30 | none | Run the Dhrystone benchmark on LiteX | README (unverified) |
@@ -349,4 +351,3 @@ taken out again. This table is kept only as a record of the search.
 
 Forks with no own work skipped: intergalaktik/ulx5m-litex-ai (fork of goran-mahovlic's), 25mmHg, chrisKanthak,
 throwoutofcoffeeexception, mfkiwl, Odie8683 `/ulx5m-gs`. Curated list: PythonLinks/awesome-gatemate.
-

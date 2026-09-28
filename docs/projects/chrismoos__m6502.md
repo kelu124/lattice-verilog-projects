@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/chrismoos__m6502.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # m6502 (`chrismoos__m6502`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | last commit 2026-03-01 (`git log -1 --format=%cs`, pinned commit `4471944`); `.claude/memory/history.tsv` records 5 total commits, first commit 2026-02-17. Young, small repo |
 
 ## What the gateware does
+
 - **6502 CPU core** — `rtl/cpu_6502.sv` (top), `rtl/cpu_6502_alu.sv` (ALU),
   `rtl/cpu_6502_ir_decoder.sv` + `rtl/cpu_6502_microcode.sv` + `rtl/cpu_6502_instructions.vh`
   (vertical-microcode instruction decode). A cycle-accurate NMOS 6502 with all addressing
@@ -33,6 +36,7 @@
   video, no SD card, no ROM images beyond the test/demo firmware.
 
 ## Structure
+
 - `rtl/` — CPU core, ALU, decoder, microcode, BRAM, bus multiplexer.
 - `rtl/peripherals/` — GPIO, SK6812 RGBW LED, timer, UART (+ FIFO).
 - `targets/ulx3s/` — `top.sv`, `Makefile`, `ulx3s_v20.lpf` (606 lines, standard v2.x/v3.0.x
@@ -50,14 +54,18 @@
   referenced from the README (not re-verified here).
 
 ## How to build
+
 Not run. Commands as found in `targets/ulx3s/Makefile`:
+
 ```
 make                 # yosys synth_ecp5 -abc9 -> nextpnr-ecp5 --85k --package CABGA381 \
                       #   --freq 50 --lpf ulx3s_v20.lpf -> ecppack --compress -> bin/toplevel.bit
 make prog             # fujprog bin/toplevel.bit
 make clean
 ```
+
 Simulation/test, from repo root (`Makefile`):
+
 ```
 make test             # uv run pytest test/test_runner.py -s -x   (cocotb unit tests,
                       #   default simulator per catalogue: verilator), then make test-klaus
@@ -109,6 +117,7 @@ make test-klaus       # cd test && make -f Makefile.mcu_klaus run  (Verilator C+
   the GPIO pins actually used need to stay).
 
 ## Open questions
+
 - Exact effective CPU (phi2) frequency in the shipped ULX3S demo at runtime: depends on
   the `CPU_DIV` register default/reset value in `clock_control.sv` vs. the `bus_phi2` LPF
   constraint (15 MHz) — not fully traced through in this review; `unknown`.

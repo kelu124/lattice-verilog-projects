@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/emard__ulx3s-misc.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # ULX3S miscellaneous/advanced examples (`emard__ulx3s-misc`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | Single commit reviewed: `d0c6f15dd2` dated 2026-02-07 (`git -C original_sources/emard__ulx3s-misc log -1 --format=%cs`). `.claude/memory/history.tsv`: first commit 2019-03-14, **1284 commits** total (clone is shallow, no further history available) |
 
 ## What the gateware does
+
 The **reference building-block library** for ULX3S: EMARD's own advanced examples, organised as one
 self-contained `examples/<name>/` per peripheral, each with its own `Makefile`/`makefile.trellis`/
 `makefile.diamond` and (usually) its own `proj/constraints/*.lpf`. Grouped by peripheral:
@@ -65,6 +68,7 @@ self-contained `examples/<name>/` per peripheral, each with its own `Makefile`/`
   the DVI test pattern.
 
 ## Structure
+
 `examples/<peripheral>/` — each is independent, usually split into `hdl/` (reusable core, often shared by
 several `proj/` variants) and `proj/<variant>/` or `top/` (board-specific top level + own `constraints/`).
 Some examples (`dvi/`, `ecp5pll/`, `fm/`, `onchip_osc_blink*/`) keep their Makefile at the example root
@@ -76,11 +80,14 @@ root (not inspected in depth for this pass). `constraints/` holds the shared boa
 `../../constraints/<file>.lpf` from most examples.
 
 ## How to build
+
 Not run (read-only review). Generic trellis path, e.g. `examples/ecp5pll/`:
+
 ```
 cd examples/ecp5pll
 make            # or: make -f makefile.trellis
 ```
+
 `Makefile`/`makefile.trellis` set `PROJECT`, `BOARD = ulx3s`, `FPGA_SIZE` (12/25/45/85), `CONSTRAINTS`,
 `TOP_MODULE(_FILE)`, `VHDL_FILES`/`VERILOG_FILES`, then `include $(SCRIPTS)/trellis_path.mk` and one of
 `trellis_main.mk` / `trellis_main_ghdl.mk` / `trellis_main_sv.mk`. VHDL-only examples list their sources
@@ -128,6 +135,7 @@ the whole repo as "mixed... mostly BSD... plus MIT and GPL/LGPL third-party" —
 specific files are GPL/LGPL so a reuser can avoid them in a closed design, or accept the copyleft.
 
 ## Open questions
+
 - No repo-level `LICENSE` file exists (confirmed via `find`), so licensing is per-file only; several
   files checked here have no license header at all (`fake_differential.v`, `top_eth_hex_demo.v`) —
   treat as `unknown`/all-rights-reserved until clarified with upstream.

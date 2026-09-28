@@ -21,20 +21,20 @@ and runs `claude` here picks up exactly where the work stopped.
 | Learn the ULX3S hardware: pins, signal names, constraint files, build and load, pitfalls | [`docs/board-reference.md`](docs/board-reference.md) |
 | Read a full review of a project, with per-block reuse notes (module, ports, primitives, license, what to change for ULX3S) | [`docs/projects/`](docs/projects/): 18 pages, e.g. [ulx3s-misc](docs/projects/emard__ulx3s-misc.md), [ulx3s_sms OSD](docs/projects/lawrie__ulx3s_sms.md), [f32c](docs/projects/f32c__f32c.md), [hdl4fpga](docs/projects/hdl4fpga__hdl4fpga.md), [Silice](docs/projects/sylefeb__silice.md), [usb_cdc](docs/projects/ulixxe__usb_cdc.md), [ecp5_hdmi_audio_video](docs/projects/danodus__ecp5_hdmi_audio_video.md), [sdspi](docs/projects/zipcpu__sdspi.md), [PicoRV32](docs/projects/yosyshq__picorv32.md), [no2fpga cores](docs/projects/smunaut__ice40-playground.md), [HAD2019 SoC](docs/projects/spritetm__hadbadge2019_fpgasoc.md) |
 | Load bitstreams over USB (DFU), or add a DFU bootloader to a design | [`docs/DFUs.md`](docs/DFUs.md): the ULX3S/ULX4M US2 bootloader (source, alt settings, flash layout, recovery) and the OrangeCrab, Fomu, no2bootloader, pico-ice, BlackIce flows |
-| Find a pin map (LPF) for a board/revision, or see which peripherals a design constrains | [`docs/lpf-catalogue.md`](docs/lpf-catalogue.md) + [`lpf-catalogue.json`](docs/lpf-catalogue.json): all 883 LPFs (455 distinct) with URL, board/rev, FPGA size and LUTs, chips (SDRAM, flash, SD, ESP32, HDMI…) |
+| Find a pin map (LPF) for a board/revision, or see which peripherals a design constrains | [`docs/lpf-catalogue.md`](docs/lpf-catalogue.md) + [`data/lpfs.json`](data/lpfs.json): all 883 LPFs (455 distinct) with URL, board/rev, FPGA size and LUTs, chips (SDRAM, flash, SD, ESP32, HDMI…) |
 | See how the collection was found, and what is not cloned yet | the surveys below |
 
 ## The catalogue
 
 [`docs/catalogue.md`](docs/catalogue.md) is generated from
-[`.claude/memory/catalogue.tsv`](.claude/memory/catalogue.tsv) (one row per repo) by
-`.claude/skills/review-gateware-project/gen_catalogue.py`. It currently covers **358 repos**:
+[`data/catalogue.json`](data/catalogue.json) (one object per repo) by
+`.claude/skills/review-gateware-project/gen_catalogue.py`. It currently covers **376 repos**:
 
-- **291 ULX3S / ULX4M** repos: the ulx3s.github.io project list plus a GitHub-wide search (and RISCBoy, found via the HX survey);
-- **17 on other ECP5 boards**: TrellisBoard, OrangeCrab, iCESugar-Pro, Hackaday 2019 badge, Colorlight,
+- **292 ULX3S / ULX4M** repos: the ulx3s.github.io project list plus a GitHub-wide search (and RISCBoy, found via the HX survey, and the US2 DFU bootloader source);
+- **26 on other ECP5 boards**: TrellisBoard, OrangeCrab, ECP5-EVN, Colorlight i5/i9/5A-75B, iCESugar-Pro, Hackaday 2019 badge, Colorlight,
   ECPIX-5, Versa ECP5-5G, IcePi Zero, LUNA, ECP5 Mini, Pergola, GreyBadge 2025, Machdyne…;
-- **50 non-ECP5** repos: **iCE40 UP5K** (iCEBreaker, UPduino, iCESugar, Fomu, MCH2022 badge, reDIP-SID,
-  pico-ice…), **iCE40 HX8K/HX4K** (PicoRV32, iceboy, BlackIce, IcoBoard, Alhambra II, un0rick…) and ZipCPU sdspi, found via [awesome-latticeFPGAs](https://github.com/kelu124/awesome-latticeFPGAs) and GitHub.
+- **58 non-ECP5** repos: **iCE40 UP5K** (iCEBreaker, UPduino, iCESugar, Fomu, MCH2022 badge, reDIP-SID,
+  pico-ice…), **iCE40 HX8K/HX4K** (PicoRV32, iceboy, Glasgow, BlackIce, IcoBoard, Alhambra II, BeagleWire, un0rick…) and ZipCPU sdspi, found via [awesome-latticeFPGAs](https://github.com/kelu124/awesome-latticeFPGAs) and GitHub.
   Any row whose FPGA is not an ECP5 says **`NOT ECP5`** in the FPGA column: iCE40 cores use `SB_*`
   primitives and need porting.
 
@@ -49,9 +49,23 @@ the sources at a pinned commit.
 | File | What |
 |---|---|
 | [`docs/github-survey.md`](docs/github-survey.md) | GitHub-wide search for ULX3S repos (groups A–F). A, B, D and the ULX4M part of E are cloned; C (multi-board) is not. F = ULX5M (GateMate, excluded) |
-| [`docs/ecp5-boards-survey.md`](docs/ecp5-boards-survey.md) | Gateware for other ECP5 boards (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5…), 114 repos |
+| [`docs/ecp5-boards-survey.md`](docs/ecp5-boards-survey.md) | Gateware for other ECP5 boards (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5…), 114 repos, all 24 recommended catalogued |
 | [`docs/lattice-boards-survey.md`](docs/lattice-boards-survey.md) | Gateware for the UP5K and ECP5 boards of awesome-latticeFPGAs (20 recommended, all catalogued) |
-| [`docs/hx-boards-survey.md`](docs/hx-boards-survey.md) | Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (20 recommended; 19 catalogued, iceZ0mb1e already present as a submodule) |
+| [`docs/hx-boards-survey.md`](docs/hx-boards-survey.md) | Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (20 recommended + 8 honourable mentions, all catalogued; iceZ0mb1e is a submodule) |
+
+## Data and the GitHub Pages site
+
+Everything gathered is stored as JSON in [`data/`](data/); [`docs/`](docs/) is generated from it and is meant
+to be published with GitHub Pages (Settings → Pages → source: `main`, folder `/docs`; `docs/_config.yml`).
+
+```bash
+make docs    # data/*.json -> docs/*.md (catalogue, LPF catalogue, guides, surveys, project pages, index)
+make lpfs    # rescan every *.lpf in original_sources/ into data/lpfs.json, then render it
+```
+
+Scripts: `gen_catalogue.py` (catalogue; `--merge rows.tsv` adds rows), `scan_lpfs.py` + `gen_lpf_catalogue.py`
+(LPFs), `gen_pages.py` (pages, index; page model in `mdjson.py`), `md2json.py` (import a markdown draft as page
+JSON). Tables in the page JSON are row objects, so survey candidates and project fields are queryable.
 
 ## Upstream sources
 
@@ -80,7 +94,9 @@ freed 5 GB.
 | [`.claude/memory/board-hardware.md`](.claude/memory/board-hardware.md), [`board-revisions.md`](.claude/memory/board-revisions.md), [`toolchain-and-programming.md`](.claude/memory/toolchain-and-programming.md) | Distilled ULX3S hardware, revision and toolchain knowledge |
 | [`.claude/memory/projects.md`](.claude/memory/projects.md) | Project registry: status and the queue of candidates still to review |
 | [`.claude/memory/source-lists.md`](.claude/memory/source-lists.md) | Where each batch of repos came from, and when |
-| [`.claude/skills/review-gateware-project/gen_lpf_catalogue.py`](.claude/skills/review-gateware-project/gen_lpf_catalogue.py) | Regenerates the LPF catalogue from the clones |
+| [`data/`](data/) | **All gathered data as JSON** (source of truth): `catalogue.json`, `lpfs.json`, `pages/*.json` (surveys, guides), `projects/*.json` (review pages) |
+| [`docs/`](docs/) | **Generated** GitHub Pages site (`docs/index.md` is the landing page); never edit by hand |
+| [`Makefile`](Makefile) | `make docs` renders `docs/` from `data/`; `make lpfs` rescans every LPF in the clones |
 | [`.claude/skills/`](.claude/skills/) | Repeatable workflows: GitHub survey, clone + prune, review/catalogue, document, commit, TODO/DONE |
 | [`.claude/TODO.md`](.claude/TODO.md), [`DONE.md`](.claude/DONE.md), [`COMMIT_LOG.md`](.claude/COMMIT_LOG.md) | Open work, finished work, and the why of each commit |
 

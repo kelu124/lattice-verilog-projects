@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/lawrie__ulx3s_sms.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # Sega Master System / SG-1000 for ULX3S (`lawrie__ulx3s_sms`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | Single commit reviewed: `13c2361a50` dated 2023-05-19 (`git -C original_sources/lawrie__ulx3s_sms log -1 --format=%cs`). `.claude/memory/history.tsv`: first commit 2020-12-25, 46 commits total (clone is shallow, no further history) |
 
 ## What the gateware does
+
 A **Sega Master System (and SG-1000-compatible) games console**, entirely in Verilog, with HDMI (+
 optional VGA) output at 640×480@60Hz and joypad-1 input mapped to the board buttons:
 
@@ -51,6 +54,7 @@ show screen corruption (Asterix, Baku Baku Animal, Chop Lifter, Dracula, Fantast
 Lemmings, Lion King, Miracle World, Ms Pacman, Outrun, Space Harrier, Spell Caster, Wanted, Zaxxon 3D).
 
 ## Structure
+
 ```
 src/            core RTL (sms.v top, video.v VDP, sdram.v, sn76489.v, hdmi.v, ...)
 src/Z80/        TV80 Z80-compatible CPU core (MIT)
@@ -65,11 +69,14 @@ roms/           bios.mem (readmem-format BIOS init), bios13fx.sms (Sega Europe/U
 ```
 
 ## How to build
+
 Not run (read-only review). From README + `ulx3s/Makefile`/`ulx3s.mk`:
+
 ```
 cd ulx3s
 make prog          # DEVICE defaults to 85k; add "DEVICE = 12k" to ulx3s/Makefile for a 12F board
 ```
+
 Internally: `yosys -p "synth_ecp5 -json toplevel.json" $(VERILOG)` →
 `nextpnr-ecp5 --85k --package CABGA381 --timing-allow-fail --freq 25 --textcfg ... --lpf ulx3s_v20.lpf`
 → `ecppack --compress` → `ujprog`. `VERILOG` in `ulx3s/Makefile` lists `sms.v`, `ram.v`, `vram.v`,
@@ -120,6 +127,7 @@ ECP5 vendor primitives, so the whole stack (`osd.v`, `spi_osd.v`, `spirw_slave_v
 is vendor-portable; only the surrounding PLL (`ecp5pll.sv`) and HDMI serializer are ECP5-specific.
 
 ## Open questions
+
 - `osd.v` and `spi_osd.v` carry no license header at all (only the BSD-headed `spirw_slave_v.v` and
   `spi_ram_btn.v` in the same directory do) — unclear if they're meant to inherit the same BSD terms as
   the rest of EMARD's OSD stack or are unlicensed Lawrie Griffiths code; `unknown`.

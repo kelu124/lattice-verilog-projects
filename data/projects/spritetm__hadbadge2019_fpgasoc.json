@@ -1,0 +1,228 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "project",
+ "slug": "spritetm__hadbadge2019_fpgasoc",
+ "title": "Hackaday Supercon 2019 badge SoC (`spritetm__hadbadge2019_fpgasoc`)",
+ "description": "",
+ "fields": {
+  "Upstream": "https://github.com/Spritetm/hadbadge2019_fpgasoc",
+  "Reviewed at": "`6e706d5` (upstream date 2023-11-30), reviewed 2026-09-28",
+  "License": "No single top-level license: per-file SPDX-less headers referencing one of `LICENSE.bsd`, `LICENSE.gplv3`, `LICENSE.lgpl3`, `LICENSE.mit`, `LICENSE.beerware`, `LICENSE.fatfs` (root). Submodule `soc/picorv32` is ISC-style (Clifford Wolf header); `soc/picorv32/tests/LICENSE` is BSD-3-Clause (RISC-V tests, unrelated to the core itself)",
+  "HDL / framework": "Verilog (95 files, own) + submodule `soc/picorv32` (41 files)",
+  "Toolchain": "`open`: yosys (`synth_ecp5 -abc9`) + nextpnr-ecp5 + ecppack, via `soc/Makefile`. Docs recommend a prebuilt `xobs/ecp5-toolchain` (per repo docs, not independently verified)",
+  "Programmer": "`openocd` (SVF over JTAG, `soc/openocd.cfg`) or `dfu-util` (DFU class 1d50:614a/614b, once the DFU IPL is running)",
+  "Target FPGA(s)": "45F — `LFE5U-45F-6BG381`, `nextpnr-ecp5 --45k --package CABGA381` (`soc/Makefile`)",
+  "Board revision(s)": "Hackaday Supercon 2019 badge only: `had19_proto1.lpf`/`proto2`/`proto3`/`prod.lpf`, selected by `BADGE_VER` (1–4); **not** a ULX3S board",
+  "Activity": "single commit at the pinned clone depth (shallow, `--depth 1`); upstream date 2023-11-30; commit count/first commit unknown (`.claude/memory/history.tsv` has no entry)"
+ },
+ "blocks": [],
+ "sections": [
+  {
+   "title": "What the gateware does",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "A complete **badge SoC**: PicoRV32 RISC-V CPU, 16 MB of interleaved QPI-PSRAM as main\nmemory, tile/sprite video out over HDMI/GPDI, a PDM audio synth, a soft-PHY USB2 device,\nplus a DFU/IPL boot chain and a large collection of badge apps (games, demos, a BASIC\ninterpreter). Top module `top_fpga` (`soc/top_fpga.v`); the CPU/bus/peripheral glue is in\n`soc/soc.v`."
+    },
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "**PicoRV32 CPU + Wishbone-ish bus** — `soc/soc.v` (`module soc`), `soc/arbiter.v`. Custom\nfast multiplier via ECP5 DSP: `soc/pcpi_fastmul_dsp.v` + `soc/mul_18x18_ecp5.v`.",
+      "**QPI PSRAM (2× interleaved 8 MB chips, 16 MB total)** — `soc/qpi_cache/` (see Reuse\nnotes). `soc/soc.v:57-64` exposes two independent PSRAM chip interfaces\n(`psrama_*`/`psramb_*`); `soc/soc.v:165` comments \"top of 16 MByte PSRAM\" per CPU\nregion, and `qpimem_dma_rdr.v:33` notes \"interleaved psram @ 48MHz\".",
+      "**Video** — tile/sprite 2D renderer (`soc/video/vid_linerenderer.v`, `vid_spriteeng.v`,\n`video_alphamixer.v`) feeding an HDMI/GPDI TMDS encoder (`soc/hdmi/`).",
+      "**Audio** — an 8-voice wavetable synth (`soc/audio/synth_core.v`) mixed down\n(`audio_mix.v`) and output as 1st-order dithered PDM (`soc/audio/pdm.v`).",
+      "**USB2 device** — a from-scratch, bit-banged full-speed device PHY + link layer\n(`soc/usb/`), used for the DFU bootloader and badge-to-host communication\n(`soc/usb_soc.v`).",
+      "**PIC16F84-compatible softcore** (`soc/pic/`) — used as an LCD/IPL helper co-processor;\nnot investigated further (out of scope for this pass).",
+      "**DFU/IPL bootloader + apps** — `soc/ipl/` (with `tinyusb`, `elfload`, `lodepng`, `yxml`\nsubmodules) and ~14 `app-*/` directories (games/demos), out of scope here."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Structure",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`soc/Makefile` — the SoC build (badge-specific; see How to build).",
+      "`soc/soc.v` — CPU + bus + all peripheral instantiation and address decode.",
+      "`soc/top_fpga.v` — top-level pad/pin glue, instantiates `sysmgr`, `soc`, PHYs.",
+      "`soc/sysmgr.v` — PLL/reset manager (see Reuse notes: clock tree).",
+      "`soc/qpi_cache/`, `soc/hdmi/`, `soc/video/`, `soc/audio/`, `soc/usb/` — the reusable\ncores documented below.",
+      "`soc/picorv32/` — `cliffordwolf/picorv32` submodule, pinned at\n`e0baf2e0bd49fdddef2e3440c1f6364478655154` (per `.claude/memory/submodules.tsv`), the\nstandard single-file RV32I core, ISC-style license.",
+      "`soc/had19_prod.lpf` (and `proto1`–`proto3` variants) — badge-specific pin constraints.",
+      "`app-*/`, `blink/`, `soc/ipl/` — badge applications and bootloader, not covered by this\npass (brief scope: qpi_cache, video, audio, USB only). DFU/bootloader details for the\nULX3S ecosystem are covered separately in `../DFUs.md`."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "How to build",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Not run. Exact commands from `soc/Makefile`:"
+    },
+    {
+     "type": "code",
+     "lang": "",
+     "text": "make            # -> soc.svf (yosys synth_ecp5 -abc9 -> nextpnr-ecp5 --45k --package CABGA381\n                #    --speed 8 --freq 48 --seed 37 -> ecpbram (BRAM init) -> ecppack --svf)\nmake prog       # openocd -f ../openocd.cfg -c \"init; svf soc.svf; exit\"\nmake dfu_flash  # dfu-util -d 1d50:614a,1d50:614b -a 0 -R -D soc.bit\nmake verilator  # full-SoC/video simulation (SDL output), needs sdl2-config"
+    },
+    {
+     "type": "paragraph",
+     "text": "`BADGE_VER` (default 4 = prod) selects the LPF/hardware-define set. Flash timing:\n`FLASH_MODE=qspi`, `FLASH_FREQ=38.8` MHz. `TRELLIS=/usr/share/trellis` is hard-coded and\nwould need overriding for other installs (same pattern as the emard \"universal make\" repos\nper `reusable-cores.md`)."
+    },
+    {
+     "type": "paragraph",
+     "text": "Self-checking testbenches (iverilog, `$display` mismatch + `$finish`), not run here:\n`soc/qpi_cache/qpimem_iface_testbench.v`, `qpimem_cache_testbench.v`,\n`qpimem_interleave_testbench.v`, `soc/pcpi_fastmul_dsp_testbench.v`. `make verilator`\n(full SoC + video, SDL) is visual/waveform-only, no pass/fail."
+    }
+   ]
+  },
+  {
+   "title": "Reuse notes",
+   "sections": [
+    {
+     "title": "Reusable blocks",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "Block",
+        "Path",
+        "Top module",
+        "Language",
+        "Vendor primitives",
+        "License"
+       ],
+       "rows": [
+        {
+         "Block": "QPI PSRAM PHY (2×2-wide interleave)",
+         "Path": "`soc/qpi_cache/qspi_phy_2x_ecp5.v`",
+         "Top module": "`qspi_phy_2x_ecp5`",
+         "Language": "Verilog",
+         "Vendor primitives": "`ODDRX1F` (×2), `IDDRX1F`, `TRELLIS_IO` (bidir), `OFS1P3DX`",
+         "License": "BSD-3"
+        },
+        {
+         "Block": "QPI PSRAM link-layer (dual interleaved chips)",
+         "Path": "`soc/qpi_cache/qpimem_iface_2x2w.v`",
+         "Top module": "`qpimem_iface_2x2w`",
+         "Language": "Verilog",
+         "Vendor primitives": "none (drives the PHY above)",
+         "License": "BSD-3"
+        },
+        {
+         "Block": "QPI PSRAM link-layer (single/other variants)",
+         "Path": "`soc/qpi_cache/qpimem_iface.v`, `qpimem_iface_intl.v`",
+         "Top module": "`qpimem_iface`, `qpimem_iface_intl`",
+         "Language": "Verilog",
+         "Vendor primitives": "none",
+         "License": "BSD-3"
+        },
+        {
+         "Block": "2-way direct-mapped cache in front of PSRAM",
+         "Path": "`soc/qpi_cache/qpimem_cache.v`",
+         "Top module": "`qpimem_cache`",
+         "Language": "Verilog",
+         "Vendor primitives": "none (pure logic; parametric `CACHELINE_WORDS`/`CACHELINE_CT`/`ADDR_WIDTH`)",
+         "License": "BSD-3"
+        },
+        {
+         "Block": "PSRAM bus arbiter / DMA reader",
+         "Path": "`soc/qpi_cache/qpimem_arbiter.v`, `qpimem_dma_rdr.v`",
+         "Top module": "`qpimem_arbiter`, `qpimem_dma_rdr`",
+         "Language": "Verilog",
+         "Vendor primitives": "none",
+         "License": "BSD-3"
+        },
+        {
+         "Block": "HDMI/DVI TMDS encode + serialize",
+         "Path": "`soc/hdmi/vga2dvid.v`, `tmds_encoder.v`",
+         "Top module": "`vga2dvid`, `tmds_encoder`",
+         "Language": "Verilog (vhd2vl-translated from Mike Field's \"hamsterworks\" VHDL)",
+         "Vendor primitives": "`fake_differential.v` uses `ODDRX1F` for DDR TMDS serialization; `vga2dvid`/`tmds_encoder` themselves are primitive-free",
+         "License": "MIT (Mike Field, 2012, header in `vga2dvid.v`/`tmds_encoder.v`); `fake_differential.v` and `hdmi-encoder.v` have **no license header** (not covered by any `LICENSE.*` reference found)"
+        },
+        {
+         "Block": "Audio wavetable synth core",
+         "Path": "`soc/audio/synth_core.v`",
+         "Top module": "`synth_core`",
+         "Language": "Verilog",
+         "Vendor primitives": "none",
+         "License": "BSD-3"
+        },
+        {
+         "Block": "PDM DAC (1st-order, dithered)",
+         "Path": "`soc/audio/pdm.v`",
+         "Top module": "`pdm` (+ helper `pdm_lfsr`)",
+         "Language": "Verilog",
+         "Vendor primitives": "none; parametric `WIDTH` (8-bit shown), `PHY=\"GENERIC\"`",
+         "License": "BSD-3"
+        },
+        {
+         "Block": "USB2 full-speed device PHY + link",
+         "Path": "`soc/usb/usb_phy.v`, `usb.v`, `usb_trans.v`, etc.",
+         "Top module": "`usb_phy`, `usb`",
+         "Language": "Verilog",
+         "Vendor primitives": "`usb_phy.v` has an `ECP5` branch using `TRELLIS_IO` (bidir, bit-banged D+/D-, manual input latching since \"ecp5 io isn't latching\"); rest of `soc/usb/` is primitive-free",
+         "License": "LGPL-3.0-or-later (`usb.v`, `usb_phy.v` headers)"
+        },
+        {
+         "Block": "SoC top glue (PSRAM/USB/etc. wiring)",
+         "Path": "`soc/usb_soc.v`",
+         "Top module": "`usb_soc`",
+         "Language": "Verilog",
+         "Vendor primitives": "none",
+         "License": "BSD-3"
+        },
+        {
+         "Block": "Clock/reset manager",
+         "Path": "`soc/sysmgr.v`",
+         "Top module": "`sysmgr`",
+         "Language": "Verilog",
+         "Vendor primitives": "`EHXPLLL`",
+         "License": "BSD-3"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Notes",
+     "blocks": [
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "**QPI PSRAM controller (`soc/qpi_cache/`)**: cleanly layered — `qspi_phy_2x_ecp5.v` is the\nonly ECP5-primitive-dependent file (DDR IO via `ODDRX1F`/`IDDRX1F` plus `TRELLIS_IO`\ntristate buffers); everything above it (`qpimem_iface_2x2w`, `qpimem_cache`,\n`qpimem_arbiter`, `qpimem_dma_rdr`) is portable Verilog. It targets **two** Lyontek\nLY68L6400 QPI PSRAM chips (8 MB each, interleaved for a 16-bit-wide effective bus /\n16 MB total) — confirmed by the bundled behavioral model\n`soc/qpi_cache/ly68l6400_model.v` and the `//ly68l6400:` comments in\n`qpimem_iface.v:69` and `qpimem_iface_intl.v:36`. Clock: the PHY runs on `clk_2x`/`clk_1x`\n(from `sysmgr`'s 96/48 MHz PLL outputs — see below) and the interleave comment pins the\ninterleaved-PSRAM design point at 48 MHz (`qpimem_dma_rdr.v:33`). To reuse on a ULX3S: a\nULX3S has no on-board QPI PSRAM (it's SDR SDRAM), so this only applies if pairing with an\nadd-on PSRAM board carrying the same or a compatible QPI-mode chip; pin remap via a new\nLPF is required either way, and using a single chip instead of two would mean dropping\nthe interleave and using `qpimem_iface.v` directly instead of `qpimem_iface_2x2w.v`.",
+        "**`soc/sysmgr.v` clock tree**: one `EHXPLLL` takes an **8 MHz** input\n(`FREQUENCY_PIN_CLKI=\"8\"`, `soc/had19_prod.lpf:2` confirms \"8MHz clock\" on the badge) and\nproduces 96 MHz (`CLKOP`), 48 MHz (`CLKOS`), and 24 MHz (`CLKOS2`). ULX3S's board\noscillator is 25 MHz, not 8 MHz, so the PLL divider/multiplier constants in `sysmgr.v`\nwould need recomputing (e.g. with EMARD's `ecp5pll.sv` generator used elsewhere in the\ncollection) rather than reused as-is.",
+        "**HDMI/TMDS (`soc/hdmi/`)**: `vga2dvid.v`/`tmds_encoder.v` are the same well-known\nMike Field \"hamsterworks\" HDMI core (MIT) that appears all over the ULX3S ecosystem\n(`reusable-cores.md`); only `fake_differential.v`'s DDR serialization\n(`ODDRX1F`) is ECP5-specific and is directly usable on ULX3S GPDI pins (same fake-diff\npseudo-differential trick as `emard__ulx3s-misc`). `hdmi-encoder.v` and\n`clk_8_250_125_25.v` are badge-specific glue/PLL and would be replaced by a\nULX3S-appropriate pixel-clock PLL.",
+        "**Audio (`soc/audio/`)**: `synth_core.v` and `pdm.v` have no vendor primitives at all —\nfully portable. `pdm.v` is parametric (`WIDTH`, `PHY=\"GENERIC\"`) and outputs a single PDM\nbitstream per channel (`audio_out_dc` is a separate 12-bit DC/bias output from\n`synth_core`); only the output pin assignment in a new LPF is needed to reuse it on\nULX3S (e.g. feeding an RC filter to a GPIO, as ULX3S has no dedicated audio DAC).",
+        "**USB device (`soc/usb/`)**: this is a **soft, bit-banged full-speed device PHY** — no\nexternal ULPI/USB3300 PHY chip is needed, just two GPIO pins (D+/D-) with the usual\n1.5 kΩ pull-up. The `usb_phy.v` `TARGET=\"ECP5\"` branch is exactly the pattern needed for\nULX3S's US2 direct-USB port (which is also bare D+/D- GPIO, no PHY chip). This makes it\none of the more directly reusable USB device cores in the collection, alongside\n`smunaut__ice40-playground`'s `no2usb` (same author, similar architecture, LGPL vs\nCERN-OHL-P licensing difference to note). License is LGPL-3.0-or-later (copyleft on\nmodifications to `usb.v`/`usb_phy.v` themselves, not on code merely linked against it).",
+        "**License caution**: this repo mixes BSD-3, LGPL-3+, GPLv3, MIT, Beerware and\nlicense-less files in one tree with no single top-level grant; reusers must keep the\nper-file header attached (e.g. `qpi_cache/*.v` and `sysmgr.v`/`usb_soc.v` are BSD-3, but\n`usb/usb.v` is LGPL-3+, and `hdmi/fake_differential.v` + `hdmi-encoder.v` have no\nlicense statement at all — treat those two as all-rights-reserved until clarified with\nupstream)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Open questions",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`fake_differential.v` and `hdmi-encoder.v` license is unclear (no header found); would\nneed to ask upstream (Sylvain Munaut / Jeroen Domburg) before redistributing.",
+      "`soc/pic/` (PIC16F84 softcore) role and portability not investigated (out of brief scope).",
+      "Whether `LY68L6400` (or a pin-compatible QPI PSRAM) is available as a ULX3S add-on board\nis unverified — no such board is catalogued yet in this repo's survey.",
+      "Commit count / first-commit date for full-history stats not recorded in\n`.claude/memory/history.tsv`.",
+      "DFU bootloader details are covered separately; see `../DFUs.md`."
+     ]
+    }
+   ]
+  }
+ ]
+}

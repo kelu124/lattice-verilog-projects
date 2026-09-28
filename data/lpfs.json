@@ -1,6 +1,7 @@
 {
  "generated": "2026-09-28",
- "generator": ".claude/skills/review-gateware-project/gen_lpf_catalogue.py",
+ "schema": "ulx3s-klod/lpfs/v1",
+ "generator": ".claude/skills/review-gateware-project/scan_lpfs.py",
  "notes": [
   "One entry per distinct LPF content; `copies` lists every repo/path with a URL at the pinned commit.",
   "Per-file last-change dates are unknown (shallow clones): `repo_last_commit` is the repo's pinned commit date.",
@@ -8,8 +9,8 @@
   "per-copy `device`/`luts` come from the LPF text, a build file next to it, or the repo's catalogue row (see `device_evidence`); LUT4 counts: 12k=12000, 25k=24000, 45k=44000, 85k=84000.",
   "`chips` are inferred from active signal names (the matched names are listed); `chips_commented_only` from commented-out LOCATE lines."
  ],
- "files_scanned": 883,
- "distinct_lpfs": 455,
+ "files_scanned": 916,
+ "distinct_lpfs": 479,
  "lpfs": [
   {
    "sha256_16": "b2b4957635587bd6",
@@ -8401,6 +8402,133 @@
    ]
   },
   {
+   "sha256_16": "3be594ee0bbb444f",
+   "name": "had19_proto2.lpf",
+   "lines": 309,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Hackaday 2019 badge",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 1%",
+   "board_description": "Hackaday Supercon 2019 \"Logic Noise\" FPGA workshop: cumulative Verilog exercises building audio oscillators and an organ on the badge",
+   "signals_active": 137,
+   "signals_commented": 1,
+   "chips": {
+    "adc": [
+     "adcref1",
+     "adcref2",
+     "adcref3",
+     "adcref4",
+     "adcrefout"
+    ],
+    "button": [
+     "btn"
+    ],
+    "ftdi-uart": [
+     "uart_rx",
+     "uart_tx"
+    ],
+    "gpio-header": [
+     "pmod"
+    ],
+    "hdmi-dvi": [
+     "gpdi_dn",
+     "gpdi_dp",
+     "gpdi_ethn",
+     "gpdi_ethp"
+    ],
+    "led": [
+     "led"
+    ],
+    "oled-lcd": [
+     "lcd_blen",
+     "lcd_cs",
+     "lcd_db",
+     "lcd_fmark",
+     "lcd_id",
+     "lcd_rd",
+     "lcd_rs",
+     "lcd_rst"
+    ],
+    "psram": [
+     "psrama_nce",
+     "psrama_sclk",
+     "psrama_sio",
+     "psramb_nce",
+     "psramb_sclk",
+     "psramb_sio"
+    ],
+    "spi-flash": [
+     "flash_cs",
+     "flash_hold",
+     "flash_miso",
+     "flash_mosi",
+     "flash_sck",
+     "flash_wp"
+    ],
+    "usb": [
+     "usb_dm",
+     "usb_dp",
+     "usb_pu",
+     "usb_vdet"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 128,
+    "LVDS": 1
+   },
+   "clocks": [],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "hexagon5un__hackaday_supercon_2019_logic_noise_fpga_workshop",
+     "path": "includes/had19_proto2.lpf",
+     "url": "https://github.com/hexagon5un/hackaday_supercon_2019_logic_noise_FPGA_workshop/blob/1297ac5f3111212b27e0f3ac2ace908b2e2d4a6c/includes/had19_proto2.lpf",
+     "repo_last_commit": "2019-11-20",
+     "device": "45k",
+     "luts": [
+      44000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    },
+    {
+     "repo": "spritetm__hadbadge2019_fpgasoc",
+     "path": "blink/had19_proto2.lpf",
+     "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/blink/had19_proto2.lpf",
+     "repo_last_commit": "2023-11-30",
+     "device": "45k",
+     "luts": [
+      44000
+     ],
+     "device_evidence": "build file spritetm__hadbadge2019_fpgasoc/blink/Makefile"
+    },
+    {
+     "repo": "spritetm__hadbadge2019_fpgasoc",
+     "path": "soc/had19_proto2.lpf",
+     "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/soc/had19_proto2.lpf",
+     "repo_last_commit": "2023-11-30",
+     "device": "45k",
+     "luts": [
+      44000
+     ],
+     "device_evidence": "build file spritetm__hadbadge2019_fpgasoc/soc/Makefile"
+    }
+   ],
+   "copy_count": 3,
+   "repo_last_commit_max": "2023-11-30",
+   "devices_seen": [
+    "45k"
+   ],
+   "luts_seen": [
+    44000
+   ]
+  },
+  {
    "sha256_16": "77f646a98e2c5a3c",
    "name": "new_pin.lpf",
    "lines": 453,
@@ -11102,6 +11230,69 @@
    ]
   },
   {
+   "sha256_16": "3d0c7752c64ffa21",
+   "name": "blink.lpf",
+   "lines": 8,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Colorlight 5A-75B: notes + example projects (blink, DDS/SSB radio via UART/Docker) for the Colorlight 5A-75B ECP5 board",
+   "signals_active": 2,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led_o"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 1,
+    "LVCMOS25": 1
+   },
+   "clocks": [
+    "clk_i 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "kholia__colorlight-5a-75b",
+     "path": "blink/blink.lpf",
+     "url": "https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/blink/blink.lpf",
+     "repo_last_commit": "2026-02-26",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file kholia__colorlight-5a-75b/blink/Makefile"
+    },
+    {
+     "repo": "wuxx__colorlight-fpga-projects",
+     "path": "src/5a-75b-v7.0/blink/blink.lpf",
+     "url": "https://github.com/wuxx/Colorlight-FPGA-Projects/blob/5042201f6ae848d4269680cc289c7bde3ab8cf71/src/5a-75b-v7.0/blink/blink.lpf",
+     "repo_last_commit": "2026-09-15",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file wuxx__colorlight-fpga-projects/src/5a-75b-v7.0/blink/Makefile"
+    }
+   ],
+   "copy_count": 2,
+   "repo_last_commit_max": "2026-09-15",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
    "sha256_16": "2ad988644f4cb77d",
    "name": "colorlighti5.lpf",
    "lines": 556,
@@ -11339,6 +11530,71 @@
    ]
   },
   {
+   "sha256_16": "372f35c6a4bb2bb0",
+   "name": "dds.lpf",
+   "lines": 11,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Colorlight 5A-75B: notes + example projects (blink, DDS/SSB radio via UART/Docker) for the Colorlight 5A-75B ECP5 board",
+   "signals_active": 3,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led_o"
+    ],
+    "radio-antenna": [
+     "rf_out"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 3
+   },
+   "clocks": [
+    "clk_i 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "kholia__colorlight-5a-75b",
+     "path": "dds_ssb_docker/dds.lpf",
+     "url": "https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/dds_ssb_docker/dds.lpf",
+     "repo_last_commit": "2026-02-26",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    },
+    {
+     "repo": "kholia__colorlight-5a-75b",
+     "path": "dds_twotone_docker/dds.lpf",
+     "url": "https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/dds_twotone_docker/dds.lpf",
+     "repo_last_commit": "2026-02-26",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    }
+   ],
+   "copy_count": 2,
+   "repo_last_commit_max": "2026-02-26",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
    "sha256_16": "34bf151cad377aea",
    "name": "dense.lpf",
    "lines": 52,
@@ -11472,9 +11728,72 @@
    ]
   },
   {
-   "sha256_16": "3be594ee0bbb444f",
-   "name": "had19_proto2.lpf",
-   "lines": 309,
+   "sha256_16": "a758077e4cb9b586",
+   "name": "had19_proto1.lpf",
+   "lines": 40,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Hackaday 2019 badge",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Hackaday Supercon 2019 \"Logic Noise\" FPGA workshop: cumulative Verilog exercises building audio oscillators and an organ on the badge",
+   "signals_active": 15,
+   "signals_commented": 0,
+   "chips": {
+    "button": [
+     "btn"
+    ],
+    "led": [
+     "led"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 15
+   },
+   "clocks": [],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "hexagon5un__hackaday_supercon_2019_logic_noise_fpga_workshop",
+     "path": "includes/had19_proto1.lpf",
+     "url": "https://github.com/hexagon5un/hackaday_supercon_2019_logic_noise_FPGA_workshop/blob/1297ac5f3111212b27e0f3ac2ace908b2e2d4a6c/includes/had19_proto1.lpf",
+     "repo_last_commit": "2019-11-20",
+     "device": "45k",
+     "luts": [
+      44000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    },
+    {
+     "repo": "spritetm__hadbadge2019_fpgasoc",
+     "path": "blink/had19_proto1.lpf",
+     "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/blink/had19_proto1.lpf",
+     "repo_last_commit": "2023-11-30",
+     "device": "45k",
+     "luts": [
+      44000
+     ],
+     "device_evidence": "build file spritetm__hadbadge2019_fpgasoc/blink/Makefile"
+    }
+   ],
+   "copy_count": 2,
+   "repo_last_commit_max": "2023-11-30",
+   "devices_seen": [
+    "45k"
+   ],
+   "luts_seen": [
+    44000
+   ]
+  },
+  {
+   "sha256_16": "43b487b5fc962165",
+   "name": "had19_proto3.lpf",
+   "lines": 324,
    "empty": false,
    "kind": "pin-map",
    "fpga_family": "ECP5",
@@ -11483,11 +11802,12 @@
     "unknown"
    ],
    "board_evidence": "file path/name; best ULX3S reference match 1%",
-   "board_description": "Hackaday Supercon 2019 badge: ECP5 SoC (PicoRV32 CPU) with USB2 device, HDMI/VGA video, QPI PSRAM, audio synth/PDM DAC, and a set of badge apps/games (boot+IPL+SDK)",
-   "signals_active": 137,
-   "signals_commented": 1,
+   "board_description": "Hackaday Supercon 2019 \"Logic Noise\" FPGA workshop: cumulative Verilog exercises building audio oscillators and an organ on the badge",
+   "signals_active": 146,
+   "signals_commented": 0,
    "chips": {
     "adc": [
+     "adc4",
      "adcref1",
      "adcref2",
      "adcref3",
@@ -11511,7 +11831,8 @@
      "gpdi_ethp"
     ],
     "led": [
-     "led"
+     "leda",
+     "ledc"
     ],
     "oled-lcd": [
      "lcd_blen",
@@ -11549,27 +11870,27 @@
    "chips_commented_only": {},
    "part_numbers_in_comments": [],
    "io_standards": {
-    "LVCMOS33": 128,
+    "LVCMOS33": 136,
     "LVDS": 1
    },
    "clocks": [],
    "sysconfig": [],
    "copies": [
     {
-     "repo": "spritetm__hadbadge2019_fpgasoc",
-     "path": "blink/had19_proto2.lpf",
-     "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/blink/had19_proto2.lpf",
-     "repo_last_commit": "2023-11-30",
+     "repo": "hexagon5un__hackaday_supercon_2019_logic_noise_fpga_workshop",
+     "path": "includes/had19_proto3.lpf",
+     "url": "https://github.com/hexagon5un/hackaday_supercon_2019_logic_noise_FPGA_workshop/blob/1297ac5f3111212b27e0f3ac2ace908b2e2d4a6c/includes/had19_proto3.lpf",
+     "repo_last_commit": "2019-11-20",
      "device": "45k",
      "luts": [
       44000
      ],
-     "device_evidence": "build file spritetm__hadbadge2019_fpgasoc/blink/Makefile"
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
     },
     {
      "repo": "spritetm__hadbadge2019_fpgasoc",
-     "path": "soc/had19_proto2.lpf",
-     "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/soc/had19_proto2.lpf",
+     "path": "soc/had19_proto3.lpf",
+     "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/soc/had19_proto3.lpf",
      "repo_last_commit": "2023-11-30",
      "device": "45k",
      "luts": [
@@ -12014,6 +12335,282 @@
    ],
    "copy_count": 2,
    "repo_last_commit_max": "2026-05-30",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "6ac5c3b2d4f54022",
+   "name": "icesugar_pro.lpf",
+   "lines": 38,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 13,
+   "signals_commented": 0,
+   "chips": {
+    "hdmi-dvi": [
+     "gpdi_dn",
+     "gpdi_dp"
+    ],
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256"
+   ],
+   "io_standards": {
+    "LVCMOS33": 13
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/02_hdmi_test/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/02_hdmi_test/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/02_hdmi_test/Makefile"
+    },
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/05_hdmi_graph/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/05_hdmi_graph/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/05_hdmi_graph/Makefile"
+    }
+   ],
+   "copy_count": 2,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "b2d8e6c2808c6457",
+   "name": "icesugar_pro.lpf",
+   "lines": 41,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 14,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "MAX98357A",
+    "SPH0645"
+   ],
+   "io_standards": {
+    "LVCMOS33": 14
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/03_i2s_direct_loopback/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/03_i2s_direct_loopback/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/03_i2s_direct_loopback/Makefile"
+    },
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/04_i2s_serdes_loopback/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/04_i2s_serdes_loopback/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/04_i2s_serdes_loopback/Makefile"
+    }
+   ],
+   "copy_count": 2,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "79908ebd67079cb5",
+   "name": "icesugar_pro.lpf",
+   "lines": 48,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 17,
+   "signals_commented": 0,
+   "chips": {
+    "hdmi-dvi": [
+     "gpdi_dn",
+     "gpdi_dp"
+    ],
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "SPH0645"
+   ],
+   "io_standards": {
+    "LVCMOS33": 17
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/06_live_fft/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/06_live_fft/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/06_live_fft/Makefile"
+    },
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/07_live_real_fft/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/07_live_real_fft/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/07_live_real_fft/Makefile"
+    }
+   ],
+   "copy_count": 2,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "ac15de0268a19c82",
+   "name": "icesugar_pro.lpf",
+   "lines": 33,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 10,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "MAX98358"
+   ],
+   "io_standards": {
+    "LVCMOS33": 10
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/08_pdm_bitstream_loopback/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/08_pdm_bitstream_loopback/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/08_pdm_bitstream_loopback/Makefile"
+    },
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/10_pdm_pcm_loopback/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/10_pdm_pcm_loopback/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/10_pdm_pcm_loopback/Makefile"
+    }
+   ],
+   "copy_count": 2,
+   "repo_last_commit_max": "2026-04-03",
    "devices_seen": [
     "25k"
    ],
@@ -19635,7 +20232,7 @@
    ]
   },
   {
-   "sha256_16": "3d0c7752c64ffa21",
+   "sha256_16": "d3f3a83081fdc1bd",
    "name": "blink.lpf",
    "lines": 8,
    "empty": false,
@@ -19646,7 +20243,7 @@
     "unknown"
    ],
    "board_evidence": "file path/name; best ULX3S reference match 0%",
-   "board_description": "Colorlight i5/i9/i9plus/5a-75b: vendor example collection (blink, uart, VGA/HDMI test pattern, OLED, PicoRV32 picosoc, LiteX-with-DRAM Linux) for Colorlight ECP5/XC7A breakout boards",
+   "board_description": "Colorlight 5A-75B: notes + example projects (blink, DDS/SSB radio via UART/Docker) for the Colorlight 5A-75B ECP5 board",
    "signals_active": 2,
    "signals_commented": 0,
    "chips": {
@@ -19666,19 +20263,19 @@
    "sysconfig": [],
    "copies": [
     {
-     "repo": "wuxx__colorlight-fpga-projects",
-     "path": "src/5a-75b-v7.0/blink/blink.lpf",
-     "url": "https://github.com/wuxx/Colorlight-FPGA-Projects/blob/5042201f6ae848d4269680cc289c7bde3ab8cf71/src/5a-75b-v7.0/blink/blink.lpf",
-     "repo_last_commit": "2026-09-15",
+     "repo": "kholia__colorlight-5a-75b",
+     "path": "blink_docker/blink.lpf",
+     "url": "https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/blink_docker/blink.lpf",
+     "repo_last_commit": "2026-02-26",
      "device": "25k",
      "luts": [
       24000
      ],
-     "device_evidence": "build file wuxx__colorlight-fpga-projects/src/5a-75b-v7.0/blink/Makefile"
+     "device_evidence": "build file kholia__colorlight-5a-75b/blink_docker/Makefile"
     }
    ],
    "copy_count": 1,
-   "repo_last_commit_max": "2026-09-15",
+   "repo_last_commit_max": "2026-02-26",
    "devices_seen": [
     "25k"
    ],
@@ -20370,6 +20967,55 @@
    ]
   },
   {
+   "sha256_16": "409d966f1acb93de",
+   "name": "blinky.lpf",
+   "lines": 17,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "ULX3S",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "repo catalogue board_rev/name (repo-level); best ULX3S reference match 0%",
+   "board_description": "LUNA: Amaranth USB 2.0/3.0 gateware framework (device/host/analyzer cores, PHY interfaces, applets), portable to many FPGA boards incl. ECP5",
+   "signals_active": 9,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 6
+   },
+   "clocks": [],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "greatscottgadgets__luna",
+     "path": "examples/blinky_verilog/blinky.lpf",
+     "url": "https://github.com/greatscottgadgets/luna/blob/82a8f733296603b70ba56755206e13092609c6f0/examples/blinky_verilog/blinky.lpf",
+     "repo_last_commit": "2026-08-19",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file greatscottgadgets__luna/examples/blinky_verilog/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-08-19",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
    "sha256_16": "1c0637e105b4ca7a",
    "name": "blinky.lpf",
    "lines": 25,
@@ -20827,6 +21473,80 @@
    ]
   },
   {
+   "sha256_16": "538cade2c4ae5003",
+   "name": "colorlight-i5.lpf",
+   "lines": 232,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Colorlight I5 PicoRV32 example: minimal RV32I SoC (picorv32 CPU + simpleuart) booting firmware.hex from block RAM",
+   "signals_active": 97,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_rx",
+     "uart_tx"
+    ],
+    "gpio-header": [
+     "p2_12",
+     "p2_13",
+     "p2_14",
+     "p2_15",
+     "p2_16",
+     "p2_17",
+     "p2_18",
+     "p2_19"
+    ],
+    "led": [
+     "led"
+    ],
+    "sdram": [
+     "sdram_addr",
+     "sdram_ba",
+     "sdram_cas_n",
+     "sdram_clk",
+     "sdram_dq",
+     "sdram_ras_n",
+     "sdram_we_n"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 97
+   },
+   "clocks": [
+    "clk_25mhz 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "racerxdl__colorlight-picorv32",
+     "path": "constraints/colorlight-i5.lpf",
+     "url": "https://github.com/racerxdl/colorlight-picorv32/blob/73daf2842c5c1fc147bc59c4589d2150a260fe6b/constraints/colorlight-i5.lpf",
+     "repo_last_commit": "2021-02-27",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file racerxdl__colorlight-picorv32/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2021-02-27",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
    "sha256_16": "5914a65196e8bee3",
    "name": "colorlight_5A-75B.lpf",
    "lines": 25,
@@ -20873,6 +21593,92 @@
    "luts_seen": [
     24000,
     84000
+   ]
+  },
+  {
+   "sha256_16": "10a3ca4060ed84c7",
+   "name": "colorlight_i9_v7.2.lpf",
+   "lines": 234,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 2%",
+   "board_description": "AES67/RAVENNA audio-over-IP bridge for Colorlight i9 v7.2: hardware PTP (IEEE1588) + RTP engine + VexRiscv/LiteX soft CPU running lwIP for management",
+   "signals_active": 87,
+   "signals_commented": 0,
+   "chips": {
+    "audio": [
+     "i2s_bclk",
+     "i2s_din",
+     "i2s_dout",
+     "i2s_lrck",
+     "i2s_mclk"
+    ],
+    "ethernet": [
+     "eth0_gtxclk",
+     "eth0_rx_dv",
+     "eth0_rxc",
+     "eth0_rxd",
+     "eth0_tx_en",
+     "eth0_txd",
+     "eth1_gtxclk",
+     "eth1_rx_dv"
+    ],
+    "led": [
+     "led"
+    ],
+    "sdram": [
+     "sdram_a",
+     "sdram_ba",
+     "sdram_cas_n",
+     "sdram_clk",
+     "sdram_dq",
+     "sdram_ras_n",
+     "sdram_we_n"
+    ],
+    "spi-flash": [
+     "flash_cs",
+     "flash_miso",
+     "flash_mosi",
+     "flash_sck"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "LFE5U-45F-6BG381C",
+    "W25Q64JVSIQ"
+   ],
+   "io_standards": {
+    "LVCMOS33": 87
+   },
+   "clocks": [
+    "clk25 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "datanoisetv__colorlight-i9-aes67",
+     "path": "constraints/colorlight_i9_v7.2.lpf",
+     "url": "https://github.com/DatanoiseTV/colorlight-i9-aes67/blob/71420b772d48409ae8e3a70c3103828495687737/constraints/colorlight_i9_v7.2.lpf",
+     "repo_last_commit": "2026-04-06",
+     "device": "45k",
+     "luts": [
+      44000
+     ],
+     "device_evidence": "LPF text"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-06",
+   "devices_seen": [
+    "45k"
+   ],
+   "luts_seen": [
+    44000
    ]
   },
   {
@@ -22120,6 +22926,123 @@
    ]
   },
   {
+   "sha256_16": "4015b060dabecd23",
+   "name": "dds.lpf",
+   "lines": 18,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Colorlight 5A-75B: notes + example projects (blink, DDS/SSB radio via UART/Docker) for the Colorlight 5A-75B ECP5 board",
+   "signals_active": 4,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_rx_i"
+    ],
+    "led": [
+     "led_o"
+    ],
+    "radio-antenna": [
+     "rf_out"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 4
+   },
+   "clocks": [
+    "clk_i 25MHZ",
+    "clk_100 100.0MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "kholia__colorlight-5a-75b",
+     "path": "dds_ssb_uart/dds.lpf",
+     "url": "https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/dds_ssb_uart/dds.lpf",
+     "repo_last_commit": "2026-02-26",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-02-26",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "6623106b1b148f14",
+   "name": "dds.lpf",
+   "lines": 26,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Colorlight 5A-75B: notes + example projects (blink, DDS/SSB radio via UART/Docker) for the Colorlight 5A-75B ECP5 board",
+   "signals_active": 6,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_rx_i",
+     "uart_tx_o"
+    ],
+    "led": [
+     "led_o"
+    ],
+    "radio-antenna": [
+     "rf_out"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 6
+   },
+   "clocks": [
+    "clk_i 25MHZ",
+    "clk_100 100.0MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "kholia__colorlight-5a-75b",
+     "path": "dds_ssb_uart_alt/dds.lpf",
+     "url": "https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/dds_ssb_uart_alt/dds.lpf",
+     "repo_last_commit": "2026-02-26",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-02-26",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
    "sha256_16": "ee4949c63b3203bb",
    "name": "ecp3versa.lpf",
    "lines": 228,
@@ -22784,6 +23707,56 @@
    ],
    "luts_seen": [
     24000
+   ]
+  },
+  {
+   "sha256_16": "09d630e7c2695648",
+   "name": "ecp5evn.lpf",
+   "lines": 30,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "ECP5 Evaluation board",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Bitcoin miner: pipelined double-SHA256 FPGA miner (fork of progranism/Open-Source-FPGA-Bitcoin-Miner) for the Lattice ECP5-EVN board",
+   "signals_active": 12,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS25": 9,
+    "LVCMOS33": 3
+   },
+   "clocks": [],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "xtrinch__fpga-bitcoin-miner",
+     "path": "src/ecp5evn.lpf",
+     "url": "https://github.com/xtrinch/fpga-bitcoin-miner/blob/7c9ca1c3776b533166c54d35ab7172ccb675a09c/src/ecp5evn.lpf",
+     "repo_last_commit": "2022-04-01",
+     "device": "85k",
+     "luts": [
+      84000
+     ],
+     "device_evidence": "build file xtrinch__fpga-bitcoin-miner/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2022-04-01",
+   "devices_seen": [
+    "85k"
+   ],
+   "luts_seen": [
+    84000
    ]
   },
   {
@@ -23717,58 +24690,6 @@
    ]
   },
   {
-   "sha256_16": "a758077e4cb9b586",
-   "name": "had19_proto1.lpf",
-   "lines": 40,
-   "empty": false,
-   "kind": "pin-map",
-   "fpga_family": "ECP5",
-   "board": "Hackaday 2019 badge",
-   "board_rev": [
-    "unknown"
-   ],
-   "board_evidence": "file path/name; best ULX3S reference match 0%",
-   "board_description": "Hackaday Supercon 2019 badge: ECP5 SoC (PicoRV32 CPU) with USB2 device, HDMI/VGA video, QPI PSRAM, audio synth/PDM DAC, and a set of badge apps/games (boot+IPL+SDK)",
-   "signals_active": 15,
-   "signals_commented": 0,
-   "chips": {
-    "button": [
-     "btn"
-    ],
-    "led": [
-     "led"
-    ]
-   },
-   "chips_commented_only": {},
-   "part_numbers_in_comments": [],
-   "io_standards": {
-    "LVCMOS33": 15
-   },
-   "clocks": [],
-   "sysconfig": [],
-   "copies": [
-    {
-     "repo": "spritetm__hadbadge2019_fpgasoc",
-     "path": "blink/had19_proto1.lpf",
-     "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/blink/had19_proto1.lpf",
-     "repo_last_commit": "2023-11-30",
-     "device": "45k",
-     "luts": [
-      44000
-     ],
-     "device_evidence": "build file spritetm__hadbadge2019_fpgasoc/blink/Makefile"
-    }
-   ],
-   "copy_count": 1,
-   "repo_last_commit_max": "2023-11-30",
-   "devices_seen": [
-    "45k"
-   ],
-   "luts_seen": [
-    44000
-   ]
-  },
-  {
    "sha256_16": "7aa3e262e0f6c2a4",
    "name": "had19_proto1.lpf",
    "lines": 242,
@@ -23844,113 +24765,6 @@
      "repo": "spritetm__hadbadge2019_fpgasoc",
      "path": "soc/had19_proto1.lpf",
      "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/soc/had19_proto1.lpf",
-     "repo_last_commit": "2023-11-30",
-     "device": "45k",
-     "luts": [
-      44000
-     ],
-     "device_evidence": "build file spritetm__hadbadge2019_fpgasoc/soc/Makefile"
-    }
-   ],
-   "copy_count": 1,
-   "repo_last_commit_max": "2023-11-30",
-   "devices_seen": [
-    "45k"
-   ],
-   "luts_seen": [
-    44000
-   ]
-  },
-  {
-   "sha256_16": "43b487b5fc962165",
-   "name": "had19_proto3.lpf",
-   "lines": 324,
-   "empty": false,
-   "kind": "pin-map",
-   "fpga_family": "ECP5",
-   "board": "Hackaday 2019 badge",
-   "board_rev": [
-    "unknown"
-   ],
-   "board_evidence": "file path/name; best ULX3S reference match 1%",
-   "board_description": "Hackaday Supercon 2019 badge: ECP5 SoC (PicoRV32 CPU) with USB2 device, HDMI/VGA video, QPI PSRAM, audio synth/PDM DAC, and a set of badge apps/games (boot+IPL+SDK)",
-   "signals_active": 146,
-   "signals_commented": 0,
-   "chips": {
-    "adc": [
-     "adc4",
-     "adcref1",
-     "adcref2",
-     "adcref3",
-     "adcref4",
-     "adcrefout"
-    ],
-    "button": [
-     "btn"
-    ],
-    "ftdi-uart": [
-     "uart_rx",
-     "uart_tx"
-    ],
-    "gpio-header": [
-     "pmod"
-    ],
-    "hdmi-dvi": [
-     "gpdi_dn",
-     "gpdi_dp",
-     "gpdi_ethn",
-     "gpdi_ethp"
-    ],
-    "led": [
-     "leda",
-     "ledc"
-    ],
-    "oled-lcd": [
-     "lcd_blen",
-     "lcd_cs",
-     "lcd_db",
-     "lcd_fmark",
-     "lcd_id",
-     "lcd_rd",
-     "lcd_rs",
-     "lcd_rst"
-    ],
-    "psram": [
-     "psrama_nce",
-     "psrama_sclk",
-     "psrama_sio",
-     "psramb_nce",
-     "psramb_sclk",
-     "psramb_sio"
-    ],
-    "spi-flash": [
-     "flash_cs",
-     "flash_hold",
-     "flash_miso",
-     "flash_mosi",
-     "flash_sck",
-     "flash_wp"
-    ],
-    "usb": [
-     "usb_dm",
-     "usb_dp",
-     "usb_pu",
-     "usb_vdet"
-    ]
-   },
-   "chips_commented_only": {},
-   "part_numbers_in_comments": [],
-   "io_standards": {
-    "LVCMOS33": 136,
-    "LVDS": 1
-   },
-   "clocks": [],
-   "sysconfig": [],
-   "copies": [
-    {
-     "repo": "spritetm__hadbadge2019_fpgasoc",
-     "path": "soc/had19_proto3.lpf",
-     "url": "https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/soc/had19_proto3.lpf",
      "repo_last_commit": "2023-11-30",
      "device": "45k",
      "luts": [
@@ -25116,6 +25930,527 @@
    ]
   },
   {
+   "sha256_16": "6ba90934aaf177f9",
+   "name": "icesugar_pro.lpf",
+   "lines": 19,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 5,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256"
+   ],
+   "io_standards": {
+    "LVCMOS33": 5
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/01_blinky/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/01_blinky/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/01_blinky/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "0cff5e47e73feac3",
+   "name": "icesugar_pro.lpf",
+   "lines": 25,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 7,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "MAX98358"
+   ],
+   "io_standards": {
+    "LVCMOS33": 7
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/09_pdm_sigma_delta_modulator/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/09_pdm_sigma_delta_modulator/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/09_pdm_sigma_delta_modulator/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "1565bdc31b85a152",
+   "name": "icesugar_pro.lpf",
+   "lines": 39,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 13,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "MAX98357A"
+   ],
+   "io_standards": {
+    "LVCMOS33": 13
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/11_pdm_to_i2s_loopback/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/11_pdm_to_i2s_loopback/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/11_pdm_to_i2s_loopback/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "f02f49cbeef6cf3d",
+   "name": "icesugar_pro.lpf",
+   "lines": 27,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 7,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_rx",
+     "uart_tx"
+    ],
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256"
+   ],
+   "io_standards": {
+    "LVCMOS33": 7
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/12_uart_loopback/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/12_uart_loopback/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/12_uart_loopback/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "24a9734d914fb289",
+   "name": "icesugar_pro.lpf",
+   "lines": 34,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 10,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_tx"
+    ],
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "SPH0645"
+   ],
+   "io_standards": {
+    "LVCMOS33": 10
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/13_fft_uart/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/13_fft_uart/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/13_fft_uart/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "baaaabd99b3fabae",
+   "name": "icesugar_pro.lpf",
+   "lines": 37,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 11,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_rx",
+     "uart_tx"
+    ],
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "SPH0645"
+   ],
+   "io_standards": {
+    "LVCMOS33": 11
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/14_i2s_record_to_uart/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/14_i2s_record_to_uart/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/14_i2s_record_to_uart/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "7ee8bc91c566d1ec",
+   "name": "icesugar_pro.lpf",
+   "lines": 41,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 12,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_rx",
+     "uart_tx"
+    ],
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "MAX98358"
+   ],
+   "io_standards": {
+    "LVCMOS33": 12
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/15_pdm_hil/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/15_pdm_hil/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/15_pdm_hil/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "e64e565772ab5ed7",
+   "name": "icesugar_pro.lpf",
+   "lines": 25,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 7,
+   "signals_commented": 0,
+   "chips": {
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "MAX98358"
+   ],
+   "io_standards": {
+    "LVCMOS33": 7
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/16_pdm_replay/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/16_pdm_replay/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/16_pdm_replay/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "dc2c07c81938800c",
+   "name": "icesugar_pro.lpf",
+   "lines": 49,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "iCESugar-Pro",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "iCESugar-Pro sound2fft: real-time audio spectrum analyzer (I2S mic -> FFT -> HDMI) built as 17 incremental step-by-step Verilog projects with CI",
+   "signals_active": 15,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_rx",
+     "uart_tx"
+    ],
+    "led": [
+     "led_b",
+     "led_g",
+     "led_r"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "CABGA256",
+    "MAX98358"
+   ],
+   "io_standards": {
+    "LVCMOS33": 15
+   },
+   "clocks": [
+    "clk_25m 25MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "mebner86__icesugar-pro_sound2fft",
+     "path": "projects/17_hil_2mics/icesugar_pro.lpf",
+     "url": "https://github.com/mebner86/icesugar-pro_sound2fft/blob/9b513e33c641066fe4b607ee597adec16839200f/projects/17_hil_2mics/icesugar_pro.lpf",
+     "repo_last_commit": "2026-04-03",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file mebner86__icesugar-pro_sound2fft/projects/17_hil_2mics/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-04-03",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
    "sha256_16": "f10a07de34c0962e",
    "name": "icesugar_pro.lpf",
    "lines": 37,
@@ -25754,6 +27089,60 @@
     24000,
     44000,
     84000
+   ]
+  },
+  {
+   "sha256_16": "aa25f3abf51e98d5",
+   "name": "liteeth_core.lpf",
+   "lines": 257,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Colorlight 5A-75B \"LED cube\" hack: HUB75e RGB panel driver (up to 6x 64x64) fed over UDP via LiteEth, replaces vendor capture-card firmware",
+   "signals_active": 256,
+   "signals_commented": 0,
+   "chips": {
+    "ethernet": [
+     "rgmii_eth_clocks_rx",
+     "rgmii_eth_clocks_tx",
+     "rgmii_eth_int_n",
+     "rgmii_eth_mdc",
+     "rgmii_eth_mdio",
+     "rgmii_eth_rst_n",
+     "rgmii_eth_rx_ctl",
+     "rgmii_eth_rx_data"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {},
+   "clocks": [],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "lucysrausch__colorlight-led-cube",
+     "path": "fpga/liteeth_core.lpf",
+     "url": "https://github.com/lucysrausch/colorlight-led-cube/blob/ebac05e1faed52fef736eef9c1a2e3b0c391b68c/fpga/liteeth_core.lpf",
+     "repo_last_commit": "2023-01-10",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2023-01-10",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
    ]
   },
   {
@@ -26641,6 +28030,72 @@
     24000,
     44000,
     84000
+   ]
+  },
+  {
+   "sha256_16": "3c3f02a7065a57c6",
+   "name": "ocadc.lpf",
+   "lines": 74,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "OrangeCrab",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "OrangeCrab ADC FeatherWing: AD9203 10-bit/40MSPS ADC + audio board, gateware for SDR tuning/AM demodulation (parallel Verilog + nMigen flows)",
+   "signals_active": 27,
+   "signals_commented": 0,
+   "chips": {
+    "adc": [
+     "adc_data"
+    ],
+    "button": [
+     "btn_n"
+    ],
+    "led": [
+     "led1",
+     "led2",
+     "led3"
+    ],
+    "usb": [
+     "usb_dm",
+     "usb_dp",
+     "usb_pullup"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 26,
+    "SSTL135_I": 1
+   },
+   "clocks": [
+    "CLK 48000000.0HZ",
+    "clk_adc 40000000.0HZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "emeb__orangecrab_adc",
+     "path": "gateware/verilog/trellis/ocadc.lpf",
+     "url": "https://github.com/emeb/orangecrab_adc/blob/daa94e19abb11e3cee3bc1e97d87908b6da1e08a/gateware/verilog/trellis/ocadc.lpf",
+     "repo_last_commit": "2020-08-18",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file emeb__orangecrab_adc/gateware/verilog/trellis/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2020-08-18",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
    ]
   },
   {
@@ -30267,6 +31722,68 @@
    ],
    "luts_seen": [
     84000
+   ]
+  },
+  {
+   "sha256_16": "45c19f1b3b84194d",
+   "name": "top.lpf",
+   "lines": 99,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Colorlight 5A-75B \"LED cube\" hack: HUB75e RGB panel driver (up to 6x 64x64) fed over UDP via LiteEth, replaces vendor capture-card firmware",
+   "signals_active": 62,
+   "signals_commented": 0,
+   "chips": {
+    "button": [
+     "button"
+    ],
+    "ethernet": [
+     "mdio_scl",
+     "mdio_sda",
+     "phy_resetn",
+     "rgmii_rx_clk",
+     "rgmii_rx_ctl",
+     "rgmii_rxd",
+     "rgmii_tx_clk",
+     "rgmii_tx_ctl"
+    ],
+    "led": [
+     "led"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 18
+   },
+   "clocks": [],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "lucysrausch__colorlight-led-cube",
+     "path": "fpga/syn/top.lpf",
+     "url": "https://github.com/lucysrausch/colorlight-led-cube/blob/ebac05e1faed52fef736eef9c1a2e3b0c391b68c/fpga/syn/top.lpf",
+     "repo_last_commit": "2023-01-10",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file lucysrausch__colorlight-led-cube/fpga/syn/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2023-01-10",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
    ]
   },
   {

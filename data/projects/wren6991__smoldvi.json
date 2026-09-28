@@ -1,0 +1,117 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "project",
+ "slug": "wren6991__smoldvi",
+ "title": "SmolDVI (`wren6991__smoldvi`)",
+ "description": "",
+ "fields": {
+  "Upstream": "https://github.com/Wren6991/SmolDVI",
+  "Reviewed at": "`e8b8f87` (upstream date 2021-07-15), reviewed 2026-09-28",
+  "License": "CC0-1.0 (`LICENSE.md`)",
+  "HDL / framework": "Verilog (12 `.v` files)",
+  "Toolchain": "`open` (yosys + nextpnr-ice40 + icepack/icetime, via `synth/{Icebreaker,Icestick,Icesugar,TinyFPGA_BX}.mk` + `synth/Makefile`, driven by the `Wren6991/fpgascripts` submodule)",
+  "Programmer": "board-specific, invoked from the per-board `.mk` (e.g. iCEBreaker `prog` target); not read in detail here",
+  "Target FPGA(s)": "iCE40 UP5K (iCEBreaker, iCESugar), iCE40 HX1K (iCEstick), iCE40 LP8K (TinyFPGA BX) — **not ECP5, no ULX3S target in this repo**",
+  "Board revision(s)": "n/a — repo does not target ULX3S",
+  "Activity": "last commit 2021-07-15 (`e8b8f87`, \"Port to TinyFPGA BX\"); commit count / first commit unknown (shallow clone, repo not in `.claude/memory/history.tsv`)"
+ },
+ "blocks": [],
+ "sections": [
+  {
+   "title": "What the gateware does",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "A small, portable direct DVI/TMDS video-output core (top module `smoldvi`,\n`hdl/smoldvi/smoldvi.v`) that generates a pixel-doubled RGB666 640×480p60\n(or configurable CEA-861D) DVI signal from an RGB pixel stream, using a\nminimal (\"stateless\") TMDS encoder trick documented in\n`hdl/smoldvi/smoldvi_tmds_encode.v` (~20 LUTs/lane, at the cost of halving\nhorizontal resolution and dropping the colour LSB — acceptable per the author\nfor the iCE40 UP5K/HX1K this was built for). Per-board top-level example\ndesigns (`hdl/fpga/smoldvi_fpga_*.v`) drive a scrolling colour-gradient test\npattern out to a DVI PMOD on iCEBreaker, iCEstick, iCESugar and TinyFPGA BX."
+    }
+   ]
+  },
+  {
+   "title": "Structure",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`hdl/smoldvi/` — the portable core: `smoldvi.v` (top: timing + TMDS encode +\nserialise), `smoldvi_timing.v` (CEA-861D-style H/V counters, sync/den\ngeneration), `smoldvi_tmds_encode.v` (the stateless TMDS trick),\n`smoldvi_serialiser.v` (10:2 gearbox + DDR output, **not fully\nself-contained**, see Reuse notes), `smoldvi_fast_gearbox.v`,\n`smoldvi_clock_driver.v`.",
+      "`hdl/fpga/` — per-board top levels + PLLs (`pll_12_126.v`, `pll_16_126.v`)\nand `.f` file lists.",
+      "`synth/` — per-board Makefile fragments, `.pcf` pin constraints,\n`synth/Makefile` (shared rules).",
+      "`hdl/libfpga` (git submodule, **not fetched** in this shallow clone —\n`.gitmodules` points at `https://github.com/Wren6991/libfpga.git`) supplies\nthe platform `ddr_out` module and reset helpers used by the example\ntop-levels."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "How to build",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Not run (read-only review; the `hdl/libfpga` submodule is also absent, so a\nbuild would fail as checked out). From `Readme.md`:"
+    },
+    {
+     "type": "code",
+     "lang": "",
+     "text": "git clone --recursive https://github.com/Wren6991/SmolDVI.git smoldvi\ncd smoldvi && . sourceme\ncd synth && make -f Icebreaker.mk prog     # also: Icestick.mk, Icesugar.mk, TinyFPGA_BX.mk"
+    },
+    {
+     "type": "paragraph",
+     "text": "No ECP5/ULX3S Makefile exists in this repo."
+    }
+   ]
+  },
+  {
+   "title": "Reusable blocks",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "Block",
+      "Path",
+      "Top module",
+      "Language",
+      "Vendor primitives",
+      "License"
+     ],
+     "rows": [
+      {
+       "Block": "Small DVI/TMDS core",
+       "Path": "`hdl/smoldvi/*.v`",
+       "Top module": "`smoldvi`",
+       "Language": "Verilog",
+       "Vendor primitives": "**none in `hdl/smoldvi/` itself** — see below for the one platform-specific dependency",
+       "License": "CC0-1.0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Reuse notes",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "**Top module ports** (`hdl/smoldvi/smoldvi.v:18-35`): `clk_pix`/`rst_n_pix`\n(pixel-rate domain), `clk_bit`/`rst_n_bit` (bit-rate domain, must be\n**exactly 5× `clk_pix`**, common root oscillator, reset deassertion\nsynchronised to each domain's clock — README, \"Reusing\" section), `en`,\n`r`/`g`/`b` (`RGB_BITS`-wide, 1–7 bits, default 6), `rgb_rdy` (pixel\nrequest/ready strobe), `dvi_p[3:0]`/`dvi_n[3:0]` (`{CK, D2, D1, D0}`, TMDS\nchannel order Blue/Green/Red like other DVI cores in this collection). Key\nparameters: the full CEA-861D H/V timing set (front porch, sync width, back\nporch, active) plus `RGB_BITS`.",
+      "**The only platform-specific piece is `ddr_out`** (per the author, in\n`Readme.md` \"Reusing\"): `smoldvi_serialiser.v:59-75` instantiates a module\ncalled `ddr_out` (2:1 DDR output buffer, ports `clk`, `rst_n`, `d_rise`,\n`d_fall`, `e`, `q`) that is **not itself in this repo** — it comes from the\nunfetched `hdl/libfpga` submodule and is compiled under `` `FPGA_ICE40 ``\nto become a `SB_IO` DDR primitive. Everything else in `hdl/smoldvi/` is\nplain, portable Verilog by the author's own description.",
+      "**Porting to ULX3S (ECP5)**: supply (1) an `EHXPLLL` generating `clk_bit` =\n5× the desired pixel clock from the 25 MHz oscillator (e.g. 126 MHz for\n25.2 MHz / 640×480p60, matching the `pll_12_126`/`pll_16_126` naming\nconvention already used for the iCE40 boards) with `clk_pix` derived from\nit (in-fabric ring-counter divide-by-5, as the iCEBreaker top-level does at\n`hdl/fpga/smoldvi_fpga_icebreaker.v:54-64`, or a second PLL output tap);\n(2) a `` `define FPGA_ECP5 ``-style `ddr_out` implementing the same\n`clk`/`rst_n`/`d_rise`/`d_fall`/`e`/`q` port list around `ODDRX1F` (one\ninstance per TMDS lane, 4 total incl. clock) — the same primitive and DDR\ngearing already used by `danodus__ecp5_hdmi_audio_video`'s\n`rtl/hdmi_serializer_ecp5.v` in this collection, so that file is a good\nreference for the ECP5-specific half; (3) map `dvi_p`/`dvi_n` to\n`gpdi_dp[3:0]`/`gpdi_dn[3:0]` (`ulx3s_v316.lpf`, `IO_TYPE=LVCMOS33D`,\nULX3S's GPDI pins auto-generate the complementary leg from a single-ended\ndrive, as used by the emard `vga2dvid`/danodus `hdmi_serializer_ecp5`\ncores) instead of the SB_IO-based differential pads used on the iCE40\nboards.",
+      "CC0-1.0 (public-domain-equivalent) license makes this one of the least\nencumbered DVI cores in the survey; RGB666 pixel-doubled 640×480p60 is\nsmall enough to be a good \"just need a picture out\" option compared to\nfull hdl-util/hdmi-derived stacks when audio/HDMI infoframes aren't needed."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Open questions",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`hdl/libfpga`'s exact `ddr_out.v` implementation was not read (submodule\nnot fetched in this shallow clone; not in `.claude/memory/submodules.tsv`\nallowlist). The port list quoted above comes from the call site in\n`smoldvi_serialiser.v`, not from the module's own source.",
+      "Whether `smoldvi_clock_driver.v` / `smoldvi_fast_gearbox.v` also assume any\niCE40-specific behaviour (e.g. LUT-based shift register inference) was not\nchecked line-by-line; the author's \"everything in hdl/smoldvi is portable\"\nclaim is unverified beyond the explicit `ddr_out` callout."
+     ]
+    }
+   ]
+  }
+ ]
+}

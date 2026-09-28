@@ -1,0 +1,1238 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "survey",
+ "slug": "lattice-boards-survey",
+ "title": "UP5K and ECP5 boards from awesome-latticeFPGAs: gateware survey",
+ "description": "Gateware for the iCE40 UP5K and ECP5 boards of awesome-latticeFPGAs: 20 recommended, all catalogued.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Status 2026-09-28:** all 20 \"Recommended to clone\" repos are cloned and in `docs/catalogue.md`."
+  },
+  {
+   "type": "paragraph",
+   "text": "Date: 2026-09-28. Research only. Nothing was cloned into ulx3s-klod."
+  },
+  {
+   "type": "paragraph",
+   "text": "Source list: `kelu124/awesome-latticeFPGAs` `Readme.md`. The README has a capital R, so `README.md` returns 404. There is\nno data file; the list is hand-written markdown. I kept the sections \"UP5K\", \"ECP5\", \"Conference badges\" and\n\"Other commercial products → UP5K / ECP5\"."
+  },
+  {
+   "type": "paragraph",
+   "text": "Excluded: every slug in `.claude/memory/sources.tsv` (for example wuxx__icesugar, osresearch__up5k,\nicebreaker-fpga__*, kbob__icebreaker-candy, smunaut__ice40-playground, damdoy__ice40_ultraplus_examples,\nmachdyne__zeitlos, machdyne__nes_ecp5), all boards and repos in `docs/ecp5-boards-survey.md` (OrangeCrab, LUNA/Cynthion,\niCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5, Logicbone, Versa/EVN, TinyFPGA EX, IcePi Zero including\nm1nl/icepi-zero-minimig, ECP5-mini, Pergola, basic-ecp5-pcb), and ULX3S/ULX4M."
+  },
+  {
+   "type": "paragraph",
+   "text": "**Evidence** comes from a tarball file listing (codeload `tar.gz/HEAD`, streamed, not kept) taken on 2026-09-28:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "`V` = verified: a constraint file (`.pcf` for iCE40, `.lpf` for ECP5) and HDL are in the tree. Counts are given as p=pcf, l=lpf, v=.v, sv=.sv.",
+    "`U` = unverified: no constraint file seen, the files were not checked, or the only source is the README."
+   ]
+  },
+  {
+   "type": "paragraph",
+   "text": "**Toolchain:**"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "\"open\" = a Makefile, .mk or .ys file in the tree calls nextpnr-ice40/icepack or nextpnr-ecp5/ecppack.",
+    "\"open?\" = the HDL and pcf/lpf are present but no build file matched. Often the build files sit in a submodule (for example no2build), which the tarball does not include."
+   ]
+  },
+  {
+   "type": "paragraph",
+   "text": "Stars, last push and license come from the GitHub search API on 2026-09-28."
+  },
+  {
+   "type": "hr"
+  }
+ ],
+ "sections": [
+  {
+   "title": "UP5K boards",
+   "sections": [
+    {
+     "title": "Fomu (iCE40UP5K-UWG30), https://www.crowdsupply.com/sutajio-kosagi/fomu",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "im-tomu/fomu-workshop",
+         "HDL": "Verilog/VHDL/Python",
+         "stars": "170",
+         "last push": "2024-03-17",
+         "license": "Apache-2.0",
+         "toolchain": "open (+LiteX)",
+         "what it does": "Official workshop: blink, RGB, USB, RISC-V examples",
+         "evidence": "V (p4 v6 vhd4)"
+        },
+        {
+         "repo": "ulixxe/usb_cdc",
+         "HDL": "Verilog",
+         "stars": "193",
+         "last push": "2024-03-10",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Board-agnostic FS USB CDC-ACM device core (single/multi-channel); examples for Fomu, TinyFPGA-BX, iCEBreaker and others",
+         "evidence": "V (p21 v51)"
+        },
+        {
+         "repo": "im-tomu/foboot",
+         "HDL": "Verilog (LiteX gen) + C",
+         "stars": "105",
+         "last push": "2022-12-31",
+         "license": "Apache-2.0",
+         "toolchain": "LiteX + open",
+         "what it does": "Fomu DFU bootloader SoC",
+         "evidence": "V-HDL / pcf via LiteX platform (U)"
+        },
+        {
+         "repo": "im-tomu/fomu-tests",
+         "HDL": "Verilog",
+         "stars": "9",
+         "last push": "2023-02-05",
+         "license": "Apache-2.0",
+         "toolchain": "open",
+         "what it does": "Factory/bring-up test bitstreams",
+         "evidence": "V (p4 v5)"
+        },
+        {
+         "repo": "stef/nb-fomu-hw",
+         "HDL": "Verilog",
+         "stars": "8",
+         "last push": "2019-09-30",
+         "license": "NOASSERTION",
+         "toolchain": "open",
+         "what it does": "\"non-blinky\" USB-UART hello world",
+         "evidence": "V (p1 v2)"
+        },
+        {
+         "repo": "mntmn/fomu-vga",
+         "HDL": "Verilog",
+         "stars": "16",
+         "last push": "2020-07-10",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "VGA output from Fomu",
+         "evidence": "U (v8, no pcf)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "UPduino v1/v2/v3.x (iCE40UP5K-SG48), https://github.com/tinyvision-ai-inc/UPduino-v3.0",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "tinyvision-ai-inc/UPduino-v3.0",
+         "HDL": "Verilog",
+         "stars": "365",
+         "last push": "2026-07-21",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Vendor board repo + RGB blink example",
+         "evidence": "V (p1 v2)"
+        },
+        {
+         "repo": "tinyvision-ai-inc/UPduino-v2.1",
+         "HDL": "Verilog",
+         "stars": "29",
+         "last push": "2020-03-30",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "v2.1 board + blink",
+         "evidence": "U (v1, no pcf)"
+        },
+        {
+         "repo": "alangarf/apple-one",
+         "HDL": "Verilog/SV",
+         "stars": "153",
+         "last push": "2025-09-22",
+         "license": "Apache-2.0",
+         "toolchain": "open",
+         "what it does": "Apple-1 in Verilog; UPduino, iCEBreaker, other iCE40 boards, and one ECP5 lpf (25k)",
+         "evidence": "V (p11 l1 v44)"
+        },
+        {
+         "repo": "osresearch/risc8",
+         "HDL": "Verilog",
+         "stars": "30",
+         "last push": "2021-09-30",
+         "license": "none",
+         "toolchain": "open?",
+         "what it does": "Mostly AVR-compatible 8-bit soft core",
+         "evidence": "V (p1 v10)"
+        },
+        {
+         "repo": "tomverbeure/upduino",
+         "HDL": "Verilog",
+         "stars": "20",
+         "last push": "2024-04-02",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "Minimal UPduino open-flow template",
+         "evidence": "V (p1 v2)"
+        },
+        {
+         "repo": "gtjennings1/HyperBUS",
+         "HDL": "Verilog",
+         "stars": "64",
+         "last push": "2019-01-08",
+         "license": "none",
+         "toolchain": "open?",
+         "what it does": "HyperRAM controller for iCE40 UltraPlus",
+         "evidence": "V (p1 v23)"
+        },
+        {
+         "repo": "gtjennings1/UPDuino-OV7670-Camera",
+         "HDL": "Verilog",
+         "stars": "21",
+         "last push": "2018-02-08",
+         "license": "none",
+         "toolchain": "U",
+         "what it does": "OV7670 camera capture on UPduino",
+         "evidence": "U (not tree-checked)"
+        },
+        {
+         "repo": "igor-m/UPduino-Mecrisp-Ice-15kB",
+         "HDL": "Verilog",
+         "stars": "19",
+         "last push": "2025-11-05",
+         "license": "BSD-3-Clause",
+         "toolchain": "open?",
+         "what it does": "Mecrisp-Ice Forth on a J1a 16-bit CPU",
+         "evidence": "V (p3 v27)"
+        },
+        {
+         "repo": "ranzbak/fpga-workshop",
+         "HDL": "Verilog",
+         "stars": "23",
+         "last push": "2021-10-29",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "15-step UPduino workshop (VGA, UART and more)",
+         "evidence": "V (p15 v48)"
+        },
+        {
+         "repo": "XarkLabs/upduino-video",
+         "HDL": "SystemVerilog",
+         "stars": "5",
+         "last push": "2024-02-29",
+         "license": "NOASSERTION",
+         "toolchain": "open",
+         "what it does": "8-colour VGA text generator",
+         "evidence": "V (p1 sv7)"
+        },
+        {
+         "repo": "tinyvision-ai-inc/spi_slave",
+         "HDL": "SystemVerilog",
+         "stars": "4",
+         "last push": "2021-03-03",
+         "license": "NOASSERTION",
+         "toolchain": "U",
+         "what it does": "SPI slave → 32-bit Wishbone bridge",
+         "evidence": "U (no pcf)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Lattice iCE40 UltraPlus Breakout / generic UP5K (no specific board)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "daveshah1/up5k-demos",
+         "HDL": "Verilog/VHDL",
+         "stars": "23",
+         "last push": "2020-10-12",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "UP5K demos from the nextpnr author (DSP, SPRAM, video, and more)",
+         "evidence": "V (p1 v37 vhd13)"
+        },
+        {
+         "repo": "Wren6991/SmolDVI",
+         "HDL": "Verilog",
+         "stars": "34",
+         "last push": "2021-07-15",
+         "license": "CC0-1.0",
+         "toolchain": "open?",
+         "what it does": "Low-area DVI/TMDS for UP5K and HX1K",
+         "evidence": "V (p4 v12)"
+        },
+        {
+         "repo": "emeb/up5k_basic",
+         "HDL": "Verilog",
+         "stars": "54",
+         "last push": "2019-06-03",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "6502 + MS BASIC in ROM",
+         "evidence": "V (p1 v19)"
+        },
+        {
+         "repo": "emeb/up5k_vga",
+         "HDL": "Verilog",
+         "stars": "29",
+         "last push": "2019-06-12",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "65C02 computer with VGA",
+         "evidence": "V (p1 v18)"
+        },
+        {
+         "repo": "emeb/up5k_6502",
+         "HDL": "Verilog",
+         "stars": "15",
+         "last push": "2019-03-11",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Simple 6502 system",
+         "evidence": "V (p1 v5)"
+        },
+        {
+         "repo": "emeb/up5k_osc",
+         "HDL": "Verilog",
+         "stars": "35",
+         "last push": "2024-11-25",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Oscilloscope/DSP gateware (ADC, display)",
+         "evidence": "V (p2 v19)"
+        },
+        {
+         "repo": "damdoy/fpga_peripherals",
+         "HDL": "Verilog",
+         "stars": "17",
+         "last push": "2020-06-14",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "OV7670 camera, ST7735 LCD and other peripherals on the UP5K breakout",
+         "evidence": "V (p1 v15)"
+        },
+        {
+         "repo": "ToNi3141/RasteriCEr",
+         "HDL": "Verilog",
+         "stars": "45",
+         "last push": "2021-11-14",
+         "license": "GPL-3.0",
+         "toolchain": "open",
+         "what it does": "OpenGL 1.x rasteriser for UP5K",
+         "evidence": "V (p1 v17)"
+        },
+        {
+         "repo": "mcci-catena/catena-riscv32-fpga",
+         "HDL": "Verilog",
+         "stars": "10",
+         "last push": "2019-07-31",
+         "license": "NOASSERTION",
+         "toolchain": "open?",
+         "what it does": "RISC-V SoC for the MCCI Catena 4710 (UP5K)",
+         "evidence": "V (p7 v24)"
+        },
+        {
+         "repo": "johnMamish/jfpjc",
+         "HDL": "Verilog",
+         "stars": "8",
+         "last push": "2024-04-30",
+         "license": "MIT",
+         "toolchain": "U",
+         "what it does": "JPEG compressor targeting UP5K",
+         "evidence": "U (no pcf)"
+        },
+        {
+         "repo": "will127534/IMU_Array",
+         "HDL": "Verilog",
+         "stars": "342",
+         "last push": "2024-11-04",
+         "license": "MIT",
+         "toolchain": "U",
+         "what it does": "32× ICM-42688 IMU array aggregated by UP5K",
+         "evidence": "V (p1 v3)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "iCEBreaker / iCEBreaker-bitsy (iCE40UP5K-SG48), only repos new to sources.tsv",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "nickmqb/fpga_craft",
+         "HDL": "Verilog (generated from Wyre)",
+         "stars": "214",
+         "last push": "2025-10-28",
+         "license": "Apache-2.0",
+         "toolchain": "open (yosys/nextpnr per README)",
+         "what it does": "Voxel \"Minecraft\" game on UP5K + VGA + N64 pad",
+         "evidence": "V (p1 v1)"
+        },
+        {
+         "repo": "SySS-Research/icebreaker-glitcher",
+         "HDL": "Verilog",
+         "stars": "21",
+         "last push": "2020-03-02",
+         "license": "NOASSERTION",
+         "toolchain": "open",
+         "what it does": "Voltage glitcher",
+         "evidence": "V (p1 v12)"
+        },
+        {
+         "repo": "esden/icekeeb",
+         "HDL": "Verilog",
+         "stars": "20",
+         "last push": "2022-04-09",
+         "license": "none",
+         "toolchain": "open?",
+         "what it does": "Keyboard gateware + firmware",
+         "evidence": "V (p3 v14)"
+        },
+        {
+         "repo": "kbob/icebreaker-synth",
+         "HDL": "Amaranth",
+         "stars": "28",
+         "last push": "2020-01-26",
+         "license": "GPL-3.0",
+         "toolchain": "Amaranth",
+         "what it does": "Audio synthesizer",
+         "evidence": "U (Python only)"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "Bitsy: icebreaker-fpga/icecrash (the bitsy \"motherboard\") has no HDL at HEAD. No bitsy-specific gateware was found beyond the known icebreaker-fpga repos."
+      }
+     ]
+    },
+    {
+     "title": "iCESugar v1.5 (iCE40UP5K), https://github.com/wuxx/icesugar (vendor repo already in sources.tsv)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "jorislee/picorv32_ice40up5k_icesugar",
+         "HDL": "Verilog",
+         "stars": "3",
+         "last push": "2020-04-12",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "PicoRV32 SoC on iCESugar",
+         "evidence": "V (p1 v8)"
+        },
+        {
+         "repo": "metro94/LED_PWM_IP_Demo",
+         "HDL": "Verilog",
+         "stars": "6",
+         "last push": "2020-04-16",
+         "license": "none",
+         "toolchain": "open?",
+         "what it does": "UP5K hard LED-PWM IP demo",
+         "evidence": "V (p1 v2)"
+        },
+        {
+         "repo": "Archfx/ice40lib",
+         "HDL": "Verilog",
+         "stars": "8",
+         "last push": "2024-04-25",
+         "license": "none",
+         "toolchain": "open?",
+         "what it does": "Peripheral library configured for iCESugar",
+         "evidence": "V (p4 v11)"
+        },
+        {
+         "repo": "MuratovAS/icesugar-z80 / icesugar-riscv / icesugar-6502",
+         "HDL": "Verilog",
+         "stars": "6/6/1",
+         "last push": "2023",
+         "license": "MIT",
+         "toolchain": "U",
+         "what it does": "Z80/RISC-V/6502 VSCode projects",
+         "evidence": "U (not tree-checked)"
+        },
+        {
+         "repo": "punzik/sugar-lissajous",
+         "HDL": "SystemVerilog",
+         "stars": "4",
+         "last push": "2021-03-03",
+         "license": "MIT",
+         "toolchain": "U",
+         "what it does": "Light organ",
+         "evidence": "U"
+        },
+        {
+         "repo": "nihirash/Ice81",
+         "HDL": "Verilog",
+         "stars": "2",
+         "last push": "2021-03-28",
+         "license": "none",
+         "toolchain": "U",
+         "what it does": "ZX81 on iCESugar",
+         "evidence": "U"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "pico-ice / pico2-ice (RP2040/RP2350 + UP5K), https://github.com/tinyvision-ai-inc/pico-ice",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "tinyvision-ai-inc/pico-ice",
+         "HDL": "SystemVerilog",
+         "stars": "202",
+         "last push": "2025-07-04",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Board repo + gateware examples",
+         "evidence": "V (p3 sv3)"
+        },
+        {
+         "repo": "tinyvision-ai-inc/pico-ice-sdk",
+         "HDL": "Verilog/SV",
+         "stars": "79",
+         "last push": "2026-03-06",
+         "license": "MIT",
+         "toolchain": "open (+some Amaranth)",
+         "what it does": "RP2040 SDK + FPGA examples (8 pcf)",
+         "evidence": "V (p8 v14 sv6)"
+        },
+        {
+         "repo": "MichaelBell/pico-ice-projects",
+         "HDL": "Verilog",
+         "stars": "2",
+         "last push": "2023-12-14",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Projects incl. a RISC-V core on pico-ice",
+         "evidence": "V (p5 v40)"
+        },
+        {
+         "repo": "PythonLinks/pico2-ice-pong, frohro/pico2-ice_VGA-Pong",
+         "HDL": "Verilog/SV",
+         "stars": "0",
+         "last push": "2024/2025",
+         "license": "–/MIT",
+         "toolchain": "U",
+         "what it does": "Pong on pico2-ice",
+         "evidence": "U"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "pico2-ice board repo: no HDL at HEAD."
+      }
+     ]
+    },
+    {
+     "title": "MCH2022 badge (iCE40UP5K), https://github.com/badgeteam/mch2022-firmware-ice40",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "badgeteam/mch2022-firmware-ice40",
+         "HDL": "Verilog",
+         "stars": "14",
+         "last push": "2022-11-14",
+         "license": "NOASSERTION",
+         "toolchain": "open? (no2build submodule)",
+         "what it does": "Official FPGA examples: LCD, PSRAM, SPI to ESP32",
+         "evidence": "V (p2 v82)"
+        },
+        {
+         "repo": "smunaut/mch2022-ice40",
+         "HDL": "Verilog",
+         "stars": "4",
+         "last push": "2022-08-02",
+         "license": "NOASSERTION",
+         "toolchain": "open? (no2build)",
+         "what it does": "tnt's badge experiments (video, PSRAM, audio)",
+         "evidence": "V (p2 v57)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "ICE-V Wireless (ESP32-C3 + UP5K)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "ICE-V-Wireless/ICE-V-Wireless",
+         "HDL": "Verilog/VHDL",
+         "stars": "82",
+         "last push": "2025-10-06",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Vendor repo: board + gateware examples + ESP32 firmware",
+         "evidence": "V (p4 v16)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "OK-iCE40Pro (UP5K handheld game board)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "WiFiBoy/OK-iCE40Pro",
+         "HDL": "Verilog",
+         "stars": "16",
+         "last push": "2023-05-06",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Educational game console: LCD, audio, 13 example designs",
+         "evidence": "V (p13 v43)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "RocketFPGA (UP5K audio board)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "pablogs9/RocketFPGA",
+         "HDL": "Verilog",
+         "stars": "10",
+         "last push": "2020-04-19",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "Audio codec board + audio DSP gateware (oscillators, filters)",
+         "evidence": "V (p3 v39)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "reDIP SID (UP5K, 5 V DIP-28)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "daglem/reDIP-SID",
+         "HDL": "SystemVerilog",
+         "stars": "119",
+         "last push": "2024-09-23",
+         "license": "NOASSERTION",
+         "toolchain": "open",
+         "what it does": "Cycle-accurate MOS 6581/8580 SID emulation",
+         "evidence": "V (p1 v8 sv14)"
+        },
+        {
+         "repo": "emeb/up5k_resid",
+         "HDL": "Verilog",
+         "stars": "4",
+         "last push": "2021-10-15",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "reDIP-SID gateware extended with audio in/out + DSP",
+         "evidence": "V (p1 v17)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "emeb boards: ICE-dongle and icehat (UP5K)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "emeb/ice-dongle",
+         "HDL": "Verilog",
+         "stars": "7",
+         "last push": "2023-03-09",
+         "license": "MIT",
+         "toolchain": "open (+LiteX)",
+         "what it does": "USB-C dongle; many example designs",
+         "evidence": "V (p10 v35)"
+        },
+        {
+         "repo": "emeb/icehat",
+         "HDL": "Verilog",
+         "stars": "29",
+         "last push": "2017-01-27",
+         "license": "MIT",
+         "toolchain": "U",
+         "what it does": "RPi hat + minimal gateware",
+         "evidence": "V (p1 v2)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Other UP5K boards with gateware in their own repo",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "board / repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "board / repo": "iCEboy → rniwase/tsuraraGB (renamed)",
+         "HDL": "SystemVerilog",
+         "stars": "16",
+         "last push": "2026-06-16",
+         "license": "BSD-3-Clause",
+         "toolchain": "open",
+         "what it does": "Game Boy cartridge-shaped board + examples",
+         "evidence": "V (p1 sv18)"
+        },
+        {
+         "board / repo": "iCE40-feather → joshajohnson/iCE40-feather",
+         "HDL": "Verilog",
+         "stars": "26",
+         "last push": "2022-08-11",
+         "license": "NOASSERTION",
+         "toolchain": "open",
+         "what it does": "Feather board + examples",
+         "evidence": "V (p5 v27)"
+        },
+        {
+         "board / repo": "lit3rick → kelu124/lit3rick",
+         "HDL": "Verilog",
+         "stars": "43",
+         "last push": "2024-07-16",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "Ultrasound pulse-echo acquisition (ADC, pulser)",
+         "evidence": "V (p1 v125)"
+        },
+        {
+         "board / repo": "pi_smi_up5k → braingram/pi_smi_up5k",
+         "HDL": "Verilog",
+         "stars": "16",
+         "last push": "2020-11-11",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "RPi SMI-bus data link to UP5K",
+         "evidence": "V (p3 v5)"
+        },
+        {
+         "board / repo": "SingularitySurfer → nkrackow/SingularitySurfer-FPGA-Lock-In-Amplifier (renamed)",
+         "HDL": "Verilog",
+         "stars": "79",
+         "last push": "2023-05-11",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "DSP lock-in amplifier",
+         "evidence": "V (p7 v36)"
+        },
+        {
+         "board / repo": "Vision FPGA SoM → tinyvision-ai-inc/Vision-FPGA-SoM",
+         "HDL": "Verilog/SV",
+         "stars": "48",
+         "last push": "2021-06-23",
+         "license": "MIT",
+         "toolchain": "open",
+         "what it does": "Image-sensor SoM gateware",
+         "evidence": "V (p2 v22 sv27)"
+        },
+        {
+         "board / repo": "PicoStation3D → Wren6991/PicoStation3D",
+         "HDL": "Verilog",
+         "stars": "50",
+         "last push": "2021-02-14",
+         "license": "CC0-1.0",
+         "toolchain": "U",
+         "what it does": "RP2040 + UP5K console; minimal HDL",
+         "evidence": "V (p1 v1)"
+        },
+        {
+         "board / repo": "ice40helper → kehribar/ice40helper",
+         "HDL": "Verilog",
+         "stars": "6",
+         "last push": "2020-06-20",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "Helper board + examples",
+         "evidence": "V (p4 v11)"
+        },
+        {
+         "board / repo": "FPGA101 badge → mmicko/fpga101-workshop",
+         "HDL": "Verilog",
+         "stars": "81",
+         "last push": "2019-03-17",
+         "license": "MIT",
+         "toolchain": "open?",
+         "what it does": "20-exercise workshop for the UP5K badge",
+         "evidence": "V (p20 v82)"
+        },
+        {
+         "board / repo": "icE1usb → osmocom/osmo-e1-hardware (GitHub mirror of gitea)",
+         "HDL": "Verilog",
+         "stars": "9",
+         "last push": "2024-11-22",
+         "license": "none on GitHub",
+         "toolchain": "open? (no2build)",
+         "what it does": "Dual E1 (TDM) USB adapter gateware",
+         "evidence": "V (p4 v25)"
+        },
+        {
+         "board / repo": "Precursor/betrusted-ec → betrusted-io/betrusted-ec",
+         "HDL": "LiteX + Verilog",
+         "stars": "50",
+         "last push": "2023-12-22",
+         "license": "NOASSERTION",
+         "toolchain": "LiteX",
+         "what it does": "UP5K embedded controller SoC",
+         "evidence": "U (no pcf; LiteX)"
+        },
+        {
+         "board / repo": "nrfICE → HurleyResearch/nRFICE",
+         "HDL": "Verilog/VHDL",
+         "stars": "8",
+         "last push": "2024-07-12",
+         "license": "GPL-3.0",
+         "toolchain": "**Radiant** (`.rdf`)",
+         "what it does": "nRF5340 + UP5K examples",
+         "evidence": "U for open flow"
+        },
+        {
+         "board / repo": "WebFPGA → webfpga/webfpga_icestorm_examples, webfpga/verilog",
+         "HDL": "Verilog",
+         "stars": "5 / 11",
+         "last push": "2022 / 2019",
+         "license": "MIT",
+         "toolchain": "open (cloud)",
+         "what it does": "ShastaPlus examples + std library",
+         "evidence": "U (no pcf)"
+        },
+        {
+         "board / repo": "Doppler → noscene/ice40_audio",
+         "HDL": "Verilog",
+         "stars": "19",
+         "last push": "2018-04-30",
+         "license": "none",
+         "toolchain": "open",
+         "what it does": "PCM5102 DAC driver",
+         "evidence": "V (p2 v1)"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "**UP5K boards with no gateware found:** ARISE (mfkiwl fork, hardware only), ice40-dip40, ice-dip, ice40-fpga-pico, ICE40UPDevBoard,\nmedhyal ice40-dev-board, ICEd ESPresso, Humble ICE (mkvenkit/humble_ice is not tree-checked), whatnick iCE40 Feather, MCUPduino,\nMTX-BC48-DB (hardware only), S1 Module, DEF CON 28 DCFurs (no HDL in dc28 repo), NiCE5340 SoM (no HDL), dadamachines/doppler (no HDL)."
+      },
+      {
+       "type": "hr"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "ECP5 boards (not already surveyed)",
+   "sections": [
+    {
+     "title": "Machdyne / Lone Dynamics: Schoko (45F), Konfekt (12F), Lakritz (25F), Obst (12F), Kopflos (12F)",
+     "blocks": [
+      {
+       "type": "paragraph",
+       "text": "Each board repo has one lpf plus a blinky and builds with the open flow (V). The main gateware, machdyne/zeitlos and nes_ecp5, is already in sources.tsv.\n| repo | HDL | stars | last push | license | toolchain | what it does | evidence |\n|---|---|---|---|---|---|---|---|\n| machdyne/schoko, konfekt, lakritz, obst, kopflos | Verilog | 11/10/1/2/11 | 2023–2026 | NOASSERTION | open | Board files + blinky | V (l1 v1 each) |\n| machdyne/fpga-dac | Verilog | 6 | 2024-06-17 | NOASSERTION | open | Sigma-delta DAC + PCM player (12k/45k lpfs) | V (l3 v3) |\n| parport0/lakritz-hdl | Verilog | 0 | 2025-01-10 | 0BSD | open | HDL snippets for Lakritz | V (l1 v8) |\n| machdyne/serbl | Verilog | 0 | 2025-06-01 | NOASSERTION | open | Serial bootloader for FPGAs (iCE40 pcf seen) | V (p1 v38) |"
+      }
+     ]
+    },
+    {
+     "title": "GreyBadge 2025 (RP2350 + LFE5U-25F), https://github.com/NUSGreyhats/greybadge25",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "NUSGreyhats/greybadge25",
+         "HDL": "Verilog",
+         "stars": "0",
+         "last push": "2026-02-05",
+         "license": "none",
+         "toolchain": "open (Makefile, --25k)",
+         "what it does": "CTF badge gateware: main design + ~10 test designs",
+         "evidence": "V (l11 v59)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "TrellisBoard (LFE5UM5G-85F)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "gatecat/TrellisBoard",
+         "HDL": "Verilog + LiteX",
+         "stars": "121",
+         "last push": "2019-07-04",
+         "license": "NOASSERTION",
+         "toolchain": "open / LiteX",
+         "what it does": "Board + small bring-up gateware",
+         "evidence": "V (l1 v2)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "LimeSDR Mini 2.0 (ECP5 + LMS7002M)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "myriadrf/LimeSDR-Mini-v2_GW",
+         "HDL": "Verilog/VHDL",
+         "stars": "25",
+         "last push": "2024-11-28",
+         "license": "Apache-2.0",
+         "toolchain": "**Diamond** (mico32, synplify)",
+         "what it does": "Official SDR gateware",
+         "evidence": "V (l6 v73 vhd214), not open flow"
+        },
+        {
+         "repo": "enjoy-digital/litex_limesdr_mini_v2_test",
+         "HDL": "LiteX",
+         "stars": "5",
+         "last push": "2022-04-11",
+         "license": "none",
+         "toolchain": "LiteX",
+         "what it does": "Alternative LiteX SoC",
+         "evidence": "U"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "natsfr/LimeSDR_DVBSGateware is for the MAX10-based Mini v1, so I dropped it."
+      }
+     ]
+    },
+    {
+     "title": "NUT2NT+ (GNSS front end, ECP5)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "amungo/nut2nt",
+         "HDL": "Verilog/VHDL",
+         "stars": "26",
+         "last push": "2020-04-27",
+         "license": "none",
+         "toolchain": "**Diamond** (`.ldf`)",
+         "what it does": "NT1065 → FT601 data path",
+         "evidence": "V (l4 v18), not open flow"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "PicoFabric (LFE5U-12F module for RPi Pico)",
+     "blocks": [
+      {
+       "type": "table",
+       "columns": [
+        "repo",
+        "HDL",
+        "stars",
+        "last push",
+        "license",
+        "toolchain",
+        "what it does",
+        "evidence"
+       ],
+       "rows": [
+        {
+         "repo": "picolemon/picofabric-examples",
+         "HDL": "VHDL",
+         "stars": "0",
+         "last push": "2023-08-09",
+         "license": "NOASSERTION",
+         "toolchain": "U (VS Code flow)",
+         "what it does": "Examples incl. HyperRAM",
+         "evidence": "V (l7 vhd34)"
+        }
+       ]
+      },
+      {
+       "type": "paragraph",
+       "text": "**ECP5 boards with no usable gateware found:**"
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Only hardware or firmware at HEAD: FleaFPGA Ohm (Basman74/FleaFPGA-Ohm; its Minimig/Oberon repos have no HDL files matched; Minimig is covered by m1nl), SD2SNES-ECP5 (samlittlewood repo has no HDL at HEAD), TinySDR (uw-x/tinysdr has no .v/.vhd matched), OVIO core (Python only), Kilsyth (gregdavill/kilsyth has no HDL), Zeal video board (only an SDK is public), Elgato CamLink 4K (enjoy-digital/camlink_4k has no HDL at HEAD).",
+        "No repo found: EPIC Erebus, Darsena/Private Island, FUSBee5, medhyal ecp5-dev-board, Kondor AX, Schlappi Three Body, Magewell."
+       ]
+      },
+      {
+       "type": "hr"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Recommended to clone (20)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "The picks favour reusable Verilog blocks and board example sets on the open flow."
+    },
+    {
+     "type": "list",
+     "ordered": true,
+     "items": [
+      "**ulixxe/usb_cdc**: pure-Verilog FS USB CDC-ACM core with 21 board pcfs. The most reusable block found, and it ports to ULX3S US2.",
+      "**daveshah1/up5k-demos**: UP5K demos from the nextpnr author, covering hard IP (SPRAM, DSP).",
+      "**Wren6991/SmolDVI**: tiny TMDS/DVI encoder (CC0) for small iCE40 parts.",
+      "**gtjennings1/HyperBUS**: standalone HyperRAM controller.",
+      "**im-tomu/fomu-workshop**: official Fomu examples (Verilog + VHDL + LiteX).",
+      "**daglem/reDIP-SID**: high-quality SystemVerilog SID emulation, and the audio blocks can be reused.",
+      "**badgeteam/mch2022-firmware-ice40**: badge examples (LCD, PSRAM, SPI slave).",
+      "**smunaut/mch2022-ice40**: tnt's reusable no2 cores on UP5K.",
+      "**osmocom/osmo-e1-hardware**: icE1usb gateware (E1 framer + USB), production code.",
+      "**alangarf/apple-one**: Apple-1 system with many board ports, including an ECP5 lpf.",
+      "**emeb/up5k_osc**: ADC/DSP oscilloscope gateware (active 2024).",
+      "**emeb/up5k_vga**: 65C02 + VGA computer (the emeb up5k_* family; `up5k_basic` is the smaller sibling).",
+      "**ToNi3141/RasteriCEr**: OpenGL-style rasteriser, a rare 3D graphics pipeline in Verilog.",
+      "**nickmqb/fpga_craft**: 3D voxel renderer on UP5K (generated Verilog, 214 stars).",
+      "**WiFiBoy/OK-iCE40Pro**: 13 example designs for a game-board (LCD, audio).",
+      "**pablogs9/RocketFPGA**: audio codec + DSP gateware.",
+      "**tinyvision-ai-inc/pico-ice-sdk**: vendor examples for pico-ice/pico2-ice (MCU+FPGA co-design).",
+      "**ranzbak/fpga-workshop**: 15-step UPduino tutorial on the open flow.",
+      "**NUSGreyhats/greybadge25**: new ECP5 LFE5U-25F badge with open-flow gateware (2026).",
+      "**machdyne/fpga-dac**: sigma-delta DAC/PCM player with ECP5 lpfs (12k/45k), a small reusable block."
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Runners-up: osresearch/risc8 (AVR-compatible core), nkrackow/SingularitySurfer lock-in amplifier (DSP), mmicko/fpga101-workshop,\nICE-V-Wireless/ICE-V-Wireless, emeb/ice-dongle, tinyvision-ai-inc/Vision-FPGA-SoM, igor-m/UPduino-Mecrisp-Ice."
+    }
+   ]
+  },
+  {
+   "title": "Notes, gaps, rate limits",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Search API: 63 repository queries, per_page=100, sort=stars, 7 s sleep. Six hit HTTP 403 \"rate limit exceeded\" (the quota was shared); each succeeded after a 60 s retry. Core API: about 15 calls used for metadata, and 45 of 60 were left.",
+      "File lists come from codeload tarballs (`tar.gz/HEAD`). These do not count against the API quota. Git submodules are not included, so repos built on no2build (the MCH2022 and osmo-e1 repos) show \"open?\".",
+      "Two awesome-list links have moved: rniwase/iCEboy is now rniwase/tsuraraGB, and SingularitySurfer's lock-in repo is now nkrackow/SingularitySurfer-FPGA-Lock-In-Amplifier. It is worth updating the awesome list.",
+      "The awesome list has no entry for OK-iCE40Pro or RocketFPGA. I found both through GitHub search.",
+      "msinger/iceboy (Game Boy clone) targets HX8K, not UP5K, so I dropped it.",
+      "The \"fomu\", \"vision fpga\", \"schoko\", \"iceboy\" and \"picostation\" queries are very noisy (unrelated repos). I filtered them by hand.",
+      "No evidence was found of open-flow gateware for LimeSDR Mini 2.0 or NUT2NT+. Both use Lattice Diamond."
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,3 +1,5 @@
+<!-- Generated from data/pages/board-reference.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # ULX3S board reference for gateware developers
 
 A condensed reference for people writing new gateware for the ULX3S. Everything
@@ -29,6 +31,7 @@ and the LPF constraint files. When in doubt, the manual and the LPF for your boa
 Buttons: `btn[0]` = PWR (active-low), `btn[1..6]` = FIRE1, FIRE2, UP, DOWN, LEFT, RIGHT (active-high).
 
 ## GPIO details
+
 - `gp/gn 0–7` (J1) and `22–27` (J2) are single-ended; `8–21` are true differential pairs.
 - Clock-capable: `gp/gn 12` (differential primary clock), `gp/gn 0,1` (primary), `gp13`, `gn17` (general routing).
 - Shared: `gp/gn 11–13` with ESP32 (v2.0+), `gp/gn 14–17` with the onboard ADC.
@@ -55,6 +58,7 @@ ecppack --compress top.config top.bit
 openFPGALoader -b ulx3s top.bit          # to SRAM
 openFPGALoader -b ulx3s -f top.bit       # to config flash
 ```
+
 Use `--12k`, `--25k` or `--45k` to match your chip. Easiest install: YosysHQ
 [oss-cad-suite-build](https://github.com/YosysHQ/oss-cad-suite-build/releases/).
 Alternatives: `fujprog`, OpenOCD with an FT2232 on the JTAG header (fastest), ESP32 over WiFi
@@ -62,6 +66,7 @@ Alternatives: `fujprog`, OpenOCD with an FT2232 on the JTAG header (fastest), ES
 (`openFPGALoader -b ulx3s_dfu`; user image at flash offset `0x200000`).
 
 ## Pitfalls
+
 - Max USB input voltage is 6 V. GPIOs are 3.3 V only.
 - In 1-bit SPI flash mode, drive `flash_wpn`/`flash_holdn` high (some ISSI parts fail otherwise).
 - To drive flash pins from the user design, set `MASTER_SPI_PORT=DISABLE` in the LPF `SYSCONFIG` line.

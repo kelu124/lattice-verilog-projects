@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/danodus__ecp5_hdmi_audio_video.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # ECP5 HDMI Audio + Video Transmitter (`danodus__ecp5_hdmi_audio_video`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | last commit 2026-05-19 (`a4710f9`, "Add custom mode 1024x600 ~61Hz (VIC=0)"); commit count / first commit unknown (shallow clone, repo not in `.claude/memory/history.tsv`) |
 
 ## What the gateware does
+
 A reusable **HDMI audio + video transmitter** stack (top module `hdmi`,
 `rtl/hdmi.v`) — TMDS video encode, HDMI data-island packets (audio sample,
 audio clock regeneration, AVI/SPD/vendor infoframes) and an ECP5-specific
@@ -25,6 +28,7 @@ LPCM out over HDMI, selectable at build time between four video modes (VIC):
 default), 4 (1280×720@~60 Hz, ~74 MHz) and 34 (1920×1080@~30 Hz, ~74 MHz).
 
 ## Structure
+
 - `rtl/` — the portable transmitter stack: `hdmi.v` (top), `hdmi_tmds_channel.v`
   (per-channel TERC4/TMDS encode), `hdmi_serializer_ecp5.v` (**ECP5-specific**,
   see Reuse notes), `hdmi_packet_assembler.v`/`hdmi_packet_picker.v` (data
@@ -40,7 +44,9 @@ default), 4 (1280×720@~60 Hz, ~74 MHz) and 34 (1920×1080@~30 Hz, ~74 MHz).
   reviewed in depth here; out of scope per the brief).
 
 ## How to build
+
 Not run (read-only review). From `README.md` / `boards/ulx3s/Makefile`:
+
 ```
 source ~/oss-cad-suite/environment
 cd boards/ulx3s
@@ -48,6 +54,7 @@ make VIC=1 bitstream    # default; also VIC=0, 4, 34
 make VIC=1 prog         # fujprog
 make VIC=1 prog-flash   # fujprog -j flash
 ```
+
 Internally: `yosys` (`synth_ecp5 -top ulx3s_top`) → `nextpnr-ecp5 --85k
 --package CABGA381 --freq 25` (`--timing-allow-fail --randomize-seed` added
 for VIC 0/4/34, per the Makefile) → `ecppack --compress`. VIC must match
@@ -63,6 +70,7 @@ audio sample rate drifts (README).
 | ULX3S 25→pixel/serial PLL | `boards/ulx3s/hdmi_pll*.v` | `hdmi_pll` / `hdmi_pll_50` / `hdmi_pll_hd` | Verilog | `EHXPLLL` | MIT |
 
 ## Reuse notes
+
 - **`hdmi` top ports/parameters** (`rtl/hdmi.v:4-42`): `clk_pixel_x5` (serial
   clock), `clk_pixel`, `sample_strobe` (one-cycle 48 kHz pulse), `reset`,
   `rgb[23:0]`, `audio_sample_word_0/1` (`AUDIO_BIT_WIDTH`-wide, signed),
@@ -105,6 +113,7 @@ audio sample rate drifts (README).
   this for a shipping product.
 
 ## Open questions
+
 - `boards/icepi_zero/` was not reviewed in detail (out of scope: the brief
   asked to focus on the ULX3S top).
 - Whether VIC 4/34 (`--timing-allow-fail`, random-seed nextpnr) close timing

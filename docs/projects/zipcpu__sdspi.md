@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/zipcpu__sdspi.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # SD-Card controller (`zipcpu__sdspi`)
 
 | Field | Value |
@@ -13,6 +15,7 @@
 | Activity | last commit 2026-08-01 (`git log -1`). Commit count/first commit: unknown (shallow clone; not in `.claude/memory/history.tsv`) |
 
 ## What the gateware does
+
 This is a library of three independent, drop-in Wishbone SD-card controllers — not a
 ULX3S project. It has no board target, no top-level file, no constraints.
 
@@ -27,6 +30,7 @@ ULX3S project. It has no board target, no top-level file, no constraints.
   depth; out of scope for a ULX3S SD-reader design).
 
 ## Structure
+
 - `rtl/spi/` — SPI-mode controller (5 files).
 - `rtl/sdio/` — SDIO/eMMC controller (12 files) plus shared DDR/SERDES I/O primitives
   `rtl/xsdddr.v` and `rtl/xsdserdes8x.v` (used by `sdfrontend.v`).
@@ -41,12 +45,15 @@ ULX3S project. It has no board target, no top-level file, no constraints.
 - `sw/` — `sdspidrv.c`/`sdiodrvr.c`, C drivers meant as a FATFS back end.
 
 ## How to build
+
 Not run (core only, no synthesizable board top). From the root `Makefile`:
+
 ```
 make rtl      # recurse into rtl/ Makefiles (lint/build checks)
 make formal   # bench/formal: run all SymbiYosys proofs
 make test     # formal + rtl, then bench/verilog and bench/cpp simulation tests
 ```
+
 `bench/formal/Makefile` has ~60 individual `<module>_prf`/`_prfa`/`_prfc`/`_cvr`/`_cvra`
 targets (one group per submodule: `llsdspi`, `sdspi`, `spicmd`, `sdckgen`, `sdcmd`,
 `sdwb`, …) run via `sby`. To get a bitstream on a ULX3S, an integrator supplies their own
@@ -106,6 +113,7 @@ top-level module instantiating `sdspi` (or `sdio`) and a `.lpf`.
   wants a FAT filesystem instead of raw block access.
 
 ## Open questions
+
 - Whether anyone has actually built `sdspi`/`sdio` into an ECP5/ULX3S bitstream: unknown —
   no ECP5 users found in this repo; README's known integrations are XuLA2 (Spartan-6),
   ZipCPU/eth10g and ZipCPU/videozip (unknown FPGA family, not checked here).

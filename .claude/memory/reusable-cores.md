@@ -5,7 +5,7 @@ metadata:
   type: reference
 ---
 
-From the 2026-09-27/28 survey of 358 repos (291 ULX3S/ULX4M + 17 on other ECP5 boards + 50 non-ECP5, iCE40 UP5K and HX8K/HX4K); iCE40 cores use SB_* primitives and need porting (details in `docs/catalogue.md`, source `catalogue.tsv`).
+From the 2026-09-27/28 survey of 376 repos (292 ULX3S/ULX4M + 26 on other ECP5 boards + 58 non-ECP5, iCE40 UP5K and HX8K/HX4K); iCE40 cores use SB_* primitives and need porting (details in `docs/catalogue.md`, source `data/catalogue.json`).
 Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalogue-fields]].
 
 | Need | Best source (language, license) | Also |
@@ -46,6 +46,15 @@ Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalog
 | Scandoubler (15 kHz RGB → VGA) | hoglet67__ice40beeb `src/mist_scandoubler.v` (from MiST, GPL-3.0-or-later, portable) | — |
 | Game Boy (SM83 CPU + PPU), formally verified | msinger__iceboy (SystemVerilog, CERN-OHL-W-2.0, SymbiYosys per-instruction proofs) | — |
 | USB DFU bootloader (US2) | emard__had2019-playground `projects/bootloader/` (PicoRV32 + ECP5 USB core, BSD-3/LGPL-3.0+; `1d50:614b`, user image at 0x200000) | see `docs/DFUs.md` |
+| ECP5 PLL parameter solver (Python/Amaranth) | glasgowembedded__glasgow `software/glasgow/gateware/pll/ecp5.py` (0BSD OR Apache-2.0; Glasgow revD is ECP5 25F) | emard ecp5pll (HDL, see above) |
+| USB 2.0 / 3.0 device stack (Amaranth) | greatscottgadgets__luna `luna/gateware/usb/` (BSD-3; ULPI/UTMI, USB3 PIPE, ECP5 SERDES PHY) | — |
+| FFT + I2S/PDM mic + HDMI, cocotb-tested | mebner86__icesugar-pro_sound2fft `rtl/` (fft256.v, fft_real512.v, pdm_cic, i2s_rx/tx, tmds; MIT, bit-exact numpy tests) | — |
+| IEEE 1588 PTP + AES67 audio over Ethernet | datanoisetv__colorlight-i9-aes67 (ptp_top/ptp_clock/ptp_servo, RGMII MAC/RTP; MIT) | — |
+| SHA-256 (pipelined, double hash) | xtrinch__fpga-bitcoin-miner `src/sha256_transform.v` (MIT, self-checking `make test-*`) | — |
+| HUB75(e) LED panel driver | lucysrausch__colorlight-led-cube `ledpanel.v` (GPL-3.0) | no2hub75 (smunaut__ice40-playground, CERN-OHL-W) |
+| SDR receive chain (DDC, CIC, FIR, AM demod, PDM DAC) | emeb__orangecrab_adc (Verilog, no license found) | — |
+| Wishbone interconnect + arbiter | rschlaikjer__fpga-3-softcores `vendor/wb_intercon`, `vendor/verilog-arbiter` (portable) | — |
+| Bit-serial RISC-V (RV32E), cocotb-tested | michaelbell__nanov (Apache-2.0) | — |
 | Linux on ULX3S | linux-on-litex-vexriscv (`./make.py --board=ulx3s`); kianV (85F); SaxonSoc (docker recipes stale since 2020) | — |
 
 Cross-project facts:
@@ -55,10 +64,10 @@ Cross-project facts:
 - **Diamond-only historical ports**: f32c, minimig, papilio-arcade, vhdl_phoenix, next186, uk101, hdl4fpga, bonfire, synthowheel.
   Porting them to the open flow usually means ghdl-yosys-plugin (VHDL). f32c's own trellis attempts are marked not working.
 - **`--25k` + `--idcode 0x21111043`** is a common trick: build for 25k and load it on a 12F (same die).
-- Many ulx3s.github.io entries have two copies; the preferred ones are recorded in `catalogue.tsv` `fork_of`.
+- Many ulx3s.github.io entries have two copies; the preferred ones are recorded in `data/catalogue.json` `fork_of`.
 
 Full review pages with per-block reuse notes (module, ports, primitives, license, ULX3S changes) exist for 15 of these repos
-in `docs/projects/`; pin maps of every LPF in the collection are in `docs/lpf-catalogue.json`.
+in `docs/projects/`; pin maps of every LPF in the collection are in `data/lpfs.json` (rendered `docs/lpf-catalogue.md`).
 
 **How to apply:** when a user wants to build X, look up X here first, check its license, then open the repo's
 row in `docs/catalogue.md`. Add rows here whenever a review finds a better or new reusable block.

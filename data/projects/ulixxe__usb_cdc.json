@@ -1,0 +1,118 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "project",
+ "slug": "ulixxe__usb_cdc",
+ "title": "USB_CDC (`ulixxe__usb_cdc`)",
+ "description": "",
+ "fields": {
+  "Upstream": "https://github.com/ulixxe/usb_cdc",
+  "Reviewed at": "`6798bf4` (upstream date 2024-03-10), reviewed 2026-09-28",
+  "License": "MIT (`LICENSE`, Copyright (c) 2021 ulixxe)",
+  "HDL / framework": "Verilog-2001 (`usb_cdc/*.v` core); VHDL top-level wrappers in the TinyFPGA-BX example (`examples/TinyFPGA-BX/hdl/demo/demo_fpga.vhd`)",
+  "Toolchain": "`open` (yosys + nextpnr-ice40 + icepack, via `examples/{Fomu,TinyFPGA-BX}/OSS_CAD_Suite/Makefile`); examples also carry a Lattice iCEcube2 project. No ECP5/open-flow ECP5 build exists in this repo",
+  "Programmer": "`tinyprog` (TinyFPGA-BX, `examples/TinyFPGA-BX/OSS_CAD_Suite/Makefile:33`); `dfu-util` (Fomu, `examples/Fomu/OSS_CAD_Suite/Makefile:65`)",
+  "Target FPGA(s)": "iCE40 UP5K SG48 (Fomu), iCE40 LP8K CM81 (TinyFPGA-BX) — **not ECP5, no ULX3S target in this repo**",
+  "Board revision(s)": "n/a — repo does not target ULX3S",
+  "Activity": "last commit 2024-03-10 (`6798bf4`); commit count / first commit unknown (shallow clone, repo not in `.claude/memory/history.tsv`)"
+ },
+ "blocks": [],
+ "sections": [
+  {
+   "title": "What the gateware does",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "A from-scratch, vendor-primitive-free Full-Speed (12 Mbit/s) USB device core\nimplementing the USB Communications Device Class, Abstract Control Model\nsubclass (`usb_cdc/usb_cdc.v`, top module `usb_cdc`) — i.e. a USB-to-serial\n(\"virtual COM port\") device, recognized out of the box by Windows/macOS/Linux\nCDC-ACM drivers. Configurable for 1–7 CDC channels via the `CHANNELS`\nparameter. No ULX3S example is provided; the repo ships example\napplications/top-levels only for Fomu (iCE40 UP5K) and TinyFPGA-BX (iCE40\nLP8K): `bootloader` (TinyFPGA bootloader replacement, `tinyprog`-compatible),\n`demo` (throughput/reliability test with RAM/ROM/flash access), `loopback`,\n`loopback_2ch`/`loopback_7ch`, and `soc` (FIFO bus interface for a CPU)."
+    }
+   ]
+  },
+  {
+   "title": "Structure",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`usb_cdc/` — the reusable core, 8 files, ~3260 lines total: `usb_cdc.v` (top,\nwires SIE + endpoints + FIFOs), `sie.v` (Serial Interface Engine: packet\nrecognition, CRC, PID, bus reset), `phy_rx.v`/`phy_tx.v` (NRZI, bit\nstuffing, SOP/EOP), `ctrl_endp.v` (control endpoint / enumeration, largest\nfile at 981 lines), `bulk_endp.v`, `in_fifo.v`, `out_fifo.v`.",
+      "`examples/Fomu/`, `examples/TinyFPGA-BX/` — each has `hdl/` (per-example\nVerilog `app.v` + VHDL top `demo_fpga.vhd`), `OSS_CAD_Suite/` (open-flow\nMakefile + `.pcf`), `iCEcube2/` (Lattice project files), `python/` (host-side\ntest scripts).",
+      "`examples/common/` — shared HDL helpers, GTKWave save files, Synplify Pro\nproject fragments."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "How to build",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Not run (read-only review). From `examples/README.md` and\n`examples/TinyFPGA-BX/OSS_CAD_Suite/Makefile`:"
+    },
+    {
+     "type": "code",
+     "lang": "",
+     "text": "cd examples/TinyFPGA-BX/OSS_CAD_Suite\nmake all PROJ=demo        # yosys synth_ice40 -> nextpnr-ice40 --lp8k --package cm81 -> icepack\nmake prog PROJ=demo        # tinyprog -p <bin>\nmake sim PROJ=demo         # iverilog/vvp -> .fst (self-checking testbench, `assert_error` macros)"
+    },
+    {
+     "type": "paragraph",
+     "text": "Fomu flow is identical but targets `up5k`/`sg48` and programs with\n`dfu-util -D <dfu>` (`examples/Fomu/OSS_CAD_Suite/Makefile:65`). Neither\nMakefile references ECP5 parts or an ULX3S `.lpf`."
+    }
+   ]
+  },
+  {
+   "title": "Reusable blocks",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "Block",
+      "Path",
+      "Top module",
+      "Language",
+      "Vendor primitives",
+      "License"
+     ],
+     "rows": [
+      {
+       "Block": "USB FS CDC-ACM device core",
+       "Path": "`usb_cdc/*.v`",
+       "Top module": "`usb_cdc`",
+       "Language": "Verilog-2001",
+       "Vendor primitives": "none (README claims no EBR use; not independently re-verified beyond reading the source, which has no `SB_*`/`EHX*` instantiations)",
+       "License": "MIT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Reuse notes",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "**Ports** (`usb_cdc/usb_cdc.v:8-47`): `clk_i` (must run at `12 MHz *\nBIT_SAMPLES`, default `BIT_SAMPLES=4` → **48 MHz**), `rstn_i` (async,\nactive-low), optional `app_clk_i` when `USE_APP_CLK=1` (lets the\nIN/OUT FIFO application side run on its own async clock, e.g. a slower SoC\nclock — the TinyFPGA-BX demo uses `APP_CLK_FREQ=2` MHz). Application side is\na simple valid/ready byte-stream FIFO interface (`out_data_o`/`out_valid_o`/\n`out_ready_i`, `in_data_i`/`in_valid_i`/`in_ready_o`), one byte lane per\nchannel. Key parameters: `VENDORID`, `PRODUCTID`, `CHANNELS` (1–7),\n`IN_BULK_MAXPACKETSIZE`/`OUT_BULK_MAXPACKETSIZE` (8/16/32/64),\n`BIT_SAMPLES` (oversampling of the 12 Mbit/s bit clock).",
+      "**PHY pins** are exposed raw, not wrapped in vendor I/O primitives:\n`dp_pu_o` (drive the 1.5 kΩ pull-up enable), `tx_en_o` (output-enable for\nthe D+/D- tristate pair), `dp_tx_o`/`dn_tx_o` (drive when enabled),\n`dp_rx_i`/`dn_rx_i` (read back). The board wrapper is expected to instantiate\nits own tristate I/O buffer per pin and a separate pull-up-enable pin/pad —\nsee the SB_IO-based reference wiring in\n`examples/TinyFPGA-BX/hdl/demo/demo_fpga.vhd:170-232`.",
+      "**Porting to ULX3S (ECP5)**: no vendor primitives in the core itself, so the\ngate-level logic should synthesize unchanged with `synth_ecp5`. What must be\nsupplied is a board top-level that: (1) generates 48 MHz (`BIT_SAMPLES=4`)\nfrom the 25 MHz oscillator via an `EHXPLLL` instance; (2) drives ULX3S's\ndirect-FPGA USB pins, which on `ulx3s_v20.lpf` are `usb_fpga_bd_dp`/\n`usb_fpga_bd_dn` (bidirectional D+/D-, `SITE \"D15\"`/`\"E15\"`, `IO_TYPE=LVCMOS33`)\ntristated by `tx_en_o`, plus the **separate** `usb_fpga_pu_dp`/`usb_fpga_pu_dn`\npull-up/pull-down control pins (`SITE \"B12\"`/`\"C12\"`) — `dp_pu_o` should\ndrive `usb_fpga_pu_dp` high (device mode = D+ pull-up only), leaving\n`usb_fpga_pu_dn` low, mirroring the TinyFPGA-BX `usb_pu`/`dp_pu` pattern but\nwith independent D+/D- control (ULX3S's US2 also supports host mode, which\nTinyFPGA-BX's fixed pull-up doesn't need to model). Note ULX3S also has a\nseparate, non-bidirectional `usb_fpga_dp`/`usb_fpga_dn` pin pair (`SITE\n\"E16\"`/`\"F16\"`, \"single ended or differential input only\" per\n`original_sources/emard__ulx3s/doc/constraints/ulx3s_v20.lpf:212-223`) — the\n`_bd_` pair is the one that matches this core's bidirectional tristate I/O\nmodel.",
+      "No RAM/EBR usage claimed by the README; useful where LUTs are cheap but\nblock RAM is needed elsewhere.",
+      "**Correction to the survey brief**: the task notes said to \"check its ULX3S\nexample\", but this repo has **no ULX3S example or `.lpf`** — only Fomu and\nTinyFPGA-BX. `catalogue.tsv`'s row is correct on this point\n(\"examples/Fomu/…; examples/TinyFPGA-BX/…\", target FPGAs listed as\niCE40 UP5K/LP8K, \"not ULX3S\"). The D+/D-/pull-up wiring above was worked out\nby reading the TinyFPGA-BX VHDL top-level and the ULX3S `.lpf`, not from a\nULX3S example in this repo."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Open questions",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Whether the README's \"no EBR\" claim holds after `synth_ecp5` (not\nsynthesized here).",
+      "Full-speed USB timing margins for a bit-banged D+/D- pair on ULX3S's US2\ntraces are unverified — the TinyFPGA-BX/Fomu boards this was designed for\nhave short, controlled-impedance USB traces to the connector; ULX3S's\nrouting to its USB-C/micro connector is unknown without checking the board\nschematic.",
+      "No `iCEcube2` project or `.pcf` was read in detail (Lattice-only flow, out\nof scope for the open-flow toolchain this repo's catalogue entry targets)."
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,3 +1,5 @@
+<!-- Generated from data/projects/ultraembedded__orangecrab.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # OrangeCrab DDR3 memory test (`ultraembedded__orangecrab`)
 
 | Field | Value |
@@ -13,8 +15,10 @@
 | Activity | single commit at the pinned clone depth (shallow, `--depth 1`); upstream date 2020-08-21; commit count/first commit unknown (history.tsv has no entry) |
 
 ## What the gateware does
+
 A **DDR3 128 MB read/write memory test** for the OrangeCrab r0.2 board, top module `top`
 (`ddr_test/src_v/top.v`):
+
 - Drives the on-board DDR3 through a full AXI4 test (`ram_tester.v`, top `ram_tester`):
   writes all 128 MB, reads it back and verifies twice, using incrementing patterns and an
   all-ones pattern (per `README.md`).
@@ -24,6 +28,7 @@ A **DDR3 128 MB read/write memory test** for the OrangeCrab r0.2 board, top modu
   (`top.v`, `rgb_led_r/g/b` outputs wired from `status_busy_o`/`status_err_o`).
 
 ## Structure
+
 - `ddr_test/src_v/top.v` — top level: instantiates `ecp5pll`, `reset_gen`, `fpga_top` (which
   wraps `ram_tester` + `ddr3_axi`), and drives the LEDs from test status.
 - `ddr_test/src_v/fpga_top.v` — glue between `ram_tester` (AXI4 master, test sequencer) and
@@ -40,6 +45,7 @@ A **DDR3 128 MB read/write memory test** for the OrangeCrab r0.2 board, top modu
 - No `Makefile`, no `.pcf`/nextpnr invocation, no testbench in this clone.
 
 ## How to build
+
 Not run. No build script exists in the repository at the pinned commit — only the
 prebuilt `ddr_test/bitstreams/ddr_test_r0_2.dfu` (added in the same commit, and pruned
 from this local clone as a non-gateware build artifact). Anyone reusing this needs to
@@ -79,6 +85,7 @@ write their own yosys/nextpnr-ecp5/ecppack flow from scratch.
 - Dependencies: none outside this directory (no submodules, no external IP).
 
 ## Open questions
+
 - Exact target FPGA size for OrangeCrab r0.2 (25F vs 45F/85F) is not stated in source.
 - No confirmed toolchain invocation (yosys/nextpnr flags, `--package`/`--device`) exists in
   this repo; unverified whether the deleted `.dfu` bitstream was built with default or

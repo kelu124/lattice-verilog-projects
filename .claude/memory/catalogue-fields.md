@@ -5,7 +5,7 @@ metadata:
   type: feedback
 ---
 
-For every gateware repo, the catalogue [[projects]] must say:
+For every gateware repo, the catalogue (`data/catalogue.json`, see [[projects]]) must say:
 1. **FPGA**: which ECP5 size(s) it targets/supports (12F/25F/45F/85F…).
    If the target is **not an ECP5**, the column must start with the family and "(NOT ECP5)", e.g.
    `iCE40 UP5K (NOT ECP5) - SG48` (iCEBreaker, owner request 2026-09-27) or `Xilinx XC7A50T (NOT ECP5)`.

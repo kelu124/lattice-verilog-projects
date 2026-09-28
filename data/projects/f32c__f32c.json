@@ -1,0 +1,334 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "project",
+ "slug": "f32c__f32c",
+ "title": "f32c retargetable RISC-V/MIPS SoC (`f32c__f32c`)",
+ "description": "",
+ "fields": {
+  "Upstream": "https://github.com/f32c/f32c",
+  "Reviewed at": "`7dbf56d` (upstream date 2026-09-22), reviewed 2026-09-28",
+  "License": "BSD-2-Clause, repo-wide (`LICENSE`, Copyright Marko Zec / EMARD). Several individual `rtl/soc/*` files carry a **different** permissive header from their original author — see Reuse notes",
+  "HDL / framework": "VHDL (bulk of `rtl/cpu`, `rtl/soc`, `rtl/lattice`), a handful of Verilog leaf modules (`i2s_v.v`, `vgahdmif_v.v`, Diamond-SCUBA-generated PLL `.v`/`.vhd` netlists), C runtime/examples under `src/`",
+  "Toolchain": "`diamond` for every working ULX3S target (`rtl/proj/lattice/include/scripts/diamond_main.mk` + `universal_make/files.mk`). An open-source path exists as generic infra (`rtl/lattice/include/scripts/ulx3s_trellis.mk`, yosys+nextpnr-ecp5+ecppack), but the two ULX3S trellis attempts are explicitly broken: `rtl/proj/lattice/ulx3s/bram_trellis/README.md` and `xram_sdram_normal_trellis/README.md` both say \"# Not working / This doesn't compile yet, just an attempt\"",
+  "Programmer": "`ujprog`/`fujprog` (`UJPROG ?= fujprog`, `rtl/proj/lattice/include/scripts/diamond_main.mk:102`); FleaFPGA-JTAG and OpenOCD targets also defined in the same makefile",
+  "Target FPGA(s)": "12F / 25F / 45F / 85F (top files and makefiles per size, e.g. `top_ulx3s_12f_xram_sdram.vhd`, `top_ulx3s_85f_xram_acram_emu_vector.vhd`)",
+  "Board revision(s)": "v1.7-patch (`ulx3s_v17patch.lpf`), v2.0/v3.0.x (`ulx3s_v20.lpf` + `ulx3s_options/ulx3s_v20_{segpdi,selftest,uncompressed,jtagflash}.lpf`), v3.1.6+ (`ulx3s_options/ulx3s_v316.lpf` present but commented out / not the active `CONSTRAINTS` line in any current variant's makefile, e.g. `xram_sdram_normal/makefile`)",
+  "Activity": "Last commit 2026-09-22 (`git log -1 --format=%cs`); 5912 commits since 2010-02-27 per `.claude/memory/history.tsv` (clone is shallow, `--depth 1`, so commit count is not independently verifiable here)"
+ },
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Scope of this page: the f32c CPU core and the ULX3S SoC targets under\n`rtl/proj/lattice/ulx3s/`, plus the SoC peripherals worth reusing elsewhere.\nThe repo also targets Xilinx, Altera/Intel and several non-ULX3S Lattice\nboards (`rtl/xilinx`, `rtl/altera`, `rtl/lattice/{brevia,ffm-lfe5u,\nfleafpga_ohm,fleafpga_uno,icoboard_beta,kondor_ax,mmm_v4r0,sparrowhawk,\nulx2s}`) and a large software tree (`src/`: C runtime, compiler, bootloader,\nexamples, benchmarks) — both are out of scope here and not reviewed."
+  }
+ ],
+ "sections": [
+  {
+   "title": "What the gateware does",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "**f32c CPU core**: retargetable, scalar, pipelined 32-bit soft processor\nthat executes a subset of either RISC-V (RV32) or MIPS (MI32), selected by\nthe `C_arch` generic. Top entity `f32c_core` (`rtl/cpu/f32c_core.vhd`),\n1794 lines, optional branch predictor, direct-mapped I/D caches, exception\nhandling, single-step debug port. Per `README.md`: 3.3 CoreMark/MHz from\nBRAM, up to ~185 MHz Fmax on 6-input-LUT FPGAs (unverified: README claim,\nnot confirmed for ECP5/ULX3S specifically here).",
+      "**ULX3S SoC integration** (`rtl/proj/lattice/ulx3s/`, 17 build directories):\neach variant picks one pre-built `TOP_MODULE_FILE` from\n`rtl/lattice/ulx3s/top/*.vhd` (28 top files) that wires the CPU to a\nperipheral set — video output flavor, SDRAM vs BRAM, self-test, etc. See\nStructure below for the mapping.",
+      "**SDRAM-backed general-purpose SoC** (`xram_sdram_normal`,\n`xram_sdram_synth`, `xram_sdram_text`, `xram_sdram_tvfm`, `xram_sdram_433`,\n`xram_sdram_lvds`, `xram_sdram_noflash`): CPU + external SDRAM + video +\nUART + SPI flash/SD, the general-purpose configuration people build for.",
+      "**Board self-test** (`xram_sdram_selftest`, top\n`top_ulx3s_12f_xram_sdram_selftest.vhd`, constraints\n`ulx3s_options/ulx3s_v20_selftest.lpf`): this is the design behind the\n`f32c/` bitstream shipped in `emard/ulx3s-bin`, confirmed by matching\nproject name `f32c_selftest_2ws_89mhz` in\n`rtl/proj/lattice/ulx3s/xram_sdram_selftest/makefile`.",
+      "**BRAM-only SoC** (`bram/`, Diamond `.ldf` project only — no local\nmakefile/top source in this pruned checkout; `bram_trellis/` is the\n(broken) open-flow attempt at the same target).",
+      "**SoC peripheral library** (`rtl/soc/`, per `rtl/soc/README.md`): multiport\nSRAM/SDRAM/AXI/DDR3 memory controllers, floating-point vector processor,\n2D video accelerator (windows/sprites/textmode/scroll/blitter) with\nHDMI/VGA/composite/LED-strip output, 16-bit stereo PCM DMA audio, a\n128-voice tonewheel synth, SPDIF and analog PWM audio out, an 88–108 MHz\nFM/RDS transmitter, a 433.92 MHz ASK transmitter, a PID motor controller,\ntimer/GPIO/SPI/UART, USB 1.1 device (serial/CDC), PS/2, and an RTC."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Structure",
+   "blocks": [
+    {
+     "type": "code",
+     "lang": "",
+     "text": "rtl/cpu/                  f32c_core.vhd (CPU), idecode_{mi32,rv32}.vhd, f32c_cache.vhd, debug.vhd\nrtl/soc/                  peripheral library (see Reuse notes table)\nrtl/lattice/ulx3s/top/    28 top-level .vhd files, one per SoC configuration/FPGA size\nrtl/lattice/ulx3s/clocks/ Diamond-SCUBA-generated PLL netlists (ECP5U library), one per top file's clock plan\nrtl/proj/lattice/constraints/          ulx3s_v20.lpf, ulx3s_v17patch.lpf\nrtl/proj/lattice/constraints/ulx3s_options/  segpdi / selftest / uncompressed / jtagflash / v316 variants\nrtl/proj/lattice/ulx3s/                17 build dirs, each a makefile (or .ldf) selecting a top file + constraints\nrtl/proj/lattice/ulx3s/universal_make/ files.mk shared by all non-trellis ulx3s makefiles\nrtl/proj/lattice/include/scripts/      diamond_main.mk / diamond_path.mk (working flow); ulx3s_trellis.mk (generic open-flow infra, unused by any working ulx3s target)\nsrc/                       C runtime, compiler, bootloader, examples (out of scope)"
+    },
+    {
+     "type": "paragraph",
+     "text": "17 `rtl/proj/lattice/ulx3s/` build directories and what each configures\n(makefile `PROJECT`/`TOP_MODULE_FILE`, verified per-directory):"
+    },
+    {
+     "type": "table",
+     "columns": [
+      "Directory",
+      "Project name",
+      "Top file",
+      "Notes"
+     ],
+     "rows": [
+      {
+       "Directory": "`xram_sdram_normal`",
+       "Project name": "f32c_pix8bpp640x480_100mhz",
+       "Top file": "`top_ulx3s_12f_xram_sdram.vhd`",
+       "Notes": "general-purpose default"
+      },
+      {
+       "Directory": "`xram_sdram_433`",
+       "Project name": "f32c_433_93mhz",
+       "Top file": "`top_ulx3s_12f_xram_sdram_433.vhd`",
+       "Notes": "433.92 MHz ASK radio"
+      },
+      {
+       "Directory": "`xram_sdram_lvds`",
+       "Project name": "f32c_pix8bpp640x480_100mhz",
+       "Top file": "`top_ulx3s_12f_xram_sdram_lvds.vhd`",
+       "Notes": "LVDS video variant"
+      },
+      {
+       "Directory": "`xram_sdram_noflash`",
+       "Project name": "f32c_noflash_100mhz",
+       "Top file": "`top_ulx3s_12f_xram_sdram_noflash.vhd`",
+       "Notes": "no SPI flash access"
+      },
+      {
+       "Directory": "`xram_sdram_selftest`",
+       "Project name": "f32c_selftest_2ws_89mhz",
+       "Top file": "`top_ulx3s_12f_xram_sdram_selftest.vhd`",
+       "Notes": "**board self-test** (matches ulx3s-bin's `f32c/`)"
+      },
+      {
+       "Directory": "`xram_sdram_synth`",
+       "Project name": "f32c_synth_100mhz",
+       "Top file": "`top_ulx3s_12f_xram_sdram_synth.vhd`",
+       "Notes": "tonewheel synth demo"
+      },
+      {
+       "Directory": "`xram_sdram_text`",
+       "Project name": "f32c_txt100x60_100mhz",
+       "Top file": "`top_ulx3s_12f_xram_sdram_text.vhd`",
+       "Notes": "text-mode video"
+      },
+      {
+       "Directory": "`xram_sdram_tvfm`",
+       "Project name": "f32c_tvfm_81mhz",
+       "Top file": "`top_ulx3s_12f_xram_sdram_tv.vhd`",
+       "Notes": "composite TV + FM demo"
+      },
+      {
+       "Directory": "`bram`",
+       "Project name": "(Diamond `.ldf` only)",
+       "Top file": "unknown (top source not present in this pruned checkout)",
+       "Notes": "BRAM-only SoC"
+      },
+      {
+       "Directory": "`bram_trellis`",
+       "Project name": "f32c",
+       "Top file": "(missing `FILES=` in Makefile)",
+       "Notes": "**broken** open-flow attempt"
+      },
+      {
+       "Directory": "`xram_sdram_normal_trellis`",
+       "Project name": "f32c",
+       "Top file": "(missing `FILES=` in Makefile)",
+       "Notes": "**broken** open-flow attempt"
+      },
+      {
+       "Directory": "`xram_sdram_12f_v2.0_c2_noscripts`",
+       "Project name": "unknown",
+       "Top file": "unknown",
+       "Notes": "`project.ldf` only, `.xcf` programmer files for 3 flash chips"
+      },
+      {
+       "Directory": "`sdram_dv`, `sdram_emu`, `sdram_min`",
+       "Project name": "unknown",
+       "Top file": "unknown",
+       "Notes": "`.ldf`-only Diamond projects, no source present in this pruned checkout"
+      },
+      {
+       "Directory": "`xram_acram_emu_segpdi`",
+       "Project name": "unknown",
+       "Top file": "unknown",
+       "Notes": "AXI-CRAM emulation variant, makefile present but not inspected in depth"
+      },
+      {
+       "Directory": "`universal_make`",
+       "Project name": "—",
+       "Top file": "—",
+       "Notes": "shared `files.mk`/`makefile` included by the working variants, not a build target itself"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Several directories (`bram`, `sdram_dv`, `sdram_emu`, `sdram_min`,\n`xram_sdram_12f_v2.0_c2_noscripts`) ship only a Diamond `.ldf`/`.xcf`\nproject file with no companion makefile driving `TOP_MODULE_FILE`; their\nexact top module is `unknown` from this review — Diamond project files were\nnot parsed."
+    }
+   ]
+  },
+  {
+   "title": "How to build",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Not run (per task scope: no make/build). From reading the makefiles:"
+    },
+    {
+     "type": "code",
+     "lang": "sh",
+     "text": "cd rtl/proj/lattice/ulx3s/xram_sdram_normal\nmake            # Diamond synth+PAR via diamond_main.mk, needs $DIAMOND_BASE\nmake prog       # fujprog <bitstream>.bit, load over US1 JTAG\nmake flash      # fujprog -j flash <bitstream>.bit, permanent"
+    },
+    {
+     "type": "paragraph",
+     "text": "Requires Lattice Diamond installed and `DIAMOND_BASE` pointing at it\n(`rtl/proj/lattice/include/scripts/diamond_path.mk`, not read in detail).\n`FPGA_SIZE`/`CONSTRAINTS`/`TOP_MODULE_FILE` are chosen per variant inside\neach `makefile` (see table above); switching board revision means\nuncommenting a different `CONSTRAINTS` line."
+    },
+    {
+     "type": "paragraph",
+     "text": "The open-flow path (`bram_trellis`, `xram_sdram_normal_trellis`) uses\n`yosys -m ghdl -q synth.ys` + `nextpnr-ecp5 --router router2` + `ecppack`,\nbut both are marked non-working by their own `README.md`."
+    }
+   ]
+  },
+  {
+   "title": "Reuse notes",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Reusable blocks (path relative to `original_sources/f32c__f32c/`, commit\n`7dbf56d`). **License column is the individual file's own header**, which in\nseveral cases differs from the repo-wide BSD-2-Clause `LICENSE` — check\nbefore reusing."
+    },
+    {
+     "type": "table",
+     "columns": [
+      "Block",
+      "Path",
+      "Top module",
+      "Language",
+      "Vendor primitives",
+      "License (per-file)"
+     ],
+     "rows": [
+      {
+       "Block": "f32c CPU core",
+       "Path": "`rtl/cpu/f32c_core.vhd`",
+       "Top module": "`f32c_core`",
+       "Language": "VHDL",
+       "Vendor primitives": "none",
+       "License (per-file)": "BSD-2 (Marko Zec, file header)"
+      },
+      {
+       "Block": "SPDIF audio out",
+       "Path": "`rtl/soc/spdif_tx.vhd`",
+       "Top module": "`spdif_tx`",
+       "Language": "VHDL",
+       "Vendor primitives": "none",
+       "License (per-file)": "no per-file header found; falls back to repo BSD-2"
+      },
+      {
+       "Block": "FM/RDS transmitter",
+       "Path": "`rtl/soc/fm/fm.vhd` (+ `fmgen.vhd`, `rds.vhd`, `bram_rds.vhd`, `fir.vhd`, `lowpass.vhd`, `message.vhd`)",
+       "Top module": "`fm`",
+       "Language": "VHDL",
+       "Vendor primitives": "none",
+       "License (per-file)": "BSD-2 (Davor Jadrijevic, file header)"
+      },
+      {
+       "Block": "USB device (CDC-ACM serial)",
+       "Path": "`rtl/soc/usb_serial/usb_serial.vhd` (+ `usb_control.vhd`, `usb_init.vhd`, `usb_packet.vhd`, `usb_transact.vhd`, `usbsio.vhd`)",
+       "Top module": "`usb_serial`",
+       "Language": "VHDL",
+       "Vendor primitives": "none (needs external UTMI-style PHY)",
+       "License (per-file)": "no per-file header found; falls back to repo BSD-2"
+      },
+      {
+       "Block": "USB 1.1 soft PHY",
+       "Path": "`rtl/soc/usb11_phy/usb_phy.vhd`, `usb_rx_phy_{48MHz,60MHz,emard}.vhd`, `usb_tx_phy.vhd`",
+       "Top module": "`usb_phy`",
+       "Language": "VHDL (converted from Verilog by Martin Neumann)",
+       "Vendor primitives": "none",
+       "License (per-file)": "**OpenCores permissive**, Copyright (C) 2000-2002 Rudolf Usselmann (`www.asics.ws`) — \"may be used and distributed without restriction provided copyright notice is retained\", NOT the repo's BSD-2 text"
+      },
+      {
+       "Block": "SDRAM controller",
+       "Path": "`rtl/soc/sdram.vhd`, `sdram32.vhd`, `sdram_mz.vhd`",
+       "Top module": "`sdram` / `sdram32` / `sdram_mz`",
+       "Language": "VHDL",
+       "Vendor primitives": "none (generic SDR SDRAM command sequencing)",
+       "License (per-file)": "**MIT**, Copyright (c) 2013 Mike Field \\<hamster@snap.net.nz\\> — catalogue.tsv's \"(BSD-2)\" tag for this block is **wrong**"
+      },
+      {
+       "Block": "DVI/TMDS video",
+       "Path": "`rtl/soc/vgahdmi/vga2dvid.vhd`, `TMDS_encoder.vhd`",
+       "Top module": "`vga2dvid`",
+       "Language": "VHDL",
+       "Vendor primitives": "serializer via `ddr_dvid_out_se.vhd` → `rtl/lattice/chip/ecp5u/ddr_out.vhd` (ECP5 `ODDRX1F`)",
+       "License (per-file)": "**MIT**, Copyright (c) 2012 Mike Field for `vga2dvid.vhd`; `ddr_dvid_out_se.vhd`/`ddr_out.vhd` are BSD (Emard, `-- LICENSE=BSD` header)"
+      },
+      {
+       "Block": "Composite video (PAL/CVBS)",
+       "Path": "`rtl/soc/cvbs.vhd`",
+       "Top module": "`cvbs`",
+       "Language": "VHDL",
+       "Vendor primitives": "none (sigma-delta DAC)",
+       "License (per-file)": "BSD-2 (Marko Zec, 2013, file header)"
+      },
+      {
+       "Block": "PS/2 keyboard/mouse",
+       "Path": "`rtl/soc/ps2.vhd`",
+       "Top module": "`ps2`",
+       "Language": "VHDL",
+       "Vendor primitives": "none",
+       "License (per-file)": "**MIT**, Copyright (c) 2015 Ken Jordan — not BSD-2"
+      },
+      {
+       "Block": "I2S audio",
+       "Path": "`rtl/soc/i2s.vhd` (VHDL wrapper) + `i2s_v.v` (Verilog core)",
+       "Top module": "`i2s`",
+       "Language": "VHDL+Verilog",
+       "Vendor primitives": "none",
+       "License (per-file)": "BSD (Emard, `-- LICENSE=BSD` header)"
+      },
+      {
+       "Block": "Tonewheel synth",
+       "Path": "`rtl/soc/synth.vhd`",
+       "Top module": "`synth`",
+       "Language": "VHDL",
+       "Vendor primitives": "none",
+       "License (per-file)": "BSD (Davor Jadrijevic, `-- LICENSE=BSD` header)"
+      },
+      {
+       "Block": "RTC",
+       "Path": "`rtl/soc/rtc.vhd`",
+       "Top module": "`rtc`",
+       "Language": "VHDL",
+       "Vendor primitives": "none",
+       "License (per-file)": "BSD-2 (Marko Zec, 2023, file header)"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Notes on dropping these into a new ULX3S design:"
+    },
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "**Clock/reset**: most blocks take a plain `clk`/`reset` plus a\n`C_clk_freq` generic in Hz (e.g. `spdif_tx`, `ps2`, `cvbs`) — any system\nclock works, no PLL dependency baked in. The CPU core (`f32c_core`) is\nitself clock-generic; the SoC top files instantiate Diamond-SCUBA PLL\nnetlists per configuration (`rtl/lattice/ulx3s/clocks/*.vhd`, e.g.\n`clk_25_100_125_25.vhd`, header: \"VHDL netlist generated by SCUBA Diamond\n(64-bit) 3.7.0.96.1\") — these are **Diamond-only IP** (ECP5U primitive\nlibrary), not portable to the open flow without regenerating with\n`ecppll`/`nextpnr` equivalents.",
+      "**DVI/TMDS**: `vga2dvid.vhd` itself is pure behavioral VHDL and portable;\nonly the DDR output stage (`ddr_dvid_out_se.vhd`) is ECP5-specific\n(`ODDRX1F` via `ddr_out`), and that wrapper already targets ECP5U so it\nshould carry over directly on another ULX3S design.",
+      "**SDRAM controller**: generic 16-bit SDR SDRAM interface\n(`sdram_address_width`, `sdram_column_bits`, `sdram_startup_cycles`,\n`cycles_per_refresh` generics), not ULX3S-pin-specific — the multi-port\narbiter (`C_ports` generic) is the part worth lifting for a new design.",
+      "**USB device**: `usb_serial.vhd` needs a UTMI-style 8-bit PHY; this repo\nsupplies its own soft PHY (`usb11_phy/`, OpenCores-derived, see license\ncaveat above) rather than a hard UTMI transceiver, so the pair reuses as a\nunit.",
+      "**Pin/LPF reuse**: this repo already targets ULX3S with\n`ulx3s_v20.lpf`/`ulx3s_v17patch.lpf`/`ulx3s_options/*` in\n`rtl/proj/lattice/constraints/`, so pin names for a new ULX3S design built\nfrom these blocks should carry over directly; only clock-frequency\ngenerics need adjusting per target board revision.",
+      "The **emard \"universal make\" pattern** referenced in\n`.claude/memory/reusable-cores.md` (`trellis_main.mk`/`diamond_main.mk`,\n`FPGA_SIZE=12|25|45|85`) is present here too as\n`rtl/proj/lattice/include/scripts/diamond_main.mk` /\n`rtl/proj/lattice/ulx3s/universal_make/files.mk`, confirming the\n\"Diamond-only historical ports\" line in that file for f32c."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Open questions",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Top module / source files for `bram`, `sdram_dv`, `sdram_emu`,\n`sdram_min`, `xram_sdram_12f_v2.0_c2_noscripts` (Diamond `.ldf`/`.xcf`\nonly, no makefile-driven `TOP_MODULE_FILE` found) — not identified in\nthis review.",
+      "`xram_acram_emu_segpdi/makefile` exists but was not inspected in depth\n(AXI-CRAM emulation SoC, purpose inferred from directory name only).",
+      "Whether `spdif_tx.vhd` and `usb_serial.vhd` (no per-file license header)\nare actually intended to fall under the repo BSD-2 `LICENSE`, or simply\nlack a header by omission, is unconfirmed — treat as BSD-2 by default per\nrepo `LICENSE` but flag before redistributing standalone.",
+      "CPU performance claims in `README.md` (CoreMark/MHz, Fmax) are unverified\nfor the ULX3S/ECP5 target specifically — no benchmark run in this review.",
+      "`rtl/cpu/README.md` documents the CPU-to-SoC bus protocol in detail but\nwas only skimmed; useful reading before wiring a new peripheral to\n`f32c_core`."
+     ]
+    }
+   ]
+  }
+ ]
+}

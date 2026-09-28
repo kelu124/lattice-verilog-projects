@@ -1,6 +1,8 @@
 # DONE
 
 ## 2026-09-28
+- [x] Move gathered data to data/ as JSON (catalogue.json, lpfs.json, pages/*.json, projects/*.json) and generate docs/ (GitHub Pages) with scripts (gen_catalogue.py --merge, scan_lpfs.py + gen_lpf_catalogue.py, gen_pages.py, md2json.py, Makefile); skills + memory updated → commit "docs(data): move gathered data to data/ JSON, generate docs/ for GitHub Pages"
+- [x] Clone + catalogue the 8 HX-survey honourable mentions (+2 submodules) and ECP5-survey items 15–20, 22–24 (5 agents); 359 → 376 rows → same commit
 - [x] docs/DFUs.md (USB DFU bootloaders + flows; cloned emard__had2019-playground, catalogued), 15 full docs pages for the most reusable repos, LPF catalogue (gen_lpf_catalogue.py → docs/lpf-catalogue.{json,md}); catalogue license/reuse corrections from the reviews → commit "docs(reuse): add DFU guide, LPF catalogue and 15 reusable-core pages"
 - [x] Document pruning and the HX batch in README, CLAUDE.md, memory and skills → commit "docs(repo): document clone pruning and the HX8K/HX4K batch in README, memory, skills"
 - [x] Write the 3 missing catalogue rows (gatecat__trellisboard, zipcpu__sdspi, toasterllc__mdccode) and clone + catalogue 19 HX8K/HX4K repos of docs/hx-boards-survey.md (+2 RISCBoy gateware submodules), 5 subagents, make_tests filled; 336 → 358 rows; pruned the new clones (527 MB) → commit "docs(catalogue): catalogue 19 iCE40 HX8K/HX4K repos and 3 pending rows"

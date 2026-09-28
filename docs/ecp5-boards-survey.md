@@ -1,3 +1,5 @@
+<!-- Generated from data/pages/ecp5-boards-survey.json by .claude/skills/documentation/gen_pages.py; do not edit. -->
+
 # ECP5 (non-ULX3S) gateware survey on GitHub
 
 Survey date: 2026-09-27. Research only: nothing cloned. Scope: Lattice ECP5 boards other than
@@ -6,6 +8,7 @@ ULX3S / ULX4M / ULX5M (those are in `docs/github-survey.md`); iCE40, Gowin and X
 and ULX*/iCE40/Gowin/Xilinx hits, **114 repos** are listed below.
 
 **Evidence column**
+
 - `verified (...)`: the full recursive file list was read at the shown commit. It contains a
   `.lpf` constraint file (or the `.pcf`-named LPF used by OrangeCrab/ButterStick) and HDL sources.
   When a Makefile was found, its build commands were read for `yosys` / `nextpnr-ecp5` / `ecppack`.
@@ -16,6 +19,7 @@ and ULX*/iCE40/Gowin/Xilinx hits, **114 repos** are listed below.
   `(README flow)` means the README states it but no Makefile was found.
 
 **Framework board files (noted once, not counted as projects)**
+
 - `litex-hub/litex-boards` (BSD-2-Clause, pushed 2026-09-24), platforms: `gsd_orangecrab`, `gsd_butterstick`,
   `hackaday_hadbadge`, `muselab_icesugar_pro`, `colorlight_5a_75b`, `colorlight_5a_75e`, `colorlight_i5`,
   `colorlight_i5a_907`, `colorlight_i9plus`, `lambdaconcept_ecpix5`, `logicbone`, `lattice_ecp5_evn`,
@@ -187,11 +191,13 @@ and ULX*/iCE40/Gowin/Xilinx hits, **114 repos** are listed below.
 | [jsloan256/titan_wiggle](https://github.com/jsloan256/titan_wiggle) | Verilog | 3 | 2015-10-07 | BSD-3-Clause | diamond | Titan PCIe card validation | verified (1 lpf/pcf, 5 v/sv) @98e6e468a7 |
 | [C-Elegans/single_sdr](https://github.com/C-Elegans/single_sdr) | Verilog | 1 | 2019-10-28 | none | open | Single SDR channel on ECP5 (no lpf in tree) | unverified (15 files, no lpf/HDL) @018c83a7a9 |
 | [ECP5-PCIe/ECP5-PCIe](https://github.com/ECP5-PCIe/ECP5-PCIe) | Python | 103 | 2023-05-16 | none | amaranth | PCIe core for ECP5 SERDES (mirror of Codeberg) | partial (71 .py, 0 HDL, no lpf) @c511d2eafa |
+
 ## Recommended to clone first (24)
 
-**Status 2026-09-27:** items 1–14 are cloned and in `docs/catalogue.md` (items 2 and 11 were already there from the ULX3S survey). Items 15–24 are not cloned, except item 21 (joshajohnson/ecp5-mini-projects), added on request with kbeckmann/pergola_projects (its upstream).
+**Status 2026-09-28:** all 24 are cloned and in the [catalogue](catalogue.md). Items 1–14 on 2026-09-27 (items 2 and 11 were already there from the ULX3S survey), item 21 (joshajohnson/ecp5-mini-projects) on request with kbeckmann/pergola_projects (its upstream), items 15–20 and 22–24 on 2026-09-28.
 
 Priority goes to plain Verilog, the open toolchain, reusable cores and good board examples.
+
 1. **Spritetm/hadbadge2019_fpgasoc**: the largest open-flow ECP5 SoC seen. Dual PicoRV32, LCD/video,
    audio synth, PSRAM (QSPI) controller and USB, with 27 Makefiles. The blocks can be reused on ULX3S.
 2. **wuxx/Colorlight-FPGA-Projects**: vendor examples for 5A-75B, i5 and i9 (13 lpf). The most popular cheap ECP5 boards.
@@ -237,6 +243,7 @@ sets (`orangecrab in:readme`, `project trellis`) also got page 2.
 `lfe5u-85f`(2), `ecp5 fpga`(158), `ecp5 hdmi`(8), `ecp5 sdram`(3), `ecp5 riscv`(8), `ecp5 usb verilog`(0).
 
 Gaps and notes:
+
 - No rate-limit errors (HTTP 403) on search. The core API was hardly used. File lists came from github.com's
   `tree/HEAD` + `tree-list/<oid>` JSON endpoints, which do not count against the 60/h API budget.
   Makefiles and READMEs came from raw.githubusercontent.com.
