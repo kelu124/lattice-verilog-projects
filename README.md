@@ -7,14 +7,17 @@ and toolchain they target, their license, whether they have testbenches, and whi
 lifted into a new design. It is maintained with [Claude Code](https://claude.com/claude-code).
 
 Use it to **find prior art before writing a core**: a DVI encoder, a USB device, an SDRAM or
-HyperRAM controller, a RISC-V SoC, an ESP32 on-screen display, a retro computer…
+HyperRAM controller, a RISC-V SoC, an ESP32 on-screen display, a retro computer… The public site presents
+**153 reusable cores in 33 functions**, each with links to the original files and the projects that use it.
 
 The repo also holds Claude's working memory (`CLAUDE.md`, `.claude/`), so anyone who clones it
 and runs `claude` here picks up exactly where the work stopped.
 
 ## Start here
 
-**Website:** <https://kelu124.github.io/ulx3s-klod/> (GitHub Pages, generated from [`data/`](data/) into [`docs/`](docs/)).
+**Website:** <https://kelu124.github.io/ulx3s-klod/> (GitHub Pages, generated from [`data/`](data/) into [`docs/`](docs/);
+Pages must be enabled once in the repo settings: source `main`, folder `/docs`). The links below open the
+same pages as markdown on GitHub.
 
 | If you want to… | Open |
 |---|---|
@@ -33,7 +36,7 @@ The [full catalogue](docs/methodology/catalogue.md) is generated from
 `.claude/skills/review-gateware-project/gen_catalogue.py`. It currently covers **376 repos**:
 
 - **292 ULX3S / ULX4M** repos: the ulx3s.github.io project list plus a GitHub-wide search (and RISCBoy, found via the HX survey, and the US2 DFU bootloader source);
-- **26 on other ECP5 boards**: TrellisBoard, OrangeCrab, ECP5-EVN, Colorlight i5/i9/5A-75B, iCESugar-Pro, Hackaday 2019 badge, Colorlight,
+- **26 on other ECP5 boards**: TrellisBoard, OrangeCrab, ECP5-EVN, Colorlight i5/i9/5A-75B, iCESugar-Pro, Hackaday 2019 badge,
   ECPIX-5, Versa ECP5-5G, IcePi Zero, LUNA, ECP5 Mini, Pergola, GreyBadge 2025, Machdyne…;
 - **58 non-ECP5** repos: **iCE40 UP5K** (iCEBreaker, UPduino, iCESugar, Fomu, MCH2022 badge, reDIP-SID,
   pico-ice…), **iCE40 HX8K/HX4K** (PicoRV32, iceboy, Glasgow, BlackIce, IcoBoard, Alhambra II, BeagleWire, un0rick…) and ZipCPU sdspi, found via [awesome-latticeFPGAs](https://github.com/kelu124/awesome-latticeFPGAs) and GitHub.
@@ -106,8 +109,9 @@ freed 5 GB.
 | [`.claude/memory/MEMORY.md`](.claude/memory/MEMORY.md) | Index of the memory files (board facts, toolchain, decisions, lists) |
 | [`.claude/memory/board-hardware.md`](.claude/memory/board-hardware.md), [`board-revisions.md`](.claude/memory/board-revisions.md), [`toolchain-and-programming.md`](.claude/memory/toolchain-and-programming.md) | Distilled ULX3S hardware, revision and toolchain knowledge |
 | [`.claude/memory/projects.md`](.claude/memory/projects.md) | Project registry: status and the queue of candidates still to review |
+| [`.claude/memory/reusable-cores.md`](.claude/memory/reusable-cores.md) | Quick picks per function and cross-project facts (the data is `data/cores.json`) |
 | [`.claude/memory/source-lists.md`](.claude/memory/source-lists.md) | Where each batch of repos came from, and when |
-| [`data/`](data/) | **All gathered data as JSON** (source of truth): `catalogue.json`, `lpfs.json`, `pages/*.json` (surveys, guides), `projects/*.json` (review pages) |
+| [`data/`](data/) | **All gathered data as JSON** (source of truth): `functions.json`, `cores.json`, `core_usage.json`, `boards.json`, `catalogue.json`, `lpfs.json`, `pages/*.json` (guides, surveys, methodology, home), `projects/*.json` (reviews) |
 | [`docs/`](docs/) | **Generated** GitHub Pages site (just-the-docs); never edit by hand |
 | [`Makefile`](Makefile) | `make check`, `make usage`, `make lpfs`, `make docs` |
 | [`.claude/skills/`](.claude/skills/) | Repeatable workflows: GitHub survey, clone + prune, review/catalogue, document, commit, TODO/DONE |
@@ -117,6 +121,7 @@ freed 5 GB.
 
 1. Clone it, run `claude`, and it follows the resume protocol in `CLAUDE.md` (read memory, TODO, last commits;
    restore `original_sources/` if empty).
-2. To add a project, ask for a review (skill `review-gateware-project`): it clones, catalogues, documents and
-   commits with a `COMMIT_LOG.md` entry.
+2. To add a project, ask for a review (skill `review-gateware-project`): it clones, prunes, catalogues
+   (`gen_catalogue.py --merge`), adds any better core to `data/cores.json`, documents, runs
+   `make check usage docs`, and commits with a `COMMIT_LOG.md` entry.
 3. Never edit files under `original_sources/`, and never edit anything under `docs/` by hand (edit `data/`, then `make docs`).

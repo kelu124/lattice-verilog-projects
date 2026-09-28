@@ -7,15 +7,15 @@
  "blocks": [
   {
    "type": "paragraph",
-   "text": "A knowledge base of **open gateware for the [ULX3S](https://github.com/emard/ulx3s) FPGA board** (Radiona, Lattice ECP5 LFE5U-12F/25F/45F/85F) and, for reuse, other small Lattice boards (ECP5, iCE40 UP5K, iCE40 HX8K/HX4K). It records which projects exist, what their gateware does, which FPGA and toolchain they target, their license, whether they have testbenches, and which blocks can be lifted into a new design."
+   "text": "Reusable **open gateware for the [ULX3S](https://github.com/emard/ulx3s) FPGA board** (Radiona, Lattice ECP5 LFE5U-12F/25F/45F/85F) and other small Lattice boards (ECP5, iCE40 UP5K, iCE40 HX8K/HX4K), organised **by function**. For each function (HDMI, VGA, SDRAM, SD card, USB, UART, SPI, I2C, ADC, DAC, audio, radio, CPUs…) it gives the best core found in 376 open-source repos, the alternatives, links to the original files at the reviewed commit, their license and FPGA primitives, and the other projects that use them."
   },
   {
    "type": "paragraph",
-   "text": "Use it to **find prior art before writing a core**: a DVI encoder, a USB device, an SDRAM or HyperRAM controller, a RISC-V SoC, an ESP32 on-screen display, a retro computer… Start with the [reusable cores map](../.claude/memory/reusable-cores.md), then the catalogue and the project pages below."
+   "text": "Use it to **find prior art before writing a core**. Start from [Cores by function](functions/index.md); check the [board page](boards/index.md) for pin maps; read the [guides](guides/index.md) to build, load and port; the [in-depth reviews](projects/index.md) document the richest repos block by block."
   },
   {
    "type": "paragraph",
-   "text": "Every page here is generated from JSON in [`data/`](../data) (do not edit `docs/` by hand); the repo also holds Claude's working memory, see the [README](../README.md)."
+   "text": "Facts cite the upstream file at a pinned commit; nothing was built or simulated, and anything not verified is marked `unknown`. Check each core's license before reusing it. Every page is generated from the JSON in [`data/`](../data) by the scripts described in the [methodology](methodology/index.md)."
   }
  ],
  "sections": []

@@ -404,9 +404,9 @@ def main():
         {"type": "table", "columns": ["Area", "Functions"],
          "rows": [{"Area": g, "Functions": ", ".join(v)} for g, v in groups.items()]},
         {"type": "list", "ordered": False, "items": [
-            "[Boards](boards/): " + ", ".join(f"[{b['name']}](boards/{b['id']}.md)" for b in boards["boards"]),
-            "[Guides](guides/): " + ", ".join(f"[{p.get('nav_title', p['title'])}](guides/{p['slug']}.md)" for p in guides),
-            "[Project reviews](projects/) · [Methodology and data](methodology/)"]}]}
+            "[Boards](boards/index.md): " + ", ".join(f"[{b['name']}](boards/{b['id']}.md)" for b in boards["boards"]),
+            "[Guides](guides/index.md): " + ", ".join(f"[{p.get('nav_title', p['title'])}](guides/{p['slug']}.md)" for p in guides),
+            "[Project reviews](projects/index.md) · [Methodology and data](methodology/index.md)"]}]}
     home = dict(index, sections=index.get("sections", []) + [extra])
     write("docs/index.md", fm(title="Home", nav_order=1, permalink="/"), mdjson.page_to_md(home),
           "data/pages/index.json", legacy_dir="docs")

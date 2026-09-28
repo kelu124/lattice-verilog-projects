@@ -2,6 +2,14 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(repo): polish README and site home, handoff for a fresh session
+- **What**: home page intro (data/pages/index.json) rewritten around cores by function (no more link to the memory
+  file, no "project pages below"); home links point to section index.md pages. README: 153 cores/33 functions line,
+  Pages-enable note, duplicate Colorlight removed, `data/` row lists all JSON files, reusable-cores row, review
+  workflow mentions merge/cores/make. Memory: project-goal (search data/cores.json first; site), data-docs-layout
+  (URL). TODO: "Start here next session" handoff; stale candidate list fixed.
+- **Why**: owner asked to review the README and the site index, update memory and push, to restart from a clean session.
+
 ## 2026-09-28 — docs(site): generate a just-the-docs site of reusable cores by function
 - **What**: new data: `data/functions.json` (33 functions in 6 groups), `data/cores.json` (153 cores: 1 best +
   alternatives per function, repo/files/top/language/license/FPGA/primitives/tests/ULX3S notes/usage patterns;

@@ -1,5 +1,14 @@
 # TODO
 
+## Start here next session (handoff 2026-09-28)
+State: 376 repos catalogued (= 376 pins), 153 reusable cores in 33 functions, 16 board pages, 18 reviews, 3 guides,
+4 surveys; all data in `data/*.json`, site generated in `docs/` (just-the-docs) and pushed; `make check` clean.
+1. Resume protocol (CLAUDE.md). If `original_sources/` is empty: `clone.sh --restore`, then `prune.py --apply --all`
+   (needed by `make check`/`usage`/`lpfs`; `make docs` alone works without clones except PCF lists on board pages).
+2. GitHub Pages: owner enables it (Settings → Pages → main, /docs) if not done; then check the first build at
+   https://kelu124.github.io/ulx3s-klod/ (nav, search, core anchors, raw wrapper) and fix what breaks.
+3. Then pick from "Next" (licensing pass on cores, board descriptions, DFU follow-ups…).
+
 ## In progress
 
 ## Next
@@ -9,7 +18,7 @@
 - [ ] DFU follow-ups (docs/guides/DFUs.md open questions): clone smunaut/had2019-playground original, no2bootloader, OrangeCrab bootloader, foboot, tinydfu to verify their layouts; which board emard__esp32ecp5 dfu.py targets; ULX4M DFU entry (BTN3 vs SW1 disagreement) (added 2026-09-28)
 - [ ] Docs pages follow-ups: open questions at the end of each new docs/projects/*.md (15 pages, 2026-09-28); license-verify the ulx3s-misc dirs only listed (usbhid, ch376, qspi, jtag_slave, dvi_in, dvi_osd, ov7670_dvi, adxl355) (added 2026-09-28)
 - [ ] LPF catalogue: 134 ULX3S LPFs have unknown revision (<90 % pin match: renamed signals); consider matching on sites only, and a PCF catalogue for the iCE40 repos (added 2026-09-28)
-- [ ] Clone the remaining candidates in projects.md (litex-boards, SaxonSoc, neorv32-setups, fujprog, had2019-playground, ulx4m-ls) (added 2026-09-27)
+- [ ] Clone the remaining candidates in projects.md (litex-boards, fujprog, tinyfpga-bootloader, ulx4m-ls, smunaut had2019-playground original) (added 2026-09-27; saxonsoc, neorv32-setups, emard had2019-playground already in)
 - [ ] Harvest the "Gitee examples" section of ulx3s.github.io (added 2026-09-27)
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)
 

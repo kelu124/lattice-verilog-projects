@@ -17,7 +17,7 @@ Pages site (owner request, 2026-09-28: "the docs folder will be about pushing to
 - `make check` validates, `make usage` rescans core usage, `make lpfs` rescans LPFs, `make docs` renders everything. `docs/_config.yml` = Jekyll config (Pages source:
   main, `/docs`). `.claude/memory/{sources,submodules,history}.tsv` stay in memory: they drive `clone.sh`.
 
-**Site (owner decisions 2026-09-28, English, just-the-docs theme):** not a list of all repos but the
+**Site (owner decisions 2026-09-28, English, just-the-docs theme; URL https://kelu124.github.io/ulx3s-klod/ once Pages is enabled on main /docs):** not a list of all repos but the
 **reusable cores and the projects that use them**, organised **by function** (`data/functions.json`, 33 functions:
 ADC, SPI, DAC, VGA, HDMI…), each core linking to its original files upstream at the pinned commit
 (`data/cores.json`, usage from `scan_core_usage.py` → `data/core_usage.json`). Boards: only the most relevant, in
