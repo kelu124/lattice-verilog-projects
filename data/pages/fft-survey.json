@@ -1,0 +1,551 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "survey",
+ "slug": "fft-survey",
+ "title": "FFT gateware on Lattice FPGAs",
+ "description": "FFT gateware on Lattice FPGAs (2026-09-28): FFT cores already in the collection and 14 new iCE40/ECP5 designs (sliding DFT, radix-2 pipelines, Goertzel, spectrum displays).",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Survey date: **2026-09-28**. Scope: open FFT gateware and closely related designs (sliding DFT, Goertzel,\nspectrum analyzers, spectrogram/waterfall, FFT-based audio/SDR) that target Lattice FPGAs\n(ECP5, iCE40 UP5K/HX/LP, MachXO2/3, CrossLink-NX/Certus-NX)."
+  }
+ ],
+ "sections": [
+  {
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": true,
+     "items": [
+      "**Local scan** of `original_sources/` (494 clones on 2026-09-28, some added by a parallel session):\n`grep -rliE \"fft|butterfly|radix-?2|twiddle\"` over `*.v *.sv *.vhd *.vhdl *.py *.si *.hs *.scala`\n(`.git` excluded), then each hit checked by hand to drop false positives (`butterflylogic`\nin lawrie/ice40logicsniffer, `fftw`/`numpy.fft` in host scripts, etc.).",
+      {
+       "text": "**GitHub search API** (`/search/repositories`, unauthenticated, `sort=updated`, 7–10 s sleeps,\nretried after rate-limit errors). 57 queries:",
+       "items": [
+        "by name/description: `fft ice40`, `fft ecp5`, `fft icebreaker`, `fft ulx3s`, `fft upduino`,\n`fft lattice`, `fft machxo2`, `fft machxo3`, `fft crosslink-nx`, `fft certus`,\n`fft verilog lattice`, `fft orangecrab`, `fft colorlight`, `fft icestick`, `fft tinyfpga`,\n`fft fomu`, `fft icesugar`, `fft yosys`, `fft nextpnr`, `spectrum analyzer ecp5`,\n`spectrum analyzer ice40`, `spectrum analyzer fpga lattice`, `spectrum analyzer icebreaker`,\n`spectrogram fpga`, `spectrogram ice40`, `waterfall fpga sdr`, `sdr ice40`, `sdr ecp5`,\n`fft amaranth`, `fft litex`, `fft fpga audio`, `dblclockfft`, `fft butterfly verilog`,\n`fft radix-2 fpga`, `fft spinalhdl`, `sliding dft fpga`, `goertzel fpga`;",
+        "README-scoped (`in:readme`): `fft ice40`, `fft ecp5`, `fft icebreaker`, `fft ulx3s`,\n`fft upduino`, `fft nextpnr`, `fft machxo2`, `fft crosslink`, `fft orangecrab`,\n`fft colorlight`, `fft iCE40UP5K`, `spectrum analyzer ice40`, `spectrum analyzer ecp5`,\n`spectrum ulx3s`, `fft tinyfpga`, `fft icestick`, `fft apio`, `waterfall ecp5`,\n`fft lattice fpga`, `spectrum icebreaker`.\n~420 unique repos returned; the vast majority are Xilinx/Intel class projects, ASIC flows or\nunrelated (\"lattice\" in physics/cryptography)."
+       ]
+      },
+      "**Web search** (hackaday/blog/GitHub topics): added `almighty-bungholio/fpga-fft`\n(= old name of `mattvenn/fpga-sdft`, same tree), `yoonisi/R2FFT`, `nanamake/r22sdf`,\n`ZipCPU/sdr`, `ZipCPU/fftdemo`, `damdoy/ice40_ultraplus_examples`.",
+      "**Evidence check** for ~50 plausible candidates: tarball listing from `codeload.github.com`\n(no API quota) searched for (a) an HDL FFT/DFT/Goertzel file and (b) Lattice build evidence:\n`.pcf`/`.lpf`/`.pdc`/`apio.ini`/Radiant `.rdf`/`.sty`, `nextpnr-ice40|ecp5`, `synth_ice40|ecp5`,\n`icepack`/`ecppack`, a LiteX/Amaranth Lattice platform. README/Makefile excerpts fetched from\n`raw.githubusercontent.com` to confirm device and FFT size.",
+      "**Diff** against `.claude/memory/sources.tsv` (working-tree version, 2026-09-28)."
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Limits: no code search (needs auth, e.g. `filename:*.pcf fft`); core API quota was exhausted by\nparallel sessions, so stars/push dates come from search results (snapshot 2026-09-28).\n\"License: none\" means GitHub detected no license file (not verified by reading the tree)."
+    }
+   ]
+  },
+  {
+   "title": "FFT cores already in the collection",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "Repo (clone)",
+      "FFT file(s)",
+      "What it is",
+      "Target FPGA (catalogue / source)",
+      "Catalogued?"
+     ],
+     "rows": [
+      {
+       "Repo (clone)": "`mebner86__icesugar-pro_sound2fft`",
+       "FFT file(s)": "`rtl/fft256.v`, `rtl/fft_real512.v`, `projects/06_live_fft`, `07_live_real_fft`, `13_fft_uart` (+`gen_twiddle.py`)",
+       "What it is": "256-point radix-2 DIT complex FFT, real-512 wrapper (`localparam N = 256`), magnitude output to HDMI spectrum display; cocotb bit-exact vs numpy",
+       "Target FPGA (catalogue / source)": "ECP5 LFE5U-25F CABGA256 (iCESugar-Pro), yosys/nextpnr-ecp5",
+       "Catalogued?": "yes; `data/cores.json` id `mebner86-fft256` (`dsp`)"
+      },
+      {
+       "Repo (clone)": "`mb-sat__ulx3s-longwave-sdr`",
+       "FFT file(s)": "`logic/ulx3s-stream-verilog/fft-core/*` (`fftmain.v`, `butterfly.v`, `hwbfly.v`, `qtrstage.v`, `laststage.v`, `bitreverse.v`, `cmem_*.hex`)",
+       "What it is": "ZipCPU **dblclockfft**-generated pipelined FFT, 512-point, 16-bit in/out; longwave SDR spectrum",
+       "Target FPGA (catalogue / source)": "ECP5 85F (`nextpnr-ecp5 --85k`), ULX3S",
+       "Catalogued?": "yes (repo); no `cores.json` entry for the FFT"
+      },
+      {
+       "Repo (clone)": "`nicocavallu__rf-fft-engine`",
+       "FFT file(s)": "`src/radix2_fft.v`, `ping_pong_buffer.v`, `peak_finder.v`",
+       "What it is": "Iterative radix-2, 128-point, single butterfly reused over 7 stages, twiddle ROM; LoRa SF7 de-chirp peak finder",
+       "Target FPGA (catalogue / source)": "ULX3S LFE5U-85F (README)",
+       "Catalogued?": "cloned (uncommitted in sources.tsv), **not yet catalogued**"
+      },
+      {
+       "Repo (clone)": "`ckdur__riscvconsole`",
+       "FFT file(s)": "`hardware/riscvconsole/src/main/resources/versatile_fft/*.vhd` + `devices/fft/fft.scala`",
+       "What it is": "Chipyard/RocketChip SoC with an FFT MMIO peripheral wrapping W. Zabołotny's opencores **versatile_fft** (VHDL, `LOG2_FFT_LEN = 10` → 1024-point)",
+       "Target FPGA (catalogue / source)": "multi-board incl. `fpga/ULX3S` (Chipyard `SUB_PROJECT=ulx3s`)",
+       "Catalogued?": "cloned, **not yet catalogued**"
+      },
+      {
+       "Repo (clone)": "`kelu124__lit3rick`",
+       "FFT file(s)": "`verilog/sigprocessing/code_fourrier/rtl/dft*.v`",
+       "What it is": "Windowed (non-overlapped) sliding-DFT core, `CORE_DFT_N = 16`, twiddle ROM, complex abs/sqrt",
+       "Target FPGA (catalogue / source)": "iCE40UP5K (Lattice Radiant project `verilog/radiant/fft_adc`)",
+       "Catalogued?": "cloned, **not in catalogue.json** (non-ULX3S board)"
+      },
+      {
+       "Repo (clone)": "`pietptr__ulx3s-dsp`",
+       "FFT file(s)": "`fft/Main.hs`, `Recursive.hs`, `TowardsHW.hs` (Clash)",
+       "What it is": "Clash (Haskell) FFT experiments → generated Verilog; host plot scripts",
+       "Target FPGA (catalogue / source)": "ECP5 85F, ULX3S",
+       "Catalogued?": "yes (`dsp-sdr`)"
+      },
+      {
+       "Repo (clone)": "`mit-plv__koika`",
+       "FFT file(s)": "`examples/fft.v` (Kôika source), `examples/fft.v.etc/mkfft.v`",
+       "What it is": "Kôika rule-based FFT example compiled to Verilog; not board-specific",
+       "Target FPGA (catalogue / source)": "unknown (generic example; repo has a ULX3S RV target)",
+       "Catalogued?": "yes"
+      },
+      {
+       "Repo (clone)": "`tarik-hamedovic__sdr-hls`",
+       "FFT file(s)": "only Python notebooks (`numpy.fft`)",
+       "What it is": "No HDL FFT; SDR CIC/CORDIC in HLS",
+       "Target FPGA (catalogue / source)": "ECP5 85F (Diamond)",
+       "Catalogued?": "yes"
+      },
+      {
+       "Repo (clone)": "`tvelliott__dsp_ice`",
+       "FFT file(s)": "`firmware/bh_fft_win.c`",
+       "What it is": "FFT runs on the STM32F4 (CMSIS-DSP); FPGA only captures ADC data",
+       "Target FPGA (catalogue / source)": "iCE40 HX8K",
+       "Catalogued?": "yes"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "False positives dropped: `lawrie__ice40logicsniffer` (`butterflylogic` vendor name), `fpgawars__flix-v`,\n`machdyne__zeitlos`, `kelu124__un0rick`, `emeb__orangecrab_adc`, `mkvenkit__learn_fpga`,\n`google__cfu-playground`, `kholia__colorlight-5a-75b`, `hdl4fpga__hdl4fpga`, `gonsolo__borg`,\n`jderobot__fpga-robotics`, `im-tomu__fomu-workshop` (host-side numpy/kissfft or unrelated identifiers)."
+    }
+   ]
+  },
+  {
+   "title": "New candidates (not in sources.tsv)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Status: **R** = recommended to clone; **rel** = related, lower priority; **no** = no Lattice evidence or no gateware FFT."
+    },
+    {
+     "type": "table",
+     "columns": [
+      "Repo",
+      "FPGA / board",
+      "FFT size / architecture",
+      "HDL",
+      "License",
+      "Last push",
+      "★",
+      "Lattice evidence",
+      "Status"
+     ],
+     "rows": [
+      {
+       "Repo": "[ipmgroup/fftd](https://github.com/ipmgroup/fftd)",
+       "FPGA / board": "iCE40HX4K, Trenz ICEZero (RPi HAT)",
+       "FFT size / architecture": "1024-pt radix-2 DIT (param), Q1.15, block floating point; SPI + Linux driver + libfft",
+       "HDL": "Verilog",
+       "License": "MIT",
+       "Last push": "2026-06-04",
+       "★": "2",
+       "Lattice evidence": "`hardware/synth/fft_top.pcf`, icestorm Makefile",
+       "Status": "R"
+      },
+      {
+       "Repo": "[mattvenn/fpga-sdft](https://github.com/mattvenn/fpga-sdft)",
+       "FPGA / board": "iCE40 HX1K (icestick) / HX8K",
+       "FFT size / architecture": "Sliding DFT, twiddle ROM, python model",
+       "HDL": "Verilog",
+       "License": "none",
+       "Last push": "2020-04-24",
+       "★": "76",
+       "Lattice evidence": "`hdl/icestick.pcf`, `hdl/8k.pcf`, Makefile",
+       "Status": "R"
+      },
+      {
+       "Repo": "[Gage1999/fpga-sdr-receiver](https://github.com/Gage1999/fpga-sdr-receiver)",
+       "FPGA / board": "ECP5-25F iCESugar-Pro (+ PlutoSDR)",
+       "FFT size / architecture": "`fft256.sv` + butterfly/twiddle ROM → spectrum + waterfall on 800×480 LCD",
+       "HDL": "SystemVerilog",
+       "License": "MIT",
+       "Last push": "2026-09-08",
+       "★": "0",
+       "Lattice evidence": "`icesugar_pro/top.lpf`, Makefile",
+       "Status": "R"
+      },
+      {
+       "Repo": "[C-Elegans/single_sdr](https://github.com/C-Elegans/single_sdr)",
+       "FPGA / board": "ECP5 LFE5U-45F CABGA381",
+       "FFT size / architecture": "dblclockfft 256-pt (generated), SpinalHDL BlackBox + IQ decimator",
+       "HDL": "SpinalHDL/Verilog",
+       "License": "none",
+       "Last push": "2019-10-28",
+       "★": "1",
+       "Lattice evidence": "`nextpnr-ecp5 --45k` in Makefile, `MULT18X18D`",
+       "Status": "R"
+      },
+      {
+       "Repo": "[fulig/TinyFPGA_FFT](https://github.com/fulig/TinyFPGA_FFT)",
+       "FPGA / board": "iCE40LP8K, TinyFPGA-BX",
+       "FFT size / architecture": "Full 8-point FFT + single-butterfly-stage variant, SPI out",
+       "HDL": "Verilog",
+       "License": "none",
+       "Last push": "2022-08-29",
+       "★": "0",
+       "Lattice evidence": "`apio.ini`, `pins.pcf`",
+       "Status": "R"
+      },
+      {
+       "Repo": "[alhusseingamal/r2sdf-fft](https://github.com/alhusseingamal/r2sdf-fft)",
+       "FPGA / board": "iCE40 HX8K",
+       "FFT size / architecture": "Radix-2 DIF SDF streaming, N-point (8-pt checked in), bit-accurate python model",
+       "HDL": "Verilog",
+       "License": "none",
+       "Last push": "2026-09-22",
+       "★": "0",
+       "Lattice evidence": "`fpga/LatticeiCE40HX8K.pcf`, Makefile",
+       "Status": "R"
+      },
+      {
+       "Repo": "[MaxZischka1/FastFourierTransformProject](https://github.com/MaxZischka1/FastFourierTransformProject)",
+       "FPGA / board": "iCE40UP5K",
+       "FFT size / architecture": "Radix-2 SDF pipeline (SDFCell, SBM16), UART I/O, Verilator tb",
+       "HDL": "SystemVerilog",
+       "License": "none",
+       "Last push": "2026-09-28",
+       "★": "0",
+       "Lattice evidence": "Makefile `synth_ice40`, `nextpnr-ice40 --up5k`, `top.asc`",
+       "Status": "R"
+      },
+      {
+       "Repo": "[DylanSebastianHeredia/E155_Tuner_Project](https://github.com/DylanSebastianHeredia/E155_Tuner_Project)",
+       "FPGA / board": "iCE40UP5K, UPduino v3.1 (+STM32L432)",
+       "FFT size / architecture": "512-pt 16-bit fixed-point FFT (AGU/control unit/butterfly) → pitch detection",
+       "HDL": "SystemVerilog",
+       "License": "none",
+       "Last push": "2025-12-08",
+       "★": "1",
+       "Lattice evidence": "Lattice Radiant (README); no constraint file seen at root",
+       "Status": "R (README-level evidence)"
+      },
+      {
+       "Repo": "[Hariharan6307-coder/verilog-goertzel-audio-visualizer](https://github.com/Hariharan6307-coder/verilog-goertzel-audio-visualizer)",
+       "FPGA / board": "iCE40UP5K",
+       "FFT size / architecture": "8 parallel Goertzel bands, peak-hold, log bar scaler",
+       "HDL": "Verilog",
+       "License": "none",
+       "Last push": "2026-07-30",
+       "★": "0",
+       "Lattice evidence": "`apio.ini`",
+       "Status": "R"
+      },
+      {
+       "Repo": "[ox-computing/Real-Time-Analytics-FPGA](https://github.com/ox-computing/Real-Time-Analytics-FPGA)",
+       "FPGA / board": "iCE40UP5K-SG48 (+ ECP5 lpf)",
+       "FFT size / architecture": "2048-pt integer FFT, Hann, Welch PSD, BFP exponent (spectral features for ML)",
+       "HDL": "SystemVerilog",
+       "License": "Apache-2.0",
+       "Last push": "2026-08-31",
+       "★": "0",
+       "Lattice evidence": "`rtl/constraints/UP5K/*.pcf`, `ECP5/*.lpf`, Radiant power reports",
+       "Status": "R"
+      },
+      {
+       "Repo": "[vyges/fast-fourier-transform-ip](https://github.com/vyges/fast-fourier-transform-ip)",
+       "FPGA / board": "generic; open flow for iCE40 HX8K/UP5K, ECP5",
+       "FFT size / architecture": "Pipelined radix-2 DIF, configurable, TL-UL/APB control",
+       "HDL": "SystemVerilog",
+       "License": "Apache-2.0",
+       "Last push": "2026-08-08",
+       "★": "7",
+       "Lattice evidence": "`flow/fpga/openfpga/constraints/hx8k-ct256.pcf`, nextpnr flow",
+       "Status": "R (mirror: vyges-ip/…)"
+      },
+      {
+       "Repo": "[enjoy-digital/litedsp](https://github.com/enjoy-digital/litedsp)",
+       "FPGA / board": "generic LiteX; impl flow on ECP5 LFE5UM5G-85F",
+       "FFT size / architecture": "`LiteDSPFFT` radix-2 SDF (+inverse), iterative FFT, parallel FFT, PSD/Welch, Goertzel, PFB channelizer",
+       "HDL": "Migen/LiteX (Python)",
+       "License": "BSD-2-Clause (SPDX in files)",
+       "Last push": "2026-09-24",
+       "★": "15",
+       "Lattice evidence": "`impl/ecp5.py` (synth_ecp5 + nextpnr-ecp5)",
+       "Status": "R"
+      },
+      {
+       "Repo": "[meharbaan2/systemverilog-ofdm-phy-core](https://github.com/meharbaan2/systemverilog-ofdm-phy-core)",
+       "FPGA / board": "iCE40UP5K SG48 (synth estimate)",
+       "FFT size / architecture": "`ofdm_fft64.sv` 64-pt FFT/IFFT in an OFDM PHY",
+       "HDL": "SystemVerilog",
+       "License": "none",
+       "Last push": "2026-06-10",
+       "★": "1",
+       "Lattice evidence": "`synth/run_synth.sh` (synth_ice40, nextpnr-ice40 --up5k)",
+       "Status": "R (synthesis only, no board)"
+      },
+      {
+       "Repo": "[pat-pgt/MultiFrequenciesDetector](https://github.com/pat-pgt/MultiFrequenciesDetector)",
+       "FPGA / board": "iCE40 / ECP5 (Makefile targets)",
+       "FFT size / architecture": "Time → logarithmic-frequency converter (log-spaced bins, \"polyphase-FFT-like\")",
+       "HDL": "VHDL (GHDL)",
+       "License": "AGPL-3.0",
+       "Last push": "2026-09-24",
+       "★": "4",
+       "Lattice evidence": "`VHDL/Makefile` (nextpnr-ice40, nextpnr-ecp5)",
+       "Status": "R (related)"
+      },
+      {
+       "Repo": "[kazkojima/tinyfft-fpga](https://github.com/kazkojima/tinyfft-fpga)",
+       "FPGA / board": "none stated (author's radio display)",
+       "FFT size / architecture": "VFFT fixed-point FFT, Amaranth",
+       "HDL": "Amaranth",
+       "License": "BSD-2-Clause",
+       "Last push": "2023-01-23",
+       "★": "3",
+       "Lattice evidence": "none (5 files, no platform)",
+       "Status": "rel"
+      },
+      {
+       "Repo": "[ZipCPU/dblclockfft](https://github.com/ZipCPU/dblclockfft)",
+       "FPGA / board": "generic generator",
+       "FFT size / architecture": "Pipelined FFT generator (C++ → Verilog)",
+       "HDL": "C++/Verilog",
+       "License": "none detected (GPL/LGPL per headers, unverified)",
+       "Last push": "2024-04-18",
+       "★": "267",
+       "Lattice evidence": "none in repo; **used on ECP5** by mb-sat/ulx3s-longwave-sdr and C-Elegans/single_sdr",
+       "Status": "rel (upstream of cloned core)"
+      },
+      {
+       "Repo": "[ZipCPU/sdr](https://github.com/ZipCPU/sdr)",
+       "FPGA / board": "iCE40UP5K iCEBreaker",
+       "FFT size / architecture": "SDR (AM/FM/…); no FFT RTL found",
+       "HDL": "Verilog",
+       "License": "none",
+       "Last push": "2024-01-18",
+       "★": "105",
+       "Lattice evidence": "`rtl/sdr.pcf`, `gdr.pcf`",
+       "Status": "rel (SDR, not FFT)"
+      },
+      {
+       "Repo": "[ZipCPU/fftdemo](https://github.com/ZipCPU/fftdemo)",
+       "FPGA / board": "simulation / Xilinx",
+       "FFT size / architecture": "Spectrogram demo with dblclockfft",
+       "HDL": "Verilog",
+       "License": "none",
+       "Last push": "2024-04-15",
+       "★": "48",
+       "Lattice evidence": "none",
+       "Status": "no"
+      },
+      {
+       "Repo": "[frohro/pico-dev-ice](https://github.com/frohro/pico-dev-ice)",
+       "FPGA / board": "iCE40UP5K-SG48 + RPi Pico",
+       "FFT size / architecture": "README claims \"FPGA-accelerated FFTs\"; only DDC/CIC RTL found, FFT RTL not found",
+       "HDL": "Verilog/C",
+       "License": "none",
+       "Last push": "2026-09-28",
+       "★": "2",
+       "Lattice evidence": "`fpga/ddc_sdr.pcf`",
+       "Status": "rel (recheck later)"
+      },
+      {
+       "Repo": "[amin005/skywave_SDR](https://github.com/amin005/skywave_SDR)",
+       "FPGA / board": "ECP5 + AD9226 + USB3300",
+       "FFT size / architecture": "FFT only host-side (`adc_analyze.py`)",
+       "HDL": "Verilog",
+       "License": "BSD-3-Clause",
+       "Last push": "2026-07-17",
+       "★": "0",
+       "Lattice evidence": "`fpga/usb_adc_hs.lpf`",
+       "Status": "rel (SDR front-end, no FFT)"
+      },
+      {
+       "Repo": "[romavis/lwdo-sdr-fw](https://github.com/romavis/lwdo-sdr-fw)",
+       "FPGA / board": "iCE40",
+       "FFT size / architecture": "LF/VLF SDR, no FFT",
+       "HDL": "Verilog",
+       "License": "MIT",
+       "Last push": "2025-03-25",
+       "★": "11",
+       "Lattice evidence": "`fpga/top.pcf`",
+       "Status": "rel (SDR, no FFT)"
+      },
+      {
+       "Repo": "[dpavlin/trilby-hat-fpga](https://github.com/dpavlin/trilby-hat-fpga)",
+       "FPGA / board": "ECP5 Trilby HAT",
+       "FFT size / architecture": "SDR, no FFT",
+       "HDL": "SystemVerilog",
+       "License": "none",
+       "Last push": "2022-01-23",
+       "★": "2",
+       "Lattice evidence": "`trilby.lpf`",
+       "Status": "rel (SDR, no FFT)"
+      },
+      {
+       "Repo": "[NizarZar/FFT-Lattice](https://github.com/NizarZar/FFT-Lattice)",
+       "FPGA / board": "unknown",
+       "FFT size / architecture": "README: \"FFT Engine not implemented yet\"",
+       "HDL": "SV/Verilog",
+       "License": "none",
+       "Last push": "2026-03-06",
+       "★": "0",
+       "Lattice evidence": "none",
+       "Status": "no"
+      },
+      {
+       "Repo": "[damdoy/ice40_ultraplus_examples](https://github.com/damdoy/ice40_ultraplus_examples)",
+       "FPGA / board": "iCE40UP5K",
+       "FFT size / architecture": "DSP (SB_MAC16) examples, no FFT",
+       "HDL": "Verilog",
+       "License": "MPL-2.0",
+       "Last push": "2024-02-11",
+       "★": "301",
+       "Lattice evidence": "`common/io.pcf`",
+       "Status": "no (no FFT)"
+      },
+      {
+       "Repo": "[nanamake/r22sdf](https://github.com/nanamake/r22sdf)",
+       "FPGA / board": "generic",
+       "FFT size / architecture": "Radix-2² SDF pipelined FFT (64/128/1024)",
+       "HDL": "Verilog",
+       "License": "MIT",
+       "Last push": "2019-04-14",
+       "★": "177",
+       "Lattice evidence": "none (reused by 7echkilla on Quartus)",
+       "Status": "no (generic, portable)"
+      },
+      {
+       "Repo": "[yoonisi/R2FFT](https://github.com/yoonisi/R2FFT)",
+       "FPGA / board": "generic",
+       "FFT size / architecture": "Radix-2 in-place FFT w/ BFP",
+       "HDL": "SystemVerilog",
+       "License": "BSD-3-Clause",
+       "Last push": "2019-04-30",
+       "★": "22",
+       "Lattice evidence": "none",
+       "Status": "no (generic, portable)"
+      },
+      {
+       "Repo": "[4fr1n/radix-2-fft-verilog](https://github.com/4fr1n/radix-2-fft-verilog)",
+       "FPGA / board": "unknown",
+       "FFT size / architecture": "Iterative in-place radix-2",
+       "HDL": "Verilog",
+       "License": "MIT",
+       "Last push": "2026-06-23",
+       "★": "0",
+       "Lattice evidence": "none",
+       "Status": "no"
+      },
+      {
+       "Repo": "[wswslzp/SpinalFFT](https://github.com/wswslzp/SpinalFFT)",
+       "FPGA / board": "generic",
+       "FFT size / architecture": "SpinalHDL FFT generator",
+       "HDL": "SpinalHDL",
+       "License": "none",
+       "Last push": "2020-05-24",
+       "★": "8",
+       "Lattice evidence": "none",
+       "Status": "no"
+      },
+      {
+       "Repo": "[kamejoko80/litex-pdm2pcm](https://github.com/kamejoko80/litex-pdm2pcm)",
+       "FPGA / board": "iCE40 icestick (LiteX platform)",
+       "FFT size / architecture": "PDM→PCM only, no FFT",
+       "HDL": "LiteX",
+       "License": "MIT",
+       "Last push": "2023-09-15",
+       "★": "9",
+       "Lattice evidence": "`custom_boards/platforms/icestick.py`",
+       "Status": "no (no FFT)"
+      },
+      {
+       "Repo": "[LodeStarCyber/GNU-Radio-FM-Radio-FFT](https://github.com/LodeStarCyber/GNU-Radio-FM-Radio-FFT)",
+       "FPGA / board": "—",
+       "FFT size / architecture": "GNU Radio flowgraph (Python)",
+       "HDL": "Python",
+       "License": "none",
+       "Last push": "2025-10-26",
+       "★": "0",
+       "Lattice evidence": "none",
+       "Status": "no"
+      },
+      {
+       "Repo": "[SouzaLuisH/goertzel_spectrum_analyser_FPGA](https://github.com/SouzaLuisH/goertzel_spectrum_analyser_FPGA)",
+       "FPGA / board": "unknown",
+       "FFT size / architecture": "Goertzel spectrum analyser",
+       "HDL": "unknown",
+       "License": "none",
+       "Last push": "2026-05-14",
+       "★": "0",
+       "Lattice evidence": "tarball download failed (empty repo?)",
+       "Status": "unknown"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Other hits (Basys3/Artix-7, Zynq, Cyclone/DE-series, Gowin, ASIC-only): e.g. ZakriyaParacha46,\nrparysz/FFT_FPGA, delhatch/Spectrum, filipamator/vu_meter, 7echkilla/live-concert-vfx (Quartus),\nleoo-c1/FPGA-Audio-Visualiser (Intel FFT IP), hukenovs/intfftk (Xilinx), watermeko/FFTonRiscV (Gowin),\nvankxr/icyradio (Artix-7 A200T), mhbbParsa/acoustic_camera (Vivado), jduanen/Acoustic-Camera — **no Lattice evidence**, excluded."
+    }
+   ]
+  },
+  {
+   "title": "Findings",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Open FFT gateware on Lattice is **rare and mostly small**: iCE40 designs are 8–64-point or\niterative/sliding DFTs because of the few BRAMs and 8 SB_MAC16s; only ipmgroup/fftd (HX4K, 1024-pt,\nBFP) and ox-computing (UP5K, 2048-pt Welch) do large transforms, both via iterative in-place\narchitectures using EBR/SPRAM.",
+      "On **ECP5** the recurring pattern is a 256/512-point FFT driving a spectrum/waterfall display\n(mebner86 sound2fft, Gage1999 SDR, mb-sat longwave SDR, C-Elegans single_sdr). Two of those four\nuse ZipCPU **dblclockfft**-generated cores, which have no Lattice build in their own repo.",
+      "**Nothing found for MachXO2/3, CrossLink-NX or Certus-NX**: `fft machxo2/3`, `fft crosslink-nx`,\n`fft certus` returned 0 repo hits; readme searches only surfaced unrelated physics/biology repos.",
+      "Reusable, board-agnostic FFT libraries with a Lattice open flow: **enjoy-digital/litedsp**\n(LiteX, ECP5 implementation flow, broad DSP incl. PSD/Welch/Goertzel/PFB) and\n**vyges/fast-fourier-transform-ip** (iCE40/ECP5 open flow). Good `dsp` core candidates for `cores.json`.",
+      "Already-cloned but uncatalogued FFT cores: `nicocavallu__rf-fft-engine` (ULX3S, 128-pt),\n`ckdur__riscvconsole` (versatile_fft 1024-pt peripheral, ULX3S) and `kelu124__lit3rick` (UP5K DFT).\nThey should get `dsp` rows in `cores.json` when catalogued.",
+      "Candidate core rows for `data/cores.json` from existing clones: dblclockfft 512-pt in\nmb-sat/ulx3s-longwave-sdr (`fft-core/fftmain.v`), versatile_fft in ckdur/riscvconsole,\nradix2_fft in nicocavallu/rf-fft-engine, `dft_core` in kelu124/lit3rick.",
+      "Evidence gaps: DylanSebastianHeredia (Radiant project stated in README, no constraint file at root\nseen), meharbaan2 (synthesis-only estimate, no board), pat-pgt (Makefile targets only)."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Recommended to clone",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "All have an HDL FFT/DFT/Goertzel file **and** a Lattice build artefact, and none is in `sources.tsv`:"
+    },
+    {
+     "type": "list",
+     "ordered": true,
+     "items": [
+      "ipmgroup/fftd — iCE40HX4K ICEZero, 1024-pt radix-2 + Linux driver",
+      "mattvenn/fpga-sdft — iCE40 HX1K/HX8K sliding DFT (most-starred Lattice FFT repo, 76★)",
+      "Gage1999/fpga-sdr-receiver — ECP5-25F iCESugar-Pro, fft256 spectrum/waterfall SDR",
+      "C-Elegans/single_sdr — ECP5-45F, dblclockfft 256-pt SDR channel (SpinalHDL)",
+      "fulig/TinyFPGA_FFT — TinyFPGA-BX (iCE40LP8K), 8-pt FFT + single-stage variant",
+      "alhusseingamal/r2sdf-fft — iCE40HX8K radix-2 SDF with bit-accurate model",
+      "MaxZischka1/FastFourierTransformProject — iCE40UP5K radix-2 SDF",
+      "DylanSebastianHeredia/E155_Tuner_Project — UPduino v3.1 (UP5K), 512-pt FFT tuner (Radiant)",
+      "Hariharan6307-coder/verilog-goertzel-audio-visualizer — UP5K 8-band Goertzel visualizer",
+      "ox-computing/Real-Time-Analytics-FPGA — UP5K 2048-pt FFT / Welch PSD",
+      "vyges/fast-fourier-transform-ip — configurable FFT IP with iCE40/ECP5 open flow",
+      "enjoy-digital/litedsp — LiteX DSP library with FFT/PSD, ECP5 impl flow",
+      "meharbaan2/systemverilog-ofdm-phy-core — 64-pt FFT OFDM PHY, UP5K synthesis",
+      "pat-pgt/MultiFrequenciesDetector — log-frequency spectrum (VHDL), nextpnr-ice40/ecp5 targets"
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Optional (no Lattice build in repo, but upstream of cloned code): ZipCPU/dblclockfft."
+    },
+    {
+     "type": "paragraph",
+     "text": "Sources: GitHub search API (2026-09-28); web search results incl.\n[almighty-bungholio/fpga-fft](https://github.com/almighty-bungholio/fpga-fft),\n[frohro/pico-dev-ice](https://github.com/frohro/pico-dev-ice),\n[yoonisi/R2FFT](https://github.com/yoonisi/R2FFT),\n[damdoy/ice40_ultraplus_examples](https://github.com/damdoy/ice40_ultraplus_examples),\n[tvelliott/dsp_ice](https://github.com/tvelliott/dsp_ice)."
+    }
+   ]
+  }
+ ],
+ "nav_title": "FFT on Lattice survey"
+}

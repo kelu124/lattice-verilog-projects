@@ -13,7 +13,7 @@ RMII/RGMII/SGMII MACs and IP/UDP stacks, PTP.
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
 | [mii_ipoe ARP/IP/UDP/DHCP stack](#core-hdl4fpga-mii-ipoe) ★ | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE; header spot-checked on mii_ipoe.vhd) | any | 0 |
-| [Gigabit RGMII MAC](#core-datanoisetv-eth-mac-rgmii) | [datanoisetv__colorlight-i9-aes67](https://github.com/DatanoiseTV/colorlight-i9-aes67) | Verilog | MIT (SPDX headers) | ECP5 | 2 |
+| [Gigabit RGMII MAC](#core-datanoisetv-eth-mac-rgmii) | [datanoisetv__colorlight-i9-aes67](https://github.com/DatanoiseTV/colorlight-i9-aes67) | Verilog | MIT (SPDX headers) | ECP5 | 3 |
 | [MDIO Clause-22 management controller](#core-sefbkn-mdio) | [sefbkn__versa-ecp5-demo](https://github.com/sefbkn/versa-ecp5-demo) | Verilog | CERN-OHL-S-2.0 | any | 1 |
 | [RMII hex-dump packet sniffer](#core-emard-eth-rmii-hexdemo) | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog | none found | ECP5 | 0 |
 | [kazkojima LiteEth SGMII PHY over ECP5 DCU (GBE mode)](#core-kazkojima-ecp5-sgmii) | [kazkojima__litex-lattice-ecp5-evn](https://github.com/kazkojima/litex-lattice-ecp5-evn) | Python (Migen) | BSD-2-Clause | ECP5 | 0 |
@@ -54,8 +54,9 @@ Complete Gigabit Ethernet MAC with RGMII PHY interface, AXI-Stream data ports an
 
 **On ULX3S:** Built for a Colorlight i9 (LFE5U-45F); rgmii_tx.v genuinely instantiates ECP5 ODDRX1F, but rgmii_rx.v uses behavioral posedge/negedge sampling rather than a real IDDRX1F (comment says so explicitly) — verify RX timing before reuse.
 
-**Used by 2 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 3 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [cube1us__ibm1410fpga](https://github.com/cube1us/IBM1410FPGA) (instantiates [`VHDL/udp/eth_mac_mii.v`](https://github.com/cube1us/IBM1410FPGA/blob/7bea218b1097efd58bad0aad55a085fec423314a/VHDL/udp/eth_mac_mii.v))
 - [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) (instantiates [`boards/ULX4M_LD/apps/graphics.vhd`](https://github.com/hdl4fpga/hdl4fpga/blob/662986ba0f17b7ce3a066ddcb799d42fa1b24dea/boards/ULX4M_LD/apps/graphics.vhd))
 - [sefbkn__versa-ecp5-demo](https://github.com/sefbkn/versa-ecp5-demo) (instantiates [`rtl/ethernet/rgmii/rgmii_port.v`](https://github.com/sefbkn/versa-ecp5-demo/blob/1d6d4cb535e11f935c1afa707b35ded5df4d658d/rtl/ethernet/rgmii/rgmii_port.v))
 
@@ -115,5 +116,5 @@ SGMII (1000BASE-X) PHY built from Instance('DCUA', CHX_PROTOCOL='GBE'), a reduct
 
 ## Other catalogued projects
 
-Catalogued repos tagged `ethernet` (14) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `ethernet` (19) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

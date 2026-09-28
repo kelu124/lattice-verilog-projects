@@ -14,6 +14,7 @@ Drivers for ST7789, SSD1331, SSD1351, SSD1306 and similar small SPI displays.
 |---|---|---|---|---|---|
 | [lcd_video / spi_display multi-panel SPI LCD driver](#core-emard-spi-display) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog, VHDL | BSD (file headers: "AUTHORS=EMARD,MMICKO and… | any | 18 |
 | [bit-bang SPI LCD driver (Apollo 11 FPGA)](#core-mikeakohn-display-spi) | [mikeakohn__apollo11_fpga](https://github.com/mikeakohn/apollo11_fpga) | Verilog | MIT (LICENSE, Copyright 2024 Michael Kohn) | iCE40 | 0 |
+| [PMOD CharLCD HD44780 driver (debounce + transmit)](#core-fm4dd-pmod-charlcd-hd44780) | [fm4dd__pmod-charlcd](https://github.com/fm4dd/pmod-charlcd) | Verilog | none found for the RTL | any | 0 |
 | [RasteriCEr SPI display controller](#core-rastericer-display-spi) | [toni3141__rastericer](https://github.com/ToNi3141/RasteriCEr) | Verilog | GPL-3.0-or-later | iCE40 | 0 |
 | [Silice OLED drivers (ST7789/SSD1351/SSD1331)](#core-silice-oled-drivers) | [sylefeb__silice](https://github.com/sylefeb/Silice) | Silice | MIT (per-file header, "MIT license, see… | any | 0 |
 | [SlabBoy ST7789 SpinalHDL LCD driver](#core-slabboy-st7789) | [lawrie__slabboy](https://github.com/lawrie/slabboy) | SpinalHDL | MIT (LICENSE, Copyright 2018 Craig Bishop) | ECP5 | 6 |
@@ -73,6 +74,22 @@ Small bit-banged SPI LCD driver, plain Verilog with no vendor primitives; built 
 | Tests | none found |
 
 **On ULX3S:** No porting needed for the SPI logic itself; only clock/reset wiring needs adapting to ULX3S.
+
+### PMOD CharLCD HD44780 driver (debounce + transmit) {#core-fm4dd-pmod-charlcd-hd44780}
+
+Small state-machine driver that sends 8-bit command/char bytes to an HD44780-compatible character LCD over a parallel PMOD bus (8 data lines + EN/RS/RW), with button-debounce demo logic.
+
+| | |
+|---|---|
+| Repository | [fm4dd__pmod-charlcd](https://github.com/fm4dd/pmod-charlcd): CharLCD PMOD: HD44780 character-LCD PMOD hardware |
+| Files | [`examples/ulx3s/display/display.v`](https://github.com/fm4dd/pmod-charlcd/blob/5e0ee0a37d8395f72ac5764c1a0e4d6af37b010b/examples/ulx3s/display/display.v), [`examples/ulx3s/display/lcd_transmit.v`](https://github.com/fm4dd/pmod-charlcd/blob/5e0ee0a37d8395f72ac5764c1a0e4d6af37b010b/examples/ulx3s/display/lcd_transmit.v), [`examples/ulx3s/display/debounce.v`](https://github.com/fm4dd/pmod-charlcd/blob/5e0ee0a37d8395f72ac5764c1a0e4d6af37b010b/examples/ulx3s/display/debounce.v) |
+| Top module | `display` |
+| Language | Verilog |
+| License | none found for the RTL (repo LICENSE is CERN-OHL v1.2 and explicitly states it 'does not extend to software, firmware, or code') |
+| FPGA / primitives | any: none (portable) |
+| Tests | none found (no _tb.v for the ulx3s/icebreaker display example in this clone; icebreaker Makefile's `test` target references a missing testbench) |
+
+**On ULX3S:** Not SPI - this is a parallel HD44780 interface (matches the pmod-charlcd hardware's PMOD wiring), reused verbatim from the same repo's IceBreaker/GateMate examples; ulx3s.lpf present, no vendor primitives, portable as-is.
 
 ### RasteriCEr SPI display controller {#core-rastericer-display-spi}
 
@@ -158,5 +175,5 @@ SSD1322 grayscale OLED driver: on reset runs the panel init sequence, then conti
 
 ## Other catalogued projects
 
-Catalogued repos tagged `oled-lcd` (43) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `oled-lcd` (47) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

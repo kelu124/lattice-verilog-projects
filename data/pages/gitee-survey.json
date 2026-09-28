@@ -1,0 +1,221 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "survey",
+ "slug": "gitee-survey",
+ "title": "Gitee examples from ulx3s.github.io",
+ "description": "Gitee examples and remaining sections of ulx3s.github.io (2026-09-28): the single Gitee link is a stale copy of learn-fpga; 5 new ULX3S repos found elsewhere on the page.",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Date: 2026-09-28"
+  }
+ ],
+ "sections": [
+  {
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": true,
+     "items": [
+      "Fetched https://ulx3s.github.io/ with curl (28 067 bytes) and extracted every `<a href>` from the heading\n\"Gitee examples (China's answer to GitHub)\" to the end of the page (sections Toolchains and Utilities,\nTiny Tapeout, Tiny Tapeout Projects using the ULX3S, Other ULX3S Links, Articles, Forums, Blogs, Podcasts,\nVideos, Other FPGA Hardware Links, Other Interesting Stuff, Chat and support).",
+      "Each forge repo link was reduced to `owner/repo` and compared with the slug column of\n`.claude/memory/sources.tsv` (437 lines, `owner__repo` lowercase).",
+      "For every repo not already pinned: repo metadata from the forge API (Gitee `api/v5/repos/<o>/<r>`,\nGitHub `api.github.com/repos/<o>/<r>`, GitLab `api/v4/projects/<o>%2F<r>`), recursive file tree\n(`git/trees/<branch>?recursive=1`, GitLab `repository/tree?recursive=true`), and grep of paths for\n`ulx3s` and `.lpf` (evidence levels of skill `github-survey`: A = ULX3S `.lpf` present).\nFor forks, `compare/upstream...fork` gives own commits.",
+      "`lawrie/ulx3s_retro` turned out to be a one-file README index; its 62 github.com links were also diffed\nagainst `sources.tsv`.",
+      "Clone test: `git clone --depth 1 https://gitee.com/ynxing/learn-fpga.git` into the scratchpad.\nFirst attempt failed after 23 s (`curl 56 GnuTLS recv error (-110)` / `early EOF`); second attempt,\nsame command, succeeded (158 MB, HEAD `494945ef` 2021-01-05). Clone deleted afterwards.\nConclusion: cloning from Gitee works, but the connection is flaky; retry on failure."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "The \"Gitee examples\" section",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "It contains exactly **one** link: https://gitee.com/ynxing/learn-fpga/blob/master/FemtoRV/TUTORIALS/ULX3S.md"
+    }
+   ]
+  },
+  {
+   "title": "Table (Gitee + other forge repos after \"Projects and examples\" not already in sources.tsv)",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "Repo URL",
+      "What it is",
+      "HDL",
+      "ULX3S evidence",
+      "License",
+      "Last update",
+      "Duplicate of",
+      "Recommendation"
+     ],
+     "rows": [
+      {
+       "Repo URL": "https://gitee.com/ynxing/learn-fpga",
+       "What it is": "Gitee import (not flagged fork/mirror) of BrunoLevy/learn-fpga, frozen at upstream commit `494945ef` 2021-01-05 (author Bruno Levy, message \"Merge branch 'master' of https://github.com/BrunoLevy/learn-fpga\"); FemtoRV + Basic tutorials",
+       "HDL": "Verilog (58 .v), C/asm firmware",
+       "ULX3S evidence": "A: `FemtoRV/BOARDS/ulx3s.lpf`, `Basic/ULX3S_hdmi/ulx3s.lpf`, `FemtoRV/TUTORIALS/ULX3S.md`",
+       "License": "BSD-3-Clause",
+       "Last update": "2021-01-05 (pushed; single upload, 0 stars)",
+       "Duplicate of": "brunolevy__learn-fpga (pinned 2025-11-18, same `ULX3S.md` present)",
+       "Recommendation": "**skip** — stale 2021 snapshot of a repo already cloned"
+      },
+      {
+       "Repo URL": "https://github.com/kbeckmann/tt08-flame",
+       "What it is": "TT08 demoscene submission (flame effect), with a ULX3S HDMI port",
+       "HDL": "Verilog/SV (9 .v)",
+       "ULX3S evidence": "A: `ulx3s/ulx3s_v20.lpf`, `ulx3s/top.v`, `ulx3s/hdmi.v`, `ulx3s/ecp5pll.sv`, Makefile",
+       "License": "Apache-2.0",
+       "Last update": "2024-09-14",
+       "Duplicate of": "—",
+       "Recommendation": "**clone**"
+      },
+      {
+       "Repo URL": "https://github.com/htfab/asicle2",
+       "What it is": "Asicle 2: Wordle clone for Tiny Tapeout, FPGA ports",
+       "HDL": "SystemVerilog (23 .sv)",
+       "ULX3S evidence": "A: `fpga/ulx3s/ulx3s_custom.lpf`, `fpga_top.sv`, apio.ini, build.sh (also basys3, pico-ice)",
+       "License": "Apache-2.0",
+       "Last update": "2025-10-30",
+       "Duplicate of": "—",
+       "Recommendation": "**clone**"
+      },
+      {
+       "Repo URL": "https://gitlab.com/TheZoq2/tinytapeout02",
+       "What it is": "TT02 submission in Spade (FPGA-like cell/routing fabric, config chain) with a ULX3S build",
+       "HDL": "Spade + Verilog/SV (`src/*.spade`, `src/top.sv`)",
+       "ULX3S evidence": "A: `ulx3s_v20.lpf` at root, swim.toml",
+       "License": "none declared (GitLab API: null)",
+       "Last update": "2024-02-13 (`b66c40d4`)",
+       "Duplicate of": "—",
+       "Recommendation": "**clone** (only Spade-language ULX3S design found so far; no license — note it)"
+      },
+      {
+       "Repo URL": "https://github.com/ulx3s/tt-support-tools (branch `experimental`, = default)",
+       "What it is": "Fork of TinyTapeout/tt-support-tools with ULX3S/ULX4M FPGA harness for TT projects",
+       "HDL": "Verilog top + Python tools",
+       "ULX3S evidence": "A: `fpga/ulx3s/tt_fpga_top_ulx3s.v`, `ulx3s_v20.lpf`, `ulx3s_v316.lpf`, `ulx3s_v314.lpf`, `ulx3s_v17patch.lpf`",
+       "License": "Apache-2.0",
+       "Last update": "2026-09-04",
+       "Duplicate of": "fork of TinyTapeout/tt-support-tools (not in sources.tsv)",
+       "Recommendation": "**clone** — the TT-on-ULX3S harness that the other TT repos use"
+      },
+      {
+       "Repo URL": "https://github.com/rxrbln/picorv32",
+       "What it is": "Fork of YosysHQ/picorv32: 131 own commits (PicoSoC + VGA text mode, palette, cursor)",
+       "HDL": "Verilog",
+       "ULX3S evidence": "A: `picosoc/ulx3s.lpf`, `picosoc/ulx3s.v` (absent from pinned yosyshq__picorv32)",
+       "License": "ISC inherited (GitHub API: none detected)",
+       "Last update": "2021-05-12",
+       "Duplicate of": "fork of yosyshq__picorv32, but ULX3S port is own work (level D)",
+       "Recommendation": "**clone**"
+      },
+      {
+       "Repo URL": "https://github.com/ulx3s/ttsky-verilog-template (branch `ulx3s`)",
+       "What it is": "Fork of TinyTapeout ttsky template; branch adds a `fpga-ulx3s` CI job",
+       "HDL": "Verilog (2 .v, template)",
+       "ULX3S evidence": "B: only `.github/workflows/fpga.yaml` uses `tt-gds-action/fpga/ulx3s` with `tt/fpga/ulx3s/ulx3s_v20.lpf` (fetched from tt-support-tools)",
+       "License": "Apache-2.0",
+       "Last update": "2026-04-29",
+       "Duplicate of": "fork of TinyTapeout/ttsky-verilog-template",
+       "Recommendation": "skip (template, no own gateware; needs non-default branch, `clone.sh` has no branch option)"
+      },
+      {
+       "Repo URL": "https://github.com/ulx3s/tt-gds-action (branch `experimental`)",
+       "What it is": "Fork of TinyTapeout/tt-gds-action: GitHub Action YAML (`fpga/ulx3s/action.yml`)",
+       "HDL": "none (YAML only)",
+       "ULX3S evidence": "CI action for ULX3S",
+       "License": "Apache-2.0",
+       "Last update": "2026-09-08",
+       "Duplicate of": "fork of TinyTapeout/tt-gds-action",
+       "Recommendation": "skip (no HDL)"
+      },
+      {
+       "Repo URL": "https://github.com/lawrie/ulx3s_retro",
+       "What it is": "Single README: essay + index of retro-computing cores on ULX3S",
+       "HDL": "none",
+       "ULX3S evidence": "README only",
+       "License": "none",
+       "Last update": "2022-03-03",
+       "Duplicate of": "—",
+       "Recommendation": "skip; index diffed: all ULX3S repos it links already cloned"
+      },
+      {
+       "Repo URL": "https://github.com/ulx3s/ulx3s-toolchain",
+       "What it is": "Toolchain installer scripts",
+       "HDL": "none",
+       "ULX3S evidence": "scripts",
+       "License": "MIT",
+       "Last update": "2020-10-19",
+       "Duplicate of": "—",
+       "Recommendation": "skip (tooling)"
+      },
+      {
+       "Repo URL": "https://github.com/kost/homebrew-ulx3s",
+       "What it is": "Homebrew tap for the toolchain",
+       "HDL": "none",
+       "ULX3S evidence": "—",
+       "License": "MIT",
+       "Last update": "2020-10-14",
+       "Duplicate of": "—",
+       "Recommendation": "skip (tooling)"
+      },
+      {
+       "Repo URL": "https://github.com/xobs/circuitpython (branch `fomu`)",
+       "What it is": "CircuitPython for Fomu",
+       "HDL": "none",
+       "ULX3S evidence": "not ULX3S",
+       "License": "MIT",
+       "Last update": "2020-03-24",
+       "Duplicate of": "—",
+       "Recommendation": "skip"
+      },
+      {
+       "Repo URL": "https://github.com/lawrie/ulx3s_bit_streams (via ulx3s_retro)",
+       "What it is": "Prebuilt .bit files for lawrie cores",
+       "HDL": "none (74 .bit)",
+       "ULX3S evidence": "bitstreams only",
+       "License": "none",
+       "Last update": "2023-04-09",
+       "Duplicate of": "—",
+       "Recommendation": "skip (binaries)"
+      },
+      {
+       "Repo URL": "https://github.com/lawrie/atari_2600 (via ulx3s_retro)",
+       "What it is": "TinyFPGA BX Atari 2600 (.pcf)",
+       "HDL": "Verilog",
+       "ULX3S evidence": "none (iCE40)",
+       "License": "LGPL-3.0",
+       "Last update": "2018-12-13",
+       "Duplicate of": "ULX3S port already pinned as lawrie__ulx3s_atari_2600",
+       "Recommendation": "skip"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Already in `sources.tsv` (no action): brunolevy__learn-fpga, sylefeb__silice, gojimmypi__ttsky-uart-fsm-trng-lab,\nmole99__tt05-one-sprite-pony, ulx3s__hazard3-doom, cbalint13__e-verest, evgenymuryshkin__quokkaevaluation,\nglasgowembedded__glasgow, icebreaker-fpga__icebreaker-workshop, emard__ulx3s, emard__ulx3s-bin, yosyshq__picorv32.\nNon-gateware tool/framework links skipped: YosysHQ/nextpnr, prjtrellis, openFPGALoader, f32c/tools, FPGAwars/apio,\nFPGAwars/icestudio, enjoy-digital/litex, litex-hub/linux-on-litex-vexriscv, gregdavill/OrangeCrab (hardware),\nicebreaker-fpga/icebreaker (hardware), RadionaOrg/ulx3s-links, ulx3s/ulx3s.github.io, TinyTapeout PR/issue links.\nNon-forge links (blogs, articles, videos, spade-lang.org showcase, tinytapeout.com/chips/tt08/tt_um_silice) not harvested.\nulx3s_retro links not in sources.tsv are all tools/frameworks (amaranth, ghdl, SpinalHDL, verilator, iverilog, yosys…),\nMiSTer/MiST cores for other boards, or dan-rodrigues/super-miyamoto-sprint (C game software for icestation-32, no HDL)."
+    }
+   ]
+  },
+  {
+   "title": "Findings",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "The \"Gitee examples\" section holds a single link, and it is not a separate project: `ynxing/learn-fpga` is a\n2021-01-05 snapshot of BrunoLevy/learn-fpga (same author in commits, same `FemtoRV/TUTORIALS/ULX3S.md`),\nwhich is already pinned at a 2025-11-18 commit. Nothing to clone from Gitee.",
+      "Cloning from Gitee works with plain `git clone --depth 1 https://gitee.com/<o>/<r>.git` (no auth), but the\nfirst attempt hit a TLS disconnect; `clone.sh` would need a retry for Gitee URLs. The Gitee v5 API works\nunauthenticated for repo metadata, trees and commits.",
+      "The sections after \"Projects and examples\" (mainly \"Tiny Tapeout Projects using the ULX3S\" and \"Tiny Tapeout\")\nyield 5 ULX3S gateware repos not yet collected: kbeckmann/tt08-flame, htfab/asicle2, gitlab TheZoq2/tinytapeout02,\nulx3s/tt-support-tools, and (from \"Other Interesting Stuff\") the rxrbln/picorv32 fork with a PicoSoC+VGA ULX3S port.",
+      "`gitlab.com/TheZoq2/tinytapeout02` has no license file; clone for review only.",
+      "`ulx3s/ttsky-verilog-template` needs branch `ulx3s`, which `clone.sh` cannot select; it has no own gateware anyway."
+     ]
+    }
+   ]
+  }
+ ],
+ "nav_title": "Gitee / ulx3s.github.io harvest"
+}

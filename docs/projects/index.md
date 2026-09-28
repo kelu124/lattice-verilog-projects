@@ -20,6 +20,7 @@ In-depth reviews of the repos that hold the most reusable gateware: per-block re
 | [emard__ulx3s](emard__ulx3s.md) | LFE5U-12F / 25F / 45F / 85F, CABGA381 | Modified MIT | None (hardware project). KiCad 4 up to v1.8, then KiCad 5; opened/saved with KiCad 7 in… |
 | [f32c__f32c](f32c__f32c.md) | 12F / 25F / 45F / 85F | BSD-2-Clause, repo-wide | VHDL (bulk of `rtl/cpu`, `rtl/soc`, `rtl/lattice`), a handful of Verilog leaf modules… |
 | [hdl4fpga__hdl4fpga](hdl4fpga__hdl4fpga.md) | 12F (`apps.ldf` `device="LFE5U-12F-8BG381C"`, all three apps share one project/device) | MIT (`LICENSE`, Miguel Angel Sagreras) for all VHDL/Verilog source checked (headers on… | VHDL (this repo is ~all VHDL; the catalogue's "274" file count and the "Verilog, JS"… |
+| [lit3rick_review](lit3rick_review.md) | **iCE40 UP5K only** | GPL-3.0-or-later for software/gateware | Verilog (119 `.v`) + SystemVerilog (5 `.sv`, testbenches only), under `verilog/src/`,… |
 | [lawrie__ulx3s_examples](lawrie__ulx3s_examples.md) | Mixed per example: root `ulx3s.mk` defaults `DEVICE ?= 85k`, but most example `Makefile`s… | none stated: no `LICENSE`/`COPYING` file anywhere in the repo | Verilog (194 `.v` files per `.claude/memory/catalogue.tsv`); one VHDL demo… |
 | [lawrie__ulx3s_sms](lawrie__ulx3s_sms.md) | **85F default** | No repo-level `LICENSE` file | Verilog only |
 | [fpga101](fpga101.md) | iCE40 UP5K SG48 | MIT (`LICENSE`, Copyright 2018 Miodrag Milanović); `tutorials/11-Computer/i8080.v`… | Verilog (82 files), C firmware and a MicroPython port, 2 IceStudio designs |

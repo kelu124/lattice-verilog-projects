@@ -33,13 +33,13 @@ object per slug in `sources.tsv`. Render the human view with
 `.claude/skills/review-gateware-project/gen_catalogue.py` → `docs/methodology/catalogue.md` (`--merge rows.tsv` adds rows).
 Review pages are `data/projects/<slug>.json` rendered to `docs/projects/<slug>.md` (see [[data-docs-layout]]).
 
-Status as of 2026-09-28: **398 repos catalogued (= 398 pinned in sources.tsv; +mmicko__fpga101-workshop; +9 ECP5-5G SERDES repos and +12 ECPIX-5/Cynthion repos from the two 2026-09-28 surveys; +emard__had2019-playground, +8 HX honourable mentions, +9 ECP5-survey items 15–24 on 2026-09-28): 290 ULX3S/ULX4M + 14 on other ECP5 boards** (+ gatecat__trellisboard ECP5, zipcpu__sdspi vendor-neutral, toasterllc__mdccode iCE40 HX8K, and 19 iCE40 HX8K/HX4K repos from `docs/methodology/hx-boards-survey.md` on 2026-09-28, of which wren6991__riscboy also has a ULX3S 85F target) (top 14 of `docs/methodology/ecp5-boards-survey.md`, 2 of which were already in, + ecp5-mini-projects + pergola_projects) **+ 12 iCE40 UP5K** (iCEBreaker org on codeberg + damdoy, then 8 from a GitHub search and 20 from `docs/methodology/lattice-boards-survey.md` on 2026-09-28 (2 of those are ECP5: greybadge25, machdyne fpga-dac); FPGA column says `NOT ECP5`) (ULX5M-GS repos were added then removed on owner request, 2026-09-27; see [[ulx5m-board]]) (71 pre-survey — the board repo,
+Status as of 2026-09-28: **523 repos catalogued (= 523 pinned in sources.tsv; +125 on 2026-09-28 late: GitHub-survey groups C (69) and E (9), registry candidates (9), DFU bootloaders (4), lit3rick, ulx3s.github.io harvest (4), RF/DSP (15) and FFT (15) surveys; +mmicko__fpga101-workshop; +9 ECP5-5G SERDES repos and +12 ECPIX-5/Cynthion repos from the two 2026-09-28 surveys; +emard__had2019-playground, +8 HX honourable mentions, +9 ECP5-survey items 15–24 on 2026-09-28): 290 ULX3S/ULX4M + 14 on other ECP5 boards** (+ gatecat__trellisboard ECP5, zipcpu__sdspi vendor-neutral, toasterllc__mdccode iCE40 HX8K, and 19 iCE40 HX8K/HX4K repos from `docs/methodology/hx-boards-survey.md` on 2026-09-28, of which wren6991__riscboy also has a ULX3S 85F target) (top 14 of `docs/methodology/ecp5-boards-survey.md`, 2 of which were already in, + ecp5-mini-projects + pergola_projects) **+ 12 iCE40 UP5K** (iCEBreaker org on codeberg + damdoy, then 8 from a GitHub search and 20 from `docs/methodology/lattice-boards-survey.md` on 2026-09-28 (2 of those are ECP5: greybadge25, machdyne fpga-dac); FPGA column says `NOT ECP5`) (ULX5M-GS repos were added then removed on owner request, 2026-09-27; see [[ulx5m-board]]) (71 pre-survey — the board repo,
 ulx3s-bin, openFPGALoader, plus 68 of the 69 ulx3s.github.io "Projects and examples" links (one is a
 404) — + 155 from GitHub-search category A + 64 more from categories B (51, all ULX3S-dedicated), D
 (11, forks with own commits) and the 2 ULX4M-specific repos in E; first pass by read-only agents over
 Makefiles, LPFs, READMEs, license files and a testbench heuristic; not built — and for this last batch
 of 64, several turned out to have no real ULX3S/ULX4M build despite matching the survey, see
-`docs/methodology/catalogue.md`'s notes). Only the 19 in the detail blocks below also have a full docs page (`reviewed`); the
+`docs/methodology/catalogue.md`'s notes). Only the 20 in the detail blocks below also have a full docs page (`reviewed`); the
 rest are `catalogued`. The GitHub survey found ≈297 candidates in total; the remaining ~78 (category C,
 multi-board, and E minus the 2 ULX4M repos) are listed in `docs/methodology/github-survey.md` but not yet cloned —
 skipped deliberately since they are not primarily about ULX3S/ULX4M devices.
@@ -90,23 +90,19 @@ Cross-project map of reusable cores: [[reusable-cores]].
 - `smunaut__ice40-playground`: no2fpga cores (USB, HyperRAM, QPI, cache, HUB75) with SB_*→ECP5 porting map. Page: `docs/projects/smunaut__ice40-playground.md`.
 - `ultraembedded__orangecrab`: DDR3 AXI controller for ECP5 (Apache-2.0), OrangeCrab memtest. Page: `docs/projects/ultraembedded__orangecrab.md`.
 - `spritetm__hadbadge2019_fpgasoc`: HAD2019 badge SoC: QPI PSRAM cache, ECP5 USB FS PHY, video/audio (per-file licenses). Page: `docs/projects/spritetm__hadbadge2019_fpgasoc.md`.
+- `kelu124__lit3rick`: owner's open ultrasound board, iCE40 UP5K (ADC capture, 16-point sliding DFT, SPI/I2C), Radiant + partial open flow. Page: `docs/projects/kelu124__lit3rick.md`.
 - `mmicko__fpga101-workshop`: FPGA 101 workshop (Hackaday Belgrade 2018), 20 UP5K exercises; original of the grom CPU and of ulx3s__fpga-odysseus (same author). Page: `docs/projects/mmicko__fpga101-workshop.md`.
 - `emard__had2019-playground` (cloned + catalogued 2026-09-28): source of the ULX3S/ULX4M US2 DFU bootloader. Page: `docs/guides/DFUs.md`.
 
 ## Candidates (known, not cloned yet)
 | Slug | Why it matters (unverified) |
 |---|---|
-| emard__libxsvf-esp | ESP32 Arduino JTAG SVF player (websvf) |
-| kost__fujprog | fujprog programmer (ujprog successor) |
-| tinyfpga__tinyfpga-bootloader | USB bootloader (US2) |
-| emard__fleafpga-jtag | JTAG programmer for .vme files |
-| emard__ulx2s | Predecessor board |
-| smunaut__had2019-playground | original HAD2019 badge DFU bootloader (emard fork cloned 2026-09-28) |
-| intergalaktik__ulx4m-ls | ULX4M successor board |
-| litex-hub__litex-boards | `radiona_ulx3s` platform/target used by linux-on-litex |
-| alangarf__apple-one, basman74__oberon_sdram | upstreams of already-cloned forks |
-| gitee ULX3S examples | section after "Projects and examples" on ulx3s.github.io |
-| GitHub survey groups C (69, multi-board) and E-minus-ULX4M (9) | in `docs/methodology/github-survey.md`; skipped 2026-09-27 as not device-dedicated |
+| gregdavill/foboot (branch OrangeCrab) | OrangeCrab DFU bootloader source (clone.sh cannot select a branch yet) |
+| myriadrf/LimeSDR_GW, LimeSDR-Mini-v2_GW, mehrdadh/fsk-modulator, chiralhat/fpga-pulses | next RF/DSP candidates (rf-dsp-survey) |
+| ulx3s/ttsky-verilog-template (branch ulx3s) | Tiny Tapeout template with ULX3S port (branch needed) |
+
+All earlier candidates (fujprog, TinyFPGA bootloader, LibXSVF-ESP, FleaFPGA-JTAG, ULX2S, ULX4M-LS, litex-boards,
+oberon_sdram, smunaut had2019-playground, GitHub survey groups C and E) were cloned + catalogued on 2026-09-28.
 
 `spinalhdl__saxonsoc`, `stnolting__neorv32-setups` and `lawrie__jupiter_ace` were also candidates here but
 turned up already cloned by the GitHub-wide search — removed from this list.

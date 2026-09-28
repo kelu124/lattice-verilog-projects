@@ -12,7 +12,7 @@ TMDS encoders, serializers and DVI/HDMI transmitters (with or without audio), fo
 
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
-| [vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD)](#core-emard-vga2dvid-tmds) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | VHDL, Verilog | MIT (vga2dvid.vhd, tmds_encoder.vhd headers,… | ECP5 | 103 |
+| [vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD)](#core-emard-vga2dvid-tmds) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | VHDL, Verilog | MIT (vga2dvid.vhd, tmds_encoder.vhd headers,… | ECP5 | 109 |
 | [hdl4fpga TMDS encoder (video component library)](#core-hdl4fpga-tmds-encoder) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE; file header confirms same… | any | 0 |
 | [HDMI TX with audio (danodus ecp5_hdmi_audio_video)](#core-danodus-hdmi-audio) | [danodus__ecp5_hdmi_audio_video](https://github.com/danodus/ecp5_hdmi_audio_video) | Verilog | MIT (LICENSE, Copyright 2026 Daniel Cliche / 2019… | ECP5 | 0 |
 | [my_hdmi_device TMDS encoder + video timing (chip_balls)](#core-splinedrive-hdmi-device) | [splinedrive__my_hdmi_device](https://github.com/splinedrive/my_hdmi_device) | Verilog | ISC (LICENSE.md, Copyright 2021 Hirosh Dabui) | ECP5 | 4 |
@@ -39,7 +39,7 @@ Converts VGA-style RGB+HV+blank into 8b/10b TMDS-encoded DDR/SDR bitstreams for 
 
 Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
-**Used by 103 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 109 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [adrmcintyre__vixen](https://github.com/adrmcintyre/vixen) (instantiates [`video/hdmi_video.v`](https://github.com/adrmcintyre/vixen/blob/e2db4fda79d2e73a7a595ce1773de64203346c0b/video/hdmi_video.v))
 - [advikbahadur__ulx3s-superresolution-cnn](https://github.com/ADVIKBAHADUR/ULX3s-Superresolution-CNN) (instantiates [`src/hdmi_device.v`](https://github.com/ADVIKBAHADUR/ULX3s-Superresolution-CNN/blob/7979af367cc20e4393071c718ab0e04dae12ad86/src/hdmi_device.v))
@@ -54,9 +54,9 @@ Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 - [chriscamacho__yazsof](https://github.com/chriscamacho/YAZSOF) (instantiates [`video/dvi.v`](https://github.com/chriscamacho/YAZSOF/blob/3a8ff5dcf25dcf149683adf109ac3096caa0a786/video/dvi.v))
 - [dan-rodrigues__icestation-32](https://github.com/dan-rodrigues/icestation-32) (instantiates [`hardware/ulx3s/hdmi_encoder.v`](https://github.com/dan-rodrigues/icestation-32/blob/55214d79f74a547dedb54f99cb2fad431b7ac277/hardware/ulx3s/hdmi_encoder.v))
 - [danodus__msx_fpga](https://github.com/danodus/msx_fpga) (instantiates [`src/msx.v`](https://github.com/danodus/msx_fpga/blob/f3266f78762094ab3eb5621279011efb504c69df/src/msx.v))
+- [danodus__onramp-fpga](https://github.com/danodus/onramp-fpga) (instantiates [`boards/common/hdmi_encoder.v`](https://github.com/danodus/onramp-fpga/blob/7542e4952f31c9541e2fbe9416bae9b8abb9e6bb/boards/common/hdmi_encoder.v))
 - [danodus__ulx3s_68k](https://github.com/danodus/ulx3s_68k) (instantiates [`src/hdmi.v`](https://github.com/danodus/ulx3s_68k/blob/ee10339210d0c302143745d3cc584a21a4878ace/src/hdmi.v))
-- [danodus__ulx3s_sms](https://github.com/danodus/ulx3s_sms) (instantiates [`src/hdmi.v`](https://github.com/danodus/ulx3s_sms/blob/13c2361a5039d205de47857bab9201055ac9e566/src/hdmi.v))
-- … and 88 more (see `data/core_usage.json`)
+- … and 94 more (see `data/core_usage.json`)
 
 ### hdl4fpga TMDS encoder (video component library) {#core-hdl4fpga-tmds-encoder}
 
@@ -160,5 +160,5 @@ Full review: [wren6991__smoldvi](../projects/wren6991__smoldvi.md).
 
 ## Other catalogued projects
 
-Catalogued repos tagged `video-dvi` (108) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `video-dvi` (118) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

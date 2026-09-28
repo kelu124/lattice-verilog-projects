@@ -110,5 +110,5 @@ Full review: [sylefeb__silice](../projects/sylefeb__silice.md).
 
 ## Other catalogued projects
 
-Catalogued repos tagged `sdcard` (48) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `sdcard` (54) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

@@ -112,5 +112,5 @@ Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
 ## Other catalogued projects
 
-Catalogued repos tagged `ps2` (55) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `ps2` (58) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

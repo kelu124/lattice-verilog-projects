@@ -1,7 +1,7 @@
 ---
 title: "ECP5-5G SERDES survey"
 parent: "Methodology"
-nav_order: 6
+nav_order: 9
 ---
 <!-- Generated from data/pages/serdes-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

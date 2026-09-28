@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-28
+- [x] Batches 1–5 of the TODO + owner extras: registry candidates (9), DFU bootloaders (4, guide verified), GitHub survey groups C (68) and E (9), ulx3s.github.io/Gitee harvest (4 new), lit3rick (review page), RF/DSP survey (15), FFT survey (15); 20 agents; 398 → 523 repos, 173 → 218 cores; 3 survey pages → commit "docs(catalogue): catalogue groups C/E, candidates, DFU bootloaders, RF and FFT designs"
 - [x] Follow the GitHub rename to kelu124/lattice-verilog-projects: remote, generator URLs, Pages URL, titles, README, memory → commit "chore(repo): switch links to the renamed lattice-verilog-projects repo"
 - [x] Root contribute.md (generated from data/pages/contributing.json) referenced in the README; CONTRIBUTING.md becomes a pointer → commit "docs(contrib): add contribute.md and reference it in the README"
 - [x] Survey ECP5-5G SERDES storage/PCIe (no open M.2 SSD design; LiteSATA on ECPIX-5) and TinyFPGA EX / ECPIX-5 / Cynthion gateware; clone + catalogue 21 repos (+no2misc submodule), 18 cores, function serdes-links, board pages ECPIX-5 and Cynthion, 2 survey pages → commit "docs(survey): ECP5-5G SERDES storage, ECPIX-5 and Cynthion gateware"

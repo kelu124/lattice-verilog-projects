@@ -18,7 +18,7 @@ Digital audio interfaces: I2S, S/PDIF, PDM microphones.
 | [I2S receiver (orangecrab-usb)](#core-orangecrab-usb-i2s-rx) | [mangelajo__orangecrab-usb](https://github.com/mangelajo/orangecrab-usb) | Verilog | none found | any | 0 |
 | [I2S RX/TX + PDM/CIC mic front-end (sound2fft)](#core-icesugar-pro-i2s-pdm) | [mebner86__icesugar-pro_sound2fft](https://github.com/mebner86/icesugar-pro_sound2fft) | Verilog | MIT (LICENSE, repo root) | ECP5 | 0 |
 | [S/PDIF transmitter (f32c)](#core-f32c-spdif-tx) | [f32c__f32c](https://github.com/f32c/f32c) | VHDL | BSD-2-Clause | any | 0 |
-| [S/PDIF transmitter (synthowheel)](#core-emard-synthowheel-spdif) | [emard__synthowheel](https://github.com/emard/synthowheel) | VHDL | BSD (LICENSE.txt: AUTHOR=EMARD LICENSE=BSD) | any | 11 |
+| [S/PDIF transmitter (synthowheel)](#core-emard-synthowheel-spdif) | [emard__synthowheel](https://github.com/emard/synthowheel) | VHDL | BSD (LICENSE.txt: AUTHOR=EMARD LICENSE=BSD) | any | 12 |
 
 ## Cores
 
@@ -146,10 +146,11 @@ S/PDIF biphase-mark transmitter, derived from the ackspace.nl SPDIF project with
 
 **On ULX3S:** C_clk_freq=25000000 matches the ULX3S oscillator directly; single-bit spdif_out needs a coax/TOSLINK line driver off-board.
 
-**Used by 11 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 12 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [dan-rodrigues__icestation-32](https://github.com/dan-rodrigues/icestation-32) (instantiates [`hardware/ulx3s/ics32_top_ulx3s.v`](https://github.com/dan-rodrigues/icestation-32/blob/55214d79f74a547dedb54f99cb2fad431b7ac277/hardware/ulx3s/ics32_top_ulx3s.v))
 - [dan-rodrigues__ics-adpcm](https://github.com/dan-rodrigues/ics-adpcm) (instantiates [`demo/adpcm_demo_top.v`](https://github.com/dan-rodrigues/ics-adpcm/blob/32b6c6af789440734b8e6d144ffd01467ed152d6/demo/adpcm_demo_top.v))
+- [emard__fpga_snake_game](https://github.com/emard/fpga_snake_game) (copies [`rtl_emard/spdif/spdif_tx.vhd`](https://github.com/emard/fpga_snake_game/blob/ed41b90f20d2774b063471fb97203d252e1b8dce/rtl_emard/spdif/spdif_tx.vhd))
 - [emard__minimig_ecs](https://github.com/emard/Minimig_ECS) (instantiates [`proj/altera/ffm-c5a4-sd-lcdif/top/amiga_ffm_c5a4_sd.vhd`](https://github.com/emard/Minimig_ECS/blob/a0a94bfa0b8534f50be7b79086ad00a41184c266/proj/altera/ffm-c5a4-sd-lcdif/top/amiga_ffm_c5a4_sd.vhd))
 - [emard__papilio-arcade](https://github.com/emard/Papilio-Arcade) (instantiates [`pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_12f/top/pacman_ulx3s.vhd`](https://github.com/emard/Papilio-Arcade/blob/4f91f938c200f1b0d80f03f835bdadcc5f21aa58/pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_12f/top/pacman_ulx3s.vhd))
 - [emard__uk101onfpga](https://github.com/emard/UK101onFPGA) (copies [`rtl_emard/spdif/spdif_tx.vhd`](https://github.com/emard/UK101onFPGA/blob/7264146bca76c6f751039ab569824a59875fe976/rtl_emard/spdif/spdif_tx.vhd))
@@ -162,5 +163,5 @@ S/PDIF biphase-mark transmitter, derived from the ackspace.nl SPDIF project with
 
 ## Other catalogued projects
 
-Catalogued repos tagged `audio-i2s` (15), `audio-spdif` (8) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `audio-i2s` (19), `audio-spdif` (8) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

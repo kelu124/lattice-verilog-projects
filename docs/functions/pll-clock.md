@@ -12,7 +12,7 @@ ECP5 EHXPLLL wrappers and PLL parameter calculators.
 
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
-| [ecp5pll parametric PLL](#core-emard-ecp5pll) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | SystemVerilog, VHDL | BSD (// (c)EMARD / License=BSD, file header) | ECP5 | 82 |
+| [ecp5pll parametric PLL](#core-emard-ecp5pll) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | SystemVerilog, VHDL | BSD (// (c)EMARD / License=BSD, file header) | ECP5 | 92 |
 | [blip nMigen ECP5 PLL wrapper](#core-bqqbarbhg-blip-pll) | [bqqbarbhg__blipv1](https://github.com/bqqbarbhg/blipv1) | Python (nMigen) | none found | ECP5 | 0 |
 | [Glasgow ECP5 PLL parameter solver (Amaranth)](#core-glasgow-ecp5-pll) | [glasgowembedded__glasgow](https://github.com/GlasgowEmbedded/glasgow) | Python (Amaranth) | 0BSD OR Apache-2.0 | ECP5 | 0 |
 | [hdl4fpga ecp5_videodcm / ecp5_sdramdcm clock generators](#core-hdl4fpga-ecp5-clockgen) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE) | ECP5 | 0 |
@@ -37,9 +37,10 @@ Computes EHXPLLL divider/phase parameters from requested in/out frequencies at e
 
 Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
-**Used by 82 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 92 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [advikbahadur__ulx3s-superresolution-cnn](https://github.com/ADVIKBAHADUR/ULX3s-Superresolution-CNN) (instantiates [`src/top_module.v`](https://github.com/ADVIKBAHADUR/ULX3s-Superresolution-CNN/blob/7979af367cc20e4393071c718ab0e04dae12ad86/src/top_module.v))
+- [assured__ct-key](https://github.com/Assured/CT-key) (instantiates [`aes_test/soc.py`](https://github.com/Assured/CT-key/blob/8a70cfeaf2a082874c693302d767636f63634b98/aes_test/soc.py))
 - [bjonnh__ulx3s-synth](https://github.com/bjonnh/ulx3s-synth) (instantiates [`i2s.v`](https://github.com/bjonnh/ulx3s-synth/blob/b8448b602cb6a6772449059746ff5107dc78601a/i2s.v))
 - [blazra__tdr](https://github.com/blazra/tdr) (instantiates [`gateware/versa_ecp5-litex/tdr/clock.py`](https://github.com/blazra/tdr/blob/f62e58dfc004c9795cb638adbdc2fdb0bcf089a2/gateware/versa_ecp5-litex/tdr/clock.py))
 - [bqqbarbhg__blipv1](https://github.com/bqqbarbhg/blipv1) (instantiates [`blip/rtl/ecp5/io.py`](https://github.com/bqqbarbhg/blipv1/blob/e978a5aa368f4b24aebb8954a6cc75b39522f436/blip/rtl/ecp5/io.py))
@@ -51,10 +52,9 @@ Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 - [danodus__ulx3s_sms](https://github.com/danodus/ulx3s_sms) (instantiates [`src/sms.v`](https://github.com/danodus/ulx3s_sms/blob/13c2361a5039d205de47857bab9201055ac9e566/src/sms.v))
 - [danodus__xgsoc](https://github.com/danodus/xgsoc) (instantiates [`rtl/icepi-zero/icepi_zero_top.sv`](https://github.com/danodus/xgsoc/blob/8a4d9213e5ebe3abe42ba30fddb0bd4f9f4a843f/rtl/icepi-zero/icepi_zero_top.sv))
 - [datanoisetv__colorlight-i9-aes67](https://github.com/DatanoiseTV/colorlight-i9-aes67) (instantiates [`litex/soc.py`](https://github.com/DatanoiseTV/colorlight-i9-aes67/blob/71420b772d48409ae8e3a70c3103828495687737/litex/soc.py))
-- [dlobato__cps1-musicbox](https://github.com/dlobato/cps1-musicbox) (instantiates [`radiona_ulx3s.py`](https://github.com/dlobato/cps1-musicbox/blob/dc940ca9ecd5fa2685518fae2c92d701167fe4a0/radiona_ulx3s.py))
-- [dschaefer__fpga-template](https://github.com/dschaefer/fpga-template) (instantiates [`top.sv`](https://github.com/dschaefer/fpga-template/blob/575a4b1cf43a325951bb3662020ffeec7f5b3bfc/top.sv))
-- [dulatello08__litex-cpu-testing](https://github.com/dulatello08/litex-cpu-testing) (instantiates [`scripts/gen_soc.py`](https://github.com/dulatello08/litex-cpu-testing/blob/3b5d386971aedd6b98030c8db214ca888cb0929f/scripts/gen_soc.py))
-- … and 67 more (see `data/core_usage.json`)
+- [dicethrow__amaram](https://github.com/dicethrow/amaram) (instantiates [`amaram/sdram_n_fifo_interface/interface_fifo_build/top.debug.v`](https://github.com/dicethrow/amaram/blob/101485cf2bbb1e75213a0c92f12c7e9c85a07545/amaram/sdram_n_fifo_interface/interface_fifo_build/top.debug.v))
+- [dicethrow__amtest](https://github.com/dicethrow/amtest) (instantiates [`amtest/boards/ulx3s/common/ECP5PLL.py`](https://github.com/dicethrow/amtest/blob/c2a4378656dfe6b86ed09f3fef240959c02ebe0f/amtest/boards/ulx3s/common/ECP5PLL.py))
+- … and 77 more (see `data/core_usage.json`)
 
 ### blip nMigen ECP5 PLL wrapper {#core-bqqbarbhg-blip-pll}
 

@@ -2,6 +2,24 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(catalogue): catalogue groups C/E, candidates, DFU bootloaders, RF and FFT designs
+- **What**: cloned (shallow, pruned per repo) + catalogued 125 repos with ~20 Sonnet agents: GitHub survey group C (68 +
+  hyperram-test) and remaining E (9), registry candidates (fujprog, TinyFPGA-Bootloader, LibXSVF-ESP, FleaFPGA-JTAG,
+  ULX2S, ULX4M-LS, litex-boards, oberon_sdram, hyperram-test), DFU bootloaders (smunaut had2019 original,
+  no2bootloader, foboot, tinydfu), ulx3s.github.io harvest (tt08-flame, TheZoq2 tinytapeout02 (GitLab), ulx3s
+  tt-support-tools, rxrbln picorv32; Gitee link = stale learn-fpga copy), owner's lit3rick (review page), RF/DSP survey
+  (15: HackRF Pro gateware, ZipCPU sdr, emeb lineage, 1bitSDR, lock-ins, WSPR, VNA, LoRa modulator, skywave…) and FFT
+  survey (14 + dblclockfft). Gateware submodules fetched: no2usb/no2ice40/no2misc, valentyusb ×2, rf-dds-lo, secworks aes,
+  smolfpga, verilog-axis, rggen RTL. DFU guide gains a "Verified 2026-09-28 from the bootloader sources" section
+  (OrangeCrab bootloader = gregdavill/foboot branch OrangeCrab). 45 new cores (radio/dsp FFTs, CORDIC, lock-in, WSPR,
+  WS2812, crypto SRNG/AES, bootloaders, Linux SoC vernier-rv32…): 218. Survey pages rf-dsp, fft, gitee. usage rescanned
+  (691 uses), LPFs rescanned (1063 files). Memory: new lattice-rf-dsp.md; counts; source-lists rows; registry
+  candidates replaced; TODO (clone.sh branch support, lit3rick flow question, scanner .vhdl blind spot).
+- **Why**: owner asked to run TODO batches 1–5 (not the nested submodules) with parallel agents, catalogue lit3rick, add
+  every Lattice FFT design, and survey Lattice RF/signal-processing gateware.
+- **Notes**: agents shared a scratchpad; one reported a clobbered helper script, all outputs were re-validated (15
+  fields, JSON, file paths) before merging. Class counts in README are approximate.
+
 ## 2026-09-28 — chore(repo): switch links to the renamed lattice-verilog-projects repo
 - **What**: remote set to `git@github.com:kelu124/lattice-verilog-projects.git`; `REPO_URL` and GitHub links in
   gen_site.py, gen_catalogue.py, gen_lpf_catalogue.py; Pages URL `https://kelu124.github.io/lattice-verilog-projects/`

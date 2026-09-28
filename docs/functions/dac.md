@@ -16,7 +16,7 @@ Sigma-delta/PWM/PDM DACs and external DAC interfaces.
 | [PDM audio DAC (hadbadge2019 soc/audio)](#core-spritetm-hadbadge-pdm) | [spritetm__hadbadge2019_fpgasoc](https://github.com/Spritetm/hadbadge2019_fpgasoc) | Verilog | BSD-3-Clause | any | 0 |
 | [Resistor+PWM hybrid DAC (dacpwm)](#core-emard-ulx3s-misc-dacpwm) | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog, VHDL | none found | any | 7 |
 | [Sigma-delta DAC (synthowheel)](#core-emard-synthowheel-sigmadelta) | [emard__synthowheel](https://github.com/emard/synthowheel) | VHDL | BSD (LICENSE.txt: AUTHOR=EMARD LICENSE=BSD) | any | 3 |
-| [Sigma-delta DAC (up5k-demos)](#core-daveshah1-sigma-delta-dac) | [daveshah1__up5k-demos](https://github.com/daveshah1/up5k-demos) | Verilog | none found | iCE40 UP5K | 15 |
+| [Sigma-delta DAC (up5k-demos)](#core-daveshah1-sigma-delta-dac) | [daveshah1__up5k-demos](https://github.com/daveshah1/up5k-demos) | Verilog | none found | iCE40 UP5K | 16 |
 
 ## Cores
 
@@ -120,7 +120,7 @@ Tiny parametric-width sigma-delta DAC (delta/sigma adder pair) used for the NES 
 
 **On ULX3S:** Plain Verilog, no SB_* primitives; drops onto ECP5 unchanged, only the surrounding NES top-level is iCE40-specific.
 
-**Used by 15 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 16 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [cheyao__nes_ecp5](https://github.com/cheyao/nes_ecp5) (copies [`sigma_delta_dac.v`](https://github.com/cheyao/nes_ecp5/blob/e8dd1eb7f9f440a552cd24c0b936e58705a272e7/sigma_delta_dac.v))
 - [cheyao__sega-sms](https://github.com/cheyao/sega-sms) (instantiates [`src/sms.v`](https://github.com/cheyao/sega-sms/blob/c37e846d94f88eb9a95f44b15f2b23019aa25a26/src/sms.v))
@@ -128,6 +128,7 @@ Tiny parametric-width sigma-delta DAC (delta/sigma adder pair) used for the NES 
 - [darklife__darkriscv](https://github.com/darklife/darkriscv) (instantiates [`boards/de10nano_cyclonev_mister/sys/audio_out.v`](https://github.com/darklife/darkriscv/blob/974034aa8079039a36b89c14dcdfed575de183b7/boards/de10nano_cyclonev_mister/sys/audio_out.v))
 - [emard__nes_ecp5](https://github.com/emard/nes_ecp5) (instantiates [`top.v`](https://github.com/emard/nes_ecp5/blob/fd421a13886cccc6da13be28a4a803a90b201e60/top.v))
 - [emard__snes_mister_ulx3s](https://github.com/emard/SNES_MiSTer_ulx3s) (instantiates [`sys/audio_out.v`](https://github.com/emard/SNES_MiSTer_ulx3s/blob/bbb10d06a1c396d3784ff70033ecf7e941fd43fc/sys/audio_out.v))
+- [enjoy-digital__litedsp](https://github.com/enjoy-digital/litedsp) (instantiates [`impl/modules.py`](https://github.com/enjoy-digital/litedsp/blob/102e415425f60ba21b59972660d56c649612c080/impl/modules.py))
 - [gatecat__snes_mister_ulx3s](https://github.com/gatecat/SNES_MiSTer_ulx3s) (instantiates [`sys/audio_out.v`](https://github.com/gatecat/SNES_MiSTer_ulx3s/blob/a9ed2ceb422e1001cfbbcfc85359fb23bc35d798/sys/audio_out.v))
 - [gojimmypi__z80386-ulx3s-doom](https://github.com/gojimmypi/z80386-ulx3s-doom) (instantiates [`third_party/z386_MiSTer/sys/audio_out.v`](https://github.com/gojimmypi/z80386-ulx3s-doom/blob/ccc2903c380b90d6e7ec3b5ffc3e5b5f6d23e6dc/third_party/z386_MiSTer/sys/audio_out.v))
 - [ironsteel__nes_ecp5](https://github.com/ironsteel/nes_ecp5) (instantiates [`top.v`](https://github.com/ironsteel/nes_ecp5/blob/ff331d4b9c422e0b792560dd7b2b67a28622f67f/top.v))
@@ -136,9 +137,9 @@ Tiny parametric-width sigma-delta DAC (delta/sigma adder pair) used for the NES 
 - [lawrie__ulx3s_sms](https://github.com/lawrie/ulx3s_sms) (instantiates [`src/sms.v`](https://github.com/lawrie/ulx3s_sms/blob/13c2361a5039d205de47857bab9201055ac9e566/src/sms.v))
 - [machdyne__nes_ecp5](https://github.com/machdyne/nes_ecp5) (instantiates [`top.v`](https://github.com/machdyne/nes_ecp5/blob/ff331d4b9c422e0b792560dd7b2b67a28622f67f/top.v))
 - [wifiboy__ok-ice40pro](https://github.com/WiFiBoy/OK-iCE40Pro) (instantiates [`ok-nes-vga-src/NES_okice40_pro.v`](https://github.com/WiFiBoy/OK-iCE40Pro/blob/01c99298f8b059da09a72dd4b3286d9b0a96fe95/ok-nes-vga-src/NES_okice40_pro.v))
-- [wuxx__icesugar](https://github.com/wuxx/icesugar) (instantiates [`src/advanced/up5k-demos/nes/NES_ice40.v`](https://github.com/wuxx/icesugar/blob/1ebe71bf448e33a1bccfa2db6730d59eafb6c390/src/advanced/up5k-demos/nes/NES_ice40.v))
+- … and 1 more (see `data/core_usage.json`)
 
 ## Other catalogued projects
 
-Catalogued repos tagged `audio-dac` (56), `dac` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `audio-dac` (63), `dac` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

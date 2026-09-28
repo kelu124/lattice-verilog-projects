@@ -422,6 +422,174 @@ bootloader from a running design:
 - ECP5: pull PROGRAMN low;
 - iCE40: fire `SB_WARMBOOT`.
 
+## Verified 2026-09-28 from the bootloader sources
+
+| bootloader | VID:PID | alts | user image offset | entry method | USB core | license | source |
+|---|---|---|---|---|---|---|---|
+| smunaut had2019 original | `1d50:614b` | 0–5: fpga/SoC, riscv/IPL, cart_fpga, cart_ipl, cart_tjftl(fs), bootloader; no RTC alt exists | SoC bitstream `0x180000` (bootloader itself `0x000000–0x17FFFF`) | hold `BTN_SELECT` at power-up, or a `0x21554644` ("DFU!") magic word in PSRAM; otherwise `reboot_now()` boots the app immediately | early no2usb (ECP5 snapshot, byte-identical to emard's ULX3S fork except `usb_phy.v`'s per-board pin wiring) | per file: RTL BSD-3-Clause, USB core + firmware LGPL-3.0-or-later | https://github.com/smunaut/had2019-playground |
+| no2bootloader | own default `1d50:6146` (BOARD=icebreaker/bitsy fallback); per-board `6144/6148/6150/6156/617d/6174` | 0 = iCE40 bitstream, 1 = RISC-V firmware, 2 = Bootloader bitstream (DANGER), 3 = Bootloader firmware (DANGER) | App 1 (default) `0x080000`; App 2 `0x0c0000`; DFU image `0x040000`; boot stub `0x004000` | hold the board button through power-up then release it (forces the warmboot-stub FSM into the DFU image); untouched, the stub "immediate boots" straight to the default App 1 image | no2usb (submodule `gateware/cores/no2usb`) | HDL CERN-OHL-P-2.0; this repo's own firmware GPL-3.0-or-later; no2usb submodule stack LGPL-3.0-or-later (+ MIT for tinyusb-driver parts) | https://github.com/no2fpga/no2bootloader |
+| foboot | `1209:5bf0` | 1 alt only (alt 0, DFU interface) | `0x01a000` (`FBM_OFFSET`, the failsafe/"main" user image); plain `dfu-util -D` with no DfuSe address instead writes `0x040000` | always starts in DFU; auto-boots the FBM image after a timeout unless the two exposed touch pads are bridged ("nerve pinch") to force staying in DFU | ValentyUSB `eptri.TriEndpointInterface`, a Migen-generated peripheral on a LiteX **VexRiscv** SoC (not hand-written RTL) | foboot itself Apache-2.0; ValentyUSB submodule BSD-3-Clause | https://github.com/im-tomu/foboot |
+| tinydfu-bootloader | `16d0:116d` (all Machdyne ECP5 boards) | not class-alt based the same way; single DFU interface with named partitions (Boot/User/Data) | `0x100000` on kaugummi/klinge/konfekt/kopflos/minze/schoko (1MB boot region); `0x040000` on lakritz and obst (256KB boot region); kuchen/riegel use a third, `163840`-based layout | no button: the bootloader always runs first from flash address 0 and auto-boots the user image after a ~5s timer unless DFU activity (or an explicit `dfu-util -e`/detach) intervenes | bit-banged `usb_dfu_core.v` + a per-family PHY (`usb_phy_ecp5.v` for these boards) | Apache-2.0 | https://github.com/machdyne/tinydfu-bootloader |
+
+Commits read: `smunaut/had2019-playground@9bd9aa3` (2019-11-13), `no2fpga/no2bootloader@37dda02` (2026-01-29),
+`im-tomu/foboot@dfa09fc` (2022-12-31), `machdyne/tinydfu-bootloader@681f570` (2026-09-06).
+
+### 1. smunaut/had2019-playground (the HAD2019 badge original)
+
+- **Same design or meaningfully different?** The same design, lightly adapted. 9 of the 10 files in
+  `cores/usb/rtl/` are byte-identical to `emard__had2019-playground/cores/usb/rtl/` (`usb_crc.v`,
+  `usb_defs.vh`, `usb_ep_buf.v`, `usb_ep_status.v`, `usb_rx_ll.v`, `usb_rx_pkt.v`, `usb_trans.v`,
+  `usb_tx_ll.v`, `usb_tx_pkt.v`, `usb.v` @ `9bd9aa3`, diffed against `emard__had2019-playground` @
+  `0723f2a`). Only `usb_phy.v` differs, and only in the per-board D+/D− pin-state-machine wiring —
+  both copies already have the ECP5 `TRELLIS_IO` branch, so this is not "upstream no2usb", it is the
+  same early ECP5 snapshot emard forked. `rtl/top.v` differs more (HAD2019 badge has PSRAM, an LCD
+  and a joystick/cartridge slot that ULX3S does not), and the DFU zone map differs (see below).
+- **VID:PID**: `0x1d50:0x614b` (`projects/bootloader/fw/usb_desc_dfu.c:215-216` @ `9bd9aa3`) — the
+  **same value** emard's ULX3S fork uses (`emard__had2019-playground/projects/bootloader/fw/usb_desc_dfu.c:215-216`),
+  **not** `0x1d50:0x614a` as the guide's open question guessed. `0x614a` does not appear anywhere in
+  this source tree; it is only seen (per the guide) in the downstream `spritetm__hadbadge2019_fpgasoc`
+  Makefile, which accepts either PID.
+- **USB core**: the early no2usb-for-ECP5 snapshot, identical to the one in emard's ULX3S fork (see
+  above), not the current upstream `no2usb` (which the guide already established lacks the ECP5
+  tweaks).
+- **License**: per-file BSD-3-Clause (RTL, `LICENSE.bsd`) / LGPL-3.0-or-later (USB core + firmware,
+  `LICENSE.lgpl3`) — same split the guide already cites for emard's fork. `rtl/picorv32.v` carries
+  Clifford Wolf's ISC-style permission notice, also matching.
+- **RTC alt (zone 6) reachable?** No — and the guide's open question is now resolved for the
+  *original* too: this repo has **no RTC zone at all**. Its `dfu_zones[6]` (`fw/usb_dfu.c:156-163`)
+  are fpga/SoC, riscv/IPL, cart_fpga, cart_ipl, cart_tjftl (filesystem) and bootloader — six zones,
+  six declared interfaces, all reachable. The RTC zone/alt is an addition specific to emard's ULX3S
+  fork, and even there `usb_desc_dfu.c` only declares six interfaces (alts 0–5), so it is unreachable
+  in *both* trees, for the same structural reason (a 7th zone/string exists but no 7th interface
+  descriptor was ever added).
+
+### 2. no2fpga/no2bootloader
+
+- **Own default VID:PID(s)**: the `#else` fallback in `firmware/usb_desc_dfu.c:118-142` is
+  `0x1d50:0x6146` (used for `BOARD=icebreaker`, the default, and `bitsy-v0`/`bitsy-v1`, since neither
+  defines a `BOARD_*` macro of its own — that value is already the one the guide verified for
+  iCEBreaker-bitsy). Previously undocumented per-board overrides in the same struct: `BOARD_ICE1USB`
+  → `6144`, `BOARD_ICEPICK` → `6148`, `BOARD_E1TRACER` → `6150`, `BOARD_REDIP_SID` → `6156`,
+  `BOARD_ICE40_USBTRACE` → `617d`, `BOARD_OSMO_AMR` → `6174`. `firmware/usb_str_dfu.txt` also lists
+  board names not in the guide's table yet: `fomu-hacker`, `fomu-pvt1`, `xmas-snoopy`.
+- **Alt settings**: confirmed exactly as the guide states — alt 0 = "iCE40 bitstream", alt 1 =
+  "RISC-V firmware" (`firmware/usb_str_dfu.txt`, interface descriptors at `firmware/usb_desc_dfu.c`
+  `bAlternateSetting 0/1`). There are also two more, previously undocumented: alt 2 = "Bootloader
+  bitstream (DANGER !)" and alt 3 = "Bootloader firmware (DANGER !)" — for over-the-air updates of
+  the bootloader itself.
+- **Flash layout / image numbers**: resolved from `gateware/ice40-stub/sw/mkmultiboot.py` (the
+  multi-boot image builder) and `gateware/ice40-stub/rtl/top.v`'s `boot_sel` FSM:
+  - `0x004000` — Boot stub image, `SB_WARMBOOT` `S1:S0 = 00`
+  - `0x040000` — DFU image (this bootloader's own USB/DFU core), `S1:S0 = 01`
+  - `0x080000` — **App 1**, `S1:S0 = 10` — the reset default (`top.v:241`, `boot_sel <= 2'b10`)
+  - `0x0c0000` — **App 2**, `S1:S0 = 11`
+
+  This resolves the guide's "image numbers unknown": `00`=boot stub, `01`=DFU, `10`=App1 (default),
+  `11`=App2, each spaced 256 KB apart (matching the `dfu_helper.v` runtime facts the guide already
+  documented for `S1:S0=01`→DFU and `S1:S0=10`→app).
+
+- **Entry method**: at power-up (`ST_START`), if the button is *not* held (idle, pulled up), the stub
+  does an "immediate boot" straight into whatever `boot_sel` already is (reset default = App 1) — so
+  it does **not** always land in the bootloader first. Holding the button down and then releasing it
+  drives the FSM into `ST_WAIT`, which forces `boot_sel = 01` (DFU); a further button press while in
+  `ST_SEL` cycles `boot_sel` through the four images before a timeout commits to whichever one is
+  selected (`gateware/ice40-stub/rtl/top.v:120-245`).
+- **License**: confirmed. The CERN-OHL-P-2.0 / LGPL-3.0-or-later split the guide cites is the
+  **submodule's** own `gateware/cores/no2usb/LICENSE.md` (HDL core CERN-OHL-P-2.0, custom USB stack
+  LGPL-3.0-or-later, tinyusb-driver parts MIT). This repository's *own* top-level `LICENSE.md` states
+  the same HDL/CERN-OHL-P-2.0 split but says its **firmware** is GPL-3.0-or-later (not LGPL) — and
+  `firmware/usb_desc_dfu.c:5` carries `SPDX-License-Identifier: GPL-3.0-or-later` directly, confirming
+  it. So: two different license files, two different firmware terms (GPL for the bootloader's own
+  `firmware/`, LGPL for the no2usb submodule's stack).
+- **DFU class firmware source path**: `firmware/fw_dfu.c` + `firmware/usb_desc_dfu.c`, paired with the
+  gateware in `gateware/ice40/` (PicoRV32 + no2usb, `gateware/ice40/Makefile:4-19`) — built and combined
+  with the warmboot stub (`gateware/ice40-stub/`) by `gateware/ice40-stub/sw/mkmultiboot.py`.
+- Note: `gateware/build/` (the "no2build" build system) was deliberately not fetched, per the task
+  brief. Both `gateware/ice40/Makefile` and `gateware/ice40-stub/Makefile` end with
+  `include ../build/project-rules.mk`, which cannot resolve in this clone — so neither synthesis nor
+  `make sim` can actually run here; this also explains why the make-tests scanner found no candidate.
+
+### 3. im-tomu/foboot
+
+- **VID:PID**: `0x1209:0x5bf0`, confirmed directly in `sw/include/usb-desc.h:60-61`
+  (`VENDOR_ID`/`PRODUCT_ID`), matching the guide's cited value exactly. Curiously, `README.md`'s own
+  worked example log shows a device enumerating as `idVendor=1209, idProduct=70b1` — that is a stale
+  screenshot from the fomu-workshop-era PID (the guide's own Fomu section already documents `70b1` as
+  the workshop's separately-suffixed PID), not the value the source actually builds.
+- **Alt settings**: exactly one — `sw/src/usb-desc.c:117` (`bAlternateSetting = 0`), no others.
+- **Flash layout / user image offset**: `doc/FLASHLAYOUT.md` (present in this clone) gives the
+  authoritative table: `0x0000a0` bootloader (multiboot header, first/`SB_WARMBOOT` image 0),
+  `0x01a000` = `FBM_OFFSET` — "used to contain user s/w, is loaded over DFU s/w if found and touch not
+  pressed" — matching `sw/src/main.c:19,171-174`'s `FBM_OFFSET`/`maybe_boot_fbm()`. Two further
+  `SB_WARMBOOT` images sit at `0x026800` and `0x040000`/`0x048000`. `README.md:99` separately notes
+  that plain `dfu-util -D` with no DfuSe address writes to `0x040000` — a different offset from the
+  failsafe-boot path, both real, for different write mechanisms.
+- **Entry method**: not a button — Fomu has none. `sw/src/main.c`'s `nerve_pinch()` (`main.c:100-118`)
+  reads back a bit pattern looped from `TOUCH2` to `TOUCH0`; if the two exposed copper pads are
+  bridged (finger, wire, "nerve pinch"), the timer ISR (`main.c:21-38`) never reboots and the device
+  stays in DFU. Left untouched, it boots to `FBM_OFFSET` once a valid image signature is found there.
+- **License**: foboot's own top-level `LICENSE` is Apache-2.0 (202 lines). The `hw/deps/valentyusb`
+  submodule's own `LICENSE` is BSD-3-Clause (Luke Valenty, 2018).
+- **USB core architecture**: confirmed to be a **LiteX/Migen-generated SoC**, not bare RTL.
+  `hw/foboot-bitstream.py` imports `migen`/`litex`/`litex_boards` and builds a `litex.soc.integration.soc_core.SoCCore`
+  (`hw/foboot-bitstream.py:14-28`). The CPU is **VexRiscv**, wired in via an external Verilog variant
+  (`self.cpu.use_external_variant("rtl/VexRiscv_Fomu.v")`, `hw/foboot-bitstream.py:264-269`). USB is
+  ValentyUSB's `eptri.TriEndpointInterface` Migen module (`hw/foboot-bitstream.py:31,320`), bit-banging
+  the raw D+/D− pins through a Migen `IoBuf`, not a separate hand-written RTL peripheral.
+
+### 4. machdyne/tinydfu-bootloader
+
+- **VID:PID**: `0x16d0:0x116d`, confirmed **directly in this repo's own source** — every Machdyne
+  ECP5 board's `boardinfo.vh` defines `BOARD_VID = 'h16d0` / `BOARD_PID = 'h116d`
+  (`boards/{kaugummi,klinge,konfekt,kopflos,minze,schoko,lakritz,obst}/boardinfo.vh`), not only in the
+  downstream `openFPGALoader`/Zeitlos repos the guide originally cited it from.
+- **Flash layout / user image offset — both variants genuinely exist here, split by board**:
+  - **1 MB boot region, user at `0x100000`**: kaugummi, klinge, konfekt, kopflos, minze, schoko
+    (`BOOTPART_SIZE = (1024*1024)` in each `boardinfo.vh`).
+  - **256 KB boot region, user at `0x040000`** (the "256k" variant the guide got from Zeitlos):
+    **lakritz and obst** (`BOOTPART_SIZE = (256*1024)`, `boards/lakritz/boardinfo.vh`, with the
+    explicit warning comment "KEEP USERPART_START AND BOOTADDR IN THIS BOARD'S Makefile IN SYNC" —
+    confirmed live in `boards/lakritz/Makefile`'s `BOOTADDR = 0x040000`).
+  - A third layout exists too, not mentioned in the guide: kuchen and riegel use
+    `BOOTPART_SIZE = (33*4096)` with `USERPART_START` hard-coded to `163840` (not computed from
+    `BOOTPART_START + BOOTPART_SIZE`, i.e. a deliberate gap).
+  - There is therefore no single "default" — it is a per-board choice, with 1 MB the more common one
+    (6 boards) and 256 KB used by exactly the two boards (lakritz, obst) the guide's Zeitlos citation
+    already named.
+- **Entry method**: not `PROGRAMN` + a button. `boards/lakritz/tinydfu_lakritz.v`'s
+  `Reset and Multiboot` block shows the bootloader is *always* what boots first (it lives at flash
+  address 0); it counts down `boot_delay` (`12000000*5` cycles) and auto-boots the user image
+  (`user_boot_now`) once that expires, unless real DFU activity (`dfu_state > 2`) has already
+  cancelled `user_auto_boot`, or the host has issued a DFU detach (`dfu_detach`), which boots
+  immediately regardless of the timer.
+- **License**: Apache-2.0, top-level `LICENSE.txt` (202 lines), applies repo-wide; no per-board
+  override found.
+- **USB core**: confirmed top module `tinydfu_lakritz` (`boards/lakritz/tinydfu_lakritz.v`), which
+  instantiates `usb_dfu_core` (the bit-banged USB-to-SPI DFU core, TinyFPGA-Bootloader lineage per
+  `README.md`'s "Origins" section) and `usb_phy_ecp5` for the physical layer — the same core is paired
+  with `usb_phy_ice40`/`usb_phy_xc7` for the non-ECP5 boards in this same tree.
+
+### OrangeCrab DFU bootloader source
+
+**https://github.com/gregdavill/foboot** (branch `OrangeCrab`: https://github.com/gregdavill/foboot/tree/OrangeCrab).
+
+Found via web search, not cloned (per instructions). It is confirmed to be **a fork of `im-tomu/foboot`**
+(GitHub labels it "forked from im-tomu/foboot"): the `OrangeCrab` branch carries the same
+`hw/foboot-bitstream.py`/`lxbuildenv.py` LiteX build entry points and the same unmodified README
+("Foboot is a failsafe bootloader for Fomu... a single 'bitstream' directly loaded onto an ICE40UP5k
+board, such as Fomu") — i.e. it is the Fomu bootloader retargeted at OrangeCrab's ECP5 (25F/85F)
+rather than a rewrite, and a `LICENSE` file is present (not independently re-verified). Corroborating
+evidence: gregdavill's own gist `foboot-v3.0-orangecrab-r0.2-85F.svf` (a built OrangeCrab bootloader
+image) and merged PR `gregdavill/foboot#1` "Change USB PID to 0x5af0", which lines up with the guide's
+own citation of PID `5af0` in the OrangeCrab Verilog example flows. This does **not** fully resolve the
+guide's separate `5af0`/`5bf0`/`5bf2` inconsistency question (that needs the bootloader source's actual
+per-revision descriptor, which was not read here), but it does confirm *which* repository that source
+lives in and that OrangeCrab's bootloader shares its lineage — and its VexRiscv/ValentyUSB
+architecture — with `im-tomu/foboot`, not with a separate, unrelated implementation. A community issue
+(`orangecrab-fpga/orangecrab-hardware#45`, "DFU source code?") shows OrangeCrab users themselves have
+had trouble locating this source, which is consistent with it living on a personal fork's branch
+rather than under the `orangecrab-fpga` GitHub organization.
+
 ## Open questions
 
 - HAD2019 badge original (smunaut/had2019-playground), no2bootloader, OrangeCrab bootloader,

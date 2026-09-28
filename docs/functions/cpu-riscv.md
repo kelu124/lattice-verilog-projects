@@ -12,14 +12,15 @@ RISC-V cores and small SoCs.
 
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
-| [PicoRV32 RISC-V core](#core-yosyshq-picorv32) ★ | [yosyshq__picorv32](https://github.com/YosysHQ/picorv32) | Verilog | ISC (COPYING) | any | 26 |
+| [PicoRV32 RISC-V core](#core-yosyshq-picorv32) ★ | [yosyshq__picorv32](https://github.com/YosysHQ/picorv32) | Verilog | ISC (COPYING) | any | 35 |
 | [f32c RISC-V/MIPS-compatible core](#core-f32c-core) | [f32c__f32c](https://github.com/f32c/f32c) | VHDL | BSD-2-Clause | any | 0 |
-| [FPGA 101 PicoSoC with LCD text console and MicroPython](#core-mmicko-fpga101-picosoc) | [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) | Verilog, C | MIT (repo LICENSE); z_picorv32.v ISC; MicroPython… | iCE40 | 3 |
+| [FPGA 101 PicoSoC with LCD text console and MicroPython](#core-mmicko-fpga101-picosoc) | [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) | Verilog, C | MIT (repo LICENSE); z_picorv32.v ISC; MicroPython… | iCE40 | 4 |
 | [Hazard3 RV32IMAC core](#core-wren6991-hazard3) | [wren6991__hazard3](https://github.com/Wren6991/Hazard3) | Verilog | Apache-2.0 | any | 1 |
 | [KianV RV32IMA+Sv32 core (Linux-capable)](#core-kianv-sv32-core) | [splinedrive__kianriscv](https://github.com/splinedrive/kianRiscV) | Verilog | Apache-2.0 | any | 0 |
 | [LUNA-SoC VexRiscv SoC framework (Moondancer's CPU)](#core-luna-soc-vexriscv-cynthion) | [greatscottgadgets__luna-soc](https://github.com/greatscottgadgets/luna-soc) | Python (Amaranth), Verilog… | BSD-3-Clause | any | 1 |
 | [NEORV32 RV32 core (VHDL)](#core-stnolting-neorv32) | [stnolting__neorv32](https://github.com/stnolting/neorv32) | VHDL (+ generated Verilog wrapper in… | BSD-3-Clause | any | 0 |
-| [VexRiscv (SpinalHDL-generated Verilog)](#core-rschlaikjer-vexriscv) | [rschlaikjer__fpga-3-softcores](https://github.com/rschlaikjer/fpga-3-softcores) | Verilog (SpinalHDL-generated) | MIT (upstream VexRiscv/SpinalHDL project; repo… | any | 17 |
+| [VexRiscv (SpinalHDL-generated Verilog)](#core-rschlaikjer-vexriscv) | [rschlaikjer__fpga-3-softcores](https://github.com/rschlaikjer/fpga-3-softcores) | Verilog (SpinalHDL-generated) | MIT (upstream VexRiscv/SpinalHDL project; repo… | any | 19 |
+| [Vernier-RV32 RV32IMA Linux-capable Wishbone SoC](#core-vernier-rv32-linux-soc) | [aravindrajeshkanna__vernier-rv32](https://github.com/AravindRajeshkanna/vernier-rv32) | Verilog | Apache-2.0 WITH SHL-2.1 | ECP5 | 3 |
 
 ## Cores
 
@@ -41,24 +42,24 @@ Single-file RV32I(MC) core, board- and vendor-agnostic, the most-reused RISC-V c
 
 Full review: [yosyshq__picorv32](../projects/yosyshq__picorv32.md).
 
-**Used by 26 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 35 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [badgeteam__mch2022-firmware-ice40](https://github.com/badgeteam/mch2022-firmware-ice40) (instantiates [`projects/selftest/rtl/picorv32.v`](https://github.com/badgeteam/mch2022-firmware-ice40/blob/ce6473addcf6066cada7d80d8ba352f52173d01d/projects/selftest/rtl/picorv32.v))
+- [cbalint13__e-verest](https://github.com/cbalint13/e-verest) (instantiates [`utils/test-firmware/rtl/firmsoc.v`](https://github.com/cbalint13/e-verest/blob/a976e3954ca5e0f3b1bffefa94bc48f2084eb321/utils/test-firmware/rtl/firmsoc.v))
 - [cliffordwolf__icotools](https://github.com/cliffordwolf/icotools) (instantiates [`icosoc/common/picorv32.v`](https://github.com/cliffordwolf/icotools/blob/9c6185bad15323e5982b68e60923aaea22b074d4/icosoc/common/picorv32.v))
 - [dan-rodrigues__icestation-32](https://github.com/dan-rodrigues/icestation-32) (instantiates [`hardware/ics32.v`](https://github.com/dan-rodrigues/icestation-32/blob/55214d79f74a547dedb54f99cb2fad431b7ac277/hardware/ics32.v))
 - [emard__had2019-playground](https://github.com/emard/had2019-playground) (instantiates [`projects/bootloader/rtl/picorv32.v`](https://github.com/emard/had2019-playground/blob/0723f2a536b20f26ec1b2d5cf1dcc2b5355b6808/projects/bootloader/rtl/picorv32.v))
+- [emard__prjtrellis-picorv32](https://github.com/emard/prjtrellis-picorv32) (instantiates [`attosoc.v`](https://github.com/emard/prjtrellis-picorv32/blob/688a271984682debadec135d94a4a4bfd1213007/attosoc.v))
 - [emeb__up5k_osc](https://github.com/emeb/up5k_osc) (instantiates [`gateware/riscv/src/system.v`](https://github.com/emeb/up5k_osc/blob/a24453f385d57726643c7c1ee87937a842b78f8d/gateware/riscv/src/system.v))
 - [evansm7__arcdvi](https://github.com/evansm7/ArcDVI) (instantiates [`external-src/picorv32.v`](https://github.com/evansm7/ArcDVI/blob/6640691c6862ca8949a7f2bb37b2ce00c18f90ab/external-src/picorv32.v))
 - [gtjennings1__hyperbus](https://github.com/gtjennings1/HyperBUS) (instantiates [`riscv32/hardware/picosoc.v`](https://github.com/gtjennings1/HyperBUS/blob/37bf73d0f5f7884d007b5a20566508a292a3c11c/riscv32/hardware/picosoc.v))
 - [icebreaker-fpga__icetwang](https://codeberg.org/icebreaker-fpga/icetwang) (instantiates [`soc/ice-twang/rtl/picorv32.v`](https://codeberg.org/icebreaker-fpga/icetwang/src/commit/a4915ff538be621d8cab4a9d82c555ee8627e0c3/soc/ice-twang/rtl/picorv32.v))
+- [kelu124__lit3rick](https://github.com/kelu124/lit3rick) (instantiates [`micropython/source/picosoc.v`](https://github.com/kelu124/lit3rick/blob/ca4ad983046943fae0694a609154839e8c051283/micropython/source/picosoc.v))
 - [lawrie__ulx3s_examples](https://github.com/lawrie/ulx3s_examples) (instantiates [`hdmi/menu/attosoc.v`](https://github.com/lawrie/ulx3s_examples/blob/b6ff00099265401fef4843e4e89c2ac54254c95f/hdmi/menu/attosoc.v))
 - [lawrie__ulx4m_examples](https://github.com/lawrie/ulx4m_examples) (instantiates [`hdmi/menu/attosoc.v`](https://github.com/lawrie/ulx4m_examples/blob/415ee5309545da06b1bda7bfe7ec3a1c65a5376c/hdmi/menu/attosoc.v))
 - [machdyne__zeitlos](https://github.com/machdyne/zeitlos) (instantiates [`rtl/cpu/picorv32/picorv32.v`](https://github.com/machdyne/zeitlos/blob/a7e7e85ee0ad1fd0cfff4129e24b2aa528d444e8/rtl/cpu/picorv32/picorv32.v))
-- [mkvenkit__learn_fpga](https://github.com/mkvenkit/learn_fpga) (instantiates [`ice40up5k/picosoc_gpio/picosoc.v`](https://github.com/mkvenkit/learn_fpga/blob/b4784c67b83344f7b2c4b01f3f8bf345c9c54faf/ice40up5k/picosoc_gpio/picosoc.v))
-- [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) (instantiates [`tutorials/12-RiscV/picosoc.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/picosoc.v))
-- [nklabs__libnklabs-ulx3s](https://github.com/nklabs/libnklabs-ulx3s) (instantiates [`rtl/picorv32.v`](https://github.com/nklabs/libnklabs-ulx3s/blob/6b6a6b2c50cff5415666ab0a4351a33f036c1761/rtl/picorv32.v))
-- [nullobject__riscv-ulx3s](https://github.com/nullobject/riscv-ulx3s) (instantiates [`hdl/picorv32.v`](https://github.com/nullobject/riscv-ulx3s/blob/f344cef2a29b795cfd3ef4596277d61df9954ab9/hdl/picorv32.v))
-- … and 11 more (see `data/core_usage.json`)
+- [markus-zzz__hyperram-test](https://github.com/markus-zzz/hyperram-test) (instantiates [`rtl/picorv32.v`](https://github.com/markus-zzz/hyperram-test/blob/e830db35565d37d3df2477f7ea6b4cddbb1d34b2/rtl/picorv32.v))
+- … and 20 more (see `data/core_usage.json`)
 
 ### f32c RISC-V/MIPS-compatible core {#core-f32c-core}
 
@@ -96,9 +97,10 @@ PicoRV32 PicoSoC for the UP5K badge: 128 KB SPRAM main memory, XIP flash, UART, 
 
 Full review: [mmicko__fpga101-workshop](../projects/mmicko__fpga101-workshop.md).
 
-**Used by 3 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 4 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [daveshah1__up5k-demos](https://github.com/daveshah1/up5k-demos) (instantiates [`nes/cart_mem.v`](https://github.com/daveshah1/up5k-demos/blob/d85f0516f013a6a026946afc386196b1b2ac1e4e/nes/cart_mem.v))
+- [kelu124__lit3rick](https://github.com/kelu124/lit3rick) (instantiates [`micropython/source/picosoc.v`](https://github.com/kelu124/lit3rick/blob/ca4ad983046943fae0694a609154839e8c051283/micropython/source/picosoc.v))
 - [wifiboy__ok-ice40pro](https://github.com/WiFiBoy/OK-iCE40Pro) (instantiates [`ok-nes-vga-src/cart_mem.v`](https://github.com/WiFiBoy/OK-iCE40Pro/blob/01c99298f8b059da09a72dd4b3286d9b0a96fe95/ok-nes-vga-src/cart_mem.v))
 - [wuxx__icesugar](https://github.com/wuxx/icesugar) (instantiates [`src/advanced/up5k-demos/nes/cart_mem.v`](https://github.com/wuxx/icesugar/blob/1ebe71bf448e33a1bccfa2db6730d59eafb6c390/src/advanced/up5k-demos/nes/cart_mem.v))
 
@@ -190,11 +192,13 @@ Vendored single-file Verilog output of a VexRiscv RV32 configuration, wired to a
 
 **On ULX3S:** Regenerate with GenVexRiscv.scala for a different pipeline/extension config; the checked-in .v is a fixed snapshot.
 
-**Used by 17 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 19 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [antoinevg__cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials) (instantiates [`examples/soc/top.py`](https://github.com/antoinevg/cynthion-tutorials/blob/8b711adb4c1c1495f7bd815239b52e1d789d4d91/examples/soc/top.py))
 - [badgeteam__mch2022-firmware-ice40](https://github.com/badgeteam/mch2022-firmware-ice40) (instantiates [`projects/riscv_doom/rtl/top.v`](https://github.com/badgeteam/mch2022-firmware-ice40/blob/ce6473addcf6066cada7d80d8ba352f52173d01d/projects/riscv_doom/rtl/top.v))
+- [chipflow__example-socs](https://github.com/ChipFlow/example-socs) (instantiates [`my_design/design.py`](https://github.com/ChipFlow/example-socs/blob/e019daedd1a775735ff120363267046830c08edc/my_design/design.py))
 - [dan-rodrigues__icestation-32](https://github.com/dan-rodrigues/icestation-32) (instantiates [`hardware/vexriscv/vexriscv_shared_bus.v`](https://github.com/dan-rodrigues/icestation-32/blob/55214d79f74a547dedb54f99cb2fad431b7ac277/hardware/vexriscv/vexriscv_shared_bus.v))
+- [google__cfu-playground](https://github.com/google/CFU-Playground) (instantiates [`soc/hps_soc.py`](https://github.com/google/CFU-Playground/blob/7f8ec4147b39db98534f8a10f9ddb1c26aca5648/soc/hps_soc.py))
 - [greatscottgadgets__cynthion](https://github.com/greatscottgadgets/cynthion) (instantiates [`cynthion/python/src/gateware/facedancer/top.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/src/gateware/facedancer/top.py))
 - [greatscottgadgets__luna-soc](https://github.com/greatscottgadgets/luna-soc) (instantiates [`examples/hello-rust/top.py`](https://github.com/greatscottgadgets/luna-soc/blob/7fa1cc16ddbaf8608efa515efc7f4ef32454299c/examples/hello-rust/top.py))
 - [hanseo03__ulx3s-vexriscv-soc](https://github.com/hanseo03/ulx3s-vexriscv-soc) (instantiates [`GenMyVexRiscv.scala`](https://github.com/hanseo03/ulx3s-vexriscv-soc/blob/29b4f43f3b5b74bf2ccac97ed8d64687455fd2e1/GenMyVexRiscv.scala))
@@ -205,11 +209,31 @@ Vendored single-file Verilog output of a VexRiscv RV32 configuration, wired to a
 - [smunaut__mch2022-ice40](https://github.com/smunaut/mch2022-ice40) (instantiates [`projects/riscv_doom/rtl/top.v`](https://github.com/smunaut/mch2022-ice40/blob/52e220eec7f833bfa6237bf227cd4795ddbdfe0a/projects/riscv_doom/rtl/top.v))
 - [spinalhdl__saxonsoc](https://github.com/SpinalHDL/SaxonSoc) (instantiates [`hardware/deprecated/ice40up5kbevn/Ice40up5kbevnNoXip.scala`](https://github.com/SpinalHDL/SaxonSoc/blob/227b8686b734c7995b10ce81e193a01b010d2407/hardware/deprecated/ice40up5kbevn/Ice40up5kbevnNoXip.scala))
 - [thorkn__vexriscv-ulx3s-helloworld](https://github.com/ThorKn/vexriscv-ulx3s-helloworld) (instantiates [`vexriscv/src/main/scala/vexriscv/TestsWorkspace.scala`](https://github.com/ThorKn/vexriscv-ulx3s-helloworld/blob/9987abab9256daba513aff66a66298a32006abcd/vexriscv/src/main/scala/vexriscv/TestsWorkspace.scala))
-- [thorkn__vexriscv-ulx3s-simple-plugin](https://github.com/ThorKn/vexriscv-ulx3s-simple-plugin) (instantiates [`vexriscv/src/main/scala/vexriscv/VexRiscv.scala`](https://github.com/ThorKn/vexriscv-ulx3s-simple-plugin/blob/06606ec4dbfd5bf9748ac6fcbe3be3340cbe3469/vexriscv/src/main/scala/vexriscv/VexRiscv.scala))
-- [ulx3s__hazard3](https://github.com/ulx3s/Hazard3) (instantiates [`example_soc/third_party/LiteDRAM/generated-vexrisc/litedram_ulx4m_cpu.v`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/third_party/LiteDRAM/generated-vexrisc/litedram_ulx4m_cpu.v))
-- … and 2 more (see `data/core_usage.json`)
+- … and 4 more (see `data/core_usage.json`)
+
+### Vernier-RV32 RV32IMA Linux-capable Wishbone SoC {#core-vernier-rv32-linux-soc}
+
+5-stage RV32IMA + Zicsr pipeline with Sv32 MMU, CLINT/PLIC, boot ROM, UART, GPIO, SPI/SD and a Wishbone SoC fabric; boots mainline-style Linux to userspace on a real ULX3S LFE5U-85F (fpga/README.md logs SOC-TEST: PASS and a full Linux boot).
+
+| | |
+|---|---|
+| Repository | [aravindrajeshkanna__vernier-rv32](https://github.com/AravindRajeshkanna/vernier-rv32): Vernier-RV32: RV32IMA 5-stage pipelined SoC |
+| Files | [`rtl/top.v`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/rtl/top.v), [`rtl/soc/soc_top.v`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/rtl/soc/soc_top.v), [`fpga/ulx3s_top.v`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/fpga/ulx3s_top.v), [`fpga/constraints/ulx3s.lpf`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/fpga/constraints/ulx3s.lpf) |
+| Top module | `ulx3s_top` |
+| Language | Verilog |
+| License | Apache-2.0 WITH SHL-2.1 (Solderpad Hardware License 2.1; SPDX header in LICENSE) |
+| FPGA / primitives | ECP5: `EHXPLLL`, `ODDRX1F`, `ODDRX2F`, `DELAYG`, `DQSBUFM` |
+| Tests | sim/ and tests/ dirs, 65 tb/test files, verilator+iverilog (scan_tests.sh); riscv-tests + Spike co-simulation per README badges |
+
+**On ULX3S:** Real, hardware-verified pin-out (fpga/constraints/ulx3s.lpf, every pin placed); Fmax margin is thin (23-26 MHz vs the board's 25 MHz, 4/6 seeds close) - see fpga/README.md before reusing at full clock. Also has an ECPIX5 DDR3 variant (rtl/soc/ddr3_*_ecp5.v) and an unrun Xilinx/Vivado path.
+
+**Used by 3 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [danodus__xgsoc](https://github.com/danodus/xgsoc) (instantiates [`rtl/icepi-zero/icepi_zero_top.sv`](https://github.com/danodus/xgsoc/blob/8a4d9213e5ebe3abe42ba30fddb0bd4f9f4a843f/rtl/icepi-zero/icepi_zero_top.sv))
+- [evansm7__arcdvi](https://github.com/evansm7/ArcDVI) (instantiates [`tb/tb_top.v`](https://github.com/evansm7/ArcDVI/blob/6640691c6862ca8949a7f2bb37b2ce00c18f90ab/tb/tb_top.v))
+- [markus-zzz__myc64](https://github.com/markus-zzz/myc64) (instantiates [`rtl/myc64-soc/myc64-soc-top.v`](https://github.com/markus-zzz/myc64/blob/7ab3c5414caf193b0979b322d94e71cf6c8f8405/rtl/myc64-soc/myc64-soc-top.v))
 
 ## Other catalogued projects
 
-Catalogued repos tagged `soc-cpu` (134) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `soc-cpu` (173) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

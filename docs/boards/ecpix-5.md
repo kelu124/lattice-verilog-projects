@@ -17,7 +17,7 @@ ECP5-5G board with DDR3, RGMII Ethernet, HDMI (IT6613), a SATA port driven by Li
 | FPGA | LFE5UM5G-45F or LFE5UM5G-85F (ECP5-5G, with SERDES), BG554 |
 | Evidence | LiteX / Amaranth board files, see the TinyFPGA EX / ECPIX-5 / Cynthion survey |
 | Clock | 100 MHz (board files) |
-| Catalogued repos | 10 |
+| Catalogued repos | 12 |
 
 *The description is a short summary; FPGA facts come from the catalogue rows cited above.*
 
@@ -27,7 +27,10 @@ Most-copied distinct LPFs for this board in the cloned repos (from the [LPF cata
 
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
+| [`ecpix5.lpf`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/fpga/constraints/ecpix5.lpf) (aravindrajeshkanna__vernier-rv32) | unknown | 1 | ftdi-uart, led |
 | [`ecpix5.lpf`](https://github.com/sylefeb/Silice/blob/620487d6b83035dd98299734c8c8fccf8f636005/frameworks/boards/ecpix5/ecpix5.lpf) (sylefeb__silice) | unknown | 1 | ftdi-uart, led |
+| [`ecpix5_ddr3.lpf`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/fpga/constraints/ecpix5_ddr3.lpf) (aravindrajeshkanna__vernier-rv32) | unknown | 1 | ddr3 |
+| [`ecpix5_ddr3_probe.lpf`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/fpga/constraints/ecpix5_ddr3_probe.lpf) (aravindrajeshkanna__vernier-rv32) | unknown | 1 | ddr3 |
 | [`fpga.lpf`](https://github.com/ultraembedded/core_ddr3_controller/blob/a03492a6000ca0185c615060b171bda64806a7bb/examples/ecpix_ecp5/fpga.lpf) (ultraembedded__core_ddr3_controller) | unknown | 1 | ddr3 |
 | [`pinmap.lpf`](https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/ecpix5/pinmap.lpf) (apfaudio__eurorack-pmod) | unknown | 1 | ftdi-uart, gpio-header, i2c |
 
@@ -43,12 +46,16 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
 | Lightweight AXI-4 DDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | ultraembedded__core_ddr3_controller |
 | Lightweight DDR3 AXI4 memory controller (ECP5) | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | ultraembedded__orangecrab |
+| UberDDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | remyciterin__3driscv |
 | glasgow I2C core (Amaranth) | [i2c](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/i2c.md) | glasgowembedded__glasgow |
 | ORBTrace SWD/JTAG debug + parallel TRACE core (legacy plain-Verilog flow) | [jtag-debug](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/jtag-debug.md) | orbcode__orbtrace |
+| Vernier-RV32 RV32IMA Linux-capable Wishbone SoC | [linux](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/linux.md) | aravindrajeshkanna__vernier-rv32 |
 | ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
 | LiteICLink ECP5 SERDES (DCUA) wrapper | [serdes-links](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/serdes-links.md) | enjoy-digital__liteiclink |
 | LiteSATA ECP5 SATA PHY + core | [serdes-links](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/serdes-links.md) | enjoy-digital__litesata |
 | katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack | [serdes-links](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/serdes-links.md) | zyp__katsuo-pcie |
+| LAYR_AUDIO SID6581 sound chip core | [sound-chips](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sound-chips.md) | thorkn__layr_audio |
+| SPI master (Bus Pirate NextGen Ultra) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | dangerousprototypes__buspirateultrahdl |
 | glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | glasgowembedded__glasgow |
 | hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
 
@@ -56,9 +63,11 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 - [antoinevg__cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials): cynthion-tutorials: Amaranth tutorials for Cynthion/ECPIX-5
 - [apfaudio__eurorack-pmod](https://github.com/apfaudio/eurorack-pmod): Eurorack PMOD: AK4619 audio-codec PMOD gateware
+- [aravindrajeshkanna__vernier-rv32](https://github.com/AravindRajeshkanna/vernier-rv32): Vernier-RV32: RV32IMA 5-stage pipelined SoC
 - [enjoy-digital__liteiclink](https://github.com/enjoy-digital/liteiclink): LiteICLink: Migen/LiteX inter-chip link cores - generic ECP5 SerDes
 - [enjoy-digital__litesata](https://github.com/enjoy-digital/litesata): LiteSATA: Migen/LiteX SATA host core
 - [greatscottgadgets__luna](https://github.com/greatscottgadgets/luna): LUNA: Amaranth USB 2.0/3.0 gateware framework
+- [litex-hub__litex-boards](https://github.com/litex-hub/litex-boards): LiteX board-support collection: Python platform + target definitions
 - [maxhpc__ecpix-5](https://github.com/maxhpc/ecpix-5): ECPIX-5 gateware collection: LEDs, UART, DDR3 top
 - [openconcepts-ar__accel2d](https://github.com/openconcepts-ar/accel2d): accel2d: C-to-Verilog
 - [orbcode__orbtrace](https://github.com/orbcode/orbtrace): ORBTrace: Cortex-M SWD/JTAG debug + parallel TRACE probe gateware

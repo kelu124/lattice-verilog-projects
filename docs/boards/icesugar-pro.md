@@ -17,7 +17,7 @@ SODIMM-format ECP5 module with SDRAM and HDMI on the carrier.
 | FPGA | LFE5U-25F, CABGA256 |
 | Evidence | catalogue rows (wuxx__icesugar-pro, mebner86__icesugar-pro_sound2fft) |
 | Clock | unknown |
-| Catalogued repos | 2 |
+| Catalogued repos | 3 |
 
 *The description is a short summary; FPGA facts come from the catalogue rows cited above.*
 
@@ -49,11 +49,15 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | I2S RX/TX + PDM/CIC mic front-end (sound2fft) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | mebner86__icesugar-pro_sound2fft |
 | VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
 | 256-point radix-2 FFT core | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | mebner86__icesugar-pro_sound2fft |
+| Amaranth radix-2 fixed-point FFT (FFT/Butterfly/TwiddleFactors) | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | greatscottgadgets__amalthea |
+| Gage1999/fpga-sdr-receiver 256-pt iterative radix-2 FFT | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | gage1999__fpga-sdr-receiver |
 | sound2fft TMDS encoder + ECP5 DVI serializer | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | mebner86__icesugar-pro_sound2fft |
 | vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
+| Superheterodyne AM/FM receive chain with per-block testbenches | [radio](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/radio.md) | jamesrosssharp__ulx3s_mixer_pcb |
 
 ## Projects targeting this board
 
+- [gage1999__fpga-sdr-receiver](https://github.com/Gage1999/fpga-sdr-receiver): fpga-sdr-receiver: ECP5 iCESugar-Pro SDR
 - [mebner86__icesugar-pro_sound2fft](https://github.com/mebner86/icesugar-pro_sound2fft): iCESugar-Pro sound2fft: real-time audio spectrum analyzer
 - [wuxx__icesugar-pro](https://github.com/wuxx/icesugar-pro): iCESugar-pro: vendor example collection
 {% endraw %}

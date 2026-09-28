@@ -1,7 +1,7 @@
 ---
 title: "zipcpu__sdspi"
 parent: "Project reviews"
-nav_order: 19
+nav_order: 20
 ---
 <!-- Generated from data/projects/zipcpu__sdspi.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

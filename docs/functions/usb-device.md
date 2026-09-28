@@ -12,10 +12,10 @@ USB full-speed device stacks and CDC-ACM serial on the US2 port.
 
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
-| [no2usb-derived ECP5 USB FS device core (had2019 bootloader)](#core-emard-had2019-usb-device) ★ | [emard__had2019-playground](https://github.com/emard/had2019-playground) | Verilog | LGPL-3.0-or-later | ECP5 | 4 |
+| [no2usb-derived ECP5 USB FS device core (had2019 bootloader)](#core-emard-had2019-usb-device) ★ | [emard__had2019-playground](https://github.com/emard/had2019-playground) | Verilog | LGPL-3.0-or-later | ECP5 | 6 |
 | [circuit-killer USB FS serial device (VHDL, ULX3S-built)](#core-circuit-killer-usbserial) | [circuit-killer__fpga-usbserial](https://github.com/Circuit-killer/fpga-usbserial) | VHDL | GPL-2.0 (usb_serial/COPYING) | ECP5 | 2 |
 | [f32c USB CDC-ACM device + soft PHY](#core-f32c-usb-serial) | [f32c__f32c](https://github.com/f32c/f32c) | VHDL | BSD-2-Clause | any | 2 |
-| [hdl4fpga USB 1.1 device core](#core-hdl4fpga-usbdev) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE, Miguel Angel Sagreras) | any | 11 |
+| [hdl4fpga USB 1.1 device core](#core-hdl4fpga-usbdev) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE, Miguel Angel Sagreras) | any | 13 |
 | [ulixxe USB CDC-ACM device core](#core-ulixxe-usb-cdc) | [ulixxe__usb_cdc](https://github.com/ulixxe/usb_cdc) | Verilog | MIT (LICENSE) | any | 2 |
 | [ulx3s-misc USB CDC-ACM device (VHDL)](#core-ulx3s-misc-usbcdc) | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | VHDL | GPL-2.0-or-later | any | 0 |
 
@@ -37,9 +37,11 @@ Early ECP5-ported snapshot of Sylvain Munaut's no2usb: full-speed USB device MAC
 
 **On ULX3S:** Runs at 48 MHz from a 25->48MHz EHXPLLL (sysmgr.v); wire to usb_fpga_bd_dp/dn + usb_fpga_pu_dp on US2.
 
-**Used by 4 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 6 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [icebreaker-fpga__icetwang](https://codeberg.org/icebreaker-fpga/icetwang) (instantiates [`soc/cores/no2usb/rtl/usb.v`](https://codeberg.org/icebreaker-fpga/icetwang/src/commit/a4915ff538be621d8cab4a9d82c555ee8627e0c3/soc/cores/no2usb/rtl/usb.v))
+- [no2fpga__no2bootloader](https://github.com/no2fpga/no2bootloader) (instantiates [`gateware/cores/no2usb/rtl/usb.v`](https://github.com/no2fpga/no2bootloader/blob/37dda02fba084f85f6da31ee228d3bbabbb91add/gateware/cores/no2usb/rtl/usb.v))
+- [smunaut__had2019-playground](https://github.com/smunaut/had2019-playground) (instantiates [`cores/usb/rtl/usb.v`](https://github.com/smunaut/had2019-playground/blob/9bd9aa38ae1e77eaa9e8a7870beefb1a344baec7/cores/usb/rtl/usb.v))
 - [smunaut__ice40-playground](https://github.com/smunaut/ice40-playground) (instantiates [`cores/no2usb/rtl/usb.v`](https://github.com/smunaut/ice40-playground/blob/d2fa0050129c14a7fc42f64f115366f6f2a51669/cores/no2usb/rtl/usb.v))
 - [spritetm__hadbadge2019_fpgasoc](https://github.com/Spritetm/hadbadge2019_fpgasoc) (instantiates [`soc/usb/usb.v`](https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/soc/usb/usb.v))
 - [ulx3s__hazard3-doom](https://github.com/ulx3s/Hazard3-Doom) (instantiates [`bootloader/cores/usb/rtl/usb.v`](https://github.com/ulx3s/Hazard3-Doom/blob/42621599f78f7ce3bd51fcc6b95a56ba83e31279/bootloader/cores/usb/rtl/usb.v))
@@ -106,10 +108,12 @@ Portable USB 1.1 device core with no vendor primitives, switchable device/host r
 
 Full review: [hdl4fpga__hdl4fpga](../projects/hdl4fpga__hdl4fpga.md).
 
-**Used by 11 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 13 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [antoinevg__cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials) (instantiates [`examples/soc/top.py`](https://github.com/antoinevg/cynthion-tutorials/blob/8b711adb4c1c1495f7bd815239b52e1d789d4d91/examples/soc/top.py))
 - [apfaudio__guh](https://github.com/apfaudio/guh) (instantiates [`guh/util/test_devices.py`](https://github.com/apfaudio/guh/blob/9aa0fd3511490674bdd038760abc8729f9e0b023/guh/util/test_devices.py))
+- [emeb__orangecrab-litex-adc](https://github.com/emeb/OrangeCrab-Litex-ADC) (instantiates [`hw/deps/valentyusb/sim/test-cdc-eptri.py`](https://github.com/emeb/OrangeCrab-Litex-ADC/blob/6f3d6192d602dcf89b06d04617b87bc1e25ffa54/hw/deps/valentyusb/sim/test-cdc-eptri.py))
+- [greatscottgadgets__amalthea](https://github.com/greatscottgadgets/amalthea) (instantiates [`amalthea/gateware/device.py`](https://github.com/greatscottgadgets/amalthea/blob/2d43c7706e2fc2aa581dd58e6348c42cdaf8f230/amalthea/gateware/device.py))
 - [greatscottgadgets__cynthion](https://github.com/greatscottgadgets/cynthion) (instantiates [`cynthion/python/examples/tutorials/gateware-usb-device-01.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/examples/tutorials/gateware-usb-device-01.py))
 - [greatscottgadgets__cynthion-uac](https://github.com/greatscottgadgets/cynthion-uac) (instantiates [`uac/uac2.py`](https://github.com/greatscottgadgets/cynthion-uac/blob/0dfc4186182b6c9c2bbaa9199f88a6d196306a7d/uac/uac2.py))
 - [greatscottgadgets__luna](https://github.com/greatscottgadgets/luna) (instantiates [`applets/clear_endpoint_halt_test.py`](https://github.com/greatscottgadgets/luna/blob/82a8f733296603b70ba56755206e13092609c6f0/applets/clear_endpoint_halt_test.py))
@@ -163,5 +167,5 @@ Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
 ## Other catalogued projects
 
-Catalogued repos tagged `usb-device` (31) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `usb-device` (38) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

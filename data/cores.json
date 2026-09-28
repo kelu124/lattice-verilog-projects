@@ -483,6 +483,36 @@
    }
   },
   {
+   "id": "fm4dd-pmod-charlcd-hd44780",
+   "name": "PMOD CharLCD HD44780 driver (debounce + transmit)",
+   "functions": [
+    "spi-display"
+   ],
+   "rank": "alternative",
+   "repo": "fm4dd__pmod-charlcd",
+   "files": [
+    "examples/ulx3s/display/display.v",
+    "examples/ulx3s/display/lcd_transmit.v",
+    "examples/ulx3s/display/debounce.v"
+   ],
+   "top": "display",
+   "language": "Verilog",
+   "license": "none found for the RTL (repo LICENSE is CERN-OHL v1.2 and explicitly states it 'does not extend to software, firmware, or code')",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Small state-machine driver that sends 8-bit command/char bytes to an HD44780-compatible character LCD over a parallel PMOD bus (8 data lines + EN/RS/RW), with button-debounce demo logic.",
+   "ulx3s_notes": "Not SPI - this is a parallel HD44780 interface (matches the pmod-charlcd hardware's PMOD wiring), reused verbatim from the same repo's IceBreaker/GateMate examples; ulx3s.lpf present, no vendor primitives, portable as-is.",
+   "tests": "none found (no _tb.v for the ulx3s/icebreaker display example in this clone; icebreaker Makefile's `test` target references a missing testbench)",
+   "usage_patterns": {
+    "files": [
+     "lcd_transmit.v"
+    ],
+    "modules": [
+     "lcd_transmit"
+    ]
+   }
+  },
+  {
    "id": "rastericer-display-spi",
    "name": "RasteriCEr SPI display controller",
    "functions": [
@@ -1230,7 +1260,7 @@
    "fpga": "any",
    "primitives": [],
    "summary": "DWORD-granularity HyperRAM interface (targets Cypress S27KL0641), optimized for RTL portability over bandwidth; DRAM clock is fabric-clock/4. Vendored into the pifive-cpu SoC but its instance is commented out there.",
-   "ulx3s_notes": "Portable Verilog-2001, no vendor primitives; needs its own top-level pin mapping and has not been exercised end-to-end in the parent project (instantiation commented out).",
+   "ulx3s_notes": "Portable Verilog-2001, no vendor primitives; needs its own top-level pin mapping and has not been exercised end-to-end in the parent project (instantiation commented out). Byte-identical copy runs on ULX3S in markus-zzz__hyperram-test (syn/build-ulx3s.sh, HyperRAM add-on).",
    "tests": "none found",
    "usage_patterns": {
     "files": [
@@ -1786,6 +1816,30 @@
    }
   },
   {
+   "id": "lit3rick-opencores-spi-slave",
+   "name": "OpenCores SPI slave (Santhosh G)",
+   "functions": [
+    "spi"
+   ],
+   "rank": "alternative",
+   "repo": "kelu124__lit3rick",
+   "files": [
+    "verilog/src/rtl/spi_slave.v"
+   ],
+   "top": "spi_slave",
+   "language": "Verilog",
+   "license": "unknown (no SPDX header; file credits OpenCores project 'spi_verilog_master_slave', author Santhosh G <santhg@opencores.org>; opencores.org projects are commonly LGPL but that is not stated in this file)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Classic OpenCores SPI-slave shift register (configurable bit order via mlb, tri-state output enable via ten), used in lit3rick to expose the acquired signal/FFT RAM over SPI to a Raspberry Pi host.",
+   "ulx3s_notes": "No vendor primitives; a generic byte-wide SPI slave, drop-in portable as-is.",
+   "tests": "none found (exercised indirectly inside verilog/src/tb/tb_top.sv but no dedicated spi_slave testbench)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
    "id": "buspirateultrahdl-spimaster",
    "name": "SPI master (Bus Pirate NextGen Ultra)",
    "functions": [
@@ -1898,6 +1952,35 @@
      "i2c.py"
     ],
     "modules": []
+   }
+  },
+  {
+   "id": "lit3rick-i2c-axil-master",
+   "name": "I2C-slave-to-AXI-Lite-master bridge (verilog-i2c integration)",
+   "functions": [
+    "i2c"
+   ],
+   "rank": "alternative",
+   "repo": "kelu124__lit3rick",
+   "files": [
+    "verilog/src/rtl/i2c_slave_axil_master.v",
+    "verilog/src/rtl/i2c_slave.v"
+   ],
+   "top": "i2c_slave_axil_master",
+   "language": "Verilog",
+   "license": "MIT ((c) 2017/2019 Alex Forencich, in-file header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Alex Forencich's verilog-i2c i2c_slave core wrapped as an AXI-Lite master, letting an external I2C host (Raspberry Pi) read/write lit3rick's register file and signal/FFT RAM directly; a second, near-duplicate wrapper ships alongside as i2c_wrapper.v.",
+   "ulx3s_notes": "Same upstream library as this collection's 'best' i2c core (pifive-verilog-i2c, which shows the Wishbone wrappers); this repo instead shows the AXI-Lite-master wrapper variant. No vendor primitives, ECP5-portable as-is.",
+   "tests": "exercised by verilog/src/tb/tb_top.sv (bus-functional model verilog/src/tb/i2c_if.sv) across all test_* tasks; no standalone unit test for this file",
+   "usage_patterns": {
+    "files": [
+     "i2c_slave_axil_master.v"
+    ],
+    "modules": [
+     "i2c_slave_axil_master"
+    ]
    }
   },
   {
@@ -2376,6 +2459,36 @@
    }
   },
   {
+   "id": "foboot-dfu-bootloader",
+   "name": "Fomu foboot DFU bootloader (LiteX/VexRiscv + ValentyUSB eptri)",
+   "functions": [
+    "bootloader-dfu"
+   ],
+   "rank": "alternative",
+   "repo": "im-tomu__foboot",
+   "files": [
+    "hw/rtl/VexRiscv_Fomu.v",
+    "hw/rtl/spimemio.v",
+    "hw/deps/valentyusb/valentyusb/usbcore"
+   ],
+   "top": "VexRiscv",
+   "language": "Verilog (SpinalHDL-generated VexRiscv core), Python/Migen (SoC + USB peripheral, hw/*.py), C (sw/)",
+   "license": "foboot itself Apache-2.0 (LICENSE); ValentyUSB submodule BSD-3-Clause (hw/deps/valentyusb/LICENSE)",
+   "fpga": "iCE40",
+   "primitives": [],
+   "summary": "LiteX/Migen-generated SoC on a VexRiscv CPU with ValentyUSB's eptri (TriEndpointInterface) USB device peripheral providing the DFU class in a single alt-0 interface; boots the flashed user image after a timeout unless the two Fomu touch pads are bridged to force staying in DFU.",
+   "ulx3s_notes": "Architecturally unlike every other bootloader-dfu entry here: a LiteX/Migen SoC generated by Python, not hand-written RTL, needing the LiteX build flow rather than a plain yosys+nextpnr Makefile. Its migen/litex/litedram/litex-boards/spibone/compiler_rt submodules were deliberately not fetched in this clone (only hw/deps/valentyusb was), so it cannot be rebuilt from this clone.",
+   "tests": "hw/deps/valentyusb/sim (cocotb, test-eptri.py/cocotb-eptri.py): self-checking, raises TestFailure/uses assertEqual; none found for the SoC or bootloader firmware itself",
+   "usage_patterns": {
+    "files": [
+     "eptri.py"
+    ],
+    "modules": [
+     "TriEndpointInterface"
+    ]
+   }
+  },
+  {
    "id": "hazard3-doom-dfu-bootloader",
    "name": "Hazard3-Doom vendored DFU bootloader (ULX4M-LD validated)",
    "functions": [
@@ -2401,6 +2514,73 @@
    "summary": "Self-contained fork of the had2019 bootloader (own mk/, cores/, no external Makefile deps), remapped buttons, validated on real ULX4M-LD v0.0.3 (LFE5UM-85F) hardware, with a byte-for-byte readback recovery procedure documented in README_ULX4M_BOOTLOADER.md.",
    "ulx3s_notes": "Prefer this copy over the emard original for a self-contained tree; same USER_BITSTREAM_ADDR/dfu_zones agreement rule applies.",
    "tests": "none found (same iverilog-compile-only sim rule as the original)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "tinydfu-bootloader-core",
+   "name": "Machdyne tinydfu-bootloader (ECP5, TinyFPGA-derived USB core)",
+   "functions": [
+    "bootloader-dfu"
+   ],
+   "rank": "alternative",
+   "repo": "machdyne__tinydfu-bootloader",
+   "files": [
+    "usb/usb_dfu_core.v",
+    "usb/usb_dfu_ctrl_ep.v",
+    "boards/lakritz/tinydfu_lakritz.v",
+    "boards/lakritz/boardinfo.vh"
+   ],
+   "top": "tinydfu_lakritz",
+   "language": "Verilog",
+   "license": "Apache-2.0 (LICENSE.txt)",
+   "fpga": "ECP5",
+   "primitives": [
+    "USRMCLK"
+   ],
+   "summary": "Per-board ECP5 DFU bootloader (Lakritz/Obst/Konfekt/etc.), always resident at flash 0 and auto-booting the user partition after a timer unless DFU activity intervenes. USB device core is a bit-banged full-speed PHY+SIE (usb_fs_*.v) plus usb_dfu_core.v, adapted by Lawrie Griffiths/Owen Kirby from Luke Valenti's original TinyFPGA bootloader core (per usb_dfu_core.v header) - a third, independent USB-device lineage distinct from no2usb and ValentyUSB.",
+   "ulx3s_notes": "Not ULX3S; fills the ECP5 gap in this list with a bootloader that is neither no2usb- nor ValentyUSB-derived. VID:PID 0x16d0:0x116d is per-board, hardcoded in each boards/<name>/boardinfo.vh (BOARD_VID/BOARD_PID localparams). Flash split varies by board: 1 MB boot/0x100000 user on kaugummi/klinge/konfekt/kopflos/minze/schoko, 256 KB boot/0x040000 user on lakritz and obst.",
+   "tests": "testbenches/i2c_master_tb.v only (unrelated I2C helper); no USB/DFU-core testbench found",
+   "usage_patterns": {
+    "files": [
+     "usb_dfu_core.v",
+     "usb_dfu_ctrl_ep.v"
+    ],
+    "modules": [
+     "usb_dfu_core"
+    ]
+   }
+  },
+  {
+   "id": "no2bootloader-dfu",
+   "name": "no2bootloader (Nitro) iCE40 UP5K DFU bootloader",
+   "functions": [
+    "bootloader-dfu"
+   ],
+   "rank": "alternative",
+   "repo": "no2fpga__no2bootloader",
+   "files": [
+    "gateware/ice40/rtl",
+    "gateware/cores/no2usb",
+    "firmware/fw_dfu.c"
+   ],
+   "top": "top",
+   "language": "Verilog, C",
+   "license": "HDL CERN-OHL-P-2.0 (own RTL in gateware/ice40/rtl and gateware/cores/no2usb, per LICENSE.md); this repo's firmware GPL-3.0-or-later (LICENSE.md); no2usb stack LGPL-3.0-or-later, MIT for the tinyusb-driver-reused parts (gateware/cores/no2usb/LICENSE.md)",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_PLL40_2F_CORE",
+    "SB_PLL40_2F_PAD",
+    "SB_IO",
+    "SB_WARMBOOT",
+    "SB_HFOSC",
+    "SB_GB"
+   ],
+   "summary": "Complete multi-board iCE40 UP5K DFU bootloader (PicoRV32 SoC + no2usb device core): alt 0 = iCE40 bitstream, alt 1 = RISC-V firmware; SB_WARMBOOT cycles between a boot stub (0x004000), the DFU image (0x040000) and two app images (0x080000/0x0c0000). Used by iCEBreaker-bitsy, reDIP-SID, icE1usb.",
+   "ulx3s_notes": "iCE40 UP5K only (SB_WARMBOOT/SB_PLL40_2F); no ECP5 port in this collection. gateware/build (no2build) submodule was deliberately not fetched here, so this clone cannot actually be synthesized or simulated.",
+   "tests": "gateware/ice40/sim/{top_tb.v,dfu_helper_tb.v} + cores/{no2usb,no2misc,no2ice40}/sim: iverilog compile only, no vvp run found in the Makefiles - waveform-only",
    "usage_patterns": {
     "files": [],
     "modules": []
@@ -2433,6 +2613,42 @@
     ],
     "modules": [
      "dfu_helper"
+    ]
+   }
+  },
+  {
+   "id": "tinyfpga-usb-bootloader",
+   "name": "TinyFPGA USB Bootloader (USB-serial-to-SPI-flash bridge)",
+   "functions": [
+    "bootloader-dfu"
+   ],
+   "rank": "alternative",
+   "repo": "tinyfpga__tinyfpga-bootloader",
+   "files": [
+    "common/usb_fs_rx.v",
+    "common/usb_fs_tx.v",
+    "common/usb_fs_pe.v",
+    "common/usb_serial_ctrl_ep.v",
+    "common/usb_spi_bridge_ep.v",
+    "common/tinyfpga_bootloader.v"
+   ],
+   "top": "tinyfpga_bootloader",
+   "language": "Verilog",
+   "license": "Apache-2.0 (LICENSE)",
+   "fpga": "iCE40 (also ported to ECP5 12F via Lattice Diamond in boards/TinyFPGA_EX, and to Xilinx Artix-7)",
+   "primitives": [],
+   "summary": "Full-speed USB device MAC/PHY presenting a virtual serial port bridged to SPI-flash read/write/erase commands, so a host programmer can reflash the FPGA's config/user images with no separate USB-JTAG chip; common/ core has no vendor primitives, only the per-board top does.",
+   "ulx3s_notes": "Not proven on ULX3S; the fielded ULX3S US2 DFU bootloader (had2019-dfu-bootloader) is unrelated (no2usb-derived). An older ULX3S bootloader, emard__tinyfpga-bootloader-ulx3s, was a direct fork of a 60MHz variant of this exact core.",
+   "tests": "self-checking (29 tests/*/test.v via iverilog, TAP-style asserts in expect_usb_ack() etc., tests/test.mk)",
+   "usage_patterns": {
+    "files": [
+     "usb_serial_ctrl_ep.v",
+     "usb_spi_bridge_ep.v",
+     "tinyfpga_bootloader.v"
+    ],
+    "modules": [
+     "usb_spi_bridge_ep",
+     "tinyfpga_bootloader"
     ]
    }
   },
@@ -2994,6 +3210,40 @@
    }
   },
   {
+   "id": "bonfire-jtagg-led-demo",
+   "name": "Bonfire ECP5 JTAGG bridge + MyHDL LED demo",
+   "functions": [
+    "jtag-debug"
+   ],
+   "rank": "alternative",
+   "repo": "bonfireprocessor__bonfire-ecp5-jtagg-led-demo",
+   "files": [
+    "fusesoc/vhdl/ecp5_jtagg_bridge.vhd",
+    "src/bonfire_ecp5_jtagg_led_demo/jtagg_interface.py",
+    "src/bonfire_ecp5_jtagg_led_demo/led_demo.py"
+   ],
+   "top": "ecp5_jtagg_bridge",
+   "language": "VHDL, Python (MyHDL)",
+   "license": "MIT (LICENSE, Bonfire Processor / Thomas Hornschuh 2017)",
+   "fpga": "ECP5",
+   "primitives": [
+    "JTAGG"
+   ],
+   "summary": "Static VHDL wrapper directly instantiating the ECP5 JTAGG primitive (JTAG USER1/2 data registers), driven by portable MyHDL logic that shifts a bit pattern into an LED register on JCE1/JSHIFT/JUPDATE.",
+   "ulx3s_notes": "fusesoc/fpga/ulx3s/{board.lpf,ulx3s_jtagg_led_top.vhdl} target LFE5U-85F-6BG381C directly; extracted from bonfireprocessor__bonfire-core's own ulx3s_jtagg FuseSoC target.",
+   "tests": "pytest, self-checking (tests/test_led_demo_logic.py runs a MyHDL behavioral sim and asserts the LED shift register matches the expected pattern)",
+   "usage_patterns": {
+    "files": [
+     "ecp5_jtagg_bridge.vhd",
+     "jtagg_interface.py"
+    ],
+    "modules": [
+     "ecp5_jtagg_bridge",
+     "Ecp5JtaggLedDemo"
+    ]
+   }
+  },
+  {
    "id": "cynthion-usb-analyzer",
    "name": "Cynthion USB analyzer (used by Packetry)",
    "functions": [
@@ -3303,6 +3553,34 @@
     "modules": [
      "max1112x_reader_shift",
      "max1112x_reader_array"
+    ]
+   }
+  },
+  {
+   "id": "lit3rick-ad9629-adc-receiver",
+   "name": "AD9629 12-bit parallel ADC capture (adc_receiver)",
+   "functions": [
+    "adc"
+   ],
+   "rank": "alternative",
+   "repo": "kelu124__lit3rick",
+   "files": [
+    "verilog/src/rtl/adc_receiver.v"
+   ],
+   "top": "adc_receiver",
+   "language": "Verilog",
+   "license": "GPL-3.0-or-later (repo Readme.md ## License; no per-file SPDX header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Captures a fixed 8192-sample burst from a 12-bit parallel ADC (AD9629BCPZ-65, up to 65 Msps) on a start pulse, subtracts the ADC's 2048 mid-scale DC offset, and emits sample_num/DOUT_vld plus a finish flag for a downstream RAM writer.",
+   "ulx3s_notes": "No vendor primitives; a plain free-running counter and register pipeline, easily retargeted to any parallel ADC by changing the ADC_D width and the 2048 offset constant.",
+   "tests": "exercised (not unit-tested standalone) by verilog/src/tb/tb_top.sv test_adc task through a behavioural AD9629 model, verilog/src/tb/ad9629.sv",
+   "usage_patterns": {
+    "files": [
+     "adc_receiver.v"
+    ],
+    "modules": [
+     "adc_receiver"
     ]
    }
   },
@@ -3811,6 +4089,35 @@
    }
   },
   {
+   "id": "layraudio-sid6581",
+   "name": "LAYR_AUDIO SID6581 sound chip core",
+   "functions": [
+    "sound-chips"
+   ],
+   "rank": "alternative",
+   "repo": "thorkn__layr_audio",
+   "files": [
+    "src/sid.v"
+   ],
+   "top": "sid",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Single-file behavioral port of the Commodore 64 SID (6581) sound chip (sid_voice, sdadc, filter submodules under top module `sid`), forked from CornN64/C64-SID-on-a-FPGA and given a real ULX3S ECP5-85F Makefile/lpf.",
+   "ulx3s_notes": "Pair with src/pll.v (25MHz->10MHz EHXPLLL wrapper, needs porting off ECP5) for the ULX3S build; drop-in on ULX3S per src/Makefile (CHIP=85k).",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "sid.v"
+    ],
+    "modules": [
+     "sid",
+     "sid6581_Bbehavioral"
+    ]
+   }
+  },
+  {
    "id": "daglem-redip-sid",
    "name": "SID (MOS 6581/8580) reimplementation, technology-independent",
    "functions": [
@@ -3911,6 +4218,34 @@
    }
   },
   {
+   "id": "amalthea-cordic-demod",
+   "name": "CORDICDemod I/Q amplitude/frequency/phase demodulator (Amalthea)",
+   "functions": [
+    "radio",
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "greatscottgadgets__amalthea",
+   "files": [
+    "amalthea/gateware/demod.py",
+    "amalthea/gateware/stream.py"
+   ],
+   "top": "CORDICDemod",
+   "language": "Python (Amaranth)",
+   "license": "BSD-3-Clause (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Pipelined multi-iteration CORDIC rotator that converts a streamed I/Q sample into amplitude, frequency and phase output streams; iteration count is parametrised (default 9), with a precomputed CORDIC angle table and gain correction.",
+   "ulx3s_notes": "Pure Amaranth, no vendor primitives, feeds from an IQStream (amalthea/gateware/stream.py); pairs with amalthea's radio.py IQReceiver (which does use ECP5-only DELAYG/IDDRX1F for the AT86RF215 link, not needed if you supply I/Q another way).",
+   "tests": "none found (no test_demod.py in tests/; only test_complex.py, test_fft.py, test_fixed_point.py exist)",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "CORDICDemod"
+    ]
+   }
+  },
+  {
    "id": "nicocavallu-dds-lo",
    "name": "DDS local oscillator",
    "functions": [
@@ -3979,6 +4314,85 @@
    }
   },
   {
+   "id": "mehrdadh-lora-chirp",
+   "name": "LoRa chirp-spread-spectrum modulator",
+   "functions": [
+    "radio",
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "mehrdadh__lora-modulator",
+   "files": [
+    "source/rtl/loRaModulator.v",
+    "source/rtl/chirpGenerator.v",
+    "source/rtl/accInc.v",
+    "source/rtl/phaseInc.v",
+    "source/rtl/initialPhase.v",
+    "source/rtl/sinIdeal.v",
+    "source/rtl/cosIdeal.v"
+   ],
+   "top": "loraModulator",
+   "language": "Verilog",
+   "license": "NC-AGPL-3.0 (custom Non-Commercial AGPL, LICENSE) - not an OSI/permissive license",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Parametric LoRa chirp generator: phase accumulator + sin/cos LUT produce upchirp/downchirp/quarter-downchirp I/Q symbols for selectable BW (31.25-500kHz) and SF (6-12); the only LoRa modulator core in the collection.",
+   "ulx3s_notes": "No vendor primitives; portable to ECP5/ULX3S as-is. Only built/tested on ECP5 25F (tinySDR board) via Lattice Diamond; needs a yosys/nextpnr-ecp5 top-level and .lpf for ULX3S.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "chirpGenerator.v",
+     "loRaModulator.v"
+    ],
+    "modules": [
+     "chirpGenerator",
+     "loraModulator"
+    ]
+   }
+  },
+  {
+   "id": "nicocavallu-sdr-ddc",
+   "name": "rf-sdr-frontend digital downconverter",
+   "functions": [
+    "radio",
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "nicocavallu__rf-sdr-frontend",
+   "files": [
+    "src/digital_downconvert.v",
+    "src/complex_mixer.v",
+    "src/cic_filt.v",
+    "src/fir_filter.v",
+    "src/tpdf_dither.v",
+    "src/dither_truncate.v",
+    "src/sdr_frontend_top.v"
+   ],
+   "top": "sdr_frontend_top",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Full SDR DDC chain: 2-stage CDC, complex mixer against an 18-bit DDS LO, 3-stage CIC decimate-by-64, 31-tap FIR (Hamming), TPDF dither+truncate to 18-bit signed I/Q. Plain Verilog, no vendor primitives.",
+   "ulx3s_notes": "No board-level Makefile/lpf of its own; only the rf-dds-lo submodule ships an ulx3s.lpf. Sim-only in this clone (iverilog+gtkwave).",
+   "tests": "sim/sdr_frontend_top_tb.v (iverilog+gtkwave): waveform-only, no PASS/FAIL or assert found",
+   "usage_patterns": {
+    "files": [
+     "digital_downconvert.v",
+     "cic_filt.v",
+     "tpdf_dither.v",
+     "dither_truncate.v"
+    ],
+    "modules": [
+     "digital_downconvert",
+     "cic_filt",
+     "tpdf_dither",
+     "dither_truncate",
+     "sdr_frontend_top"
+    ]
+   }
+  },
+  {
    "id": "emard-rdsfpga-rds",
    "name": "Standalone RDS DBPSK modulator",
    "functions": [
@@ -4041,6 +4455,48 @@
    }
   },
   {
+   "id": "whisperice-wspr-codec",
+   "name": "WSPR 4-FSK beacon codec (message/FEC/interleave/symbols/modulator)",
+   "functions": [
+    "radio",
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "agamez__whisperice",
+   "files": [
+    "src/wspr/wspr_message.vhd",
+    "src/wspr/wspr_fec.vhd",
+    "src/wspr/wspr_interleave.vhd",
+    "src/wspr/wspr_symbols.vhd",
+    "src/wspr/wspr_sync.vhd",
+    "src/wspr/wspr_modulator.vhd"
+   ],
+   "top": "wspr_modulator",
+   "language": "VHDL-93",
+   "license": "MIT (repo LICENSE; no per-file header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Full WSPR protocol chain: packs callsign/locator/power to bits, convolutional-encodes, interleaves, maps to the 162 4-FSK symbols (with sync vector), then emits a continuous-phase 4-FSK tone stream with exact Bresenham-distributed symbol timing.",
+   "ulx3s_notes": "Pure VHDL-93, no vendor primitives; only needs a clock and a 1-bit rf_out pin plus external filtering. Built/tested for iCE40UP5K @ 12 MHz but portable to ECP5 at any clock (recompute NCO increments with tools/calculate_nco.py).",
+   "tests": "make sim (ghdl --std=93): sim/tb_wspr_{message,fec,interleave,symbols,sync,modulator,top}.vhd - self-checking (VHDL asserts, --assert-level=error, Makefile:145)",
+   "usage_patterns": {
+    "files": [
+     "wspr_message.vhd",
+     "wspr_fec.vhd",
+     "wspr_interleave.vhd",
+     "wspr_symbols.vhd",
+     "wspr_modulator.vhd"
+    ],
+    "modules": [
+     "wspr_message",
+     "wspr_fec",
+     "wspr_interleave",
+     "wspr_symbols",
+     "wspr_modulator"
+    ]
+   }
+  },
+  {
    "id": "semify-wfg-stim-sine",
    "name": "Waveform-generator DDS sine core (AXI-Stream, cocotb-tested)",
    "functions": [
@@ -4071,6 +4527,36 @@
    }
   },
   {
+   "id": "ox-computing-fft-bfp-2048",
+   "name": "2048-point block-floating-point FFT + Welch PSD feature extractor",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "ox-computing__real-time-analytics-fpga",
+   "files": [
+    "wesad/rtl/feature_engine/fft_engine.sv",
+    "wesad/rtl/feature_engine/psd_features.sv"
+   ],
+   "top": "fft_engine",
+   "language": "SystemVerilog",
+   "license": "Apache-2.0 (LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [
+    "MULT18X18D"
+   ],
+   "summary": "2048-point in-place FFT: detrend+Hann preprocessing, one complex_butterfly time-shared across stages, address_generator, block-floating-point exponent tracking (fft_scratch_* SPRAM-style memories, fft_twiddle_rom, hann_rom); feeds psd_features.sv for a 13-value Welch PSD feature set (centroid, entropy, rolloff, 6 band powers).",
+   "ulx3s_notes": "Built for ECP5 LFE5UM5G-85F in this repo (rtl/constraints/ECP5); shares 2 MULT18X18D DSPs with the time-domain path. A sibling iCE40 UP5K build exists for a different (non-FFT) design in the same repo.",
+   "tests": "wesad/tb/tb_fft_engine.sv (self-checking: runs a segment, checks every bin's power against a golden transform, counts errors); wesad/tb/tb_psd_calc.sv, tb_psd_memory.sv",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "fft_scratch_memory",
+     "fft_scratch_bank"
+    ]
+   }
+  },
+  {
    "id": "mebner86-fft256",
    "name": "256-point radix-2 FFT core",
    "functions": [
@@ -4097,6 +4583,202 @@
     ],
     "modules": [
      "fft256"
+    ]
+   }
+  },
+  {
+   "id": "mbsat-dblclockfft-512",
+   "name": "512-point dblclockfft-generated FFT (longwave SDR)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "mb-sat__ulx3s-longwave-sdr",
+   "files": [
+    "logic/ulx3s-stream-verilog/fft-core/fftmain.v",
+    "logic/ulx3s-stream-verilog/fft-core/fftstage.v",
+    "logic/ulx3s-stream-verilog/fft-core/hwbfly.v",
+    "logic/ulx3s-stream-verilog/fft-core/butterfly.v",
+    "logic/ulx3s-stream-verilog/fft-core/qtrstage.v",
+    "logic/ulx3s-stream-verilog/fft-core/laststage.v",
+    "logic/ulx3s-stream-verilog/fft-core/bitreverse.v"
+   ],
+   "top": "fftmain",
+   "language": "Verilog",
+   "license": "LGPL-3.0 (file headers, Gisselquist Technology LLC); repo-level GPL-3.0 (LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "ZipCPU dblclockfft-generated pipelined complex FFT, fixed at 512 points, 16-bit in/out (IWIDTH=OWIDTH=16), one complex sample/clock in, bit-reversed output stage; drives the longwave/VLF SDR's spectrum display.",
+   "ulx3s_notes": "Built and run on ULX3S 85F (nextpnr-ecp5 --85k) in this repo - a concrete, board-proven instantiation of the zipcpu__dblclockfft generator at a specific size/width.",
+   "tests": "none found in this subtree (generator's own bench/ tests are not vendored into this clone)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "dylansebastianheredia-fft512",
+   "name": "512-point SDF FFT core (E155 Tuner Project)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "dylansebastianheredia__e155_tuner_project",
+   "files": [
+    "fpga/fft_src_v2/fft.sv",
+    "fpga/fft_src_v2/fft_control.sv",
+    "fpga/fft_src_v2/fft_agu.sv",
+    "fpga/fft_src_v2/math.sv",
+    "fpga/fft_src_v2/memory.sv"
+   ],
+   "top": "fft",
+   "language": "SystemVerilog",
+   "license": "none found",
+   "fpga": "iCE40 UP5K (unverified device, README only)",
+   "primitives": [],
+   "summary": "512-point (M=9), 16-bit fixed-point FFT: ping-pong dual-RAM banks (ram0/ram1) and a single butterfly unit reused sequentially across all 9 stages under fft_control_unit's address generator; twiddle ROM read per stage.",
+   "ulx3s_notes": "Pure SV, no vendor primitives seen; core-only (fft.sv), separate from the SPI/I2S MCU wrapper (fft_master.sv). No pin constraints in repo.",
+   "tests": "fpga/sim/tb_fft_agu*.sv, tb_fft_butterfly.sv, tb_fft_control_unit.sv (Verilator/iverilog, not confirmed self-checking from a Makefile - none in repo)",
+   "usage_patterns": {
+    "files": [
+     "fft_agu.sv",
+     "fft_control_unit.sv"
+    ],
+    "modules": [
+     "fft_agu",
+     "fft_control_unit"
+    ]
+   }
+  },
+  {
+   "id": "meharbaan2-ofdm-fft64",
+   "name": "64-point iterative radix-2 FFT/IFFT (OFDM PHY)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "meharbaan2__systemverilog-ofdm-phy-core",
+   "files": [
+    "rtl/ofdm_fft64.sv"
+   ],
+   "top": "ofdm_fft64",
+   "language": "SystemVerilog",
+   "license": "none found",
+   "fpga": "iCE40 UP5K (unverified board bring-up)",
+   "primitives": [],
+   "summary": "64-point iterative in-place radix-2 FFT/IFFT over an unpacked array (work[]/next_work[]), bit-reversed addressing, 24-bit Q8.16 fixed-point twiddle ROM (case-table); shared forward/inverse via an `inverse` control input.",
+   "ulx3s_notes": "Plain SV, no vendor primitives, portable; sized specifically for a 64-subcarrier OFDM PHY (this repo) rather than as a standalone general FFT.",
+   "tests": "tb/ofdm_basic_tb.sv, tb/ofdm_scoreboard_tb.sv (Verilator, vectors/fft_roundtrip_q16.txt) - README reports PASS locally",
+   "usage_patterns": {
+    "files": [
+     "ofdm_fft64.sv"
+    ],
+    "modules": [
+     "ofdm_fft64"
+    ]
+   }
+  },
+  {
+   "id": "hariharan6307-goertzel-spectrum",
+   "name": "8-band parallel Goertzel spectrum analyzer",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "hariharan6307-coder__verilog-goertzel-audio-visualizer",
+   "files": [
+    "goertzel.v",
+    "spectrum.v",
+    "peak_hold.v",
+    "bar_scaler.v"
+   ],
+   "top": "spectrum",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "8 parallel single-bin Goertzel IIR detectors (100 Hz-12.8 kHz, Q2.14 coefficients, N=480 block) with peak-hold/decay smoothing and a bit-scan log2 bar-height scaler; no FFT, targeted frequencies only.",
+   "ulx3s_notes": "Plain portable Verilog, no vendor primitives - drops onto ECP5 unmodified. Cheaper than a full FFT when only a handful of fixed target frequencies matter.",
+   "tests": "SubFolder/{goertzel_tb,bar_scaler_tb,peak_hold_tb,spectrum_tb}.v + visualiser_core_tb.v; no Makefile to confirm pass/fail automatically",
+   "usage_patterns": {
+    "files": [
+     "goertzel.v",
+     "bar_scaler.v"
+    ],
+    "modules": [
+     "goertzel",
+     "bar_scaler"
+    ]
+   }
+  },
+  {
+   "id": "alhusseingamal-r2sdf-fft",
+   "name": "alhusseingamal/r2sdf-fft radix-2 DIF SDF streaming FFT",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "alhusseingamal__r2sdf-fft",
+   "files": [
+    "rtl/top_level.v",
+    "rtl/sdf_stage.v",
+    "rtl/sdf_stage_d1.v",
+    "rtl/sdf_stage_d2.v",
+    "rtl/sdf_stage_d4.v",
+    "rtl/butterfly.v",
+    "rtl/twiddle_rom.v"
+   ],
+   "top": "top_level",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Parametric radix-2 DIF single-delay-feedback (SDF) streaming FFT; N=8 uses hardcoded stages, N>8 (up to 512, checked in as a prebuilt iCE40 bitstream) uses a generate loop; W=16, F=14 fixed point (Q1.14). Bit-accurate numpy model in python_model/.",
+   "ulx3s_notes": "Plain Verilog, no vendor primitives; resynthesize with yosys synth_ecp5 + nextpnr-ecp5 for ECP5/ULX3S reuse.",
+   "tests": "top-level Makefile:run (verilator, TOP=tb_fft_top): tb/tb_fft_top.v - self-checking (prints SQNR in dB vs data/golden/expected_output.txt, no hard pass/fail assert)",
+   "usage_patterns": {
+    "files": [
+     "sdf_stage_d1.v",
+     "sdf_stage_d2.v",
+     "sdf_stage_d4.v"
+    ],
+    "modules": [
+     "sdf_stage",
+     "sdf_stage_d1",
+     "sdf_stage_d2",
+     "sdf_stage_d4"
+    ]
+   }
+  },
+  {
+   "id": "amalthea-fft",
+   "name": "Amaranth radix-2 fixed-point FFT (FFT/Butterfly/TwiddleFactors)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "greatscottgadgets__amalthea",
+   "files": [
+    "amalthea/gateware/fft.py",
+    "amalthea/gateware/types/complex.py",
+    "amalthea/gateware/types/fixed_point.py"
+   ],
+   "top": "FFT",
+   "language": "Python (Amaranth)",
+   "license": "BSD-3-Clause (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Parametrised in-place radix-2 FFT (any power-of-two size) built from a Butterfly unit, bit-reversed AddressGenerator and a TwiddleFactors ROM, using Q fixed-point/Complex helper types; single dual-port memory holds the working buffer.",
+   "ulx3s_notes": "Pure Amaranth, no vendor primitives; elaborates to plain Verilog via amaranth.back for any FPGA including ECP5. Needs the amaranth toolchain (yosys+nextpnr-ecp5) in the build flow.",
+   "tests": "tests/test_fft.py (pytest, amaranth.sim.Simulator): drives a 32-point FFT and asserts each output bin against numpy's np.fft.fft within 0.02 - self-checking",
+   "usage_patterns": {
+    "files": [
+     "fft.py"
+    ],
+    "modules": [
+     "FFT",
+     "Butterfly",
+     "TwiddleFactors"
     ]
    }
   },
@@ -4159,6 +4841,428 @@
    }
   },
   {
+   "id": "joaln27-cordic",
+   "name": "CORDIC-1 bit-serial CORDIC/DDS sine engine",
+   "functions": [
+    "dsp",
+    "radio"
+   ],
+   "rank": "alternative",
+   "repo": "joaln27__cordic",
+   "files": [
+    "src/cordic.sv"
+   ],
+   "top": "cordic",
+   "language": "SystemVerilog",
+   "license": "Apache-2.0 (LICENSE; SPDX header in file)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Bit-serial 16-iteration CORDIC (rotate+vector modes) using a 20-bit shift-register datapath, 3 full adders and fixed-tap bit-muxing instead of barrel shifters; constant 359-cycle op, no vendor primitives.",
+   "ulx3s_notes": "Instantiated unchanged in fpga/ulx3s_top.sv on a real ULX3S 85F; hardware output matches RTL sim bit-exact (389/389 CRC-32 signatures, fpga/meter/, 2026-09-25).",
+   "tests": "cocotb, self-checking (test/test.py + unit_cordic.py vs a Python reference CORDIC/atan2 model); also exhaustive 65536-angle sim and SymbiYosys formal proof outside this repo's test/ dir",
+   "usage_patterns": {
+    "files": [
+     "cordic.sv"
+    ],
+    "modules": [
+     "cordic"
+    ]
+   }
+  },
+  {
+   "id": "zipcpu-dblclockfft-generator",
+   "name": "dblclockfft pipelined FFT/IFFT generator (C++ -> Verilog)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "zipcpu__dblclockfft",
+   "files": [
+    "sw/fftgen.cpp",
+    "sw/fftlib.cpp",
+    "sw/bldstage.cpp",
+    "sw/butterfly.cpp",
+    "sw/bitreverse.cpp",
+    "rtl/fftmain.v",
+    "rtl/fftstage.v",
+    "rtl/hwbfly.v",
+    "rtl/butterfly.v",
+    "rtl/laststage.v",
+    "rtl/bitreverse.v"
+   ],
+   "top": "fftmain",
+   "language": "C++ (generator), Verilog (generated core)",
+   "license": "none found (no LICENSE); GPL-3.0 header on sw/ generator, LGPL-3.0 header on rtl/ generated Verilog",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Portable C++ generator (fftgen) that emits a customizable pipelined radix-2 FFT/IFFT core: size, bit widths (in/out/twiddle), forward/inverse and 1-2 samples/clock throughput are all command-line parameters; rtl/ ships a demo 512-point, 16-bit build.",
+   "ulx3s_notes": "No vendor primitives; the single most-reused FFT source in this collection (used, regenerated to size, by mb-sat__ulx3s-longwave-sdr at 512-pt/ECP5-85F and C-Elegans__single_sdr at 256-pt/ECP5-45F).",
+   "tests": "bench/formal/*.sby (SymbiYosys, formal proofs, PASS) + bench/cpp/fft_tb.cpp/ifft_tb.cpp vs. Octave golden vectors (self-checking)",
+   "usage_patterns": {
+    "files": [
+     "fftmain.v",
+     "hwbfly.v",
+     "qtrstage.v",
+     "laststage.v"
+    ],
+    "modules": [
+     "fftmain",
+     "hwbfly",
+     "qtrstage",
+     "laststage"
+    ]
+   }
+  },
+  {
+   "id": "mysteriouswolf-fir-rbw",
+   "name": "fir_filt pipelined FIR/RBW decimation filter (VNA_FPGA_DSP)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "mysteriouswolf__vna_fpga_dsp",
+   "files": [
+    "source/dsp.v"
+   ],
+   "top": "fir_filt",
+   "language": "Verilog",
+   "license": "none found (no LICENSE/COPYING; no source header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Parametrised 16-tap, 4-stage pipelined-MAC FIR used as the resolution-bandwidth/decimation filter for two ADC channels (A/B); coefficients and result shift are runtime-loadable over an addr/coef bus.",
+   "ulx3s_notes": "No vendor primitives, drop-in on ECP5; note it has no self-checking testbench of its own and no license header (ask before reuse).",
+   "tests": "none found (no isolated fir_filt tb; the repo's testbench/VNA_FPGA_DSP_tf.v only exercises the full dsp_core via $display, no assert/simulator run confirmed - Radiant-only project)",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "fir_filt"
+    ]
+   }
+  },
+  {
+   "id": "fulig-fft-single-stage",
+   "name": "fulig/TinyFPGA_FFT single-butterfly-stage FFT",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "fulig__tinyfpga_fft",
+   "files": [
+    "FFT_stage/fft.v",
+    "FFT_stage/fft_stage.v",
+    "FFT_stage/bfprocessor.v"
+   ],
+   "top": "fft",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Resource-saving FFT variant: one reusable butterfly-processor stage (fft_stage.v, instantiating bfprocessor.v N/2 times via generate) is reloaded iteratively for each of the log2(N) FFT stages under a small FSM (fft.v: IDLE/DATA_IN/CALC_FFT/DATA_OUT), instead of unrolling every stage as the sibling 8FFT/ design does.",
+   "ulx3s_notes": "Plain Verilog, parametric N/MSB, but only exercised at N=8 on a TinyFPGA BX (iCE40 LP8K); no vendor primitives, portable to ECP5.",
+   "tests": "no self-checking testbench found in FFT_stage/",
+   "usage_patterns": {
+    "files": [
+     "fft_stage.v",
+     "bfprocessor.v"
+    ],
+    "modules": [
+     "fft_stage",
+     "bfprocessor"
+    ]
+   }
+  },
+  {
+   "id": "gage1999-fft256-iterative",
+   "name": "Gage1999/fpga-sdr-receiver 256-pt iterative radix-2 FFT",
+   "functions": [
+    "dsp",
+    "radio"
+   ],
+   "rank": "alternative",
+   "repo": "gage1999__fpga-sdr-receiver",
+   "files": [
+    "icesugar_pro/src/fft256.sv",
+    "icesugar_pro/src/butterfly.sv",
+    "icesugar_pro/src/twiddle_rom.sv"
+   ],
+   "top": "fft256",
+   "language": "SystemVerilog",
+   "license": "MIT (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Iterative in-place 256-pt radix-2 FFT: one butterfly module reused across all 8 stages via a ping-pong BRAM bank, 128-entry inline cos/sin LUT, bit-reversed output; 16-bit signed I/Q in, 8-bit log-magnitude + 8-bit bin index out. Feeds an SDR spectrum/waterfall display in this repo.",
+   "ulx3s_notes": "Built for ECP5 (iCESugar Pro LFE5U-25F) but no vendor primitives instantiated in these 3 files; drop-in on ULX3S ECP5 designs.",
+   "tests": "icesugar_pro/Makefile:sim_fft (iverilog): tb/tb_fft256.sv - self-checking (PASS/FAIL, DC-bin and single-tone peak checks)",
+   "usage_patterns": {
+    "files": [
+     "fft256.sv"
+    ],
+    "modules": [
+     "fft256"
+    ]
+   }
+  },
+  {
+   "id": "hackrf-amaranth-dsp-chain",
+   "name": "HackRF Amaranth CIC/FIR/NCO/mixer DSP chain",
+   "functions": [
+    "dsp",
+    "radio"
+   ],
+   "rank": "alternative",
+   "repo": "greatscottgadgets__hackrf",
+   "files": [
+    "firmware/fpga/dsp/cic.py",
+    "firmware/fpga/dsp/fir.py",
+    "firmware/fpga/dsp/nco.py",
+    "firmware/fpga/dsp/mixer.py",
+    "firmware/fpga/dsp/dc_block.py",
+    "firmware/fpga/dsp/sb_mac16.py"
+   ],
+   "top": "",
+   "language": "Python (Amaranth)",
+   "license": "BSD-3-Clause (SPDX header in each file, e.g. dsp/nco.py); repo-wide COPYING is GPL-2.0",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_MAC16"
+   ],
+   "summary": "Amaranth CIC interpolator/decimator (cic.py), half-band FIR decimator/interpolator (fir.py), a 1/8-wave-LUT NCO (nco.py) and a complex mixer built on 4 iCE40 SB_MAC16 DSP blocks (mixer.py) forming the HackRF Pro baseband RX/TX chain. Unit-tested against numpy reference models.",
+   "ulx3s_notes": "cic.py/fir.py/nco.py/dc_block.py instantiate no vendor primitives and elaborate to plain Verilog via Amaranth+yosys, so they are portable to ECP5 with the standard Amaranth ECP5 platform. mixer.py's ComplexMultiplier instantiates SB_MAC16 directly (dsp/sb_mac16.py) and needs an ECP5 MULT18X18D rewrite to reuse there.",
+   "tests": "firmware/fpga/test/test_{cic,fir,fir_mac16,mixer,fixed}.py (Amaranth Simulator + numpy models): self-checking (assertEqual/assert against a Python reference model)",
+   "usage_patterns": {
+    "files": [
+     "sb_mac16.py"
+    ],
+    "modules": []
+   }
+  },
+  {
+   "id": "makisness-inductiq-lockin",
+   "name": "InductIQ lock-in mixer + BRAM-LUT NCO",
+   "functions": [
+    "dsp",
+    "adc"
+   ],
+   "rank": "alternative",
+   "repo": "makisness__inductiq",
+   "files": [
+    "hdl/rtl/lia/lia_core.sv",
+    "hdl/rtl/dds/configurable_nco.v",
+    "hdl/rtl/dds/quarter_sine_lut_Q1_15.mem"
+   ],
+   "top": "lia_core",
+   "language": "SystemVerilog, Verilog",
+   "license": "MIT (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Digital lock-in amplifier: multiplies a 12-bit ADC sample by 16-bit sine/cosine references from a BRAM quarter-wave-LUT NCO (32-bit phase accumulator), then accumulates I/Q over up to 2^15 samples in 48-bit accumulators for synchronous detection. No vendor primitives.",
+   "ulx3s_notes": "Proven on ULX3S 85F via apio (board=ulx3s-85f); drop-in with any signed ADC sample stream and matching sine/cosine reference width. Fills a gap noted in reusable-cores.md: no lock-in amplifier core existed in the collection before this.",
+   "tests": "hdl/tb/top_tb.sv + hdl/tb/adc_model.sv present in the clone; no Makefile/runner found so self-checking could not be confirmed",
+   "usage_patterns": {
+    "files": [
+     "lia_core.sv",
+     "configurable_nco.v"
+    ],
+    "modules": [
+     "lia_core",
+     "configurable_nco"
+    ]
+   }
+  },
+  {
+   "id": "ipmgroup-fft1024-radix2",
+   "name": "ipmgroup/fftd 1024-pt radix-2 DIT FFT core",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "ipmgroup__fftd",
+   "files": [
+    "hardware/rtl/fft_core.v",
+    "hardware/rtl/twiddle_rom.v"
+   ],
+   "top": "fft_core",
+   "language": "Verilog",
+   "license": "MIT (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Parametric radix-2 DIT FFT (N_LOG2, WIDTH=16) with a BRAM twiddle ROM and a block-floating-point exponent output; instantiated as N=1024 by the SPI-wrapped hardware/rtl/fft_top.v. Plain Verilog, BRAM inferred via a (* syn_ramstyle = \"block_ram\" *) attribute, not an explicit primitive.",
+   "ulx3s_notes": "No ECP5 build in this repo (built for iCE40 HX4K); the fft_core.v module itself has no vendor primitives so it should synthesize on ECP5 as-is. fft_top.v additionally instantiates an ICE40 SB_PLL40_2F_PAD, not included here.",
+   "tests": "hardware/sim/tb_fft_core.v - waveform/print-only, no assert",
+   "usage_patterns": {
+    "files": [
+     "fft_core.v"
+    ],
+    "modules": [
+     "fft_core"
+    ]
+   }
+  },
+  {
+   "id": "litedsp-fft-sdf",
+   "name": "LiteDSP radix-2 SDF FFT/IFFT (Migen/LiteX)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "enjoy-digital__litedsp",
+   "files": [
+    "litedsp/analysis/fft.py"
+   ],
+   "top": "LiteDSPFFT",
+   "language": "Python (Migen/LiteX)",
+   "license": "BSD-2-Clause (SPDX header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Streaming radix-2 single-path delay-feedback (SDF) DIF FFT/IFFT, any power-of-two N (default 64), Q1.15 by default, 'scaled' (1/N) or block-floating-point scaling with a per-frame 5-bit exponent param, classic (1 sample/clk) or folded (1 sample/2clk) architecture.",
+   "ulx3s_notes": "Pure Migen HDL generator (no vendor primitives); ECP5 out-of-context flow verified in impl/ecp5.py (LFE5UM5G-85F: 4387 LUT/28 DSP at N=64). Use as a LiteX submodule or export Verilog via litedsp/verilog.py.",
+   "tests": "test/test_fft.py, test/test_fft_bfp.py (unittest, NumPy golden model, bit-exact/SNR-checked in CI)",
+   "usage_patterns": {
+    "files": [
+     "fft.py"
+    ],
+    "modules": [
+     "LiteDSPFFTStage",
+     "LiteDSPFFT"
+    ]
+   }
+  },
+  {
+   "id": "nkrackow-lockin-dsp-chain",
+   "name": "Lock-in amplifier DSP chain (DDS + mixer + CIC/IIR + CORDIC)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "nkrackow__singularitysurfer-fpga-lock-in-amplifier",
+   "files": [
+    "FPGA/HDL/dds.v",
+    "FPGA/HDL/mult16x16.v",
+    "FPGA/HDL/filter/CIC.v",
+    "FPGA/HDL/filter/RIIR.v",
+    "FPGA/HDL/cordic/cordic.v",
+    "FPGA/HDL/cordic/fullcordic.v"
+   ],
+   "top": "",
+   "language": "Verilog (+ Python RIIR_migen.py generator for RIIR.v)",
+   "license": "MIT (LICENSE)",
+   "fpga": "iCE40 UP5K",
+   "primitives": [
+    "SB_MAC16"
+   ],
+   "summary": "Full lock-in signal chain: 1/4-sine-LUT DDS/NCO reference (16-bit amplitude, 18-bit phase), SB_MAC16-based 16x16 mixer, single-stage CIC decimator, multiplier-less shift-based IIR lowpass (RIIR, Migen-generated), and a 9-iteration CORDIC for rect->polar (magnitude/phase) readout.",
+   "ulx3s_notes": "mult16x16.v's SB_MAC16 instance must be replaced by a plain '*' multiply (or let yosys infer ECP5 DSP) for ECP5; dds.v/CIC.v/RIIR.v/cordic.v/fullcordic.v carry no vendor primitives and port directly. Full chain is wired together in FPGA/HDL/filter/filterdemo.v (board-specific top with LCD UI, not included here).",
+   "tests": "waveform-only: CIC_tb.v/top_tb.v only print a placeholder ($display \"hallu world\"), tb_cordic.v prints computed angle/sin/cos/error via $display but has no assert/PASS-FAIL (see catalogue make_tests for the verbatim Makefile targets)",
+   "usage_patterns": {
+    "files": [
+     "RIIR.v",
+     "fullcordic.v",
+     "RIIR_migen.py"
+    ],
+    "modules": [
+     "RIIR",
+     "fullcordic"
+    ]
+   }
+  },
+  {
+   "id": "uttamcoomar-mac-int8",
+   "name": "MAC units for exotic number formats (int8/bf16/fp16/posit8/mxfp8/lns8)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "uttamcoomar__mac-units-for-various-number-formats",
+   "files": [
+    "int8/mac_int8.v",
+    "int8/top.v",
+    "int8/uart_rx.v",
+    "int8/uart_tx.v"
+   ],
+   "top": "top",
+   "language": "Verilog, Python (MyHDL sources)",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "MyHDL-generated multiply-accumulate unit wrapped in a UART command/readback shell, built and tested on ULX3S ECP5-85F; the same layout repeats for bf16, fp16, lns8 (log number system), mxfp8 (microscaling FP8) and posit8 formats in sibling directories.",
+   "ulx3s_notes": "No vendor primitives; each format's mac_<fmt>.v is a separate small core (not parametrized), pick the directory matching the number format needed. Each has its own tb_mac_<fmt>.v and a Python UART host test.",
+   "tests": "int8/tb_mac_int8.v + int8/test_mac_int8.py (12 tb/test files total across all six formats, per scan_tests.sh)",
+   "usage_patterns": {
+    "files": [
+     "mac_int8.v"
+    ],
+    "modules": [
+     "mac_int8"
+    ]
+   }
+  },
+  {
+   "id": "mattvenn-sliding-dft",
+   "name": "mattvenn/fpga-sdft sliding DFT core",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "mattvenn__fpga-sdft",
+   "files": [
+    "hdl/sdft.v",
+    "hdl/twiddle_rom.v"
+   ],
+   "top": "sdft",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Sliding DFT (not a classic FFT): computes an arbitrary number of frequency bins continuously, 3 clocks/bin; parametric data_width/freq_bins/freq_w; twiddle ROM loaded via $readmemh from files generated by python/gen_twiddle.py; validated against numpy in python/sdft.py.",
+   "ulx3s_notes": "Plain Verilog, portable to ECP5 as-is. Regenerate twiddle_real.list/twiddle_imag.list for a different freq_bins/data_width via python/gen_twiddle.py before reuse.",
+   "tests": "tests/sdft_tb.v - waveform-only (no PASS/FAIL in-sim); python/read_vcd.py + `make model-sdft` compares to numpy externally",
+   "usage_patterns": {
+    "files": [
+     "sdft.v"
+    ],
+    "modules": [
+     "sdft"
+    ]
+   }
+  },
+  {
+   "id": "maxzischka1-sdf16-fft",
+   "name": "MaxZischka1/FastFourierTransformProject 16-pt radix-2 SDF FFT",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "maxzischka1__fastfouriertransformproject",
+   "files": [
+    "TopLevel.sv",
+    "SDFCell.sv",
+    "SDFCell0.sv",
+    "SBM16.sv"
+   ],
+   "top": "TopLevel",
+   "language": "SystemVerilog",
+   "license": "none found",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_MAC16"
+   ],
+   "summary": "16-point radix-2 single-delay-feedback FFT chaining 4 SDFCell/SDFCell0 stages (sizes 16/8/4/2); SBM16.sv wraps 4x SB_MAC16 for the complex twiddle multiply. Q1.15 fixed point (see inputsGen.py/twiddleGen.py).",
+   "ulx3s_notes": "SB_MAC16 is iCE40-only; port SBM16.sv to an ECP5 multiplier (e.g. the MULT18X18D wrappers in c-elegans__single_sdr rtl/mult18x18_*c.v) to reuse the SDFCell chain on ECP5/ULX3S.",
+   "tests": "waveform-only (tb_TopLevel.cpp dumps a VCD; no PASS/FAIL/assert found)",
+   "usage_patterns": {
+    "files": [
+     "SDFCell.sv",
+     "SDFCell0.sv",
+     "SBM16.sv"
+    ],
+    "modules": [
+     "SDFCell",
+     "SDFCell0",
+     "SBM16"
+    ]
+   }
+  },
+  {
    "id": "jamesrosssharp-nco-cic",
    "name": "NCO + CIC building blocks (mixer_pcb)",
    "functions": [
@@ -4183,6 +5287,184 @@
    "usage_patterns": {
     "files": [],
     "modules": []
+   }
+  },
+  {
+   "id": "amin005-skywave-cic",
+   "name": "Self-checking CIC anti-alias decimator (Skywave SDR)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "amin005__skywave_sdr",
+   "files": [
+    "fpga/cic_decim.v",
+    "fpga/tb_cic.v"
+   ],
+   "top": "cic_decim",
+   "language": "Verilog",
+   "license": "BSD-3-Clause (LICENSE)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Parametric Hogenauer CIC decimator (WIDTH/STAGES/R): wrapping two's-complement integrators with comb cancellation give exact renormalization for power-of-two decimation; ships with a self-checking testbench that PASS/FAILs on in-band-pass vs out-of-band-rejection.",
+   "ulx3s_notes": "No vendor primitives; plain parametric Verilog, drop-in on ECP5/ULX3S. Currently decimates a real (not I/Q) ADC stream 32MSPS->8MSPS on an ECP5 25F board; per its own header comment the same block doubles as the post-mixer channel filter in an I/Q DDC.",
+   "tests": "fpga/tb_cic.v (iverilog, self-checking: PASS/FAIL on in-band-pass vs out-of-band-rejection; run manually per README, no Makefile target)",
+   "usage_patterns": {
+    "files": [
+     "cic_decim.v"
+    ],
+    "modules": [
+     "cic_decim"
+    ]
+   }
+  },
+  {
+   "id": "lit3rick-sliding-dft-envelope",
+   "name": "Sliding-window DFT envelope extractor + A-law compressor",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "kelu124__lit3rick",
+   "files": [
+    "verilog/src/rtl/fft/dft.v",
+    "verilog/src/rtl/fft/dft_core.v",
+    "verilog/src/rtl/fft/dft_preproc.v",
+    "verilog/src/rtl/fft/dft_postproc.v",
+    "verilog/src/rtl/fft/dft_complex_abs.v",
+    "verilog/src/rtl/fft/dft_sqrt.v",
+    "verilog/src/rtl/alaw_coder.v"
+   ],
+   "top": "dft",
+   "language": "Verilog",
+   "license": "GPL-3.0-or-later (repo Readme.md ## License, covers gateware generically; no per-file SPDX header in dft*.v/alaw_coder.v)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "16-point sliding-window (non-overlapped) DFT computing 3 frequency bins over an 8192-sample 12-bit acquisition, magnitude via dft_complex_abs+dft_sqrt, then G.711 A-law compressed 15->8 bit; used as an on-chip envelope/backscatter-amplitude extractor for ultrasound echoes rather than a full-spectrum FFT (sibling verilog/sigprocessing/code_fourrier/README.md calls it a 'Fourier (envelope extraction) IP-core').",
+   "ulx3s_notes": "No vendor primitives in dft*.v/alaw_coder.v themselves; the surrounding sc_fifo/ebr_dp memory wrappers (verilog/src/rtl/ip_cores/) are UP5K Radiant IP-catalog cores and would need porting to ECP5 DP16KD/PDP16K. DFT_N and FREQ_BINS_USED are compile-time localparams in dft_core.v.",
+   "tests": "self-checking: verilog/src/tb/tb_top.sv test_fft task (run via ModelSim, verilog/modelsim/tb_top.do) drives the DFT through the I2C register interface and reads back bins with $error on mismatch; standalone per-module testbenches (tb_dft.v, tb_dft_core.v, tb_dft_postproc.v, ...) live in the sibling verilog/sigprocessing/code_fourrier/sim/{icarus,modelsim}/",
+   "usage_patterns": {
+    "files": [
+     "dft_core.v",
+     "dft_postproc.v",
+     "dft_complex_abs.v"
+    ],
+    "modules": [
+     "dft_core",
+     "dft_postproc",
+     "dft_complex_abs"
+    ]
+   }
+  },
+  {
+   "id": "ckdur-versatile-fft",
+   "name": "versatile_fft dual-port-RAM FFT engine (opencores, W. Zabolotny)",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "ckdur__riscvconsole",
+   "files": [
+    "hardware/riscvconsole/src/main/resources/versatile_fft/fft_engine.vhd",
+    "hardware/riscvconsole/src/main/resources/versatile_fft/fft_wrapper.vhd",
+    "hardware/riscvconsole/src/main/resources/versatile_fft/butterfly.vhd",
+    "hardware/riscvconsole/src/main/resources/versatile_fft/dpram_inf.vhd",
+    "hardware/riscvconsole/src/main/resources/versatile_fft/icpxram.vhd",
+    "hardware/riscvconsole/src/main/resources/versatile_fft/icpx_pkg.vhd",
+    "hardware/riscvconsole/src/main/resources/versatile_fft/fft_len.vhd"
+   ],
+   "top": "fft_wrapper",
+   "language": "VHDL",
+   "license": "BSD (file headers 'License: BSD'; credits.txt: opencores.org versatile_fft, (c) 2014 Wojciech Zabolotny)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Single-butterfly, dual-port-RAM-based FFT processor (opencores versatile_fft), size fixed at compile time by LOG2_FFT_LEN in fft_len.vhd (1024-point in this clone); fft_wrapper.vhd exposes a Verilog-friendly boundary for integration as a Chipyard/RocketChip MMIO peripheral.",
+   "ulx3s_notes": "Plain VHDL, no vendor primitives; wired up here as devices/fft/fft.scala + fft_peripheral.scala in a RocketChip SoC targeted (among other boards) at fpga/ULX3S in this repo.",
+   "tests": "none found in this subtree",
+   "usage_patterns": {
+    "files": [
+     "fft_engine.vhd",
+     "fft_wrapper.vhd"
+    ],
+    "modules": [
+     "fft_engine",
+     "fft_wrapper"
+    ]
+   }
+  },
+  {
+   "id": "vyges-fft-ip",
+   "name": "Vyges configurable 256-4096pt FFT accelerator IP",
+   "functions": [
+    "dsp"
+   ],
+   "rank": "alternative",
+   "repo": "vyges__fast-fourier-transform-ip",
+   "files": [
+    "rtl/fft_fft_top.sv",
+    "rtl/fft_fft_engine.sv",
+    "rtl/fft_fft_control.sv",
+    "rtl/fft_rescale_unit.sv",
+    "rtl/fft_scale_factor_tracker.sv",
+    "rtl/fft_twiddle_rom.sv",
+    "rtl/fft_memory_interface.sv"
+   ],
+   "top": "fft_top",
+   "language": "SystemVerilog",
+   "license": "Apache-2.0 (LICENSE, file headers)",
+   "fpga": "any (iCE40/ECP5/Xilinx open flows provided)",
+   "primitives": [],
+   "summary": "Configurable radix-2 DIF FFT/IFFT accelerator, 256-4096 points (FFT_MAX_LENGTH_LOG2 param), 16-bit data/twiddle width, APB register interface + optional AXI/bus-master DMA, automatic per-stage rescale with overflow tracking.",
+   "ulx3s_notes": "Pure SV, no vendor primitives; ECP5 flow present (flow/fpga/Makefile FPGA_FAMILY=ecp5, nextpnr-ecp5 --25k) but several of its own test/cocotb Makefiles reference stale filenames post-rename - verify manually before relying on `make test`.",
+   "tests": "tb/sv_tb/tb_fft_top.sv + tb/cocotb/test_fft_*.py written but currently broken (stale rtl filenames in the Makefiles; see catalogue notes)",
+   "usage_patterns": {
+    "files": [
+     "fft_scale_factor_tracker.sv"
+    ],
+    "modules": [
+     "fft_scale_factor_tracker"
+    ]
+   }
+  },
+  {
+   "id": "zipcpu-sdr-cordic-demod",
+   "name": "ZipCPU SDR CORDIC + CIC + AM/FM demodulator chain",
+   "functions": [
+    "dsp",
+    "radio"
+   ],
+   "rank": "alternative",
+   "repo": "zipcpu__sdr",
+   "files": [
+    "rtl/seqcordic.v",
+    "rtl/cicfil.v",
+    "rtl/subfildown.v",
+    "rtl/amdemod.v",
+    "rtl/fmdemod.v"
+   ],
+   "top": "fmdemod",
+   "language": "Verilog",
+   "license": "GPL-3.0-or-later (file headers, e.g. rtl/cicfil.v; no LICENSE file in this clone)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Sequential (one sample/cycle) CORDIC vector rotator feeding a CIC integrate-and-dump decimator and a generic filter-then-downsample block; amdemod.v and fmdemod.v compose these into AM and FM demodulators (fmdemod recovers phase via an I+Q PLL then differentiates it). No vendor primitives, formally-flavoured ZipCPU coding style.",
+   "ulx3s_notes": "Board-independent Verilog, originally paired with an SX1257 RF PMod on an iCEBreaker. Good reference for a CORDIC-based FM discriminator or AM envelope detector on ECP5.",
+   "tests": "sim/ (Verilator, main_tb.cpp): builds an interactive simulator, no automated pass/fail check found (README: 'isn't very useful at present' without the -d VCD switch)",
+   "usage_patterns": {
+    "files": [
+     "seqcordic.v",
+     "cicfil.v",
+     "subfildown.v",
+     "amdemod.v",
+     "fmdemod.v"
+    ],
+    "modules": [
+     "seqcordic",
+     "cicfil",
+     "subfildown",
+     "amdemod",
+     "fmdemod"
+    ]
    }
   },
   {
@@ -4481,6 +5763,31 @@
    }
   },
   {
+   "id": "danielh186-6502-tapeout",
+   "name": "danielh186 6502-compatible CPU core (FPGA-proven)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "alternative",
+   "repo": "danielh186__6502-tapeout",
+   "files": [
+    "fpga-test/cpu.v",
+    "fpga-test/include.v"
+   ],
+   "top": "CPU",
+   "language": "Verilog",
+   "license": "none found",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "6502-compatible core implementing only the legal opcodes with deterministic (often reduced) per-opcode cycle counts; SO/SYNC/RDY/HALT/NMI/IRQ pins removed to save die area for its SG13G2 ASIC tapeout target -- not a pin/cycle-exact 6502 replacement.",
+   "ulx3s_notes": "fpga-test/{top.v,ulx3s_v20.lpf} build with nextpnr-ecp5 --85k --package CABGA381; README reports it running on a real Radiona ULX3S with clk/data/RW wired to GPIOs 0-9, verified with a logic analyzer. FPGA RAM is flip-flop based so only a 4096B window fits (shrink-memory.sh).",
+   "tests": "cocotb via Icarus, self-checking (cocotb-testbench/test_cpu.py: verify_attr/verify_memory compare DUT registers/memory against a maintained reference model after every instruction)",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
    "id": "fx68k-m68k-ulx3s",
    "name": "fx68k 68000-compatible core (nullobject vendored copy)",
    "functions": [
@@ -4755,6 +6062,44 @@
    "usage_patterns": {
     "files": [],
     "modules": []
+   }
+  },
+  {
+   "id": "vernier-rv32-linux-soc",
+   "name": "Vernier-RV32 RV32IMA Linux-capable Wishbone SoC",
+   "functions": [
+    "linux",
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "aravindrajeshkanna__vernier-rv32",
+   "files": [
+    "rtl/top.v",
+    "rtl/soc/soc_top.v",
+    "fpga/ulx3s_top.v",
+    "fpga/constraints/ulx3s.lpf"
+   ],
+   "top": "ulx3s_top",
+   "language": "Verilog",
+   "license": "Apache-2.0 WITH SHL-2.1 (Solderpad Hardware License 2.1; SPDX header in LICENSE)",
+   "fpga": "ECP5",
+   "primitives": [
+    "EHXPLLL",
+    "ODDRX1F",
+    "ODDRX2F",
+    "DELAYG",
+    "DQSBUFM"
+   ],
+   "summary": "5-stage RV32IMA + Zicsr pipeline with Sv32 MMU, CLINT/PLIC, boot ROM, UART, GPIO, SPI/SD and a Wishbone SoC fabric; boots mainline-style Linux to userspace on a real ULX3S LFE5U-85F (fpga/README.md logs SOC-TEST: PASS and a full Linux boot).",
+   "ulx3s_notes": "Real, hardware-verified pin-out (fpga/constraints/ulx3s.lpf, every pin placed); Fmax margin is thin (23-26 MHz vs the board's 25 MHz, 4/6 seeds close) - see fpga/README.md before reusing at full clock. Also has an ECPIX5 DDR3 variant (rtl/soc/ddr3_*_ecp5.v) and an unrun Xilinx/Vivado path.",
+   "tests": "sim/ and tests/ dirs, 65 tb/test files, verilator+iverilog (scan_tests.sh); riscv-tests + Spike co-simulation per README badges",
+   "usage_patterns": {
+    "files": [
+     "soc_top.v"
+    ],
+    "modules": [
+     "soc_top"
+    ]
    }
   },
   {
@@ -5038,6 +6383,34 @@
    }
   },
   {
+   "id": "emard-ws2812b-driver",
+   "name": "ws2812b WS2812B RGB LED strip driver",
+   "functions": [
+    "led-drivers"
+   ],
+   "rank": "alternative",
+   "repo": "emard__ledstrip",
+   "files": [
+    "rtl/generic/ws2812b.vhd"
+   ],
+   "top": "ws2812b",
+   "language": "VHDL",
+   "license": "none found (no header in ws2812b.vhd; no repo LICENSE file; sibling toplevel wrappers ulx2s_toplevel.vhd/FleaFPGA_2v5_toplevel.vhd carry LGPL-2.1+ headers)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Self-contained WS2812B bit-banging driver: parametric clk_Hz/striplen/timing generics, drives dout from an internal 8-colour ROM sequence selected by a 3-bit ctrl input.",
+   "ulx3s_notes": "No vendor primitives; clk_Hz generic defaults to 25000000, matching the ULX3S clock, so it drops in unchanged. Repo ships only ULX2S/FleaFPGA toplevels, no ULX3S top-level.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ws2812b.vhd"
+    ],
+    "modules": [
+     "ws2812b"
+    ]
+   }
+  },
+  {
    "id": "marph91-yaaes",
    "name": "yaaes AES core (VHDL, cocotb/vunit tested)",
    "functions": [
@@ -5129,6 +6502,36 @@
    }
   },
   {
+   "id": "williamsharkey-sha256-pruned",
+   "name": "Pruned 64-stage double-SHA256 miner pipeline",
+   "functions": [
+    "crypto"
+   ],
+   "rank": "alternative",
+   "repo": "williamsharkey__pruned-sha256-miner",
+   "files": [
+    "rtl/factory75_pruned.sv",
+    "rtl/formal75.sv"
+   ],
+   "top": "ulx3s_factory75",
+   "language": "SystemVerilog",
+   "license": "none found",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Fully unrolled 64-round double-SHA256 pipeline pruned for Bitcoin mining (drops H0-H6 in the final round, single 1-bit 'hit' output instead of a 32-bit nonce). Plain SV, no vendor primitives; ECP5-85F PnR numbers claimed in README are unverified in this clone (see catalogue notes).",
+   "ulx3s_notes": "Repo ships constraints/ulx3s-miner-v20.lpf, but run.py (the only build driver) references a missing sibling toolchain dir and missing scripts/copies/logs dirs, so the claimed 46.7MHz/61,830-LUT result cannot be reproduced as cloned.",
+   "tests": "rtl/tb_factory75.sv, tb_stages75.sv, tb_benchmark.sv, tb_mining_sim.sv: present but no PASS/FAIL/assert found; rtl/formal75.sv SAT-miter flow (run.py) not runnable in this clone (missing copies/upstream-u2.sv)",
+   "usage_patterns": {
+    "files": [
+     "factory75_pruned.sv",
+     "formal75.sv"
+    ],
+    "modules": [
+     "ulx3s_factory75"
+    ]
+   }
+  },
+  {
    "id": "krishkc5-trng-ring-oscillator",
    "name": "Ring-oscillator TRNG",
    "functions": [
@@ -5155,6 +6558,84 @@
     ],
     "modules": [
      "trng_core"
+    ]
+   }
+  },
+  {
+   "id": "secworks-aes-ctkey",
+   "name": "secworks AES-128/256 core (via ct-key)",
+   "functions": [
+    "crypto"
+   ],
+   "rank": "alternative",
+   "repo": "assured__ct-key",
+   "files": [
+    "ctkey_package/src/ctkey/cores/aes.py",
+    "ctkey_package/src/ctkey/cores/aes/src/rtl/aes.v",
+    "ctkey_package/src/ctkey/cores/aes/src/rtl/aes_core.v",
+    "ctkey_package/src/ctkey/cores/aes/src/rtl/aes_key_mem.v",
+    "ctkey_package/src/ctkey/cores/aes/src/rtl/aes_encipher_block.v",
+    "ctkey_package/src/ctkey/cores/aes/src/rtl/aes_decipher_block.v",
+    "ctkey_package/src/ctkey/cores/aes/src/rtl/aes_sbox.v",
+    "ctkey_package/src/ctkey/cores/aes/src/rtl/aes_inv_sbox.v"
+   ],
+   "top": "aes",
+   "language": "Verilog (core), Python/Migen (CSR wrapper)",
+   "license": "BSD-2-Clause (ctkey_package/src/ctkey/cores/aes/LICENSE, Joachim Stromberg 2014)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Classic secworks AES-128/256 core (encipher+decipher+key_mem+sbox), CSR-mapped over an 8-bit addr/data bus in ctkey's Migen wrapper (aes.py) via Instance(\"aes\",...). Genuinely instantiated in ctkey's real ULX3S LiteX target.",
+   "ulx3s_notes": "Already wired into a working LiteX SoC for radiona_ulx3s (ctkey_ulx3s.py, device=LFE5U-45F default); reuse the CSR wrapper pattern in aes.py or drop aes_core.v directly into any Wishbone/CSR SoC.",
+   "tests": "toolruns/Makefile core.sim/keymem.sim/encipher.sim/decipher.sim/top.sim (iverilog): src/tb/tb_aes_*.v - self-checking (error_ctr counter, $display ERROR on mismatch)",
+   "usage_patterns": {
+    "files": [
+     "aes_core.v",
+     "aes_key_mem.v",
+     "aes_encipher_block.v",
+     "aes_decipher_block.v"
+    ],
+    "modules": [
+     "aes_core",
+     "aes_key_mem",
+     "aes_encipher_block",
+     "aes_decipher_block"
+    ]
+   }
+  },
+  {
+   "id": "secworks-cryptkey-srng",
+   "name": "SRNG ring-oscillator TRNG + Blake2s DRBG",
+   "functions": [
+    "crypto"
+   ],
+   "rank": "alternative",
+   "repo": "secworks__cryptkey",
+   "files": [
+    "cores/srng/rtl/srng.v",
+    "cores/srng/rtl/srng_core.v",
+    "cores/srng/rtl/trng.v",
+    "cores/srng/rtl/blake2s_core.v",
+    "cores/srng/rtl/blake2s_G.v",
+    "cores/srng/rtl/blake2s_m_select.v"
+   ],
+   "top": "srng",
+   "language": "Verilog",
+   "license": "BSD-2-Clause (repo LICENSE; file header cites Joachim Strombergson / Amagicom AB)",
+   "fpga": "ECP5",
+   "primitives": [
+    "LUT4"
+   ],
+   "summary": "32x explicit LUT4 ring oscillators (trng.v) feed a von Neumann-conditioned entropy source that periodically reseeds a Blake2s-based hash DRBG (srng_core.v), with a stuck-source error check.",
+   "ulx3s_notes": "Vendored from secworks' own CrypTech/TKey work; ring oscillators are LUT4-instantiated so they need re-checking (not just re-synthesizing) on non-ECP5 targets. Has its own ulx3s_v20.lpf and standalone fpga build under cores/srng/fpga/.",
+   "tests": "cores/srng/tb: iverilog/verilator testbenches present (per scan_tests.sh); not independently re-run",
+   "usage_patterns": {
+    "files": [
+     "srng_core.v",
+     "blake2s_m_select.v"
+    ],
+    "modules": [
+     "srng_core",
+     "blake2s_m_select"
     ]
    }
   }

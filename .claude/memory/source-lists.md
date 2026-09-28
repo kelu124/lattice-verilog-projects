@@ -20,7 +20,7 @@ metadata:
 | Owner-named repos: gatecat/TrellisBoard, ZipCPU/sdspi, toasterllc/MDCCode | 2026-09-28 | cloned + pinned; catalogue rows written 2026-09-28 |
 | Owner question: mmicko/fpga101-workshop (runner-up of the lattice-boards survey) | 2026-09-28 | cloned + catalogued, review page with the 20 exercises, 2 cores (grom CPU, UP5K PicoSoC + MicroPython); ulx3s__fpga-odysseus identified as its ULX3S follow-up |
 
-The ulx3s.github.io page also has a "Gitee examples" section (Chinese mirror/examples), not yet harvested.
+The ulx3s.github.io "Gitee examples" section was harvested on 2026-09-28 (see below).
 
 **How to apply:** to refresh the collection, re-fetch these sources, diff the list against
 `sources.tsv`, clone new ones with `clone.sh`, and add a row for each here with the new date.
@@ -35,3 +35,9 @@ lawrie/fpga_pio, dan-rodrigues/icestation-32, gatecat|emard/SNES_MiSTer_ulx3s, s
 the ~25 lawrie/ulx3s_* retro machines (Mac 128, MSX, BBC Micro, QL, Amstrad CPC, ColecoVision, Atari 2600, VIC-20…).
 | GitHub search: ECP5-5G SERDES (PCIe, SATA, NVMe, M.2, SGMII, USB3), 47 queries, 305 repos | 2026-09-28 | `data/pages/serdes-survey.json`; 9 recommended, all cloned + catalogued (litesata, liteiclink, katsuo-pcie, litepcie-katsuo-poc, ECP5-PCIe, Yumewatari, kazkojima ECP5-EVN, PavlenkoG PCIe analyzer, blazra tdr) |
 | GitHub search: TinyFPGA EX, LambdaConcept ECPIX-5, GSG Cynthion, 34 queries | 2026-09-28 | `data/pages/boards3-survey.json`; TinyFPGA EX never shipped (no gateware); 12 recommended, all cloned + catalogued (core_ddr3_controller, maxhpc ecpix-5, eurorack-pmod +no2misc, orbtrace, accel2d, cynthion, luna-soc, cynthion-uac, cynthion-tutorials, HurricaneFPGA, hurra-fpga, guh) |
+| ulx3s.github.io "Gitee examples" + remaining sections, RadionaOrg links | 2026-09-28 | `data/pages/gitee-survey.json`: the only Gitee link is a stale copy of BrunoLevy/learn-fpga (skip); 5 new ULX3S repos (tt08-flame, asicle2 (already in group C), TheZoq2/tinytapeout02 on GitLab, ulx3s/tt-support-tools, rxrbln/picorv32) cloned + catalogued; Gitee cloning works but may need a retry |
+| GitHub survey group C (69) and E (9 remaining) | 2026-09-28 | all cloned + catalogued (4+2 agents); many only claim ULX3S (rows say so) |
+| Registry candidates + DFU bootloaders | 2026-09-28 | fujprog, TinyFPGA-Bootloader, LibXSVF-ESP, FleaFPGA-JTAG, ULX2S (XP2), ULX4M-LS, litex-boards, oberon_sdram, hyperram-test; smunaut had2019-playground, no2bootloader (+no2usb/no2ice40/no2misc), foboot (+valentyusb), tinydfu-bootloader |
+| GitHub search: RF / signal processing on Lattice, ≈75 queries | 2026-09-28 | `data/pages/rf-dsp-survey.json`, 15 cloned + catalogued; see [[lattice-rf-dsp]] |
+| GitHub search: FFT on Lattice, 57 queries | 2026-09-28 | `data/pages/fft-survey.json`, 14 + ZipCPU/dblclockfft cloned + catalogued |
+| Owner repo kelu124/lit3rick | 2026-09-28 | cloned + catalogued, review page |

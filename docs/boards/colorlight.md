@@ -17,7 +17,7 @@ Cheap ECP5 boards with gigabit Ethernet PHYs and SDRAM, repurposed from LED-pane
 | FPGA | LFE5U-25F (5A-75B/E, i5), LFE5U-45F (i9), CABGA256/CABGA381 |
 | Evidence | catalogue rows (wuxx__colorlight-fpga-projects, datanoisetv__colorlight-i9-aes67) |
 | Clock | 25 MHz (catalogue notes) |
-| Catalogued repos | 8 |
+| Catalogued repos | 10 |
 
 *The description is a short summary; FPGA facts come from the catalogue rows cited above.*
 
@@ -54,13 +54,17 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | ECP5 JTAGG demo (Ecp5JtagDemo) | [jtag-debug](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/jtag-debug.md) | tomverbeure__ecp5_jtag |
 | HUB75e LED panel driver (colorlight-led-cube) | [led-drivers](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/led-drivers.md) | lucysrausch__colorlight-led-cube |
 | ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
+| LAYR_AUDIO SID6581 sound chip core | [sound-chips](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sound-chips.md) | thorkn__layr_audio |
+| SPI master (Bus Pirate NextGen Ultra) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | dangerousprototypes__buspirateultrahdl |
 
 ## Projects targeting this board
 
 - [apfaudio__eurorack-pmod](https://github.com/apfaudio/eurorack-pmod): Eurorack PMOD: AK4619 audio-codec PMOD gateware
+- [chrislikescisco__nes-fpga](https://github.com/chrislikescisco/nes-fpga): Standalone NES PPU
 - [datanoisetv__colorlight-i9-aes67](https://github.com/DatanoiseTV/colorlight-i9-aes67): AES67/RAVENNA audio-over-IP bridge for Colorlight i9 v7.2: hardware PTP
 - [hassan2203__system-on-chip-soc-design-and-verification](https://github.com/Hassan2203/System-On-Chip-SOC-Design-and-verification): RV32I single-cycle CPU + Wishbone bus SoC teaching project, built for Colorlight i5
 - [kholia__colorlight-5a-75b](https://github.com/kholia/Colorlight-5A-75B): Colorlight 5A-75B: notes + example projects
+- [litex-hub__litex-boards](https://github.com/litex-hub/litex-boards): LiteX board-support collection: Python platform + target definitions
 - [lucysrausch__colorlight-led-cube](https://github.com/lucysrausch/colorlight-led-cube): Colorlight 5A-75B "LED cube" hack: HUB75e RGB panel driver
 - [racerxdl__colorlight-picorv32](https://github.com/racerxdl/colorlight-picorv32): Colorlight I5 PicoRV32 example: minimal RV32I SoC
 - [tomverbeure__ecp5_jtag](https://github.com/tomverbeure/ecp5_jtag): Colorlight i5: reverse-engineering notes plus a SpinalHDL/Verilog example demonstrating the Lattice ECP5 JTAGG…

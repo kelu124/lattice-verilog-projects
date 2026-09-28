@@ -16,8 +16,8 @@ SDR SDRAM controllers (the ULX3S has 32 MB SDR SDRAM).
 | [c-elegans ULX3S SDRAM controller](#core-c-elegans-sdram-controller3) | [c-elegans__ulx3s_sdram](https://github.com/C-Elegans/ulx3s_sdram) | Verilog | none found | ECP5 | 0 |
 | [f32c generic SDR SDRAM controller](#core-f32c-sdram-vhdl) | [f32c__f32c](https://github.com/f32c/f32c) | VHDL | MIT (Mike Field, file header) | any | 0 |
 | [KianV mt48lc16m16a2_ctrl SDRAM controller](#core-kianriscv-mt48lc16m16a2-ctrl) | [splinedrive__kianriscv](https://github.com/splinedrive/kianRiscV) | Verilog | ISC-style | ECP5 | 2 |
-| [Oberon SDRAM_16bit controller + cache](#core-emard-oberon-sdram-cache) | [emard__oberon](https://github.com/emard/oberon) | Verilog | LGPL-2.1-or-later | ECP5 | 3 |
-| [sdram_pnru simplistic SDRAM controller](#core-emard-misc-sdram-pnru) | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog | public domain | ECP5 | 1 |
+| [Oberon SDRAM_16bit controller + cache](#core-emard-oberon-sdram-cache) | [emard__oberon](https://github.com/emard/oberon) | Verilog | LGPL-2.1-or-later | ECP5 | 4 |
+| [sdram_pnru simplistic SDRAM controller](#core-emard-misc-sdram-pnru) | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog | public domain | ECP5 | 2 |
 
 ## Cores
 
@@ -110,9 +110,10 @@ Next186-derived 16-bit SDRAM controller paired with a direct-mapped cache_contro
 
 **On ULX3S:** Copyleft (LGPL-2.1+): fine to link against, modifications to the file itself must stay LGPL.
 
-**Used by 3 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 4 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [cheyao__oberon](https://github.com/cheyao/oberon) (instantiates [`hdl/RISC5Top.OStation.v`](https://github.com/cheyao/oberon/blob/07511b33357a95d68db67fc9351c86a13d106ecf/hdl/RISC5Top.OStation.v))
+- [danodus__onramp-fpga](https://github.com/danodus/onramp-fpga) (instantiates [`rtl/soc.v`](https://github.com/danodus/onramp-fpga/blob/7542e4952f31c9541e2fbe9416bae9b8abb9e6bb/rtl/soc.v))
 - [danodus__xgsoc](https://github.com/danodus/xgsoc) (instantiates [`rtl/soc_top.sv`](https://github.com/danodus/xgsoc/blob/8a4d9213e5ebe3abe42ba30fddb0bd4f9f4a843f/rtl/soc_top.sv))
 - [emard__next186](https://github.com/emard/Next186) (instantiates [`emard/replace/ddr_186.v`](https://github.com/emard/Next186/blob/cfd9550f7aa4f126839692755d4eb3793ea5e40e/emard/replace/ddr_186.v))
 
@@ -134,11 +135,12 @@ Simplistic public-domain SDR SDRAM controller for 4x4Mx16 chips (e.g. MT48LC16M1
 
 Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
-**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 2 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [gonsolo__borg](https://github.com/gonsolo/Borg) (instantiates [`fpga/ulx3s/sdram_test/sdram_test.v`](https://github.com/gonsolo/Borg/blob/7876af082e9a8d650f5e5d7232d7925c7baeec47/fpga/ulx3s/sdram_test/sdram_test.v))
 - [mcejp__poly94](https://github.com/mcejp/Poly94) (instantiates [`rtl/top.sv`](https://github.com/mcejp/Poly94/blob/e2fa3d9406ee09760004d1ff97d4125825c2d345/rtl/top.sv))
 
 ## Other catalogued projects
 
-Catalogued repos tagged `sdram` (63) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `sdram` (81) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

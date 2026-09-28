@@ -1,8 +1,8 @@
 # TODO
 
 ## Start here next session (handoff 2026-09-28)
-State: 398 repos catalogued (= 398 pins), 173 reusable cores in 34 functions, 18 board pages, 19 reviews, 3 guides,
-6 surveys; all data in `data/*.json`, site generated in `docs/` (just-the-docs) and pushed; `make check` clean.
+State: 523 repos catalogued (= 523 pins), 218 reusable cores in 34 functions, 18 board pages, 20 reviews, 3 guides,
+9 surveys; all data in `data/*.json`, site generated in `docs/` (just-the-docs) and pushed; `make check` clean.
 1. Resume protocol (CLAUDE.md). If `original_sources/` is empty: `clone.sh --restore`, then `prune.py --apply --all`
    (needed by `make check`/`usage`/`lpfs`; `make docs` alone works without clones except PCF lists on board pages).
 2. GitHub Pages: owner enables it (Settings → Pages → main, /docs) if not done; then check the first build at
@@ -12,24 +12,24 @@ State: 398 repos catalogued (= 398 pins), 173 reusable cores in 34 functions, 18
 ## In progress
 
 ## Next
+- [ ] lit3rick: which flow produced verilog/lit3_v2.0.bin (Radiant project vs partial yosys flow)? (owner question, added 2026-09-28)
+- [ ] clone.sh: support a branch argument (needed for gregdavill/foboot OrangeCrab, ulx3s/ttsky-verilog-template ulx3s) (added 2026-09-28)
+- [ ] RF/DSP next candidates: LimeSDR_GW, LimeSDR-Mini-v2_GW, fsk-modulator, fpga-pulses (rf-dsp-survey) (added 2026-09-28)
 - [ ] SSD on ECP5-5G: try LiteSATA on ECPIX-5 with an M.2-SATA adapter if hardware is available; watch LitePCIe ECP5 PHY (issue #20) and katsuo-pcie for a root complex (added 2026-09-28)
 - [ ] GitHub Pages: enable Pages (Settings → Pages → main, /docs) if not yet, then check the first just-the-docs build (nav, search, {% raw %} wrapper, core anchors, big catalogue table); Jekyll could not be tested locally (added 2026-09-28)
 - [ ] Cores: licensing pass on cores with "none found" (lawrie sn76489, ulx3s-misc dacpwm, osd.v/spi_osd.v, greybadge sha256, several CORDIC/CIC); verify the core_usage heuristic on a sample (name collisions) (added 2026-09-28)
 - [ ] Board pages: verify the short descriptions of non-ULX3S boards against vendor docs (currently summaries, marked as such); add PCF clocks (added 2026-09-28)
-- [ ] DFU follow-ups (docs/guides/DFUs.md open questions): clone smunaut/had2019-playground original, no2bootloader, OrangeCrab bootloader, foboot, tinydfu to verify their layouts; which board emard__esp32ecp5 dfu.py targets; ULX4M DFU entry (BTN3 vs SW1 disagreement) (added 2026-09-28)
+- [ ] DFU follow-ups: layouts verified 2026-09-28 (see the guide's "Verified" section); remaining: clone gregdavill/foboot branch OrangeCrab (needs clone.sh branch support) for the 5af0/5bf0/5bf2 PID question; which board emard__esp32ecp5 dfu.py targets; ULX4M DFU entry (BTN3 vs SW1 disagreement) (added 2026-09-28)
 - [ ] Docs pages follow-ups: open questions at the end of each new docs/projects/*.md (15 pages, 2026-09-28); license-verify the ulx3s-misc dirs only listed (usbhid, ch376, qspi, jtag_slave, dvi_in, dvi_osd, ov7670_dvi, adxl355) (added 2026-09-28)
 - [ ] LPF catalogue: 134 ULX3S LPFs have unknown revision (<90 % pin match: renamed signals); consider matching on sites only, and a PCF catalogue for the iCE40 repos (added 2026-09-28)
-- [ ] Clone the remaining candidates in projects.md (litex-boards, fujprog, tinyfpga-bootloader, ulx4m-ls, smunaut had2019-playground original) (added 2026-09-27; saxonsoc, neorv32-setups, emard had2019-playground already in)
-- [ ] Harvest the "Gitee examples" section of ulx3s.github.io (added 2026-09-27)
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)
 
 ## Backlog
 - [ ] scan_make_tests.py blind spots: tests run via Python orchestrators (Hazard3 test/sim/test.py), default `all`/`run` targets, shell scripts (apple-one tools/iverilog/*.sh, kelu124__un0rick sim/icarus/run_sim, toasterllc__mdccode Code/ICE40/Sim.sh), .sby files not driven by make (zipcpu__icozip bench/formal), `$(VLOG)` variable indirection (emeb__orangecrab_adc), unittest/pdm runners (glasgow, luna), CMake/ctest (fpga-3-softcores); extend it (added 2026-09-28)
+- [ ] scan_tests.sh misses `*.vhdl` testbenches (cube1us__ibm1410fpga has 438) and non-standard names (romavis test_*.v) (added 2026-09-28)
 - [ ] scan_tests.sh misses CMake/Verilator harnesses (CMakeLists.txt, verilator/ dirs), e.g. bit-hack__icesid; extend it and re-run (added 2026-09-28)
 - [ ] Nested gateware submodules not fetched (clone.sh --submodule only takes top-level paths): z386 CPU (gojimmypi__z80386-ulx3s-doom third_party/z386_MiSTer/src/z386), ACoreBase CPU (chiplet__acorechip-ulx3s ACoreChip/…) (added 2026-09-27)
-- [ ] Consider cloning markus-zzz/hyperram-test (ULX3S HyperRAM add-on test, github-survey group C) (added 2026-09-27)
 - [ ] gen_catalogue.py / docs/methodology/catalogue.md intro are ULX3S-worded; consider a `board` column now that non-ULX3S ECP5 repos are in (board currently in `board_rev`) (added 2026-09-27)
-- [ ] Clone/catalogue the remaining ~78 GitHub-survey repos (group C multi-board, group E minus ULX4M) if wanted (added 2026-09-27)
 - [ ] Record history stats (first commit, commit count) for the 155+64=219 GitHub-survey repos in history.tsv via GitHub API (added 2026-09-27)
 - [ ] Spot-check a sample of the heuristic test-scan results (tests column) by hand; the scan is name/path only, not proof tests run or pass (added 2026-09-27)
 - [ ] Find the sources of the ulx3s-bin demos with unknown origin: memtest, emi, oled, rtc, usb, c64, oberon, flashblink (added 2026-09-27)

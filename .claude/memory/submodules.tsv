@@ -2,11 +2,13 @@ slug	path	url	commit	reason
 apfaudio__eurorack-pmod	gateware/external/no2misc	https://github.com/no2fpga/no2misc	59350da954e78424117ed01c55b5c7a12e524397	no2misc gateware utility cores (i2c/spi/misc) used by the eurorack-pmod gateware
 asinghani__pifive-cpu	soc/third_party/hyperram	https://github.com/blackmesalabs/hyperram	70b464849d79b87a5fbd91f9f9b216ef981280f0	HyperRAM controller (Verilog, blackmesalabs)
 asinghani__pifive-cpu	soc/third_party/verilog-i2c	https://github.com/alexforencich/verilog-i2c	b6ebb7d1d1ff69ce73e826b65366e2fb5b1bafbc	I2C master/slave cores (Verilog, alexforencich)
+assured__ct-key	ctkey_package/src/ctkey/cores/aes	https://github.com/secworks/aes.git	43050a194c53576b53066015cdc92d8a664e74c5	secworks AES core instantiated by the ct-key gateware
 chiplet__acorechip-ulx3s	ACoreChip	git@gitlab.com:a-core/a-core_chisel/ACoreChip.git	ee96327b7eced7d3b9a78bbe3e9c5b3bc86a2be4	A-Core RISC-V CPU (Chisel), the core of the design
 damdoy__ice40_ultraplus_examples	riscv/simple_riscv_cpu	https://github.com/damdoy/simple_riscv_cpu.git	bde76c95d4dbea5249f01bff2d13d8fed51f37dd	simple RISC-V CPU core (Verilog), the core of the riscv example
 danodus__xgsoc	external/graphite	https://github.com/danodus/graphite	a721810fe6b784386e42eee962baace830df71c3	Graphite 3D GPU core used by the SoC
 dlobato__cps1-musicbox	gateware/rtl/jt51	git@github.com:jotego/jt51.git	b6d90af2c4e70dea4f017b132e5b13a0e48fbaf5	YM2151 FM sound core (jotego)
 dlobato__cps1-musicbox	gateware/rtl/jt6295	git@github.com:jotego/jt6295.git	44be9a827febd576a91773625145e59faf40303e	OKI MSM6295 ADPCM core (jotego)
+emeb__orangecrab-litex-adc	hw/deps/valentyusb	https://github.com/gregdavill/valentyusb	c595e1cdf7ccaa48305b89879e6ee54a2aafb6b6	ValentyUSB USB device core used by the SoC
 emeb__ulx3s_6502	verilog-6502	https://github.com/Arlet/verilog-6502.git	a11631082b20e8a0746cd5cc4ae8bbe68bff79c4	6502 CPU core (Verilog, Arlet)
 emeb__up5k_vga	verilog-6502	https://github.com/hoglet67/verilog-6502.git	791ed43bae4ab8881f8e73f61f5b02dd17898372	6502 CPU core (Verilog, hoglet67 fork with 65C02 extensions), the CPU of the design
 fdarling__orangecrab-usb-cdc-demo	tinyfpga_bx_usbserial	https://github.com/davidthings/tinyfpga_bx_usbserial.git	00608c23488a3e79325df997cc50148b94961861	USB CDC-ACM device core (Verilog), the core of the demo
@@ -14,16 +16,23 @@ gojimmypi__z80386-ulx3s-doom	third_party/z386_MiSTer	https://github.com/nand2mar
 icebreaker-fpga__icetwang	soc/cores/no2ice40	https://github.com/no2fpga/no2ice40.git	e2a0c694e0565ca8e065d27ac82f6746c3cb28a0	no2ice40 iCE40 primitive/IO cores (Verilog), used by the SoC
 icebreaker-fpga__icetwang	soc/cores/no2misc	https://github.com/no2fpga/no2misc.git	7096e0c6bb217b9c01f7d7ffb20b70832b597e59	no2misc bus/utility cores (Verilog), used by the SoC
 icebreaker-fpga__icetwang	soc/cores/no2usb	https://github.com/no2fpga/no2usb.git	0507086270e00e4ef2e4b0006aabce34cbbccf9d	no2usb USB device core (Verilog, tnt), used by the icetwang SoC
+im-tomu__foboot	hw/deps/valentyusb	https://github.com/im-tomu/valentyusb.git	9062a2923ce354bcfb9614f5b186e891efe69acd	ValentyUSB USB device core (DFU) that foboot is built around
 jamchamb__cojiro	osdvu	https://github.com/cyrozap/osdvu.git	276dd06ee5c01fc49e522272ceef088a15af3fe5	osdvu UART core (Verilog, cyrozap), used by the design
 kulp__tenyr	3rdparty/wb_intercon	https://github.com/olofk/wb_intercon.git	3c5d2fc7e6e04f75b4a48cca941d543e7c160e2d	Wishbone interconnect generator/cores (olofk)
 mangelajo__orangecrab-usb	ip/FPGA-USB-Device	https://github.com/WangXuan95/FPGA-USB-Device	6cfd6fb0da1b99386cd5123b5acc9fa649ec7010	USB 1.1 device core (Verilog, WangXuan95), the core of the demos
 marph91__pocket-bnn	submodules/icestick-uart	https://github.com/marph91/icestick-uart.git	426b25dee1441911d5f1d3de7d1aa8322d7a95d4	UART core (VHDL)
 mcejp__poly94	lib/verilog-uart	https://github.com/alexforencich/verilog-uart.git	b973f08697b03a17ce56b90783622c7b7a28fa2a	UART core (Verilog, alexforencich)
+nicocavallu__rf-sdr-frontend	modules/rf-dds-lo	https://github.com/nicocavallu/rf-dds-lo	7f61538a229ac2dcf9cef8b24cd9660c538b1d48	rf-dds-lo: DDS local-oscillator gateware used by the RF SDR front end
+no2fpga__no2bootloader	gateware/cores/no2ice40	https://github.com/no2fpga/no2ice40.git	0e1f2ffd1a667231d0513a3911144a32c35c5a83	no2ice40 iCE40 IO/PLL/SPRAM primitive wrappers used by the bootloader
+no2fpga__no2bootloader	gateware/cores/no2misc	https://github.com/no2fpga/no2misc.git	eb5448b60a2de550c01c6002be4531c2495af8da	no2misc misc cores (SPI flash, etc.) used by the bootloader
+no2fpga__no2bootloader	gateware/cores/no2usb	https://github.com/no2fpga/no2usb.git	9a3e752eab17c8f12a3a1dd6cf291368eaf3161d	no2usb USB device core with the DFU implementation the bootloader is built around
 orangecrab-fpga__orangecrab-examples	litex/deps/valentyusb	https://github.com/gregdavill/valentyusb	c595e1cdf7ccaa48305b89879e6ee54a2aafb6b6	ValentyUSB USB device core (Migen, hw_cdc_eptri branch) used by the LiteX examples
 orangecrab-fpga__orangecrab-examples	verilog/usb_acm_device/blocks/usbserial	https://github.com/davidthings/tinyfpga_bx_usbserial.git	00608c23488a3e79325df997cc50148b94961861	USB CDC-ACM device core (Verilog, tinyfpga_bx_usbserial) used by usb_acm_device
 osmocom__osmo-e1-hardware	gateware/cores/no2e1	https://github.com/no2fpga/no2e1.git	dac3a8b7a5d8736d867edc48a65a41965d8b78d1	no2e1 E1 (2.048 Mb/s telecom) line interface core (Verilog), the core of the design
 remyciterin__3driscv	UberDDR3	git@github.com:AngeloJacobo/UberDDR3.git	a1258e2eedefa6fba1a425becaded83928c78709	DDR3 controller (Verilog, UberDDR3)
 robinsonb5__eightthirtytwodemos	EightThirtyTwo	https://github.com/robinsonb5/EightThirtyTwo.git	c42d06fb622cf987d72c86eea4f2376609037875	EightThirtyTwo CPU core, the core of the demos
+romavis__lwdo-sdr-fw	fpga/3rdparty/rggen-verilog-rtl	https://github.com/romavis/rggen-verilog-rtl.git	152678930044866737d1cb3c8a16c9e1ccba8186	rggen runtime RTL for the generated control registers
+romavis__lwdo-sdr-fw	fpga/3rdparty/verilog-axis	https://github.com/romavis/verilog-axis.git	10b6d2f5bc50f965d6aee213415b60f1f9af58e5	verilog-axis AXI-Stream library (FIFOs, adapters) the SDR gateware is built on
 rschlaikjer__fpga-3-softcores	vendor/verilog-arbiter	https://github.com/bmartini/verilog-arbiter.git	782bf8f34244cc6a3f279f2dbac8b5bf3f044132	round-robin arbiter RTL used by the Wishbone interconnect
 rschlaikjer__fpga-3-softcores	vendor/wb_intercon	https://github.com/olofk/wb_intercon.git	3c5d2fc7e6e04f75b4a48cca941d543e7c160e2d	Wishbone interconnect generator/RTL the SoCs are built on
 smunaut__ice40-playground	cores/no2hub75	https://github.com/no2fpga/no2hub75.git	3f384d83e64cf9c766ee3238d294317f6d2606c7	no2hub75 HUB75 LED-panel driver (Verilog)
@@ -36,6 +45,7 @@ smunaut__ice40-playground	cores/no2usb	https://github.com/no2fpga/no2usb.git	d35
 splinedrive__kianriscv	linux_socs/LinuxSoC_v2/engineering/kianv-rv32-linuxcore	https://github.com/splinedrive/kianv-rv32-linuxcore	e9640ba01fa356db8e72b184cdc40de47c992843	KianV RV32 Linux-capable CPU core (Verilog)
 spritetm__hadbadge2019_fpgasoc	soc/picorv32	https://github.com/cliffordwolf/picorv32.git	e0baf2e0bd49fdddef2e3440c1f6364478655154	PicoRV32 CPU core used by the badge SoC
 sylefeb__silice	projects/tinygpus	https://github.com/sylefeb/tinygpus.git	498be1b803d0950328ae5f0138ce4e97805ca4cb	tinygpus GPU projects (Silice)
+thezoq2__tinytapeout02	smolfpga	git@github.com:TheZoq2/smolfpga.git	19076d84acb5ccef707f50328ab228523b427bb5	smolfpga: the Spade FPGA-fabric design this Tiny Tapeout project is built around
 ultraembedded__ecpix-5	src/core_soc	https://github.com/ultraembedded/core_soc.git	9fceff0738799fabb308b0a90acbe4f4c3ab8829	SoC peripherals (Verilog) of the RISC-V system
 ultraembedded__ecpix-5	src/dbg_bridge	https://github.com/ultraembedded/core_dbg_bridge.git	a601c650e17a44f7d054ad87c7d5dff5f3d7bbb4	UART-to-AXI debug bridge (Verilog)
 ultraembedded__ecpix-5	src/riscv	https://github.com/ultraembedded/riscv.git	c17cfba055af24a753e3b10d54968dd38c5690eb	RISC-V CPU core (Verilog, ultraembedded biriscv/riscv)

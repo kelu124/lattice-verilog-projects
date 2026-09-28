@@ -17,7 +17,7 @@ ULX3S successor in Raspberry Pi CM4 module format; most ULX3S designs port with 
 | FPGA | LFE5UM-85F (ECP5-5G) on the variants catalogued |
 | Evidence | catalogue rows (e.g. lawrie__ulx4m_examples) |
 | Clock | unknown |
-| Catalogued repos | 18 |
+| Catalogued repos | 21 |
 
 *The description is a short summary; FPGA facts come from the catalogue rows cited above.*
 
@@ -28,17 +28,17 @@ Most-copied distinct LPFs for this board in the cloned repos (from the [LPF cata
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
 | [`ulx4m_v002.lpf`](https://github.com/lawrie/apple-one/blob/40412e90909378db3bd84b7537196ed8799fa477/boards/ulx4m/yosys/ulx4m_v002.lpf) (lawrie__apple-one) | v0.0.2 (file name) | 6 | button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, rtc-power, sdcard, sdram, spi-flash, switch, usb |
+| [`ulx4m-ld_v001.lpf`](https://github.com/intergalaktik/ulx4m-ls/blob/3b734c6ba88870864664e5483ba795fbca87c93f/doc/constraints/prototype/ulx4m-ld_v001.lpf) (intergalaktik__ulx4m-ls) | v001 (file name) | 2 | button, camera, ddr3, hdmi-dvi, led, rtc-power, sdcard, spi-flash, usb |
+| [`ulx4m-ld_v002.lpf`](https://github.com/intergalaktik/ulx4m-ls/blob/3b734c6ba88870864664e5483ba795fbca87c93f/doc/constraints/prototype/ulx4m-ld_v002.lpf) (intergalaktik__ulx4m-ls) | v0.0.2 (file name) | 2 | button, camera, ddr3, esp32-wifi, ftdi-uart, hdmi-dvi, i2c, led, rtc-power, sdcard, spi-flash, switch, usb |
+| [`ulx4m_ls_v003.lpf`](https://github.com/intergalaktik/ulx4m-ls/blob/3b734c6ba88870864664e5483ba795fbca87c93f/doc/constraints/prototype/ulx4m_ls_v003.lpf) (intergalaktik__ulx4m-ls) | v003 (file name) | 2 | button, camera, ethernet, ftdi-uart, gpio-header, hdmi-dvi, i2c, led, rtc-power, sdcard, sdram, spi-flash, switch, usb |
 | [`ulx4m_v002.lpf`](https://github.com/danodus/ulx3s_sms/blob/13c2361a5039d205de47857bab9201055ac9e566/ulx4m/ulx4m_v002.lpf) (danodus__ulx3s_sms) | v0.0.2 (file name) | 2 | button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, rtc-power, sdcard, sdram, spi-flash, switch, usb |
+| [`ulx4m_v002.lpf`](https://github.com/intergalaktik/ulx4m-ls/blob/3b734c6ba88870864664e5483ba795fbca87c93f/doc/constraints/prototype/ulx4m_v002.lpf) (intergalaktik__ulx4m-ls) | v0.0.2 (file name) | 2 | button, gpio-header, hdmi-dvi, led, rtc-power, sdcard, sdram, spi-flash, usb |
+| [`ulx4m_v01.lpf`](https://github.com/intergalaktik/ulx4m-ls/blob/3b734c6ba88870864664e5483ba795fbca87c93f/doc/constraints/prototype/ulx4m_v01.lpf) (intergalaktik__ulx4m-ls) | v01 (file name) | 2 | hdmi-dvi, led, rtc-power, sdcard, sdram, spi-flash, usb |
 | [`fpga_ulx4m_ld.lpf`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/synth/fpga_ulx4m_ld.lpf) (ulx3s__hazard3) | unknown | 1 | ddr3, ftdi-uart, hdmi-dvi, led, sdcard |
 | [`fpga_ulx4m_ld_blinky.lpf`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/synth/fpga_ulx4m_ld_blinky.lpf) (ulx3s__hazard3) | unknown | 1 | led |
 | [`fpga_ulx4m_ld_v002.lpf`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/synth/fpga_ulx4m_ld_v002.lpf) (ulx3s__hazard3) | v0.0.2 (file name) | 1 | ddr3, ftdi-uart, hdmi-dvi, led |
 | [`fpga_ulx4m_ls.lpf`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/synth/fpga_ulx4m_ls.lpf) (ulx3s__hazard3) | unknown | 1 | ftdi-uart, hdmi-dvi, led, sdram |
 | [`top-ulx4m-v002.lpf`](https://github.com/emard/had2019-playground/blob/0723f2a536b20f26ec1b2d5cf1dcc2b5355b6808/projects/bootloader/data/top-ulx4m-v002.lpf) (emard__had2019-playground) | v0.0.2 (file name) | 1 | button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`top-ulx4m-v002.lpf`](https://github.com/ulx3s/Hazard3-Doom/blob/42621599f78f7ce3bd51fcc6b95a56ba83e31279/bootloader/data/top-ulx4m-v002.lpf) (ulx3s__hazard3-doom) | v0.0.2 (file name) | 1 | button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`top_passthru-ulx4m-v002.lpf`](https://github.com/emard/had2019-playground/blob/0723f2a536b20f26ec1b2d5cf1dcc2b5355b6808/projects/bootloader/data/top_passthru-ulx4m-v002.lpf) (emard__had2019-playground) | v0.0.2 (file name) | 1 | button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`top_passthru-ulx4m-v002.lpf`](https://github.com/ulx3s/Hazard3-Doom/blob/42621599f78f7ce3bd51fcc6b95a56ba83e31279/bootloader/data/top_passthru-ulx4m-v002.lpf) (ulx3s__hazard3-doom) | v0.0.2 (file name) | 1 | button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`ulx4m_ld.lpf`](https://github.com/hdl4fpga/hdl4fpga/blob/662986ba0f17b7ce3a066ddcb799d42fa1b24dea/boards/ULX4M_LD/diamond/ulx4m_ld.lpf) (hdl4fpga__hdl4fpga) | unknown | 1 | button, ddr3, ethernet, ftdi-uart, hdmi-dvi, i2c, led, rtc-power, sdcard, usb |
-| [`ulx4m_ls.lpf`](https://github.com/hdl4fpga/hdl4fpga/blob/662986ba0f17b7ce3a066ddcb799d42fa1b24dea/boards/ULX4M_LS/diamond/ulx4m_ls.lpf) (hdl4fpga__hdl4fpga) | unknown | 1 | button, camera, ethernet, ftdi-uart, gpio-header, hdmi-dvi, i2c, led, rtc-power, sdcard, sdram, spi-flash, switch, usb |
 
 ## Reusable cores seen on this board
 
@@ -74,8 +74,10 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | ps2kbd + ps2mouse (EMARD) | [ps2](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ps2.md) | emard__ulx3s-misc |
 | FM stereo transmitter with RDS | [radio](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/radio.md) | emard__ulx3s-misc |
 | sdram_pnru simplistic SDRAM controller | [sdram](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sdram.md) | emard__ulx3s-misc |
+| LAYR_AUDIO SID6581 sound chip core | [sound-chips](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sound-chips.md) | thorkn__layr_audio |
 | SN76489 PSG (sound chip) | [sound-chips](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sound-chips.md) | lawrie__ulx3s_sms |
 | APB SPI master (microSD) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | ulx3s__hazard3 |
+| SPI master (Bus Pirate NextGen Ultra) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | dangerousprototypes__buspirateultrahdl |
 | SlabBoy ST7789 SpinalHDL LCD driver | [spi-display](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-display.md) | lawrie__slabboy |
 | lcd_video / spi_display multi-panel SPI LCD driver | [spi-display](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-display.md) | emard__ulx3s-misc |
 | Wishbone Quad-SPI flash controller (Gisselquist-derived) | [spi-flash](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-flash.md) | emard__ulx3s-misc |
@@ -84,8 +86,6 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | circuit-killer USB FS serial device (VHDL, ULX3S-built) | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | circuit-killer__fpga-usbserial |
 | f32c USB CDC-ACM device + soft PHY | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | f32c__f32c |
 | no2usb-derived ECP5 USB FS device core (had2019 bootloader) | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | emard__had2019-playground |
-| ulx3s-misc USB CDC-ACM device (VHDL) | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | emard__ulx3s-misc |
-| Ultra-Embedded USB FS host (ulx3s-misc copy) | [usb-host](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-host.md) | emard__ulx3s-misc |
 
 ## Projects targeting this board
 
@@ -94,6 +94,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 - [danodus__ulx3s_sms](https://github.com/danodus/ulx3s_sms): Sega Master System core for ULX3S and ULX4M, HDMI/VGA out, ESP32 OSD ROM loader
 - [emard__had2019-playground](https://github.com/emard/had2019-playground): HAD2019 badge playground
 - [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc): ULX3S misc/advanced examples: EMARD's building-block library ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/emard__ulx3s-misc.md))
+- [intergalaktik__ulx4m-ls](https://github.com/intergalaktik/ulx4m-ls): ULX4M-LS PCB, ULX3S successor board hardware
 - [lawrie__apple-one](https://github.com/lawrie/apple-one): Apple 1 Verilog, ULX3S HDMI + PS/2 + UART
 - [lawrie__jupiter_ace](https://github.com/lawrie/jupiter_ace): Jupiter Ace
 - [lawrie__ulx3s_acorn_atom](https://github.com/lawrie/ulx3s_acorn_atom): Acorn Atom 8-bit home computer core ported to ULX3S
@@ -104,7 +105,9 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 - [lawrie__ulx3s_zx81](https://github.com/lawrie/ulx3s_zx81): ZX80/ZX81: TV80, HDMI scandoubler, PS/2, ear/audio
 - [lawrie__ulx4m_amaranth_examples](https://github.com/lawrie/ulx4m_amaranth_examples): Amaranth HDL examples for the ULX4M board: blinky, DVI, SDRAM16, Conway life, mitecpu, PS/2, OLED, audio
 - [lawrie__ulx4m_examples](https://github.com/lawrie/ulx4m_examples): Verilog examples for the ULX4M board: blinky, HDMI/DVI, SDRAM, softcore CPUs, GPI2 game demos
+- [litex-hub__litex-boards](https://github.com/litex-hub/litex-boards): LiteX board-support collection: Python platform + target definitions
 - [trabucayre__openfpgaloader](https://github.com/trabucayre/openFPGALoader): openFPGALoader universal programmer ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/trabucayre__openfpgaloader.md))
 - [ulx3s__hazard3](https://github.com/ulx3s/Hazard3): Hazard3 RV32IMACZb* CPU: ULX3S/ULX4M-LD fork with dedicated build docs, incl.
 - [ulx3s__hazard3-doom](https://github.com/ulx3s/Hazard3-Doom): ulx3s/Hazard3-Doom: Doom
+- [ulx3s__tt-support-tools](https://github.com/ulx3s/tt-support-tools): tt-support-tools
 {% endraw %}

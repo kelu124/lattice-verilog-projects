@@ -16,7 +16,7 @@ Facts cite the upstream file at a pinned commit; nothing was built or simulated,
 
 ## Browse
 
-**173 reusable cores** in 34 functions, used by 209 of the 398 catalogued repos; 18 board pages; 19 in-depth reviews.
+**218 reusable cores** in 34 functions, used by 274 of the 523 catalogued repos; 18 board pages; 20 in-depth reviews.
 
 | Area | Functions |
 |---|---|

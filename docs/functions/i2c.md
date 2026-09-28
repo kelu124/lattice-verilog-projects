@@ -15,6 +15,7 @@ I2C master/slave cores (RTC, HDMI DDC, sensors).
 | [verilog-i2c (alexforencich)](#core-pifive-verilog-i2c) ★ | [asinghani__pifive-cpu](https://github.com/asinghani/pifive-cpu) | Verilog | MIT (submodule COPYING, Alex Forencich) | ECP5 | 0 |
 | [BeagleWire i2c-master](#core-beaglewire-i2c-master) | [pmezydlo__beaglewire](https://github.com/pmezydlo/BeagleWire) | Verilog | GPL-2.0 (repo LICENSE; note pcf header claims… | iCE40 | 0 |
 | [glasgow I2C core (Amaranth)](#core-glasgow-i2c) | [glasgowembedded__glasgow](https://github.com/GlasgowEmbedded/glasgow) | Python (Amaranth) | 0BSD OR Apache-2.0 | any | 2 |
+| [I2C-slave-to-AXI-Lite-master bridge (verilog-i2c integration)](#core-lit3rick-i2c-axil-master) | [kelu124__lit3rick](https://github.com/kelu124/lit3rick) | Verilog | MIT ((c) 2017/2019 Alex Forencich, in-file header) | any | 1 |
 | [SAO I2C command engine](#core-hazard3-sao-i2c-engine) | [ulx3s__hazard3](https://github.com/ulx3s/Hazard3) | Verilog | Apache-2.0 | ECP5 | 0 |
 
 ## Cores
@@ -72,6 +73,28 @@ Pure-Amaranth I2C controller/target gateware; part of Glasgow's actively maintai
 - [asinghani__pifive-cpu](https://github.com/asinghani/pifive-cpu) (copies [`soc/rtl/periphs/i2c.py`](https://github.com/asinghani/pifive-cpu/blob/81ca4088242eeb29c56ddd31d2c53a61a047db53/soc/rtl/periphs/i2c.py))
 - [greatscottgadgets__luna](https://github.com/greatscottgadgets/luna) (copies [`luna/gateware/interface/i2c.py`](https://github.com/greatscottgadgets/luna/blob/82a8f733296603b70ba56755206e13092609c6f0/luna/gateware/interface/i2c.py))
 
+### I2C-slave-to-AXI-Lite-master bridge (verilog-i2c integration) {#core-lit3rick-i2c-axil-master}
+
+Alex Forencich's verilog-i2c i2c_slave core wrapped as an AXI-Lite master, letting an external I2C host (Raspberry Pi) read/write lit3rick's register file and signal/FFT RAM directly; a second, near-duplicate wrapper ships alongside as i2c_wrapper.v.
+
+| | |
+|---|---|
+| Repository | [kelu124__lit3rick](https://github.com/kelu124/lit3rick): lit3rick: single-channel ultrasound pulse-echo board - UP5K ADC/pulser, on-chip DFT envelope extraction,… |
+| Files | [`verilog/src/rtl/i2c_slave_axil_master.v`](https://github.com/kelu124/lit3rick/blob/ca4ad983046943fae0694a609154839e8c051283/verilog/src/rtl/i2c_slave_axil_master.v), [`verilog/src/rtl/i2c_slave.v`](https://github.com/kelu124/lit3rick/blob/ca4ad983046943fae0694a609154839e8c051283/verilog/src/rtl/i2c_slave.v) |
+| Top module | `i2c_slave_axil_master` |
+| Language | Verilog |
+| License | MIT ((c) 2017/2019 Alex Forencich, in-file header) |
+| FPGA / primitives | any: none (portable) |
+| Tests | exercised by verilog/src/tb/tb_top.sv (bus-functional model verilog/src/tb/i2c_if.sv) across all test_* tasks; no standalone unit test for this file |
+
+**On ULX3S:** Same upstream library as this collection's 'best' i2c core (pifive-verilog-i2c, which shows the Wishbone wrappers); this repo instead shows the AXI-Lite-master wrapper variant. No vendor primitives, ECP5-portable as-is.
+
+Full review: [kelu124__lit3rick](../projects/kelu124__lit3rick.md).
+
+**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [asinghani__pifive-cpu](https://github.com/asinghani/pifive-cpu) (instantiates [`soc/third_party/verilog-i2c/tb/test_i2c_slave_axil_master.v`](https://github.com/asinghani/pifive-cpu/blob/81ca4088242eeb29c56ddd31d2c53a61a047db53/soc/third_party/verilog-i2c/tb/test_i2c_slave_axil_master.v))
+
 ### SAO I2C command engine {#core-hazard3-sao-i2c-engine}
 
 Low-level I2C command engine with open-drain SDA/SCL controls, driving the ULX3S example SoC's SAO bridge.
@@ -90,5 +113,5 @@ Low-level I2C command engine with open-drain SDA/SCL controls, driving the ULX3S
 
 ## Other catalogued projects
 
-Catalogued repos tagged `i2c` (6) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `i2c` (10) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

@@ -17,7 +17,7 @@ The main board of this collection: 32 MB SDR SDRAM, GPDI (HDMI) port, ESP32, US1
 | FPGA | LFE5U-12F/25F/45F/85F, CABGA381 |
 | Evidence | emard/ulx3s MANUAL + reference LPFs (doc/constraints) |
 | Clock | 25 MHz (clk_25mhz, reference LPF) |
-| Catalogued repos | 286 |
+| Catalogued repos | 373 |
 
 ## Board reference
 
@@ -105,15 +105,15 @@ Most-copied distinct LPFs for this board in the cloned repos (from the [LPF cata
 |---|---|---|---|
 | [`ulx3s_v20.lpf`](https://github.com/lawrie/ulx3s_examples/blob/b6ff00099265401fef4843e4e89c2ac54254c95f/audio/piano/ulx3s_v20.lpf) (lawrie__ulx3s_examples) | v2.x/v3.0.x (ulx3s_v20) | 48 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, ps2, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
 | [`ulx3s.lpf`](https://github.com/adrmcintyre/vixen/blob/e2db4fda79d2e73a7a595ce1773de64203346c0b/ulx3s/ulx3s.lpf) (adrmcintyre__vixen) | v2.x/v3.0.x (ulx3s_v20) | 42 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`ulx3s_v20.lpf`](https://github.com/ahamidi87/simpleblinky/blob/b3d9c4bcdebf65733916ec63e47e0db2bc48fc95/ulx3s_v20.lpf) (ahamidi87__simpleblinky) | v2.x/v3.0.x (ulx3s_v20) | 35 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`ulx3s_v20.lpf`](https://github.com/chiplet/ulx3s-blinky/blob/656e60b55080998d95237ee440e5033ae32c6749/constr/ulx3s_v20.lpf) (chiplet__ulx3s-blinky) | v2.x/v3.0.x (ulx3s_v20) | 18 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
+| [`ulx3s_v20.lpf`](https://github.com/ahamidi87/simpleblinky/blob/b3d9c4bcdebf65733916ec63e47e0db2bc48fc95/ulx3s_v20.lpf) (ahamidi87__simpleblinky) | v2.x/v3.0.x (ulx3s_v20) | 40 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
+| [`ulx3s_v20.lpf`](https://github.com/chiplet/ulx3s-blinky/blob/656e60b55080998d95237ee440e5033ae32c6749/constr/ulx3s_v20.lpf) (chiplet__ulx3s-blinky) | v2.x/v3.0.x (ulx3s_v20) | 20 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
+| [`ulx3s_v316.lpf`](https://github.com/danodus/ecp5_hdmi_audio_video/blob/a4710f9e7986fe9aafde765b8b3f264ca61631be/boards/ulx3s/ulx3s_v316.lpf) (danodus__ecp5_hdmi_audio_video) | v3.1.6/v3.1.7 (ulx3s_v316) | 14 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
 | [`ulx3s_v20.lpf`](https://github.com/emard/Papilio-Arcade/blob/4f91f938c200f1b0d80f03f835bdadcc5f21aa58/pacman_rel004_sp3e_papilio/proj/lattice/ulx3s/pacman_ulx3s_v20_12f/ulx3s_v20.lpf) (emard__papilio-arcade) | v2.x/v3.0.x (ulx3s_v20) | 13 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
 | [`ulx3s_v20.lpf`](https://github.com/diegob94/ulx3s_blink/blob/1d465a44289aac1c3a024004abae6eb9a2609e08/ulx3s_v20.lpf) (diegob94__ulx3s_blink) | v2.x/v3.0.x (ulx3s_v20) | 12 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`ulx3s_v316.lpf`](https://github.com/danodus/ecp5_hdmi_audio_video/blob/a4710f9e7986fe9aafde765b8b3f264ca61631be/boards/ulx3s/ulx3s_v316.lpf) (danodus__ecp5_hdmi_audio_video) | v3.1.6/v3.1.7 (ulx3s_v316) | 12 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
+| [`ulx3s_v20_segpdi.lpf`](https://github.com/Circuit-killer/fpga-usbserial/blob/bc9e18e84df7025315bd08c71bc4d17b0b5b6a0b/proj/lattice/ulx3s/constraints/ulx3s_v20_segpdi.lpf) (circuit-killer__fpga-usbserial) | v2.x/v3.0.x (ulx3s_v20) | 11 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
 | [`ulx3s.lpf`](https://github.com/danodus/msx_fpga/blob/f3266f78762094ab3eb5621279011efb504c69df/ulx3s/ulx3s.lpf) (danodus__msx_fpga) | v2.x/v3.0.x (ulx3s_v20) | 10 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, ps2, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`ulx3s_v20_segpdi.lpf`](https://github.com/Circuit-killer/fpga-usbserial/blob/bc9e18e84df7025315bd08c71bc4d17b0b5b6a0b/proj/lattice/ulx3s/constraints/ulx3s_v20_segpdi.lpf) (circuit-killer__fpga-usbserial) | v2.x/v3.0.x (ulx3s_v20) | 9 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`ulx3s_v20.lpf`](https://github.com/danodus/ulx3s_sms/blob/13c2361a5039d205de47857bab9201055ac9e566/ulx3s/ulx3s_v20.lpf) (danodus__ulx3s_sms) | v2.x/v3.0.x (ulx3s_v20) | 8 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
-| [`ulx3s_v20.lpf`](https://github.com/f32c/f32c/blob/7dbf56d42a94ae599eabfd1e7fa15db14a10afd7/rtl/proj/lattice/constraints/ulx3s_v20.lpf) (f32c__f32c) | v2.x/v3.0.x (ulx3s_v20) | 8 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
+| [`ulx3s_v20.lpf`](https://github.com/danodus/ulx3s_sms/blob/13c2361a5039d205de47857bab9201055ac9e566/ulx3s/ulx3s_v20.lpf) (danodus__ulx3s_sms) | v2.x/v3.0.x (ulx3s_v20) | 9 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
+| [`ulx3s_v20.lpf`](https://github.com/f32c/f32c/blob/7dbf56d42a94ae599eabfd1e7fa15db14a10afd7/rtl/proj/lattice/constraints/ulx3s_v20.lpf) (f32c__f32c) | v2.x/v3.0.x (ulx3s_v20) | 9 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
 | [`ulx3s_v20.lpf`](https://github.com/StereoNinja/StereoNinjaFPGA/blob/2def6f03fb93285817ced475b7c67dee756ac51a/old/Componets/HDMI_Transciever/TMDS_Encoder/ulx3s_v20.lpf) (stereoninja__stereoninjafpga) | v2.x/v3.0.x (ulx3s_v20) | 8 | adc, audio, button, esp32-wifi, ftdi-uart, gpio-header, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, sdram, spi-flash, switch, usb |
 
 ## Reusable cores seen on this board
@@ -129,7 +129,11 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | S/PDIF transmitter (f32c) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | f32c__f32c |
 | S/PDIF transmitter (synthowheel) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | emard__synthowheel |
 | Hazard3-Doom vendored DFU bootloader (ULX4M-LD validated) | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | ulx3s__hazard3-doom |
+| Machdyne tinydfu-bootloader (ECP5, TinyFPGA-derived USB core) | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | machdyne__tinydfu-bootloader |
+| TinyFPGA USB Bootloader (USB-serial-to-SPI-flash bridge) | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | tinyfpga__tinyfpga-bootloader |
 | ULX3S/ULX4M USB DFU bootloader (had2019-playground) | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | emard__had2019-playground |
+| no2bootloader (Nitro) iCE40 UP5K DFU bootloader | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | no2fpga__no2bootloader |
+| no2usb DFU runtime + dfu_helper.v (iCE40) | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | smunaut__ice40-playground |
 | AHB-Lite crossbar/arbiter/APB bridge | [bus-fabric](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bus-fabric.md) | ulx3s__hazard3 |
 | wb_intercon Wishbone mux/arbiter (olofk) | [bus-fabric](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bus-fabric.md) | kulp__tenyr |
 | OV7670 RGB/YUV capture + color-filter + VGA preview (ULX3S apio) | [camera](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/camera.md) | jderobot__fpga-robotics |
@@ -142,6 +146,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | TMS9900-family CPU core (public domain) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | pnru__ti99 |
 | TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
 | cpu_6502 (Klaus Dormann-verified 6502 core) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | chrismoos__m6502 |
+| danielh186 6502-compatible CPU core (FPGA-proven) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | danielh186__6502-tapeout |
 | fx68k 68000-compatible core (nullobject vendored copy) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | nullobject__m68k-ulx3s |
 | grom toy 8-bit CPU + computer (FPGA 101 original) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | mmicko__fpga101-workshop |
 | i8080-compatible core (Bashkiria-2M-derived) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | lawrie__ulx3s_examples |
@@ -152,20 +157,15 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
 | VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
 | f32c RISC-V/MIPS-compatible core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | f32c__f32c |
+| Pipelined double-SHA256 hasher | [crypto](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/crypto.md) | xtrinch__fpga-bitcoin-miner |
+| Pruned 64-stage double-SHA256 miner pipeline | [crypto](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/crypto.md) | williamsharkey__pruned-sha256-miner |
 | Ring-oscillator TRNG | [crypto](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/crypto.md) | krishkc5__trng-ring-oscillator |
-| yaaes AES core (VHDL, cocotb/vunit tested) | [crypto](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/crypto.md) | marph91__yaaes |
-| Resistor+PWM hybrid DAC (dacpwm) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | emard__ulx3s-misc |
-| Sigma-delta DAC (synthowheel) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | emard__synthowheel |
-| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | daveshah1__up5k-demos |
-| UberDDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | remyciterin__3driscv |
-| CIC decimator + FIR decimation filter | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | emeb__orangecrab_adc |
-| CORDIC sin/cos core | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | osresearch__up5k |
-| NCO + CIC building blocks (mixer_pcb) | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | jamesrosssharp__ulx3s_mixer_pcb |
-| Waveform-generator DDS sine core (AXI-Stream, cocotb-tested) | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | semify-eda__waveform-generator |
+| SRNG ring-oscillator TRNG + Blake2s DRBG | [crypto](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/crypto.md) | secworks__cryptkey |
+| secworks AES-128/256 core (via ct-key) | [crypto](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/crypto.md) | assured__ct-key |
 
 ## Projects targeting this board
 
-286 catalogued repos target this board; see the [full catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/catalogue.md). Those with a full review:
+373 catalogued repos target this board; see the [full catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/catalogue.md). Those with a full review:
 
 - [chrismoos__m6502](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/chrismoos__m6502.md): m6502: compact microcoded cycle-accurate 6502 in SystemVerilog + MCU wrapper
 - [danodus__ecp5_hdmi_audio_video](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/danodus__ecp5_hdmi_audio_video.md): ULX3S/IcePi Zero: HDMI audio+video transmitter core

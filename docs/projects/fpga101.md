@@ -1,7 +1,7 @@
 ---
 title: "fpga101"
 parent: "Project reviews"
-nav_order: 10
+nav_order: 11
 ---
 <!-- Generated from data/projects/fpga101.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

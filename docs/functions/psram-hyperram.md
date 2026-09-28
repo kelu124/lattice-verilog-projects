@@ -14,7 +14,7 @@ QSPI/QPI PSRAM and HyperBus controllers (add-on memories).
 |---|---|---|---|---|---|
 | [Hackaday badge QPI-PSRAM PHY + cache (ECP5-native)](#core-hadbadge-qpi-cache) ★ | [spritetm__hadbadge2019_fpgasoc](https://github.com/Spritetm/hadbadge2019_fpgasoc) | Verilog | BSD-3 (per-file headers, LICENSE.bsd) | ECP5 | 0 |
 | [hbc portable HyperBus/HyperRAM controller](#core-gtjennings1-hbc) | [gtjennings1__hyperbus](https://github.com/gtjennings1/HyperBUS) | Verilog | MIT-style | any | 0 |
-| [hyper_xface HyperRAM DWORD interface](#core-asinghani-hyper-xface) | [asinghani__pifive-cpu](https://github.com/asinghani/pifive-cpu) | Verilog | CERN-OHL-1.2 | any | 0 |
+| [hyper_xface HyperRAM DWORD interface](#core-asinghani-hyper-xface) | [asinghani__pifive-cpu](https://github.com/asinghani/pifive-cpu) | Verilog | CERN-OHL-1.2 | any | 1 |
 | [no2fpga HyperRAM controller (no2hyperbus)](#core-no2hyperbus) | [smunaut__ice40-playground](https://github.com/smunaut/ice40-playground) | Verilog | CERN-OHL-P-2.0 | iCE40 | 1 |
 
 ## Cores
@@ -67,7 +67,11 @@ DWORD-granularity HyperRAM interface (targets Cypress S27KL0641), optimized for 
 | FPGA / primitives | any: none (portable) |
 | Tests | none found |
 
-**On ULX3S:** Portable Verilog-2001, no vendor primitives; needs its own top-level pin mapping and has not been exercised end-to-end in the parent project (instantiation commented out).
+**On ULX3S:** Portable Verilog-2001, no vendor primitives; needs its own top-level pin mapping and has not been exercised end-to-end in the parent project (instantiation commented out). Byte-identical copy runs on ULX3S in markus-zzz__hyperram-test (syn/build-ulx3s.sh, HyperRAM add-on).
+
+**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [markus-zzz__hyperram-test](https://github.com/markus-zzz/hyperram-test) (instantiates [`rtl/top.v`](https://github.com/markus-zzz/hyperram-test/blob/e830db35565d37d3df2477f7ea6b4cddbb1d34b2/rtl/top.v))
 
 ### no2fpga HyperRAM controller (no2hyperbus) {#core-no2hyperbus}
 
@@ -93,5 +97,5 @@ Full review: [smunaut__ice40-playground](../projects/smunaut__ice40-playground.m
 
 ## Other catalogued projects
 
-Catalogued repos tagged `psram` (5), `hyperram` (3) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `psram` (7), `hyperram` (4) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

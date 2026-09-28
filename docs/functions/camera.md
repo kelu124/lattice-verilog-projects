@@ -112,5 +112,5 @@ OV7670 RGB/YUV capture with on-the-fly colour filtering and a live VGA preview; 
 
 ## Other catalogued projects
 
-Catalogued repos tagged `camera` (14), `video-input` (10) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `camera` (15), `video-input` (11) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

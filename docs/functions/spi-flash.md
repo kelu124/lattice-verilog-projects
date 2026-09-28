@@ -12,10 +12,10 @@ SPI/QSPI flash readers, XIP controllers and flash writers.
 
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
-| [spimemio SPI/QSPI flash XIP controller](#core-picorv32-spimemio) ★ | [yosyshq__picorv32](https://github.com/YosysHQ/picorv32) | Verilog | ISC (COPYING; per-file header) | any | 7 |
+| [spimemio SPI/QSPI flash XIP controller](#core-picorv32-spimemio) ★ | [yosyshq__picorv32](https://github.com/YosysHQ/picorv32) | Verilog | ISC (COPYING; per-file header) | any | 11 |
 | [MappedSPIFlash read-only XIP driver](#core-mb-sat-mappedspiflash) | [mb-sat__ulx3s-longwave-sdr](https://github.com/mb-sat/ulx3s-longwave-sdr) | Verilog | GPL-3.0 (repo LICENSE) | any | 1 |
 | [NEORV32 ULX3S XIP flash-execute top](#core-neorv32-ulx3s-xip) | [fedy0__neo](https://github.com/fedy0/neo) | VHDL | BSD-3-Clause | ECP5 | 0 |
-| [qspi_phy_ecp5 QSPI flash PHY (ECP5-native)](#core-had2019-qspi-phy-ecp5) | [emard__had2019-playground](https://github.com/emard/had2019-playground) | Verilog | BSD-3-clause | ECP5 | 1 |
+| [qspi_phy_ecp5 QSPI flash PHY (ECP5-native)](#core-had2019-qspi-phy-ecp5) | [emard__had2019-playground](https://github.com/emard/had2019-playground) | Verilog | BSD-3-clause | ECP5 | 2 |
 | [Wishbone Quad-SPI flash controller (Gisselquist-derived)](#core-emard-misc-wbqspiflash) | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog | GPL-3.0 (Gisselquist Technology LLC 2015-2016,… | any | 0 |
 
 ## Cores
@@ -38,13 +38,17 @@ Memory-mapped SPI-flash execute-in-place controller from PicoSoC: no vendor prim
 
 Full review: [yosyshq__picorv32](../projects/yosyshq__picorv32.md).
 
-**Used by 7 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 11 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [chipflow__example-socs](https://github.com/ChipFlow/example-socs) (instantiates [`my_design/design.py`](https://github.com/ChipFlow/example-socs/blob/e019daedd1a775735ff120363267046830c08edc/my_design/design.py))
 - [gtjennings1__hyperbus](https://github.com/gtjennings1/HyperBUS) (instantiates [`riscv32/hardware/picosoc.v`](https://github.com/gtjennings1/HyperBUS/blob/37bf73d0f5f7884d007b5a20566508a292a3c11c/riscv32/hardware/picosoc.v))
+- [im-tomu__foboot](https://github.com/im-tomu/foboot) (copies [`hw/rtl/spimemio.v`](https://github.com/im-tomu/foboot/blob/dfa09fc84b0acb4d9a2d409f3a381274a1551e9f/hw/rtl/spimemio.v))
 - [im-tomu__fomu-workshop](https://github.com/im-tomu/fomu-workshop) (copies [`litex/rtl/spimemio.v`](https://github.com/im-tomu/fomu-workshop/blob/af55dff1ffdd7cd833ed4619295053c87f7a07a0/litex/rtl/spimemio.v))
+- [kelu124__lit3rick](https://github.com/kelu124/lit3rick) (instantiates [`micropython/source/picosoc.v`](https://github.com/kelu124/lit3rick/blob/ca4ad983046943fae0694a609154839e8c051283/micropython/source/picosoc.v))
 - [mkvenkit__learn_fpga](https://github.com/mkvenkit/learn_fpga) (instantiates [`ice40up5k/picosoc_gpio/picosoc.v`](https://github.com/mkvenkit/learn_fpga/blob/b4784c67b83344f7b2c4b01f3f8bf345c9c54faf/ice40up5k/picosoc_gpio/picosoc.v))
 - [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) (instantiates [`tutorials/12-RiscV/picosoc.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/picosoc.v))
 - [nklabs__libnklabs-ulx3s](https://github.com/nklabs/libnklabs-ulx3s) (instantiates [`rtl/bus_spiflash.v`](https://github.com/nklabs/libnklabs-ulx3s/blob/6b6a6b2c50cff5415666ab0a4351a33f036c1761/rtl/bus_spiflash.v))
+- [rxrbln__picorv32](https://github.com/rxrbln/picorv32) (instantiates [`picosoc/picosoc.v`](https://github.com/rxrbln/picorv32/blob/c6886214f33a5d9a9ae9941c66275df115d80b17/picosoc/picosoc.v))
 - [spritetm__hadbadge2019_fpgasoc](https://github.com/Spritetm/hadbadge2019_fpgasoc) (instantiates [`soc/picorv32/picosoc/picosoc.v`](https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/soc/picorv32/picosoc/picosoc.v))
 - [wuxx__icesugar](https://github.com/wuxx/icesugar) (instantiates [`src/advanced/picorv32/picosoc/picosoc.v`](https://github.com/wuxx/icesugar/blob/1ebe71bf448e33a1bccfa2db6730d59eafb6c390/src/advanced/picorv32/picosoc/picosoc.v))
 
@@ -100,8 +104,9 @@ ECP5-native QSPI flash PHY (drives USRMCLK and the shared config-flash IO throug
 
 **On ULX3S:** Proven in production on ULX3S (emard's DFU bootloader, 1d50:614b); pairs with picorv32/picosoc for a full XIP+DFU stack.
 
-**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 2 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [smunaut__had2019-playground](https://github.com/smunaut/had2019-playground) (instantiates [`projects/bootloader/rtl/top.v`](https://github.com/smunaut/had2019-playground/blob/9bd9aa38ae1e77eaa9e8a7870beefb1a344baec7/projects/bootloader/rtl/top.v))
 - [ulx3s__hazard3-doom](https://github.com/ulx3s/Hazard3-Doom) (instantiates [`bootloader/rtl/top-ulx3s.v`](https://github.com/ulx3s/Hazard3-Doom/blob/42621599f78f7ce3bd51fcc6b95a56ba83e31279/bootloader/rtl/top-ulx3s.v))
 
 ### Wishbone Quad-SPI flash controller (Gisselquist-derived) {#core-emard-misc-wbqspiflash}
@@ -124,5 +129,5 @@ Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
 ## Other catalogued projects
 
-Catalogued repos tagged `flash-spi` (49) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `flash-spi` (58) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

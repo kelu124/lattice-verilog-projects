@@ -1,7 +1,7 @@
 ---
 title: "wren6991__smoldvi"
 parent: "Project reviews"
-nav_order: 17
+nav_order: 18
 ---
 <!-- Generated from data/projects/wren6991__smoldvi.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

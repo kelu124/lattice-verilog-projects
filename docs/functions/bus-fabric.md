@@ -81,5 +81,5 @@ Same olofk/wb_intercon library as kulp__tenyr, vendored directly (not a submodul
 
 ## Other catalogued projects
 
-Catalogued repos tagged `bus-fabric` (8), `wishbone-bus` (7) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `bus-fabric` (13), `wishbone-bus` (10) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

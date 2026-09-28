@@ -17,6 +17,7 @@ HUB75 panels, WS2812 strips, LED matrices.
 | [HUB75e LED panel driver (colorlight-led-cube)](#core-lucysrausch-hub75-ledpanel) | [lucysrausch__colorlight-led-cube](https://github.com/lucysrausch/colorlight-led-cube) | Verilog | GPL-3.0 (LICENSE, root) | ECP5 | 3 |
 | [no2hub75 HUB75 panel core (no2fpga library)](#core-no2hub75-led-panel) | [smunaut__ice40-playground](https://github.com/smunaut/ice40-playground) | Verilog | CERN-OHL-W-2.0 | iCE40 UP5K | 0 |
 | [PWM/PDM gamma-corrected LED brightness drivers](#core-kbob-led-pwm-pdm-gamma) | [kbob__icebreaker-candy](https://github.com/kbob/icebreaker-candy) | Verilog | GPL-3.0 (LICENSE, root; no per-file SPDX headers) | any | 0 |
+| [ws2812b WS2812B RGB LED strip driver](#core-emard-ws2812b-driver) | [emard__ledstrip](https://github.com/emard/ledstrip) | VHDL | none found | any | 1 |
 
 ## Cores
 
@@ -115,7 +116,27 @@ Technology-independent PWM and PDM gamma-corrected LED brightness drivers (led_m
 
 **On ULX3S:** No vendor primitives in these include/ files; client instantiates led_main and supplies a painter24 module plus a generated gamma table hex.
 
+### ws2812b WS2812B RGB LED strip driver {#core-emard-ws2812b-driver}
+
+Self-contained WS2812B bit-banging driver: parametric clk_Hz/striplen/timing generics, drives dout from an internal 8-colour ROM sequence selected by a 3-bit ctrl input.
+
+| | |
+|---|---|
+| Repository | [emard__ledstrip](https://github.com/emard/ledstrip): ledstrip: example VHDL WS2812B RGB LED strip driver with pushbutton colour-cycle demo |
+| Files | [`rtl/generic/ws2812b.vhd`](https://github.com/emard/ledstrip/blob/b72c6c754c7e6b5c98512702163311dc8c8d1e02/rtl/generic/ws2812b.vhd) |
+| Top module | `ws2812b` |
+| Language | VHDL |
+| License | none found (no header in ws2812b.vhd; no repo LICENSE file; sibling toplevel wrappers ulx2s_toplevel.vhd/FleaFPGA_2v5_toplevel.vhd carry LGPL-2.1+ headers) |
+| FPGA / primitives | any: none (portable) |
+| Tests | none found |
+
+**On ULX3S:** No vendor primitives; clk_Hz generic defaults to 25000000, matching the ULX3S clock, so it drops in unchanged. Repo ships only ULX2S/FleaFPGA toplevels, no ULX3S top-level.
+
+**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [f32c__f32c](https://github.com/f32c/f32c) (instantiates [`rtl/soc/vgahdmi/ledstrip.vhd`](https://github.com/f32c/f32c/blob/7dbf56d42a94ae599eabfd1e7fa15db14a10afd7/rtl/soc/vgahdmi/ledstrip.vhd))
+
 ## Other catalogued projects
 
-Catalogued repos tagged `led-matrix` (14), `led` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `led-matrix` (15), `led` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

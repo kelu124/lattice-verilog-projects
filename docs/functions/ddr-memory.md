@@ -14,7 +14,7 @@ DDR3 controllers and PHYs for ECP5 boards that have DDR3.
 |---|---|---|---|---|---|
 | [Lightweight DDR3 AXI4 memory controller (ECP5)](#core-orangecrab-ddr3-axi) ★ | [ultraembedded__orangecrab](https://github.com/ultraembedded/orangecrab) | Verilog | Apache-2.0 | ECP5 | 2 |
 | [Lightweight AXI-4 DDR3 controller + ECP5 PHY](#core-ultraembedded-core-ddr3-controller) | [ultraembedded__core_ddr3_controller](https://github.com/ultraembedded/core_ddr3_controller) | Verilog | Apache-2.0 | any | 1 |
-| [UberDDR3 controller + ECP5 PHY](#core-uberddr3-controller) | [remyciterin__3driscv](https://github.com/RemyCiterin/3DRiscV) | Verilog | GPL-3.0 (UberDDR3/LICENSE) | ECP5 | 1 |
+| [UberDDR3 controller + ECP5 PHY](#core-uberddr3-controller) | [remyciterin__3driscv](https://github.com/RemyCiterin/3DRiscV) | Verilog | GPL-3.0 (UberDDR3/LICENSE) | ECP5 | 2 |
 
 ## Cores
 
@@ -77,8 +77,9 @@ DDR3 controller with a dedicated ecp5_phy/ddr3_phy_ecp5.v PHY (fabric-clocked BB
 
 **On ULX3S:** GPL-3.0 copyleft vs. the parent project's MIT; check compatibility before reuse. Has SymbiYosys formal proofs and icarus/vivado regression tests, unlike most other DDR3 options here.
 
-**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 2 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [aravindrajeshkanna__vernier-rv32](https://github.com/AravindRajeshkanna/vernier-rv32) (instantiates [`rtl/soc/ddr3_ecp5_top.v`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/rtl/soc/ddr3_ecp5_top.v))
 - [machdyne__zeitlos](https://github.com/machdyne/zeitlos) (instantiates [`rtl/mem/ddr3.v`](https://github.com/machdyne/zeitlos/blob/a7e7e85ee0ad1fd0cfff4129e24b2aa528d444e8/rtl/mem/ddr3.v))
 
 ## Other catalogued projects

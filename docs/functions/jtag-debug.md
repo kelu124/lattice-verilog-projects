@@ -13,6 +13,7 @@ User JTAG access, debug bridges, logic analysers.
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
 | [OpenCores JTAG TAP + JTAGG bridge](#core-emard-jtag-slave) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog | LGPL-2.1-or-later | ECP5 | 0 |
+| [Bonfire ECP5 JTAGG bridge + MyHDL LED demo](#core-bonfire-jtagg-led-demo) | [bonfireprocessor__bonfire-ecp5-jtagg-led-demo](https://github.com/bonfireprocessor/bonfire-ecp5-jtagg-led-demo) | VHDL, Python | MIT (LICENSE, Bonfire Processor / Thomas… | ECP5 | 1 |
 | [Cynthion USB analyzer (used by Packetry)](#core-cynthion-usb-analyzer) | [greatscottgadgets__cynthion](https://github.com/greatscottgadgets/cynthion) | Python (Amaranth) | BSD-3-Clause | ECP5 | 0 |
 | [ECP5 JTAGG demo (Ecp5JtagDemo)](#core-tomverbeure-ecp5-jtag) | [tomverbeure__ecp5_jtag](https://github.com/tomverbeure/ecp5_jtag) | Verilog | none found | ECP5 | 0 |
 | [eSPI bus capture + packet decoder](#core-johnazoidberg-espi-analyzer) | [johnazoidberg__ulx3s-espi-analyzer](https://github.com/JohnAZoidberg/ulx3s-espi-analyzer) | Verilog | none found | ECP5 | 0 |
@@ -39,6 +40,26 @@ Generic OpenCores JTAG TAP (jtag_slave.v, vendor-neutral) plus a demo top that b
 **On ULX3S:** top_jtagg_slave.v is a real ULX3S example (clk_25mhz, btn/led/oled/gpdi ports); ODDRX1F instances are only in the demo's DVI/OLED wiring, not the TAP itself.
 
 Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
+
+### Bonfire ECP5 JTAGG bridge + MyHDL LED demo {#core-bonfire-jtagg-led-demo}
+
+Static VHDL wrapper directly instantiating the ECP5 JTAGG primitive (JTAG USER1/2 data registers), driven by portable MyHDL logic that shifts a bit pattern into an LED register on JCE1/JSHIFT/JUPDATE.
+
+| | |
+|---|---|
+| Repository | [bonfireprocessor__bonfire-ecp5-jtagg-led-demo](https://github.com/bonfireprocessor/bonfire-ecp5-jtagg-led-demo): Standalone MyHDL/FuseSoC demo wrapping the ECP5 JTAGG primitive to shift an LED pattern via the JTAG USER1/2… |
+| Files | [`fusesoc/vhdl/ecp5_jtagg_bridge.vhd`](https://github.com/bonfireprocessor/bonfire-ecp5-jtagg-led-demo/blob/7e26a6800684a8f55d6e208c48bb0c2e7970f076/fusesoc/vhdl/ecp5_jtagg_bridge.vhd), [`src/bonfire_ecp5_jtagg_led_demo/jtagg_interface.py`](https://github.com/bonfireprocessor/bonfire-ecp5-jtagg-led-demo/blob/7e26a6800684a8f55d6e208c48bb0c2e7970f076/src/bonfire_ecp5_jtagg_led_demo/jtagg_interface.py), [`src/bonfire_ecp5_jtagg_led_demo/led_demo.py`](https://github.com/bonfireprocessor/bonfire-ecp5-jtagg-led-demo/blob/7e26a6800684a8f55d6e208c48bb0c2e7970f076/src/bonfire_ecp5_jtagg_led_demo/led_demo.py) |
+| Top module | `ecp5_jtagg_bridge` |
+| Language | VHDL, Python (MyHDL) |
+| License | MIT (LICENSE, Bonfire Processor / Thomas Hornschuh 2017) |
+| FPGA / primitives | ECP5: `JTAGG` |
+| Tests | pytest, self-checking (tests/test_led_demo_logic.py runs a MyHDL behavioral sim and asserts the LED shift register matches the expected pattern) |
+
+**On ULX3S:** fusesoc/fpga/ulx3s/{board.lpf,ulx3s_jtagg_led_top.vhdl} target LFE5U-85F-6BG381C directly; extracted from bonfireprocessor__bonfire-core's own ulx3s_jtagg FuseSoC target.
+
+**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [bonfireprocessor__bonfire-core](https://github.com/bonfireprocessor/bonfire-core) (instantiates [`fusesoc-cores/generators/vhdl_template_renderer.py`](https://github.com/bonfireprocessor/bonfire-core/blob/5a797587e6d1d051fa56ede0a5c61c113431b745/fusesoc-cores/generators/vhdl_template_renderer.py))
 
 ### Cynthion USB analyzer (used by Packetry) {#core-cynthion-usb-analyzer}
 
@@ -138,5 +159,5 @@ Classic openbench SUMP-protocol logic analyzer (sampler, RLE encoder, trigger, B
 
 ## Other catalogued projects
 
-Catalogued repos tagged `jtag` (43), `debug-bridge` (7), `logic-analyzer` (14), `debug-instrument` (2) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `jtag` (50), `debug-bridge` (9), `logic-analyzer` (15), `debug-instrument` (2) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

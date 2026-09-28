@@ -190,5 +190,5 @@ Plain synthesizable Verilog USB1.1 host stack (bus reset, enumeration state mach
 
 ## Other catalogued projects
 
-Catalogued repos tagged `usb-host` (30) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `usb-host` (31) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

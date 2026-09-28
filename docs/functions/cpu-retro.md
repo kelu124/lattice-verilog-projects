@@ -14,6 +14,7 @@ nav_order: 30
 |---|---|---|---|---|---|
 | [cpu_6502 (Klaus Dormann-verified 6502 core)](#core-chrismoos-m6502) ★ | [chrismoos__m6502](https://github.com/chrismoos/m6502) | SystemVerilog | MIT (LICENSE) | any | 0 |
 | [CDP1802-compatible core (SpinalHDL)](#core-cdp1802-fpgacosmacelf) | [lawrie__fpgacosmacelf](https://github.com/lawrie/FPGACosmacELF) | Scala (SpinalHDL) | GPL-3.0 | any | 0 |
+| [danielh186 6502-compatible CPU core (FPGA-proven)](#core-danielh186-6502-tapeout) | [danielh186__6502-tapeout](https://github.com/danielh186/6502-Tapeout) | Verilog | none found | ECP5 | 0 |
 | [fx68k 68000-compatible core (nullobject vendored copy)](#core-fx68k-m68k-ulx3s) | [nullobject__m68k-ulx3s](https://github.com/nullobject/m68k-ulx3s) | Verilog | GPL-3.0 (lib/fx68k/LICENSE) | ECP5 | 5 |
 | [grom toy 8-bit CPU + computer (FPGA 101 original)](#core-mmicko-grom-cpu) | [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) | Verilog | MIT (repo LICENSE; files have no header) | any | 3 |
 | [i8080-compatible core (Bashkiria-2M-derived)](#core-i8080-altair) | [lawrie__ulx3s_examples](https://github.com/lawrie/ulx3s_examples) | Verilog | modified BSD | ECP5 | 4 |
@@ -55,6 +56,22 @@ Full review: [chrismoos__m6502](../projects/chrismoos__m6502.md).
 | Tests | ./verification dir present; self-checking status not confirmed |
 
 **On ULX3S:** Needs sbt+SpinalHDL to elaborate before synthesis, unlike the plain-HDL cores above.
+
+### danielh186 6502-compatible CPU core (FPGA-proven) {#core-danielh186-6502-tapeout}
+
+6502-compatible core implementing only the legal opcodes with deterministic (often reduced) per-opcode cycle counts; SO/SYNC/RDY/HALT/NMI/IRQ pins removed to save die area for its SG13G2 ASIC tapeout target -- not a pin/cycle-exact 6502 replacement.
+
+| | |
+|---|---|
+| Repository | [danielh186__6502-tapeout](https://github.com/danielh186/6502-Tapeout): Open-source 6502-compatible CPU core |
+| Files | [`fpga-test/cpu.v`](https://github.com/danielh186/6502-Tapeout/blob/084b2ba154f09fe0211c78dea17535e83b026c36/fpga-test/cpu.v), [`fpga-test/include.v`](https://github.com/danielh186/6502-Tapeout/blob/084b2ba154f09fe0211c78dea17535e83b026c36/fpga-test/include.v) |
+| Top module | `CPU` |
+| Language | Verilog |
+| License | none found |
+| FPGA / primitives | ECP5: none (portable) |
+| Tests | cocotb via Icarus, self-checking (cocotb-testbench/test_cpu.py: verify_attr/verify_memory compare DUT registers/memory against a maintained reference model after every instruction) |
+
+**On ULX3S:** fpga-test/{top.v,ulx3s_v20.lpf} build with nextpnr-ecp5 --85k --package CABGA381; README reports it running on a real Radiona ULX3S with clk/data/RW wired to GPIOs 0-9, verified with a logic analyzer. FPGA RAM is flip-flop based so only a 4096B window fits (shrink-memory.sh).
 
 ### fx68k 68000-compatible core (nullobject vendored copy) {#core-fx68k-m68k-ulx3s}
 
@@ -186,5 +203,5 @@ The Z80-family pick: a Verilog port (TV80) of the well-known T80 VHDL Z80 core, 
 
 ## Other catalogued projects
 
-Catalogued repos tagged `retro-computer` (71), `retro-console` (20), `retro-arcade` (10) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `retro-computer` (74), `retro-console` (22), `retro-arcade` (14) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

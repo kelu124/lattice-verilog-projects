@@ -15,6 +15,7 @@ Sound chip reimplementations (SID, SN76489, AY, YM) and synthesizers.
 | [SN76489 PSG (sound chip)](#core-lawrie-sn76489) ★ | [lawrie__ulx3s_sms](https://github.com/lawrie/ulx3s_sms) | Verilog | none found | any | 10 |
 | [JT51 (YM2151 FM synth core)](#core-jt51-ym2151) | [dlobato__cps1-musicbox](https://github.com/dlobato/cps1-musicbox) | Verilog | GPL-3.0 (gateware/rtl/jt51/LICENSE) | any | 0 |
 | [JT89 (AY-3-8910-like PSG)](#core-danodus-jt89-ay8910) | [danodus__ulx3s_68k](https://github.com/danodus/ulx3s_68k) | Verilog | GPL-3.0-or-later | ECP5 | 0 |
+| [LAYR_AUDIO SID6581 sound chip core](#core-layraudio-sid6581) | [thorkn__layr_audio](https://github.com/ThorKn/LAYR_AUDIO) | Verilog | none found | ECP5 | 41 |
 | [SID (MOS 6581/8580) reimplementation, technology-independent](#core-daglem-redip-sid) | [daglem__redip-sid](https://github.com/daglem/reDIP-SID) | SystemVerilog | CERN-OHL-S-2.0 | iCE40 UP5K | 0 |
 | [SID reimplementation (icesid)](#core-bithack-icesid) | [bit-hack__icesid](https://github.com/bit-hack/icesid) | Verilog | CERN-OHL-S-2.0 | iCE40 UP5K | 0 |
 
@@ -82,6 +83,41 @@ Jotego's AY-3-8910-compatible 3-channel PSG core (tone/noise/volume/mixer), used
 | Tests | none found in this pass |
 
 **On ULX3S:** Proven on ULX3S 85F alongside src/fx68k.sv (68000 core) in the same repo.
+
+### LAYR_AUDIO SID6581 sound chip core {#core-layraudio-sid6581}
+
+Single-file behavioral port of the Commodore 64 SID (6581) sound chip (sid_voice, sdadc, filter submodules under top module `sid`), forked from CornN64/C64-SID-on-a-FPGA and given a real ULX3S ECP5-85F Makefile/lpf.
+
+| | |
+|---|---|
+| Repository | [thorkn__layr_audio](https://github.com/ThorKn/LAYR_AUDIO): LAYR_AUDIO: ULX3S ECP5-85F port of the C64 SID |
+| Files | [`src/sid.v`](https://github.com/ThorKn/LAYR_AUDIO/blob/309c1d63d47b6e13f735b183e0faf2725c22bc24/src/sid.v) |
+| Top module | `sid` |
+| Language | Verilog |
+| License | none found |
+| FPGA / primitives | ECP5: none (portable) |
+| Tests | none found |
+
+**On ULX3S:** Pair with src/pll.v (25MHz->10MHz EHXPLLL wrapper, needs porting off ECP5) for the ULX3S build; drop-in on ULX3S per src/Makefile (CHIP=85k).
+
+**Used by 41 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [amin005__skywave_sdr](https://github.com/amin005/skywave_SDR) (instantiates [`fpga/ep1_pktsrc.v`](https://github.com/amin005/skywave_SDR/blob/15c6b23c460bd667293480f35393573e3d24449b/fpga/ep1_pktsrc.v))
+- [aravindrajeshkanna__vernier-rv32](https://github.com/AravindRajeshkanna/vernier-rv32) (instantiates [`rtl/debug/dm.v`](https://github.com/AravindRajeshkanna/vernier-rv32/blob/3284906e237a8b9b9ff1ebf198869ef9dc20885b/rtl/debug/dm.v))
+- [bhouvana__aegis-x86-processor](https://github.com/bhouvana/AEGIS-X86-Processor) (instantiates [`RTL/bpu/dir_sc.sv`](https://github.com/bhouvana/AEGIS-X86-Processor/blob/3b109cc6960cc0262147bb4d39f680f40fed28d9/RTL/bpu/dir_sc.sv))
+- [bit-hack__icesid](https://github.com/bit-hack/icesid) (instantiates [`icesid/sid.v`](https://github.com/bit-hack/icesid/blob/b126c46d25a6455914f218f83695d065efd9f961/icesid/sid.v))
+- [businessmanraduc__doggo-v6](https://github.com/businessmanraduc/Doggo-V6) (instantiates [`rtl/soc/mem/sdram-adapter.sv`](https://github.com/businessmanraduc/Doggo-V6/blob/5f888e6b7746f1c44b8722a3bc9e8be694dc866f/rtl/soc/mem/sdram-adapter.sv))
+- [cheyao__nes_ecp5](https://github.com/cheyao/nes_ecp5) (instantiates [`cart.sv`](https://github.com/cheyao/nes_ecp5/blob/e8dd1eb7f9f440a552cd24c0b936e58705a272e7/cart.sv))
+- [chipdesign-bv__cdriscv-32s-20](https://github.com/ChipDesign-BV/cdriscv-32s-20) (instantiates [`rtl/boot/cdriscv_32s_20_qspi_boot.sv`](https://github.com/ChipDesign-BV/cdriscv-32s-20/blob/e713437043cb124a1ba0f5b8a0a9cd73a67bb589/rtl/boot/cdriscv_32s_20_qspi_boot.sv))
+- [circuit-killer__fpga-usbserial](https://github.com/Circuit-killer/fpga-usbserial) (instantiates [`usb_serial/usb_serial.vhd`](https://github.com/Circuit-killer/fpga-usbserial/blob/bc9e18e84df7025315bd08c71bc4d17b0b5b6a0b/usb_serial/usb_serial.vhd))
+- [cube1us__ibm1410fpga](https://github.com/cube1us/IBM1410FPGA) (instantiates [`VHDL/ALD_19_10_06_1_I_O_UNIT_INTERRUPT_COND_LATCHES_tb.vhdl`](https://github.com/cube1us/IBM1410FPGA/blob/7bea218b1097efd58bad0aad55a085fec423314a/VHDL/ALD_19_10_06_1_I_O_UNIT_INTERRUPT_COND_LATCHES_tb.vhdl))
+- [daglem__redip-sid](https://github.com/daglem/reDIP-SID) (instantiates [`gateware/redip_sid.sv`](https://github.com/daglem/reDIP-SID/blob/56608673b3a4e4f637afc026dca07ebdbf7d0769/gateware/redip_sid.sv))
+- [emard__nes_ecp5](https://github.com/emard/nes_ecp5) (instantiates [`cart.sv`](https://github.com/emard/nes_ecp5/blob/fd421a13886cccc6da13be28a4a803a90b201e60/cart.sv))
+- [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) (instantiates [`examples/usb/usbcdc/usb_serial.vhd`](https://github.com/emard/ulx3s-misc/blob/d0c6f15dd22608d15b60fdf3c3b3c16201eea0f6/examples/usb/usbcdc/usb_serial.vhd))
+- [emard__ulx3s_c64](https://github.com/emard/ulx3s_c64) (instantiates [`rtl/sid8580/sid8580.v`](https://github.com/emard/ulx3s_c64/blob/cc412a9134ed42d4296f1afb523d556b68bb74ba/rtl/sid8580/sid8580.v))
+- [emard__vhdl_c64_c1541_sd](https://github.com/emard/vhdl_c64_c1541_sd) (instantiates [`rtl_dar/sid6581.vhd`](https://github.com/emard/vhdl_c64_c1541_sd/blob/e9e79b06d830d850d7415af20406bff8c3962214/rtl_dar/sid6581.vhd))
+- [emeb__orangecrab-litex-adc](https://github.com/emeb/OrangeCrab-Litex-ADC) (instantiates [`hw/deps/valentyusb/docs/source/conf.py`](https://github.com/emeb/OrangeCrab-Litex-ADC/blob/6f3d6192d602dcf89b06d04617b87bc1e25ffa54/hw/deps/valentyusb/docs/source/conf.py))
+- … and 26 more (see `data/core_usage.json`)
 
 ### SID (MOS 6581/8580) reimplementation, technology-independent {#core-daglem-redip-sid}
 

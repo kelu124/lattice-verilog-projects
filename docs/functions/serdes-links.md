@@ -190,5 +190,5 @@ LatticeECP5PCIeSERDES wraps the DCUA/EXTREFB primitives (1:2 gearing) for a Vers
 
 ## Other catalogued projects
 
-Catalogued repos tagged `serdes-pcie-sata` (9) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `serdes-pcie-sata` (11) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

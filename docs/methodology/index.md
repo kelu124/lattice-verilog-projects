@@ -38,9 +38,12 @@ How the collection was built, and where the raw material lives in the [GitHub re
 
 - [TinyFPGA EX, ECPIX-5 and Cynthion gateware survey](boards3-survey.md): TinyFPGA EX (announced, never shipped), LambdaConcept ECPIX-5 and Great Scott Gadgets Cynthion: board facts and gateware (2026-09-28).
 - [ECP5 (non-ULX3S) gateware survey on GitHub](ecp5-boards-survey.md): Gateware for other ECP5 boards (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5…): 114 repos, 24 recommended.
+- [FFT gateware on Lattice FPGAs](fft-survey.md): FFT gateware on Lattice FPGAs (2026-09-28): FFT cores already in the collection and 14 new iCE40/ECP5 designs (sliding DFT, radix-2 pipelines, Goertzel, spectrum displays).
+- [Gitee examples from ulx3s.github.io](gitee-survey.md): Gitee examples and remaining sections of ulx3s.github.io (2026-09-28): the single Gitee link is a stale copy of learn-fpga; 5 new ULX3S repos found elsewhere on the page.
 - [GitHub survey of ULX3S repositories (2026-09-27)](github-survey.md): GitHub-wide search for ULX3S gateware (2026-09-27): ~297 candidates in groups A–F with evidence and clone status.
 - [iCE40 HX4K / HX8K gateware survey (from awesome-latticeFPGAs)](hx-boards-survey.md): Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs: 20 recommended plus 8 honourable mentions.
 - [UP5K and ECP5 boards from awesome-latticeFPGAs: gateware survey](lattice-boards-survey.md): Gateware for the iCE40 UP5K and ECP5 boards of awesome-latticeFPGAs: 20 recommended, all catalogued.
+- [RF and signal-processing gateware on Lattice FPGAs](rf-dsp-survey.md): RF and signal-processing gateware on Lattice FPGAs (2026-09-28): SDR receivers/transmitters, lock-in amplifiers, VNA, WSPR, LoRa; 15 repos cloned.
 - [ECP5-5G / ECP5UM SERDES survey: PCIe, SATA, NVMe/M.2 and other links](serdes-survey.md): ECP5-5G (LFE5UM/LFE5UM5G) SERDES survey: PCIe, SATA, NVMe/M.2, SGMII, USB3 on open gateware; no open design drives an M.2 SSD, LiteSATA drives a SATA SSD on ECPIX-5.
 
 ## Data views

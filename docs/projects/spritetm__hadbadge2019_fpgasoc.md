@@ -1,7 +1,7 @@
 ---
 title: "spritetm__hadbadge2019_fpgasoc"
 parent: "Project reviews"
-nav_order: 12
+nav_order: 13
 ---
 <!-- Generated from data/projects/spritetm__hadbadge2019_fpgasoc.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

@@ -17,7 +17,7 @@ VGA timing generators, framebuffers and text modes; 6845 CRTC, scandoublers.
 | [f32c VGA timing + hardware text-mode overlay](#core-f32c-vga-textmode) | [f32c__f32c](https://github.com/f32c/f32c) | VHDL | MIT-style permissive header | any | 0 |
 | [MiST composite/RGB scandoubler (15kHz to VGA)](#core-hoglet67-mist-scandoubler) | [hoglet67__ice40beeb](https://github.com/hoglet67/Ice40Beeb) | Verilog | GPL-3.0-or-later | iCE40 | 1 |
 | [vga_core / vga_timing portable VGA generator (Black Mesa Labs)](#core-icebreaker-vga-core) | [icebreaker-fpga__icebreaker-verilog-examples](https://codeberg.org/icebreaker-fpga/icebreaker-verilog-examples) | Verilog | CERN-OHL v1.2 | iCE40 | 3 |
-| [VgaSyncGen SpinalHDL VGA timing generator](#core-thorkn-vgasyncgen) | [thorkn__vga_clock_1](https://github.com/ThorKn/vga_clock_1) | SpinalHDL | Apache-2.0 | ECP5 | 1 |
+| [VgaSyncGen SpinalHDL VGA timing generator](#core-thorkn-vgasyncgen) | [thorkn__vga_clock_1](https://github.com/ThorKn/vga_clock_1) | SpinalHDL | Apache-2.0 | ECP5 | 2 |
 
 ## Cores
 
@@ -129,11 +129,12 @@ SpinalHDL VGA sync-timing generator and clock-cycle counter components, proven o
 
 **On ULX3S:** Requires the SpinalHDL/Scala toolchain to elaborate to Verilog before synthesis; generator parameters cover standard VGA modes.
 
-**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 2 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [mattvenn__fpga-sdft](https://github.com/mattvenn/fpga-sdft) (instantiates [`hdl/top.v`](https://github.com/mattvenn/fpga-sdft/blob/93c9361fb596fc29b3753e10efc4e6148b5a3b93/hdl/top.v))
 - [thorkn__vga_pong](https://github.com/ThorKn/vga_pong) (instantiates [`spinalHDL/VgaPong.v`](https://github.com/ThorKn/vga_pong/blob/8b4ca37f15691097d54a445a799b38c7a3901e3c/spinalHDL/VgaPong.v))
 
 ## Other catalogued projects
 
-Catalogued repos tagged `video-vga` (15), `vga` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `video-vga` (24), `vga` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}
