@@ -1,5 +1,18 @@
 # TODO
 
+## Start here next session (handoff 2026-09-28, in this order)
+1. Resume protocol (CLAUDE.md). Check `git status` is clean and `df -h /` (~11 GB free on 2026-09-28).
+2. **Prune clones first** (frees disk before more cloning): write `.claude/skills/clone-original-source/prune.sh`
+   per memory `prune-clones.md` (dry-run default, `--apply`), run on toasterllc__mdccode (Tools/, Other/, PCB/) then
+   `--all`; report working-tree vs total space saved; commit the script + a COMMIT_LOG entry (clones themselves never committed).
+3. **Write the 3 missing catalogue rows** (gatecat__trellisboard, zipcpu__sdspi, toasterllc__mdccode): sources.tsv has 339
+   pins vs 336 rows. One subagent, mixed-family rules (`NOT ECP5` for non-ECP5), fill `make_tests` via scan_make_tests.py.
+4. **HX8K/HX4K batch** (owner approved): clone the 20 recommended repos of `docs/hx-boards-survey.md` minus
+   abnoname/iceZ0mb1e; fetch gateware-only submodules (`clone.sh --submodule`); catalogue with ~4 subagents (5 repos each),
+   FPGA column `iCE40 HX8K (NOT ECP5)` / `iCE40 HX4K (NOT ECP5)`, plus `make_tests`; merge, regenerate, update counts in
+   README/MEMORY/projects/reusable-cores, commit, push.
+5. Then continue with "Next" below.
+
 ## In progress
 
 ## Next

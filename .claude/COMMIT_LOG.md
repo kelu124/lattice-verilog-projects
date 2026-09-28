@@ -2,6 +2,10 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — chore(todo): add ordered start-of-session checklist for the next chat
+- **What/why**: owner is restarting in a new chat; TODO now opens with the ordered handoff steps (prune clones, 3 missing
+  rows, HX8K/HX4K batch).
+
 ## 2026-09-28 — docs(catalogue): add make_tests column, HX survey, prune rule; handoff
 - **What**: `scan_make_tests.py` (candidate Makefile targets calling iverilog/vvp, verilator, ghdl, nvc, cocotb, sby,
   pytest, vunit, or a sub-make into sim/test dirs) flagged 112 of 336 repos; 5 Sonnet subagents read those Makefiles and
