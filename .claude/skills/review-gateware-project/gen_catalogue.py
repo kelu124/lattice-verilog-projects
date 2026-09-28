@@ -69,6 +69,10 @@ out = ['# ULX3S project catalogue', '',
 
 tc = collections.Counter(tc_short(r['toolchain']) for r in cat if r['kind'] in ('gateware', 'examples', 'education', 'mixed'))
 lic_none = sum(1 for r in cat if r['license'].lower().startswith('none'))
+def make_run(r):
+    v = (r.get('make_tests') or '').strip()
+    return v and not v.lower().startswith(('none', 'unknown'))
+
 has_tests = sum(1 for r in cat if r.get('tests', 'none found').lower() != 'none found')
 not_ecp5 = sorted(r['slug'] for r in cat if 'NOT ECP5' in r['fpga'])
 out += ['## At a glance', '',
@@ -76,6 +80,7 @@ out += ['## At a glance', '',
         f'- Gateware toolchains: ' + ', '.join(f'{k} {v}' for k, v in tc.most_common()) + '.',
         f'- {lic_none} repositories have no license found.',
         f'- {has_tests} repositories have some detected testbench/simulation setup (heuristic scan; see "Testbenches and simulation" below).',
+        f'- {sum(1 for r in cat if make_run(r))} repositories have a Makefile target that runs a testbench/simulation/formal check (`make_tests`).',
         f'- {len(not_ecp5)} repositories target a **non-ECP5** FPGA (iCE40 UP5K etc., marked `NOT ECP5` in the FPGA column): '
         + (', '.join(not_ecp5) or 'none') + '.',
         '']
@@ -93,16 +98,19 @@ for g, rs in sections.items():
             f"{f} → {l}, {n}", r['fork_of']]) + ' |')
     out.append('')
 
-tested = [r for r in cat if r.get('tests', 'none found').lower() != 'none found']
+tested = [r for r in cat if r.get('tests', 'none found').lower() != 'none found' or make_run(r)]
 out += ['## Testbenches and simulation', '',
         'Heuristic scan (`.claude/skills/review-gateware-project/scan_tests.sh`, 2026-09-27) over each shallow '
         'clone for test/sim directories (`tb/`, `test/`, `sim/`, ...), testbench-named files '
         '(`*_tb.v`, `tb_*.vhd`, `*_test.py`, ...) and simulator mentions (iverilog, Verilator, GHDL, cocotb, '
         'VUnit) in build scripts. It is a name/path heuristic, not proof the tests run or pass — verify before '
         'relying on one. Repos not listed here had nothing matching.', '',
-        '| Repo | Detected test/sim setup |', '|---|---|']
+        'The **Run by make** column (`make_tests`, 2026-09-28) comes from `scan_make_tests.py` candidates checked by '
+        'hand-reading the Makefiles: the make command, simulator and testbench files a target actually runs. Lint-only '
+        'and synthesis-only uses of simulators are excluded. Nothing was executed.', '',
+        '| Repo | Detected test/sim setup | Run by make |', '|---|---|---|']
 for r in tested:
-    out.append(f"| [{r['slug']}]({pins.get(r['slug'], {}).get('url', '').rstrip('/')}) | {esc(r['tests'])} |")
+    out.append(f"| [{r['slug']}]({pins.get(r['slug'], {}).get('url', '').rstrip('/')}) | {esc(r['tests'])} | {esc(r.get('make_tests') or '')} |")
 out.append('')
 
 out += ['## Functions and reusable blocks', '',

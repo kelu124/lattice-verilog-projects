@@ -1,5 +1,7 @@
 # UP5K and ECP5 boards from awesome-latticeFPGAs: gateware survey
 
+**Status 2026-09-28:** all 20 "Recommended to clone" repos are cloned and in `docs/catalogue.md`.
+
 Date: 2026-09-28. Research only. Nothing was cloned into ulx3s-klod.
 
 Source list: `kelu124/awesome-latticeFPGAs` `Readme.md`. The README has a capital R, so `README.md` returns 404. There is

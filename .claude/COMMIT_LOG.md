@@ -2,6 +2,18 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(catalogue): catalogue 20 UP5K/ECP5 board repos from awesome-latticeFPGAs
+- **What**: shallow-cloned the 20 "recommended" repos of `docs/lattice-boards-survey.md`, fetched 2 new gateware submodules
+  (osmo-e1 `no2e1`, up5k_vga hoglet67 `verilog-6502`; other submodules were duplicates of cores already fetched, or
+  frameworks/software), catalogued them with 4 Sonnet subagents (mixed-family brief). 316 → 336 rows: 18 non-ECP5
+  (UP5K, some also LP8K/HX8K/Artix-7/Gowin), 2 ECP5 (greybadge25, machdyne fpga-dac). New reusable-cores rows (usb_cdc,
+  SmolDVI, reDIP-SID, no2e1). README rewritten: what the repo is, "start here" table, catalogue scope, surveys,
+  sources/restore, main files, workflow. `gen_catalogue.py` gains an optional `make_tests` column (filled next commit).
+- **Why**: owner asked to clone, analyse and catalogue the 20, commit and push; and to refresh the README.
+- **Notes**: alangarf/apple-one (upstream of lawrie's fork) spans 10 boards and 5 FPGA families, only IcePi Zero is ECP5.
+  badgeteam/ and smunaut/ mch2022 repos overlap heavily without a visible fork link. nickmqb/fpga_craft is mostly
+  Wyre HDL, not Verilog.
+
 ## 2026-09-28 — docs(survey): record gateware survey of awesome-latticeFPGAs boards
 - **What**: `docs/lattice-boards-survey.md`: for each UP5K and ECP5 board in kelu124/awesome-latticeFPGAs not already
   covered, the gateware repos found (verified = .pcf/.lpf + HDL seen in the tarball listing), boards with none found,

@@ -5,7 +5,7 @@ metadata:
   type: reference
 ---
 
-From the 2026-09-27 survey of 316 repos (290 ULX3S/ULX4M + 14 on other ECP5 boards + 12 iCE40 UP5K); iCE40 cores use SB_* primitives and need porting (details in `docs/catalogue.md`, source `catalogue.tsv`).
+From the 2026-09-27 survey of 336 repos (290 ULX3S/ULX4M + 16 on other ECP5 boards + 30 non-ECP5, mostly iCE40 UP5K); iCE40 cores use SB_* primitives and need porting (details in `docs/catalogue.md`, source `catalogue.tsv`).
 Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalogue-fields]].
 
 | Need | Best source (language, license) | Also |
@@ -34,6 +34,10 @@ Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalog
 | HyperRAM (ULX3S has none: add-on board) | smunaut__ice40-playground `cores/no2hyperbus` (Verilog, iCE40 IO primitives to port); asinghani__pifive-cpu `soc/third_party/hyperram/hyper_xface.v` (Black Mesa Labs, Verilog, fabric clk/4, CERN-OHL claimed in-file only, instance commented out in pifive) | joshajohnson__ecp5-mini-projects `litex/soc-hr` (LiteX litehyperbus, 8 MB); not cloned: markus-zzz/hyperram-test (ULX3S add-on board test, same hyper_xface.v) |
 | USB device cores (Verilog) | tinyfpga_bx_usbserial (fdarling__orangecrab-usb-cdc-demo submodule, Apache-2.0; copy in joshajohnson__ecp5-mini-projects `verilog/common/usb`); no2usb (icebreaker-fpga__icetwang submodule, LGPL-3.0+, iCE40 SB_* IO); FPGA-USB-Device (mangelajo__orangecrab-usb submodule, GPL-3.0 at pinned commit) | valentyusb (Migen, BSD-3, orangecrab-examples submodule) |
 | DVI/TMDS in nMigen, DVI input | kbeckmann__pergola_projects `pergola/gateware/{tmds,vga2dvid,dvid2vga}.py` (BSD-2) | — |
+| USB CDC-ACM, portable (no vendor primitives) | ulixxe__usb_cdc (Verilog, MIT; pin files for 21 boards) | — |
+| DVI, small and portable | wren6991__smoldvi `hdl/smoldvi/` (Verilog, CC0; only ddr_out is platform-specific) | — |
+| SID (C64 sound), SystemVerilog | daglem__redip-sid (CERN-OHL-S-2.0, primitive-free DSP) | bit-hack__icesid |
+| E1 telecom line interface | osmocom__osmo-e1-hardware `gateware/cores/no2e1` (Verilog, iCE40 SB_IO, author says easy to adapt) | — |
 | iCE40 cores library (no2fpga: USB, HyperRAM, QPI PSRAM, cache, HUB75) | smunaut__ice40-playground `cores/no2*` (Verilog; iCE40 SB_* IO in no2ice40, logic mostly portable; check each core's license) | — |
 | SID (C64 sound) | bit-hack__icesid `icesid/*.v` (Verilog, CERN-OHL-S-2.0, no SB_* primitives: portable) | — |
 | Linux on ULX3S | linux-on-litex-vexriscv (`./make.py --board=ulx3s`); kianV (85F); SaxonSoc (docker recipes stale since 2020) | — |

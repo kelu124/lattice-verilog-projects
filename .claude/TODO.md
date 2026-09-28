@@ -3,7 +3,6 @@
 ## In progress
 
 ## Next
-- [ ] Clone + catalogue the 20 "recommended" repos of docs/lattice-boards-survey.md (waiting for owner go-ahead) (added 2026-09-28)
 - [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)
 - [ ] Clone the remaining candidates in projects.md (litex-boards, SaxonSoc, neorv32-setups, fujprog, had2019-playground, ulx4m-ls) (added 2026-09-27)
 - [ ] Harvest the "Gitee examples" section of ulx3s.github.io (added 2026-09-27)

@@ -7,6 +7,7 @@ danodus__xgsoc	external/graphite	https://github.com/danodus/graphite	a721810fe6b
 dlobato__cps1-musicbox	gateware/rtl/jt51	git@github.com:jotego/jt51.git	b6d90af2c4e70dea4f017b132e5b13a0e48fbaf5	YM2151 FM sound core (jotego)
 dlobato__cps1-musicbox	gateware/rtl/jt6295	git@github.com:jotego/jt6295.git	44be9a827febd576a91773625145e59faf40303e	OKI MSM6295 ADPCM core (jotego)
 emeb__ulx3s_6502	verilog-6502	https://github.com/Arlet/verilog-6502.git	a11631082b20e8a0746cd5cc4ae8bbe68bff79c4	6502 CPU core (Verilog, Arlet)
+emeb__up5k_vga	verilog-6502	https://github.com/hoglet67/verilog-6502.git	791ed43bae4ab8881f8e73f61f5b02dd17898372	6502 CPU core (Verilog, hoglet67 fork with 65C02 extensions), the CPU of the design
 fdarling__orangecrab-usb-cdc-demo	tinyfpga_bx_usbserial	https://github.com/davidthings/tinyfpga_bx_usbserial.git	00608c23488a3e79325df997cc50148b94961861	USB CDC-ACM device core (Verilog), the core of the demo
 gojimmypi__z80386-ulx3s-doom	third_party/z386_MiSTer	https://github.com/nand2mario/z386_MiSTer.git	5a11fe819661d661732d3e5c0725807b65584319	z386 x86 CPU/PC core (MiSTer), the core of the design
 icebreaker-fpga__icetwang	soc/cores/no2ice40	https://github.com/no2fpga/no2ice40.git	e2a0c694e0565ca8e065d27ac82f6746c3cb28a0	no2ice40 iCE40 primitive/IO cores (Verilog), used by the SoC
@@ -19,6 +20,7 @@ marph91__pocket-bnn	submodules/icestick-uart	https://github.com/marph91/icestick
 mcejp__poly94	lib/verilog-uart	https://github.com/alexforencich/verilog-uart.git	b973f08697b03a17ce56b90783622c7b7a28fa2a	UART core (Verilog, alexforencich)
 orangecrab-fpga__orangecrab-examples	litex/deps/valentyusb	https://github.com/gregdavill/valentyusb	c595e1cdf7ccaa48305b89879e6ee54a2aafb6b6	ValentyUSB USB device core (Migen, hw_cdc_eptri branch) used by the LiteX examples
 orangecrab-fpga__orangecrab-examples	verilog/usb_acm_device/blocks/usbserial	https://github.com/davidthings/tinyfpga_bx_usbserial.git	00608c23488a3e79325df997cc50148b94961861	USB CDC-ACM device core (Verilog, tinyfpga_bx_usbserial) used by usb_acm_device
+osmocom__osmo-e1-hardware	gateware/cores/no2e1	https://github.com/no2fpga/no2e1.git	dac3a8b7a5d8736d867edc48a65a41965d8b78d1	no2e1 E1 (2.048 Mb/s telecom) line interface core (Verilog), the core of the design
 remyciterin__3driscv	UberDDR3	git@github.com:AngeloJacobo/UberDDR3.git	a1258e2eedefa6fba1a425becaded83928c78709	DDR3 controller (Verilog, UberDDR3)
 robinsonb5__eightthirtytwodemos	EightThirtyTwo	https://github.com/robinsonb5/EightThirtyTwo.git	c42d06fb622cf987d72c86eea4f2376609037875	EightThirtyTwo CPU core, the core of the demos
 smunaut__ice40-playground	cores/no2hub75	https://github.com/no2fpga/no2hub75.git	3f384d83e64cf9c766ee3238d294317f6d2606c7	no2hub75 HUB75 LED-panel driver (Verilog)
