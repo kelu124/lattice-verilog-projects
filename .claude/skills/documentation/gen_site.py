@@ -24,7 +24,7 @@ import mdjson
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 DATA = os.path.join(ROOT, "data")
 DOCS = os.path.join(ROOT, "docs")
-REPO_URL = "https://github.com/kelu124/ulx3s-klod"
+REPO_URL = "https://github.com/kelu124/lattice-verilog-projects"
 GEN = ".claude/skills/documentation/gen_site.py"
 LINK = re.compile(r"(\]\()([^)\s]+)(\))")
 

@@ -44,8 +44,8 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
-| 64x64 LED panel scanner (ledscan) | [led-drivers](https://github.com/kelu124/ulx3s-klod/blob/main/functions/led-drivers.md) | goran-mahovlic__prjtrellis-led64x64 |
+| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
+| 64x64 LED panel scanner (ledscan) | [led-drivers](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/led-drivers.md) | goran-mahovlic__prjtrellis-led64x64 |
 
 ## Projects targeting this board
 

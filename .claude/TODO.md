@@ -6,7 +6,7 @@ State: 398 repos catalogued (= 398 pins), 173 reusable cores in 34 functions, 18
 1. Resume protocol (CLAUDE.md). If `original_sources/` is empty: `clone.sh --restore`, then `prune.py --apply --all`
    (needed by `make check`/`usage`/`lpfs`; `make docs` alone works without clones except PCF lists on board pages).
 2. GitHub Pages: owner enables it (Settings → Pages → main, /docs) if not done; then check the first build at
-   https://kelu124.github.io/ulx3s-klod/ (nav, search, core anchors, raw wrapper) and fix what breaks.
+   https://kelu124.github.io/lattice-verilog-projects/ (nav, search, core anchors, raw wrapper) and fix what breaks.
 3. Then pick from "Next" (licensing pass on cores, board descriptions, DFU follow-ups…).
 
 ## In progress

@@ -23,7 +23,7 @@ SODIMM-format ECP5 module with SDRAM and HDMI on the carrier.
 
 ## Constraint files (LPF)
 
-Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/lpf-catalogue.md)).
+Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/lpf-catalogue.md)).
 
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
@@ -46,11 +46,11 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| I2S RX/TX + PDM/CIC mic front-end (sound2fft) | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | mebner86__icesugar-pro_sound2fft |
-| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
-| 256-point radix-2 FFT core | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | mebner86__icesugar-pro_sound2fft |
-| sound2fft TMDS encoder + ECP5 DVI serializer | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | mebner86__icesugar-pro_sound2fft |
-| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
+| I2S RX/TX + PDM/CIC mic front-end (sound2fft) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | mebner86__icesugar-pro_sound2fft |
+| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
+| 256-point radix-2 FFT core | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | mebner86__icesugar-pro_sound2fft |
+| sound2fft TMDS encoder + ECP5 DVI serializer | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | mebner86__icesugar-pro_sound2fft |
+| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
 
 ## Projects targeting this board
 

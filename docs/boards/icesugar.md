@@ -44,20 +44,20 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
-| TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
-| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
-| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
-| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | daveshah1__up5k-demos |
-| smoldvi small portable DVI core | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | wren6991__smoldvi |
-| SID reimplementation (icesid) | [sound-chips](https://github.com/kelu124/ulx3s-klod/blob/main/functions/sound-chips.md) | bit-hack__icesid |
-| spimemio SPI/QSPI flash XIP controller | [spi-flash](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-flash.md) | yosyshq__picorv32 |
+| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
+| TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
+| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
+| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
+| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | daveshah1__up5k-demos |
+| smoldvi small portable DVI core | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | wren6991__smoldvi |
+| SID reimplementation (icesid) | [sound-chips](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sound-chips.md) | bit-hack__icesid |
+| spimemio SPI/QSPI flash XIP controller | [spi-flash](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-flash.md) | yosyshq__picorv32 |
 
 ## Projects targeting this board
 
 - [apfaudio__eurorack-pmod](https://github.com/apfaudio/eurorack-pmod): Eurorack PMOD: AK4619 audio-codec PMOD gateware
 - [bit-hack__icesid](https://github.com/bit-hack/icesid): reDIP-SID/iCESugar: open-source FPGA reimplementation of the MOS 6581/8580 SID chip audio synthesis, drop-in…
 - [td0034__fpga](https://github.com/td0034/fpga): Multi-board
-- [wren6991__smoldvi](https://github.com/Wren6991/SmolDVI): iCEBreaker/iCEstick/iCESugar/TinyFPGA-BX: SmolDVI, a small direct DVI/TMDS output core ([review](https://github.com/kelu124/ulx3s-klod/blob/main/projects/wren6991__smoldvi.md))
+- [wren6991__smoldvi](https://github.com/Wren6991/SmolDVI): iCEBreaker/iCEstick/iCESugar/TinyFPGA-BX: SmolDVI, a small direct DVI/TMDS output core ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/wren6991__smoldvi.md))
 - [wuxx__icesugar](https://github.com/wuxx/icesugar): iCESugar: MuseLab's vendor example/demo collection for the iCESugar v1.5 board
 {% endraw %}

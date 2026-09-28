@@ -9,7 +9,7 @@ permalink: "/methodology/"
 {% raw %}
 # Methodology
 
-How the collection was built, and where the raw material lives in the [GitHub repository](https://github.com/kelu124/ulx3s-klod).
+How the collection was built, and where the raw material lives in the [GitHub repository](https://github.com/kelu124/lattice-verilog-projects).
 
 ## How the data was gathered
 
@@ -24,15 +24,15 @@ How the collection was built, and where the raw material lives in the [GitHub re
 
 | What | Where |
 |---|---|
-| Catalogue of every cloned repo | [data/catalogue.json](https://github.com/kelu124/ulx3s-klod/blob/main/data/catalogue.json) |
-| Reusable cores and their usage | [data/cores.json](https://github.com/kelu124/ulx3s-klod/blob/main/data/cores.json), [data/core_usage.json](https://github.com/kelu124/ulx3s-klod/blob/main/data/core_usage.json), [data/functions.json](https://github.com/kelu124/ulx3s-klod/blob/main/data/functions.json) |
-| Boards | [data/boards.json](https://github.com/kelu124/ulx3s-klod/blob/main/data/boards.json) |
-| Every LPF in the clones | [data/lpfs.json](https://github.com/kelu124/ulx3s-klod/blob/main/data/lpfs.json) |
-| Page sources (guides, surveys, reviews) | [data/pages/](https://github.com/kelu124/ulx3s-klod/tree/main/data/pages), [data/projects/](https://github.com/kelu124/ulx3s-klod/tree/main/data/projects) |
-| Pinned upstream commits | [.claude/memory/sources.tsv](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/memory/sources.tsv), [submodules.tsv](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/memory/submodules.tsv), [history.tsv](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/memory/history.tsv) |
-| Distilled knowledge (board, revisions, toolchain, decisions) | [.claude/memory/](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/memory/MEMORY.md) |
-| Workflows and generator scripts | [.claude/skills/](https://github.com/kelu124/ulx3s-klod/tree/main/.claude/skills) |
-| Change log (what and why) | [.claude/COMMIT_LOG.md](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/COMMIT_LOG.md) |
+| Catalogue of every cloned repo | [data/catalogue.json](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/catalogue.json) |
+| Reusable cores and their usage | [data/cores.json](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/cores.json), [data/core_usage.json](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/core_usage.json), [data/functions.json](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/functions.json) |
+| Boards | [data/boards.json](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/boards.json) |
+| Every LPF in the clones | [data/lpfs.json](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/lpfs.json) |
+| Page sources (guides, surveys, reviews) | [data/pages/](https://github.com/kelu124/lattice-verilog-projects/tree/main/data/pages), [data/projects/](https://github.com/kelu124/lattice-verilog-projects/tree/main/data/projects) |
+| Pinned upstream commits | [.claude/memory/sources.tsv](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/memory/sources.tsv), [submodules.tsv](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/memory/submodules.tsv), [history.tsv](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/memory/history.tsv) |
+| Distilled knowledge (board, revisions, toolchain, decisions) | [.claude/memory/](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/memory/MEMORY.md) |
+| Workflows and generator scripts | [.claude/skills/](https://github.com/kelu124/lattice-verilog-projects/tree/main/.claude/skills) |
+| Change log (what and why) | [.claude/COMMIT_LOG.md](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/COMMIT_LOG.md) |
 
 ## Surveys
 

@@ -44,13 +44,13 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| MiST composite/RGB scandoubler (composite-video input side) | [composite-video](https://github.com/kelu124/ulx3s-klod/blob/main/functions/composite-video.md) | hoglet67__ice40beeb |
-| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
-| HUB75e LED panel driver (colorlight-led-cube) | [led-drivers](https://github.com/kelu124/ulx3s-klod/blob/main/functions/led-drivers.md) | lucysrausch__colorlight-led-cube |
-| ps2_intf keyboard decoder | [ps2](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ps2.md) | lawrie__ulx3s_examples |
-| SN76489 PSG (sound chip) | [sound-chips](https://github.com/kelu124/ulx3s-klod/blob/main/functions/sound-chips.md) | lawrie__ulx3s_sms |
-| MiST composite/RGB scandoubler (15kHz to VGA) | [vga](https://github.com/kelu124/ulx3s-klod/blob/main/functions/vga.md) | hoglet67__ice40beeb |
-| vga_core / vga_timing portable VGA generator (Black Mesa Labs) | [vga](https://github.com/kelu124/ulx3s-klod/blob/main/functions/vga.md) | icebreaker-fpga__icebreaker-verilog-examples |
+| MiST composite/RGB scandoubler (composite-video input side) | [composite-video](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/composite-video.md) | hoglet67__ice40beeb |
+| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
+| HUB75e LED panel driver (colorlight-led-cube) | [led-drivers](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/led-drivers.md) | lucysrausch__colorlight-led-cube |
+| ps2_intf keyboard decoder | [ps2](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ps2.md) | lawrie__ulx3s_examples |
+| SN76489 PSG (sound chip) | [sound-chips](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sound-chips.md) | lawrie__ulx3s_sms |
+| MiST composite/RGB scandoubler (15kHz to VGA) | [vga](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/vga.md) | hoglet67__ice40beeb |
+| vga_core / vga_timing portable VGA generator (Black Mesa Labs) | [vga](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/vga.md) | icebreaker-fpga__icebreaker-verilog-examples |
 
 ## Projects targeting this board
 

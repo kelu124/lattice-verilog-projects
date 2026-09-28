@@ -46,7 +46,7 @@ and ULX3S/ULX4M DFU 1d50:614b.
 
 ## Reuse notes
 
-- The recommended programmer for ULX3S today, and the default in our advice ([toolchain memory](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/memory/toolchain-and-programming.md)).
+- The recommended programmer for ULX3S today, and the default in our advice ([toolchain memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/memory/toolchain-and-programming.md)).
 - Bit-banged FT231X JTAG is slow. For large 85F bitstreams, an external FT2232 on the JTAG
   header (`-c ft2232`) or DFU is faster.
 

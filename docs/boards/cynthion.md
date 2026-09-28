@@ -23,7 +23,7 @@ USB 2.0 test instrument: three ULPI high-speed USB PHYs, HyperRAM, 2 PMODs; prog
 
 ## Constraint files (LPF)
 
-Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/lpf-catalogue.md)).
+Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/lpf-catalogue.md)).
 
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
@@ -35,18 +35,18 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| Cynthion USB Audio Class 2.0 example | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | greatscottgadgets__cynthion-uac |
-| LUNA-SoC VexRiscv SoC framework (Moondancer's CPU) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | greatscottgadgets__luna-soc |
-| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
-| glasgow I2C core (Amaranth) | [i2c](https://github.com/kelu124/ulx3s-klod/blob/main/functions/i2c.md) | glasgowembedded__glasgow |
-| Cynthion USB analyzer (used by Packetry) | [jtag-debug](https://github.com/kelu124/ulx3s-klod/blob/main/functions/jtag-debug.md) | greatscottgadgets__cynthion |
-| katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack | [serdes-links](https://github.com/kelu124/ulx3s-klod/blob/main/functions/serdes-links.md) | zyp__katsuo-pcie |
-| glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi.md) | glasgowembedded__glasgow |
-| hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
-| HurricaneFPGA plain-Verilog USB host engine | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | voltcyclone__hurricanefpga |
-| guh USB2 HS/FS host SIE + enumerator | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | apfaudio__guh |
-| hdl4fpga USB 1.1 host core | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | hdl4fpga__hdl4fpga |
-| hurra-fpga bounded USB FS mouse host | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | voltcyclone__hurra-fpga |
+| Cynthion USB Audio Class 2.0 example | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | greatscottgadgets__cynthion-uac |
+| LUNA-SoC VexRiscv SoC framework (Moondancer's CPU) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | greatscottgadgets__luna-soc |
+| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
+| glasgow I2C core (Amaranth) | [i2c](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/i2c.md) | glasgowembedded__glasgow |
+| Cynthion USB analyzer (used by Packetry) | [jtag-debug](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/jtag-debug.md) | greatscottgadgets__cynthion |
+| katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack | [serdes-links](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/serdes-links.md) | zyp__katsuo-pcie |
+| glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | glasgowembedded__glasgow |
+| hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
+| HurricaneFPGA plain-Verilog USB host engine | [usb-host](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-host.md) | voltcyclone__hurricanefpga |
+| guh USB2 HS/FS host SIE + enumerator | [usb-host](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-host.md) | apfaudio__guh |
+| hdl4fpga USB 1.1 host core | [usb-host](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-host.md) | hdl4fpga__hdl4fpga |
+| hurra-fpga bounded USB FS mouse host | [usb-host](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-host.md) | voltcyclone__hurra-fpga |
 
 ## Projects targeting this board
 

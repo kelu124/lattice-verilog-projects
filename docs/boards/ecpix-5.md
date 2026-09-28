@@ -23,7 +23,7 @@ ECP5-5G board with DDR3, RGMII Ethernet, HDMI (IT6613), a SATA port driven by Li
 
 ## Constraint files (LPF)
 
-Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/lpf-catalogue.md)).
+Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/lpf-catalogue.md)).
 
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
@@ -37,20 +37,20 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
-| Cynthion USB Audio Class 2.0 example | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | greatscottgadgets__cynthion-uac |
-| LUNA-SoC VexRiscv SoC framework (Moondancer's CPU) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | greatscottgadgets__luna-soc |
-| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
-| Lightweight AXI-4 DDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ddr-memory.md) | ultraembedded__core_ddr3_controller |
-| Lightweight DDR3 AXI4 memory controller (ECP5) | [ddr-memory](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ddr-memory.md) | ultraembedded__orangecrab |
-| glasgow I2C core (Amaranth) | [i2c](https://github.com/kelu124/ulx3s-klod/blob/main/functions/i2c.md) | glasgowembedded__glasgow |
-| ORBTrace SWD/JTAG debug + parallel TRACE core (legacy plain-Verilog flow) | [jtag-debug](https://github.com/kelu124/ulx3s-klod/blob/main/functions/jtag-debug.md) | orbcode__orbtrace |
-| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/ulx3s-klod/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
-| LiteICLink ECP5 SERDES (DCUA) wrapper | [serdes-links](https://github.com/kelu124/ulx3s-klod/blob/main/functions/serdes-links.md) | enjoy-digital__liteiclink |
-| LiteSATA ECP5 SATA PHY + core | [serdes-links](https://github.com/kelu124/ulx3s-klod/blob/main/functions/serdes-links.md) | enjoy-digital__litesata |
-| katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack | [serdes-links](https://github.com/kelu124/ulx3s-klod/blob/main/functions/serdes-links.md) | zyp__katsuo-pcie |
-| glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi.md) | glasgowembedded__glasgow |
-| hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
+| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
+| Cynthion USB Audio Class 2.0 example | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | greatscottgadgets__cynthion-uac |
+| LUNA-SoC VexRiscv SoC framework (Moondancer's CPU) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | greatscottgadgets__luna-soc |
+| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
+| Lightweight AXI-4 DDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | ultraembedded__core_ddr3_controller |
+| Lightweight DDR3 AXI4 memory controller (ECP5) | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | ultraembedded__orangecrab |
+| glasgow I2C core (Amaranth) | [i2c](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/i2c.md) | glasgowembedded__glasgow |
+| ORBTrace SWD/JTAG debug + parallel TRACE core (legacy plain-Verilog flow) | [jtag-debug](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/jtag-debug.md) | orbcode__orbtrace |
+| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
+| LiteICLink ECP5 SERDES (DCUA) wrapper | [serdes-links](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/serdes-links.md) | enjoy-digital__liteiclink |
+| LiteSATA ECP5 SATA PHY + core | [serdes-links](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/serdes-links.md) | enjoy-digital__litesata |
+| katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack | [serdes-links](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/serdes-links.md) | zyp__katsuo-pcie |
+| glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | glasgowembedded__glasgow |
+| hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
 
 ## Projects targeting this board
 

@@ -6,13 +6,13 @@ permalink: "/"
 <!-- Generated from data/pages/index.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
 {% raw %}
-# ulx3s-klod: open gateware for the ULX3S and small Lattice boards
+# lattice-verilog-projects: open gateware for the ULX3S and small Lattice boards
 
 Reusable **open gateware for the [ULX3S](https://github.com/emard/ulx3s) FPGA board** (Radiona, Lattice ECP5 LFE5U-12F/25F/45F/85F) and other small Lattice boards (ECP5, iCE40 UP5K, iCE40 HX8K/HX4K), organised **by function**. For each function (HDMI, VGA, SDRAM, SD card, USB, UART, SPI, I2C, ADC, DAC, audio, radio, CPUs…) it gives the best core found in 376 open-source repos, the alternatives, links to the original files at the reviewed commit, their license and FPGA primitives, and the other projects that use them.
 
 Use it to **find prior art before writing a core**. Start from [Cores by function](functions/index.md); check the [board page](boards/index.md) for pin maps; read the [guides](guides/index.md) to build, load and port; the [in-depth reviews](projects/index.md) document the richest repos block by block.
 
-Facts cite the upstream file at a pinned commit; nothing was built or simulated, and anything not verified is marked `unknown`. Check each core's license before reusing it. Every page is generated from the JSON in [`data/`](https://github.com/kelu124/ulx3s-klod/tree/main/data) by the scripts described in the [methodology](methodology/index.md).
+Facts cite the upstream file at a pinned commit; nothing was built or simulated, and anything not verified is marked `unknown`. Check each core's license before reusing it. Every page is generated from the JSON in [`data/`](https://github.com/kelu124/lattice-verilog-projects/tree/main/data) by the scripts described in the [methodology](methodology/index.md).
 
 ## Browse
 

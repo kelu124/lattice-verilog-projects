@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-28
+- [x] Follow the GitHub rename to kelu124/lattice-verilog-projects: remote, generator URLs, Pages URL, titles, README, memory → commit "chore(repo): switch links to the renamed lattice-verilog-projects repo"
 - [x] Root contribute.md (generated from data/pages/contributing.json) referenced in the README; CONTRIBUTING.md becomes a pointer → commit "docs(contrib): add contribute.md and reference it in the README"
 - [x] Survey ECP5-5G SERDES storage/PCIe (no open M.2 SSD design; LiteSATA on ECPIX-5) and TinyFPGA EX / ECPIX-5 / Cynthion gateware; clone + catalogue 21 repos (+no2misc submodule), 18 cores, function serdes-links, board pages ECPIX-5 and Cynthion, 2 survey pages → commit "docs(survey): ECP5-5G SERDES storage, ECPIX-5 and Cynthion gateware"
 - [x] Clone + catalogue mmicko/fpga101-workshop: catalogue row, review page cataloguing the 20 exercises + PicoSoC/MicroPython, cores grom CPU and fpga101 PicoSoC; grom origin resolved (lawrie review), Odysseus lineage recorded → commit "review(mmicko__fpga101-workshop): catalogue the FPGA 101 exercises and PicoSoC"

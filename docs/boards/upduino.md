@@ -44,14 +44,14 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
-| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
-| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | daveshah1__up5k-demos |
-| CORDIC sin/cos core | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | osresearch__up5k |
-| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
-| hbc portable HyperBus/HyperRAM controller | [psram-hyperram](https://github.com/kelu124/ulx3s-klod/blob/main/functions/psram-hyperram.md) | gtjennings1__hyperbus |
-| SSD1322 OLED framebuffer driver (m68k-ulx3s) | [spi-display](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-display.md) | nullobject__m68k-ulx3s |
-| spimemio SPI/QSPI flash XIP controller | [spi-flash](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-flash.md) | yosyshq__picorv32 |
+| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
+| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
+| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | daveshah1__up5k-demos |
+| CORDIC sin/cos core | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | osresearch__up5k |
+| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
+| hbc portable HyperBus/HyperRAM controller | [psram-hyperram](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/psram-hyperram.md) | gtjennings1__hyperbus |
+| SSD1322 OLED framebuffer driver (m68k-ulx3s) | [spi-display](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-display.md) | nullobject__m68k-ulx3s |
+| spimemio SPI/QSPI flash XIP controller | [spi-flash](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-flash.md) | yosyshq__picorv32 |
 
 ## Projects targeting this board
 

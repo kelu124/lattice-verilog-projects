@@ -46,7 +46,7 @@ The skills:
 1. Fork and clone the repo, then start Claude Code at its root:
 
 ```bash
-   git clone https://github.com/<you>/ulx3s-klod && cd ulx3s-klod
+   git clone https://github.com/<you>/lattice-verilog-projects && cd lattice-verilog-projects
    claude
 ```
 

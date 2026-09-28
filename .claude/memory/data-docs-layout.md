@@ -17,7 +17,7 @@ Pages site (owner request, 2026-09-28: "the docs folder will be about pushing to
 - `make check` validates, `make usage` rescans core usage, `make lpfs` rescans LPFs, `make docs` renders everything. `docs/_config.yml` = Jekyll config (Pages source:
   main, `/docs`). `.claude/memory/{sources,submodules,history}.tsv` stay in memory: they drive `clone.sh`.
 
-**Site (owner decisions 2026-09-28, English, just-the-docs theme; URL https://kelu124.github.io/ulx3s-klod/ once Pages is enabled on main /docs):** not a list of all repos but the
+**Site (owner decisions 2026-09-28, English, just-the-docs theme; URL https://kelu124.github.io/lattice-verilog-projects/ once Pages is enabled on main /docs):** not a list of all repos but the
 **reusable cores and the projects that use them**, organised **by function** (`data/functions.json`, 33 functions:
 ADC, SPI, DAC, VGA, HDMI…), each core linking to its original files upstream at the pinned commit
 (`data/cores.json`, usage from `scan_core_usage.py` → `data/core_usage.json`). Boards: only the most relevant, in
@@ -32,3 +32,9 @@ skills). Generator: `documentation/gen_site.py` (front matter for nav, `{% raw %
 `documentation/md2json.py draft.md data/projects/<slug>.json --kind project`, then `make docs`. Change survey
 status by editing the table row objects in `data/pages/*.json`. Commit data + regenerated docs together.
 The round-trip md → JSON → md was verified lossless on all 24 pages at migration. See [[projects]], [[catalogue-fields]].
+
+**Repo renamed (2026-09-28):** GitHub repo `kelu124/ulx3s-klod` → **`kelu124/lattice-verilog-projects`**
+(remote `git@github.com:kelu124/lattice-verilog-projects.git`); site URL
+**https://kelu124.github.io/lattice-verilog-projects/**. Generators (`REPO_URL` in gen_site.py, gen_catalogue.py,
+gen_lpf_catalogue.py) use the new name. "ulx3s-klod" remains the internal project name in skills/CLAUDE.md and the
+local folder name; old links in COMMIT_LOG history are left as they were.

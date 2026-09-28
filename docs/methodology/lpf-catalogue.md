@@ -8,7 +8,7 @@ nav_order: 11
 {% raw %}
 # LPF catalogue
 
-Generated 2026-09-28 by `.claude/skills/review-gateware-project/scan_lpfs.py` from every `*.lpf` in `original_sources/` (scan), rendered by `.claude/skills/review-gateware-project/gen_lpf_catalogue.py`; do not edit by hand. Data: [`data/lpfs.json`](https://github.com/kelu124/ulx3s-klod/blob/main/data/lpfs.json).
+Generated 2026-09-28 by `.claude/skills/review-gateware-project/scan_lpfs.py` from every `*.lpf` in `original_sources/` (scan), rendered by `.claude/skills/review-gateware-project/gen_lpf_catalogue.py`; do not edit by hand. Data: [`data/lpfs.json`](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/lpfs.json).
 
 **924 LPF files, 487 distinct contents.** Per-file last-change dates are unknown (shallow clones): `repo_last_commit` is the repo's pinned commit date. `board`/`board_rev` come from matching (signal, site) pairs against emard/ulx3s reference LPFs when >= 90 %, else from the path or the repo's catalogue row (see `board_evidence`). per-copy `device`/`luts` come from the LPF text, a build file next to it, or the repo's catalogue row (see `device_evidence`); LUT4 counts: 12k=12000, 25k=24000, 45k=44000, 85k=84000. `chips` are inferred from active signal names (the matched names are listed); `chips_commented_only` from commented-out LOCATE lines.
 

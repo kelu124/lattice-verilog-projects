@@ -2,7 +2,7 @@
  "schema": "ulx3s-klod/page/v1",
  "kind": "index",
  "slug": "index",
- "title": "ulx3s-klod: open gateware for the ULX3S and small Lattice boards",
+ "title": "lattice-verilog-projects: open gateware for the ULX3S and small Lattice boards",
  "description": "Landing page of the GitHub Pages site.",
  "blocks": [
   {

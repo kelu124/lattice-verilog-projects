@@ -23,7 +23,7 @@ Feather-format ECP5 board with DDR3 and native USB; DFU bootloader.
 
 ## Constraint files (LPF)
 
-Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/lpf-catalogue.md)).
+Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/lpf-catalogue.md)).
 
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
@@ -40,16 +40,16 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| Digital down-converter + AM/FM demod chain (post-ADC) | [adc](https://github.com/kelu124/ulx3s-klod/blob/main/functions/adc.md) | emeb__orangecrab_adc |
-| I2S receiver (orangecrab-usb) | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | mangelajo__orangecrab-usb |
-| Lightweight AXI-4 DDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ddr-memory.md) | ultraembedded__core_ddr3_controller |
-| Lightweight DDR3 AXI4 memory controller (ECP5) | [ddr-memory](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ddr-memory.md) | ultraembedded__orangecrab |
-| CIC decimator + FIR decimation filter | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | emeb__orangecrab_adc |
-| glasgow I2C core (Amaranth) | [i2c](https://github.com/kelu124/ulx3s-klod/blob/main/functions/i2c.md) | glasgowembedded__glasgow |
-| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/ulx3s-klod/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
-| katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack | [serdes-links](https://github.com/kelu124/ulx3s-klod/blob/main/functions/serdes-links.md) | zyp__katsuo-pcie |
-| glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi.md) | glasgowembedded__glasgow |
-| hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
+| Digital down-converter + AM/FM demod chain (post-ADC) | [adc](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/adc.md) | emeb__orangecrab_adc |
+| I2S receiver (orangecrab-usb) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | mangelajo__orangecrab-usb |
+| Lightweight AXI-4 DDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | ultraembedded__core_ddr3_controller |
+| Lightweight DDR3 AXI4 memory controller (ECP5) | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | ultraembedded__orangecrab |
+| CIC decimator + FIR decimation filter | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | emeb__orangecrab_adc |
+| glasgow I2C core (Amaranth) | [i2c](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/i2c.md) | glasgowembedded__glasgow |
+| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
+| katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack | [serdes-links](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/serdes-links.md) | zyp__katsuo-pcie |
+| glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | glasgowembedded__glasgow |
+| hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
 
 ## Projects targeting this board
 
@@ -61,5 +61,5 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 - [openconcepts-ar__accel2d](https://github.com/openconcepts-ar/accel2d): accel2d: C-to-Verilog
 - [orangecrab-fpga__orangecrab-examples](https://github.com/orangecrab-fpga/orangecrab-examples): OrangeCrab: example projects - RISC-V/VexRiscv firmware, plain Verilog
 - [tallenintegsys__hdmi-orangecrab](https://github.com/tallenintegsys/hdmi-orangecrab): OrangeCrab: HDMI video+audio transmitter, porting Sameer Puri's hdl-util/hdmi IP to Lattice ECP5 via yosys+synlig…
-- [ultraembedded__orangecrab](https://github.com/ultraembedded/orangecrab): OrangeCrab: DDR3 128MB read/write memory test gateware ([review](https://github.com/kelu124/ulx3s-klod/blob/main/projects/ultraembedded__orangecrab.md))
+- [ultraembedded__orangecrab](https://github.com/ultraembedded/orangecrab): OrangeCrab: DDR3 128MB read/write memory test gateware ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/ultraembedded__orangecrab.md))
 {% endraw %}

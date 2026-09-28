@@ -44,11 +44,11 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| spimemio SPI/QSPI flash XIP controller | [spi-flash](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-flash.md) | yosyshq__picorv32 |
-| ulixxe USB CDC-ACM device core | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | ulixxe__usb_cdc |
+| spimemio SPI/QSPI flash XIP controller | [spi-flash](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-flash.md) | yosyshq__picorv32 |
+| ulixxe USB CDC-ACM device core | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | ulixxe__usb_cdc |
 
 ## Projects targeting this board
 
 - [im-tomu__fomu-workshop](https://github.com/im-tomu/fomu-workshop): Fomu: a multi-language FPGA workshop
-- [ulixxe__usb_cdc](https://github.com/ulixxe/usb_cdc): Fomu / TinyFPGA-BX: USB_CDC, a from-scratch Full-Speed ([review](https://github.com/kelu124/ulx3s-klod/blob/main/projects/ulixxe__usb_cdc.md))
+- [ulixxe__usb_cdc](https://github.com/ulixxe/usb_cdc): Fomu / TinyFPGA-BX: USB_CDC, a from-scratch Full-Speed ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/ulixxe__usb_cdc.md))
 {% endraw %}

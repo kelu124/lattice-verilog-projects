@@ -141,7 +141,7 @@
     {
      "type": "code",
      "lang": "bash",
-     "text": "   git clone https://github.com/<you>/ulx3s-klod && cd ulx3s-klod\n   claude"
+     "text": "   git clone https://github.com/<you>/lattice-verilog-projects && cd lattice-verilog-projects\n   claude"
     },
     {
      "type": "list",

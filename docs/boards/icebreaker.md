@@ -44,30 +44,30 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
-| S/PDIF transmitter (synthowheel) | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | emard__synthowheel |
-| no2usb DFU runtime + dfu_helper.v (iCE40) | [bootloader-dfu](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bootloader-dfu.md) | smunaut__ice40-playground |
-| AHB-Lite crossbar/arbiter/APB bridge | [bus-fabric](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bus-fabric.md) | ulx3s__hazard3 |
-| wb_intercon Wishbone mux/arbiter (olofk) | [bus-fabric](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bus-fabric.md) | kulp__tenyr |
-| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
-| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
-| Resistor+PWM hybrid DAC (dacpwm) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | emard__ulx3s-misc |
-| CORDIC sin/cos core | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | osresearch__up5k |
-| esp32_spi_gamepad minimal ESP32 SPI state receiver | [esp32-osd](https://github.com/kelu124/ulx3s-klod/blob/main/functions/esp32-osd.md) | dan-rodrigues__ulx3s-bluetooth-gamepad |
-| smoldvi small portable DVI core | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | wren6991__smoldvi |
-| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
-| ORBTrace SWD/JTAG debug + parallel TRACE core (legacy plain-Verilog flow) | [jtag-debug](https://github.com/kelu124/ulx3s-klod/blob/main/functions/jtag-debug.md) | orbcode__orbtrace |
-| PWM/PDM gamma-corrected LED brightness drivers | [led-drivers](https://github.com/kelu124/ulx3s-klod/blob/main/functions/led-drivers.md) | kbob__icebreaker-candy |
-| no2hub75 HUB75 panel core (no2fpga library) | [led-drivers](https://github.com/kelu124/ulx3s-klod/blob/main/functions/led-drivers.md) | smunaut__ice40-playground |
-| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/ulx3s-klod/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
-| no2fpga HyperRAM controller (no2hyperbus) | [psram-hyperram](https://github.com/kelu124/ulx3s-klod/blob/main/functions/psram-hyperram.md) | smunaut__ice40-playground |
-| RasteriCEr SPI display controller | [spi-display](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-display.md) | toni3141__rastericer |
-| SSD1322 OLED framebuffer driver (m68k-ulx3s) | [spi-display](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-display.md) | nullobject__m68k-ulx3s |
-| spimemio SPI/QSPI flash XIP controller | [spi-flash](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-flash.md) | yosyshq__picorv32 |
-| hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
-| no2usb-derived ECP5 USB FS device core (had2019 bootloader) | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | emard__had2019-playground |
-| Ultra-Embedded USB FS host (ulx3s-misc copy) | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | emard__ulx3s-misc |
-| vga_core / vga_timing portable VGA generator (Black Mesa Labs) | [vga](https://github.com/kelu124/ulx3s-klod/blob/main/functions/vga.md) | icebreaker-fpga__icebreaker-verilog-examples |
+| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
+| S/PDIF transmitter (synthowheel) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | emard__synthowheel |
+| no2usb DFU runtime + dfu_helper.v (iCE40) | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | smunaut__ice40-playground |
+| AHB-Lite crossbar/arbiter/APB bridge | [bus-fabric](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bus-fabric.md) | ulx3s__hazard3 |
+| wb_intercon Wishbone mux/arbiter (olofk) | [bus-fabric](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bus-fabric.md) | kulp__tenyr |
+| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
+| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
+| Resistor+PWM hybrid DAC (dacpwm) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | emard__ulx3s-misc |
+| CORDIC sin/cos core | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | osresearch__up5k |
+| esp32_spi_gamepad minimal ESP32 SPI state receiver | [esp32-osd](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/esp32-osd.md) | dan-rodrigues__ulx3s-bluetooth-gamepad |
+| smoldvi small portable DVI core | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | wren6991__smoldvi |
+| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
+| ORBTrace SWD/JTAG debug + parallel TRACE core (legacy plain-Verilog flow) | [jtag-debug](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/jtag-debug.md) | orbcode__orbtrace |
+| PWM/PDM gamma-corrected LED brightness drivers | [led-drivers](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/led-drivers.md) | kbob__icebreaker-candy |
+| no2hub75 HUB75 panel core (no2fpga library) | [led-drivers](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/led-drivers.md) | smunaut__ice40-playground |
+| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
+| no2fpga HyperRAM controller (no2hyperbus) | [psram-hyperram](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/psram-hyperram.md) | smunaut__ice40-playground |
+| RasteriCEr SPI display controller | [spi-display](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-display.md) | toni3141__rastericer |
+| SSD1322 OLED framebuffer driver (m68k-ulx3s) | [spi-display](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-display.md) | nullobject__m68k-ulx3s |
+| spimemio SPI/QSPI flash XIP controller | [spi-flash](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-flash.md) | yosyshq__picorv32 |
+| hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
+| no2usb-derived ECP5 USB FS device core (had2019 bootloader) | [usb-device](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-device.md) | emard__had2019-playground |
+| Ultra-Embedded USB FS host (ulx3s-misc copy) | [usb-host](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-host.md) | emard__ulx3s-misc |
+| vga_core / vga_timing portable VGA generator (Black Mesa Labs) | [vga](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/vga.md) | icebreaker-fpga__icebreaker-verilog-examples |
 
 ## Projects targeting this board
 
@@ -85,10 +85,10 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 - [orbcode__orbtrace](https://github.com/orbcode/orbtrace): ORBTrace: Cortex-M SWD/JTAG debug + parallel TRACE probe gateware
 - [osmocom__osmo-e1-hardware](https://github.com/osmocom/osmo-e1-hardware): icE1usb / osmo-e1-tracer: E1/T1 telecom interface product family gateware for iCE40 UP5K boards - icE1usb USB-E1 dongle
 - [osresearch__up5k](https://github.com/osresearch/up5k): UPduino v2: standalone iCE40 UltraPlus5K Verilog demos - blink, RGB pulse, UART serial/echo, SPRAM buffered echo,…
-- [smunaut__ice40-playground](https://github.com/smunaut/ice40-playground): iCEBreaker: collection of iCE40 UP5K IP cores ([review](https://github.com/kelu124/ulx3s-klod/blob/main/projects/smunaut__ice40-playground.md))
+- [smunaut__ice40-playground](https://github.com/smunaut/ice40-playground): iCEBreaker: collection of iCE40 UP5K IP cores ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/smunaut__ice40-playground.md))
 - [smunaut__ice40linux](https://github.com/smunaut/iCE40linux): iCEBreaker: Linux-on-RISC-V SoC gateware
 - [toni3141__rastericer](https://github.com/ToNi3141/RasteriCEr): iCE40 UP5K
 - [wren6991__riscboy](https://github.com/Wren6991/RISCBoy): RISCBoy: portable games console SoC - Hazard5 RV32IMC CPU, PPU graphics pipeline, AHB-Lite bus fabric, UART/GPIO;
-- [wren6991__smoldvi](https://github.com/Wren6991/SmolDVI): iCEBreaker/iCEstick/iCESugar/TinyFPGA-BX: SmolDVI, a small direct DVI/TMDS output core ([review](https://github.com/kelu124/ulx3s-klod/blob/main/projects/wren6991__smoldvi.md))
-- [yosyshq__picorv32](https://github.com/YosysHQ/picorv32): PicoRV32: size-optimized RISC-V ([review](https://github.com/kelu124/ulx3s-klod/blob/main/projects/yosyshq__picorv32.md))
+- [wren6991__smoldvi](https://github.com/Wren6991/SmolDVI): iCEBreaker/iCEstick/iCESugar/TinyFPGA-BX: SmolDVI, a small direct DVI/TMDS output core ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/wren6991__smoldvi.md))
+- [yosyshq__picorv32](https://github.com/YosysHQ/picorv32): PicoRV32: size-optimized RISC-V ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/yosyshq__picorv32.md))
 {% endraw %}

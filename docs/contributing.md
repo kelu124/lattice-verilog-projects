@@ -16,42 +16,42 @@ anyone who clones it can continue exactly where the last session stopped, with t
 
 | Contribution | Where it ends up |
 |---|---|
-| A repo with ULX3S / ECP5 / iCE40 gateware we don't have | cloned, pinned, catalogued in [`data/catalogue.json`](https://github.com/kelu124/ulx3s-klod/blob/main/data/catalogue.json) |
-| A better (or first) core for a function | a record in [`data/cores.json`](https://github.com/kelu124/ulx3s-klod/blob/main/data/cores.json), shown on the [function pages](functions/index.md) |
+| A repo with ULX3S / ECP5 / iCE40 gateware we don't have | cloned, pinned, catalogued in [`data/catalogue.json`](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/catalogue.json) |
+| A better (or first) core for a function | a record in [`data/cores.json`](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/cores.json), shown on the [function pages](functions/index.md) |
 | A correction (license, FPGA size, toolchain, a wrong claim) | the JSON record that holds the fact, with the file and commit that prove it |
-| An in-depth review of a rich repo | [`data/projects/<owner>__<repo>.json`](https://github.com/kelu124/ulx3s-klod/tree/main/data/projects), rendered in [Project reviews](projects/index.md) |
-| A new board, guide or survey | [`data/boards.json`](https://github.com/kelu124/ulx3s-klod/blob/main/data/boards.json) or [`data/pages/`](https://github.com/kelu124/ulx3s-klod/tree/main/data/pages) |
-| A fix to the generators or scanners | the scripts in [`.claude/skills/`](https://github.com/kelu124/ulx3s-klod/tree/main/.claude/skills) |
+| An in-depth review of a rich repo | [`data/projects/<owner>__<repo>.json`](https://github.com/kelu124/lattice-verilog-projects/tree/main/data/projects), rendered in [Project reviews](projects/index.md) |
+| A new board, guide or survey | [`data/boards.json`](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/boards.json) or [`data/pages/`](https://github.com/kelu124/lattice-verilog-projects/tree/main/data/pages) |
+| A fix to the generators or scanners | the scripts in [`.claude/skills/`](https://github.com/kelu124/lattice-verilog-projects/tree/main/.claude/skills) |
 
 ## How the repo is organised for Claude
 
 | Path | Role |
 |---|---|
-| [`CLAUDE.md`](https://github.com/kelu124/ulx3s-klod/blob/main/CLAUDE.md) | Entry point read by Claude Code at the start of every session: the resume protocol, the layout, the rules |
-| [`.claude/memory/`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/memory/MEMORY.md) | The working memory: one fact per file with frontmatter (`name`, `description`, `metadata.type`), indexed in `MEMORY.md`. Board facts, toolchain notes, owner decisions, the project registry, pinned sources (`sources.tsv`, `submodules.tsv`) |
-| [`.claude/skills/`](https://github.com/kelu124/ulx3s-klod/tree/main/.claude/skills) | Repeatable workflows (`SKILL.md`) and their scripts, invoked by Claude when a task matches |
-| [`.claude/TODO.md`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/TODO.md), [`DONE.md`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/DONE.md), [`COMMIT_LOG.md`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/COMMIT_LOG.md) | Open work (with a "start here next session" handoff), finished work, and the what/why of every commit |
-| [`data/`](https://github.com/kelu124/ulx3s-klod/tree/main/data) | All gathered data as JSON: the source of truth |
-| [`docs/`](https://github.com/kelu124/ulx3s-klod/tree/main/docs) | This site, **generated** from `data/` (never edited by hand) |
+| [`CLAUDE.md`](https://github.com/kelu124/lattice-verilog-projects/blob/main/CLAUDE.md) | Entry point read by Claude Code at the start of every session: the resume protocol, the layout, the rules |
+| [`.claude/memory/`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/memory/MEMORY.md) | The working memory: one fact per file with frontmatter (`name`, `description`, `metadata.type`), indexed in `MEMORY.md`. Board facts, toolchain notes, owner decisions, the project registry, pinned sources (`sources.tsv`, `submodules.tsv`) |
+| [`.claude/skills/`](https://github.com/kelu124/lattice-verilog-projects/tree/main/.claude/skills) | Repeatable workflows (`SKILL.md`) and their scripts, invoked by Claude when a task matches |
+| [`.claude/TODO.md`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/TODO.md), [`DONE.md`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/DONE.md), [`COMMIT_LOG.md`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/COMMIT_LOG.md) | Open work (with a "start here next session" handoff), finished work, and the what/why of every commit |
+| [`data/`](https://github.com/kelu124/lattice-verilog-projects/tree/main/data) | All gathered data as JSON: the source of truth |
+| [`docs/`](https://github.com/kelu124/lattice-verilog-projects/tree/main/docs) | This site, **generated** from `data/` (never edited by hand) |
 | `original_sources/` | Local shallow clones of the upstream repos (gitignored, read-only, pruned of non-gateware files) |
 
 The skills:
 
 | Skill | Use it to |
 |---|---|
-| [`review-gateware-project`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/skills/review-gateware-project/SKILL.md) | Add or review a project end to end: clone, catalogue, add cores, write the page, commit |
-| [`clone-original-source`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/skills/clone-original-source/SKILL.md) | Clone, pin, restore and prune upstream repos (`clone.sh`, `prune.py`) |
-| [`github-survey`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/skills/github-survey/SKILL.md) | Search GitHub for new candidates and record the survey |
-| [`documentation`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/skills/documentation/SKILL.md) | The data model (pages, cores, boards), the page template, accuracy rules, the site generator |
-| [`committing`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/skills/committing/SKILL.md) | Commit format and the mandatory `COMMIT_LOG.md` entry |
-| [`todo-done`](https://github.com/kelu124/ulx3s-klod/blob/main/.claude/skills/todo-done/SKILL.md) | Keep `TODO.md` / `DONE.md` up to date |
+| [`review-gateware-project`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/skills/review-gateware-project/SKILL.md) | Add or review a project end to end: clone, catalogue, add cores, write the page, commit |
+| [`clone-original-source`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/skills/clone-original-source/SKILL.md) | Clone, pin, restore and prune upstream repos (`clone.sh`, `prune.py`) |
+| [`github-survey`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/skills/github-survey/SKILL.md) | Search GitHub for new candidates and record the survey |
+| [`documentation`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/skills/documentation/SKILL.md) | The data model (pages, cores, boards), the page template, accuracy rules, the site generator |
+| [`committing`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/skills/committing/SKILL.md) | Commit format and the mandatory `COMMIT_LOG.md` entry |
+| [`todo-done`](https://github.com/kelu124/lattice-verilog-projects/blob/main/.claude/skills/todo-done/SKILL.md) | Keep `TODO.md` / `DONE.md` up to date |
 
 ## Contribute with Claude Code (recommended)
 
 1. Fork and clone the repo, then start Claude Code at its root:
 
 ```bash
-   git clone https://github.com/<you>/ulx3s-klod && cd ulx3s-klod
+   git clone https://github.com/<you>/lattice-verilog-projects && cd lattice-verilog-projects
    claude
 ```
 

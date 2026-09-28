@@ -23,7 +23,7 @@ Cheap ECP5 boards with gigabit Ethernet PHYs and SDRAM, repurposed from LED-pane
 
 ## Constraint files (LPF)
 
-Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/lpf-catalogue.md)).
+Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/lpf-catalogue.md)).
 
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
@@ -46,14 +46,14 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
-| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
-| Gigabit RGMII MAC | [ethernet](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ethernet.md) | datanoisetv__colorlight-i9-aes67 |
-| MDIO Clause-22 management controller | [ethernet](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ethernet.md) | sefbkn__versa-ecp5-demo |
-| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
-| ECP5 JTAGG demo (Ecp5JtagDemo) | [jtag-debug](https://github.com/kelu124/ulx3s-klod/blob/main/functions/jtag-debug.md) | tomverbeure__ecp5_jtag |
-| HUB75e LED panel driver (colorlight-led-cube) | [led-drivers](https://github.com/kelu124/ulx3s-klod/blob/main/functions/led-drivers.md) | lucysrausch__colorlight-led-cube |
-| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/ulx3s-klod/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
+| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
+| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
+| Gigabit RGMII MAC | [ethernet](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ethernet.md) | datanoisetv__colorlight-i9-aes67 |
+| MDIO Clause-22 management controller | [ethernet](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ethernet.md) | sefbkn__versa-ecp5-demo |
+| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
+| ECP5 JTAGG demo (Ecp5JtagDemo) | [jtag-debug](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/jtag-debug.md) | tomverbeure__ecp5_jtag |
+| HUB75e LED panel driver (colorlight-led-cube) | [led-drivers](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/led-drivers.md) | lucysrausch__colorlight-led-cube |
+| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
 
 ## Projects targeting this board
 

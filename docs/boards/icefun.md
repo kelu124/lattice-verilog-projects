@@ -36,8 +36,8 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| 64x64 LED panel scanner (ledscan) | [led-drivers](https://github.com/kelu124/ulx3s-klod/blob/main/functions/led-drivers.md) | goran-mahovlic__prjtrellis-led64x64 |
-| bit-bang SPI LCD driver (Apollo 11 FPGA) | [spi-display](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-display.md) | mikeakohn__apollo11_fpga |
+| 64x64 LED panel scanner (ledscan) | [led-drivers](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/led-drivers.md) | goran-mahovlic__prjtrellis-led64x64 |
+| bit-bang SPI LCD driver (Apollo 11 FPGA) | [spi-display](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-display.md) | mikeakohn__apollo11_fpga |
 
 ## Projects targeting this board
 

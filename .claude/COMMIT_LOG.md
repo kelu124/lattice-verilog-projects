@@ -2,6 +2,14 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — chore(repo): switch links to the renamed lattice-verilog-projects repo
+- **What**: remote set to `git@github.com:kelu124/lattice-verilog-projects.git`; `REPO_URL` and GitHub links in
+  gen_site.py, gen_catalogue.py, gen_lpf_catalogue.py; Pages URL `https://kelu124.github.io/lattice-verilog-projects/`
+  in README, memory (project-goal, data-docs-layout), TODO; site title (`docs/_config.yml`, home page) and the clone
+  command in the contributor guide; README title notes the former name. Site regenerated (no old URL left outside
+  COMMIT_LOG history).
+- **Why**: the GitHub repo was renamed from ulx3s-klod; owner asked to switch GitHub and GitHub Pages links.
+
 ## 2026-09-28 — docs(contrib): add contribute.md and reference it in the README
 - **What**: `gen_site.py` renders the contributor guide (data/pages/contributing.json) to root `contribute.md`;
   `CONTRIBUTING.md` becomes a generated pointer (GitHub shows that name on issues/PRs). README gets a

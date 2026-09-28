@@ -99,7 +99,7 @@ Alternatives: `fujprog`, OpenOCD with an FT2232 on the JTAG header (fastest), ES
 
 ## Constraint files (LPF)
 
-Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/lpf-catalogue.md)).
+Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/lpf-catalogue.md)).
 
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
@@ -122,60 +122,60 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| Digital down-converter + AM/FM demod chain (post-ADC) | [adc](https://github.com/kelu124/ulx3s-klod/blob/main/functions/adc.md) | emeb__orangecrab_adc |
-| MAX1112x ADC reader (ulx3s-emi copy) | [adc](https://github.com/kelu124/ulx3s-klod/blob/main/functions/adc.md) | emard__ulx3s-emi |
-| MAX1112x ADC reader (ulx3s-misc) | [adc](https://github.com/kelu124/ulx3s-klod/blob/main/functions/adc.md) | emard__ulx3s-misc |
-| I2S audio interface (ulx3s-misc) | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | emard__ulx3s-misc |
-| S/PDIF transmitter (f32c) | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | f32c__f32c |
-| S/PDIF transmitter (synthowheel) | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | emard__synthowheel |
-| Hazard3-Doom vendored DFU bootloader (ULX4M-LD validated) | [bootloader-dfu](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bootloader-dfu.md) | ulx3s__hazard3-doom |
-| ULX3S/ULX4M USB DFU bootloader (had2019-playground) | [bootloader-dfu](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bootloader-dfu.md) | emard__had2019-playground |
-| AHB-Lite crossbar/arbiter/APB bridge | [bus-fabric](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bus-fabric.md) | ulx3s__hazard3 |
-| wb_intercon Wishbone mux/arbiter (olofk) | [bus-fabric](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bus-fabric.md) | kulp__tenyr |
-| OV7670 RGB/YUV capture + color-filter + VGA preview (ULX3S apio) | [camera](https://github.com/kelu124/ulx3s-klod/blob/main/functions/camera.md) | jderobot__fpga-robotics |
-| OV7670 camera capture + SCCB config core | [camera](https://github.com/kelu124/ulx3s-klod/blob/main/functions/camera.md) | msrraju07__iop |
-| OV7670 capture + SCCB master (ulx3s-experiments) | [camera](https://github.com/kelu124/ulx3s-klod/blob/main/functions/camera.md) | tucanae47__ulx3s-experiments |
-| camera85 nMigen OV7670 capture + image pipeline | [camera](https://github.com/kelu124/ulx3s-klod/blob/main/functions/camera.md) | lawrie__ulx3s-nmigen-examples |
-| MiST composite/RGB scandoubler (composite-video input side) | [composite-video](https://github.com/kelu124/ulx3s-klod/blob/main/functions/composite-video.md) | hoglet67__ice40beeb |
-| f32c PAL composite video (CVBS) generator | [composite-video](https://github.com/kelu124/ulx3s-klod/blob/main/functions/composite-video.md) | f32c__f32c |
-| CDP1802-compatible core (SpinalHDL) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | lawrie__fpgacosmacelf |
-| TMS9900-family CPU core (public domain) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | pnru__ti99 |
-| TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
-| cpu_6502 (Klaus Dormann-verified 6502 core) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | chrismoos__m6502 |
-| fx68k 68000-compatible core (nullobject vendored copy) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | nullobject__m68k-ulx3s |
-| grom toy 8-bit CPU + computer (FPGA 101 original) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | mmicko__fpga101-workshop |
-| i8080-compatible core (Bashkiria-2M-derived) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | lawrie__ulx3s_examples |
-| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
-| Hazard3 RV32IMAC core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | wren6991__hazard3 |
-| KianV RV32IMA+Sv32 core (Linux-capable) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | splinedrive__kianriscv |
-| LUNA-SoC VexRiscv SoC framework (Moondancer's CPU) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | greatscottgadgets__luna-soc |
-| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
-| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
-| f32c RISC-V/MIPS-compatible core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | f32c__f32c |
-| Ring-oscillator TRNG | [crypto](https://github.com/kelu124/ulx3s-klod/blob/main/functions/crypto.md) | krishkc5__trng-ring-oscillator |
-| yaaes AES core (VHDL, cocotb/vunit tested) | [crypto](https://github.com/kelu124/ulx3s-klod/blob/main/functions/crypto.md) | marph91__yaaes |
-| Resistor+PWM hybrid DAC (dacpwm) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | emard__ulx3s-misc |
-| Sigma-delta DAC (synthowheel) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | emard__synthowheel |
-| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | daveshah1__up5k-demos |
-| UberDDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ddr-memory.md) | remyciterin__3driscv |
-| CIC decimator + FIR decimation filter | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | emeb__orangecrab_adc |
-| CORDIC sin/cos core | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | osresearch__up5k |
-| NCO + CIC building blocks (mixer_pcb) | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | jamesrosssharp__ulx3s_mixer_pcb |
-| Waveform-generator DDS sine core (AXI-Stream, cocotb-tested) | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | semify-eda__waveform-generator |
+| Digital down-converter + AM/FM demod chain (post-ADC) | [adc](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/adc.md) | emeb__orangecrab_adc |
+| MAX1112x ADC reader (ulx3s-emi copy) | [adc](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/adc.md) | emard__ulx3s-emi |
+| MAX1112x ADC reader (ulx3s-misc) | [adc](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/adc.md) | emard__ulx3s-misc |
+| I2S audio interface (ulx3s-misc) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | emard__ulx3s-misc |
+| S/PDIF transmitter (f32c) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | f32c__f32c |
+| S/PDIF transmitter (synthowheel) | [audio-digital](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/audio-digital.md) | emard__synthowheel |
+| Hazard3-Doom vendored DFU bootloader (ULX4M-LD validated) | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | ulx3s__hazard3-doom |
+| ULX3S/ULX4M USB DFU bootloader (had2019-playground) | [bootloader-dfu](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bootloader-dfu.md) | emard__had2019-playground |
+| AHB-Lite crossbar/arbiter/APB bridge | [bus-fabric](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bus-fabric.md) | ulx3s__hazard3 |
+| wb_intercon Wishbone mux/arbiter (olofk) | [bus-fabric](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/bus-fabric.md) | kulp__tenyr |
+| OV7670 RGB/YUV capture + color-filter + VGA preview (ULX3S apio) | [camera](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/camera.md) | jderobot__fpga-robotics |
+| OV7670 camera capture + SCCB config core | [camera](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/camera.md) | msrraju07__iop |
+| OV7670 capture + SCCB master (ulx3s-experiments) | [camera](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/camera.md) | tucanae47__ulx3s-experiments |
+| camera85 nMigen OV7670 capture + image pipeline | [camera](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/camera.md) | lawrie__ulx3s-nmigen-examples |
+| MiST composite/RGB scandoubler (composite-video input side) | [composite-video](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/composite-video.md) | hoglet67__ice40beeb |
+| f32c PAL composite video (CVBS) generator | [composite-video](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/composite-video.md) | f32c__f32c |
+| CDP1802-compatible core (SpinalHDL) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | lawrie__fpgacosmacelf |
+| TMS9900-family CPU core (public domain) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | pnru__ti99 |
+| TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
+| cpu_6502 (Klaus Dormann-verified 6502 core) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | chrismoos__m6502 |
+| fx68k 68000-compatible core (nullobject vendored copy) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | nullobject__m68k-ulx3s |
+| grom toy 8-bit CPU + computer (FPGA 101 original) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | mmicko__fpga101-workshop |
+| i8080-compatible core (Bashkiria-2M-derived) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | lawrie__ulx3s_examples |
+| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
+| Hazard3 RV32IMAC core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | wren6991__hazard3 |
+| KianV RV32IMA+Sv32 core (Linux-capable) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | splinedrive__kianriscv |
+| LUNA-SoC VexRiscv SoC framework (Moondancer's CPU) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | greatscottgadgets__luna-soc |
+| PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
+| VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
+| f32c RISC-V/MIPS-compatible core | [cpu-riscv](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-riscv.md) | f32c__f32c |
+| Ring-oscillator TRNG | [crypto](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/crypto.md) | krishkc5__trng-ring-oscillator |
+| yaaes AES core (VHDL, cocotb/vunit tested) | [crypto](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/crypto.md) | marph91__yaaes |
+| Resistor+PWM hybrid DAC (dacpwm) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | emard__ulx3s-misc |
+| Sigma-delta DAC (synthowheel) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | emard__synthowheel |
+| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | daveshah1__up5k-demos |
+| UberDDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ddr-memory.md) | remyciterin__3driscv |
+| CIC decimator + FIR decimation filter | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | emeb__orangecrab_adc |
+| CORDIC sin/cos core | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | osresearch__up5k |
+| NCO + CIC building blocks (mixer_pcb) | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | jamesrosssharp__ulx3s_mixer_pcb |
+| Waveform-generator DDS sine core (AXI-Stream, cocotb-tested) | [dsp](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dsp.md) | semify-eda__waveform-generator |
 
 ## Projects targeting this board
 
-286 catalogued repos target this board; see the [full catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/catalogue.md). Those with a full review:
+286 catalogued repos target this board; see the [full catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/catalogue.md). Those with a full review:
 
-- [chrismoos__m6502](https://github.com/kelu124/ulx3s-klod/blob/main/projects/chrismoos__m6502.md): m6502: compact microcoded cycle-accurate 6502 in SystemVerilog + MCU wrapper
-- [danodus__ecp5_hdmi_audio_video](https://github.com/kelu124/ulx3s-klod/blob/main/projects/danodus__ecp5_hdmi_audio_video.md): ULX3S/IcePi Zero: HDMI audio+video transmitter core
-- [emard__ulx3s](https://github.com/kelu124/ulx3s-klod/blob/main/projects/emard__ulx3s.md): ULX3S board hardware
-- [emard__ulx3s-misc](https://github.com/kelu124/ulx3s-klod/blob/main/projects/emard__ulx3s-misc.md): ULX3S misc/advanced examples: EMARD's building-block library
-- [f32c__f32c](https://github.com/kelu124/ulx3s-klod/blob/main/projects/f32c__f32c.md): f32c: retargetable RISC-V/MIPS 32-bit soft CPU + SoC library
-- [hdl4fpga__hdl4fpga](https://github.com/kelu124/ulx3s-klod/blob/main/projects/hdl4fpga__hdl4fpga.md): hdl4fpga: portable VHDL library, ScopeIO oscilloscope, SDRAM graphics, eth/USB links
-- [lawrie__ulx3s_examples](https://github.com/kelu124/ulx3s-klod/blob/main/projects/lawrie__ulx3s_examples.md): Lawrie Griffiths Verilog examples: HDMI, displays, PS/2, SDRAM, USB host, CPUs
-- [lawrie__ulx3s_sms](https://github.com/kelu124/ulx3s-klod/blob/main/projects/lawrie__ulx3s_sms.md): Sega Master System / SG-1000: TV80, VDP, SN76489, SDRAM carts, ESP32 OSD
-- [mmicko__fpga101-workshop](https://github.com/kelu124/ulx3s-klod/blob/main/projects/mmicko__fpga101-workshop.md): FPGA 101 workshop
-- [sylefeb__silice](https://github.com/kelu124/ulx3s-klod/blob/main/projects/sylefeb__silice.md): Silice HDL language/compiler + many ULX3S projects
-- [trabucayre__openfpgaloader](https://github.com/kelu124/ulx3s-klod/blob/main/projects/trabucayre__openfpgaloader.md): openFPGALoader universal programmer
+- [chrismoos__m6502](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/chrismoos__m6502.md): m6502: compact microcoded cycle-accurate 6502 in SystemVerilog + MCU wrapper
+- [danodus__ecp5_hdmi_audio_video](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/danodus__ecp5_hdmi_audio_video.md): ULX3S/IcePi Zero: HDMI audio+video transmitter core
+- [emard__ulx3s](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/emard__ulx3s.md): ULX3S board hardware
+- [emard__ulx3s-misc](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/emard__ulx3s-misc.md): ULX3S misc/advanced examples: EMARD's building-block library
+- [f32c__f32c](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/f32c__f32c.md): f32c: retargetable RISC-V/MIPS 32-bit soft CPU + SoC library
+- [hdl4fpga__hdl4fpga](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/hdl4fpga__hdl4fpga.md): hdl4fpga: portable VHDL library, ScopeIO oscilloscope, SDRAM graphics, eth/USB links
+- [lawrie__ulx3s_examples](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/lawrie__ulx3s_examples.md): Lawrie Griffiths Verilog examples: HDMI, displays, PS/2, SDRAM, USB host, CPUs
+- [lawrie__ulx3s_sms](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/lawrie__ulx3s_sms.md): Sega Master System / SG-1000: TV80, VDP, SN76489, SDRAM carts, ESP32 OSD
+- [mmicko__fpga101-workshop](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/mmicko__fpga101-workshop.md): FPGA 101 workshop
+- [sylefeb__silice](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/sylefeb__silice.md): Silice HDL language/compiler + many ULX3S projects
+- [trabucayre__openfpgaloader](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/trabucayre__openfpgaloader.md): openFPGALoader universal programmer
 {% endraw %}

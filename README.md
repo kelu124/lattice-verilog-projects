@@ -1,4 +1,6 @@
-# ulx3s-klod
+# lattice-verilog-projects
+
+*(formerly `ulx3s-klod`; the repo was renamed on GitHub on 2026-09-28)*
 
 A knowledge base of **open gateware for the [ULX3S](https://github.com/emard/ulx3s) FPGA board**
 (Radiona, Lattice ECP5 LFE5U-12F/25F/45F/85F) and, for reuse, other small Lattice boards
@@ -15,7 +17,7 @@ and runs `claude` here picks up exactly where the work stopped.
 
 ## Start here
 
-**Website:** <https://kelu124.github.io/ulx3s-klod/> (GitHub Pages, generated from [`data/`](data/) into [`docs/`](docs/);
+**Website:** <https://kelu124.github.io/lattice-verilog-projects/> (GitHub Pages, generated from [`data/`](data/) into [`docs/`](docs/);
 Pages must be enabled once in the repo settings: source `main`, folder `/docs`). The links below open the
 same pages as markdown on GitHub.
 

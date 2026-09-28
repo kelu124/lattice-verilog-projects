@@ -23,7 +23,7 @@ Raspberry Pi Zero-sized ECP5 board with HDMI, SDRAM and USB; many ULX3S retro po
 
 ## Constraint files (LPF)
 
-Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/lpf-catalogue.md)).
+Most-copied distinct LPFs for this board in the cloned repos (from the [LPF catalogue](https://github.com/kelu124/lattice-verilog-projects/blob/main/methodology/lpf-catalogue.md)).
 
 | LPF | Revision | Copies | Peripherals constrained |
 |---|---|---|---|
@@ -46,19 +46,19 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
-| TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
-| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | daveshah1__up5k-demos |
-| ESP32 SPI OSD + spirw_slave ROM/disk loading stack | [esp32-osd](https://github.com/kelu124/ulx3s-klod/blob/main/functions/esp32-osd.md) | lawrie__ulx3s_sms |
-| HDMI TX with audio (danodus ecp5_hdmi_audio_video) | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | danodus__ecp5_hdmi_audio_video |
-| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
-| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/ulx3s-klod/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
-| ps2kbd + ps2mouse (EMARD) | [ps2](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ps2.md) | emard__ulx3s-misc |
-| Oberon SDRAM_16bit controller + cache | [sdram](https://github.com/kelu124/ulx3s-klod/blob/main/functions/sdram.md) | emard__oberon |
-| SN76489 PSG (sound chip) | [sound-chips](https://github.com/kelu124/ulx3s-klod/blob/main/functions/sound-chips.md) | lawrie__ulx3s_sms |
-| glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi.md) | glasgowembedded__glasgow |
-| lcd_video / spi_display multi-panel SPI LCD driver | [spi-display](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi-display.md) | emard__ulx3s-misc |
-| Ultra-Embedded USB FS host (ulx3s-misc copy) | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | emard__ulx3s-misc |
-| emard USB host + gamepad report decoders | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | emard__nes_ecp5 |
+| TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
+| Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/dac.md) | daveshah1__up5k-demos |
+| ESP32 SPI OSD + spirw_slave ROM/disk loading stack | [esp32-osd](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/esp32-osd.md) | lawrie__ulx3s_sms |
+| HDMI TX with audio (danodus ecp5_hdmi_audio_video) | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | danodus__ecp5_hdmi_audio_video |
+| vga2dvid + tmds_encoder DVI/TMDS core (Mike Field / EMARD) | [hdmi-dvi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/hdmi-dvi.md) | emard__ulx3s-misc |
+| ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
+| ps2kbd + ps2mouse (EMARD) | [ps2](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/ps2.md) | emard__ulx3s-misc |
+| Oberon SDRAM_16bit controller + cache | [sdram](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sdram.md) | emard__oberon |
+| SN76489 PSG (sound chip) | [sound-chips](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/sound-chips.md) | lawrie__ulx3s_sms |
+| glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi.md) | glasgowembedded__glasgow |
+| lcd_video / spi_display multi-panel SPI LCD driver | [spi-display](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/spi-display.md) | emard__ulx3s-misc |
+| Ultra-Embedded USB FS host (ulx3s-misc copy) | [usb-host](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-host.md) | emard__ulx3s-misc |
+| emard USB host + gamepad report decoders | [usb-host](https://github.com/kelu124/lattice-verilog-projects/blob/main/functions/usb-host.md) | emard__nes_ecp5 |
 
 ## Projects targeting this board
 
@@ -67,6 +67,6 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 - [cheyao__nes_ecp5](https://github.com/cheyao/nes_ecp5): NES (MiST-derived core) for ULX3S/ULX4M/icepi-zero via open toolchain, with ESP32 SD-card OSD loader
 - [cheyao__oberon](https://github.com/cheyao/oberon): Project Oberon
 - [cheyao__sega-sms](https://github.com/cheyao/sega-sms): Sega Master System core;
-- [danodus__ecp5_hdmi_audio_video](https://github.com/danodus/ecp5_hdmi_audio_video): ULX3S/IcePi Zero: HDMI audio+video transmitter core ([review](https://github.com/kelu124/ulx3s-klod/blob/main/projects/danodus__ecp5_hdmi_audio_video.md))
+- [danodus__ecp5_hdmi_audio_video](https://github.com/danodus/ecp5_hdmi_audio_video): ULX3S/IcePi Zero: HDMI audio+video transmitter core ([review](https://github.com/kelu124/lattice-verilog-projects/blob/main/projects/danodus__ecp5_hdmi_audio_video.md))
 - [danodus__xgsoc](https://github.com/danodus/xgsoc): XGSoC: RISC-V
 {% endraw %}

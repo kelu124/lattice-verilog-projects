@@ -31,7 +31,7 @@ def write_md(doc):
     L = [f"# LPF catalogue", "",
          f"Generated {doc['generated']} by `{doc['generator']}` from every `*.lpf` in `original_sources/` "
          f"(scan), rendered by `.claude/skills/review-gateware-project/gen_lpf_catalogue.py`; do not edit by hand. "
-         f"Data: [`data/lpfs.json`](https://github.com/kelu124/ulx3s-klod/blob/main/data/lpfs.json).", "",
+         f"Data: [`data/lpfs.json`](https://github.com/kelu124/lattice-verilog-projects/blob/main/data/lpfs.json).", "",
          f"**{doc['files_scanned']} LPF files, {doc['distinct_lpfs']} distinct contents.** " + " ".join(doc["notes"][1:]), "",
          "| Kind | LPF files |", "|---|---|"] + [f"| {k} | {n} |" for k, n in kinds.most_common()] + ["",
          "The tables below count only `pin-map` LPFs (at least one active LOCATE line).", "",
