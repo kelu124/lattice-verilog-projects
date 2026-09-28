@@ -28,7 +28,7 @@ same pages as markdown on GitHub.
 | Read an in-depth review with per-block reuse notes | [Project reviews](docs/projects/index.md) (19 repos) |
 | Browse every catalogued repo, or every LPF pin map | [Full catalogue](docs/methodology/catalogue.md), [LPF catalogue](docs/methodology/lpf-catalogue.md) (data: [`data/catalogue.json`](data/catalogue.json), [`data/lpfs.json`](data/lpfs.json)) |
 | See how the collection was found | [Methodology](docs/methodology/index.md) and the surveys below |
-| Contribute (with Claude Code and the `.claude/` memory, or by hand) | [`CONTRIBUTING.md`](CONTRIBUTING.md) (also on the site: [Contribute](docs/contributing.md)) |
+| Contribute (with Claude Code, `CLAUDE.md` and the `.claude/` memory and skills, or by hand) | [`contribute.md`](contribute.md) (also on the site: [Contribute](docs/contributing.md)) |
 
 ## The catalogue
 
@@ -120,6 +120,11 @@ freed 5 GB.
 | [`.claude/skills/`](.claude/skills/) | Repeatable workflows: GitHub survey, clone + prune, review/catalogue, document, commit, TODO/DONE |
 | [`.claude/TODO.md`](.claude/TODO.md), [`DONE.md`](.claude/DONE.md), [`COMMIT_LOG.md`](.claude/COMMIT_LOG.md) | Open work, finished work, and the why of each commit |
 
+## Contributing
+
+See **[contribute.md](contribute.md)**: how to contribute with Claude Code (`CLAUDE.md`, the `.claude/` memory and
+skills) or by editing `data/` by hand, and the rules every contribution follows.
+
 ## Working in this repo
 
 1. Clone it, run `claude`, and it follows the resume protocol in `CLAUDE.md` (read memory, TODO, last commits;
@@ -128,4 +133,4 @@ freed 5 GB.
    (`gen_catalogue.py --merge`), adds any better core to `data/cores.json`, documents, runs
    `make check usage docs`, and commits with a `COMMIT_LOG.md` entry.
 3. Never edit files under `original_sources/`, and never edit anything under `docs/` by hand (edit `data/`, then `make docs`).
-4. Full contributor guide: [`CONTRIBUTING.md`](CONTRIBUTING.md) (generated from `data/pages/contributing.json`).
+4. Full contributor guide: [`contribute.md`](contribute.md) (generated from `data/pages/contributing.json`).

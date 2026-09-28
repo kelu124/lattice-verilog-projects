@@ -37,7 +37,7 @@ exact state it was left in. Do **not** rely on the per-user memory in
 | `docs/methodology/catalogue.md` | Generated catalogue of all repos (never edit by hand) | yes |
 | `data/` | **All gathered data as JSON** (source of truth): `catalogue.json`, `cores.json` + `core_usage.json` + `functions.json` (reusable cores by function), `boards.json`, `lpfs.json` (every LPF), `pages/*.json` (guides, surveys, methodology, index), `projects/*.json` (reviews) | yes |
 | `docs/` | **Generated** GitHub Pages site (just-the-docs; cores by function, boards, guides, reviews, methodology) — `make docs`; never edit by hand | yes |
-| `CONTRIBUTING.md` | Contributor guide (Claude Code + `.claude/`, or by hand); **generated** from `data/pages/contributing.json` | yes |
+| `contribute.md` | Contributor guide (Claude Code + `.claude/`, or by hand); **generated** from `data/pages/contributing.json` (`CONTRIBUTING.md` is a generated pointer to it for GitHub) | yes |
 | `Makefile` | `make check` (validate data), `make usage` (core usage scan), `make lpfs` (LPF scan), `make docs` (render the site) | yes |
 | `.claude/TODO.md` | Open work items | yes |
 | `.claude/DONE.md` | Completed work items, newest first, dated | yes |

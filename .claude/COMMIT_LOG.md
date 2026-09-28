@@ -2,6 +2,13 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(contrib): add contribute.md and reference it in the README
+- **What**: `gen_site.py` renders the contributor guide (data/pages/contributing.json) to root `contribute.md`;
+  `CONTRIBUTING.md` becomes a generated pointer (GitHub shows that name on issues/PRs). README gets a
+  "Contributing" section and start-here row linking contribute.md; CLAUDE.md, documentation skill and
+  data-docs-layout memory updated.
+- **Why**: owner asked for a contribute.md referenced in the README, then commit and push.
+
 ## 2026-09-28 — docs(survey): ECP5-5G SERDES storage, ECPIX-5 and Cynthion gateware
 - **What**: two research surveys imported as pages: `data/pages/serdes-survey.json` (47 queries: no open design
   drives an M.2 SSD over the ECP5 SERDES; LiteSATA drives a SATA drive on ECPIX-5; PCIe is endpoint-only Gen1 x1
