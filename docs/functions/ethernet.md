@@ -16,6 +16,7 @@ RMII/RGMII/SGMII MACs and IP/UDP stacks, PTP.
 | [Gigabit RGMII MAC](#core-datanoisetv-eth-mac-rgmii) | [datanoisetv__colorlight-i9-aes67](https://github.com/DatanoiseTV/colorlight-i9-aes67) | Verilog | MIT (SPDX headers) | ECP5 | 2 |
 | [MDIO Clause-22 management controller](#core-sefbkn-mdio) | [sefbkn__versa-ecp5-demo](https://github.com/sefbkn/versa-ecp5-demo) | Verilog | CERN-OHL-S-2.0 | any | 1 |
 | [RMII hex-dump packet sniffer](#core-emard-eth-rmii-hexdemo) | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog | none found | ECP5 | 0 |
+| [kazkojima LiteEth SGMII PHY over ECP5 DCU (GBE mode)](#core-kazkojima-ecp5-sgmii) | [kazkojima__litex-lattice-ecp5-evn](https://github.com/kazkojima/litex-lattice-ecp5-evn) | Python (Migen) | BSD-2-Clause | ECP5 | 0 |
 
 ## Cores
 
@@ -96,7 +97,23 @@ Self-contained single-file RMII receiver that hex-dumps captured LAN8720 packets
 
 Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
+### kazkojima LiteEth SGMII PHY over ECP5 DCU (GBE mode) {#core-kazkojima-ecp5-sgmii}
+
+SGMII (1000BASE-X) PHY built from Instance('DCUA', CHX_PROTOCOL='GBE'), a reduction of liteeth pcs_1000basex.py plus liteiclink serdes_ecp5.py for the DCU's Gigabit-Ethernet mode. Used on an ECP5-5G Evaluation Board with a TI DP83867S add-on to run a LiteX/linux-on-litex-vexriscv SoC over Ethernet.
+
+| | |
+|---|---|
+| Repository | [kazkojima__litex-lattice-ecp5-evn](https://github.com/kazkojima/litex-lattice-ecp5-evn): LiteEth SGMII PHY |
+| Files | [`liteeth/ecp5sgmii.py`](https://github.com/kazkojima/litex-lattice-ecp5-evn/blob/6c526658a7c1cc963e8bcaa6c45e3468f6123e1e/liteeth/ecp5sgmii.py) |
+| Top module | `SGMIIECP5` |
+| Language | Python (Migen) |
+| License | BSD-2-Clause (file header: Copyright (c) 2019-2021 Florent Kermarrec, LiteEth) |
+| FPGA / primitives | ECP5: `DCUA` |
+| Tests | none found |
+
+**On ULX3S:** ULX3S (LFE5U) has no SERDES; needs an ECP5 UM/UM5G part. Author calls the whole setup 'experimental'; validated only with a home-brewed DP83867S daughterboard, not a stock module.
+
 ## Other catalogued projects
 
-Catalogued repos tagged `ethernet` (11) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `ethernet` (14) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

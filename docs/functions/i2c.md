@@ -90,5 +90,5 @@ Low-level I2C command engine with open-drain SDA/SCL controls, driving the ULX3S
 
 ## Other catalogued projects
 
-Catalogued repos tagged `i2c` (5) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `i2c` (6) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

@@ -1,7 +1,7 @@
 ---
 title: "JTAG and debug"
 parent: "Cores by function"
-nav_order: 20
+nav_order: 21
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
@@ -13,9 +13,11 @@ User JTAG access, debug bridges, logic analysers.
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
 | [OpenCores JTAG TAP + JTAGG bridge](#core-emard-jtag-slave) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | Verilog | LGPL-2.1-or-later | ECP5 | 0 |
+| [Cynthion USB analyzer (used by Packetry)](#core-cynthion-usb-analyzer) | [greatscottgadgets__cynthion](https://github.com/greatscottgadgets/cynthion) | Python (Amaranth) | BSD-3-Clause | ECP5 | 0 |
 | [ECP5 JTAGG demo (Ecp5JtagDemo)](#core-tomverbeure-ecp5-jtag) | [tomverbeure__ecp5_jtag](https://github.com/tomverbeure/ecp5_jtag) | Verilog | none found | ECP5 | 0 |
 | [eSPI bus capture + packet decoder](#core-johnazoidberg-espi-analyzer) | [johnazoidberg__ulx3s-espi-analyzer](https://github.com/JohnAZoidberg/ulx3s-espi-analyzer) | Verilog | none found | ECP5 | 0 |
 | [OpenDAP SW-DP + Mem-AP (SWD debug probe)](#core-opendap-sw-dp) | [wren6991__hazard3-swd-soc](https://github.com/Wren6991/Hazard3-SWD-SoC) | Verilog | CC0-1.0 (file header + submodule LICENSE) | any | 0 |
+| [ORBTrace SWD/JTAG debug + parallel TRACE core (legacy plain-Verilog flow)](#core-orbtrace-swd-jtag-trace) | [orbcode__orbtrace](https://github.com/orbcode/orbtrace) | Verilog | BSD-3-Clause | any | 0 |
 | [SUMP logic analyzer core (ECP5-ported)](#core-lawrie-ice40logicsniffer) | [lawrie__ice40logicsniffer](https://github.com/lawrie/Ice40LogicSniffer) | Verilog | GPL-2.0-or-later | ECP5 | 0 |
 
 ## Cores
@@ -37,6 +39,22 @@ Generic OpenCores JTAG TAP (jtag_slave.v, vendor-neutral) plus a demo top that b
 **On ULX3S:** top_jtagg_slave.v is a real ULX3S example (clk_25mhz, btn/led/oled/gpdi ports); ODDRX1F instances are only in the demo's DVI/OLED wiring, not the TAP itself.
 
 Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
+
+### Cynthion USB analyzer (used by Packetry) {#core-cynthion-usb-analyzer}
+
+Official low/full/high-speed USB protocol analyzer core: captures traffic on Cynthion's TARGET port (via LUNA's UTMITranslator + speed/event detection) into a FIFO, streamed to the host over a USB2 device endpoint; the capture backend for greatscottgadgets/packetry.
+
+| | |
+|---|---|
+| Repository | [greatscottgadgets__cynthion](https://github.com/greatscottgadgets/cynthion): Cynthion: official GSG gateware |
+| Files | [`cynthion/python/src/gateware/analyzer/analyzer.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/src/gateware/analyzer/analyzer.py), [`cynthion/python/src/gateware/analyzer/top.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/src/gateware/analyzer/top.py), [`cynthion/python/src/gateware/analyzer/event_detection.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/src/gateware/analyzer/event_detection.py), [`cynthion/python/src/gateware/analyzer/speed_detection.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/src/gateware/analyzer/speed_detection.py), [`cynthion/python/src/gateware/analyzer/fifo.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/src/gateware/analyzer/fifo.py) |
+| Top module | `USBAnalyzer` |
+| Language | Python (Amaranth) |
+| License | BSD-3-Clause (repo LICENSE.txt; per-file SPDX header) |
+| FPGA / primitives | ECP5: none (portable) |
+| Tests | self-checking: USBAnalyzerTest / USBAnalyzerStackTest classes in analyzer.py (LunaGatewareTestCase, amaranth.sim) |
+
+**On ULX3S:** Needs a Cynthion (or another 3-ULPI-PHY LUNA board); built via `python -m cynthion.gateware.analyzer.top --output build/analyzer.bit` on the cynthion_r1_4 platform.
 
 ### ECP5 JTAGG demo (Ecp5JtagDemo) {#core-tomverbeure-ecp5-jtag}
 
@@ -86,6 +104,22 @@ ADIv5.2 SW-DP (Serial Wire Debug) and APB Mem-AP implementation: an alternative 
 
 **On ULX3S:** Repo's own README calls the SoC experimental ("no idea how to program it"); the DP/Mem-AP cores themselves are standalone and CC0.
 
+### ORBTrace SWD/JTAG debug + parallel TRACE core (legacy plain-Verilog flow) {#core-orbtrace-swd-jtag-trace}
+
+Cortex-M debug (SWD + JTAG) state machines behind a common dbgIF, plus a 1-4 bit parallel TRACE capture core (traceIF), validated against BlackMagic Probe/OpenOCD/pyOCD (debug) and Orbuculum (trace). Each block has its own testbed under verilog/testbeds/.
+
+| | |
+|---|---|
+| Repository | [orbcode__orbtrace](https://github.com/orbcode/orbtrace): ORBTrace: Cortex-M SWD/JTAG debug + parallel TRACE probe gateware |
+| Files | [`verilog/dbgIF.v`](https://github.com/orbcode/orbtrace/blob/e416cd5b074fc725a04cf6b877d458e2074467ae/verilog/dbgIF.v), [`verilog/swdIF.v`](https://github.com/orbcode/orbtrace/blob/e416cd5b074fc725a04cf6b877d458e2074467ae/verilog/swdIF.v), [`verilog/jtagIF.v`](https://github.com/orbcode/orbtrace/blob/e416cd5b074fc725a04cf6b877d458e2074467ae/verilog/jtagIF.v), [`verilog/traceIF.v`](https://github.com/orbcode/orbtrace/blob/e416cd5b074fc725a04cf6b877d458e2074467ae/verilog/traceIF.v), [`verilog/ram.v`](https://github.com/orbcode/orbtrace/blob/e416cd5b074fc725a04cf6b877d458e2074467ae/verilog/ram.v) |
+| Top module | `dbgIF` |
+| Language | Verilog |
+| License | BSD-3-Clause (COPYING, applies repo-wide unless a file states otherwise) |
+| FPGA / primitives | any: none (portable) |
+| Tests | verilog/testbeds/{dbgIF_tb,swdIF_tb,jtagIF_TB,traceIF_tb}.v - waveform-only (no assertions seen; iverilog/vvp style testbenches, not scanned by Makefile) |
+
+**On ULX3S:** Plain Verilog, no vendor primitives; this legacy flow already builds for ECP5 (verilog/Makefile ECPIX_5_85F target: yosys+nextpnr-ecp5+ecppack) and for iCE40 (ICEBREAKER/ICE40HX8K_B_EVN targets). Needs a USB-Bulk/CMSIS-DAP front-end (from verilog/uart.v+frameToSerial.v or the main orbtrace/ Amaranth SoC) to be a complete probe.
+
 ### SUMP logic analyzer core (ECP5-ported) {#core-lawrie-ice40logicsniffer}
 
 Classic openbench SUMP-protocol logic analyzer (sampler, RLE encoder, trigger, BRAM ring buffer) already re-targeted to ECP5 via ecp5_pll.v (an SB_PLL40_CORE version, pll.v, also exists for iCE40).
@@ -104,5 +138,5 @@ Classic openbench SUMP-protocol logic analyzer (sampler, RLE encoder, trigger, B
 
 ## Other catalogued projects
 
-Catalogued repos tagged `jtag` (41), `debug-bridge` (4), `logic-analyzer` (12), `debug-instrument` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `jtag` (43), `debug-bridge` (7), `logic-analyzer` (14), `debug-instrument` (2) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

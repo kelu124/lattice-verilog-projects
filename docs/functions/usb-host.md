@@ -16,7 +16,10 @@ USB low/full-speed host (HID keyboards, mice, gamepads).
 | [circuit-killer minimal USB HID host](#core-circuit-killer-usbhid-host) | [circuit-killer__fpga-usbhid-host](https://github.com/Circuit-killer/fpga-usbhid-host) | VHDL | none found | ECP5 | 1 |
 | [emard standalone USB1.1 host PHY/SIE (usb_host repo)](#core-emard-usb-host-soc) | [emard__usb_host](https://github.com/emard/usb_host) | Verilog | none found | any | 0 |
 | [emard USB host + gamepad report decoders](#core-nes-ecp5-usb-gamepad) | [emard__nes_ecp5](https://github.com/emard/nes_ecp5) | Verilog | GPL-2.0-or-later | any | 4 |
-| [hdl4fpga USB 1.1 host core](#core-hdl4fpga-usbhost) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE, Miguel Angel Sagreras) | any | 2 |
+| [guh USB2 HS/FS host SIE + enumerator](#core-guh-usbh-sie) | [apfaudio__guh](https://github.com/apfaudio/guh) | Python (Amaranth) | BSD-3-Clause | ECP5 | 0 |
+| [hdl4fpga USB 1.1 host core](#core-hdl4fpga-usbhost) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE, Miguel Angel Sagreras) | any | 4 |
+| [hurra-fpga bounded USB FS mouse host](#core-hurra-fpga-usb-host) | [voltcyclone__hurra-fpga](https://github.com/VoltCyclone/hurra-fpga) | Python (Amaranth) | MIT (repo LICENSE; no per-file header) | ECP5 | 0 |
+| [HurricaneFPGA plain-Verilog USB host engine](#core-hurricanefpga-usb-host) | [voltcyclone__hurricanefpga](https://github.com/VoltCyclone/HurricaneFPGA) | Verilog | MIT (repo LICENSE; no per-file header) | any | 0 |
 
 ## Cores
 
@@ -112,6 +115,22 @@ Same usbh_sie host core as the ulx3s-misc copy, plus five ready HID report decod
 - [lawrie__ulx3s_zx_spectrum](https://github.com/lawrie/ulx3s_zx_spectrum) (copies [`src/usb/report_decoder/usbh_report_decoder_saitek.v`](https://github.com/lawrie/ulx3s_zx_spectrum/blob/19f242c057e25b38254004b1ea57306a28d85414/src/usb/report_decoder/usbh_report_decoder_saitek.v))
 - [machdyne__nes_ecp5](https://github.com/machdyne/nes_ecp5) (copies [`usb/report_decoder/usbh_report_decoder_saitek.v`](https://github.com/machdyne/nes_ecp5/blob/ff331d4b9c422e0b792560dd7b2b67a28622f67f/usb/report_decoder/usbh_report_decoder_saitek.v))
 
+### guh USB2 HS/FS host SIE + enumerator {#core-guh-usbh-sie}
+
+USB host Serial Interface Engine (token packet generation, SOF controller, transfer engine) plus a full enumerator, layered on LUNA's UTMITranslator/ULPI; backs class-specific host engines (HID keyboard, MIDI, mass-storage) in guh/engines/.
+
+| | |
+|---|---|
+| Repository | [apfaudio__guh](https://github.com/apfaudio/guh): guh: Amaranth USB2 HS/FS host engine library |
+| Files | [`guh/usbh/sie.py`](https://github.com/apfaudio/guh/blob/9aa0fd3511490674bdd038760abc8729f9e0b023/guh/usbh/sie.py), [`guh/usbh/enumerator.py`](https://github.com/apfaudio/guh/blob/9aa0fd3511490674bdd038760abc8729f9e0b023/guh/usbh/enumerator.py) |
+| Top module | `USBSIE` |
+| Language | Python (Amaranth) |
+| License | BSD-3-Clause (per-file SPDX header) |
+| FPGA / primitives | ECP5: none (portable) |
+| Tests | self-checking: tests/test_integration.py, tests/test_protocol.py (amaranth.sim.Simulator), via `pdm run test` = pytest |
+
+**On ULX3S:** Runs directly on Cynthion via `LUNA_PLATFORM=cynthion.gateware.platform:CynthionPlatformRev1D4` (README); primary target is the Tiliqua SoM, whose platform.py aliases pin names to match Cynthion's (target_phy, control_vbus_en).
+
 ### hdl4fpga USB 1.1 host core {#core-hdl4fpga-usbhost}
 
 Portable USB 1.1 host core, no vendor primitives, sharing a PHY with the device core (usbdev.vhd) via a build-time role switch; used on real ULX3S hardware in boards/ULX3S/apps/ser_debug.vhd.
@@ -130,12 +149,46 @@ Portable USB 1.1 host core, no vendor primitives, sharing a PHY with the device 
 
 Full review: [hdl4fpga__hdl4fpga](../projects/hdl4fpga__hdl4fpga.md).
 
-**Used by 2 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 4 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [apfaudio__guh](https://github.com/apfaudio/guh) (instantiates [`guh/usbh/types.py`](https://github.com/apfaudio/guh/blob/9aa0fd3511490674bdd038760abc8729f9e0b023/guh/usbh/types.py))
 - [lawrie__spinalulx3s](https://github.com/lawrie/SpinalULX3S) (instantiates [`src/main/scala/mylib/UsbHidTest.scala`](https://github.com/lawrie/SpinalULX3S/blob/7cb99e7f62c7abdc9210790d2d934e7e197ae627/src/main/scala/mylib/UsbHidTest.scala))
 - [spinalhdl__saxonsoc](https://github.com/SpinalHDL/SaxonSoc) (instantiates [`hardware/deprecated/ulx3s/peripheral/UsbHostHid.scala`](https://github.com/SpinalHDL/SaxonSoc/blob/227b8686b734c7995b10ce81e193a01b010d2407/hardware/deprecated/ulx3s/peripheral/UsbHostHid.scala))
+- [voltcyclone__hurra-fpga](https://github.com/VoltCyclone/hurra-fpga) (instantiates [`src/hurra_cynthion/control.py`](https://github.com/VoltCyclone/hurra-fpga/blob/0a050ad254eb27b43a00e61efe953cd842fcd27f/src/hurra_cynthion/control.py))
+
+### hurra-fpga bounded USB FS mouse host {#core-hurra-fpga-usb-host}
+
+Amaranth USB1.1/FS host core (USBHostTransactionArbiter + BoundedMouseHost) that enumerates a bounded HID mouse on Cynthion's TARGET-A ULPI PHY and polls its interrupt-IN endpoint; part of a working host+device-clone relay with amaranth.sim test coverage.
+
+| | |
+|---|---|
+| Repository | [voltcyclone__hurra-fpga](https://github.com/VoltCyclone/hurra-fpga): hurra-fpga: Amaranth bounded USB FS mouse host+device-clone relay for Cynthion r1.4, with report injection… |
+| Files | [`src/hurra_cynthion/host.py`](https://github.com/VoltCyclone/hurra-fpga/blob/0a050ad254eb27b43a00e61efe953cd842fcd27f/src/hurra_cynthion/host.py) |
+| Top module | `BoundedMouseHost` |
+| Language | Python (Amaranth) |
+| License | MIT (repo LICENSE; no per-file header) |
+| FPGA / primitives | ECP5: none (portable) |
+| Tests | self-checking: tests/test_host.py + related (amaranth.sim.Simulator), part of 24 sim-backed files run via `pytest` |
+
+**On ULX3S:** Needs a real CynthionPlatform (via the external `cynthion` package) for platform.request('target_phy'); nextpnr needs --placer-heap-timingweight 60 to close timing on the 60MHz ULPI domain (see build_env.py).
+
+### HurricaneFPGA plain-Verilog USB host engine {#core-hurricanefpga-usb-host}
+
+Plain synthesizable Verilog USB1.1 host stack (bus reset, enumeration state machine, token/SOF generation, transaction engine) arbitrated for a Cynthion USB PHY port; drives raw D+/D- pins directly, no vendor primitives.
+
+| | |
+|---|---|
+| Repository | [voltcyclone__hurricanefpga](https://github.com/VoltCyclone/HurricaneFPGA): HurricaneFPGA: plain-Verilog Cynthion gateware - USB FS/LS sniffer/passthrough, USB host mode |
+| Files | [`HDL/hardware/rtl/usb_interface/usb_host_arbiter.v`](https://github.com/VoltCyclone/HurricaneFPGA/blob/6f0b109cf0ab1ad77ee7670693e3d1a6aa11cab5/HDL/hardware/rtl/usb_interface/usb_host_arbiter.v), [`HDL/hardware/rtl/usb_interface/usb_enumerator.v`](https://github.com/VoltCyclone/HurricaneFPGA/blob/6f0b109cf0ab1ad77ee7670693e3d1a6aa11cab5/HDL/hardware/rtl/usb_interface/usb_enumerator.v), [`HDL/hardware/rtl/usb_interface/usb_transaction_engine.v`](https://github.com/VoltCyclone/HurricaneFPGA/blob/6f0b109cf0ab1ad77ee7670693e3d1a6aa11cab5/HDL/hardware/rtl/usb_interface/usb_transaction_engine.v), [`HDL/hardware/rtl/usb_interface/usb_token_generator.v`](https://github.com/VoltCyclone/HurricaneFPGA/blob/6f0b109cf0ab1ad77ee7670693e3d1a6aa11cab5/HDL/hardware/rtl/usb_interface/usb_token_generator.v), [`HDL/hardware/rtl/usb_interface/usb_sof_generator.v`](https://github.com/VoltCyclone/HurricaneFPGA/blob/6f0b109cf0ab1ad77ee7670693e3d1a6aa11cab5/HDL/hardware/rtl/usb_interface/usb_sof_generator.v) |
+| Top module | `usb_host_arbiter` |
+| Language | Verilog |
+| License | MIT (repo LICENSE; no per-file header) |
+| FPGA / primitives | any: none (portable) |
+| Tests | HDL/hardware/testbenches/*.v (iverilog+vvp via HDL/hardware/testbenches/Makefile) - not self-checking, only $display trace |
+
+**On ULX3S:** Portable logic in principle, but the lpf's own comment admits its Cynthion pin LOCATEs are placeholders mapped to ULPI data pins (not real D+/D-), and top.v's PLL is an unimplemented pass-through - treat as unverified/simulation-only, not a proven working host.
 
 ## Other catalogued projects
 
-Catalogued repos tagged `usb-host` (27) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `usb-host` (30) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

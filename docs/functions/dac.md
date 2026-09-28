@@ -1,7 +1,7 @@
 ---
 title: "DAC, PWM and sigma-delta"
 parent: "Cores by function"
-nav_order: 23
+nav_order: 24
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
@@ -140,5 +140,5 @@ Tiny parametric-width sigma-delta DAC (delta/sigma adder pair) used for the NES 
 
 ## Other catalogued projects
 
-Catalogued repos tagged `audio-dac` (56) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `audio-dac` (56), `dac` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

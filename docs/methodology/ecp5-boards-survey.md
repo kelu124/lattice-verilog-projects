@@ -1,7 +1,7 @@
 ---
 title: "ECP5 boards survey"
 parent: "Methodology"
-nav_order: 1
+nav_order: 2
 ---
 <!-- Generated from data/pages/ecp5-boards-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

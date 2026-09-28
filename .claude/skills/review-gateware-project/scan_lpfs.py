@@ -75,7 +75,7 @@ BOARD_WORDS = [  # (regex on path, board), first match wins
     (r"hadbadge|had2019|had19", "Hackaday 2019 badge"), (r"butterstick", "ButterStick"), (r"ecpix", "ECPIX-5"),
     (r"versa", "Versa ECP5"), (r"trellisboard", "TrellisBoard"), (r"fleafpga|flea_ohm", "FleaFPGA Ohm/Uno"),
     (r"pergola", "Pergola"), (r"logicbone", "Logicbone"), (r"ecp5.?evn|evaluation", "ECP5 Evaluation board"),
-    (r"ffm-lfe5u", "FFM-LFE5U module"),
+    (r"ffm-lfe5u", "FFM-LFE5U module"), (r"cynthion", "Cynthion"),
 ]
 
 

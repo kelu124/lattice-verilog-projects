@@ -298,9 +298,7 @@ def gen_boards(boards, cores, usage, catalogue, lpfs, pages):
                     body = ["\n\n".join(body), ""]
             # constraint files
             if fam["id"] == "ecp5":
-                names = {"ulx3s": "ULX3S", "ulx4m": "ULX4M", "orangecrab": "OrangeCrab", "colorlight": "Colorlight",
-                         "icepi-zero": "IcePi Zero", "icesugar-pro": "iCESugar-Pro"}
-                ents = [e for e in lpfs["lpfs"] if e["board"] == names.get(b["id"]) and e["kind"] == "pin-map"][:12]
+                ents = [e for e in lpfs["lpfs"] if e["board"] == b.get("lpf_board") and e["kind"] == "pin-map"][:12]
                 if ents:
                     body += ["## Constraint files (LPF)", "",
                              "Most-copied distinct LPFs for this board in the cloned repos (from the "

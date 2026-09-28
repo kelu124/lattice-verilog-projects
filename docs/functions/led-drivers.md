@@ -1,7 +1,7 @@
 ---
 title: "LED drivers"
 parent: "Cores by function"
-nav_order: 32
+nav_order: 33
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
@@ -117,5 +117,5 @@ Technology-independent PWM and PDM gamma-corrected LED brightness drivers (led_m
 
 ## Other catalogued projects
 
-Catalogued repos tagged `led-matrix` (13), `led` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `led-matrix` (14), `led` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

@@ -1,7 +1,7 @@
 ---
 title: "DSP"
 parent: "Cores by function"
-nav_order: 27
+nav_order: 28
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
@@ -144,5 +144,5 @@ Digital down-converter, tuner NCO, AM/FM demodulators plus CIC decimator and FIR
 
 ## Other catalogued projects
 
-Catalogued repos tagged `dsp` (1), `dsp-sdr` (21) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `dsp` (3), `dsp-sdr` (21) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

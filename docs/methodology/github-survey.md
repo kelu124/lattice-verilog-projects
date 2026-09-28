@@ -1,7 +1,7 @@
 ---
 title: "GitHub ULX3S survey"
 parent: "Methodology"
-nav_order: 2
+nav_order: 3
 ---
 <!-- Generated from data/pages/github-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

@@ -1,7 +1,7 @@
 ---
 title: "Buses and interconnect"
 parent: "Cores by function"
-nav_order: 21
+nav_order: 22
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
@@ -81,5 +81,5 @@ Same olofk/wb_intercon library as kulp__tenyr, vendored directly (not a submodul
 
 ## Other catalogued projects
 
-Catalogued repos tagged `bus-fabric` (6), `wishbone-bus` (4) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `bus-fabric` (8), `wishbone-bus` (7) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

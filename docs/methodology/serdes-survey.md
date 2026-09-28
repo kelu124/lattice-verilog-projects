@@ -1,0 +1,149 @@
+---
+title: "ECP5-5G SERDES survey"
+parent: "Methodology"
+nav_order: 6
+---
+<!-- Generated from data/pages/serdes-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
+
+{% raw %}
+# ECP5-5G / ECP5UM SERDES survey: PCIe, SATA, NVMe/M.2 and other links
+
+Survey date: 2026-09-28. Research only: nothing was cloned. Remote files were read through the GitHub API,
+raw.githubusercontent.com and WebFetch. Local reads were limited to repos already in `original_sources/`.
+
+Scope: open-source gateware that uses the SERDES/PCS (the `DCUA` primitive, `EXTREFB` refclk) of Lattice
+**LFE5UM-xxF / LFE5UM5G-xxF** parts for storage or PCIe, plus any working ECP5 SERDES link (SGMII, USB3,
+8b10b) that could serve as a building block. The survey also lists the LFE5UM/LFE5UM5G boards and what their
+SERDES lanes connect to. Plain LFE5U parts (ULX3S production boards, OrangeCrab, Colorlight 5A-75x/i5/i9,
+iCESugar-Pro) have **no SERDES** and are out of scope. NeTV2 (Xilinx) and ULX5M (GateMate) are excluded.
+
+## Method
+
+- **GitHub repository search API**, unauthenticated, `sort=updated`, `per_page=100`, 7 s between calls.
+  47 queries returned 305 unique repos:
+  - Name/description: `ecp5 pcie`, `ecp5 sata`, `ecp5 nvme`, `litepcie ecp5`, `lfe5um5g`, `lfe5um`,
+    `ecp5 serdes`, `DCUA`, `ecp5-5g`, `versa ecp5`, `ecpix-5`, `ecpix5`, `butterstick`, `trellisboard`,
+    `logicbone`, `ecp5 m.2`, `ecp5 sgmii`, `ecp5 usb3`, `ecp5 displayport`, `ecp5 transceiver`, `litesata`,
+    `ecp5 pci express`, `ecp5 8b10b`, `ecp5 gigabit`, `lattice pcie`, `yumewatari`, `usb3_pipe`,
+    `liteiclink`, `EXTREFB`, `ecp5 evn`, `ecp5 sfp`, `ecp5 1000base-x`, `ecp5 jesd204`, `lattice nvme`,
+    `fpga nvme open source`, `fpga sata host`, `ecp5 versa pcie`, `lfe5um-45f`
+  - README text (`in:readme`): `ecp5 serdes`, `DCUA`, `lfe5um5g`, `ecp5 pcie`, `ecp5 sata`, `ecp5 nvme`,
+    `ecp5-5g`, `ecpix-5`, `logicbone`
+  - Results: `ecp5 sata`, `ecp5 nvme`, `ecp5 m.2`, `ecp5 serdes`, `ecp5 displayport`, `ecp5 8b10b`,
+    `EXTREFB`, `lattice nvme` and `ecp5 sfp` returned **0** name/description hits. `DCUA` returned only
+    name collisions.
+- **Web search and fetch**: litesata issue #27 and commit history, the LiteX `CHANGES.md`, litepcie issue #20,
+  litex-boards issue #364, ECPIX-5 docs, the Codeberg ECP5-PCIe repo, the LUNA feature table, Private Island pages
+  and the antmicro DC-SCM schematics.
+- **Board files**: litex-boards platforms `lattice_versa_ecp5`, `lattice_ecp5_evn`, `lambdaconcept_ecpix5`,
+  `gsd_butterstick`, `trellisboard` and `logicbone` were grepped for `pcie`, `sata`, `serdes`, `m2`, `refclk`
+  and `SYZYGY`. Board READMEs were read.
+- **Evidence check**: for each gateware candidate, the recursive file list (`git/trees/<branch>?recursive=1`)
+  was grepped for `dcu|serdes|pcie|sata|sgmii|usb3|ltssm|tlp|extref`, and the README was read.
+  Status values:
+  - `working`: the repo claims hardware results and shows them (logs, lspci output, a BIST).
+  - `WIP/experimental`: gateware is present, and the repo says it is partial or reports partial hardware results.
+  - `platform-only`: pins are declared, but there is no gateware.
+  - `unverified`: README claim only.
+- **Diff against `.claude/memory/sources.tsv`**: slugs `owner__repo`, lowercase.
+
+## Boards with LFE5UM / LFE5UM5G parts
+
+| Board | FPGA part | SERDES channels exposed | M.2 / PCIe / SATA connectors | Source |
+|---|---|---|---|---|
+| Lattice ECP5 Versa / ECP5-5G Versa | LFE5UM-45F or LFE5UM5G-45F-8BG381C | CH0 to the PCIe edge (Y5/W4), one pair to SMA (W8/Y7), 2 refclk inputs. The two 88E1512 GbE PHYs can run SGMII over the DCU (sefbkn demo) | **PCIe x1 card edge** (endpoint). No M.2, no SATA | https://github.com/litex-hub/litex-boards/blob/master/litex_boards/platforms/lattice_versa_ecp5.py , https://www.latticesemi.com/en/Products/DevelopmentBoardsAndKits/ECP55GVersaDevKit |
+| Lattice ECP5 Evaluation Board (ECP5-5G EVN) | LFE5UM5G-85F-8BG381 | all 4 channels on SMA, 2 serdes refclks | **none** (SMA only. ECP5-PCIe and PavlenkoG built their own PCIe adapters) | https://github.com/litex-hub/litex-boards/blob/master/litex_boards/platforms/lattice_ecp5_evn.py |
+| TrellisBoard (gatecat) | LFE5UM5G-85F-8BG756C | 2 channels to the PCIe edge, 2 channels to M.2 | **PCIe 2.0 x2 card edge** (endpoint) + **M.2 E-key** (x2 PCIe lanes). E-key is the Wi-Fi/BT key, not the SSD M-key. Rev 1.0 prototypes, "WIP" | https://github.com/gatecat/TrellisBoard (cloned), litex-boards `trellisboard.py` |
+| LambdaConcept ECPIX-5 | LFE5UM5G-45F or -85F-8BG554I | DCU1/CH0 to the SATA port (TX AD16/AD17, RX AF15/AF16). 2 channels to USB-C per the LUNA/ECPIX-5 docs (unverified pin-level) | **full-size SATA port**. No PCIe, no M.2 | http://docs.lambdaconcept.com/ecpix-5/features/sata.html , litex-boards `lambdaconcept_ecpix5.py` |
+| ButterStick (GSD) | LFE5UM5G-25F / -85F-8BG381C | SYZYGY **TXR4** transceiver port: 4 TX + 4 RX lanes at 5 Gbps (2 lanes on the 25F), REFCLK0 Y11/Y12 | PCIe only through SYZYGY pods: Greg Davill's `pcie_x1` / `pcie_x4` pods (PCB designs, turn the board into a PCIe add-in card). No M.2/SATA | https://github.com/butterstick-fpga/butterstick-hardware , https://github.com/gregdavill/advent-calendar-of-circuits-2020 |
+| Logicbone (oskirby) | LFE5UM5G-45F-8BG381C | 2 channels to USB-C SuperSpeed, 2 channels to M.2 (`pcie_x1` x2 / `pcie_x2` in litex-boards) | **M.2 E-key 2230**, "Both PCIe lanes are routed to the FPGA SERDES". No SATA | https://github.com/oskirby/logicbone , litex-boards `logicbone.py` |
+| ULX4M-LD (Intergalaktik/Radiona, CM4 form factor) | LFE5UM-85F-8BG381C per the README parts list (the README header also says LFE5U-85F: unverified which variant ships) | "SerDes connected to PCIe 1x" (CM4 connector PCIe lane), a SerDes pair on DSI1, a pair on a header, 2 pairs over caps to the connector | PCIe x1 on the CM4 edge. On a CM4 IO board this lane reaches the IO board's PCIe slot, where the FPGA would have to be **root complex** (unverified, no gateware) | https://github.com/intergalaktik/ulx4m-ld |
+| Antmicro ECP5 DC-SCM | LFE5UM5G-85F-8BG756C | FPGA: 1 PCIe lane (`PCIE_BMC_*`) to the DC-SCI edge connector | **M.2 key-M PCIe x4 is present, but its lanes (`PCIE_HPM_*`) go to the edge connector (host), not to the FPGA** (verified from `pcie-conn.kicad_sch`, `fpga-banks.kicad_sch`, `edge-connector.kicad_sch`). WIP | https://github.com/antmicro/ecp5-dc-scm |
+| Private Island Darsena | ECP5UM (size unverified) | PCS/SERDES to 2 on-board SGMII PHYs + 2 expansion slots | none | https://privateisland.tech/dev/pi-lattice-ecp5 (code on cgit, not GitHub) |
+| Titan (jsloan256/c-e-s) | ECP5UM (size unverified) | PCIe edge | **PCIe card** (2015, Altium, Lattice Diamond IP validation) | https://github.com/jsloan256/titan |
+| FPGA4RISCV SoM (even-notodd) | LFE5UM5G-85F | baseboard plans USB 3.0 and PCIe | planned, WIP, no gateware | https://github.com/even-notodd/FPGA4RISCV |
+| ULX3S v3.1.4 prototype | per `.claude/memory/board-revisions.md`: OLED header carries SERDES RX pairs (needs a UM part) | RX pairs only | none. `emard/ulx3s-misc` `examples/serdes*` are "serdes attempt", and the README reports "no data appears at RX" | cloned: `original_sources/emard__ulx3s-misc/examples/serdes*/README.md` |
+
+Checked and excluded: Colorlight boards (all LFE5U, no 5G/UM variant found), OrangeCrab (LFE5U), SoldierCrab
+(caBGA256, "SERDES/PCIe not available in this package"), Open Ephys ECP5U85-BSE-USB (README says "ECP5U85",
+USB3 path not shown to use SERDES: unverified), ULX5M (GateMate), NeTV2 (Xilinx).
+
+## Gateware using the ECP5 SERDES
+
+| Repo | Board | Protocol | What it does | Status | License | Last push | Stars | Already cloned? |
+|---|---|---|---|---|---|---|---|---|
+| https://github.com/enjoy-digital/litesata | ECPIX-5 (`bench/ecpix5.py`, litex-boards `--with-sata`) | **SATA Gen2 (3 Gb/s) host** | `litesata/phy/ecp5sataphy.py`: ECP5 PHY with OOB generation/detection on top of LiteICLink `SerDesECP5`. Commit 0b7ce00 (2026-07-30) says: "Validated with complete IDENTIFY and a 16 MiB pseudorandom write/verify BIST", trellis toolchain. LiteX 2026.08 CHANGES: "opt-in ECP5 SATA OOB support, an ECP5 Gen2 SATA PHY, and an ECPIX-5 build/BIST bench". Web summary of the Enjoy Digital announcement: boots Linux-on-LiteX-VexRiscv from an SSD (not read first-hand, the X post was not fetchable). Issue #27 is still open | **working** (single-drive validation. The author says more HDDs/SSDs need testing) | BSD-2-Clause (headers) | 2026-09-28 | 169 | no |
+| https://github.com/enjoy-digital/liteiclink | Versa ECP5, ECPIX-5 (`bench/serdes/versa_ecp5.py`, `ecpix5.py`) | generic 8b10b SERDES (1.25 to 5 Gb/s), PRBS | `liteiclink/serdes/serdes_ecp5.py`: DCUA wrapper + PLL (`SerDesECP5PLL`, `SerDesECP5`). Bench linerates: SATA Gen1/Gen2, "PCIe Gen2, USB3" at 5 Gb/s. Base layer for the LiteSATA ECP5 PHY and kazkojima's SGMII | working (PRBS bench) | BSD-2-Clause (headers) | 2026-09-28 | 66 | no |
+| https://github.com/zyp/katsuo-pcie | ECP5 Versa (via the poc below) | **PCIe Gen1 x1 endpoint** (Amaranth) | PHY (`katsuo/pcie/phy/ecp5_serdes.py`) + PIPE, abbreviated LTSSM, DLL, TL with config space, MSI, mem-to-TileLink. README: "Most of the time it behaves as a functional Gen1 x1 device". No retransmit, no flow control, the SERDES sometimes fails to lock | WIP/experimental (proof of concept, enumerates) | none declared | 2026-04-27 | 18 | no |
+| https://github.com/zyp/litepcie-katsuo-poc | ECP5 Versa (`--device LFE5UM`) | **PCIe Gen1 x1 endpoint + LitePCIe** | LitePCIe on top of katsuo.pcie (pre-generated `ecp5_pcie.v`). README shows `lspci -vv` of the device at 2.5 GT/s x1 | WIP/experimental (lspci shown) | none declared | 2026-04-27 | 6 | no |
+| https://github.com/ECP5-PCIe/ECP5-PCIe (mirror of https://codeberg.org/ECP5-PCIe/ECP5-PCIe) | ECP5 EVN + home-made PCIe adapter. Host: ROCKPro64 | **PCIe endpoint** PHY/LTSSM/DLL/TLP (Amaranth), x1, geared x2/x4 SERDES variants | Reaches L0 and captures DLLPs (screenshot in the README). Enumeration/TLP traffic not demonstrated in the README | WIP/experimental | none declared | 2023-05-16 | 103 | no |
+| https://github.com/whitequark/Yumewatari | ECP5-5G Versa (ispCLOCK .jed files for PCIe refclk) | PCIe PHY (Gen1) | `yumewatari/gateware/{serdes,phy_rx,phy_tx}.py`, LTSSM testbench. Predecessor of ECP5-PCIe. litepcie #20: whitequark "has gotten the Lattice ECP5 SERDES to lock onto the PCIe bit stream" | WIP/experimental (dormant since 2019) | 0BSD | 2019-04-02 | 64 | no |
+| https://github.com/ylm/ecp5-pcie | ECP5 EVN | PCIe | copy of ECP5-PCIe (branch `pdm-port`) | WIP (fork-like copy) | none | 2023-10-09 | 1 | no |
+| https://github.com/greatscottgadgets/luna | ECPIX-5, Logicbone | **USB3 SuperSpeed device** (soft PIPE) | `luna/gateware/interface/serdes_phy/ecp5.py`: "Soft PIPE backend for the Lattice ECP5 SerDes", LFPS. `docs/features.rst`: ECPIX-5 and Logicbone "Super-Speed In Progress" | WIP/experimental | BSD-3-Clause | (cloned copy) | n/a | **yes** |
+| https://github.com/sefbkn/versa-ecp5-demo | ECP5-5G Versa | **SGMII** (GbE, 2 ports) | `rtl/ethernet/sgmii/sgmii_dcu.v`: DCU-based SGMII to the 88E1512 PHYs, port-to-port passthrough. SGMII is the default build (yosys/nextpnr) | working (README claim, hardware demo) | see clone | 2026-03-14 | 0 | **yes** |
+| https://github.com/kazkojima/litex-lattice-ecp5-evn | ECP5 EVN + DP83867S SGMII add-on | **SGMII** (LiteEth) | `liteeth/ecp5sgmii.py` = LiteEth `pcs_1000basex` + LiteICLink `serdes_ecp5`, DCU "GBE" mode. Linux-on-LiteX console screenshot | working (README: "Everything here is experimental") | none declared | 2021-05-25 | 8 | no |
+| https://github.com/blazra/tdr | ECP5 Versa (LiteX) | SERDES used as a TDR | `gateware/versa_ecp5-litex/tdr/serdes_ecp5.py` | unverified (1-line README) | none | 2020-08-01 | 2 | no |
+| https://github.com/PavlenkoG/ECP5_PCIE_Analyzer | ECP5 EVN + custom PCIe adapter PCB | PCIe traffic capture (PCS 8b10b) | Uses the PCS to deserialize PCIe lanes for protocol analysis. Hardware photos and a Raspberry Pi capture script. **Lattice Diamond** + Clarity PCIe/EXTREF IP (`.lpc`), not the open flow | WIP/experimental | none | 2023-10-06 | 17 | no |
+| https://github.com/jsloan256/titan_wiggle | Titan | PCIe x1 endpoint | Enumerates as dead:beef using the **Lattice Diamond PCIe Endpoint IP v6.1** (proprietary) | working (README claim), vendor IP | BSD-3-Clause | 2015-10-07 | 3 | no |
+| https://github.com/LatticeSemi/ECP5-Wishbone | ECP5 Versa | PCIe Gen1 x1 to Wishbone | Only a README (build steps with Diamond 3.12 + Lattice PCIe Endpoint IP). The repo contains 1 file | unverified (empty repo) | none | 2022-02-28 | 8 | no |
+| https://github.com/alexcooper3710/cyberdeck | Colorlight 5A-75B (bring-up), planned custom ECP5-85F carrier | planned LitePCIe endpoint to a CM5 | Architecture docs and a KiCad PCIe switch sheet. No PCIe gateware. The dev board used has no SERDES | unverified (plan only) | none | 2026-07-06 | 1 | no |
+| https://github.com/litex-hub/litex-boards | Versa, EVN, ECPIX-5, ButterStick, TrellisBoard, Logicbone | pin declarations | `pcie_x1`/`pcie_x2`/`m2`/`sata`/`serdes`/`SYZYGY2 TXR` resources. ECPIX-5 target has `with_sata` (LiteSATA). No PCIe target for any ECP5 board | platform-only (framework) | BSD-2-Clause | 2026-09-28 | 500 | no |
+| https://github.com/enjoy-digital/litepcie | none for ECP5 | PCIe | PHYs: 7-series, UltraScale(+), Cyclone V, Stratix V, Gowin GW5A, CertusPro-NX (`lfcpnxpciephy.py`). **No ECP5 PHY.** Issue #20 "Support LitePCIe on Lattice ECP5 SERDES (with open toolchain)" is open (bounty pool mentioned, last update 2025-01-09) | n/a for ECP5 | BSD-2-Clause | 2026-09-28 | 729 | no |
+| https://github.com/enjoy-digital/usb3_pipe | (Xilinx 7-series) | USB3 PIPE | Current tree has no ECP5 SERDES file. Issue #12 "ECP5: Validate SerDes at 5Gbps" (2019) is closed | not ECP5 today | BSD-2-Clause | 2026-04-03 | 271 | no |
+
+References (not repos with gateware): Greg Davill's SYZYGY PCIe pods (`pcie_x1`, `pcie_x4`) and `gpdi-serdes`
+in https://github.com/gregdavill/advent-calendar-of-circuits-2020 (PCBs). Kate Temkin's notes on ECP5 SERDES
+OOB/LFPS: https://lab.ktemkin.com/post/serdes-oob/ and https://lab.ktemkin.com/post/serdes-lfps/ . gatecat's
+"ECP5 serdes testing" gist: https://gist.github.com/daveshah1/8ce26fc593bd837dcfa8b9cd28ee195b (not read,
+unverified). nextpnr `DCUA` primitive doc: https://github.com/YosysHQ/nextpnr/blob/master/ecp5/docs/primitives.md .
+Private Island PCS/SERDES architecture notes: https://privateisland.tech/dev/fpga-pcs-arch .
+
+## Findings: SSD, M.2, NVMe, SATA
+
+- **SATA SSD: yes.** LiteSATA drives a real SATA drive at Gen2 (3 Gb/s) from an ECP5-5G with the open
+  toolchain (yosys/nextpnr-trellis), on the **ECPIX-5 full-size SATA port** (DCU1/CH0). Validation: IDENTIFY +
+  16 MiB write/verify BIST (commit 0b7ce00, 2026-07-30). It is exposed in litex-boards
+  `lambdaconcept_ecpix5.py --with-sata` (LiteX 2026.04/2026.08 CHANGES). A web summary says Linux-on-LiteX
+  boots from an SSD. That was not checked first-hand. It is the only working open ECP5 storage-over-SERDES
+  design found.
+- **M.2 SSD over SERDES: nothing found.** No open design drives an M.2 SSD from ECP5 SERDES, either NVMe
+  (PCIe M-key) or M.2 SATA. There are two reasons:
+  - NVMe needs the FPGA to be a **PCIe root complex** plus an NVMe host queue engine. Every open ECP5 PCIe
+    stack found (katsuo-pcie, ECP5-PCIe, Yumewatari) is an **endpoint**, Gen1 x1, experimental. No open ECP5
+    root complex exists, and no open NVMe host was found for ECP5. The open NVMe hosts found (e.g.
+    https://github.com/yu-zou/DirectNVM) target Xilinx.
+  - No LFE5UM board wires an **M-key** M.2 slot to the FPGA SERDES. TrellisBoard and Logicbone have
+    **E-key** M.2 slots, x2 PCIe lanes to the SERDES. They are meant for Wi-Fi cards, but an E-to-M adapter
+    would physically carry 2 PCIe lanes (unverified idea). Antmicro's DC-SCM has an M-key x4 slot, but its
+    lanes go to the host edge connector, not to the FPGA (verified from the schematics).
+- **Closest path to an M.2 SSD on ECP5:**
+  - **M.2 SATA SSD**: use LiteSATA ECP5 with an M.2-SATA to SATA adapter on ECPIX-5 (plausible, not reported).
+  - **NVMe**: needs new work, a root-complex LTSSM/config on top of the katsuo-pcie or ECP5-PCIe PHY and an
+    NVMe host. The PCIe lanes on an M.2 E-key (TrellisBoard, Logicbone) or the CM4 PCIe lane on ULX4M-LD
+    could carry it. Gen1 x1 NVMe (about 250 MB/s) would be the realistic ceiling at first.
+- **PCIe endpoint status:** katsuo-pcie + LitePCIe is the most advanced open ECP5 PCIe. It enumerates in
+  `lspci` on ECP5 Versa at Gen1 x1, but has no retransmit or flow control, and the SERDES sometimes fails to
+  lock. The Lattice Diamond PCIe IP works (titan_wiggle, LatticeSemi ECP5-Wishbone) but is not open.
+- **Other working SERDES links:**
+  - SGMII: sefbkn/versa-ecp5-demo (Versa, pure Verilog DCU) and kazkojima (EVN, LiteEth + LiteICLink).
+  - Generic 8b10b/PRBS: LiteICLink.
+  - USB3: LUNA's ECP5 soft-PIPE, still "in progress".
+  - DisplayPort: none found.
+
+## Recommended to clone (gateware only)
+
+| # | Repo | Reason |
+|---|---|---|
+| 1 | https://github.com/enjoy-digital/litesata | Only working open ECP5-5G storage link: SATA Gen2 host PHY with OOB, validated with a BIST on ECPIX-5, open toolchain |
+| 2 | https://github.com/enjoy-digital/liteiclink | `serdes_ecp5.py`: the reusable DCUA wrapper under LiteSATA and the SGMII ports. PRBS benches for Versa/ECPIX-5 |
+| 3 | https://github.com/zyp/katsuo-pcie | Most complete open ECP5 PCIe stack (PHY, LTSSM, DLL, TL, MSI). Gen1 x1 endpoint that enumerates. Base for any future root complex/NVMe work |
+| 4 | https://github.com/zyp/litepcie-katsuo-poc | LitePCIe running on ECP5 Versa via katsuo.pcie, with lspci evidence |
+| 5 | https://github.com/ECP5-PCIe/ECP5-PCIe | Amaranth PCIe PHY/LTSSM/DLL with x2/x4 geared SERDES. Reaches L0 on EVN |
+| 6 | https://github.com/whitequark/Yumewatari | Original open ECP5 PCIe PHY (0BSD). Documents the Versa PCIe refclk setup |
+| 7 | https://github.com/kazkojima/litex-lattice-ecp5-evn | SGMII over DCU in "GBE" mode for LiteEth. Small, working SERDES example |
+| 8 | https://github.com/PavlenkoG/ECP5_PCIE_Analyzer | PCS used to sniff PCIe lanes, with an adapter PCB for the EVN (Diamond flow, for reference) |
+| 9 | https://github.com/blazra/tdr | Unusual use of the ECP5 SERDES (TDR) on Versa with LiteX. Small |
+
+Not re-listed because already cloned: greatscottgadgets/luna (ECP5 USB3 soft-PIPE), sefbkn/versa-ecp5-demo
+(Verilog SGMII DCU), gatecat/TrellisBoard (board + litex platform), emard/ulx3s-misc (ULX3S v3.1.4 serdes attempts).
+{% endraw %}

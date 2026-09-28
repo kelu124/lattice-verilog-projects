@@ -17,7 +17,7 @@ Cheap ECP5 boards with gigabit Ethernet PHYs and SDRAM, repurposed from LED-pane
 | FPGA | LFE5U-25F (5A-75B/E, i5), LFE5U-45F (i9), CABGA256/CABGA381 |
 | Evidence | catalogue rows (wuxx__colorlight-fpga-projects, datanoisetv__colorlight-i9-aes67) |
 | Clock | 25 MHz (catalogue notes) |
-| Catalogued repos | 7 |
+| Catalogued repos | 8 |
 
 *The description is a short summary; FPGA facts come from the catalogue rows cited above.*
 
@@ -46,6 +46,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
+| AK4619 audio codec driver + PMOD I2C master | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | apfaudio__eurorack-pmod |
 | PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
 | Gigabit RGMII MAC | [ethernet](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ethernet.md) | datanoisetv__colorlight-i9-aes67 |
 | MDIO Clause-22 management controller | [ethernet](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ethernet.md) | sefbkn__versa-ecp5-demo |
@@ -56,6 +57,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 ## Projects targeting this board
 
+- [apfaudio__eurorack-pmod](https://github.com/apfaudio/eurorack-pmod): Eurorack PMOD: AK4619 audio-codec PMOD gateware
 - [datanoisetv__colorlight-i9-aes67](https://github.com/DatanoiseTV/colorlight-i9-aes67): AES67/RAVENNA audio-over-IP bridge for Colorlight i9 v7.2: hardware PTP
 - [hassan2203__system-on-chip-soc-design-and-verification](https://github.com/Hassan2203/System-On-Chip-SOC-Design-and-verification): RV32I single-cycle CPU + Wishbone bus SoC teaching project, built for Colorlight i5
 - [kholia__colorlight-5a-75b](https://github.com/kholia/Colorlight-5A-75B): Colorlight 5A-75B: notes + example projects

@@ -101,5 +101,5 @@ Configurable SPI master written for the Bus Pirate NextGen Ultra debug probe; no
 
 ## Other catalogued projects
 
-Catalogued repos tagged `spi` (19) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `spi` (20) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

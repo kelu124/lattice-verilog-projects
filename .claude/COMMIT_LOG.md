@@ -2,6 +2,22 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(survey): ECP5-5G SERDES storage, ECPIX-5 and Cynthion gateware
+- **What**: two research surveys imported as pages: `data/pages/serdes-survey.json` (47 queries: no open design
+  drives an M.2 SSD over the ECP5 SERDES; LiteSATA drives a SATA drive on ECPIX-5; PCIe is endpoint-only Gen1 x1
+  PoCs; boards table of LFE5UM boards and their connectors) and `data/pages/boards3-survey.json` (TinyFPGA EX never
+  shipped, no gateware; ECPIX-5 and Cynthion facts + gateware). Cloned + catalogued 21 repos (9 SERDES, 5 ECPIX-5,
+  7 Cynthion; no2misc submodule for eurorack-pmod; ECP5-PCIe's Gateware/utils submodule has no gitlink): 377 → 398.
+  New function `serdes-links` (PCIe, SATA and SERDES links) with 9 cores (best: LiteSATA on ECPIX-5) + 9 more cores
+  elsewhere (DDR3 core_ddr3_controller, AK4619 audio, orbtrace SWD/JTAG, 3 USB host engines, Cynthion analyzer,
+  luna-soc, UAC2): 173 cores. Board pages ECPIX-5 and Cynthion (boards.json `lpf_board` field replaces the
+  hard-coded LPF map in gen_site.py; scan_lpfs knows Cynthion). Memory: new ecp5-serdes-storage.md; counts in
+  README, MEMORY, projects, reusable-cores; source-lists rows; TODO state + SSD follow-up. Pruned 210 MB.
+- **Why**: owner asked whether any design drives an M.2 SSD over SERDES (focus LFE5UM boards), then for designs
+  for TinyFPGA EX, LambdaConcept ECPIX-5 and Cynthion.
+- **Notes**: HurricaneFPGA's README claims "working" but its PLL is a pass-through and its USB pins are
+  placeholders (noted in the row). Agents could not use authenticated code search.
+
 ## 2026-09-28 — review(mmicko__fpga101-workshop): catalogue the FPGA 101 exercises and PicoSoC
 - **What**: cloned + pinned mmicko/fpga101-workshop (iCE40 UP5K FPGA101 badge, Hackaday Belgrade 2018, MIT).
   Catalogue row (377 repos); review page `data/projects/mmicko__fpga101-workshop.json` with a table of the 20

@@ -6,7 +6,7 @@ metadata:
 ---
 
 Since 2026-09-28 the map of reusable cores is **data**, not this file:
-- [`data/cores.json`](../../data/cores.json): 155 cores in 33 functions ([`data/functions.json`](../../data/functions.json)),
+- [`data/cores.json`](../../data/cores.json): 173 cores in 34 functions ([`data/functions.json`](../../data/functions.json)),
   one `best` per function plus alternatives; each with repo, file paths (verified in the clone), top module,
   language, license, FPGA/primitives, tests, ULX3S notes. Researched by 5 agents from the clones, the 18 reviews
   and the catalogue.
@@ -16,7 +16,7 @@ Since 2026-09-28 the map of reusable cores is **data**, not this file:
 - Rendered per function on the site: `docs/functions/<id>.md` (see [[data-docs-layout]]).
 
 Quick picks (best per function, 2026-09-28): DVI = emard__ulx3s-misc vga2dvid (MIT/BSD); PLL = emard ecp5pll;
-SDRAM = hdl4fpga sdram_ctlr (MIT) or ulx3s-misc sdram_pnru (public domain); SD = zipcpu__sdspi (GPL-3.0, formal);
+SATA/PCIe (ECP5-5G only) = LiteSATA on ECPIX-5 (see [[ecp5-serdes-storage]]); DDR3 = ultraembedded orangecrab/core_ddr3_controller; SDRAM = hdl4fpga sdram_ctlr (MIT) or ulx3s-misc sdram_pnru (public domain); SD = zipcpu__sdspi (GPL-3.0, formal);
 USB device = had2019-playground USB core (LGPL, ECP5 PHY); USB host = ulx3s-misc usbhost (GPL); UART/I2C =
 asinghani__pifive-cpu (Apache-2.0 / MIT alexforencich); RISC-V = picorv32 (ISC); retro 6502 = chrismoos__m6502;
 Ethernet = hdl4fpga mii_ipoe (MIT); OSD = lawrie__ulx3s_sms src/osd. Check `data/cores.json` before answering.

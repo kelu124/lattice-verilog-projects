@@ -1,7 +1,7 @@
 ---
 title: "RISC-V CPUs and SoCs"
 parent: "Cores by function"
-nav_order: 28
+nav_order: 29
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
@@ -17,8 +17,9 @@ RISC-V cores and small SoCs.
 | [FPGA 101 PicoSoC with LCD text console and MicroPython](#core-mmicko-fpga101-picosoc) | [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) | Verilog, C | MIT (repo LICENSE); z_picorv32.v ISC; MicroPython… | iCE40 | 3 |
 | [Hazard3 RV32IMAC core](#core-wren6991-hazard3) | [wren6991__hazard3](https://github.com/Wren6991/Hazard3) | Verilog | Apache-2.0 | any | 1 |
 | [KianV RV32IMA+Sv32 core (Linux-capable)](#core-kianv-sv32-core) | [splinedrive__kianriscv](https://github.com/splinedrive/kianRiscV) | Verilog | Apache-2.0 | any | 0 |
+| [LUNA-SoC VexRiscv SoC framework (Moondancer's CPU)](#core-luna-soc-vexriscv-cynthion) | [greatscottgadgets__luna-soc](https://github.com/greatscottgadgets/luna-soc) | Python (Amaranth), Verilog… | BSD-3-Clause | any | 1 |
 | [NEORV32 RV32 core (VHDL)](#core-stnolting-neorv32) | [stnolting__neorv32](https://github.com/stnolting/neorv32) | VHDL (+ generated Verilog wrapper in… | BSD-3-Clause | any | 0 |
-| [VexRiscv (SpinalHDL-generated Verilog)](#core-rschlaikjer-vexriscv) | [rschlaikjer__fpga-3-softcores](https://github.com/rschlaikjer/fpga-3-softcores) | Verilog (SpinalHDL-generated) | MIT (upstream VexRiscv/SpinalHDL project; repo… | any | 14 |
+| [VexRiscv (SpinalHDL-generated Verilog)](#core-rschlaikjer-vexriscv) | [rschlaikjer__fpga-3-softcores](https://github.com/rschlaikjer/fpga-3-softcores) | Verilog (SpinalHDL-generated) | MIT (upstream VexRiscv/SpinalHDL project; repo… | any | 17 |
 
 ## Cores
 
@@ -137,6 +138,26 @@ Standalone SoC-independent RV32IMA core with an Sv32 MMU, the CPU used by spline
 
 **On ULX3S:** Pair with the repo's sdram/icache/dcache/clint/plic modules for a full SoC (85F default).
 
+### LUNA-SoC VexRiscv SoC framework (Moondancer's CPU) {#core-luna-soc-vexriscv-cynthion}
+
+Wishbone/CSR SoC framework wrapping a pre-generated VexRiscv (or Minerva) RISC-V core, with an interrupt controller and Cynthion-specific board wiring (provider/cynthion.py); this is the CPU+fabric that the official Moondancer/Facedancer SoC in greatscottgadgets/cynthion is built on.
+
+| | |
+|---|---|
+| Repository | [greatscottgadgets__luna-soc](https://github.com/greatscottgadgets/luna-soc): LUNA-SoC: Amaranth Wishbone/CSR SoC framework |
+| Files | [`luna_soc/gateware/cpu/vexriscv.py`](https://github.com/greatscottgadgets/luna-soc/blob/7fa1cc16ddbaf8608efa515efc7f4ef32454299c/luna_soc/gateware/cpu/vexriscv.py), [`luna_soc/gateware/cpu/verilog/vexriscv/vexriscv_cynthion.v`](https://github.com/greatscottgadgets/luna-soc/blob/7fa1cc16ddbaf8608efa515efc7f4ef32454299c/luna_soc/gateware/cpu/verilog/vexriscv/vexriscv_cynthion.v), [`luna_soc/gateware/cpu/ic.py`](https://github.com/greatscottgadgets/luna-soc/blob/7fa1cc16ddbaf8608efa515efc7f4ef32454299c/luna_soc/gateware/cpu/ic.py), [`luna_soc/gateware/provider/cynthion.py`](https://github.com/greatscottgadgets/luna-soc/blob/7fa1cc16ddbaf8608efa515efc7f4ef32454299c/luna_soc/gateware/provider/cynthion.py) |
+| Top module | `VexRiscv` |
+| Language | Python (Amaranth), Verilog (SpinalHDL-generated) |
+| License | BSD-3-Clause (luna-soc LICENSE.txt) for the Amaranth wrapper; vexriscv_cynthion.v (SpinalHDL-generated) has no header in this clone |
+| FPGA / primitives | any: none (portable) |
+| Tests | none found |
+
+**On ULX3S:** Whole-system SoC framework, not a drop-in core: pair with core/{uart,timer,blockram,spiflash,usb2} peripherals and a platform (Cynthion provider bundled; others require writing a new provider). Regenerating the VexRiscv Verilog needs Scala/sbt (cpu/verilog/Makefile), outside the open FPGA flow.
+
+**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [antoinevg__cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials) (copies [`src/gateware/soc/cpu/verilog/vexriscv/vexriscv_cynthion.v`](https://github.com/antoinevg/cynthion-tutorials/blob/8b711adb4c1c1495f7bd815239b52e1d789d4d91/src/gateware/soc/cpu/verilog/vexriscv/vexriscv_cynthion.v))
+
 ### NEORV32 RV32 core (VHDL) {#core-stnolting-neorv32}
 
 Full-featured RV32 microcontroller core (CSR, on-chip debugger, rich peripheral set), vendor-agnostic; stnolting__neorv32-setups provides a generic open-toolchain osflow that builds it for ULX3S (BOARD=ULX3S).
@@ -169,10 +190,13 @@ Vendored single-file Verilog output of a VexRiscv RV32 configuration, wired to a
 
 **On ULX3S:** Regenerate with GenVexRiscv.scala for a different pipeline/extension config; the checked-in .v is a fixed snapshot.
 
-**Used by 14 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 17 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [antoinevg__cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials) (instantiates [`examples/soc/top.py`](https://github.com/antoinevg/cynthion-tutorials/blob/8b711adb4c1c1495f7bd815239b52e1d789d4d91/examples/soc/top.py))
 - [badgeteam__mch2022-firmware-ice40](https://github.com/badgeteam/mch2022-firmware-ice40) (instantiates [`projects/riscv_doom/rtl/top.v`](https://github.com/badgeteam/mch2022-firmware-ice40/blob/ce6473addcf6066cada7d80d8ba352f52173d01d/projects/riscv_doom/rtl/top.v))
 - [dan-rodrigues__icestation-32](https://github.com/dan-rodrigues/icestation-32) (instantiates [`hardware/vexriscv/vexriscv_shared_bus.v`](https://github.com/dan-rodrigues/icestation-32/blob/55214d79f74a547dedb54f99cb2fad431b7ac277/hardware/vexriscv/vexriscv_shared_bus.v))
+- [greatscottgadgets__cynthion](https://github.com/greatscottgadgets/cynthion) (instantiates [`cynthion/python/src/gateware/facedancer/top.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/src/gateware/facedancer/top.py))
+- [greatscottgadgets__luna-soc](https://github.com/greatscottgadgets/luna-soc) (instantiates [`examples/hello-rust/top.py`](https://github.com/greatscottgadgets/luna-soc/blob/7fa1cc16ddbaf8608efa515efc7f4ef32454299c/examples/hello-rust/top.py))
 - [hanseo03__ulx3s-vexriscv-soc](https://github.com/hanseo03/ulx3s-vexriscv-soc) (instantiates [`GenMyVexRiscv.scala`](https://github.com/hanseo03/ulx3s-vexriscv-soc/blob/29b4f43f3b5b74bf2ccac97ed8d64687455fd2e1/GenMyVexRiscv.scala))
 - [mcejp__poly94](https://github.com/mcejp/Poly94) (instantiates [`GenPoly94Cpu.scala`](https://github.com/mcejp/Poly94/blob/e2fa3d9406ee09760004d1ff97d4125825c2d345/GenPoly94Cpu.scala))
 - [sefbkn__versa-ecp5-demo](https://github.com/sefbkn/versa-ecp5-demo) (instantiates [`rtl/soc/control_soc.v`](https://github.com/sefbkn/versa-ecp5-demo/blob/1d6d4cb535e11f935c1afa707b35ded5df4d658d/rtl/soc/control_soc.v))
@@ -183,10 +207,9 @@ Vendored single-file Verilog output of a VexRiscv RV32 configuration, wired to a
 - [thorkn__vexriscv-ulx3s-helloworld](https://github.com/ThorKn/vexriscv-ulx3s-helloworld) (instantiates [`vexriscv/src/main/scala/vexriscv/TestsWorkspace.scala`](https://github.com/ThorKn/vexriscv-ulx3s-helloworld/blob/9987abab9256daba513aff66a66298a32006abcd/vexriscv/src/main/scala/vexriscv/TestsWorkspace.scala))
 - [thorkn__vexriscv-ulx3s-simple-plugin](https://github.com/ThorKn/vexriscv-ulx3s-simple-plugin) (instantiates [`vexriscv/src/main/scala/vexriscv/VexRiscv.scala`](https://github.com/ThorKn/vexriscv-ulx3s-simple-plugin/blob/06606ec4dbfd5bf9748ac6fcbe3be3340cbe3469/vexriscv/src/main/scala/vexriscv/VexRiscv.scala))
 - [ulx3s__hazard3](https://github.com/ulx3s/Hazard3) (instantiates [`example_soc/third_party/LiteDRAM/generated-vexrisc/litedram_ulx4m_cpu.v`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/third_party/LiteDRAM/generated-vexrisc/litedram_ulx4m_cpu.v))
-- [wuxx__icesugar-pro](https://github.com/wuxx/icesugar-pro) (instantiates [`src/litex_linux/top.v`](https://github.com/wuxx/icesugar-pro/blob/087e48d9e0b0a0168ce165a961cba306335c4cf2/src/litex_linux/top.v))
-- [zeldin__icegdrom](https://github.com/zeldin/iceGDROM) (instantiates [`fpga/source/vexriscv/vexriscv_wrapper.v`](https://github.com/zeldin/iceGDROM/blob/80a9fa6c8f287ae26b7a5ffd3c6002794bb29ae0/fpga/source/vexriscv/vexriscv_wrapper.v))
+- … and 2 more (see `data/core_usage.json`)
 
 ## Other catalogued projects
 
-Catalogued repos tagged `soc-cpu` (130) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `soc-cpu` (134) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

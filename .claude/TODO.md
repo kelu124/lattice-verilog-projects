@@ -1,8 +1,8 @@
 # TODO
 
 ## Start here next session (handoff 2026-09-28)
-State: 376 repos catalogued (= 376 pins), 153 reusable cores in 33 functions, 16 board pages, 18 reviews, 3 guides,
-4 surveys; all data in `data/*.json`, site generated in `docs/` (just-the-docs) and pushed; `make check` clean.
+State: 398 repos catalogued (= 398 pins), 173 reusable cores in 34 functions, 18 board pages, 19 reviews, 3 guides,
+6 surveys; all data in `data/*.json`, site generated in `docs/` (just-the-docs) and pushed; `make check` clean.
 1. Resume protocol (CLAUDE.md). If `original_sources/` is empty: `clone.sh --restore`, then `prune.py --apply --all`
    (needed by `make check`/`usage`/`lpfs`; `make docs` alone works without clones except PCF lists on board pages).
 2. GitHub Pages: owner enables it (Settings → Pages → main, /docs) if not done; then check the first build at
@@ -12,6 +12,7 @@ State: 376 repos catalogued (= 376 pins), 153 reusable cores in 33 functions, 16
 ## In progress
 
 ## Next
+- [ ] SSD on ECP5-5G: try LiteSATA on ECPIX-5 with an M.2-SATA adapter if hardware is available; watch LitePCIe ECP5 PHY (issue #20) and katsuo-pcie for a root complex (added 2026-09-28)
 - [ ] GitHub Pages: enable Pages (Settings → Pages → main, /docs) if not yet, then check the first just-the-docs build (nav, search, {% raw %} wrapper, core anchors, big catalogue table); Jekyll could not be tested locally (added 2026-09-28)
 - [ ] Cores: licensing pass on cores with "none found" (lawrie sn76489, ulx3s-misc dacpwm, osd.v/spi_osd.v, greybadge sha256, several CORDIC/CIC); verify the core_usage heuristic on a sample (name collisions) (added 2026-09-28)
 - [ ] Board pages: verify the short descriptions of non-ULX3S boards against vendor docs (currently summaries, marked as such); add PCF clocks (added 2026-09-28)

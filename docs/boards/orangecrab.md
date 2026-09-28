@@ -17,7 +17,7 @@ Feather-format ECP5 board with DDR3 and native USB; DFU bootloader.
 | FPGA | LFE5U-25F or 85F, CSFBGA285 |
 | Evidence | catalogue rows (orangecrab-fpga__orangecrab-examples, emeb__orangecrab_adc) |
 | Clock | unknown |
-| Catalogued repos | 8 |
+| Catalogued repos | 9 |
 
 *The description is a short summary; FPGA facts come from the catalogue rows cited above.*
 
@@ -42,10 +42,12 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 |---|---|---|
 | Digital down-converter + AM/FM demod chain (post-ADC) | [adc](https://github.com/kelu124/ulx3s-klod/blob/main/functions/adc.md) | emeb__orangecrab_adc |
 | I2S receiver (orangecrab-usb) | [audio-digital](https://github.com/kelu124/ulx3s-klod/blob/main/functions/audio-digital.md) | mangelajo__orangecrab-usb |
+| Lightweight AXI-4 DDR3 controller + ECP5 PHY | [ddr-memory](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ddr-memory.md) | ultraembedded__core_ddr3_controller |
 | Lightweight DDR3 AXI4 memory controller (ECP5) | [ddr-memory](https://github.com/kelu124/ulx3s-klod/blob/main/functions/ddr-memory.md) | ultraembedded__orangecrab |
 | CIC decimator + FIR decimation filter | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | emeb__orangecrab_adc |
 | glasgow I2C core (Amaranth) | [i2c](https://github.com/kelu124/ulx3s-klod/blob/main/functions/i2c.md) | glasgowembedded__glasgow |
 | ecp5pll parametric PLL | [pll-clock](https://github.com/kelu124/ulx3s-klod/blob/main/functions/pll-clock.md) | emard__ulx3s-misc |
+| katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack | [serdes-links](https://github.com/kelu124/ulx3s-klod/blob/main/functions/serdes-links.md) | zyp__katsuo-pcie |
 | glasgow SPI controller (Amaranth) | [spi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/spi.md) | glasgowembedded__glasgow |
 | hdl4fpga USB 1.1 device core | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | hdl4fpga__hdl4fpga |
 
@@ -56,6 +58,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 - [greatscottgadgets__luna](https://github.com/greatscottgadgets/luna): LUNA: Amaranth USB 2.0/3.0 gateware framework
 - [hsa-ees__piconut](https://github.com/hsa-ees/piconut): PicoNut: minimal, extensible RISC-V
 - [mangelajo__orangecrab-usb](https://github.com/mangelajo/orangecrab-usb): OrangeCrab: two USB device examples
+- [openconcepts-ar__accel2d](https://github.com/openconcepts-ar/accel2d): accel2d: C-to-Verilog
 - [orangecrab-fpga__orangecrab-examples](https://github.com/orangecrab-fpga/orangecrab-examples): OrangeCrab: example projects - RISC-V/VexRiscv firmware, plain Verilog
 - [tallenintegsys__hdmi-orangecrab](https://github.com/tallenintegsys/hdmi-orangecrab): OrangeCrab: HDMI video+audio transmitter, porting Sameer Puri's hdl-util/hdmi IP to Lattice ECP5 via yosys+synlig…
 - [ultraembedded__orangecrab](https://github.com/ultraembedded/orangecrab): OrangeCrab: DDR3 128MB read/write memory test gateware ([review](https://github.com/kelu124/ulx3s-klod/blob/main/projects/ultraembedded__orangecrab.md))

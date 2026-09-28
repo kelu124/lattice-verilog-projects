@@ -15,7 +15,7 @@ USB full-speed device stacks and CDC-ACM serial on the US2 port.
 | [no2usb-derived ECP5 USB FS device core (had2019 bootloader)](#core-emard-had2019-usb-device) ★ | [emard__had2019-playground](https://github.com/emard/had2019-playground) | Verilog | LGPL-3.0-or-later | ECP5 | 4 |
 | [circuit-killer USB FS serial device (VHDL, ULX3S-built)](#core-circuit-killer-usbserial) | [circuit-killer__fpga-usbserial](https://github.com/Circuit-killer/fpga-usbserial) | VHDL | GPL-2.0 (usb_serial/COPYING) | ECP5 | 2 |
 | [f32c USB CDC-ACM device + soft PHY](#core-f32c-usb-serial) | [f32c__f32c](https://github.com/f32c/f32c) | VHDL | BSD-2-Clause | any | 2 |
-| [hdl4fpga USB 1.1 device core](#core-hdl4fpga-usbdev) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE, Miguel Angel Sagreras) | any | 4 |
+| [hdl4fpga USB 1.1 device core](#core-hdl4fpga-usbdev) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE, Miguel Angel Sagreras) | any | 11 |
 | [ulixxe USB CDC-ACM device core](#core-ulixxe-usb-cdc) | [ulixxe__usb_cdc](https://github.com/ulixxe/usb_cdc) | Verilog | MIT (LICENSE) | any | 2 |
 | [ulx3s-misc USB CDC-ACM device (VHDL)](#core-ulx3s-misc-usbcdc) | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | VHDL | GPL-2.0-or-later | any | 0 |
 
@@ -106,12 +106,19 @@ Portable USB 1.1 device core with no vendor primitives, switchable device/host r
 
 Full review: [hdl4fpga__hdl4fpga](../projects/hdl4fpga__hdl4fpga.md).
 
-**Used by 4 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 11 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
+- [antoinevg__cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials) (instantiates [`examples/soc/top.py`](https://github.com/antoinevg/cynthion-tutorials/blob/8b711adb4c1c1495f7bd815239b52e1d789d4d91/examples/soc/top.py))
+- [apfaudio__guh](https://github.com/apfaudio/guh) (instantiates [`guh/util/test_devices.py`](https://github.com/apfaudio/guh/blob/9aa0fd3511490674bdd038760abc8729f9e0b023/guh/util/test_devices.py))
+- [greatscottgadgets__cynthion](https://github.com/greatscottgadgets/cynthion) (instantiates [`cynthion/python/examples/tutorials/gateware-usb-device-01.py`](https://github.com/greatscottgadgets/cynthion/blob/dd2340e20de66341b73c6276cf1654800b655db2/cynthion/python/examples/tutorials/gateware-usb-device-01.py))
+- [greatscottgadgets__cynthion-uac](https://github.com/greatscottgadgets/cynthion-uac) (instantiates [`uac/uac2.py`](https://github.com/greatscottgadgets/cynthion-uac/blob/0dfc4186182b6c9c2bbaa9199f88a6d196306a7d/uac/uac2.py))
 - [greatscottgadgets__luna](https://github.com/greatscottgadgets/luna) (instantiates [`applets/clear_endpoint_halt_test.py`](https://github.com/greatscottgadgets/luna/blob/82a8f733296603b70ba56755206e13092609c6f0/applets/clear_endpoint_halt_test.py))
 - [lawrie__ulx3s_examples](https://github.com/lawrie/ulx3s_examples) (instantiates [`usbhost/usbh_host_hid.v`](https://github.com/lawrie/ulx3s_examples/blob/b6ff00099265401fef4843e4e89c2ac54254c95f/usbhost/usbh_host_hid.v))
 - [orangecrab-fpga__orangecrab-examples](https://github.com/orangecrab-fpga/orangecrab-examples) (instantiates [`litex/deps/valentyusb/sim/test-cdc-eptri.py`](https://github.com/orangecrab-fpga/orangecrab-examples/blob/eefbafa8729e7807fb64357c306a635a40fa8b34/litex/deps/valentyusb/sim/test-cdc-eptri.py))
+- [orbcode__orbtrace](https://github.com/orbcode/orbtrace) (instantiates [`orbtrace/amaranth_glue/luna.py`](https://github.com/orbcode/orbtrace/blob/e416cd5b074fc725a04cf6b877d458e2074467ae/orbtrace/amaranth_glue/luna.py))
 - [spinalhdl__saxonsoc](https://github.com/SpinalHDL/SaxonSoc) (instantiates [`hardware/scala/saxon/board/digilent/ArtyA7SmpLinux.scala`](https://github.com/SpinalHDL/SaxonSoc/blob/227b8686b734c7995b10ce81e193a01b010d2407/hardware/scala/saxon/board/digilent/ArtyA7SmpLinux.scala))
+- [voltcyclone__hurra-fpga](https://github.com/VoltCyclone/hurra-fpga) (instantiates [`src/hurra_cynthion/device.py`](https://github.com/VoltCyclone/hurra-fpga/blob/0a050ad254eb27b43a00e61efe953cd842fcd27f/src/hurra_cynthion/device.py))
+- [voltcyclone__hurricanefpga](https://github.com/VoltCyclone/HurricaneFPGA) (instantiates [`legacy/src/backend/usb_serial.py`](https://github.com/VoltCyclone/HurricaneFPGA/blob/6f0b109cf0ab1ad77ee7670693e3d1a6aa11cab5/legacy/src/backend/usb_serial.py))
 
 ### ulixxe USB CDC-ACM device core {#core-ulixxe-usb-cdc}
 
@@ -156,5 +163,5 @@ Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
 ## Other catalogued projects
 
-Catalogued repos tagged `usb-device` (25) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `usb-device` (31) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

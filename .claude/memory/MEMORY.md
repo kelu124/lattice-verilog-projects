@@ -1,7 +1,7 @@
 - [Project goal](project-goal.md) — why this repo exists: cloneable memory of all ULX3S work, to help build new things
 - [Project registry](projects.md) — every ULX3S project: functions, toolchain, target, last update, review status + candidates queue
-- [Catalogue](../../data/catalogue.json) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 377 repos (292 ULX3S/ULX4M + 26 on other ECP5 boards + 59 non-ECP5: iCE40 UP5K, HX8K/HX4K) (render: gen_catalogue.py; moved from catalogue.tsv 2026-09-28)
-- [Reusable cores](reusable-cores.md) — pointer to data/cores.json (155 cores by function, best + alternatives, usage in data/core_usage.json) + cross-project facts
+- [Catalogue](../../data/catalogue.json) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 398 repos (292 ULX3S/ULX4M + 47 on other ECP5 boards + 59 non-ECP5: iCE40 UP5K, HX8K/HX4K) (render: gen_catalogue.py; moved from catalogue.tsv 2026-09-28)
+- [Reusable cores](reusable-cores.md) — pointer to data/cores.json (173 cores in 34 functions, best + alternatives, usage in data/core_usage.json) + cross-project facts
 - [Shallow clones rule](shallow-clones.md) — all clones --depth 1 (owner rule); history stats in history.tsv; gateware-only submodules via clone.sh --submodule
 - [Fetched submodules](submodules.tsv) — allowlist of gateware submodules fetched inside clones (slug, path, url, commit, reason)
 - [Pinned sources](sources.tsv) — upstream repos cloned in original_sources/ with pinned commits (restore with clone.sh --restore)
@@ -19,3 +19,4 @@
 - [LPF catalogue](../../data/lpfs.json) — every LPF in the clones: URL at pinned commit, board/rev by pin match, FPGA size/LUTs, chips; `make lpfs` after cloning
 - [DFU bootloaders](../../docs/guides/DFUs.md) — USB DFU on ULX3S/ULX4M (had2019-playground bootloader, 1d50:614b, user image 0x200000, alt settings) and other boards
 - [Data/docs layout](data-docs-layout.md) — owner rules: data is JSON in data/; docs/ is a generated just-the-docs GitHub Pages site built around reusable cores by function, 16 board pages in 3 families, guides, reviews, methodology (`make check usage docs`)
+- [ECP5 SERDES and storage](ecp5-serdes-storage.md) — no open M.2/NVMe SSD design on ECP5-5G; LiteSATA works on ECPIX-5; PCIe endpoint-only PoCs; TinyFPGA EX never shipped (surveys 2026-09-28)

@@ -29,7 +29,8 @@
    "match": "ulx3s",
    "clock": "25 MHz (clk_25mhz, reference LPF)",
    "description": "The main board of this collection: 32 MB SDR SDRAM, GPDI (HDMI) port, ESP32, US1 FT231X + US2 direct USB, SD card, MAX11125 ADC, OLED header, 56 GPIO.",
-   "page": "board-reference"
+   "page": "board-reference",
+   "lpf_board": "ULX3S"
   },
   {
    "id": "ulx4m",
@@ -41,7 +42,8 @@
    "match": "ulx4m",
    "clock": "unknown",
    "description": "ULX3S successor in Raspberry Pi CM4 module format; most ULX3S designs port with the ulx4m_v002.lpf constraint file.",
-   "page": null
+   "page": null,
+   "lpf_board": "ULX4M"
   },
   {
    "id": "orangecrab",
@@ -53,7 +55,8 @@
    "match": "orangecrab",
    "clock": "unknown",
    "description": "Feather-format ECP5 board with DDR3 and native USB; DFU bootloader.",
-   "page": null
+   "page": null,
+   "lpf_board": "OrangeCrab"
   },
   {
    "id": "colorlight",
@@ -65,7 +68,8 @@
    "match": "colorlight|5a-75",
    "clock": "25 MHz (catalogue notes)",
    "description": "Cheap ECP5 boards with gigabit Ethernet PHYs and SDRAM, repurposed from LED-panel receivers.",
-   "page": null
+   "page": null,
+   "lpf_board": "Colorlight"
   },
   {
    "id": "icepi-zero",
@@ -77,7 +81,8 @@
    "match": "icepi",
    "clock": "50 MHz (catalogue notes)",
    "description": "Raspberry Pi Zero-sized ECP5 board with HDMI, SDRAM and USB; many ULX3S retro ports target it.",
-   "page": null
+   "page": null,
+   "lpf_board": "IcePi Zero"
   },
   {
    "id": "icesugar-pro",
@@ -89,7 +94,8 @@
    "match": "icesugar.?pro",
    "clock": "unknown",
    "description": "SODIMM-format ECP5 module with SDRAM and HDMI on the carrier.",
-   "page": null
+   "page": null,
+   "lpf_board": "iCESugar-Pro"
   },
   {
    "id": "icebreaker",
@@ -210,6 +216,32 @@
    "clock": "unknown",
    "description": "HX8K Raspberry Pi HAT with SRAM; icosoc SoC generator.",
    "page": null
+  },
+  {
+   "id": "ecpix-5",
+   "name": "ECPIX-5",
+   "family": "ecp5",
+   "full_name": "LambdaConcept ECPIX-5",
+   "fpga": "LFE5UM5G-45F or LFE5UM5G-85F (ECP5-5G, with SERDES), BG554",
+   "fpga_evidence": "LiteX / Amaranth board files, see the TinyFPGA EX / ECPIX-5 / Cynthion survey",
+   "match": "ecpix",
+   "clock": "100 MHz (board files)",
+   "description": "ECP5-5G board with DDR3, RGMII Ethernet, HDMI (IT6613), a SATA port driven by LiteSATA over the SERDES, SD, ULPI USB and 8 PMODs; programmed with openFPGALoader -b ecpix5.",
+   "page": null,
+   "lpf_board": "ECPIX-5"
+  },
+  {
+   "id": "cynthion",
+   "name": "Cynthion",
+   "family": "ecp5",
+   "full_name": "Great Scott Gadgets Cynthion",
+   "fpga": "LFE5U-12F, BG256",
+   "fpga_evidence": "cynthion board files (r0.1–r1.4), see the TinyFPGA EX / ECPIX-5 / Cynthion survey",
+   "match": "cynthion",
+   "clock": "60 MHz (board files)",
+   "description": "USB 2.0 test instrument: three ULPI high-speed USB PHYs, HyperRAM, 2 PMODs; programmed through the Apollo debug MCU. Home of the LUNA USB gateware (analyzer, Facedancer, USB host experiments).",
+   "page": null,
+   "lpf_board": "Cynthion"
   }
  ]
 }

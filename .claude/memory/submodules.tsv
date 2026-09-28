@@ -1,4 +1,5 @@
 slug	path	url	commit	reason
+apfaudio__eurorack-pmod	gateware/external/no2misc	https://github.com/no2fpga/no2misc	59350da954e78424117ed01c55b5c7a12e524397	no2misc gateware utility cores (i2c/spi/misc) used by the eurorack-pmod gateware
 asinghani__pifive-cpu	soc/third_party/hyperram	https://github.com/blackmesalabs/hyperram	70b464849d79b87a5fbd91f9f9b216ef981280f0	HyperRAM controller (Verilog, blackmesalabs)
 asinghani__pifive-cpu	soc/third_party/verilog-i2c	https://github.com/alexforencich/verilog-i2c	b6ebb7d1d1ff69ce73e826b65366e2fb5b1bafbc	I2C master/slave cores (Verilog, alexforencich)
 chiplet__acorechip-ulx3s	ACoreChip	git@gitlab.com:a-core/a-core_chisel/ACoreChip.git	ee96327b7eced7d3b9a78bbe3e9c5b3bc86a2be4	A-Core RISC-V CPU (Chisel), the core of the design

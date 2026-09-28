@@ -2,7 +2,7 @@
  "schema": "ulx3s-klod/core-usage/v1",
  "generator": ".claude/skills/review-gateware-project/scan_core_usage.py",
  "note": "Heuristic: file-name copies and module instantiations found in other clones; verify before relying on it.",
- "hdl_files_scanned": 17513,
+ "hdl_files_scanned": 18360,
  "usage": {
   "emard-vga2dvid-tmds": [
    {
@@ -1842,7 +1842,41 @@
     ]
    }
   ],
-  "orangecrab-ddr3-axi": [],
+  "orangecrab-ddr3-axi": [
+   {
+    "repo": "maxhpc__ecpix-5",
+    "copy": [],
+    "instance": [
+     "libs/ddr3/ddr3_top.sv"
+    ]
+   },
+   {
+    "repo": "ultraembedded__core_ddr3_controller",
+    "copy": [
+     "src_v/ddr3_axi.v",
+     "src_v/ddr3_dfi_seq.v",
+     "src_v/phy/ecp5/ddr3_dfi_phy.v"
+    ],
+    "instance": [
+     "examples/arty_a7/top.v",
+     "examples/ecpix_ecp5/top.v",
+     "tb/ddr3_core_xc7/testbench.v"
+    ]
+   }
+  ],
+  "ultraembedded-core-ddr3-controller": [
+   {
+    "repo": "ultraembedded__orangecrab",
+    "copy": [
+     "ddr_test/src_v/ddr3_axi_pmem.v",
+     "ddr_test/src_v/ddr3_dfi_seq.v"
+    ],
+    "instance": [
+     "ddr_test/src_v/ddr3_axi.v",
+     "ddr_test/src_v/ddr3_axi_core.v"
+    ]
+   }
+  ],
   "uberddr3-controller": [
    {
     "repo": "machdyne__zeitlos",
@@ -2153,6 +2187,38 @@
   ],
   "hdl4fpga-usbdev": [
    {
+    "repo": "antoinevg__cynthion-tutorials",
+    "copy": [],
+    "instance": [
+     "examples/soc/top.py",
+     "examples/uac/step-1.py",
+     "src/gateware/bridge/stream.py"
+    ]
+   },
+   {
+    "repo": "apfaudio__guh",
+    "copy": [],
+    "instance": [
+     "guh/util/test_devices.py"
+    ]
+   },
+   {
+    "repo": "greatscottgadgets__cynthion",
+    "copy": [],
+    "instance": [
+     "cynthion/python/examples/tutorials/gateware-usb-device-01.py",
+     "cynthion/python/examples/tutorials/gateware-usb-device-02.py",
+     "cynthion/python/examples/tutorials/gateware-usb-device-03.py"
+    ]
+   },
+   {
+    "repo": "greatscottgadgets__cynthion-uac",
+    "copy": [],
+    "instance": [
+     "uac/uac2.py"
+    ]
+   },
+   {
     "repo": "greatscottgadgets__luna",
     "copy": [],
     "instance": [
@@ -2176,11 +2242,34 @@
     ]
    },
    {
+    "repo": "orbcode__orbtrace",
+    "copy": [],
+    "instance": [
+     "orbtrace/amaranth_glue/luna.py",
+     "orbtrace/soc.py"
+    ]
+   },
+   {
     "repo": "spinalhdl__saxonsoc",
     "copy": [],
     "instance": [
      "hardware/scala/saxon/board/digilent/ArtyA7SmpLinux.scala",
      "hardware/scala/saxon/board/radiona/ulx3s/Ulx3sSmp.scala"
+    ]
+   },
+   {
+    "repo": "voltcyclone__hurra-fpga",
+    "copy": [],
+    "instance": [
+     "src/hurra_cynthion/device.py"
+    ]
+   },
+   {
+    "repo": "voltcyclone__hurricanefpga",
+    "copy": [],
+    "instance": [
+     "legacy/src/backend/usb_serial.py",
+     "legacy/src/backend_simple/top.py"
     ]
    }
   ],
@@ -2384,7 +2473,15 @@
     "instance": []
    }
   ],
+  "guh-usbh-sie": [],
   "hdl4fpga-usbhost": [
+   {
+    "repo": "apfaudio__guh",
+    "copy": [],
+    "instance": [
+     "guh/usbh/types.py"
+    ]
+   },
    {
     "repo": "lawrie__spinalulx3s",
     "copy": [],
@@ -2399,8 +2496,19 @@
     "instance": [
      "hardware/deprecated/ulx3s/peripheral/UsbHostHid.scala"
     ]
+   },
+   {
+    "repo": "voltcyclone__hurra-fpga",
+    "copy": [],
+    "instance": [
+     "src/hurra_cynthion/control.py",
+     "src/hurra_cynthion/host.py",
+     "src/hurra_cynthion/poller.py"
+    ]
    }
   ],
+  "hurra-fpga-usb-host": [],
+  "hurricanefpga-usb-host": [],
   "had2019-dfu-bootloader": [],
   "hazard3-doom-dfu-bootloader": [],
   "no2usb-dfu-helper": [
@@ -2469,6 +2577,85 @@
    }
   ],
   "emard-eth-rmii-hexdemo": [],
+  "litesata-ecp5-sata": [],
+  "blazra-tdr-serdes": [],
+  "ecp5pcie-amaranth-phy": [
+   {
+    "repo": "whitequark__yumewatari",
+    "copy": [],
+    "instance": [
+     "yumewatari/gateware/platform/lattice_ecp5.py",
+     "yumewatari/testbench/ltssm.py",
+     "yumewatari/testbench/serdes.py"
+    ]
+   },
+   {
+    "repo": "zyp__katsuo-pcie",
+    "copy": [
+     "katsuo/pcie/phy/ecp5_serdes.py"
+    ],
+    "instance": []
+   }
+  ],
+  "katsuo-pcie-ecp5": [
+   {
+    "repo": "antoinevg__cynthion-tutorials",
+    "copy": [],
+    "instance": [
+     "src/gateware/platform/ecpix5_luna.py"
+    ]
+   },
+   {
+    "repo": "ecp5-pcie__ecp5-pcie",
+    "copy": [
+     "Gateware/ecp5_pcie/ecp5_serdes.py"
+    ],
+    "instance": [
+     "Gateware/ecp5_pcie/ecp5_serdes.py",
+     "Gateware/ecp5_pcie/sci.py"
+    ]
+   },
+   {
+    "repo": "greatscottgadgets__luna",
+    "copy": [],
+    "instance": [
+     "luna/gateware/interface/serdes_phy/ecp5.py"
+    ]
+   }
+  ],
+  "kazkojima-ecp5-sgmii": [],
+  "liteiclink-serdes-ecp5": [
+   {
+    "repo": "blazra__tdr",
+    "copy": [
+     "gateware/versa_ecp5-litex/tdr/serdes_ecp5.py"
+    ],
+    "instance": [
+     "gateware/versa_ecp5-litex/tdr/serdes_ecp5.py",
+     "gateware/versa_ecp5-litex/versa_ecp5.py"
+    ]
+   },
+   {
+    "repo": "enjoy-digital__litesata",
+    "copy": [],
+    "instance": [
+     "litesata/phy/ecp5sataphy.py"
+    ]
+   }
+  ],
+  "litepcie-katsuo-poc-ecp5": [],
+  "pavlenkog-ecp5-pcs-pcie-analyzer": [],
+  "yumewatari-pcie-phy": [
+   {
+    "repo": "ecp5-pcie__ecp5-pcie",
+    "copy": [],
+    "instance": [
+     "Gateware/ecp5_pcie/ecp5_phy_x1.py",
+     "Gateware/ecp5_pcie/ecp5_serdes.py",
+     "Gateware/ecp5_pcie/ecp5_serdes_geared_x2.py"
+    ]
+   }
+  ],
   "lawrie-ps2-intf": [
    {
     "repo": "emard__uk101onfpga",
@@ -2575,9 +2762,11 @@
    }
   ],
   "emard-jtag-slave": [],
+  "cynthion-usb-analyzer": [],
   "tomverbeure-ecp5-jtag": [],
   "johnazoidberg-espi-analyzer": [],
   "opendap-sw-dp": [],
+  "orbtrace-swd-jtag-trace": [],
   "lawrie-ice40logicsniffer": [],
   "kulp-tenyr-wb-intercon": [
    {
@@ -2899,6 +3088,16 @@
      "rtl/soc/i2s_v.v"
     ],
     "instance": []
+   }
+  ],
+  "eurorack-pmod-ak4619": [],
+  "cynthion-uac-uac2": [
+   {
+    "repo": "antoinevg__cynthion-tutorials",
+    "copy": [],
+    "instance": [
+     "examples/uac/step-1.py"
+    ]
    }
   ],
   "orangecrab-usb-i2s-rx": [],
@@ -3464,6 +3663,37 @@
    }
   ],
   "f32c-core": [],
+  "mmicko-fpga101-picosoc": [
+   {
+    "repo": "daveshah1__up5k-demos",
+    "copy": [
+     "nes/up_spram.v"
+    ],
+    "instance": [
+     "nes/cart_mem.v"
+    ]
+   },
+   {
+    "repo": "wifiboy__ok-ice40pro",
+    "copy": [
+     "ok-nes-vga-src/up_spram.v"
+    ],
+    "instance": [
+     "ok-nes-vga-src/cart_mem.v"
+    ]
+   },
+   {
+    "repo": "wuxx__icesugar",
+    "copy": [
+     "src/advanced/up5k-demos/nes/up_spram.v",
+     "src/advanced/up5k-demos/neshdmi/up_spram.v"
+    ],
+    "instance": [
+     "src/advanced/up5k-demos/nes/cart_mem.v",
+     "src/advanced/up5k-demos/neshdmi/cart_mem.v"
+    ]
+   }
+  ],
   "wren6991-hazard3": [
    {
     "repo": "ulx3s__hazard3",
@@ -3479,8 +3709,26 @@
    }
   ],
   "kianv-sv32-core": [],
+  "luna-soc-vexriscv-cynthion": [
+   {
+    "repo": "antoinevg__cynthion-tutorials",
+    "copy": [
+     "src/gateware/soc/cpu/verilog/vexriscv/vexriscv_cynthion.v"
+    ],
+    "instance": []
+   }
+  ],
   "stnolting-neorv32": [],
   "rschlaikjer-vexriscv": [
+   {
+    "repo": "antoinevg__cynthion-tutorials",
+    "copy": [],
+    "instance": [
+     "examples/soc/top.py",
+     "src/gateware/soc/cpu/verilog/vexriscv/scala/src/main/scala/GenCoreCynthion.scala",
+     "src/gateware/soc/cpu/verilog/vexriscv/scala/src/main/scala/GenCoreCynthionJtag.scala"
+    ]
+   },
    {
     "repo": "badgeteam__mch2022-firmware-ice40",
     "copy": [],
@@ -3493,6 +3741,22 @@
     "copy": [],
     "instance": [
      "hardware/vexriscv/vexriscv_shared_bus.v"
+    ]
+   },
+   {
+    "repo": "greatscottgadgets__cynthion",
+    "copy": [],
+    "instance": [
+     "cynthion/python/src/gateware/facedancer/top.py"
+    ]
+   },
+   {
+    "repo": "greatscottgadgets__luna-soc",
+    "copy": [],
+    "instance": [
+     "examples/hello-rust/top.py",
+     "luna_soc/gateware/cpu/verilog/vexriscv/scala/src/main/scala/GenCoreCynthion.scala",
+     "luna_soc/gateware/cpu/verilog/vexriscv/scala/src/main/scala/GenCoreCynthionJtag.scala"
     ]
    },
    {
@@ -3645,6 +3909,44 @@
     "instance": [
      "src/fx68k/fx68k.sv",
      "src/ql.v"
+    ]
+   }
+  ],
+  "mmicko-grom-cpu": [
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [
+     "cpu/grom_computer.v",
+     "cpu/grom_cpu.v"
+    ],
+    "instance": [
+     "cpu/grom_computer.v",
+     "cpu/grom_computer_tb.v",
+     "cpu/grom_top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_examples",
+    "copy": [
+     "softcore/grom/grom_computer.v",
+     "softcore/grom/grom_cpu.v"
+    ],
+    "instance": [
+     "softcore/grom/grom_computer.v",
+     "softcore/grom/grom_computer_tb.v",
+     "softcore/grom/grom_top.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__fpga-odysseus",
+    "copy": [
+     "tutorials/06-CPU/grom_computer.v",
+     "tutorials/06-CPU/grom_cpu.v"
+    ],
+    "instance": [
+     "tutorials/06-CPU/grom_computer.v",
+     "tutorials/06-CPU/grom_computer_tb.v",
+     "tutorials/06-CPU/grom_top.v"
     ]
    }
   ],
@@ -3963,6 +4265,14 @@
     ]
    },
    {
+    "repo": "blazra__tdr",
+    "copy": [],
+    "instance": [
+     "gateware/versa_ecp5-litex/tdr/clock.py",
+     "gateware/versa_ecp5-litex/versa_ecp5.py"
+    ]
+   },
+   {
     "repo": "bqqbarbhg__blipv1",
     "copy": [],
     "instance": [
@@ -4190,6 +4500,21 @@
     ],
     "instance": [
      "src/vic20.v"
+    ]
+   },
+   {
+    "repo": "enjoy-digital__liteiclink",
+    "copy": [],
+    "instance": [
+     "bench/serdes/ecpix5.py",
+     "bench/serdes/versa_ecp5.py"
+    ]
+   },
+   {
+    "repo": "enjoy-digital__litesata",
+    "copy": [],
+    "instance": [
+     "bench/ecpix5.py"
     ]
    },
    {
@@ -4500,6 +4825,13 @@
     ]
    },
    {
+    "repo": "maxhpc__ecpix-5",
+    "copy": [],
+    "instance": [
+     "vx/maxhpc.sv"
+    ]
+   },
+   {
     "repo": "mcejp__poly94",
     "copy": [
      "rtl/ecp5/ecp5pll.sv"
@@ -4509,10 +4841,25 @@
     ]
    },
    {
+    "repo": "openconcepts-ar__accel2d",
+    "copy": [],
+    "instance": [
+     "gsd_orangecrab.py",
+     "lambdaconcept_ecpix5.py"
+    ]
+   },
+   {
     "repo": "orangecrab-fpga__orangecrab-examples",
     "copy": [],
     "instance": [
      "litex/SoC-CircuitPython.py"
+    ]
+   },
+   {
+    "repo": "orbcode__orbtrace",
+    "copy": [],
+    "instance": [
+     "orbtrace/crg_ecp5.py"
     ]
    },
    {
@@ -4583,6 +4930,15 @@
     ]
    },
    {
+    "repo": "ultraembedded__core_ddr3_controller",
+    "copy": [
+     "examples/ecpix_ecp5/ecp5pll.sv"
+    ],
+    "instance": [
+     "examples/ecpix_ecp5/top.v"
+    ]
+   },
+   {
     "repo": "ultraembedded__ecpix-5",
     "copy": [
      "src/top/ecp5pll.sv"
@@ -4616,6 +4972,13 @@
     ],
     "instance": [
      "testram.v"
+    ]
+   },
+   {
+    "repo": "zyp__litepcie-katsuo-poc",
+    "copy": [],
+    "instance": [
+     "lattice_versa_ecp5.py"
     ]
    }
   ],
@@ -4693,75 +5056,6 @@
   "marph91-yaaes": [],
   "greybadge25-aes-sha256-des": [],
   "xtrinch-sha256-miner": [],
-  "krishkc5-trng-ring-oscillator": [],
-  "mmicko-grom-cpu": [
-   {
-    "repo": "lawrie__ulx3s_examples",
-    "copy": [
-     "cpu/grom_computer.v",
-     "cpu/grom_cpu.v"
-    ],
-    "instance": [
-     "cpu/grom_computer.v",
-     "cpu/grom_computer_tb.v",
-     "cpu/grom_top.v"
-    ]
-   },
-   {
-    "repo": "lawrie__ulx4m_examples",
-    "copy": [
-     "softcore/grom/grom_computer.v",
-     "softcore/grom/grom_cpu.v"
-    ],
-    "instance": [
-     "softcore/grom/grom_computer.v",
-     "softcore/grom/grom_computer_tb.v",
-     "softcore/grom/grom_top.v"
-    ]
-   },
-   {
-    "repo": "ulx3s__fpga-odysseus",
-    "copy": [
-     "tutorials/06-CPU/grom_computer.v",
-     "tutorials/06-CPU/grom_cpu.v"
-    ],
-    "instance": [
-     "tutorials/06-CPU/grom_computer.v",
-     "tutorials/06-CPU/grom_computer_tb.v",
-     "tutorials/06-CPU/grom_top.v"
-    ]
-   }
-  ],
-  "mmicko-fpga101-picosoc": [
-   {
-    "repo": "daveshah1__up5k-demos",
-    "copy": [
-     "nes/up_spram.v"
-    ],
-    "instance": [
-     "nes/cart_mem.v"
-    ]
-   },
-   {
-    "repo": "wifiboy__ok-ice40pro",
-    "copy": [
-     "ok-nes-vga-src/up_spram.v"
-    ],
-    "instance": [
-     "ok-nes-vga-src/cart_mem.v"
-    ]
-   },
-   {
-    "repo": "wuxx__icesugar",
-    "copy": [
-     "src/advanced/up5k-demos/nes/up_spram.v",
-     "src/advanced/up5k-demos/neshdmi/up_spram.v"
-    ],
-    "instance": [
-     "src/advanced/up5k-demos/nes/cart_mem.v",
-     "src/advanced/up5k-demos/neshdmi/cart_mem.v"
-    ]
-   }
-  ]
+  "krishkc5-trng-ring-oscillator": []
  }
 }

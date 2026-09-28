@@ -1,7 +1,7 @@
 ---
 title: "PS/2 keyboard and mouse"
 parent: "Cores by function"
-nav_order: 19
+nav_order: 20
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

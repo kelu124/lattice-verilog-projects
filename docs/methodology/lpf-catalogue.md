@@ -10,12 +10,12 @@ nav_order: 11
 
 Generated 2026-09-28 by `.claude/skills/review-gateware-project/scan_lpfs.py` from every `*.lpf` in `original_sources/` (scan), rendered by `.claude/skills/review-gateware-project/gen_lpf_catalogue.py`; do not edit by hand. Data: [`data/lpfs.json`](https://github.com/kelu124/ulx3s-klod/blob/main/data/lpfs.json).
 
-**916 LPF files, 479 distinct contents.** Per-file last-change dates are unknown (shallow clones): `repo_last_commit` is the repo's pinned commit date. `board`/`board_rev` come from matching (signal, site) pairs against emard/ulx3s reference LPFs when >= 90 %, else from the path or the repo's catalogue row (see `board_evidence`). per-copy `device`/`luts` come from the LPF text, a build file next to it, or the repo's catalogue row (see `device_evidence`); LUT4 counts: 12k=12000, 25k=24000, 45k=44000, 85k=84000. `chips` are inferred from active signal names (the matched names are listed); `chips_commented_only` from commented-out LOCATE lines.
+**924 LPF files, 487 distinct contents.** Per-file last-change dates are unknown (shallow clones): `repo_last_commit` is the repo's pinned commit date. `board`/`board_rev` come from matching (signal, site) pairs against emard/ulx3s reference LPFs when >= 90 %, else from the path or the repo's catalogue row (see `board_evidence`). per-copy `device`/`luts` come from the LPF text, a build file next to it, or the repo's catalogue row (see `device_evidence`); LUT4 counts: 12k=12000, 25k=24000, 45k=44000, 85k=84000. `chips` are inferred from active signal names (the matched names are listed); `chips_commented_only` from commented-out LOCATE lines.
 
 | Kind | LPF files |
 |---|---|
-| pin-map | 836 |
-| no-pins (timing/IP/tool-generated or all commented out) | 47 |
+| pin-map | 843 |
+| no-pins (timing/IP/tool-generated or all commented out) | 48 |
 | empty | 33 |
 
 The tables below count only `pin-map` LPFs (at least one active LOCATE line).
@@ -26,7 +26,7 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 |---|---|
 | ULX3S | 648 |
 | IcePi Zero | 36 |
-| Colorlight | 31 |
+| Colorlight | 34 |
 | iCESugar-Pro | 26 |
 | ULX4M | 23 |
 | FleaFPGA Ohm/Uno | 11 |
@@ -37,8 +37,9 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 | OrangeCrab | 7 |
 | ECP5 Evaluation board | 6 |
 | Pergola | 5 |
-| Versa ECP5 | 3 |
-| ECPIX-5 | 1 |
+| Versa ECP5 | 4 |
+| ECPIX-5 | 3 |
+| Cynthion | 1 |
 | TrellisBoard | 1 |
 
 ## ULX3S revisions (copies, by reference match)
@@ -63,12 +64,12 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 
 | Chip / peripheral | LPF files |
 |---|---|
-| led | 740 |
+| led | 742 |
 | button | 633 |
-| ftdi-uart | 616 |
+| ftdi-uart | 622 |
 | sdcard | 593 |
-| gpio-header | 579 |
-| usb | 579 |
+| gpio-header | 583 |
+| usb | 580 |
 | hdmi-dvi | 577 |
 | sdram | 572 |
 | spi-flash | 572 |
@@ -80,14 +81,14 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 | adc | 497 |
 | radio-antenna | 491 |
 | ps2 | 92 |
+| i2c | 35 |
 | vga | 33 |
-| i2c | 31 |
 | ethernet | 25 |
 | camera | 22 |
 | jtag | 16 |
 | sram | 13 |
 | psram | 11 |
-| ddr3 | 8 |
+| ddr3 | 9 |
 | hyperram | 2 |
 | serdes-pcie-sata | 2 |
 | dac | 1 |
@@ -166,6 +167,7 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 | [`FFM-LFE5U-V0r0_mit_FFC-CA7-V2r0.lpf`](https://github.com/emard/Next186/blob/cfd9550f7aa4f126839692755d4eb3793ea5e40e/constraints/FFM-LFE5U-V0r0_mit_FFC-CA7-V2r0.lpf) | FFM-LFE5U module | 85k | ethernet, ftdi-uart, i2c, led, sdcard, sdram, usb | emard__next186 |
 | [`FleaFPGA_2v5_DSO_toplevel.lpf`](https://github.com/emard/flearadio/blob/5439d88e3f1a85113a6c8f6ee724a86edbd9f938/rtl/proj/lattice/fleafpga/FleaFPGA_2v5_DSO_toplevel.lpf) | FleaFPGA Ohm/Uno | unknown | audio, gpio-header, ps2, sdcard, sdram, vga | emard__flearadio |
 | [`OrangeCrab.lpf`](https://github.com/stnolting/neorv32-setups/blob/57f86d5ad3fa54f6919165b7bcc61fad9a5cae0a/osflow/constraints/OrangeCrab.lpf) | OrangeCrab | 85k | spi-flash | stnolting__neorv32-setups |
+| [`analyzer.lpf`](https://github.com/PavlenkoG/ECP5_PCIE_Analyzer/blob/cc01417bd070d835ffc7e71aa9aa4646e5900a0f/fpga_logic/src/analyzer.lpf) | Versa ECP5 | 85k | ftdi-uart, led | pavlenkog__ecp5_pcie_analyzer |
 | [`blink.lpf`](https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/blink_docker/blink.lpf) | Colorlight | 25k | led | kholia__colorlight-5a-75b |
 | [`blink.lpf`](https://github.com/wuxx/Colorlight-FPGA-Projects/blob/5042201f6ae848d4269680cc289c7bde3ab8cf71/src/i5/blink/blink.lpf) | Colorlight | 25k | led | wuxx__colorlight-fpga-projects |
 | [`blink.lpf`](https://github.com/wuxx/Colorlight-FPGA-Projects/blob/5042201f6ae848d4269680cc289c7bde3ab8cf71/src/i9/blink/blink.lpf) | Colorlight | 45k | led | wuxx__colorlight-fpga-projects |
@@ -178,6 +180,7 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 | [`colorlight_i9_v7.2.lpf`](https://github.com/sylefeb/Silice/blob/620487d6b83035dd98299734c8c8fccf8f636005/frameworks/boards/colorlight/colorlight_i9_v7.2.lpf) | Colorlight | 45k | ftdi-uart, hdmi-dvi, led, rtc-power, sdram, spi-flash | sylefeb__silice |
 | [`colorlighti5.lpf`](https://github.com/splinedrive/my_hdmi_device/blob/16a93372a9e07d27b23cf093a649dc870c208851/colorlighti5.lpf) | Colorlight | 85k | adc, button, esp32-wifi, ftdi-uart, hdmi-dvi, led, oled-lcd, radio-antenna, rtc-power, sdcard, spi-flash, switch, usb | splinedrive__my_hdmi_device |
 | [`constraints_colorlight_i5.lpf`](https://github.com/Hassan2203/System-On-Chip-SOC-Design-and-verification/blob/f4fa639aa86ab3867d2dd1644a289a6e57797270/constraints_colorlight_i5.lpf) | Colorlight | 45k | led | hassan2203__system-on-chip-soc-design-and-verification |
+| [`cynthion_pins.lpf`](https://github.com/VoltCyclone/HurricaneFPGA/blob/6f0b109cf0ab1ad77ee7670693e3d1a6aa11cab5/HDL/hardware/constraints/cynthion_pins.lpf) | Cynthion | 12k | ftdi-uart, led, usb | voltcyclone__hurricanefpga |
 | [`dds.lpf`](https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/dds_ssb_uart/dds.lpf) | Colorlight | 25k | ftdi-uart, led, radio-antenna | kholia__colorlight-5a-75b |
 | [`dds.lpf`](https://github.com/kholia/Colorlight-5A-75B/blob/9d4433be7c9a719af739fa958889c98b05a91515/dds_ssb_uart_alt/dds.lpf) | Colorlight | 25k | ftdi-uart, led, radio-antenna | kholia__colorlight-5a-75b |
 | [`ecp3versa.lpf`](https://github.com/hdl4fpga/hdl4fpga/blob/662986ba0f17b7ce3a066ddcb799d42fa1b24dea/boards/ecp3versa/diamond/ecp3versa.lpf) | Versa ECP5 | 12k | ddr3, led, switch | hdl4fpga__hdl4fpga |
@@ -188,6 +191,7 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 | [`ecp5_jtag.lpf`](https://github.com/tomverbeure/ecp5_jtag/blob/6a2302e079d003ddce8335a5300172fdbb2bd1b5/colorlight_i5/ecp5_jtag.lpf) | Colorlight | 25k | led | tomverbeure__ecp5_jtag |
 | [`ecp5evn.lpf`](https://github.com/xtrinch/fpga-bitcoin-miner/blob/7c9ca1c3776b533166c54d35ab7172ccb675a09c/src/ecp5evn.lpf) | ECP5 Evaluation board | 85k | led | xtrinch__fpga-bitcoin-miner |
 | [`ecpix5.lpf`](https://github.com/sylefeb/Silice/blob/620487d6b83035dd98299734c8c8fccf8f636005/frameworks/boards/ecpix5/ecpix5.lpf) | ECPIX-5 | 85k | ftdi-uart, led | sylefeb__silice |
+| [`fpga.lpf`](https://github.com/ultraembedded/core_ddr3_controller/blob/a03492a6000ca0185c615060b171bda64806a7bb/examples/ecpix_ecp5/fpga.lpf) | ECPIX-5 | 45k/85k | ddr3 | ultraembedded__core_ddr3_controller |
 | [`fpga_ulx4m_ld.lpf`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/synth/fpga_ulx4m_ld.lpf) | ULX4M | 85k | ddr3, ftdi-uart, hdmi-dvi, led, sdcard | ulx3s__hazard3 |
 | [`fpga_ulx4m_ld_blinky.lpf`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/synth/fpga_ulx4m_ld_blinky.lpf) | ULX4M | 85k | led | ulx3s__hazard3 |
 | [`fpga_ulx4m_ld_v002.lpf`](https://github.com/ulx3s/Hazard3/blob/3c0aca063517bb7fdbe869019c984954c7dd5c97/example_soc/synth/fpga_ulx4m_ld_v002.lpf) | ULX4M | 85k | ddr3, ftdi-uart, hdmi-dvi, led | ulx3s__hazard3 |
@@ -222,6 +226,10 @@ The tables below count only `pin-map` LPFs (at least one active LOCATE line).
 | [`orangecrab_r02.lpf`](https://github.com/fusesoc/blinky/blob/496eae5e447151c1ca720f995d292e2e99349b22/orangecrab/orangecrab_r02.lpf) | OrangeCrab | 45k/85k | button | fusesoc__blinky |
 | [`pergola.lpf`](https://github.com/kbeckmann/pergola_projects/blob/1bb4e1318de40cd6a5ad131de50cdb01ce81a8ac/verilog/pergola.lpf) | Pergola | 12k | button, led | kbeckmann__pergola_projects |
 | [`pergola_hdmi.lpf`](https://github.com/kbeckmann/pergola_projects/blob/1bb4e1318de40cd6a5ad131de50cdb01ce81a8ac/verilog/hdmi_passthrough/pergola_hdmi.lpf) | Pergola | 12k | button, hdmi-dvi, led | kbeckmann__pergola_projects |
+| [`pinmap.lpf`](https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/colorlight_i5/pinmap.lpf) | Colorlight | 25k | ftdi-uart, gpio-header, i2c | apfaudio__eurorack-pmod |
+| [`pinmap.lpf`](https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/colorlight_i9/pinmap.lpf) | Colorlight | 45k | ftdi-uart, gpio-header, i2c | apfaudio__eurorack-pmod |
+| [`pinmap.lpf`](https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/ecpix5/pinmap.lpf) | ECPIX-5 | 85k | ftdi-uart, gpio-header, i2c | apfaudio__eurorack-pmod |
+| [`pinmap.lpf`](https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/tiliqua_r5/pinmap.lpf) | Colorlight | 25k | ftdi-uart, gpio-header, i2c | apfaudio__eurorack-pmod |
 | [`pinout.lpf`](https://github.com/NUSGreyhats/greybadge25/blob/3ce9bfbf0061ee36e17dca1274c2f65ae9a5bb07/firmware/ecp5/main/pinout.lpf) | GreyBadge 2025 | 25k | button, gpio-header, led | nusgreyhats__greybadge25 |
 | [`pinout.lpf`](https://github.com/NUSGreyhats/greybadge25/blob/3ce9bfbf0061ee36e17dca1274c2f65ae9a5bb07/firmware/ecp5/tests/fpgaing/fpga_clock_test/pinout.lpf) | GreyBadge 2025 | 25k | led | nusgreyhats__greybadge25 |
 | [`pinout.lpf`](https://github.com/NUSGreyhats/greybadge25/blob/3ce9bfbf0061ee36e17dca1274c2f65ae9a5bb07/firmware/ecp5/tests/fpgaing/fpga_test/pinout.lpf) | GreyBadge 2025 | 25k | led | nusgreyhats__greybadge25 |

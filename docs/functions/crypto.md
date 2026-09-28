@@ -1,7 +1,7 @@
 ---
 title: "Crypto and hashing"
 parent: "Cores by function"
-nav_order: 33
+nav_order: 34
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

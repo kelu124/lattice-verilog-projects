@@ -1,7 +1,7 @@
 ---
 title: "HX8K/HX4K survey"
 parent: "Methodology"
-nav_order: 3
+nav_order: 4
 ---
 <!-- Generated from data/pages/hx-boards-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

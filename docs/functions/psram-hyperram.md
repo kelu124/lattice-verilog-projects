@@ -93,5 +93,5 @@ Full review: [smunaut__ice40-playground](../projects/smunaut__ice40-playground.m
 
 ## Other catalogued projects
 
-Catalogued repos tagged `psram` (5), `hyperram` (2) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `psram` (5), `hyperram` (3) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

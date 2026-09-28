@@ -33,3 +33,5 @@ neorv32-setups (osflow ULX3S), YoWASP toolchain-demo, cascade (Verilog JIT), CFU
 Notable high-value candidates: BrunoLevy/learn-fpga, darklife/darkriscv, Wren6991/Hazard3 (+ ulx3s/Hazard3-Doom),
 lawrie/fpga_pio, dan-rodrigues/icestation-32, gatecat|emard/SNES_MiSTer_ulx3s, sylefeb/a5k, sylefeb/tinygpus,
 the ~25 lawrie/ulx3s_* retro machines (Mac 128, MSX, BBC Micro, QL, Amstrad CPC, ColecoVision, Atari 2600, VIC-20…).
+| GitHub search: ECP5-5G SERDES (PCIe, SATA, NVMe, M.2, SGMII, USB3), 47 queries, 305 repos | 2026-09-28 | `data/pages/serdes-survey.json`; 9 recommended, all cloned + catalogued (litesata, liteiclink, katsuo-pcie, litepcie-katsuo-poc, ECP5-PCIe, Yumewatari, kazkojima ECP5-EVN, PavlenkoG PCIe analyzer, blazra tdr) |
+| GitHub search: TinyFPGA EX, LambdaConcept ECPIX-5, GSG Cynthion, 34 queries | 2026-09-28 | `data/pages/boards3-survey.json`; TinyFPGA EX never shipped (no gateware); 12 recommended, all cloned + catalogued (core_ddr3_controller, maxhpc ecpix-5, eurorack-pmod +no2misc, orbtrace, accel2d, cynthion, luna-soc, cynthion-uac, cynthion-tutorials, HurricaneFPGA, hurra-fpga, guh) |

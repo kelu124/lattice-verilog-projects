@@ -186,10 +186,23 @@
    ]
   },
   {
+   "id": "serdes-links",
+   "title": "PCIe, SATA and SERDES links",
+   "group": "Interfaces",
+   "order": 19,
+   "description": "Designs using the SERDES (DCU) of ECP5-5G / ECP5UM parts: PCIe PHY and link layers, SATA (LiteSATA), SGMII, USB3 PIPE and raw 8b10b links. The standard LFE5U parts (ULX3S 12F–85F) have no SERDES.",
+   "catalogue_tags": [
+    "serdes-pcie-sata",
+    "NEW:pcie",
+    "NEW:sata",
+    "NEW:serdes"
+   ]
+  },
+  {
    "id": "ps2",
    "title": "PS/2 keyboard and mouse",
    "group": "Interfaces",
-   "order": 19,
+   "order": 20,
    "description": "PS/2 keyboard and mouse interfaces.",
    "catalogue_tags": [
     "ps2"
@@ -199,7 +212,7 @@
    "id": "jtag-debug",
    "title": "JTAG and debug",
    "group": "Interfaces",
-   "order": 20,
+   "order": 21,
    "description": "User JTAG access, debug bridges, logic analysers.",
    "catalogue_tags": [
     "jtag",
@@ -212,7 +225,7 @@
    "id": "bus-fabric",
    "title": "Buses and interconnect",
    "group": "Interfaces",
-   "order": 21,
+   "order": 22,
    "description": "Wishbone/AXI interconnects, arbiters, bridges.",
    "catalogue_tags": [
     "bus-fabric",
@@ -223,7 +236,7 @@
    "id": "adc",
    "title": "ADC",
    "group": "Audio, analog and radio",
-   "order": 22,
+   "order": 23,
    "description": "ADC interfaces (onboard MAX11125 and external ADCs).",
    "catalogue_tags": [
     "adc"
@@ -233,7 +246,7 @@
    "id": "dac",
    "title": "DAC, PWM and sigma-delta",
    "group": "Audio, analog and radio",
-   "order": 23,
+   "order": 24,
    "description": "Sigma-delta/PWM/PDM DACs and external DAC interfaces.",
    "catalogue_tags": [
     "audio-dac",
@@ -244,7 +257,7 @@
    "id": "audio-digital",
    "title": "I2S and S/PDIF",
    "group": "Audio, analog and radio",
-   "order": 24,
+   "order": 25,
    "description": "Digital audio interfaces: I2S, S/PDIF, PDM microphones.",
    "catalogue_tags": [
     "audio-i2s",
@@ -255,7 +268,7 @@
    "id": "sound-chips",
    "title": "Sound chips and synths",
    "group": "Audio, analog and radio",
-   "order": 25,
+   "order": 26,
    "description": "Sound chip reimplementations (SID, SN76489, AY, YM) and synthesizers.",
    "catalogue_tags": [
     "synth-audio"
@@ -265,7 +278,7 @@
    "id": "radio",
    "title": "Radio (FM/RDS, SDR)",
    "group": "Audio, analog and radio",
-   "order": 26,
+   "order": 27,
    "description": "FM/RDS transmitters, SDR receive chains, radio front ends.",
    "catalogue_tags": [
     "radio-tx",
@@ -278,7 +291,7 @@
    "id": "dsp",
    "title": "DSP",
    "group": "Audio, analog and radio",
-   "order": 27,
+   "order": 28,
    "description": "FFT, CIC/FIR filters, NCOs, CORDIC.",
    "catalogue_tags": [
     "dsp",
@@ -289,7 +302,7 @@
    "id": "cpu-riscv",
    "title": "RISC-V CPUs and SoCs",
    "group": "Processors and systems",
-   "order": 28,
+   "order": 29,
    "description": "RISC-V cores and small SoCs.",
    "catalogue_tags": [
     "soc-cpu"
@@ -299,7 +312,7 @@
    "id": "cpu-retro",
    "title": "Retro CPUs",
    "group": "Processors and systems",
-   "order": 29,
+   "order": 30,
    "description": "6502, Z80, 8080, 68000, 1802 and other classic CPUs.",
    "catalogue_tags": [
     "retro-computer",
@@ -311,7 +324,7 @@
    "id": "linux",
    "title": "Linux-capable SoCs",
    "group": "Processors and systems",
-   "order": 30,
+   "order": 31,
    "description": "SoCs that boot Linux.",
    "catalogue_tags": [
     "linux"
@@ -321,7 +334,7 @@
    "id": "pll-clock",
    "title": "PLLs and clocking",
    "group": "Clocks and misc",
-   "order": 31,
+   "order": 32,
    "description": "ECP5 EHXPLLL wrappers and PLL parameter calculators.",
    "catalogue_tags": []
   },
@@ -329,7 +342,7 @@
    "id": "led-drivers",
    "title": "LED drivers",
    "group": "Clocks and misc",
-   "order": 32,
+   "order": 33,
    "description": "HUB75 panels, WS2812 strips, LED matrices.",
    "catalogue_tags": [
     "led-matrix",
@@ -340,7 +353,7 @@
    "id": "crypto",
    "title": "Crypto and hashing",
    "group": "Clocks and misc",
-   "order": 33,
+   "order": 34,
    "description": "Hash and cipher cores.",
    "catalogue_tags": [
     "crypto"

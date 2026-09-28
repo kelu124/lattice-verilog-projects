@@ -1,0 +1,889 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "survey",
+ "slug": "boards3-survey",
+ "title": "TinyFPGA EX, ECPIX-5 and Cynthion gateware survey",
+ "description": "TinyFPGA EX (announced, never shipped), LambdaConcept ECPIX-5 and Great Scott Gadgets Cynthion: board facts and gateware (2026-09-28).",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Survey date: 2026-09-28. Research only: nothing cloned. Scope: three Lattice ECP5 boards (TinyFPGA EX,\nLambdaConcept ECPIX-5, Great Scott Gadgets Cynthion). Extends the \"ECPIX-5\", \"LUNA / Cynthion\" and\n\"TinyFPGA EX\" rows of `docs/methodology/ecp5-boards-survey.md` (2026-09-27)."
+  }
+ ],
+ "sections": [
+  {
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "GitHub repository search API, unauthenticated, 7 s sleep between calls, `sort=updated`, `per_page=100`\n(34 queries, listed below). No HTTP 403 on search.",
+      "Evidence check from the full recursive file list at HEAD (github.com `tree/HEAD` + `tree-list/<oid>` JSON\nendpoints, which do not use the 60/h core API budget), plus up to 3 Makefiles / `build.sh` and the README read\nfrom raw.githubusercontent.com. The commit prefix shown is the HEAD at check time.",
+      "Board facts come from the framework board files read on 2026-09-28: `litex-hub/litex-boards`\n(`litex_boards/platforms/lambdaconcept_ecpix5.py` @d60f413bb0), `amaranth-lang/amaranth-boards`\n(`amaranth_boards/ecpix5.py` @f270d210e3), `greatscottgadgets/cynthion`\n(`cynthion/python/src/gateware/platform/cynthion_r1_4.py` @dd2340e20d), `FPGAwars/apio-definitions`\n(`definitions/boards.jsonc`), `trabucayre/openFPGALoader` (`src/board.hpp`), and the TinyFPGA EX KiCad\nnetlist (`tinyfpga/TinyFPGA-EX` `board/TinyFPGA-EX.net` @88fb9d455a).",
+      "Diff against `.claude/memory/sources.tsv`: only `ultraembedded__ecpix-5`, `greatscottgadgets__luna` and\n`gregdavill__luna-usb-serial-acm` (plus `ecp5-pcie__ecp5-pcie`) are already cloned."
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "**Evidence column** (same meaning as the ECP5 boards survey)"
+    },
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`verified (...)`: file list read; it has a `.lpf` for the board and HDL sources.",
+      "`partial`: Python/Amaranth/LiteX sources seen, pins come from a framework platform file (normal for Amaranth/LiteX).",
+      "`unverified`: name / README only, or no constraints and no HDL."
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "**Queries (result counts)**: `tinyfpga ex`(7), `tinyfpga-ex`(6), `tinyfpga_ex`(6), `tinyfpga ecp5`(1),\n`user:tinyfpga`(13), `tinyfpga ex in:readme`(12), `tinyfpga-ex in:readme`(12), `ecpix-5`(7), `ecpix5`(6),\n`ecpix`(7), `ecpix5 in:readme`(21), `ecpix-5 in:readme`(25), `user:lambdaconcept`(30),\n`ecpix5 language:verilog`(3), `ecpix5 amaranth`(0), `ecpix5 litex`(1), `ecpix5 language:python`(2),\n`ecpix5 fork:only`(0), `cynthion`(29), `cynthion in:readme`(93), `topic:cynthion`(1),\n`cynthion in:description`(22), `cynthion gateware`(3), `cynthion verilog`(0), `cynthion fork:only`(159),\n`facedancer`(32), `facedancer cynthion`(1), `moondancer`(16, all unrelated), `luna usb`(19),\n`luna amaranth usb`(3), `luna-soc`(34, mostly unrelated), `user:greatscottgadgets`(46),\n`apollo greatscottgadgets`(0), `cynthion amaranth`(0)."
+    }
+   ]
+  },
+  {
+   "title": "TinyFPGA EX (Luke Valenty / TinyFPGA)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "**Status: never shipped (as far as can be verified).** The Crowd Supply page\n<https://www.crowdsupply.com/tinyfpga/tinyfpga-ex> still reads \"This project is launching soon. Coming Soon\",\nwith a single update dated 2019-03-17 (\"New Prototypes and Updated Variants\"). The hardware repo was last\npushed 2019-06-02. <https://tinyfpga.com/> still lists the EX in its comparison table. zeldin/TinyCartridgeEX\n(a C64 cartridge carrier for the EX, 2020-03-01) says in its README \"the TinyFPGA EX is not actually\navailable yet\"."
+    },
+    {
+     "type": "table",
+     "columns": [
+      "fact",
+      "value",
+      "source"
+     ],
+     "rows": [
+      {
+       "fact": "FPGA (announced variants)",
+       "value": "EX25 = LFE5U-25F, EX85 = LFE5U-85F, EX85-5G = LFE5UM5G-85F (2 SERDES + 200 MHz ref. clock)",
+       "source": "Crowd Supply page"
+      },
+      {
+       "fact": "FPGA (prototype netlist)",
+       "value": "symbol value `LFE5UM-285`, footprint `csfBGA 285` (MG285 package)",
+       "source": "TinyFPGA-EX.net @88fb9d455a (netlist dated 2019-04-28)"
+      },
+      {
+       "fact": "FPGA (apio)",
+       "value": "`tinyfpga-ex-rev1` = lfe5u-85f-6mg285c, `tinyfpga-ex-rev2` = lfe5um5g-85f-8mg285c",
+       "source": "apio-definitions `boards.jsonc`"
+      },
+      {
+       "fact": "Clock",
+       "value": "Crowd Supply: 48 MHz MEMS oscillator. Prototype netlist: `DSC6001CI2A-016.0000T` (16 MHz). Conflicting, **unverified** which one a final board would use",
+       "source": "Crowd Supply; netlist"
+      },
+      {
+       "fact": "Memory",
+       "value": "64 Mbit HyperRAM (`S27KS0641DPBHI020` in netlist), SPI flash (128 Mbit per Crowd Supply; netlist part `S25FL064L` = 64 Mbit), microSD (Hirose DM3AT)",
+       "source": "Crowd Supply; netlist"
+      },
+      {
+       "fact": "I/O",
+       "value": "49 dedicated + 7 shared user IO, 0.7 x 2.4 in, 2 x 24-pin edges (DIL-48 per TinyCartridgeEX), USB-C, JTAG header",
+       "source": "Crowd Supply; netlist"
+      },
+      {
+       "fact": "Programming",
+       "value": "USB via the TinyFPGA bootloader (`tinyprog`, VID:PID 1d50:6130) or JTAG",
+       "source": "Crowd Supply; apio-definitions"
+      },
+      {
+       "fact": "Constraint / platform files",
+       "value": "**none** in litex-boards, amaranth-boards or openFPGALoader (checked file lists / board.hpp on 2026-09-28). Only apio has board entries (no example gateware)",
+       "source": "framework file lists"
+      },
+      {
+       "fact": "Links",
+       "value": "<https://github.com/tinyfpga/TinyFPGA-EX> (KiCad only), <https://www.crowdsupply.com/tinyfpga/tinyfpga-ex>, <https://tinyfpga.com/>",
+       "source": ""
+      }
+     ]
+    },
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what it is",
+      "evidence",
+      "in sources.tsv"
+     ],
+     "rows": [
+      {
+       "repo": "[tinyfpga/TinyFPGA-EX](https://github.com/tinyfpga/TinyFPGA-EX)",
+       "language/HDL": "KiCad",
+       "stars": "78",
+       "last push": "2019-06-02",
+       "license": "NOASSERTION",
+       "toolchain": "n/a",
+       "what it is": "Board hardware (KiCad sch/pcb/netlist), README is one line",
+       "evidence": "unverified (50 files, no lpf/HDL) @88fb9d455a",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[zeldin/TinyCartridgeEX](https://github.com/zeldin/TinyCartridgeEX)",
+       "language/HDL": "KiCad",
+       "stars": "7",
+       "last push": "2020-03-01",
+       "license": "none",
+       "toolchain": "n/a",
+       "what it is": "C64 cartridge carrier PCB for the EX module, \"completely untested\"",
+       "evidence": "unverified (23 files, no lpf/HDL) @ba2ced37d0",
+       "in sources.tsv": "no"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "No gateware targeting the TinyFPGA EX was found: every other `tinyfpga ex` hit is TinyFPGA BX (iCE40) code\n(lawrie/tinyfpga_examples, lawrie/tiny_usb_examples, clayton-rogers/CR-CPU, JimKnowler/tinyfpga-verilog-exercises).\nCode search (`filename:*.lpf tinyfpga`) needs authentication and was not run."
+    }
+   ]
+  },
+  {
+   "title": "ECPIX-5 (LambdaConcept, ECP5-5G 45F/85F)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "**Status: shipped** (sold by LambdaConcept, <https://shop.lambdaconcept.com/home/46-ecpix-5.html> as linked from\nopenconcepts-ar/accel2d README; current availability **unverified**). Two board revisions are known to\nopenFPGALoader: `ecpix5` (cable `ecpix5-debug`) and `ecpix5_r03` (cable `ft4232`)."
+    },
+    {
+     "type": "table",
+     "columns": [
+      "fact",
+      "value",
+      "source"
+     ],
+     "rows": [
+      {
+       "fact": "FPGA / package",
+       "value": "LFE5UM5G-45F or LFE5UM5G-85F, `-8BG554I` (CABGA554)",
+       "source": "litex-boards platform; amaranth-boards (`package = \"BG554\"`, `speed = \"8\"`)"
+      },
+      {
+       "fact": "Clocks",
+       "value": "`clk100` 100 MHz (K23, default), `clk26` (N22), `clk_aux` (H26), `serdes_clk100` differential (AF12/AF13)",
+       "source": "litex-boards platform"
+      },
+      {
+       "fact": "DDR3",
+       "value": "16-bit DDR3, LiteX target uses `MT41K256M16` (512 MB), SSTL15",
+       "source": "litex-boards platform + target"
+      },
+      {
+       "fact": "Ethernet",
+       "value": "RGMII PHY, 125 MHz rx clock constraint (PHY part **unverified**)",
+       "source": "litex-boards platform"
+      },
+      {
+       "fact": "Video",
+       "value": "HDMI via an external parallel-RGB transmitter (24 data + de/hs/vs + I2C + I2S audio pins); ultraembedded/ecpix-5 names it IT6613",
+       "source": "litex-boards platform; ultraembedded/ecpix-5 README"
+      },
+      {
+       "fact": "Storage",
+       "value": "SD card (4-bit), SPI / QSPI flash, SATA (SERDES; LiteX target `with_sata` uses LiteSATA)",
+       "source": "litex-boards platform + target"
+      },
+      {
+       "fact": "USB",
+       "value": "ULPI USB 2.0 PHY, USB-C with power control and a mux (`usbc_cfg`, `usbc_mux`), FTDI UART (`serial`)",
+       "source": "litex-boards platform"
+      },
+      {
+       "fact": "User I/O",
+       "value": "4 RGB LEDs, 8 PMOD connectors (`pmod0`..`pmod7`)",
+       "source": "litex-boards platform"
+      },
+      {
+       "fact": "Programming",
+       "value": "FTDI (FT2232-class `ecpix5-debug` on early revisions, FT4232 on r03) JTAG: `openFPGALoader -b ecpix5` / `-b ecpix5_r03`; OpenOCD cfg in litex-boards (`prog/openocd_ecpix5.cfg`)",
+       "source": "openFPGALoader `board.hpp`; litex-boards"
+      },
+      {
+       "fact": "Platform files",
+       "value": "`litex_boards/platforms/lambdaconcept_ecpix5.py` + `targets/lambdaconcept_ecpix5.py` (DDR3, Ethernet/Etherbone, SATA, video terminal/framebuffer); `amaranth_boards/ecpix5.py` (`ECPIX545Platform`, `ECPIX585Platform`); `greatscottgadgets/luna-boards` `luna_boards/ecpix5.py` (LUNA on the ULPI PHY; repo marked UNMAINTAINED)",
+       "source": "framework file lists"
+      },
+      {
+       "fact": "Docs",
+       "value": "<https://github.com/lambdaconcept/ecpix5-readthedocs> (sources for the ReadTheDocs site; schematics `SCH_ECPIX-5_R02.PDF`, `SCH_ECPIX-5_R04.PDF`, blinky SVFs for 45/85)",
+       "source": "file list @1246b57c89"
+      }
+     ]
+    },
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence",
+      "in sources.tsv"
+     ],
+     "rows": [
+      {
+       "repo": "[ultraembedded/ecpix-5](https://github.com/ultraembedded/ecpix-5)",
+       "language/HDL": "Verilog",
+       "stars": "15",
+       "last push": "2020-07-05",
+       "license": "none",
+       "toolchain": "open (lpf + Verilog; no Makefile)",
+       "what the gateware does": "RISC-V AXI4 SoC + DVI framebuffer via IT6613; submodules core_soc / dbg_bridge / riscv",
+       "evidence": "verified (1 lpf, 19 v/sv) @17c1f633f1",
+       "in sources.tsv": "**yes**"
+      },
+      {
+       "repo": "[ultraembedded/core_ddr3_controller](https://github.com/ultraembedded/core_ddr3_controller)",
+       "language/HDL": "Verilog",
+       "stars": "637",
+       "last push": "2021-10-10",
+       "license": "none (API)",
+       "toolchain": "open",
+       "what the gateware does": "Small AXI4 DDR3 controller (DLL-off, <=125 MHz) with ECP5 DFI PHY; `examples/ecpix_ecp5/` top + lpf",
+       "evidence": "verified (1 lpf, 15 v/sv) @a03492a600",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[ultraembedded/ecpix5-test](https://github.com/ultraembedded/ecpix5-test)",
+       "language/HDL": "Verilog",
+       "stars": "9",
+       "last push": "2020-08-20",
+       "license": "Apache-2.0",
+       "toolchain": "open (no Makefile)",
+       "what the gateware does": "DDR3 test bitstream (same DDR3 core)",
+       "evidence": "verified (1 lpf, 12 v/sv) @2eaf689c60",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[maxhpc/ecpix-5](https://github.com/maxhpc/ecpix-5)",
+       "language/HDL": "SystemVerilog",
+       "stars": "0",
+       "last push": "2025-02-09",
+       "license": "none",
+       "toolchain": "open (build.mk + per-dir Makefiles)",
+       "what the gateware does": "LEDs, UART, DDR3 top (`libs/ddr3/ddr3_top.sv`), dual-clock FIFO/DPRAM libs, `vx` design with Verilator testbench",
+       "evidence": "verified (1 lpf, 11 v/sv) @dbd64a102a",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[Baldanos/ecpix5-blinky](https://github.com/Baldanos/ecpix5-blinky)",
+       "language/HDL": "Verilog",
+       "stars": "2",
+       "last push": "2021-02-10",
+       "license": "none",
+       "toolchain": "open (yosys/nextpnr/ecppack/openFPGALoader)",
+       "what the gateware does": "Blinky + OpenOCD cfg",
+       "evidence": "verified (1 lpf, 1 v) @b3f6104d74",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[goran-mahovlic/ECPIX5_blink](https://github.com/goran-mahovlic/ECPIX5_blink)",
+       "language/HDL": "Verilog",
+       "stars": "5",
+       "last push": "2020-12-18",
+       "license": "none",
+       "toolchain": "open (build.sh)",
+       "what the gateware does": "Blinky",
+       "evidence": "verified (1 lpf, 1 v) @0d9567fda2",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[apfaudio/eurorack-pmod](https://github.com/apfaudio/eurorack-pmod)",
+       "language/HDL": "SystemVerilog, Verilog",
+       "stars": "239",
+       "last push": "2026-01-29",
+       "license": "NOASSERTION",
+       "toolchain": "open (openFPGALoader)",
+       "what the gateware does": "AK4619 audio-codec PMOD gateware (DSP cores, multi-board); `gateware/boards/ecpix5/` pinmap.lpf + sysmgr.v + Makefile (also Colorlight i5/i9, Tiliqua, iCEBreaker)",
+       "evidence": "verified (6 lpf/pcf, 30 v/sv) @ddb9aa92fa",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[apfaudio/eurorack-pmod-litex](https://github.com/apfaudio/eurorack-pmod-litex)",
+       "language/HDL": "Python (LiteX), Rust fw",
+       "stars": "19",
+       "last push": "2025-10-07",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "eurorack-pmod audio DSP SoC; `example-ecpix-5.py`",
+       "evidence": "partial (7 .py) @61a8e4d537",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[apfaudio/eurorack-pmod-usb-soundcard](https://github.com/apfaudio/eurorack-pmod-usb-soundcard)",
+       "language/HDL": "Python (Amaranth/LUNA)",
+       "stars": "13",
+       "last push": "2025-11-18",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "8-channel USB UAC2 sound card on LUNA; `rtl/ecpix5.py`",
+       "evidence": "partial (7 .py) @a7a3a00cc9",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[orbcode/orbtrace](https://github.com/orbcode/orbtrace)",
+       "language/HDL": "Python (Amaranth/LiteX)",
+       "stars": "181",
+       "last push": "2026-02-06",
+       "license": "NOASSERTION",
+       "toolchain": "open (yosys/nextpnr-ecp5/ecppack/ecpprog)",
+       "what the gateware does": "Cortex-M debug + parallel TRACE probe; README: runs on ORBTrace mini and on ECPIX-5 (+ breakout board); `orbtrace/platforms/ecpix5.py`",
+       "evidence": "partial (64 .py, 9 v) @e416cd5b07",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[openconcepts-ar/accel2d](https://github.com/openconcepts-ar/accel2d)",
+       "language/HDL": "C, Verilog (generated), LiteX",
+       "stars": "1",
+       "last push": "2026-09-18",
+       "license": "NOASSERTION",
+       "toolchain": "litex (trellis; `make BOARD=lambdaconcept_ecpix5`)",
+       "what the gateware does": "C-to-Verilog 2D graphics accelerators (ellipse/fill...) attached to DRAM in a LiteX SoC, MicroPython demos; `lambdaconcept_ecpix5.py`",
+       "evidence": "partial (29 v, 14 py, no lpf) @1170d39af9",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[openconceptslabs/gpu2d](https://github.com/openconceptslabs/gpu2d)",
+       "language/HDL": "C, Verilog, LiteX",
+       "stars": "0",
+       "last push": "2025-04-24",
+       "license": "NOASSERTION",
+       "toolchain": "litex",
+       "what the gateware does": "Earlier version of accel2d (same layout)",
+       "evidence": "partial (29 v, 9 py) @7321337ce1",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[AravindRajeshkanna/vernier-rv32](https://github.com/AravindRajeshkanna/vernier-rv32)",
+       "language/HDL": "Verilog",
+       "stars": "1",
+       "last push": "2026-09-28",
+       "license": "NOASSERTION",
+       "toolchain": "open (yosys/nextpnr-ecp5)",
+       "what the gateware does": "RV32IMA SoC, runs on ULX3S 85F; ECPIX-5 is a second target for a hand-written DDR3 PHY, README: \"no ECPIX-5 hardware has been touched\" (simulation / P&R only). Already listed in the ULX3S github-survey",
+       "evidence": "verified (ecpix5.lpf, ecpix5_ddr3.lpf, ulx3s.lpf, 141 v) @3284906e23",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[lambdaconcept/ecpix5-bitsofcode](https://github.com/lambdaconcept/ecpix5-bitsofcode)",
+       "language/HDL": "Python",
+       "stars": "1",
+       "last push": "2020-07-07",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "Vendor code snippets",
+       "evidence": "partial (3 .py) @83b4e04e7f",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[hinzundcode/reboot](https://github.com/hinzundcode/reboot)",
+       "language/HDL": "C, Python (LiteX)",
+       "stars": "0",
+       "last push": "2021-01-01",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "\"random ecpix5 and litex experiments, unmaintained\"",
+       "evidence": "partial (4 .py) @3ab5a7c2d7",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[AndrewD/litecan](https://github.com/AndrewD/litecan)",
+       "language/HDL": "Python (LiteX)",
+       "stars": "7",
+       "last push": "2023-01-16",
+       "license": "none",
+       "toolchain": "litex",
+       "what the gateware does": "CAN core for LiteX, bench target `bench/ecpix5.py`",
+       "evidence": "partial (7 .py) @a641bda2f2",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[Fredrik-Reinholdsen/Amaranth-Minute-Timer](https://github.com/Fredrik-Reinholdsen/Amaranth-Minute-Timer)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "1",
+       "last push": "2024-03-25",
+       "license": "none",
+       "toolchain": "amaranth",
+       "what the gateware does": "60 s timer on two 7-segment PMODs, ECPIX-5",
+       "evidence": "partial (3 .py) @31f3756cfc",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[enjoy-digital/mquickjs-on-litex](https://github.com/enjoy-digital/mquickjs-on-litex)",
+       "language/HDL": "C, LiteX",
+       "stars": "2",
+       "last push": "2026-05-11",
+       "license": "NOASSERTION",
+       "toolchain": "litex",
+       "what the gateware does": "JavaScript engine on a LiteX SoC; ECPIX-5 live demo photo (software-centric)",
+       "evidence": "partial (8 .py) @2500e71e88",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[antoinevg/cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "4",
+       "last push": "2025-01-13",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "Also has `platform/ecpix5.py`, `ecpix5_luna.py` (see Cynthion)",
+       "evidence": "partial",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[aesc-silicon/ElemRV](https://github.com/aesc-silicon/ElemRV)",
+       "language/HDL": "Scala (SpinalHDL)",
+       "stars": "147",
+       "last push": "2026-09-16",
+       "license": "none",
+       "toolchain": "SpinalHDL",
+       "what the gateware does": "Open-source RISC-V MCU for IHP SG13 ASIC; ECPIX-5 is the FPGA prototype target (`.../ECPIX5/ECPIX5.scala`); same for aesc-silicon/i2c-gpio-expander (45 stars)",
+       "evidence": "partial (Scala, no lpf) @9b7c6e2add",
+       "in sources.tsv": "no"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Copies of core_ddr3_controller with the same `examples/ecpix_ecp5` (not forks on GitHub, identical tree size):\nmaxhpc/core_ddr3_controller, obr2021/core_ddr3_controller, lazzzz18/DDR3_Controller. Not listed separately."
+    },
+    {
+     "type": "paragraph",
+     "text": "SERDES/SATA/PCIe on ECPIX-5 (noted only, another survey covers them): LiteX target `with_sata` (LiteSATA);\n`liteiclink/bench/serdes/ecpix5.py` and `liteiclink/bench/serwb/demo/ecpix5.py` (seen inside greent0r/my_litex, a\nvendored LiteX tree); ECP5-PCIe/ECP5-PCIe is already cloned."
+    },
+    {
+     "type": "paragraph",
+     "text": "Off-target: kwadwoz/ecp5-ethernet-soc mentions ECPIX-5 only in `openFPGALoader -b ecpix5` lines, but its README\nnames the ECP5 Evaluation Board (LFE5UM5G-85F-8BG381) + LAN8720 as the hardware; not an ECPIX-5 design."
+    }
+   ]
+  },
+  {
+   "title": "Cynthion (Great Scott Gadgets, ECP5 LFE5U-12F, the LUNA hardware)",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "**Status: shipped** (Crowd Supply campaign 2023, hardware r1.x in production; from memory, **unverified** here).\nHardware: <https://github.com/greatscottgadgets/cynthion-hardware> (CERN-OHL-P-2.0, KiCad). Gateware platform files\nfor every revision r0.1 .. r1.4 live in the `cynthion` repo, not in litex-boards or amaranth-boards."
+    },
+    {
+     "type": "table",
+     "columns": [
+      "fact",
+      "value",
+      "source"
+     ],
+     "rows": [
+      {
+       "fact": "FPGA / package",
+       "value": "LFE5U-12F, BG256 (CABGA256); speed grade from `ECP5_SPEED_GRADE`, default \"8\" (apio uses lfe5u-12f-6bg256c)",
+       "source": "cynthion_r1_4.py @dd2340e20d; apio-definitions"
+      },
+      {
+       "fact": "Clock",
+       "value": "`clk_60MHz` 60 MHz on A8",
+       "source": "cynthion_r1_4.py"
+      },
+      {
+       "fact": "USB",
+       "value": "three ULPI USB 2.0 HS PHYs: `control_phy`, `aux_phy`, `target_phy`; target D+/D- also wired to FPGA pins (`target_usb_diff`, chirp pins) for passive sniffing; Type-C controllers for target and aux; VBUS switching / discharge",
+       "source": "cynthion_r1_4.py"
+      },
+      {
+       "fact": "Memory",
+       "value": "HyperRAM (`ram`: diff clock, 8-bit dq, rwds); SPI and QSPI flash",
+       "source": "cynthion_r1_4.py"
+      },
+      {
+       "fact": "Other I/O",
+       "value": "2 user PMODs, `user_mezzanine` connector, user button, UART to debug MCU, `power_monitor` (I2C V/I monitor)",
+       "source": "cynthion_r1_4.py"
+      },
+      {
+       "fact": "Programming",
+       "value": "Apollo: a SAMD11 (r1.x, `cynthion_d11`) or SAMD21 (`cynthion_d21`) debug MCU acting as JTAG programmer; platform `toolchain_program()` uses `apollo_fpga.ECP5_JTAGProgrammer` (SRAM configure or flash). `self_program` pin lets gateware hand the port back. apio programmer id `apollo`. Apollo firmware = <https://github.com/greatscottgadgets/apollo> (C, 90 stars, BSD-3-Clause, 2026-05-08): MCU firmware, **not gateware**",
+       "source": "core.py; apollo file list @04507dfaee"
+      },
+      {
+       "fact": "Platform files",
+       "value": "`cynthion/python/src/gateware/platform/cynthion_r0_1.py` .. `cynthion_r1_4.py` (Amaranth, `CynthionPlatform(LUNAApolloPlatform, LatticeECP5Platform)`); LiteX platform in antoinevg/cynthion-litex `soc/platforms/gsg_cynthion.py`; Verilog `.lpf` in VoltCyclone/HurricaneFPGA `HDL/hardware/constraints/cynthion_pins.lpf` and awtoau/cynthion-workspace",
+       "source": "file lists"
+      }
+     ]
+    },
+    {
+     "type": "table",
+     "columns": [
+      "repo",
+      "language/HDL",
+      "stars",
+      "last push",
+      "license",
+      "toolchain",
+      "what the gateware does",
+      "evidence",
+      "in sources.tsv"
+     ],
+     "rows": [
+      {
+       "repo": "[greatscottgadgets/luna](https://github.com/greatscottgadgets/luna)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "1140",
+       "last push": "2026-08-19",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "USB 2.0/3.0 device/host/analyzer gateware framework",
+       "evidence": "verified @82a8f73329 (previous survey)",
+       "in sources.tsv": "**yes**"
+      },
+      {
+       "repo": "[greatscottgadgets/cynthion](https://github.com/greatscottgadgets/cynthion)",
+       "language/HDL": "Python (Amaranth), Rust",
+       "stars": "199",
+       "last push": "2026-05-22",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth (yosys/nextpnr-ecp5)",
+       "what the gateware does": "Official gateware: `gateware/analyzer` (USB analyzer used by Packetry), `gateware/facedancer` (Moondancer SoC for Facedancer), `gateware/selftest`; platform files r0.1-r1.4; gateware tutorials (blinky, USB device 01-04); host tools",
+       "evidence": "partial (75 .py, no lpf) @dd2340e20d",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[greatscottgadgets/luna-soc](https://github.com/greatscottgadgets/luna-soc)",
+       "language/HDL": "Python (Amaranth) + bundled Verilog",
+       "stars": "31",
+       "last push": "2025-10-31",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "SoC library (Wishbone/CSR, SRAM, GPIO, UART, USB) with VexRiscv `vexriscv_cynthion.v`; `provider/cynthion.py`",
+       "evidence": "partial (36 .py, 5 v) @7fa1cc16dd",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[greatscottgadgets/cynthion-uac](https://github.com/greatscottgadgets/cynthion-uac)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "1",
+       "last push": "2025-07-15",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "USB Audio Class 2 example gateware (uac2, stream, NCO, DSP, DAC, VU meter) + talk slides",
+       "evidence": "partial (10 .py) @0dfc418618",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[greatscottgadgets/cynthion-analyzer](https://github.com/greatscottgadgets/cynthion-analyzer)",
+       "language/HDL": "Makefile",
+       "stars": "6",
+       "last push": "2025-05-13",
+       "license": "none",
+       "toolchain": "amaranth/apollo",
+       "what the gateware does": "Integration repo for analyzer mode (submodules)",
+       "evidence": "partial (1 .py) @2924a83070",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[greatscottgadgets/cynthion-test](https://github.com/greatscottgadgets/cynthion-test)",
+       "language/HDL": "Python",
+       "stars": "10",
+       "last push": "2026-08-21",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth/apollo/dfu-util",
+       "what the gateware does": "Factory test software (drives selftest gateware)",
+       "evidence": "partial (15 .py) @385ff43667",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[greatscottgadgets/facedancer](https://github.com/greatscottgadgets/facedancer)",
+       "language/HDL": "Python",
+       "stars": "1021",
+       "last push": "2026-05-22",
+       "license": "BSD-3-Clause",
+       "toolchain": "n/a (host)",
+       "what the gateware does": "Host-side Python USB-device emulation library; the Cynthion backend talks to the Moondancer gateware in the `cynthion` repo. No gateware here",
+       "evidence": "unverified as gateware (57 .py, no HDL) @9f1298856e",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[greatscottgadgets/luna-boards](https://github.com/greatscottgadgets/luna-boards)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "2",
+       "last push": "2023-08-07",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "Old LUNA board files (incl. ECPIX-5), UNMAINTAINED",
+       "evidence": "partial (20 .py) @fda761ced6",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[antoinevg/cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "4",
+       "last push": "2025-01-13",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth (apollo / openFPGALoader)",
+       "what the gateware does": "Tutorials: I2S (`cynthion_i2s.py`), SoC with VexRiscv, platforms for Cynthion and ECPIX-5 (+ ECPIX-5 with LUNA)",
+       "evidence": "partial (54 .py, 5 v) @8b711adb4c",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[antoinevg/cynthion-litex](https://github.com/antoinevg/cynthion-litex)",
+       "language/HDL": "Python (LiteX), Rust",
+       "stars": "1",
+       "last push": "2023-05-15",
+       "license": "none",
+       "toolchain": "litex (yosys, apollo)",
+       "what the gateware does": "LiteX platform/target `gsg_cynthion` + Rust hello firmware",
+       "evidence": "partial (8 .py) @fba84fef4a",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[VoltCyclone/HurricaneFPGA](https://github.com/VoltCyclone/HurricaneFPGA)",
+       "language/HDL": "Verilog (+ legacy Amaranth)",
+       "stars": "8",
+       "last push": "2026-04-23",
+       "license": "MIT",
+       "toolchain": "open (yosys/nextpnr-ecp5/ecppack; dfu-util/openFPGALoader)",
+       "what the gateware does": "Plain-Verilog USB FS/LS passthrough TARGET<->CONTROL, monitoring, USB host mode (enumeration + HID keyboard), HID injection over UART; legacy LUNA version. README claims working (CI badge points to ramseymcgrath/HurricaneFPGA, the previous owner)",
+       "evidence": "verified (`cynthion_pins.lpf`, 31 v/sv) @6f0b109cf0",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[VoltCyclone/hurra-fpga](https://github.com/VoltCyclone/hurra-fpga)",
+       "language/HDL": "Python (Amaranth on LUNA)",
+       "stars": "2",
+       "last push": "2026-09-25",
+       "license": "MIT",
+       "toolchain": "open (yosys/nextpnr-ecp5/ecppack)",
+       "what the gateware does": "HS USB HID relay: host on TARGET-A (chirp, enumeration, interrupt IN polling), device clone on AUX, report mutation, debug registers",
+       "evidence": "partial (64 .py) @0a050ad254",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[KarpelesLab/usbmagic-gateware](https://github.com/KarpelesLab/usbmagic-gateware)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "0",
+       "last push": "2026-06-25",
+       "license": "NOASSERTION",
+       "toolchain": "amaranth (Docker oss-cad-suite)",
+       "what the gateware does": "Goal USB 2.0 host controller; currently Phase-0 blinky only (WIP)",
+       "evidence": "partial (4 .py) @338ab88d73",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[nchie/cynthionwhisperer](https://github.com/nchie/cynthionwhisperer)",
+       "language/HDL": "Python, Rust",
+       "stars": "0",
+       "last push": "2026-03-27",
+       "license": "none",
+       "toolchain": "amaranth",
+       "what the gateware does": "Modified analyzer protocol/gateware exposing a Python API",
+       "evidence": "partial (26 .py) @e77b99598d",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[awtoau/cynthion-workspace](https://github.com/awtoau/cynthion-workspace)",
+       "language/HDL": "Verilog, Python",
+       "stars": "0",
+       "last push": "2026-08-14",
+       "license": "none",
+       "toolchain": "mixed (incl. Diamond script)",
+       "what the gateware does": "Workspace with submodules, CPU-probe Verilog gateware with lpf, forks of cynthion/facedancer/luna-soc (awtoau/awto-*)",
+       "evidence": "verified (5 lpf, 49 v/sv) @6e46cd267c",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[apfaudio/guh](https://github.com/apfaudio/guh)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "12",
+       "last push": "2026-09-07",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "USB2 HS/FS **host engine** library (SIE, enumeration, mass-storage / HID / MIDI hosts); built for Tiliqua, README mentions Cynthion",
+       "evidence": "partial (31 .py) @9aa0fd3511",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[apfaudio/tiliqua](https://github.com/apfaudio/tiliqua)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "165",
+       "last push": "2026-09-23",
+       "license": "CERN-OHL-S-2.0",
+       "toolchain": "amaranth",
+       "what the gateware does": "Eurorack audio multitool on its own ECP5 SoM (soldiercrab), LUNA-based; README mentions Cynthion (not a Cynthion target)",
+       "evidence": "partial (111 .py) @ec9bf46022",
+       "in sources.tsv": "no"
+      },
+      {
+       "repo": "[key2/luna-ss](https://github.com/key2/luna-ss)",
+       "language/HDL": "Python (Amaranth)",
+       "stars": "0",
+       "last push": "2026-09-07",
+       "license": "BSD-3-Clause",
+       "toolchain": "amaranth",
+       "what the gateware does": "LUNA fork: SuperSpeed Gen1/Gen2 device stack on a Gowin USB3 PHY (not ECP5 / not Cynthion)",
+       "evidence": "partial",
+       "in sources.tsv": "no"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Host-side only (no gateware, noted for completeness): greatscottgadgets/packetry (Rust analyzer UI, 290 stars),\nOliver0804/cynthion-mcp, jsdratm/CynthionScripts, compr00t/Cynthion, epozzobon/cynthion-dump, graynode/packetty,\nda1sy/USBForge, ma-tcha/hid-waterfall, terrafirma2021/kmboxetry, icewind1991/cynthion-flake,\ngreatscottgadgets/tycho (production test jig hardware), greatscottgadgets/saturn-v (SAMD bootloader for Apollo).\n`cynthion fork:only` returned 159 forks of cynthion/facedancer/packetry/cynthion-hardware; none showed own gateware\nby name/description (Shadytel/cynthion is a fork with a policy note; not checked further)."
+    }
+   ]
+  },
+  {
+   "title": "Findings",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": true,
+     "items": [
+      "**TinyFPGA EX never reached customers.** Crowd Supply still says \"launching soon\" (last update 2019-03-17);\nonly KiCad files and apio board stubs exist. No gateware, no litex-boards / amaranth-boards / openFPGALoader\nsupport. Nothing to clone.",
+      "**ECPIX-5 is well supported by frameworks** (LiteX platform+target with DDR3/RGMII/SATA/video; Amaranth\nplatform 45F/85F; openFPGALoader r02/r03), but plain-Verilog gateware is thin: ultraembedded (SoC + DDR3),\nmaxhpc (SV DDR3/UART) and blinkies. Most other ECPIX-5 use is as a *secondary* target of bigger projects\n(eurorack-pmod, orbtrace, accel2d, ElemRV, litecan).",
+      "**The best reusable ECPIX-5 block is ultraembedded/core_ddr3_controller** (637 stars): a small DDR3\ncontroller + ECP5 PHY with a ready ECPIX-5 example. Not cloned yet (only its user ecpix5-test / ecpix-5 is).",
+      "**Cynthion gateware is almost all Amaranth on LUNA.** The official `greatscottgadgets/cynthion` repo (analyzer,\nMoondancer/Facedancer SoC, selftest, platform files r0.1-r1.4) is the key missing clone. Facedancer itself is a\nhost library; Apollo is MCU firmware.",
+      "**Community USB-host gateware is the active area in 2026**: HurricaneFPGA (plain Verilog, has a Cynthion\n`.lpf`), hurra-fpga (HS host + device relay on LUNA), apfaudio/guh (HS/FS host engine library),\nusbmagic-gateware (WIP).",
+      "Several ULX3S-relevant blocks show up: vernier-rv32 (ULX3S + ECPIX-5, already in the ULX3S survey), LUNA-based\nUAC2 (cynthion-uac, eurorack-pmod-usb-soundcard), guh (USB host on ULPI)."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Recommended to clone",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Gateware only, none already in `sources.tsv`. 12 repos."
+    },
+    {
+     "type": "table",
+     "columns": [
+      "#",
+      "repo",
+      "board",
+      "reason",
+      "status"
+     ],
+     "rows": [
+      {
+       "#": "1",
+       "repo": "[ultraembedded/core_ddr3_controller](https://github.com/ultraembedded/core_ddr3_controller)",
+       "board": "ECPIX-5",
+       "reason": "Reusable Verilog DDR3 controller + ECP5 PHY, ECPIX-5 example with lpf; 637 stars",
+       "status": "working (example verified by file list)"
+      },
+      {
+       "#": "2",
+       "repo": "[maxhpc/ecpix-5](https://github.com/maxhpc/ecpix-5)",
+       "board": "ECPIX-5",
+       "reason": "Plain SV designs (UART, DDR3 top, FIFOs) with open-flow Makefiles and a Verilator testbench",
+       "status": "unverified (file list only)"
+      },
+      {
+       "#": "3",
+       "repo": "[apfaudio/eurorack-pmod](https://github.com/apfaudio/eurorack-pmod)",
+       "board": "ECPIX-5",
+       "reason": "Verilog audio-codec + DSP cores, multi-board with an ECPIX-5 lpf; 239 stars",
+       "status": "working (per README)"
+      },
+      {
+       "#": "4",
+       "repo": "[orbcode/orbtrace](https://github.com/orbcode/orbtrace)",
+       "board": "ECPIX-5",
+       "reason": "Cortex-M SWD/TRACE probe gateware; ECPIX-5 platform in-tree; 181 stars",
+       "status": "working (per README)"
+      },
+      {
+       "#": "5",
+       "repo": "[openconcepts-ar/accel2d](https://github.com/openconcepts-ar/accel2d)",
+       "board": "ECPIX-5",
+       "reason": "C-to-Verilog 2D graphics accelerators on DRAM in LiteX, ECPIX-5 default target, active 2026-09",
+       "status": "WIP"
+      },
+      {
+       "#": "6",
+       "repo": "[greatscottgadgets/cynthion](https://github.com/greatscottgadgets/cynthion)",
+       "board": "Cynthion",
+       "reason": "Official gateware (USB analyzer, Moondancer/Facedancer SoC, selftest) + all platform revisions",
+       "status": "working"
+      },
+      {
+       "#": "7",
+       "repo": "[greatscottgadgets/luna-soc](https://github.com/greatscottgadgets/luna-soc)",
+       "board": "Cynthion",
+       "reason": "Amaranth SoC library used by Moondancer; bundled VexRiscv Verilog",
+       "status": "working"
+      },
+      {
+       "#": "8",
+       "repo": "[greatscottgadgets/cynthion-uac](https://github.com/greatscottgadgets/cynthion-uac)",
+       "board": "Cynthion",
+       "reason": "Small official USB Audio Class 2 gateware example (NCO, DSP, DAC)",
+       "status": "unverified (example)"
+      },
+      {
+       "#": "9",
+       "repo": "[antoinevg/cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials)",
+       "board": "Cynthion + ECPIX-5",
+       "reason": "Amaranth tutorials (I2S, SoC) with platforms for both boards",
+       "status": "working (per README)"
+      },
+      {
+       "#": "10",
+       "repo": "[VoltCyclone/HurricaneFPGA](https://github.com/VoltCyclone/HurricaneFPGA)",
+       "board": "Cynthion",
+       "reason": "Plain-Verilog USB passthrough + USB host with a Cynthion lpf; reusable without Amaranth",
+       "status": "working (per README)"
+      },
+      {
+       "#": "11",
+       "repo": "[VoltCyclone/hurra-fpga](https://github.com/VoltCyclone/hurra-fpga)",
+       "board": "Cynthion",
+       "reason": "HS USB host + device relay on LUNA, active 2026-09",
+       "status": "WIP"
+      },
+      {
+       "#": "12",
+       "repo": "[apfaudio/guh](https://github.com/apfaudio/guh)",
+       "board": "Cynthion (Tiliqua)",
+       "reason": "Amaranth USB2 HS/FS host engine library (MSC/HID/MIDI)",
+       "status": "WIP (per README)"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Not recommended: tinyfpga/TinyFPGA-EX and zeldin/TinyCartridgeEX (hardware only); ultraembedded/ecpix5-test\n(duplicate of the DDR3 example in #1); greatscottgadgets/facedancer and apollo (host library / MCU firmware);\nKarpelesLab/usbmagic-gateware (blinky only so far)."
+    }
+   ]
+  },
+  {
+   "title": "Gaps",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "Code search (`extension:lpf` + board pin names) needs authentication; repos that never name the board in\nname/description/README are missed.",
+      "TinyFPGA EX \"never shipped\" rests on the Crowd Supply page state on 2026-09-28; no statement from the author was found.",
+      "ECPIX-5 Ethernet PHY part and HDMI transmitter part were not read from the schematic PDFs.",
+      "Status \"working\" for Amaranth/LiteX repos is from READMEs; nothing was built."
+     ]
+    }
+   ]
+  }
+ ],
+ "nav_title": "TinyFPGA EX, ECPIX-5, Cynthion survey"
+}

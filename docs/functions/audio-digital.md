@@ -1,7 +1,7 @@
 ---
 title: "I2S and S/PDIF"
 parent: "Cores by function"
-nav_order: 24
+nav_order: 25
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
@@ -13,6 +13,8 @@ Digital audio interfaces: I2S, S/PDIF, PDM microphones.
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
 | [I2S audio interface (ulx3s-misc)](#core-emard-ulx3s-misc-i2s) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | VHDL (wrapper), Verilog | BSD (`-- AUTHOR=EMARD` / `-- LICENSE=BSD` header) | any | 1 |
+| [AK4619 audio codec driver + PMOD I2C master](#core-eurorack-pmod-ak4619) | [apfaudio__eurorack-pmod](https://github.com/apfaudio/eurorack-pmod) | SystemVerilog | CERN-OHL-S-2.0 | any | 0 |
+| [Cynthion USB Audio Class 2.0 example](#core-cynthion-uac-uac2) | [greatscottgadgets__cynthion-uac](https://github.com/greatscottgadgets/cynthion-uac) | Python (Amaranth) | BSD-3-Clause | ECP5 | 1 |
 | [I2S receiver (orangecrab-usb)](#core-orangecrab-usb-i2s-rx) | [mangelajo__orangecrab-usb](https://github.com/mangelajo/orangecrab-usb) | Verilog | none found | any | 0 |
 | [I2S RX/TX + PDM/CIC mic front-end (sound2fft)](#core-icesugar-pro-i2s-pdm) | [mebner86__icesugar-pro_sound2fft](https://github.com/mebner86/icesugar-pro_sound2fft) | Verilog | MIT (LICENSE, repo root) | ECP5 | 0 |
 | [S/PDIF transmitter (f32c)](#core-f32c-spdif-tx) | [f32c__f32c](https://github.com/f32c/f32c) | VHDL | BSD-2-Clause | any | 0 |
@@ -41,6 +43,42 @@ Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 **Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [f32c__f32c](https://github.com/f32c/f32c) (copies [`rtl/soc/i2s_v.v`](https://github.com/f32c/f32c/blob/7dbf56d42a94ae599eabfd1e7fa15db14a10afd7/rtl/soc/i2s_v.v))
+
+### AK4619 audio codec driver + PMOD I2C master {#core-eurorack-pmod-ak4619}
+
+Configures an AK4619 4in/4out audio codec over I2C at boot, then streams 8 audio channels (192kHz/32-bit capable) in/out on a `clk_256fs`+`strobe` interface; used on every Eurorack PMOD board target (ECPIX-5, Colorlight, Tiliqua, iCEBreaker, iCESugar, Pico-Ice, GateMate).
+
+| | |
+|---|---|
+| Repository | [apfaudio__eurorack-pmod](https://github.com/apfaudio/eurorack-pmod): Eurorack PMOD: AK4619 audio-codec PMOD gateware |
+| Files | [`gateware/drivers/ak4619.sv`](https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/drivers/ak4619.sv), [`gateware/drivers/pmod_i2c_master.sv`](https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/drivers/pmod_i2c_master.sv) |
+| Top module | `ak4619` |
+| Language | SystemVerilog |
+| License | CERN-OHL-S-2.0 (repo-level LICENSE; no per-file header) |
+| FPGA / primitives | any: none (portable) |
+| Tests | cocotb, e.g. gateware/sim/ak4619/tb_ak4619.py - self-checking (@cocotb.test() assertions) |
+
+**On ULX3S:** No vendor primitives; needs the Eurorack PMOD hardware (or another AK4619-based codec board) wired to a PMOD/I2S+I2C header. Pair with cal/cal.sv for jack-detect calibration.
+
+### Cynthion USB Audio Class 2.0 example {#core-cynthion-uac-uac2}
+
+Full USB Audio Class 2.0 device (descriptors, isochronous streaming, feedback-endpoint clock recovery via clockgen.py) driving an internally synthesized stereo sine wave (NCO + LUT) instead of a real codec; includes a VU meter. No I2S/S-PDIF pins are used - audio never leaves the FPGA.
+
+| | |
+|---|---|
+| Repository | [greatscottgadgets__cynthion-uac](https://github.com/greatscottgadgets/cynthion-uac): cynthion-uac: official USB Audio Class 2.0 example gateware for Cynthion |
+| Files | [`uac/top.py`](https://github.com/greatscottgadgets/cynthion-uac/blob/0dfc4186182b6c9c2bbaa9199f88a6d196306a7d/uac/top.py), [`uac/uac2.py`](https://github.com/greatscottgadgets/cynthion-uac/blob/0dfc4186182b6c9c2bbaa9199f88a6d196306a7d/uac/uac2.py), [`uac/dac.py`](https://github.com/greatscottgadgets/cynthion-uac/blob/0dfc4186182b6c9c2bbaa9199f88a6d196306a7d/uac/dac.py), [`uac/dsp.py`](https://github.com/greatscottgadgets/cynthion-uac/blob/0dfc4186182b6c9c2bbaa9199f88a6d196306a7d/uac/dsp.py), [`uac/nco.py`](https://github.com/greatscottgadgets/cynthion-uac/blob/0dfc4186182b6c9c2bbaa9199f88a6d196306a7d/uac/nco.py) |
+| Top module | `USBAudioClass2Device` |
+| Language | Python (Amaranth) |
+| License | BSD-3-Clause (repo LICENSE.txt); uac/dac.py under a separate ISC-style permission notice (adapted from the Glasgow Interface Explorer audio applet) |
+| FPGA / primitives | ECP5: none (portable) |
+| Tests | none found |
+
+**On ULX3S:** Runs on Cynthion's target_phy ULPI port out of the box (`python -m uac.top`, needs the `cynthion` package installed); to drive a real DAC, replace dac.py's Channel sink with actual I2S/PDM output pins.
+
+**Used by 1 other catalogued repo** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [antoinevg__cynthion-tutorials](https://github.com/antoinevg/cynthion-tutorials) (instantiates [`examples/uac/step-1.py`](https://github.com/antoinevg/cynthion-tutorials/blob/8b711adb4c1c1495f7bd815239b52e1d789d4d91/examples/uac/step-1.py))
 
 ### I2S receiver (orangecrab-usb) {#core-orangecrab-usb-i2s-rx}
 
@@ -124,5 +162,5 @@ S/PDIF biphase-mark transmitter, derived from the ackspace.nl SPDIF project with
 
 ## Other catalogued projects
 
-Catalogued repos tagged `audio-i2s` (13), `audio-spdif` (8) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `audio-i2s` (15), `audio-spdif` (8) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

@@ -1073,6 +1073,41 @@
    }
   },
   {
+   "id": "ultraembedded-core-ddr3-controller",
+   "name": "Lightweight AXI-4 DDR3 controller + ECP5 PHY",
+   "functions": [
+    "ddr-memory"
+   ],
+   "rank": "alternative",
+   "repo": "ultraembedded__core_ddr3_controller",
+   "files": [
+    "src_v/ddr3_axi.v",
+    "src_v/ddr3_axi_pmem.v",
+    "src_v/ddr3_axi_retime.v",
+    "src_v/ddr3_core.v",
+    "src_v/ddr3_dfi_seq.v",
+    "src_v/phy/ecp5/ddr3_dfi_phy.v"
+   ],
+   "top": "ddr3_axi",
+   "language": "Verilog",
+   "license": "Apache-2.0 (file headers, e.g. src_v/ddr3_axi.v)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Compact 32-bit AXI-4 DDR3 memory controller run in DLL-off mode (<=125MHz), standardized DFI interface to a swappable PHY; ECP5 PHY plus Xilinx 7-series PHY both included. Smaller than vendor DDR3 MIGs (README: 9% vs 33% LUTs on the same design).",
+   "ulx3s_notes": "No SDRAM on ULX3S, so not directly usable there; targets ECP5 boards with DDR3 (ECPIX-5, tested at 100MHz sys clk / 50MHz DDR with a 90deg phase-shifted clock via ecp5pll). Up to 8 open rows, AXI-4 INCR bursts only (no WRAP).",
+   "tests": "none found (tb/ddr3_core_xc7 needs proprietary Xilinx Vivado xsim/xelab, no open-source sim included)",
+   "usage_patterns": {
+    "files": [
+     "ddr3_dfi_seq.v",
+     "ddr3_axi_pmem.v"
+    ],
+    "modules": [
+     "ddr3_dfi_seq",
+     "ddr3_axi_pmem"
+    ]
+   }
+  },
+  {
    "id": "uberddr3-controller",
    "name": "UberDDR3 controller + ECP5 PHY",
    "functions": [
@@ -2185,6 +2220,34 @@
    }
   },
   {
+   "id": "guh-usbh-sie",
+   "name": "guh USB2 HS/FS host SIE + enumerator",
+   "functions": [
+    "usb-host"
+   ],
+   "rank": "alternative",
+   "repo": "apfaudio__guh",
+   "files": [
+    "guh/usbh/sie.py",
+    "guh/usbh/enumerator.py"
+   ],
+   "top": "USBSIE",
+   "language": "Python (Amaranth)",
+   "license": "BSD-3-Clause (per-file SPDX header)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "USB host Serial Interface Engine (token packet generation, SOF controller, transfer engine) plus a full enumerator, layered on LUNA's UTMITranslator/ULPI; backs class-specific host engines (HID keyboard, MIDI, mass-storage) in guh/engines/.",
+   "ulx3s_notes": "Runs directly on Cynthion via `LUNA_PLATFORM=cynthion.gateware.platform:CynthionPlatformRev1D4` (README); primary target is the Tiliqua SoM, whose platform.py aliases pin names to match Cynthion's (target_phy, control_vbus_en).",
+   "tests": "self-checking: tests/test_integration.py, tests/test_protocol.py (amaranth.sim.Simulator), via `pdm run test` = pytest",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "USBSIE",
+     "USBHostEnumerator"
+    ]
+   }
+  },
+  {
    "id": "hdl4fpga-usbhost",
    "name": "hdl4fpga USB 1.1 host core",
    "functions": [
@@ -2211,6 +2274,69 @@
     "modules": [
      "usbhost",
      "usbhostdvr"
+    ]
+   }
+  },
+  {
+   "id": "hurra-fpga-usb-host",
+   "name": "hurra-fpga bounded USB FS mouse host",
+   "functions": [
+    "usb-host"
+   ],
+   "rank": "alternative",
+   "repo": "voltcyclone__hurra-fpga",
+   "files": [
+    "src/hurra_cynthion/host.py"
+   ],
+   "top": "BoundedMouseHost",
+   "language": "Python (Amaranth)",
+   "license": "MIT (repo LICENSE; no per-file header)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Amaranth USB1.1/FS host core (USBHostTransactionArbiter + BoundedMouseHost) that enumerates a bounded HID mouse on Cynthion's TARGET-A ULPI PHY and polls its interrupt-IN endpoint; part of a working host+device-clone relay with amaranth.sim test coverage.",
+   "ulx3s_notes": "Needs a real CynthionPlatform (via the external `cynthion` package) for platform.request('target_phy'); nextpnr needs --placer-heap-timingweight 60 to close timing on the 60MHz ULPI domain (see build_env.py).",
+   "tests": "self-checking: tests/test_host.py + related (amaranth.sim.Simulator), part of 24 sim-backed files run via `pytest`",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "BoundedMouseHost",
+     "USBHostTransactionArbiter"
+    ]
+   }
+  },
+  {
+   "id": "hurricanefpga-usb-host",
+   "name": "HurricaneFPGA plain-Verilog USB host engine",
+   "functions": [
+    "usb-host"
+   ],
+   "rank": "alternative",
+   "repo": "voltcyclone__hurricanefpga",
+   "files": [
+    "HDL/hardware/rtl/usb_interface/usb_host_arbiter.v",
+    "HDL/hardware/rtl/usb_interface/usb_enumerator.v",
+    "HDL/hardware/rtl/usb_interface/usb_transaction_engine.v",
+    "HDL/hardware/rtl/usb_interface/usb_token_generator.v",
+    "HDL/hardware/rtl/usb_interface/usb_sof_generator.v"
+   ],
+   "top": "usb_host_arbiter",
+   "language": "Verilog",
+   "license": "MIT (repo LICENSE; no per-file header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Plain synthesizable Verilog USB1.1 host stack (bus reset, enumeration state machine, token/SOF generation, transaction engine) arbitrated for a Cynthion USB PHY port; drives raw D+/D- pins directly, no vendor primitives.",
+   "ulx3s_notes": "Portable logic in principle, but the lpf's own comment admits its Cynthion pin LOCATEs are placeholders mapped to ULPI data pins (not real D+/D-), and top.v's PLL is an unimplemented pass-through - treat as unverified/simulation-only, not a proven working host.",
+   "tests": "HDL/hardware/testbenches/*.v (iverilog+vvp via HDL/hardware/testbenches/Makefile) - not self-checking, only $display trace",
+   "usage_patterns": {
+    "files": [
+     "usb_host_arbiter.v",
+     "usb_enumerator.v",
+     "usb_token_generator.v"
+    ],
+    "modules": [
+     "usb_host_arbiter",
+     "usb_enumerator",
+     "usb_token_generator"
     ]
    }
   },
@@ -2434,6 +2560,299 @@
    }
   },
   {
+   "id": "litesata-ecp5-sata",
+   "name": "LiteSATA ECP5 SATA PHY + core",
+   "functions": [
+    "serdes-links"
+   ],
+   "rank": "best",
+   "repo": "enjoy-digital__litesata",
+   "files": [
+    "litesata/phy/ecp5sataphy.py",
+    "litesata/phy/__init__.py",
+    "litesata/core/__init__.py",
+    "bench/ecpix5.py"
+   ],
+   "top": "LiteSATAPHY",
+   "language": "Python (Migen/LiteX)",
+   "license": "BSD-2-Clause (LICENSE)",
+   "fpga": "ECP5-5G",
+   "primitives": [],
+   "summary": "Gen1/Gen2 SATA host: ECP5LiteSATAPHY (ecp5sataphy.py) does OOB gen/detection and CRG on top of liteiclink's SerDesECP5 (DCUA), feeding LiteSATACore's link/transport/command layers. Validated with IDENTIFY + 16 MiB write/verify BIST on ECPIX-5 (LiteX 2026.08 CHANGES).",
+   "ulx3s_notes": "ULX3S (LFE5U) has no SERDES: only runs on LFE5UM/LFE5UM5G parts (e.g. ECPIX-5) with a SATA-wired DCU channel + 100 MHz refclk.",
+   "tests": "test/test_phy.py, test/test_command.py etc. (migen run_simulation + unittest, self-checking); hardware BIST claim in README/CHANGES, not reproduced in this clone",
+   "usage_patterns": {
+    "files": [
+     "ecp5sataphy.py"
+    ],
+    "modules": [
+     "ECP5LiteSATAPHY",
+     "ECP5LiteSATAPHYCRG",
+     "ECP5SATAOOBGenerator",
+     "ECP5SATAOOBChecker"
+    ]
+   }
+  },
+  {
+   "id": "blazra-tdr-serdes",
+   "name": "blazra TDR pulse driver/sampler on the ECP5 SERDES (liteiclink-derived)",
+   "functions": [
+    "serdes-links"
+   ],
+   "rank": "alternative",
+   "repo": "blazra__tdr",
+   "files": [
+    "gateware/versa_ecp5-litex/tdr/serdes_ecp5.py",
+    "gateware/versa_ecp5-litex/tdr/daq.py"
+   ],
+   "top": "SerDesECP5",
+   "language": "Python (Migen)",
+   "license": "BSD (file header: Copyright (c) 2018-2020 Florent Kermarrec, Copyright (c) 2020 Radovan Blazek)",
+   "fpga": "ECP5",
+   "primitives": [
+    "DCUA"
+   ],
+   "summary": "Repurposes the liteiclink SerDesECP5PLL/SerDesECP5 DCUA wrapper (no PCS/8b10b framing) to drive and sample a raw pulse for time-domain reflectometry on a custom PCB, plus a small Wishbone/CSR sample-and-store RX FSM (daq.py). Working status unverified (1-line README).",
+   "ulx3s_notes": "ULX3S (LFE5U) has no SERDES; needs an ECP5 UM/UM5G part such as the Versa board this targets (litex_boards.platforms.versa_ecp5). daq.py's simple sample buffer is reusable as a generic SERDES bit-capture block independent of the TDR use case.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "ecp5pcie-amaranth-phy",
+   "name": "ECP5-PCIe Amaranth PCIe PHY/LTSSM/DLL/TLP stack",
+   "functions": [
+    "serdes-links"
+   ],
+   "rank": "alternative",
+   "repo": "ecp5-pcie__ecp5-pcie",
+   "files": [
+    "Gateware/ecp5_pcie/ecp5_serdes.py",
+    "Gateware/ecp5_pcie/ecp5_phy_x1.py",
+    "Gateware/ecp5_pcie/ltssm.py",
+    "Gateware/ecp5_pcie/dll.py",
+    "Gateware/ecp5_pcie/tlp.py"
+   ],
+   "top": "LatticeECP5PCIePhy",
+   "language": "Python (Amaranth HDL)",
+   "license": "none found (no LICENSE file; Gateware/setup.py leaves license='' as a TODO)",
+   "fpga": "ECP5",
+   "primitives": [
+    "DCUA",
+    "EXTREFB"
+   ],
+   "summary": "PCIe Gen1 x1 endpoint: LatticeECP5PCIeSERDES wraps DCUA+EXTREFB (1:1 or 1:2 gearing), feeding an LTSSM/DLL/TLP stack with config space. Reaches L0 and captures DLLPs on an ECP5-5G EVN + custom PCIe adapter; no enumeration/TLP traffic shown in the README.",
+   "ulx3s_notes": "ULX3S (LFE5U) has no SERDES; needs an ECP5 UM/UM5G part (e.g. ECP5-5G Evaluation Board, LFE5UM5G-85F) with a 100 MHz PCIe reference clock on the DCU pins.",
+   "tests": "Tests/*.py drive Amaranth's built-in simulator (sim_scrambler.py, sim_crc_x2.py, sim_align.py, ...) and hardware capture scripts (test_pcie_phy.py); no self-checking pytest/formal harness found, results are read by eye from captured DLLPs or gtkwave",
+   "usage_patterns": {
+    "files": [
+     "ecp5_serdes.py",
+     "ecp5_phy_x1.py"
+    ],
+    "modules": [
+     "LatticeECP5PCIeSERDES",
+     "LatticeECP5PCIePhy",
+     "PCIeLTSSM"
+    ]
+   }
+  },
+  {
+   "id": "katsuo-pcie-ecp5",
+   "name": "katsuo.pcie ECP5 SERDES PHY + PCIe endpoint stack",
+   "functions": [
+    "serdes-links"
+   ],
+   "rank": "alternative",
+   "repo": "zyp__katsuo-pcie",
+   "files": [
+    "katsuo/pcie/phy/ecp5_serdes.py",
+    "katsuo/pcie/mac/ltssm.py",
+    "katsuo/pcie/dll",
+    "katsuo/pcie/tl"
+   ],
+   "top": "ECP5SerDes",
+   "language": "Python (Amaranth)",
+   "license": "MIT (pyproject.toml; no LICENSE file in repo)",
+   "fpga": "ECP5-5G",
+   "primitives": [
+    "DCUA",
+    "EXTREFB"
+   ],
+   "summary": "Amaranth ECP5SerDes (DCUA+EXTREFB, code reused from Yumewatari under 0BSD) drives an abbreviated LTSSM, DLL and TL (config space, MSI, mem-to-TileLink). Working PoC: enumerates as a PCIe Gen1 x1 device most of the time, no retransmit/flow control, SERDES sometimes fails to lock.",
+   "ulx3s_notes": "ULX3S (LFE5U) has no SERDES: needs an LFE5UM/LFE5UM5G board (e.g. Versa ECP5) with a PCIe-wired DCU channel and PCIe-rate refclk.",
+   "tests": "tests/test_ltssm.py, test_dll.py, test_lane_aligner.py (pytest + amaranth sim, self-checking); no hardware CI, README documents hardware lspci behaviour",
+   "usage_patterns": {
+    "files": [
+     "ecp5_serdes.py"
+    ],
+    "modules": [
+     "ECP5SerDes",
+     "DCUInstance"
+    ]
+   }
+  },
+  {
+   "id": "kazkojima-ecp5-sgmii",
+   "name": "kazkojima LiteEth SGMII PHY over ECP5 DCU (GBE mode)",
+   "functions": [
+    "serdes-links",
+    "ethernet"
+   ],
+   "rank": "alternative",
+   "repo": "kazkojima__litex-lattice-ecp5-evn",
+   "files": [
+    "liteeth/ecp5sgmii.py"
+   ],
+   "top": "SGMIIECP5",
+   "language": "Python (Migen)",
+   "license": "BSD-2-Clause (file header: Copyright (c) 2019-2021 Florent Kermarrec, LiteEth)",
+   "fpga": "ECP5",
+   "primitives": [
+    "DCUA"
+   ],
+   "summary": "SGMII (1000BASE-X) PHY built from Instance('DCUA', CHX_PROTOCOL='GBE'), a reduction of liteeth pcs_1000basex.py plus liteiclink serdes_ecp5.py for the DCU's Gigabit-Ethernet mode. Used on an ECP5-5G Evaluation Board with a TI DP83867S add-on to run a LiteX/linux-on-litex-vexriscv SoC over Ethernet.",
+   "ulx3s_notes": "ULX3S (LFE5U) has no SERDES; needs an ECP5 UM/UM5G part. Author calls the whole setup 'experimental'; validated only with a home-brewed DP83867S daughterboard, not a stock module.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "ecp5sgmii.py"
+    ],
+    "modules": [
+     "SGMIIECP5",
+     "SGMIITX",
+     "SGMIIRX"
+    ]
+   }
+  },
+  {
+   "id": "liteiclink-serdes-ecp5",
+   "name": "LiteICLink ECP5 SERDES (DCUA) wrapper",
+   "functions": [
+    "serdes-links"
+   ],
+   "rank": "alternative",
+   "repo": "enjoy-digital__liteiclink",
+   "files": [
+    "liteiclink/serdes/serdes_ecp5.py",
+    "bench/serdes/versa_ecp5.py"
+   ],
+   "top": "SerDesECP5",
+   "language": "Python (Migen/LiteX)",
+   "license": "BSD-2-Clause (LICENSE)",
+   "fpga": "ECP5-5G",
+   "primitives": [
+    "DCUA"
+   ],
+   "summary": "Generic ECP5 DCU wrapper: SerDesECP5PLL configures the channel PLL, SerDesECP5 wraps the DCUA primitive for 1.25-5 Gb/s 8b10b links with PRBS built in; base of LiteSATA's ECP5 PHY and kazkojima's SGMII port.",
+   "ulx3s_notes": "ULX3S (LFE5U) has no SERDES: needs an LFE5UM/LFE5UM5G part. For plain ULX3S, use liteiclink's SerWB (bench/serwb/ulx3s.py) bit-banged link instead.",
+   "tests": "test/test_serdes_ecp5.py (migen run_simulation + unittest, checks 8b10b encode/decode round trip); bench/serdes/*.py are PRBS hardware benches, not self-checking sim",
+   "usage_patterns": {
+    "files": [
+     "serdes_ecp5.py"
+    ],
+    "modules": [
+     "SerDesECP5",
+     "SerDesECP5PLL",
+     "SerDesECP5WordAligner"
+    ]
+   }
+  },
+  {
+   "id": "litepcie-katsuo-poc-ecp5",
+   "name": "LitePCIe on ECP5 via katsuo.pcie (proof of concept)",
+   "functions": [
+    "serdes-links"
+   ],
+   "rank": "alternative",
+   "repo": "zyp__litepcie-katsuo-poc",
+   "files": [
+    "ecp5_pcie.py",
+    "ecp5_pcie.v",
+    "lattice_versa_ecp5.py"
+   ],
+   "top": "ECP5PCIePHY",
+   "language": "Python (Migen/LiteX), Verilog (pregenerated ecp5_pcie.v)",
+   "license": "MIT (pyproject.toml; no LICENSE file in repo)",
+   "fpga": "ECP5-5G",
+   "primitives": [
+    "DCUA",
+    "EXTREFB"
+   ],
+   "summary": "ECP5PCIePHY (LiteXModule) adapts katsuo.pcie's PIPE datapath to LitePCIe's PHYTXDatapath/PHYRXDatapath; ecp5_pcie.v is a pregenerated Verilog snapshot of katsuo.pcie containing the DCUA/EXTREFB instances. README shows the device enumerating in lspci at 2.5 GT/s x1 on real Versa ECP5 hardware.",
+   "ulx3s_notes": "Same SERDES requirement as katsuo.pcie: needs an LFE5UM/LFE5UM5G Versa-class board; ecp5_pcie.v is pregenerated for that board's pin mapping, not portable as-is.",
+   "tests": "none found (no test files in this repo); README's lspci output is the only evidence, on real hardware",
+   "usage_patterns": {
+    "files": [
+     "ecp5_pcie.v"
+    ],
+    "modules": [
+     "ECP5PCIePHY"
+    ]
+   }
+  },
+  {
+   "id": "pavlenkog-ecp5-pcs-pcie-analyzer",
+   "name": "PavlenkoG ECP5 PCS-block PCIe protocol analyzer (Diamond)",
+   "functions": [
+    "serdes-links"
+   ],
+   "rank": "alternative",
+   "repo": "pavlenkog__ecp5_pcie_analyzer",
+   "files": [
+    "fpga_logic/src/pcs_pci_rx.vhd",
+    "fpga_logic/src/pcs_pci_tx.vhd",
+    "fpga_logic/src/top.vhd"
+   ],
+   "top": "top",
+   "language": "VHDL",
+   "license": "none found (no repo LICENSE; unrelated fpga_logic/src/lfsr_scrambler.vhd carries an OutputLogic.com 2009 permissive header)",
+   "fpga": "ECP5",
+   "primitives": [
+    "PCSA (via Lattice Diamond Clarity Designer PCIe/EXTREF IP, fpga_logic/src/cores/{pcie,extref}/*.lpc)"
+   ],
+   "summary": "Uses the ECP5UM(G) PCS block (Diamond-generated PCIe/EXTREF IP cores) to deserialize and 8b10b-decode PCI-Express lanes for protocol capture, streamed out over SPI and logged by a Raspberry Pi script. Built for a custom PCIe adapter on the ECP5-5G Evaluation Board.",
+   "ulx3s_notes": "ULX3S (LFE5U) has no SERDES; this design is also tied to proprietary Lattice Diamond + Synplify and Clarity Designer IP (.lpc), so it cannot be rebuilt with the open toolchain without regenerating those cores.",
+   "tests": "fpga_logic/sim/vunit/analyzer_tb.vhd -- VUnit testbench with self-checking asserts (e.g. 'assert cnt /= addr_wr report ...'), but run.py hardcodes Windows Aldec Active-HDL paths and Lattice sim libraries, so it needs a proprietary simulator to actually run",
+   "usage_patterns": {
+    "files": [],
+    "modules": []
+   }
+  },
+  {
+   "id": "yumewatari-pcie-phy",
+   "name": "Yumewatari ECP5 PCIe PHY (DCUA)",
+   "functions": [
+    "serdes-links"
+   ],
+   "rank": "alternative",
+   "repo": "whitequark__yumewatari",
+   "files": [
+    "yumewatari/gateware/phy.py",
+    "yumewatari/gateware/platform/lattice_ecp5.py",
+    "yumewatari/gateware/serdes.py"
+   ],
+   "top": "PCIePHY",
+   "language": "Python (Migen)",
+   "license": "0BSD (LICENSE-0BSD.txt)",
+   "fpga": "ECP5-5G",
+   "primitives": [
+    "DCUA",
+    "EXTREFB"
+   ],
+   "summary": "LatticeECP5PCIeSERDES wraps the DCUA/EXTREFB primitives (1:2 gearing) for a Versa ECP5-5G board; PCIePHY builds a PIPE-like PCIe Gen1 PHY on top (phy_rx/phy_tx, 8b10b alignment). Dormant since 2019; predecessor of the ECP5-PCIe project, code later reused (0BSD) inside katsuo.pcie's ecp5_serdes.py.",
+   "ulx3s_notes": "Needs an LFE5UM/LFE5UM5G Versa ECP5-5G board (EXTREF0/DCU0 wired to PCIe) plus the ispclock/*.jed refclk config; not usable on stock ULX3S.",
+   "tests": "yumewatari/test/test_phy_rx.py, test_phy_tx.py, test_align.py (migen sim + unittest, self-checking); yumewatari/testbench/ltssm.py is an interactive/manual testbench, not self-checking",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "LatticeECP5PCIeSERDES",
+     "PCIeSERDESAligner"
+    ]
+   }
+  },
+  {
    "id": "lawrie-ps2-intf",
    "name": "ps2_intf keyboard decoder",
    "functions": [
@@ -2575,6 +2994,36 @@
    }
   },
   {
+   "id": "cynthion-usb-analyzer",
+   "name": "Cynthion USB analyzer (used by Packetry)",
+   "functions": [
+    "jtag-debug"
+   ],
+   "rank": "alternative",
+   "repo": "greatscottgadgets__cynthion",
+   "files": [
+    "cynthion/python/src/gateware/analyzer/analyzer.py",
+    "cynthion/python/src/gateware/analyzer/top.py",
+    "cynthion/python/src/gateware/analyzer/event_detection.py",
+    "cynthion/python/src/gateware/analyzer/speed_detection.py",
+    "cynthion/python/src/gateware/analyzer/fifo.py"
+   ],
+   "top": "USBAnalyzer",
+   "language": "Python (Amaranth)",
+   "license": "BSD-3-Clause (repo LICENSE.txt; per-file SPDX header)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Official low/full/high-speed USB protocol analyzer core: captures traffic on Cynthion's TARGET port (via LUNA's UTMITranslator + speed/event detection) into a FIFO, streamed to the host over a USB2 device endpoint; the capture backend for greatscottgadgets/packetry.",
+   "ulx3s_notes": "Needs a Cynthion (or another 3-ULPI-PHY LUNA board); built via `python -m cynthion.gateware.analyzer.top --output build/analyzer.bit` on the cynthion_r1_4 platform.",
+   "tests": "self-checking: USBAnalyzerTest / USBAnalyzerStackTest classes in analyzer.py (LunaGatewareTestCase, amaranth.sim)",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "USBAnalyzer"
+    ]
+   }
+  },
+  {
    "id": "tomverbeure-ecp5-jtag",
    "name": "ECP5 JTAGG demo (Ecp5JtagDemo)",
    "functions": [
@@ -2662,6 +3111,42 @@
     "modules": [
      "opendap_sw_dp",
      "opendap_mem_ap_apb"
+    ]
+   }
+  },
+  {
+   "id": "orbtrace-swd-jtag-trace",
+   "name": "ORBTrace SWD/JTAG debug + parallel TRACE core (legacy plain-Verilog flow)",
+   "functions": [
+    "jtag-debug"
+   ],
+   "rank": "alternative",
+   "repo": "orbcode__orbtrace",
+   "files": [
+    "verilog/dbgIF.v",
+    "verilog/swdIF.v",
+    "verilog/jtagIF.v",
+    "verilog/traceIF.v",
+    "verilog/ram.v"
+   ],
+   "top": "dbgIF",
+   "language": "Verilog",
+   "license": "BSD-3-Clause (COPYING, applies repo-wide unless a file states otherwise)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Cortex-M debug (SWD + JTAG) state machines behind a common dbgIF, plus a 1-4 bit parallel TRACE capture core (traceIF), validated against BlackMagic Probe/OpenOCD/pyOCD (debug) and Orbuculum (trace). Each block has its own testbed under verilog/testbeds/.",
+   "ulx3s_notes": "Plain Verilog, no vendor primitives; this legacy flow already builds for ECP5 (verilog/Makefile ECPIX_5_85F target: yosys+nextpnr-ecp5+ecppack) and for iCE40 (ICEBREAKER/ICE40HX8K_B_EVN targets). Needs a USB-Bulk/CMSIS-DAP front-end (from verilog/uart.v+frameToSerial.v or the main orbtrace/ Amaranth SoC) to be a complete probe.",
+   "tests": "verilog/testbeds/{dbgIF_tb,swdIF_tb,jtagIF_TB,traceIF_tb}.v - waveform-only (no assertions seen; iverilog/vvp style testbenches, not scanned by Makefile)",
+   "usage_patterns": {
+    "files": [
+     "dbgIF.v",
+     "swdIF.v",
+     "traceIF.v"
+    ],
+    "modules": [
+     "dbgIF",
+     "swdIF",
+     "traceIF"
     ]
    }
   },
@@ -3072,6 +3557,67 @@
      "i2s_v.v"
     ],
     "modules": []
+   }
+  },
+  {
+   "id": "eurorack-pmod-ak4619",
+   "name": "AK4619 audio codec driver + PMOD I2C master",
+   "functions": [
+    "audio-digital"
+   ],
+   "rank": "alternative",
+   "repo": "apfaudio__eurorack-pmod",
+   "files": [
+    "gateware/drivers/ak4619.sv",
+    "gateware/drivers/pmod_i2c_master.sv"
+   ],
+   "top": "ak4619",
+   "language": "SystemVerilog",
+   "license": "CERN-OHL-S-2.0 (repo-level LICENSE; no per-file header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Configures an AK4619 4in/4out audio codec over I2C at boot, then streams 8 audio channels (192kHz/32-bit capable) in/out on a `clk_256fs`+`strobe` interface; used on every Eurorack PMOD board target (ECPIX-5, Colorlight, Tiliqua, iCEBreaker, iCESugar, Pico-Ice, GateMate).",
+   "ulx3s_notes": "No vendor primitives; needs the Eurorack PMOD hardware (or another AK4619-based codec board) wired to a PMOD/I2S+I2C header. Pair with cal/cal.sv for jack-detect calibration.",
+   "tests": "cocotb, e.g. gateware/sim/ak4619/tb_ak4619.py - self-checking (@cocotb.test() assertions)",
+   "usage_patterns": {
+    "files": [
+     "ak4619.sv",
+     "pmod_i2c_master.sv"
+    ],
+    "modules": [
+     "ak4619",
+     "pmod_i2c_master"
+    ]
+   }
+  },
+  {
+   "id": "cynthion-uac-uac2",
+   "name": "Cynthion USB Audio Class 2.0 example",
+   "functions": [
+    "audio-digital"
+   ],
+   "rank": "alternative",
+   "repo": "greatscottgadgets__cynthion-uac",
+   "files": [
+    "uac/top.py",
+    "uac/uac2.py",
+    "uac/dac.py",
+    "uac/dsp.py",
+    "uac/nco.py"
+   ],
+   "top": "USBAudioClass2Device",
+   "language": "Python (Amaranth)",
+   "license": "BSD-3-Clause (repo LICENSE.txt); uac/dac.py under a separate ISC-style permission notice (adapted from the Glasgow Interface Explorer audio applet)",
+   "fpga": "ECP5",
+   "primitives": [],
+   "summary": "Full USB Audio Class 2.0 device (descriptors, isochronous streaming, feedback-endpoint clock recovery via clockgen.py) driving an internally synthesized stereo sine wave (NCO + LUT) instead of a real codec; includes a VU meter. No I2S/S-PDIF pins are used - audio never leaves the FPGA.",
+   "ulx3s_notes": "Runs on Cynthion's target_phy ULPI port out of the box (`python -m uac.top`, needs the `cynthion` package installed); to drive a real DAC, replace dac.py's Channel sink with actual I2S/PDM output pins.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [],
+    "modules": [
+     "USBAudioClass2Device"
+    ]
    }
   },
   {
@@ -3698,6 +4244,44 @@
    }
   },
   {
+   "id": "mmicko-fpga101-picosoc",
+   "name": "FPGA 101 PicoSoC with LCD text console and MicroPython",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "mmicko__fpga101-workshop",
+   "files": [
+    "tutorials/12-RiscV/top.v",
+    "tutorials/12-RiscV/picosoc.v",
+    "tutorials/12-RiscV/up_spram.v",
+    "tutorials/12-RiscV/video.v",
+    "tutorials/12-RiscV/simpleuart.v",
+    "tutorials/12-RiscV/02-Micropython/ports/picorv32"
+   ],
+   "top": "top",
+   "language": "Verilog, C",
+   "license": "MIT (repo LICENSE); z_picorv32.v ISC; MicroPython MIT",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_SPRAM256KA",
+    "SB_PLL40_CORE",
+    "SB_IO",
+    "SB_HFOSC"
+   ],
+   "summary": "PicoRV32 PicoSoC for the UP5K badge: 128 KB SPRAM main memory, XIP flash, UART, memory-mapped text-mode video on the parallel LCD; firmware examples and a MicroPython port (board LCD/LED/switch modules).",
+   "ulx3s_notes": "Replace SB_SPRAM256KA with DP16KD/SDRAM, SB_PLL40_CORE with EHXPLLL, LCD video with a DVI path; the ULX3S follow-up is ulx3s__fpga-odysseus tutorials/08-RISCV.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "up_spram.v"
+    ],
+    "modules": [
+     "up_spram"
+    ]
+   }
+  },
+  {
    "id": "wren6991-hazard3",
    "name": "Hazard3 RV32IMAC core",
    "functions": [
@@ -3755,6 +4339,35 @@
     "modules": [
      "kianv_sv32"
     ]
+   }
+  },
+  {
+   "id": "luna-soc-vexriscv-cynthion",
+   "name": "LUNA-SoC VexRiscv SoC framework (Moondancer's CPU)",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "greatscottgadgets__luna-soc",
+   "files": [
+    "luna_soc/gateware/cpu/vexriscv.py",
+    "luna_soc/gateware/cpu/verilog/vexriscv/vexriscv_cynthion.v",
+    "luna_soc/gateware/cpu/ic.py",
+    "luna_soc/gateware/provider/cynthion.py"
+   ],
+   "top": "VexRiscv",
+   "language": "Python (Amaranth), Verilog (SpinalHDL-generated)",
+   "license": "BSD-3-Clause (luna-soc LICENSE.txt) for the Amaranth wrapper; vexriscv_cynthion.v (SpinalHDL-generated) has no header in this clone",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Wishbone/CSR SoC framework wrapping a pre-generated VexRiscv (or Minerva) RISC-V core, with an interrupt controller and Cynthion-specific board wiring (provider/cynthion.py); this is the CPU+fabric that the official Moondancer/Facedancer SoC in greatscottgadgets/cynthion is built on.",
+   "ulx3s_notes": "Whole-system SoC framework, not a drop-in core: pair with core/{uart,timer,blockram,spiflash,usb2} peripherals and a platform (Cynthion provider bundled; others require writing a new provider). Regenerating the VexRiscv Verilog needs Scala/sbt (cpu/verilog/Makefile), outside the open FPGA flow.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "vexriscv_cynthion.v"
+    ],
+    "modules": []
    }
   },
   {
@@ -3894,6 +4507,40 @@
     ],
     "modules": [
      "fx68k"
+    ]
+   }
+  },
+  {
+   "id": "mmicko-grom-cpu",
+   "name": "grom toy 8-bit CPU + computer (FPGA 101 original)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "alternative",
+   "repo": "mmicko__fpga101-workshop",
+   "files": [
+    "tutorials/10-CPU/grom_cpu.v",
+    "tutorials/10-CPU/alu.v",
+    "tutorials/10-CPU/grom_computer.v",
+    "tutorials/10-CPU/grom_top.v",
+    "tutorials/10-CPU/grom_computer_tb.v"
+   ],
+   "top": "grom_top",
+   "language": "Verilog",
+   "license": "MIT (repo LICENSE; files have no header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Teaching CPU by Miodrag Milanović: 8-bit data, 12-bit address, small ISA, with RAM and a 'computer' wrapper driving LEDs. Original of the copies in lawrie's examples and FPGA Odysseus.",
+   "ulx3s_notes": "Already ported: ulx3s__fpga-odysseus tutorials/06-CPU (identical grom_cpu.v) with ULX3S LPF.",
+   "tests": "waveform-only (tutorials/10-CPU/grom_computer_tb.v, $dumpvars/$finish)",
+   "usage_patterns": {
+    "files": [
+     "grom_cpu.v",
+     "grom_computer.v"
+    ],
+    "modules": [
+     "grom_cpu",
+     "grom_computer"
     ]
    }
   },
@@ -4508,78 +5155,6 @@
     ],
     "modules": [
      "trng_core"
-    ]
-   }
-  },
-  {
-   "id": "mmicko-grom-cpu",
-   "name": "grom toy 8-bit CPU + computer (FPGA 101 original)",
-   "functions": [
-    "cpu-retro"
-   ],
-   "rank": "alternative",
-   "repo": "mmicko__fpga101-workshop",
-   "files": [
-    "tutorials/10-CPU/grom_cpu.v",
-    "tutorials/10-CPU/alu.v",
-    "tutorials/10-CPU/grom_computer.v",
-    "tutorials/10-CPU/grom_top.v",
-    "tutorials/10-CPU/grom_computer_tb.v"
-   ],
-   "top": "grom_top",
-   "language": "Verilog",
-   "license": "MIT (repo LICENSE; files have no header)",
-   "fpga": "any",
-   "primitives": [],
-   "summary": "Teaching CPU by Miodrag Milanović: 8-bit data, 12-bit address, small ISA, with RAM and a 'computer' wrapper driving LEDs. Original of the copies in lawrie's examples and FPGA Odysseus.",
-   "ulx3s_notes": "Already ported: ulx3s__fpga-odysseus tutorials/06-CPU (identical grom_cpu.v) with ULX3S LPF.",
-   "tests": "waveform-only (tutorials/10-CPU/grom_computer_tb.v, $dumpvars/$finish)",
-   "usage_patterns": {
-    "files": [
-     "grom_cpu.v",
-     "grom_computer.v"
-    ],
-    "modules": [
-     "grom_cpu",
-     "grom_computer"
-    ]
-   }
-  },
-  {
-   "id": "mmicko-fpga101-picosoc",
-   "name": "FPGA 101 PicoSoC with LCD text console and MicroPython",
-   "functions": [
-    "cpu-riscv"
-   ],
-   "rank": "alternative",
-   "repo": "mmicko__fpga101-workshop",
-   "files": [
-    "tutorials/12-RiscV/top.v",
-    "tutorials/12-RiscV/picosoc.v",
-    "tutorials/12-RiscV/up_spram.v",
-    "tutorials/12-RiscV/video.v",
-    "tutorials/12-RiscV/simpleuart.v",
-    "tutorials/12-RiscV/02-Micropython/ports/picorv32"
-   ],
-   "top": "top",
-   "language": "Verilog, C",
-   "license": "MIT (repo LICENSE); z_picorv32.v ISC; MicroPython MIT",
-   "fpga": "iCE40",
-   "primitives": [
-    "SB_SPRAM256KA",
-    "SB_PLL40_CORE",
-    "SB_IO",
-    "SB_HFOSC"
-   ],
-   "summary": "PicoRV32 PicoSoC for the UP5K badge: 128 KB SPRAM main memory, XIP flash, UART, memory-mapped text-mode video on the parallel LCD; firmware examples and a MicroPython port (board LCD/LED/switch modules).",
-   "ulx3s_notes": "Replace SB_SPRAM256KA with DP16KD/SDRAM, SB_PLL40_CORE with EHXPLLL, LCD video with a DVI path; the ULX3S follow-up is ulx3s__fpga-odysseus tutorials/08-RISCV.",
-   "tests": "none found",
-   "usage_patterns": {
-    "files": [
-     "up_spram.v"
-    ],
-    "modules": [
-     "up_spram"
     ]
    }
   }

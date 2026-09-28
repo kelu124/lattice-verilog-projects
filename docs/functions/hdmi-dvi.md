@@ -160,5 +160,5 @@ Full review: [wren6991__smoldvi](../projects/wren6991__smoldvi.md).
 
 ## Other catalogued projects
 
-Catalogued repos tagged `video-dvi` (107) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `video-dvi` (108) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

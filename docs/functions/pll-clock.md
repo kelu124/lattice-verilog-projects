@@ -1,7 +1,7 @@
 ---
 title: "PLLs and clocking"
 parent: "Cores by function"
-nav_order: 31
+nav_order: 32
 ---
 <!-- Generated from data/functions.json, data/cores.json, data/core_usage.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 
@@ -12,7 +12,7 @@ ECP5 EHXPLLL wrappers and PLL parameter calculators.
 
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
-| [ecp5pll parametric PLL](#core-emard-ecp5pll) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | SystemVerilog, VHDL | BSD (// (c)EMARD / License=BSD, file header) | ECP5 | 74 |
+| [ecp5pll parametric PLL](#core-emard-ecp5pll) ★ | [emard__ulx3s-misc](https://github.com/emard/ulx3s-misc) | SystemVerilog, VHDL | BSD (// (c)EMARD / License=BSD, file header) | ECP5 | 82 |
 | [blip nMigen ECP5 PLL wrapper](#core-bqqbarbhg-blip-pll) | [bqqbarbhg__blipv1](https://github.com/bqqbarbhg/blipv1) | Python (nMigen) | none found | ECP5 | 0 |
 | [Glasgow ECP5 PLL parameter solver (Amaranth)](#core-glasgow-ecp5-pll) | [glasgowembedded__glasgow](https://github.com/GlasgowEmbedded/glasgow) | Python (Amaranth) | 0BSD OR Apache-2.0 | ECP5 | 0 |
 | [hdl4fpga ecp5_videodcm / ecp5_sdramdcm clock generators](#core-hdl4fpga-ecp5-clockgen) | [hdl4fpga__hdl4fpga](https://github.com/hdl4fpga/hdl4fpga) | VHDL | MIT (LICENSE) | ECP5 | 0 |
@@ -37,10 +37,11 @@ Computes EHXPLLL divider/phase parameters from requested in/out frequencies at e
 
 Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 
-**Used by 74 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 82 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [advikbahadur__ulx3s-superresolution-cnn](https://github.com/ADVIKBAHADUR/ULX3s-Superresolution-CNN) (instantiates [`src/top_module.v`](https://github.com/ADVIKBAHADUR/ULX3s-Superresolution-CNN/blob/7979af367cc20e4393071c718ab0e04dae12ad86/src/top_module.v))
 - [bjonnh__ulx3s-synth](https://github.com/bjonnh/ulx3s-synth) (instantiates [`i2s.v`](https://github.com/bjonnh/ulx3s-synth/blob/b8448b602cb6a6772449059746ff5107dc78601a/i2s.v))
+- [blazra__tdr](https://github.com/blazra/tdr) (instantiates [`gateware/versa_ecp5-litex/tdr/clock.py`](https://github.com/blazra/tdr/blob/f62e58dfc004c9795cb638adbdc2fdb0bcf089a2/gateware/versa_ecp5-litex/tdr/clock.py))
 - [bqqbarbhg__blipv1](https://github.com/bqqbarbhg/blipv1) (instantiates [`blip/rtl/ecp5/io.py`](https://github.com/bqqbarbhg/blipv1/blob/e978a5aa368f4b24aebb8954a6cc75b39522f436/blip/rtl/ecp5/io.py))
 - [cheyao__icepi-zero](https://github.com/cheyao/icepi-zero) (instantiates [`gateware/sdram/memtest/memtest.sv`](https://github.com/cheyao/icepi-zero/blob/e01faa2bd35dcb7269827f8420b845d46c78c869/gateware/sdram/memtest/memtest.sv))
 - [cheyao__nes_ecp5](https://github.com/cheyao/nes_ecp5) (instantiates [`top.v`](https://github.com/cheyao/nes_ecp5/blob/e8dd1eb7f9f440a552cd24c0b936e58705a272e7/top.v))
@@ -53,8 +54,7 @@ Full review: [emard__ulx3s-misc](../projects/emard__ulx3s-misc.md).
 - [dlobato__cps1-musicbox](https://github.com/dlobato/cps1-musicbox) (instantiates [`radiona_ulx3s.py`](https://github.com/dlobato/cps1-musicbox/blob/dc940ca9ecd5fa2685518fae2c92d701167fe4a0/radiona_ulx3s.py))
 - [dschaefer__fpga-template](https://github.com/dschaefer/fpga-template) (instantiates [`top.sv`](https://github.com/dschaefer/fpga-template/blob/575a4b1cf43a325951bb3662020ffeec7f5b3bfc/top.sv))
 - [dulatello08__litex-cpu-testing](https://github.com/dulatello08/litex-cpu-testing) (instantiates [`scripts/gen_soc.py`](https://github.com/dulatello08/litex-cpu-testing/blob/3b5d386971aedd6b98030c8db214ca888cb0929f/scripts/gen_soc.py))
-- [egorxe__openglory](https://github.com/egorxe/openglory) (instantiates [`hw/litex/radiona_ulx3s.py`](https://github.com/egorxe/openglory/blob/84d642c609d599542f123847395999f853d8f804/hw/litex/radiona_ulx3s.py))
-- … and 59 more (see `data/core_usage.json`)
+- … and 67 more (see `data/core_usage.json`)
 
 ### blip nMigen ECP5 PLL wrapper {#core-bqqbarbhg-blip-pll}
 

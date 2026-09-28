@@ -17,7 +17,7 @@ The main board of this collection: 32 MB SDR SDRAM, GPDI (HDMI) port, ESP32, US1
 | FPGA | LFE5U-12F/25F/45F/85F, CABGA381 |
 | Evidence | emard/ulx3s MANUAL + reference LPFs (doc/constraints) |
 | Clock | 25 MHz (clk_25mhz, reference LPF) |
-| Catalogued repos | 284 |
+| Catalogued repos | 286 |
 
 ## Board reference
 
@@ -148,6 +148,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
 | Hazard3 RV32IMAC core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | wren6991__hazard3 |
 | KianV RV32IMA+Sv32 core (Linux-capable) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | splinedrive__kianriscv |
+| LUNA-SoC VexRiscv SoC framework (Moondancer's CPU) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | greatscottgadgets__luna-soc |
 | PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
 | VexRiscv (SpinalHDL-generated Verilog) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | rschlaikjer__fpga-3-softcores |
 | f32c RISC-V/MIPS-compatible core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | f32c__f32c |
@@ -161,11 +162,10 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | CORDIC sin/cos core | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | osresearch__up5k |
 | NCO + CIC building blocks (mixer_pcb) | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | jamesrosssharp__ulx3s_mixer_pcb |
 | Waveform-generator DDS sine core (AXI-Stream, cocotb-tested) | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | semify-eda__waveform-generator |
-| ESP32 SPI OSD + spirw_slave ROM/disk loading stack | [esp32-osd](https://github.com/kelu124/ulx3s-klod/blob/main/functions/esp32-osd.md) | lawrie__ulx3s_sms |
 
 ## Projects targeting this board
 
-284 catalogued repos target this board; see the [full catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/catalogue.md). Those with a full review:
+286 catalogued repos target this board; see the [full catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/catalogue.md). Those with a full review:
 
 - [chrismoos__m6502](https://github.com/kelu124/ulx3s-klod/blob/main/projects/chrismoos__m6502.md): m6502: compact microcoded cycle-accurate 6502 in SystemVerilog + MCU wrapper
 - [danodus__ecp5_hdmi_audio_video](https://github.com/kelu124/ulx3s-klod/blob/main/projects/danodus__ecp5_hdmi_audio_video.md): ULX3S/IcePi Zero: HDMI audio+video transmitter core

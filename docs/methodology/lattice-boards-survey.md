@@ -1,7 +1,7 @@
 ---
 title: "UP5K/ECP5 boards survey"
 parent: "Methodology"
-nav_order: 4
+nav_order: 5
 ---
 <!-- Generated from data/pages/lattice-boards-survey.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

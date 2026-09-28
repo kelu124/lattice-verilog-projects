@@ -9,8 +9,8 @@
   "per-copy `device`/`luts` come from the LPF text, a build file next to it, or the repo's catalogue row (see `device_evidence`); LUT4 counts: 12k=12000, 25k=24000, 45k=44000, 85k=84000.",
   "`chips` are inferred from active signal names (the matched names are listed); `chips_commented_only` from commented-out LOCATE lines."
  ],
- "files_scanned": 916,
- "distinct_lpfs": 479,
+ "files_scanned": 924,
+ "distinct_lpfs": 487,
  "lpfs": [
   {
    "sha256_16": "b2b4957635587bd6",
@@ -19914,6 +19914,64 @@
    ]
   },
   {
+   "sha256_16": "da573af5cb899819",
+   "name": "analyzer.lpf",
+   "lines": 143,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Versa ECP5",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "repo catalogue board_rev/name (repo-level); best ULX3S reference match 0%",
+   "board_description": "ECP5_PCIE_Analyzer: uses the ECP5UM(G) PCS block to deserialize/8b10b-decode PCI-Express lanes for protocol capture, read out over SPI by a Raspberry Pi",
+   "signals_active": 28,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_rx",
+     "uart_tx"
+    ],
+    "led": [
+     "led"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVTTL33": 90,
+    "LVCMOS25": 1
+   },
+   "clocks": [
+    "rx_pclk_1 250.000000MHZ",
+    "clk_100 100.000000MHZ",
+    "clk_25_in_c 25.000000MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "pavlenkog__ecp5_pcie_analyzer",
+     "path": "fpga_logic/src/analyzer.lpf",
+     "url": "https://github.com/PavlenkoG/ECP5_PCIE_Analyzer/blob/cc01417bd070d835ffc7e71aa9aa4646e5900a0f/fpga_logic/src/analyzer.lpf",
+     "repo_last_commit": "2023-10-06",
+     "device": "85k",
+     "luts": [
+      84000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2023-10-06",
+   "devices_seen": [
+    "85k"
+   ],
+   "luts_seen": [
+    84000
+   ]
+  },
+  {
    "sha256_16": "72a3639e9e986913",
    "name": "apps.lpf",
    "lines": 263,
@@ -22813,6 +22871,73 @@
    ]
   },
   {
+   "sha256_16": "c3da469ebee7b2c7",
+   "name": "cynthion_pins.lpf",
+   "lines": 75,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5",
+   "board": "Cynthion",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "HurricaneFPGA: plain-Verilog Cynthion gateware - USB FS/LS sniffer/passthrough, USB host mode (enumeration+HID), HID injection over UART",
+   "signals_active": 23,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart0_rx",
+     "uart0_tx"
+    ],
+    "led": [
+     "led"
+    ],
+    "usb": [
+     "usb0_dn",
+     "usb0_dp",
+     "usb0_pullup",
+     "usb1_dn",
+     "usb1_dp",
+     "usb1_pullup",
+     "usb2_dn",
+     "usb2_dp"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "LFE5U-12F-8BG256C"
+   ],
+   "io_standards": {
+    "LVCMOS33": 23
+   },
+   "clocks": [
+    "clk_60mhz 60.000MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "voltcyclone__hurricanefpga",
+     "path": "HDL/hardware/constraints/cynthion_pins.lpf",
+     "url": "https://github.com/VoltCyclone/HurricaneFPGA/blob/6f0b109cf0ab1ad77ee7670693e3d1a6aa11cab5/HDL/hardware/constraints/cynthion_pins.lpf",
+     "repo_last_commit": "2025-12-28",
+     "device": "12k",
+     "luts": [
+      12000
+     ],
+     "device_evidence": "LPF text"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2025-12-28",
+   "devices_seen": [
+    "12k"
+   ],
+   "luts_seen": [
+    12000
+   ]
+  },
+  {
    "sha256_16": "abb81d4d6eece341",
    "name": "darksocv.lpf",
    "lines": 27,
@@ -23760,6 +23885,58 @@
    ]
   },
   {
+   "sha256_16": "5b2e32161c65645c",
+   "name": "ecpix5.lpf",
+   "lines": 489,
+   "empty": false,
+   "kind": "no-pins (timing/IP/tool-generated or all commented out)",
+   "fpga_family": "ECP5",
+   "board": "ECPIX-5",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name",
+   "board_description": "ECPIX-5 gateware collection: LEDs, UART, DDR3 top (via ultraembedded core_ddr3_controller), FIFO/DPRAM libs, Vortex-GPU stub design (vx/)",
+   "signals_active": 0,
+   "signals_commented": 0,
+   "chips": {},
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "FT2232"
+   ],
+   "io_standards": {
+    "LVTTL33": 50,
+    "SSTL15_I": 41,
+    "LVCMOS33": 18,
+    "SSTL15D_I": 3
+   },
+   "clocks": [
+    "fpga_sysclk 100MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "maxhpc__ecpix-5",
+     "path": "ecpix5.lpf",
+     "url": "https://github.com/maxhpc/ecpix-5/blob/dbd64a102aa9aaa8403c7c408fdfd5beef625eb1/ecpix5.lpf",
+     "repo_last_commit": "2025-02-09",
+     "device": "85k",
+     "luts": [
+      84000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2025-02-09",
+   "devices_seen": [
+    "85k"
+   ],
+   "luts_seen": [
+    84000
+   ]
+  },
+  {
    "sha256_16": "92a43d3059693af4",
    "name": "ecpix5.lpf",
    "lines": 94,
@@ -24009,6 +24186,69 @@
    ],
    "copy_count": 1,
    "repo_last_commit_max": "2026-02-28",
+   "devices_seen": [
+    "45k",
+    "85k"
+   ],
+   "luts_seen": [
+    44000,
+    84000
+   ]
+  },
+  {
+   "sha256_16": "429dcc15f9c06999",
+   "name": "fpga.lpf",
+   "lines": 162,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5-5G 45F/85F (LFE5UM5G-45F/85F, BG554, ECPIX-5; README: \"LambdaConcept ECPIX-5 (Lattice ECP5 + MT41K256M16RE-125)\"; examples/ecpix_ecp5/fpga.lpf has no device-size flag, clk 100MHz). Also Xilinx Artix-7 (NOT ECP5) via examples/arty_a7 (arty_revb.xdc, src_v/phy/xc7/ddr3_dfi_phy.v)",
+   "board": "ECPIX-5",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Lightweight AXI-4 DDR3 memory controller (DLL-off, <=125MHz) with DFI PHYs for Xilinx 7-series and Lattice ECP5",
+   "signals_active": 44,
+   "signals_commented": 0,
+   "chips": {
+    "ddr3": [
+     "ddram_a",
+     "ddram_ba",
+     "ddram_cas_n",
+     "ddram_cke",
+     "ddram_clk_p",
+     "ddram_dm",
+     "ddram_dq",
+     "ddram_dqs_p"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "SSTL15_I": 41,
+    "SSTL15D_I": 3,
+    "LVCMOS33": 1
+   },
+   "clocks": [
+    "clk 100MHZ"
+   ],
+   "sysconfig": [],
+   "copies": [
+    {
+     "repo": "ultraembedded__core_ddr3_controller",
+     "path": "examples/ecpix_ecp5/fpga.lpf",
+     "url": "https://github.com/ultraembedded/core_ddr3_controller/blob/a03492a6000ca0185c615060b171bda64806a7bb/examples/ecpix_ecp5/fpga.lpf",
+     "repo_last_commit": "2021-10-10",
+     "device": "45k/85k",
+     "luts": [
+      44000,
+      84000
+     ],
+     "device_evidence": "repo catalogue row (repo-level, not this file)"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2021-10-10",
    "devices_seen": [
     "45k",
     "85k"
@@ -28763,6 +29003,268 @@
    ],
    "luts_seen": [
     12000
+   ]
+  },
+  {
+   "sha256_16": "dd0d9b4876eb5fed",
+   "name": "pinmap.lpf",
+   "lines": 35,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5-5G 85F (LFE5UM5G-85F, CABGA554, speed 8, ECPIX-5; gateware/boards/ecpix5/Makefile: DEVICE=um5g-85k PACKAGE=CABGA554). Also ECP5 25F/45F CABGA381 (colorlight_i5/i9, NOT ECPIX-5) and ECP5 25F CABGA256 (Tiliqua r5). Also iCE40 UP5K SG48 (NOT ECP5: icebreaker, icesugar, pico_ice) and Cologne Chip GateMate (NOT ECP5/Lattice: gatemate_evb)",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Eurorack PMOD: AK4619 audio-codec PMOD gateware (calibration, I2C/UART drivers, DSP synth/effects cores) for many FPGA dev boards",
+   "signals_active": 11,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_tx"
+    ],
+    "gpio-header": [
+     "pmod_bick",
+     "pmod_lrck",
+     "pmod_mclk",
+     "pmod_pdn",
+     "pmod_sdin1",
+     "pmod_sdout1"
+    ],
+    "i2c": [
+     "pmod_i2c_scl",
+     "pmod_i2c_sda"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 11
+   },
+   "clocks": [
+    "CLK 25MHZ"
+   ],
+   "sysconfig": [
+    "SYSCONFIG COMPRESS_CONFIG=ON"
+   ],
+   "copies": [
+    {
+     "repo": "apfaudio__eurorack-pmod",
+     "path": "gateware/boards/colorlight_i5/pinmap.lpf",
+     "url": "https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/colorlight_i5/pinmap.lpf",
+     "repo_last_commit": "2026-01-29",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file apfaudio__eurorack-pmod/gateware/boards/colorlight_i5/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-01-29",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
+   ]
+  },
+  {
+   "sha256_16": "473b09dc1284f382",
+   "name": "pinmap.lpf",
+   "lines": 36,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5-5G 85F (LFE5UM5G-85F, CABGA554, speed 8, ECPIX-5; gateware/boards/ecpix5/Makefile: DEVICE=um5g-85k PACKAGE=CABGA554). Also ECP5 25F/45F CABGA381 (colorlight_i5/i9, NOT ECPIX-5) and ECP5 25F CABGA256 (Tiliqua r5). Also iCE40 UP5K SG48 (NOT ECP5: icebreaker, icesugar, pico_ice) and Cologne Chip GateMate (NOT ECP5/Lattice: gatemate_evb)",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Eurorack PMOD: AK4619 audio-codec PMOD gateware (calibration, I2C/UART drivers, DSP synth/effects cores) for many FPGA dev boards",
+   "signals_active": 11,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_tx"
+    ],
+    "gpio-header": [
+     "pmod_bick",
+     "pmod_lrck",
+     "pmod_mclk",
+     "pmod_pdn",
+     "pmod_sdin1",
+     "pmod_sdout1"
+    ],
+    "i2c": [
+     "pmod_i2c_scl",
+     "pmod_i2c_sda"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 11
+   },
+   "clocks": [
+    "CLK 25MHZ"
+   ],
+   "sysconfig": [
+    "SYSCONFIG COMPRESS_CONFIG=ON"
+   ],
+   "copies": [
+    {
+     "repo": "apfaudio__eurorack-pmod",
+     "path": "gateware/boards/colorlight_i9/pinmap.lpf",
+     "url": "https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/colorlight_i9/pinmap.lpf",
+     "repo_last_commit": "2026-01-29",
+     "device": "45k",
+     "luts": [
+      44000
+     ],
+     "device_evidence": "build file apfaudio__eurorack-pmod/gateware/boards/colorlight_i9/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-01-29",
+   "devices_seen": [
+    "45k"
+   ],
+   "luts_seen": [
+    44000
+   ]
+  },
+  {
+   "sha256_16": "162ce4a76b298262",
+   "name": "pinmap.lpf",
+   "lines": 35,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5-5G 85F (LFE5UM5G-85F, CABGA554, speed 8, ECPIX-5; gateware/boards/ecpix5/Makefile: DEVICE=um5g-85k PACKAGE=CABGA554). Also ECP5 25F/45F CABGA381 (colorlight_i5/i9, NOT ECPIX-5) and ECP5 25F CABGA256 (Tiliqua r5). Also iCE40 UP5K SG48 (NOT ECP5: icebreaker, icesugar, pico_ice) and Cologne Chip GateMate (NOT ECP5/Lattice: gatemate_evb)",
+   "board": "ECPIX-5",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "file path/name; best ULX3S reference match 0%",
+   "board_description": "Eurorack PMOD: AK4619 audio-codec PMOD gateware (calibration, I2C/UART drivers, DSP synth/effects cores) for many FPGA dev boards",
+   "signals_active": 11,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_tx"
+    ],
+    "gpio-header": [
+     "pmod_bick",
+     "pmod_lrck",
+     "pmod_mclk",
+     "pmod_pdn",
+     "pmod_sdin1",
+     "pmod_sdout1"
+    ],
+    "i2c": [
+     "pmod_i2c_scl",
+     "pmod_i2c_sda"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [],
+   "io_standards": {
+    "LVCMOS33": 11
+   },
+   "clocks": [
+    "CLK 100MHZ"
+   ],
+   "sysconfig": [
+    "SYSCONFIG COMPRESS_CONFIG=ON"
+   ],
+   "copies": [
+    {
+     "repo": "apfaudio__eurorack-pmod",
+     "path": "gateware/boards/ecpix5/pinmap.lpf",
+     "url": "https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/ecpix5/pinmap.lpf",
+     "repo_last_commit": "2026-01-29",
+     "device": "85k",
+     "luts": [
+      84000
+     ],
+     "device_evidence": "build file apfaudio__eurorack-pmod/gateware/boards/ecpix5/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-01-29",
+   "devices_seen": [
+    "85k"
+   ],
+   "luts_seen": [
+    84000
+   ]
+  },
+  {
+   "sha256_16": "ee842961936609de",
+   "name": "pinmap.lpf",
+   "lines": 34,
+   "empty": false,
+   "kind": "pin-map",
+   "fpga_family": "ECP5-5G 85F (LFE5UM5G-85F, CABGA554, speed 8, ECPIX-5; gateware/boards/ecpix5/Makefile: DEVICE=um5g-85k PACKAGE=CABGA554). Also ECP5 25F/45F CABGA381 (colorlight_i5/i9, NOT ECPIX-5) and ECP5 25F CABGA256 (Tiliqua r5). Also iCE40 UP5K SG48 (NOT ECP5: icebreaker, icesugar, pico_ice) and Cologne Chip GateMate (NOT ECP5/Lattice: gatemate_evb)",
+   "board": "Colorlight",
+   "board_rev": [
+    "unknown"
+   ],
+   "board_evidence": "repo catalogue board_rev/name (repo-level); best ULX3S reference match 0%",
+   "board_description": "Eurorack PMOD: AK4619 audio-codec PMOD gateware (calibration, I2C/UART drivers, DSP synth/effects cores) for many FPGA dev boards",
+   "signals_active": 12,
+   "signals_commented": 0,
+   "chips": {
+    "ftdi-uart": [
+     "uart_tx"
+    ],
+    "gpio-header": [
+     "pmod_bick",
+     "pmod_lrck",
+     "pmod_mclk",
+     "pmod_pdn",
+     "pmod_sdin1",
+     "pmod_sdout1"
+    ],
+    "i2c": [
+     "pmod_i2c_scl",
+     "pmod_i2c_sda"
+    ]
+   },
+   "chips_commented_only": {},
+   "part_numbers_in_comments": [
+    "RP2040"
+   ],
+   "io_standards": {
+    "LVCMOS33": 12
+   },
+   "clocks": [
+    "CLK 48MHZ"
+   ],
+   "sysconfig": [
+    "SYSCONFIG COMPRESS_CONFIG=ON"
+   ],
+   "copies": [
+    {
+     "repo": "apfaudio__eurorack-pmod",
+     "path": "gateware/boards/tiliqua_r5/pinmap.lpf",
+     "url": "https://github.com/apfaudio/eurorack-pmod/blob/ddb9aa92fab7f74783f7ed3bf248eec56a6ceb00/gateware/boards/tiliqua_r5/pinmap.lpf",
+     "repo_last_commit": "2026-01-29",
+     "device": "25k",
+     "luts": [
+      24000
+     ],
+     "device_evidence": "build file apfaudio__eurorack-pmod/gateware/boards/tiliqua_r5/Makefile"
+    }
+   ],
+   "copy_count": 1,
+   "repo_last_commit_max": "2026-01-29",
+   "devices_seen": [
+    "25k"
+   ],
+   "luts_seen": [
+    24000
    ]
   },
   {
