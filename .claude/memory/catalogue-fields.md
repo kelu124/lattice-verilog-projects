@@ -20,6 +20,12 @@ For every gateware repo, the catalogue [[projects]] must say:
    mentions). `none found` if nothing turns up. Owner asked for this on 2026-09-27 too — a heuristic
    name/path scan is enough (`scan_tests.sh`), it doesn't need to confirm the tests pass.
 
+6. **make_tests** (15th column, 2026-09-28, owner request): which Makefile targets actually RUN a testbench / simulation
+   / formal check: make command, simulator, testbench files, self-checking or waveform-only; `none: <reason>` otherwise
+   (lint-only, ghdl-for-synthesis, tb missing from clone, target compiles but never runs). Candidates come from
+   `.claude/skills/review-gateware-project/scan_make_tests.py`, then a human/agent reads the Makefiles. Empty = not checked
+   (the scanner found no candidate). Nothing is executed.
+
 **Why:** asked explicitly by the repo owner on 2026-09-27 (license added the same day). These are the first filters someone
 uses to decide whether a design can be reused (their chip size, their toolchain, their language).
 

@@ -127,6 +127,7 @@ fpgawars__flix-v	https://github.com/FPGAwars/FLIX-V	d8c229dc90be4a3b2e37252a5376
 fusesoc__blinky	https://github.com/fusesoc/blinky	496eae5e447151c1ca720f995d292e2e99349b22	2026-02-28	2026-09-27
 fywc__ulx3s_rv32i_processor	https://github.com/fywc/ulx3s_rv32i_processor	0ebd3d9dc46b41458a2bd091d0d40909852ba687	2023-03-15	2026-09-27
 gatecat__snes_mister_ulx3s	https://github.com/gatecat/SNES_MiSTer_ulx3s	a9ed2ceb422e1001cfbbcfc85359fb23bc35d798	2025-09-05	2026-09-27
+gatecat__trellisboard	https://github.com/gatecat/TrellisBoard	54e073cb5775e6312db093f4fdbd762250d38ff2	2019-07-04	2026-09-28
 ghaworth__ulx3s-bldc-foc	https://github.com/ghaworth/ulx3s-bldc-foc	4fc4822d6828fd9bc8aa9eb5c21be38b201d12c7	2026-06-15	2026-09-27
 ghaworth__ulx3s-tinyai	https://github.com/ghaworth/ulx3s-tinyai	304656e4d7616cbd6f7313d7d58493454849cad3	2026-07-16	2026-09-27
 gmejiamtz__ulx3s-components	https://github.com/gmejiamtz/ulx3s-components	5844377dea344b046d924b72d4d3871f77248c31	2025-08-19	2026-09-27
@@ -298,6 +299,7 @@ thorkn__vexriscv-ulx3s-simple-plugin	https://github.com/ThorKn/vexriscv-ulx3s-si
 thorkn__vga_clock_1	https://github.com/ThorKn/vga_clock_1	5708288299b1cb3c59c2ed22bc5ad2b13b91caf7	2023-06-02	2026-09-27
 thorkn__vga_pong	https://github.com/ThorKn/vga_pong	8b4ca37f15691097d54a445a799b38c7a3901e3c	2023-11-27	2026-09-27
 tinyvision-ai-inc__pico-ice-sdk	https://github.com/tinyvision-ai-inc/pico-ice-sdk	f3ddedcdabdbb929939720df0856f2f6b39962fc	2026-03-06	2026-09-28
+toasterllc__mdccode	https://github.com/toasterllc/MDCCode	4de8ad2c5ddb1217a1d29adeabc2d0e747b91a3e	2026-03-20	2026-09-28
 tom7980__ulxws	https://github.com/tom7980/ulxws	f71581987d854b4eea497975ba4d7634d7de0135	2026-04-04	2026-09-27
 tommythorn__bluespec_blink	https://github.com/tommythorn/bluespec_blink	4917bc635ffc4a278e99580d6c35105ce3adddae	2025-03-09	2026-09-27
 tomverbeure__ecp5_jtag	https://github.com/tomverbeure/ecp5_jtag	6a2302e079d003ddce8335a5300172fdbb2bd1b5	2021-07-23	2026-09-27
@@ -332,6 +334,7 @@ wuxx__icesugar	https://github.com/wuxx/icesugar	1ebe71bf448e33a1bccfa2db6730d59e
 wuxx__icesugar-pro	https://github.com/wuxx/icesugar-pro	087e48d9e0b0a0168ce165a961cba306335c4cf2	2025-09-16	2026-09-27
 yope__cpuv2	https://github.com/yope/cpuv2	f489766dad2a77c63517115f25d357943daf5e28	2021-03-17	2026-09-27
 yowasp__toolchain-demo	https://github.com/YoWASP/toolchain-demo	6cf31d22dd49aca669a07c11f00eb72c197cc7ba	2024-01-01	2026-09-27
+zipcpu__sdspi	https://github.com/ZipCPU/sdspi	dfb16c80781e8f3eaea9f9cdeb7042baa9e6fa0d	2026-08-01	2026-09-28
 zipotron__neorv32-complex-setups	https://github.com/zipotron/neorv32-complex-setups	55152b5d770ffe5635d2036a4a208e4c8fc51ef7	2021-11-28	2026-09-27
 zipotron__ulx3s_sdram8	https://github.com/zipotron/ulx3s_sdram8	b9586fbcea1100aafbb9a5d137225d1d33e670f8	2021-10-12	2026-09-27
 zipotron__ziposoc	https://github.com/zipotron/ziposoc	140f4cc4f0f8624b12141b105e33b214da89f1be	2022-08-10	2026-09-27

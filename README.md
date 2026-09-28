@@ -48,7 +48,8 @@ the sources at a pinned commit.
 |---|---|
 | [`docs/github-survey.md`](docs/github-survey.md) | GitHub-wide search for ULX3S repos (groups A–F). A, B, D and the ULX4M part of E are cloned; C (multi-board) is not. F = ULX5M (GateMate, excluded) |
 | [`docs/ecp5-boards-survey.md`](docs/ecp5-boards-survey.md) | Gateware for other ECP5 boards (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5…), 114 repos |
-| [`docs/lattice-boards-survey.md`](docs/lattice-boards-survey.md) | Gateware for the UP5K and ECP5 boards of awesome-latticeFPGAs |
+| [`docs/lattice-boards-survey.md`](docs/lattice-boards-survey.md) | Gateware for the UP5K and ECP5 boards of awesome-latticeFPGAs (20 recommended, all catalogued) |
+| [`docs/hx-boards-survey.md`](docs/hx-boards-survey.md) | Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (20 recommended, not cloned yet) |
 
 ## Upstream sources
 

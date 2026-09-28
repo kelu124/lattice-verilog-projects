@@ -1,6 +1,9 @@
 # DONE
 
 ## 2026-09-28
+- [x] Add `make_tests` column: scan_make_tests.py candidates (112 repos) checked by 5 subagents; 67 have a make target that runs a testbench/sim/formal check → commit "docs(catalogue): add make_tests column, HX survey, prune rule; handoff"
+- [x] Survey HX8K/HX4K board gateware from awesome-latticeFPGAs → docs/hx-boards-survey.md (same commit)
+- [x] Clone gatecat/TrellisBoard, ZipCPU/sdspi, toasterllc/MDCCode (rows pending) (same commit)
 - [x] Clone + catalogue the 20 recommended repos of docs/lattice-boards-survey.md (4 subagents, +2 gateware submodules); refresh README (what the repo is, start-here table, main files) → commit "docs(catalogue): catalogue 20 UP5K/ECP5 board repos from awesome-latticeFPGAs"
 - [x] Survey gateware for the UP5K/ECP5 boards of kelu124/awesome-latticeFPGAs (1 subagent, research only) → docs/lattice-boards-survey.md, commit "docs(survey): record gateware survey of awesome-latticeFPGAs boards"
 - [x] Search GitHub for UP5K gateware, clone + catalogue 8 repos (+11 gateware submodules) via 2 subagents; 308 → 316 → commit "docs(catalogue): catalogue 8 iCE40 UP5K gateware repos from GitHub"

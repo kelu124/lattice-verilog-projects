@@ -3,12 +3,16 @@
 ## In progress
 
 ## Next
+- [ ] Write catalogue rows for gatecat__trellisboard, zipcpu__sdspi, toasterllc__mdccode (cloned + pinned 2026-09-28; the agent was stopped by a classifier outage). For MDCCode look only at Code/ICE40, Sim, Other/ExampleSDRAMControllers; run scan_make_tests.py for make_tests. Mixed-family brief rules: non-ECP5 rows say `NOT ECP5` (added 2026-09-28)
+- [ ] Clone + catalogue the 20 recommended repos of docs/hx-boards-survey.md (owner approved; skip abnoname/iceZ0mb1e; FPGA column `iCE40 HX8K (NOT ECP5)`; fetch gateware submodules only; fill make_tests too) (added 2026-09-28)
+- [ ] Write .claude/skills/clone-original-source/prune.sh and prune all clones of non-gateware files (see memory prune-clones.md); report space saved; start with toasterllc__mdccode (Tools/, Other/, PCB/) (added 2026-09-28)
 - [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)
 - [ ] Clone the remaining candidates in projects.md (litex-boards, SaxonSoc, neorv32-setups, fujprog, had2019-playground, ulx4m-ls) (added 2026-09-27)
 - [ ] Harvest the "Gitee examples" section of ulx3s.github.io (added 2026-09-27)
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)
 
 ## Backlog
+- [ ] scan_make_tests.py blind spots: tests run via Python orchestrators (Hazard3 test/sim/test.py), default `all`/`run` targets, shell scripts (apple-one tools/iverilog/*.sh); extend it (added 2026-09-28)
 - [ ] scan_tests.sh misses CMake/Verilator harnesses (CMakeLists.txt, verilator/ dirs), e.g. bit-hack__icesid; extend it and re-run (added 2026-09-28)
 - [ ] Clone items 15–24 (except 21, done) of the "recommended" list in docs/ecp5-boards-survey.md if wanted (added 2026-09-27)
 - [ ] Nested gateware submodules not fetched (clone.sh --submodule only takes top-level paths): z386 CPU (gojimmypi__z80386-ulx3s-doom third_party/z386_MiSTer/src/z386), ACoreBase CPU (chiplet__acorechip-ulx3s ACoreChip/…) (added 2026-09-27)

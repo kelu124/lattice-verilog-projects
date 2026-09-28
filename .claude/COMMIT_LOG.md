@@ -2,6 +2,21 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(catalogue): add make_tests column, HX survey, prune rule; handoff
+- **What**: `scan_make_tests.py` (candidate Makefile targets calling iverilog/vvp, verilator, ghdl, nvc, cocotb, sby,
+  pytest, vunit, or a sub-make into sim/test dirs) flagged 112 of 336 repos; 5 Sonnet subagents read those Makefiles and
+  wrote a `make_tests` value per repo (command, simulator, testbench files, self-checking vs waveform-only, or
+  `none: <reason>`). Merged as the 15th column of catalogue.tsv (67 with a real make-run test); gen_catalogue.py shows
+  and counts it. HX8K/HX4K board survey saved as `docs/hx-boards-survey.md` (20 recommended, not cloned yet). Cloned +
+  pinned gatecat/TrellisBoard, ZipCPU/sdspi, toasterllc/MDCCode (963 MB shallow, mostly prebuilt tools), rows still to
+  write. New owner rule in memory `prune-clones.md` (delete non-gateware files from local clones, never commit to them).
+- **Why**: owner asked for testbenches run by Makefiles, HX8K/HX4K gateware, those three repos and a space-saving prune;
+  then to save everything to memory, commit and push before restarting in a new session.
+- **Notes**: a server-side classifier outage stopped the TrellisBoard/sdspi/MDCCode agent; the make_tests agents that ran
+  during it were verified afterwards (all clones clean, 112 well-formed rows). sources.tsv has 339 pins vs 336 catalogue
+  rows until those 3 rows are written. Scanner blind spots: Python orchestrators, default `all`/`run` targets, shell
+  scripts. Several sim targets compile but never run (`vvp` missing) or reference testbenches absent from the clone.
+
 ## 2026-09-28 — docs(catalogue): catalogue 20 UP5K/ECP5 board repos from awesome-latticeFPGAs
 - **What**: shallow-cloned the 20 "recommended" repos of `docs/lattice-boards-survey.md`, fetched 2 new gateware submodules
   (osmo-e1 `no2e1`, up5k_vga hoglet67 `verilog-6502`; other submodules were duplicates of cores already fetched, or
