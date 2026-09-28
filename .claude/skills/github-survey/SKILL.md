@@ -27,5 +27,6 @@ Last run: 2026-09-27 → `docs/github-survey.md` (≈297 candidates in groups A�
 2. Drop anything whose slug (`owner__repo`, lowercase) is already in `.claude/memory/sources.tsv`.
 3. Check the evidence (repo tree or the github.com root listing; raw README grep for "ulx3s").
 4. Regenerate `docs/github-survey.md`, and log the run in `.claude/memory/source-lists.md`.
-5. Clone the chosen ones with the `clone-original-source` skill, then catalogue them (review skill, step 7b).
+5. Clone the chosen ones with the `clone-original-source` skill, then catalogue them (review skill, step 7b),
+   then prune the new clones (`prune.py --apply --all`) and report the space saved.
    **Check free disk space first** (`df -h`): on 2026-09-27 the disk was 98 % full.

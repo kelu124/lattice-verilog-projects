@@ -2,7 +2,7 @@
 
 A knowledge base of **open gateware for the [ULX3S](https://github.com/emard/ulx3s) FPGA board**
 (Radiona, Lattice ECP5 LFE5U-12F/25F/45F/85F) and, for reuse, other small Lattice boards
-(ECP5 and iCE40 UP5K). It records which projects exist, what their gateware does, which FPGA
+(ECP5, iCE40 UP5K and iCE40 HX8K/HX4K). It records which projects exist, what their gateware does, which FPGA
 and toolchain they target, their license, whether they have testbenches, and which blocks can be
 lifted into a new design. It is maintained with [Claude Code](https://claude.com/claude-code).
 
@@ -49,7 +49,7 @@ the sources at a pinned commit.
 | [`docs/github-survey.md`](docs/github-survey.md) | GitHub-wide search for ULX3S repos (groups A–F). A, B, D and the ULX4M part of E are cloned; C (multi-board) is not. F = ULX5M (GateMate, excluded) |
 | [`docs/ecp5-boards-survey.md`](docs/ecp5-boards-survey.md) | Gateware for other ECP5 boards (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight, ButterStick, ECPIX-5…), 114 repos |
 | [`docs/lattice-boards-survey.md`](docs/lattice-boards-survey.md) | Gateware for the UP5K and ECP5 boards of awesome-latticeFPGAs (20 recommended, all catalogued) |
-| [`docs/hx-boards-survey.md`](docs/hx-boards-survey.md) | Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (20 recommended, not cloned yet) |
+| [`docs/hx-boards-survey.md`](docs/hx-boards-survey.md) | Gateware for the iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (20 recommended; 19 catalogued, iceZ0mb1e already present as a submodule) |
 
 ## Upstream sources
 
@@ -60,7 +60,14 @@ submodules that were fetched are pinned in
 
 ```bash
 .claude/skills/clone-original-source/clone.sh --restore
+.claude/skills/clone-original-source/prune.py --apply --all   # then drop non-gateware files (see below)
 ```
+
+To save disk, the local clones are **pruned** of files that are not gateware: prebuilt tools, bitstreams,
+build outputs, PCB/3D files, datasheets, large images and archives (`prune.py`, dry run without
+`--apply`; per-repo folder rules in `prune.tsv`). HDL, constraints, Makefiles, testbenches, ROM files,
+READMEs and licenses are always kept. The deletions are never committed. The first run (2026-09-28)
+freed 5 GB.
 
 ## Main files
 
@@ -71,7 +78,7 @@ submodules that were fetched are pinned in
 | [`.claude/memory/board-hardware.md`](.claude/memory/board-hardware.md), [`board-revisions.md`](.claude/memory/board-revisions.md), [`toolchain-and-programming.md`](.claude/memory/toolchain-and-programming.md) | Distilled ULX3S hardware, revision and toolchain knowledge |
 | [`.claude/memory/projects.md`](.claude/memory/projects.md) | Project registry: status and the queue of candidates still to review |
 | [`.claude/memory/source-lists.md`](.claude/memory/source-lists.md) | Where each batch of repos came from, and when |
-| [`.claude/skills/`](.claude/skills/) | Repeatable workflows: GitHub survey, clone, review/catalogue, document, commit, TODO/DONE |
+| [`.claude/skills/`](.claude/skills/) | Repeatable workflows: GitHub survey, clone + prune, review/catalogue, document, commit, TODO/DONE |
 | [`.claude/TODO.md`](.claude/TODO.md), [`DONE.md`](.claude/DONE.md), [`COMMIT_LOG.md`](.claude/COMMIT_LOG.md) | Open work, finished work, and the why of each commit |
 
 ## Working in this repo

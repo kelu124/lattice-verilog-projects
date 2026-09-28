@@ -2,6 +2,13 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(repo): document clone pruning and the HX8K/HX4K batch in README, memory, skills
+- **What**: README (scope now includes iCE40 HX8K/HX4K, HX survey status, a pruning paragraph + command after
+  `--restore`, skills row); CLAUDE.md (prune after each clone batch and in the resume protocol); skills github-survey
+  step 5 and review-gateware-project step 2 (prune after cataloguing); memory source-lists (HX batch + the 3 owner-named
+  repos done), shallow-clones (link to prune-clones).
+- **Why**: owner asked to bring README, memory and skills up to date after the prune + HX batch commits.
+
 ## 2026-09-28 — docs(catalogue): catalogue 19 iCE40 HX8K/HX4K repos and 3 pending rows
 - **What**: wrote the 3 rows pending since the last session (gatecat__trellisboard ECP5 85F, mostly PCB + LiteX platform;
   zipcpu__sdspi vendor-neutral SD SPI/SDIO cores with ~60 formal proofs; toasterllc__mdccode iCE40 HX8K camera glue +

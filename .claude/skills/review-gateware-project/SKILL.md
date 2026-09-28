@@ -7,7 +7,8 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
 
 1. **TODO**: move "review <slug>" to *In progress* in `.claude/TODO.md` (add it if absent).
 2. **Clone**: `.claude/skills/clone-original-source/clone.sh <url>` (skill
-   `clone-original-source`). Note the pinned commit.
+   `clone-original-source`). Note the pinned commit. Prune it (`prune.py --apply <slug>`) once the
+   review is done, not while agents are still reading it.
 3. **Activity**: from the clone
    ```bash
    cd original_sources/<slug>

@@ -19,4 +19,4 @@ SpinalHDL, jtframe), software, test suites, hardware libraries, or upstreams alr
 
 **How to apply:** never unshallow or full-clone. Activity stats that need history (first commit, commit count)
 are in `.claude/memory/history.tsv` for the first 71 repos (the GitHub-survey 155 still need this — see TODO). For newer repos, use the GitHub API (`created_at`,
-plus commits/contributors pagination) and add them there. `gen_catalogue.py` reads history.tsv. See [[source-lists]].
+plus commits/contributors pagination) and add them there. `gen_catalogue.py` reads history.tsv. After cloning, prune non-gateware files ([[prune-clones]]). See [[source-lists]].

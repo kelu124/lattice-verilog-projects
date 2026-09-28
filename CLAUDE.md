@@ -15,7 +15,8 @@ exact state it was left in. Do **not** rely on the per-user memory in
 1. Read `.claude/memory/MEMORY.md` (index) and follow the links relevant to the task.
 2. Read `.claude/TODO.md` (what is left) and skim the top of `.claude/DONE.md` / `.claude/COMMIT_LOG.md` (what happened last).
 3. If `original_sources/` is empty or missing repos (fresh clone of this repo),
-   restore them: `.claude/skills/clone-original-source/clone.sh --restore`.
+   restore them: `.claude/skills/clone-original-source/clone.sh --restore`, then
+   `.claude/skills/clone-original-source/prune.py --apply --all`.
 4. Then work on the task. Before ending, update memory, TODO/DONE and commit
    (see rules below).
 
@@ -51,6 +52,8 @@ exact state it was left in. Do **not** rely on the per-user memory in
   shallow (`--depth 1`)**: owner's rule, and the disk is nearly full. History stats
   (first commit, commit count) go in `.claude/memory/history.tsv`, not in the clones.
   Submodules only when explicitly gateware (USB/CPU/DDR3 cores…), via `clone.sh --submodule`, listed in `submodules.tsv`.
+  After each clone batch (and after `--restore`) run `prune.py --apply --all` to delete non-gateware files
+  from the clones (owner rule, memory `prune-clones.md`); report the space saved.
 - **Committing** → skill `committing`. Small, focused commits; conventional
   prefixes; every commit gets an entry in `.claude/COMMIT_LOG.md` (what + why) in the
   same commit; memory/TODO/DONE updated in the same commit as the work.
