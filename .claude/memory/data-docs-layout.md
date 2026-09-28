@@ -22,7 +22,7 @@ Pages site (owner request, 2026-09-28: "the docs folder will be about pushing to
 ADC, SPI, DAC, VGA, HDMI…), each core linking to its original files upstream at the pinned commit
 (`data/cores.json`, usage from `scan_core_usage.py` → `data/core_usage.json`). Boards: only the most relevant, in
 3 families ECP5 / UP5K / HX (`data/boards.json`, 16 boards). Guides (toolchain, porting iCE40→ECP5, DFU), the
-in-depth project reviews, and a methodology section linking to the raw material on GitHub (data files, memory,
+in-depth project reviews, a Contribute page (also rendered as root `CONTRIBUTING.md`), and a methodology section linking to the raw material on GitHub (data files, memory,
 skills). Generator: `documentation/gen_site.py` (front matter for nav, `{% raw %}` wrapper, explicit
 `{#core-<id>}` anchors); validation: `documentation/check_data.py` (`make check`).
 

@@ -2,6 +2,16 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(contrib): add a contribute page and CONTRIBUTING.md
+- **What**: `data/pages/contributing.json` (kind `contribute`): what to contribute, how the repo is organised for
+  Claude (CLAUDE.md, `.claude/memory`, `.claude/skills`, TODO/DONE/COMMIT_LOG, data/, docs/), the skills table,
+  a Claude Code workflow (clone, `claude`, example requests, what Claude does, PR), a manual workflow (edit data/,
+  `make check docs`, COMMIT_LOG), and the rules. `gen_site.py` renders it to `docs/contributing.md` (nav 7, linked
+  from the home page) and to root `CONTRIBUTING.md` via a new `write_root` (repo-relative links). README, CLAUDE.md,
+  documentation skill and data-docs-layout memory point to it.
+- **Why**: owner asked for a contribute page explaining how to contribute, especially with the `.claude` folder and
+  CLAUDE.md files.
+
 ## 2026-09-28 — docs(repo): polish README and site home, handoff for a fresh session
 - **What**: home page intro (data/pages/index.json) rewritten around cores by function (no more link to the memory
   file, no "project pages below"); home links point to section index.md pages. README: 153 cores/33 functions line,

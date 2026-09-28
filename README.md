@@ -28,6 +28,7 @@ same pages as markdown on GitHub.
 | Read an in-depth review with per-block reuse notes | [Project reviews](docs/projects/index.md) (18 repos) |
 | Browse every catalogued repo, or every LPF pin map | [Full catalogue](docs/methodology/catalogue.md), [LPF catalogue](docs/methodology/lpf-catalogue.md) (data: [`data/catalogue.json`](data/catalogue.json), [`data/lpfs.json`](data/lpfs.json)) |
 | See how the collection was found | [Methodology](docs/methodology/index.md) and the surveys below |
+| Contribute (with Claude Code and the `.claude/` memory, or by hand) | [`CONTRIBUTING.md`](CONTRIBUTING.md) (also on the site: [Contribute](docs/contributing.md)) |
 
 ## The catalogue
 
@@ -125,3 +126,4 @@ freed 5 GB.
    (`gen_catalogue.py --merge`), adds any better core to `data/cores.json`, documents, runs
    `make check usage docs`, and commits with a `COMMIT_LOG.md` entry.
 3. Never edit files under `original_sources/`, and never edit anything under `docs/` by hand (edit `data/`, then `make docs`).
+4. Full contributor guide: [`CONTRIBUTING.md`](CONTRIBUTING.md) (generated from `data/pages/contributing.json`).

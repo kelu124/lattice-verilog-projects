@@ -20,6 +20,7 @@ section that links to the raw material on GitHub. Site language: English.
 | `data/boards.json` (families + curated boards, match regex) | `docs/boards/…` | `gen_site.py` (+ `data/lpfs.json`, PCF scan) |
 | `data/pages/<slug>.json` kind `guide` / `survey` / `reference` / `methodology` / `index` | `docs/guides/`, `docs/methodology/`, ULX3S board page, `docs/index.md` | `gen_site.py` |
 | `data/projects/<owner>__<repo>.json` (in-depth reviews) | `docs/projects/<slug>.md` | `gen_site.py` |
+| `data/pages/contributing.json` (kind `contribute`) | `docs/contributing.md` **and root `CONTRIBUTING.md`** | `gen_site.py` (edit the JSON, not the .md) |
 | `data/catalogue.json` (every repo) | `docs/methodology/catalogue.md` | `review-gateware-project/gen_catalogue.py` (`--merge rows.tsv\|json`) |
 | `data/lpfs.json` (every LPF) | `docs/methodology/lpf-catalogue.md` | `scan_lpfs.py` (scan) + `gen_lpf_catalogue.py` |
 

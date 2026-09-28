@@ -106,6 +106,24 @@ def write(out_rel, front, body_md, src, legacy_dir=None):
                 + "\n{% endraw %}\n")
 
 
+def write_root(out_rel, body_md, src, legacy_dir):
+    """Render a page for the GitHub repo view (e.g. CONTRIBUTING.md): links stay repo-relative, and links into
+    docs/ keep pointing at the markdown files (GitHub renders them)."""
+    def fix(m):
+        target = m.group(2)
+        if re.match(r"^[a-z]+:|^#|^/", target):
+            return m.group(0)
+        path, _, frag = target.partition("#")
+        resolved = posixpath.normpath(posixpath.join(legacy_dir, path))
+        resolved = LEGACY.get(resolved, resolved)
+        rel = posixpath.relpath(resolved, posixpath.dirname(out_rel) or ".")
+        return f"{m.group(1)}{rel}{'#' + frag if frag else ''}{m.group(3)}"
+    parts = re.split(r"(```.*?```|`[^`\n]*`)", body_md, flags=re.S)
+    body = "".join(p if i % 2 else LINK.sub(fix, p) for i, p in enumerate(parts))
+    with open(os.path.join(ROOT, out_rel), "w") as f:
+        f.write(f"<!-- Generated from {src} by {GEN}; do not edit. -->\n\n" + body)
+
+
 def section_index(key, body, src, has_children=True):
     title, order = SECTIONS[key]
     write(f"docs/{key}/index.md", fm(title=title, nav_order=order, has_children=has_children, permalink=f"/{key}/"),
@@ -391,6 +409,13 @@ def main():
         write(f"docs/methodology/{p['slug']}.md", fm(title=p.get("nav_title", p["title"]), parent="Methodology", nav_order=i),
               mdjson.page_to_md(p), f"data/pages/{p['slug']}.json", legacy_dir="docs")
 
+    # contribute (site page + root CONTRIBUTING.md for GitHub)
+    contrib = pages.get("contributing")
+    if contrib:
+        write("docs/contributing.md", fm(title="Contribute", nav_order=7), mdjson.page_to_md(contrib),
+              "data/pages/contributing.json", legacy_dir="docs")
+        write_root("CONTRIBUTING.md", mdjson.page_to_md(contrib), "data/pages/contributing.json", legacy_dir="docs")
+
     # home
     index = pages.get("index", {"title": "ulx3s-klod", "blocks": []})
     n_users = len({u["repo"] for us in usage.values() for u in us})
@@ -406,7 +431,8 @@ def main():
         {"type": "list", "ordered": False, "items": [
             "[Boards](boards/index.md): " + ", ".join(f"[{b['name']}](boards/{b['id']}.md)" for b in boards["boards"]),
             "[Guides](guides/index.md): " + ", ".join(f"[{p.get('nav_title', p['title'])}](guides/{p['slug']}.md)" for p in guides),
-            "[Project reviews](projects/index.md) · [Methodology and data](methodology/index.md)"]}]}
+            "[Project reviews](projects/index.md) · [Methodology and data](methodology/index.md) · "
+            "[Contribute](contributing.md)"]}]}
     home = dict(index, sections=index.get("sections", []) + [extra])
     write("docs/index.md", fm(title="Home", nav_order=1, permalink="/"), mdjson.page_to_md(home),
           "data/pages/index.json", legacy_dir="docs")

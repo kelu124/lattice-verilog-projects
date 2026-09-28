@@ -29,5 +29,5 @@ Facts cite the upstream file at a pinned commit; nothing was built or simulated,
 
 - [Boards](boards/index.md): [ULX3S](boards/ulx3s.md), [ULX4M](boards/ulx4m.md), [OrangeCrab](boards/orangecrab.md), [Colorlight 5A-75B/E, i5, i9](boards/colorlight.md), [IcePi Zero](boards/icepi-zero.md), [iCESugar-Pro](boards/icesugar-pro.md), [iCEBreaker](boards/icebreaker.md), [UPduino](boards/upduino.md), [iCESugar](boards/icesugar.md), [Fomu](boards/fomu.md), [pico-ice](boards/pico-ice.md), [iCE40-HX8K Breakout](boards/hx8k-breakout.md), [BlackIce II / Mx](boards/blackice.md), [iceFUN](boards/icefun.md), [Olimex iCE40HX8K-EVB](boards/olimex-hx8k.md), [IcoBoard](boards/icoboard.md)
 - [Guides](guides/index.md): [Build and load](guides/toolchain.md), [Porting iCE40 to ECP5](guides/porting-ice40-to-ecp5.md), [USB DFU](guides/DFUs.md)
-- [Project reviews](projects/index.md) · [Methodology and data](methodology/index.md)
+- [Project reviews](projects/index.md) · [Methodology and data](methodology/index.md) · [Contribute](contributing.md)
 {% endraw %}

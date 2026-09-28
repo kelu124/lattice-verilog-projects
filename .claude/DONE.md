@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-28
+- [x] Contribute page (data/pages/contributing.json → docs/contributing.md + root CONTRIBUTING.md): Claude Code workflow with CLAUDE.md, .claude memory and skills, manual workflow, rules → commit "docs(contrib): add a contribute page and CONTRIBUTING.md"
 - [x] Review README and the site home page (intro now points to Cores by function; index links; README data/main-files rows, Pages note, review workflow); handoff in TODO → commit "docs(repo): polish README and site home, handoff for a fresh session"
 - [x] GitHub Pages site (just-the-docs, English) built around reusable cores by function: data/functions.json (33), data/cores.json (153 cores from 5 research agents, paths verified), data/core_usage.json (scan_core_usage.py, 481 uses), data/boards.json (16 boards, 3 families), guides (toolchain, porting iCE40→ECP5, DFU), reviews, methodology linking GitHub materials; gen_site.py + check_data.py + make check/usage/docs; skills, memory, README updated → commit "docs(site): generate a just-the-docs site of reusable cores by function"
 - [x] Move gathered data to data/ as JSON (catalogue.json, lpfs.json, pages/*.json, projects/*.json) and generate docs/ (GitHub Pages) with scripts (gen_catalogue.py --merge, scan_lpfs.py + gen_lpf_catalogue.py, gen_pages.py, md2json.py, Makefile); skills + memory updated → commit "docs(data): move gathered data to data/ JSON, generate docs/ for GitHub Pages"
