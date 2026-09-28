@@ -17,7 +17,7 @@ Lattice ECP5 (LFE5U/LFE5UM): 12k–85k LUTs, DSP blocks, SERDES on 5G parts; ope
 
 | Board | FPGA | Catalogued repos |
 |---|---|---|
-| [ULX3S](ulx3s.md) | LFE5U-12F/25F/45F/85F, CABGA381 | 283 |
+| [ULX3S](ulx3s.md) | LFE5U-12F/25F/45F/85F, CABGA381 | 284 |
 | [ULX4M](ulx4m.md) | LFE5UM-85F (ECP5-5G) on the variants catalogued | 18 |
 | [OrangeCrab](orangecrab.md) | LFE5U-25F or 85F, CSFBGA285 | 8 |
 | [Colorlight 5A-75B/E, i5, i9](colorlight.md) | LFE5U-25F (5A-75B/E, i5), LFE5U-45F (i9), CABGA256/CABGA381 | 7 |

@@ -17,7 +17,7 @@ The main board of this collection: 32 MB SDR SDRAM, GPDI (HDMI) port, ESP32, US1
 | FPGA | LFE5U-12F/25F/45F/85F, CABGA381 |
 | Evidence | emard/ulx3s MANUAL + reference LPFs (doc/constraints) |
 | Clock | 25 MHz (clk_25mhz, reference LPF) |
-| Catalogued repos | 283 |
+| Catalogued repos | 284 |
 
 ## Board reference
 
@@ -143,7 +143,9 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
 | cpu_6502 (Klaus Dormann-verified 6502 core) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | chrismoos__m6502 |
 | fx68k 68000-compatible core (nullobject vendored copy) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | nullobject__m68k-ulx3s |
+| grom toy 8-bit CPU + computer (FPGA 101 original) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | mmicko__fpga101-workshop |
 | i8080-compatible core (Bashkiria-2M-derived) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | lawrie__ulx3s_examples |
+| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
 | Hazard3 RV32IMAC core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | wren6991__hazard3 |
 | KianV RV32IMA+Sv32 core (Linux-capable) | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | splinedrive__kianriscv |
 | PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
@@ -160,12 +162,10 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | NCO + CIC building blocks (mixer_pcb) | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | jamesrosssharp__ulx3s_mixer_pcb |
 | Waveform-generator DDS sine core (AXI-Stream, cocotb-tested) | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | semify-eda__waveform-generator |
 | ESP32 SPI OSD + spirw_slave ROM/disk loading stack | [esp32-osd](https://github.com/kelu124/ulx3s-klod/blob/main/functions/esp32-osd.md) | lawrie__ulx3s_sms |
-| SPI RAM slave (ESP32 <-> FPGA memory-mapped link) | [esp32-osd](https://github.com/kelu124/ulx3s-klod/blob/main/functions/esp32-osd.md) | emard__uk101onfpga |
-| esp32_spi_gamepad minimal ESP32 SPI state receiver | [esp32-osd](https://github.com/kelu124/ulx3s-klod/blob/main/functions/esp32-osd.md) | dan-rodrigues__ulx3s-bluetooth-gamepad |
 
 ## Projects targeting this board
 
-283 catalogued repos target this board; see the [full catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/catalogue.md). Those with a full review:
+284 catalogued repos target this board; see the [full catalogue](https://github.com/kelu124/ulx3s-klod/blob/main/methodology/catalogue.md). Those with a full review:
 
 - [chrismoos__m6502](https://github.com/kelu124/ulx3s-klod/blob/main/projects/chrismoos__m6502.md): m6502: compact microcoded cycle-accurate 6502 in SystemVerilog + MCU wrapper
 - [danodus__ecp5_hdmi_audio_video](https://github.com/kelu124/ulx3s-klod/blob/main/projects/danodus__ecp5_hdmi_audio_video.md): ULX3S/IcePi Zero: HDMI audio+video transmitter core
@@ -175,6 +175,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 - [hdl4fpga__hdl4fpga](https://github.com/kelu124/ulx3s-klod/blob/main/projects/hdl4fpga__hdl4fpga.md): hdl4fpga: portable VHDL library, ScopeIO oscilloscope, SDRAM graphics, eth/USB links
 - [lawrie__ulx3s_examples](https://github.com/kelu124/ulx3s-klod/blob/main/projects/lawrie__ulx3s_examples.md): Lawrie Griffiths Verilog examples: HDMI, displays, PS/2, SDRAM, USB host, CPUs
 - [lawrie__ulx3s_sms](https://github.com/kelu124/ulx3s-klod/blob/main/projects/lawrie__ulx3s_sms.md): Sega Master System / SG-1000: TV80, VDP, SN76489, SDRAM carts, ESP32 OSD
+- [mmicko__fpga101-workshop](https://github.com/kelu124/ulx3s-klod/blob/main/projects/mmicko__fpga101-workshop.md): FPGA 101 workshop
 - [sylefeb__silice](https://github.com/kelu124/ulx3s-klod/blob/main/projects/sylefeb__silice.md): Silice HDL language/compiler + many ULX3S projects
 - [trabucayre__openfpgaloader](https://github.com/kelu124/ulx3s-klod/blob/main/projects/trabucayre__openfpgaloader.md): openFPGALoader universal programmer
 {% endraw %}

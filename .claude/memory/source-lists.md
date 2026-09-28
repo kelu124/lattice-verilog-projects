@@ -18,6 +18,7 @@ metadata:
 | kelu124/awesome-latticeFPGAs `Readme.md` (UP5K + ECP5 boards; boards already in ecp5-boards-survey skipped) | 2026-09-28 | ~30 UP5K + 6 ECP5 boards with gateware (Fomu, UPduino, pico-ice, MCH2022, Machdyne, GreyBadge…), ~28 boards with none found → `docs/methodology/lattice-boards-survey.md`, 20 recommended, all 20 cloned + catalogued 2026-09-28 (+2 gateware submodules: no2e1, hoglet67 verilog-6502) |
 | kelu124/awesome-latticeFPGAs HX8K/HX4K boards (1 subagent, 13 searches, tarball listings) | 2026-09-28 | ~40 boards, ~110 repos → `docs/methodology/hx-boards-survey.md`, 20 recommended; 19 cloned + catalogued 2026-09-28 (+2 RISCBoy gateware submodules hazard5, libfpga); abnoname/iceZ0mb1e skipped (already the wuxx__icesugar submodule); the 8 honourable mentions (glasgow, BlackIce-II, apollo11_fpga, nanoV, dsp_ice, Centurion, BeagleWire, fpga-3-softcores +2 submodules) cloned + catalogued 2026-09-28 |
 | Owner-named repos: gatecat/TrellisBoard, ZipCPU/sdspi, toasterllc/MDCCode | 2026-09-28 | cloned + pinned; catalogue rows written 2026-09-28 |
+| Owner question: mmicko/fpga101-workshop (runner-up of the lattice-boards survey) | 2026-09-28 | cloned + catalogued, review page with the 20 exercises, 2 cores (grom CPU, UP5K PicoSoC + MicroPython); ulx3s__fpga-odysseus identified as its ULX3S follow-up |
 
 The ulx3s.github.io page also has a "Gitee examples" section (Chinese mirror/examples), not yet harvested.
 

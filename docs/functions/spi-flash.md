@@ -12,7 +12,7 @@ SPI/QSPI flash readers, XIP controllers and flash writers.
 
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
-| [spimemio SPI/QSPI flash XIP controller](#core-picorv32-spimemio) ★ | [yosyshq__picorv32](https://github.com/YosysHQ/picorv32) | Verilog | ISC (COPYING; per-file header) | any | 6 |
+| [spimemio SPI/QSPI flash XIP controller](#core-picorv32-spimemio) ★ | [yosyshq__picorv32](https://github.com/YosysHQ/picorv32) | Verilog | ISC (COPYING; per-file header) | any | 7 |
 | [MappedSPIFlash read-only XIP driver](#core-mb-sat-mappedspiflash) | [mb-sat__ulx3s-longwave-sdr](https://github.com/mb-sat/ulx3s-longwave-sdr) | Verilog | GPL-3.0 (repo LICENSE) | any | 1 |
 | [NEORV32 ULX3S XIP flash-execute top](#core-neorv32-ulx3s-xip) | [fedy0__neo](https://github.com/fedy0/neo) | VHDL | BSD-3-Clause | ECP5 | 0 |
 | [qspi_phy_ecp5 QSPI flash PHY (ECP5-native)](#core-had2019-qspi-phy-ecp5) | [emard__had2019-playground](https://github.com/emard/had2019-playground) | Verilog | BSD-3-clause | ECP5 | 1 |
@@ -38,11 +38,12 @@ Memory-mapped SPI-flash execute-in-place controller from PicoSoC: no vendor prim
 
 Full review: [yosyshq__picorv32](../projects/yosyshq__picorv32.md).
 
-**Used by 6 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 7 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [gtjennings1__hyperbus](https://github.com/gtjennings1/HyperBUS) (instantiates [`riscv32/hardware/picosoc.v`](https://github.com/gtjennings1/HyperBUS/blob/37bf73d0f5f7884d007b5a20566508a292a3c11c/riscv32/hardware/picosoc.v))
 - [im-tomu__fomu-workshop](https://github.com/im-tomu/fomu-workshop) (copies [`litex/rtl/spimemio.v`](https://github.com/im-tomu/fomu-workshop/blob/af55dff1ffdd7cd833ed4619295053c87f7a07a0/litex/rtl/spimemio.v))
 - [mkvenkit__learn_fpga](https://github.com/mkvenkit/learn_fpga) (instantiates [`ice40up5k/picosoc_gpio/picosoc.v`](https://github.com/mkvenkit/learn_fpga/blob/b4784c67b83344f7b2c4b01f3f8bf345c9c54faf/ice40up5k/picosoc_gpio/picosoc.v))
+- [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) (instantiates [`tutorials/12-RiscV/picosoc.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/picosoc.v))
 - [nklabs__libnklabs-ulx3s](https://github.com/nklabs/libnklabs-ulx3s) (instantiates [`rtl/bus_spiflash.v`](https://github.com/nklabs/libnklabs-ulx3s/blob/6b6a6b2c50cff5415666ab0a4351a33f036c1761/rtl/bus_spiflash.v))
 - [spritetm__hadbadge2019_fpgasoc](https://github.com/Spritetm/hadbadge2019_fpgasoc) (instantiates [`soc/picorv32/picosoc/picosoc.v`](https://github.com/Spritetm/hadbadge2019_fpgasoc/blob/6e706d52ecdc007e9179bda01d8eac60d55b7c45/soc/picorv32/picosoc/picosoc.v))
 - [wuxx__icesugar](https://github.com/wuxx/icesugar) (instantiates [`src/advanced/picorv32/picosoc/picosoc.v`](https://github.com/wuxx/icesugar/blob/1ebe71bf448e33a1bccfa2db6730d59eafb6c390/src/advanced/picorv32/picosoc/picosoc.v))

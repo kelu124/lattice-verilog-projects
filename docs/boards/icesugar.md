@@ -45,6 +45,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | Core | Function | Source repo |
 |---|---|---|
 | TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
+| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
 | PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
 | Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | daveshah1__up5k-demos |
 | smoldvi small portable DVI core | [hdmi-dvi](https://github.com/kelu124/ulx3s-klod/blob/main/functions/hdmi-dvi.md) | wren6991__smoldvi |

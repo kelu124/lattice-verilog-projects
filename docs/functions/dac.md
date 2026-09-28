@@ -140,5 +140,5 @@ Tiny parametric-width sigma-delta DAC (delta/sigma adder pair) used for the NES 
 
 ## Other catalogued projects
 
-Catalogued repos tagged `audio-dac` (55) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `audio-dac` (56) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

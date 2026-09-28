@@ -54,6 +54,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | ULX3S/ULX4M USB DFU bootloader (had2019-playground) | [bootloader-dfu](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bootloader-dfu.md) | emard__had2019-playground |
 | AHB-Lite crossbar/arbiter/APB bridge | [bus-fabric](https://github.com/kelu124/ulx3s-klod/blob/main/functions/bus-fabric.md) | ulx3s__hazard3 |
 | TV80 Z80-compatible core (emard__ulx3s_galaksija copy) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | emard__ulx3s_galaksija |
+| grom toy 8-bit CPU + computer (FPGA 101 original) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | mmicko__fpga101-workshop |
 | i8080-compatible core (Bashkiria-2M-derived) | [cpu-retro](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-retro.md) | lawrie__ulx3s_examples |
 | Hazard3 RV32IMAC core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | wren6991__hazard3 |
 | PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
@@ -85,7 +86,6 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 | no2usb-derived ECP5 USB FS device core (had2019 bootloader) | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | emard__had2019-playground |
 | ulx3s-misc USB CDC-ACM device (VHDL) | [usb-device](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-device.md) | emard__ulx3s-misc |
 | Ultra-Embedded USB FS host (ulx3s-misc copy) | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | emard__ulx3s-misc |
-| emard USB host + gamepad report decoders | [usb-host](https://github.com/kelu124/ulx3s-klod/blob/main/functions/usb-host.md) | emard__nes_ecp5 |
 
 ## Projects targeting this board
 

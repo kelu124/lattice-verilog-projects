@@ -5747,6 +5747,33 @@
    "make_tests": ""
   },
   {
+   "slug": "mmicko__fpga101-workshop",
+   "kind": "education",
+   "name": "FPGA 101 workshop (Hackaday Belgrade 2018): 20 progressive Verilog exercises for the FPGA101 badge (LED, audio, LCD video, Pong, grom CPU, i8080 Altair, PicoSoC + MicroPython) plus a Galaksija project",
+   "fork_of": "none (original; its ULX3S follow-up by the same author is ulx3s__fpga-odysseus, which shares 10 identical files)",
+   "ulx3s_path": "no ULX3S target (FPGA101 badge only); per-exercise apio projects: tutorials/<NN-Topic>/{top.v,pinout.pcf,apio.ini}; tests/led, tests/riscv; projects/galaksija. ULX3S version: ulx3s__fpga-odysseus",
+   "fpga": "iCE40 UP5K (NOT ECP5) - SG48 (README apio log: arachne-pnr -d 5k -P sg48; apio.ini board = fpga101); 12 MHz clock (pinout.pcf)",
+   "toolchain": "open via apio (yosys + arachne-pnr + icepack, per README test log); IceStudio for 00-IceStudio; riscv64-unknown-elf-gcc for 12-RiscV firmware",
+   "hdl": "Verilog (82 .v), C (160 .c, mostly the MicroPython port), IceStudio .ice (2)",
+   "license": "MIT (LICENSE, Copyright 2018 Miodrag Milanović); i8080.v modified BSD (Dmitry Tselikov, Bashkiria-2M header); z_picorv32.v ISC (PicoRV32); MicroPython MIT",
+   "board_rev": "FPGA101 badge (Hackaday Belgrade 2018, iCE40 UP5K, parallel RGB LCD, RGB LED, buttons, audio) (not ULX3S)",
+   "functions": [
+    "education",
+    "examples",
+    "video-vga",
+    "oled-lcd",
+    "audio-dac",
+    "uart",
+    "soc-cpu",
+    "retro-computer",
+    "NEW:micropython"
+   ],
+   "reuse": "tutorials/10-CPU/grom_cpu.v + alu.v + grom_computer.v: original toy 8-bit 'grom' CPU (portable, no SB_*; identical copies in lawrie__ulx3s_examples, lawrie__ulx4m_examples, ulx3s__fpga-odysseus); tutorials/11-Computer: i8080 (Bashkiria-2M) + mc6850 ACIA + Altair wrapper (portable); tutorials/12-RiscV: PicoSoC with SB_SPRAM256KA RAM (up_spram.v), LCD text video, simpleuart, + 02-Micropython/ports/picorv32 (MicroPython port with LCD/LED/switch modules); video exercises use SB_PLL40_CORE/SB_HFOSC (port to EHXPLLL)",
+   "notes": "Last commit 2019-03-17 (workshop held 2018-05-26). 20 exercises: 00 IceStudio, 01 Basics, 02 LED, 03 Buttons, 04 Audio, 05 Video (2), 06 StateMachine, 07 Memory (3), 08 MovingSprite, 09 Pong (4), 10 CPU, 11 Computer, 12 RiscV (+01-Simple, 02-Micropython firmware). Slides in presentation/ (pruned locally). Solves the 'grom CPU origin unknown' question of the lawrie__ulx3s_examples review.",
+   "tests": "dirs: ./tests;3 tb/test files",
+   "make_tests": ""
+  },
+  {
    "slug": "mmicko__ulx3s-examples",
    "kind": "examples",
    "name": "Single ULX3S blinky example (apio project) by nextpnr/yosys maintainer mmicko",
@@ -7938,7 +7965,7 @@
    "slug": "ulx3s__fpga-odysseus",
    "kind": "education",
    "name": "FPGA Odysseus workshop (Radiona 2019): progressive tutorials",
-   "fork_of": "none (upstream of lawrie examples)",
+   "fork_of": "ULX3S follow-up of mmicko__fpga101-workshop by the same author (Miodrag Milanović): 10 identical files (grom CPU, i8080/Altair, UARTs); upstream of lawrie examples",
    "ulx3s_path": "tutorials/NN-*/ (apio), projects/LedPanel",
    "fpga": "25F (apio ulx3s-25f)",
    "toolchain": "open (apio)",

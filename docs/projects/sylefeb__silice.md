@@ -1,7 +1,7 @@
 ---
 title: "sylefeb__silice"
 parent: "Project reviews"
-nav_order: 12
+nav_order: 13
 ---
 <!-- Generated from data/projects/sylefeb__silice.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

@@ -1,0 +1,333 @@
+{
+ "schema": "ulx3s-klod/page/v1",
+ "kind": "project",
+ "slug": "fpga101",
+ "title": "FPGA 101 workshop (`mmicko__fpga101-workshop`)",
+ "description": "FPGA 101 workshop: 20 iCE40 UP5K exercises (LED to PicoSoC + MicroPython), original of the grom CPU and FPGA Odysseus.",
+ "fields": {
+  "Upstream": "https://github.com/mmicko/fpga101-workshop",
+  "Reviewed at": "`1f5d605` (upstream date 2019-03-17), reviewed 2026-09-28",
+  "License": "MIT (`LICENSE`, Copyright 2018 Miodrag Milanović); `tutorials/11-Computer/i8080.v` modified BSD (Dmitry Tselikov); `tutorials/12-RiscV/z_picorv32.v` ISC; MicroPython port MIT",
+  "HDL / framework": "Verilog (82 files), C firmware and a MicroPython port, 2 IceStudio designs",
+  "Toolchain": "`open` via apio: yosys + arachne-pnr + icepack (README test log); IceStudio; riscv64-unknown-elf-gcc",
+  "Programmer": "apio (board `fpga101`)",
+  "Target FPGA(s)": "iCE40 UP5K SG48 (NOT ECP5), 12 MHz clock (`pinout.pcf`)",
+  "Board revision(s)": "FPGA101 badge of Hackaday Belgrade 2018 (parallel RGB LCD, RGB LED, buttons, audio out)",
+  "Activity": "workshop held 2018-05-26; last commit 2019-03-17; author Miodrag Milanović (mmicko)"
+ },
+ "blocks": [],
+ "sections": [
+  {
+   "title": "What the gateware does",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "A progressive FPGA course in 20 exercises, each a small apio project (`top.v` + `pinout.pcf` + `apio.ini`), from a blinking LED to a RISC-V SoC running MicroPython, plus a complete Galaksija retro computer. It is the **original of several ULX3S resources**: the same author's ULX3S workshop [ulx3s__fpga-odysseus](https://github.com/ulx3s/fpga-odysseus) shares 10 identical files (grom CPU, i8080/Altair computer, UARTs), and the toy \"grom\" CPU found in lawrie's ULX3S and ULX4M examples is this one ([lawrie__ulx3s_examples review](lawrie__ulx3s_examples.md)). The Galaksija project is the upstream of emard__galaksija and emard__ulx3s_galaksija."
+    }
+   ]
+  },
+  {
+   "title": "Exercises",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "#",
+      "Exercise",
+      "Path",
+      "What it teaches / builds",
+      "iCE40 primitives",
+      "Testbench"
+     ],
+     "rows": [
+      {
+       "#": "0",
+       "Exercise": "IceStudio",
+       "Path": "[`tutorials/00-IceStudio`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/00-IceStudio)",
+       "What it teaches / builds": "Schematic design in IceStudio (`led.ice`, `trigger.ice`)",
+       "iCE40 primitives": "none",
+       "Testbench": "none"
+      },
+      {
+       "#": "1",
+       "Exercise": "Basics",
+       "Path": "[`tutorials/01-Basics`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/01-Basics)",
+       "What it teaches / builds": "First design: drive an LED (`led.v`)",
+       "iCE40 primitives": "none",
+       "Testbench": "none"
+      },
+      {
+       "#": "2",
+       "Exercise": "LED",
+       "Path": "[`tutorials/02-LED`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/02-LED)",
+       "What it teaches / builds": "RGB LED with a counter (`rgb.v`)",
+       "iCE40 primitives": "none",
+       "Testbench": "`rgb_tb.v` (waveform)"
+      },
+      {
+       "#": "3",
+       "Exercise": "Buttons",
+       "Path": "[`tutorials/03-Buttons`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/03-Buttons)",
+       "What it teaches / builds": "Buttons to RGB LED (`button_rgb.v`)",
+       "iCE40 primitives": "none",
+       "Testbench": "none"
+      },
+      {
+       "#": "4",
+       "Exercise": "Audio",
+       "Path": "[`tutorials/04-Audio`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/04-Audio)",
+       "What it teaches / builds": "Tone generation on the audio pin (`audio.v`)",
+       "iCE40 primitives": "none",
+       "Testbench": "none"
+      },
+      {
+       "#": "5a",
+       "Exercise": "Video: basic",
+       "Path": "[`tutorials/05-Video/00-Basic`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/05-Video/00-Basic)",
+       "What it teaches / builds": "Parallel RGB LCD timing and test pattern (`video.v`, `lcd_pll.v`)",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "5b",
+       "Exercise": "Video: key test",
+       "Path": "[`tutorials/05-Video/01-KeyTest`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/05-Video/01-KeyTest)",
+       "What it teaches / builds": "Buttons shown on the LCD",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "6",
+       "Exercise": "State machine",
+       "Path": "[`tutorials/06-StateMachine`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/06-StateMachine)",
+       "What it teaches / builds": "FSM driving the display",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "7a",
+       "Exercise": "Memory: basic",
+       "Path": "[`tutorials/07-Memory/00-Basic`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/07-Memory/00-Basic)",
+       "What it teaches / builds": "Font ROM (`font_rom.v`), characters on the LCD",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "7b",
+       "Exercise": "Memory: buffer",
+       "Path": "[`tutorials/07-Memory/01-Buffer`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/07-Memory/01-Buffer)",
+       "What it teaches / builds": "Text buffer ROM generated by `text.py`",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "7c",
+       "Exercise": "Memory: terminal",
+       "Path": "[`tutorials/07-Memory/02-Terminal`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/07-Memory/02-Terminal)",
+       "What it teaches / builds": "Serial terminal: `uart_rx.v` into video RAM",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "8",
+       "Exercise": "Moving sprite",
+       "Path": "[`tutorials/08-MovingSprite`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/08-MovingSprite)",
+       "What it teaches / builds": "Sprite ROM moved by the buttons",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "9a",
+       "Exercise": "Pong: move",
+       "Path": "[`tutorials/09-Pong/00-Move`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/09-Pong/00-Move)",
+       "What it teaches / builds": "Paddles",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "9b",
+       "Exercise": "Pong: ball",
+       "Path": "[`tutorials/09-Pong/01-Ball`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/09-Pong/01-Ball)",
+       "What it teaches / builds": "Ball movement",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "9c",
+       "Exercise": "Pong: game",
+       "Path": "[`tutorials/09-Pong/02-Game`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/09-Pong/02-Game)",
+       "What it teaches / builds": "Collisions and game logic",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "9d",
+       "Exercise": "Pong: wall",
+       "Path": "[`tutorials/09-Pong/03-Wall`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/09-Pong/03-Wall)",
+       "What it teaches / builds": "Single-player wall variant",
+       "iCE40 primitives": "SB_PLL40_CORE, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "10",
+       "Exercise": "CPU",
+       "Path": "[`tutorials/10-CPU`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/10-CPU)",
+       "What it teaches / builds": "The **grom** toy 8-bit CPU (`grom_cpu.v`, `alu.v`) and a minimal computer",
+       "iCE40 primitives": "none",
+       "Testbench": "`grom_computer_tb.v` (waveform)"
+      },
+      {
+       "#": "11",
+       "Exercise": "Computer",
+       "Path": "[`tutorials/11-Computer`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/11-Computer)",
+       "What it teaches / builds": "Altair 8800-style computer: i8080 core, MC6850 ACIA, ROM from `rom.py`, serial console",
+       "iCE40 primitives": "SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "12a",
+       "Exercise": "RISC-V: SoC",
+       "Path": "[`tutorials/12-RiscV`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/12-RiscV)",
+       "What it teaches / builds": "PicoSoC (PicoRV32) with SPRAM (`up_spram.v`), XIP flash (`spimemio.v`), UART and LCD text console",
+       "iCE40 primitives": "SB_SPRAM256KA, SB_PLL40_CORE, SB_IO, SB_HFOSC",
+       "Testbench": "none"
+      },
+      {
+       "#": "12b",
+       "Exercise": "RISC-V: firmware",
+       "Path": "[`tutorials/12-RiscV/01-Simple`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/12-RiscV/01-Simple)",
+       "What it teaches / builds": "Bare-metal C firmware (`firmware.c`, Makefile)",
+       "iCE40 primitives": "n/a",
+       "Testbench": "none"
+      },
+      {
+       "#": "12c",
+       "Exercise": "RISC-V: MicroPython",
+       "Path": "[`tutorials/12-RiscV/02-Micropython`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tutorials/12-RiscV/02-Micropython)",
+       "What it teaches / builds": "MicroPython port `ports/picorv32` with LCD, LED and switch modules",
+       "iCE40 primitives": "n/a",
+       "Testbench": "none"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Also: [`tests/led`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tests/led) and [`tests/riscv`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/tests/riscv) (toolchain checks; `led_tb.v` waveform-only), and [`projects/galaksija`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158/projects/galaksija): the Galaksija Z80 computer (TV80 core, video on the LCD, SPRAM) with a prebuilt bitstream."
+    }
+   ]
+  },
+  {
+   "title": "Structure",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "`tutorials/`: the 20 exercises above; each directory is a standalone apio project.",
+      "`projects/galaksija/`: complete retro computer (`tv80*.v`, `video.v`, `font_rom.v`, `rom_memory.v`).",
+      "`tests/`: environment checks from the README.",
+      "`presentation/`: workshop slides (pptx/pdf, removed from the local clone by pruning; available upstream)."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "How to build",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "As found in the README (not run here):"
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "cd tutorials/02-LED\napio build      # yosys synth_ice40 -> arachne-pnr -d 5k -P sg48 -> icepack\napio sim        # opens GTKWave on the testbench, where one exists\ncd tutorials/12-RiscV/01-Simple && make   # RISC-V firmware"
+    },
+    {
+     "type": "paragraph",
+     "text": "The exercises assume the FPGA101 badge (`apio.ini`: `board = fpga101`); arachne-pnr is obsolete, nextpnr-ice40 (`--up5k --package sg48`) is the modern equivalent."
+    }
+   ]
+  },
+  {
+   "title": "Reuse notes",
+   "blocks": [
+    {
+     "type": "table",
+     "columns": [
+      "Block",
+      "Path",
+      "Top module",
+      "Language",
+      "Vendor primitives",
+      "License"
+     ],
+     "rows": [
+      {
+       "Block": "grom toy CPU + computer",
+       "Path": "`tutorials/10-CPU/`",
+       "Top module": "`grom_top`",
+       "Language": "Verilog",
+       "Vendor primitives": "none",
+       "License": "MIT (repo)"
+      },
+      {
+       "Block": "i8080 Altair computer",
+       "Path": "`tutorials/11-Computer/`",
+       "Top module": "`top` (in `top_altair.v`) / `altair`",
+       "Language": "Verilog",
+       "Vendor primitives": "SB_HFOSC (top only)",
+       "License": "i8080 modified BSD; rest MIT"
+      },
+      {
+       "Block": "PicoSoC + LCD text console",
+       "Path": "`tutorials/12-RiscV/`",
+       "Top module": "`top`",
+       "Language": "Verilog",
+       "Vendor primitives": "SB_SPRAM256KA, SB_PLL40_CORE, SB_IO, SB_HFOSC",
+       "License": "MIT; PicoRV32 ISC"
+      },
+      {
+       "Block": "Parallel LCD video timing",
+       "Path": "`tutorials/05-Video/00-Basic/video.v`",
+       "Top module": "`video`",
+       "Language": "Verilog",
+       "Vendor primitives": "none (PLL in `lcd_pll.v`)",
+       "License": "MIT (repo)"
+      },
+      {
+       "Block": "Galaksija",
+       "Path": "`projects/galaksija/`",
+       "Top module": "`top`",
+       "Language": "Verilog",
+       "Vendor primitives": "SB_SPRAM256KA, SB_PLL40_CORE, SB_HFOSC",
+       "License": "MIT; TV80 own license"
+      }
+     ]
+    },
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "For ULX3S, start from [ulx3s__fpga-odysseus](https://github.com/ulx3s/fpga-odysseus) rather than porting: it is the same author's ULX3S version of these exercises (DVI instead of the LCD, ECP5 PLL).",
+      "Porting a single exercise: replace `SB_PLL40_CORE`/`SB_HFOSC` with the 25 MHz `clk_25mhz` and an `EHXPLLL`, and `SB_SPRAM256KA` with block RAM or SDRAM ([porting guide](../porting-ice40-to-ecp5.md)).",
+      "Cores recorded on the site: [grom CPU](../functions/cpu-retro.md), [PicoSoC with MicroPython](../functions/cpu-riscv.md)."
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Open questions",
+   "blocks": [
+    {
+     "type": "list",
+     "ordered": false,
+     "items": [
+      "The i8080 exercise's ROM content and licensing of the Altair ROM image are not checked.",
+      "The FPGA101 badge schematic and LCD part number are not in the repo (unknown)."
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -3913,7 +3913,7 @@
    "license": "modified BSD (Copyright (C) 2010 Dmitry Tselikov, LICENSE.TXT referenced in-file)",
    "fpga": "ECP5",
    "primitives": [],
-   "summary": "8080-compatible core lifted from the Bashkiria-2M FPGA replica, wired here into an Altair 8800 emulator (computer/altair.v, computer/top_altair.v) built for ULX3S 25F/85F.",
+   "summary": "8080-compatible core lifted from the Bashkiria-2M FPGA replica, wired here into an Altair 8800 emulator (computer/altair.v, computer/top_altair.v) built for ULX3S 25F/85F. Originates from mmicko__fpga101-workshop tutorials/11-Computer (identical i8080.v/altair.v).",
    "ulx3s_notes": "computer/top_altair.v is the ready ULX3S top; no other i8080 core was found in the collection.",
    "tests": "waveform-only tb present elsewhere in repo (test68/ps2send), none specific to i8080.v",
    "usage_patterns": {
@@ -4508,6 +4508,78 @@
     ],
     "modules": [
      "trng_core"
+    ]
+   }
+  },
+  {
+   "id": "mmicko-grom-cpu",
+   "name": "grom toy 8-bit CPU + computer (FPGA 101 original)",
+   "functions": [
+    "cpu-retro"
+   ],
+   "rank": "alternative",
+   "repo": "mmicko__fpga101-workshop",
+   "files": [
+    "tutorials/10-CPU/grom_cpu.v",
+    "tutorials/10-CPU/alu.v",
+    "tutorials/10-CPU/grom_computer.v",
+    "tutorials/10-CPU/grom_top.v",
+    "tutorials/10-CPU/grom_computer_tb.v"
+   ],
+   "top": "grom_top",
+   "language": "Verilog",
+   "license": "MIT (repo LICENSE; files have no header)",
+   "fpga": "any",
+   "primitives": [],
+   "summary": "Teaching CPU by Miodrag Milanović: 8-bit data, 12-bit address, small ISA, with RAM and a 'computer' wrapper driving LEDs. Original of the copies in lawrie's examples and FPGA Odysseus.",
+   "ulx3s_notes": "Already ported: ulx3s__fpga-odysseus tutorials/06-CPU (identical grom_cpu.v) with ULX3S LPF.",
+   "tests": "waveform-only (tutorials/10-CPU/grom_computer_tb.v, $dumpvars/$finish)",
+   "usage_patterns": {
+    "files": [
+     "grom_cpu.v",
+     "grom_computer.v"
+    ],
+    "modules": [
+     "grom_cpu",
+     "grom_computer"
+    ]
+   }
+  },
+  {
+   "id": "mmicko-fpga101-picosoc",
+   "name": "FPGA 101 PicoSoC with LCD text console and MicroPython",
+   "functions": [
+    "cpu-riscv"
+   ],
+   "rank": "alternative",
+   "repo": "mmicko__fpga101-workshop",
+   "files": [
+    "tutorials/12-RiscV/top.v",
+    "tutorials/12-RiscV/picosoc.v",
+    "tutorials/12-RiscV/up_spram.v",
+    "tutorials/12-RiscV/video.v",
+    "tutorials/12-RiscV/simpleuart.v",
+    "tutorials/12-RiscV/02-Micropython/ports/picorv32"
+   ],
+   "top": "top",
+   "language": "Verilog, C",
+   "license": "MIT (repo LICENSE); z_picorv32.v ISC; MicroPython MIT",
+   "fpga": "iCE40",
+   "primitives": [
+    "SB_SPRAM256KA",
+    "SB_PLL40_CORE",
+    "SB_IO",
+    "SB_HFOSC"
+   ],
+   "summary": "PicoRV32 PicoSoC for the UP5K badge: 128 KB SPRAM main memory, XIP flash, UART, memory-mapped text-mode video on the parallel LCD; firmware examples and a MicroPython port (board LCD/LED/switch modules).",
+   "ulx3s_notes": "Replace SB_SPRAM256KA with DP16KD/SDRAM, SB_PLL40_CORE with EHXPLLL, LCD video with a DVI path; the ULX3S follow-up is ulx3s__fpga-odysseus tutorials/08-RISCV.",
+   "tests": "none found",
+   "usage_patterns": {
+    "files": [
+     "up_spram.v"
+    ],
+    "modules": [
+     "up_spram"
     ]
    }
   }

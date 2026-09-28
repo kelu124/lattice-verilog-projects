@@ -8,7 +8,7 @@ lifted into a new design. It is maintained with [Claude Code](https://claude.com
 
 Use it to **find prior art before writing a core**: a DVI encoder, a USB device, an SDRAM or
 HyperRAM controller, a RISC-V SoC, an ESP32 on-screen display, a retro computer… The public site presents
-**153 reusable cores in 33 functions**, each with links to the original files and the projects that use it.
+**155 reusable cores in 33 functions**, each with links to the original files and the projects that use it.
 
 The repo also holds Claude's working memory (`CLAUDE.md`, `.claude/`), so anyone who clones it
 and runs `claude` here picks up exactly where the work stopped.
@@ -25,7 +25,7 @@ same pages as markdown on GitHub.
 | Learn a board: FPGA, constraint files, cores seen on it, projects | [Boards](docs/boards/index.md): ULX3S, ULX4M, OrangeCrab, Colorlight, IcePi Zero, iCESugar-Pro; iCEBreaker, UPduino, iCESugar, Fomu, pico-ice; HX8K breakout, BlackIce, iceFUN, Olimex HX8K-EVB, IcoBoard |
 | Learn the ULX3S hardware: pins, signal names, constraint files, pitfalls | [ULX3S board page](docs/boards/ulx3s.md) |
 | Build and load a bitstream, use DFU, port an iCE40 core to ECP5 | [Guides](docs/guides/index.md): [toolchain](docs/guides/toolchain.md), [USB DFU](docs/guides/DFUs.md), [porting iCE40 → ECP5](docs/guides/porting-ice40-to-ecp5.md) |
-| Read an in-depth review with per-block reuse notes | [Project reviews](docs/projects/index.md) (18 repos) |
+| Read an in-depth review with per-block reuse notes | [Project reviews](docs/projects/index.md) (19 repos) |
 | Browse every catalogued repo, or every LPF pin map | [Full catalogue](docs/methodology/catalogue.md), [LPF catalogue](docs/methodology/lpf-catalogue.md) (data: [`data/catalogue.json`](data/catalogue.json), [`data/lpfs.json`](data/lpfs.json)) |
 | See how the collection was found | [Methodology](docs/methodology/index.md) and the surveys below |
 | Contribute (with Claude Code and the `.claude/` memory, or by hand) | [`CONTRIBUTING.md`](CONTRIBUTING.md) (also on the site: [Contribute](docs/contributing.md)) |
@@ -34,13 +34,13 @@ same pages as markdown on GitHub.
 
 The [full catalogue](docs/methodology/catalogue.md) is generated from
 [`data/catalogue.json`](data/catalogue.json) (one object per repo) by
-`.claude/skills/review-gateware-project/gen_catalogue.py`. It currently covers **376 repos**:
+`.claude/skills/review-gateware-project/gen_catalogue.py`. It currently covers **377 repos**:
 
 - **292 ULX3S / ULX4M** repos: the ulx3s.github.io project list plus a GitHub-wide search (and RISCBoy, found via the HX survey, and the US2 DFU bootloader source);
 - **26 on other ECP5 boards**: TrellisBoard, OrangeCrab, ECP5-EVN, Colorlight i5/i9/5A-75B, iCESugar-Pro, Hackaday 2019 badge,
   ECPIX-5, Versa ECP5-5G, IcePi Zero, LUNA, ECP5 Mini, Pergola, GreyBadge 2025, Machdyne…;
-- **58 non-ECP5** repos: **iCE40 UP5K** (iCEBreaker, UPduino, iCESugar, Fomu, MCH2022 badge, reDIP-SID,
-  pico-ice…), **iCE40 HX8K/HX4K** (PicoRV32, iceboy, Glasgow, BlackIce, IcoBoard, Alhambra II, BeagleWire, un0rick…) and ZipCPU sdspi, found via [awesome-latticeFPGAs](https://github.com/kelu124/awesome-latticeFPGAs) and GitHub.
+- **59 non-ECP5** repos: **iCE40 UP5K** (iCEBreaker, UPduino, iCESugar, Fomu, MCH2022 badge, reDIP-SID,
+  pico-ice…), **iCE40 HX8K/HX4K** (PicoRV32, iceboy, Glasgow, FPGA 101 workshop, BlackIce, IcoBoard, Alhambra II, BeagleWire, un0rick…) and ZipCPU sdspi, found via [awesome-latticeFPGAs](https://github.com/kelu124/awesome-latticeFPGAs) and GitHub.
   Any row whose FPGA is not an ECP5 says **`NOT ECP5`** in the FPGA column: iCE40 cores use `SB_*`
   primitives and need porting.
 
@@ -68,10 +68,10 @@ with GitHub Pages (just-the-docs theme; Settings → Pages → source `main`, fo
 | Data | What | Site |
 |---|---|---|
 | `data/functions.json` | 33 functions (ADC, SPI, DAC, VGA, HDMI…) | [Cores by function](docs/functions/index.md) |
-| `data/cores.json` | 153 reusable cores: repo, files, top module, license, FPGA/primitives, tests, ULX3S notes | function pages |
+| `data/cores.json` | 155 reusable cores: repo, files, top module, license, FPGA/primitives, tests, ULX3S notes | function pages |
 | `data/core_usage.json` | which repos copy or instantiate each core (scan) | "Used by" lists |
 | `data/boards.json` | 16 boards in 3 families (ECP5, UP5K, HX) | [Boards](docs/boards/index.md) |
-| `data/pages/*.json`, `data/projects/*.json` | guides, surveys, methodology, home intro, 18 reviews | Guides, Project reviews, Methodology |
+| `data/pages/*.json`, `data/projects/*.json` | guides, surveys, methodology, home intro, 19 reviews | Guides, Project reviews, Methodology |
 | `data/catalogue.json`, `data/lpfs.json` | every cloned repo, every LPF | Methodology data views |
 
 ```bash

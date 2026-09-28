@@ -158,5 +158,5 @@ SSD1322 grayscale OLED driver: on reset runs the panel init sequence, then conti
 
 ## Other catalogued projects
 
-Catalogued repos tagged `oled-lcd` (42) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `oled-lcd` (43) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

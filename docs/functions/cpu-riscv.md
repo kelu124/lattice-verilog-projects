@@ -12,8 +12,9 @@ RISC-V cores and small SoCs.
 
 | Core | Repository | Language | License | FPGA | Used by |
 |---|---|---|---|---|---|
-| [PicoRV32 RISC-V core](#core-yosyshq-picorv32) ★ | [yosyshq__picorv32](https://github.com/YosysHQ/picorv32) | Verilog | ISC (COPYING) | any | 25 |
+| [PicoRV32 RISC-V core](#core-yosyshq-picorv32) ★ | [yosyshq__picorv32](https://github.com/YosysHQ/picorv32) | Verilog | ISC (COPYING) | any | 26 |
 | [f32c RISC-V/MIPS-compatible core](#core-f32c-core) | [f32c__f32c](https://github.com/f32c/f32c) | VHDL | BSD-2-Clause | any | 0 |
+| [FPGA 101 PicoSoC with LCD text console and MicroPython](#core-mmicko-fpga101-picosoc) | [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) | Verilog, C | MIT (repo LICENSE); z_picorv32.v ISC; MicroPython… | iCE40 | 3 |
 | [Hazard3 RV32IMAC core](#core-wren6991-hazard3) | [wren6991__hazard3](https://github.com/Wren6991/Hazard3) | Verilog | Apache-2.0 | any | 1 |
 | [KianV RV32IMA+Sv32 core (Linux-capable)](#core-kianv-sv32-core) | [splinedrive__kianriscv](https://github.com/splinedrive/kianRiscV) | Verilog | Apache-2.0 | any | 0 |
 | [NEORV32 RV32 core (VHDL)](#core-stnolting-neorv32) | [stnolting__neorv32](https://github.com/stnolting/neorv32) | VHDL (+ generated Verilog wrapper in… | BSD-3-Clause | any | 0 |
@@ -39,7 +40,7 @@ Single-file RV32I(MC) core, board- and vendor-agnostic, the most-reused RISC-V c
 
 Full review: [yosyshq__picorv32](../projects/yosyshq__picorv32.md).
 
-**Used by 25 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+**Used by 26 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
 
 - [badgeteam__mch2022-firmware-ice40](https://github.com/badgeteam/mch2022-firmware-ice40) (instantiates [`projects/selftest/rtl/picorv32.v`](https://github.com/badgeteam/mch2022-firmware-ice40/blob/ce6473addcf6066cada7d80d8ba352f52173d01d/projects/selftest/rtl/picorv32.v))
 - [cliffordwolf__icotools](https://github.com/cliffordwolf/icotools) (instantiates [`icosoc/common/picorv32.v`](https://github.com/cliffordwolf/icotools/blob/9c6185bad15323e5982b68e60923aaea22b074d4/icosoc/common/picorv32.v))
@@ -53,10 +54,10 @@ Full review: [yosyshq__picorv32](../projects/yosyshq__picorv32.md).
 - [lawrie__ulx4m_examples](https://github.com/lawrie/ulx4m_examples) (instantiates [`hdmi/menu/attosoc.v`](https://github.com/lawrie/ulx4m_examples/blob/415ee5309545da06b1bda7bfe7ec3a1c65a5376c/hdmi/menu/attosoc.v))
 - [machdyne__zeitlos](https://github.com/machdyne/zeitlos) (instantiates [`rtl/cpu/picorv32/picorv32.v`](https://github.com/machdyne/zeitlos/blob/a7e7e85ee0ad1fd0cfff4129e24b2aa528d444e8/rtl/cpu/picorv32/picorv32.v))
 - [mkvenkit__learn_fpga](https://github.com/mkvenkit/learn_fpga) (instantiates [`ice40up5k/picosoc_gpio/picosoc.v`](https://github.com/mkvenkit/learn_fpga/blob/b4784c67b83344f7b2c4b01f3f8bf345c9c54faf/ice40up5k/picosoc_gpio/picosoc.v))
+- [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop) (instantiates [`tutorials/12-RiscV/picosoc.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/picosoc.v))
 - [nklabs__libnklabs-ulx3s](https://github.com/nklabs/libnklabs-ulx3s) (instantiates [`rtl/picorv32.v`](https://github.com/nklabs/libnklabs-ulx3s/blob/6b6a6b2c50cff5415666ab0a4351a33f036c1761/rtl/picorv32.v))
 - [nullobject__riscv-ulx3s](https://github.com/nullobject/riscv-ulx3s) (instantiates [`hdl/picorv32.v`](https://github.com/nullobject/riscv-ulx3s/blob/f344cef2a29b795cfd3ef4596277d61df9954ab9/hdl/picorv32.v))
-- [osmocom__osmo-e1-hardware](https://github.com/osmocom/osmo-e1-hardware) (instantiates [`gateware/common/rtl/picorv32.v`](https://github.com/osmocom/osmo-e1-hardware/blob/85acea8b6d656add7c098d51f816f4ac34084fa2/gateware/common/rtl/picorv32.v))
-- … and 10 more (see `data/core_usage.json`)
+- … and 11 more (see `data/core_usage.json`)
 
 ### f32c RISC-V/MIPS-compatible core {#core-f32c-core}
 
@@ -75,6 +76,30 @@ Pipelined core that decodes either RISC-V (RV32IM) or a MIPS-compatible ISA (MI3
 **On ULX3S:** Select ISA via the defs_f32c.vhd generic; comes with its own SoC glue, not a bare drop-in CPU.
 
 Full review: [f32c__f32c](../projects/f32c__f32c.md).
+
+### FPGA 101 PicoSoC with LCD text console and MicroPython {#core-mmicko-fpga101-picosoc}
+
+PicoRV32 PicoSoC for the UP5K badge: 128 KB SPRAM main memory, XIP flash, UART, memory-mapped text-mode video on the parallel LCD; firmware examples and a MicroPython port (board LCD/LED/switch modules).
+
+| | |
+|---|---|
+| Repository | [mmicko__fpga101-workshop](https://github.com/mmicko/fpga101-workshop): FPGA 101 workshop |
+| Files | [`tutorials/12-RiscV/top.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/top.v), [`tutorials/12-RiscV/picosoc.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/picosoc.v), [`tutorials/12-RiscV/up_spram.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/up_spram.v), [`tutorials/12-RiscV/video.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/video.v), [`tutorials/12-RiscV/simpleuart.v`](https://github.com/mmicko/fpga101-workshop/blob/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/simpleuart.v), [`tutorials/12-RiscV/02-Micropython/ports/picorv32`](https://github.com/mmicko/fpga101-workshop/tree/1f5d605bc158810148626df5261bf1dc87cf50a1/tutorials/12-RiscV/02-Micropython/ports/picorv32) |
+| Top module | `top` |
+| Language | Verilog, C |
+| License | MIT (repo LICENSE); z_picorv32.v ISC; MicroPython MIT |
+| FPGA / primitives | iCE40: `SB_SPRAM256KA`, `SB_PLL40_CORE`, `SB_IO`, `SB_HFOSC` |
+| Tests | none found |
+
+**On ULX3S:** Replace SB_SPRAM256KA with DP16KD/SDRAM, SB_PLL40_CORE with EHXPLLL, LCD video with a DVI path; the ULX3S follow-up is ulx3s__fpga-odysseus tutorials/08-RISCV.
+
+Full review: [mmicko__fpga101-workshop](../projects/mmicko__fpga101-workshop.md).
+
+**Used by 3 other catalogued repos** (file copies or module instances found by `scan_core_usage.py`; heuristic):
+
+- [daveshah1__up5k-demos](https://github.com/daveshah1/up5k-demos) (instantiates [`nes/cart_mem.v`](https://github.com/daveshah1/up5k-demos/blob/d85f0516f013a6a026946afc386196b1b2ac1e4e/nes/cart_mem.v))
+- [wifiboy__ok-ice40pro](https://github.com/WiFiBoy/OK-iCE40Pro) (instantiates [`ok-nes-vga-src/cart_mem.v`](https://github.com/WiFiBoy/OK-iCE40Pro/blob/01c99298f8b059da09a72dd4b3286d9b0a96fe95/ok-nes-vga-src/cart_mem.v))
+- [wuxx__icesugar](https://github.com/wuxx/icesugar) (instantiates [`src/advanced/up5k-demos/nes/cart_mem.v`](https://github.com/wuxx/icesugar/blob/1ebe71bf448e33a1bccfa2db6730d59eafb6c390/src/advanced/up5k-demos/nes/cart_mem.v))
 
 ### Hazard3 RV32IMAC core {#core-wren6991-hazard3}
 
@@ -163,5 +188,5 @@ Vendored single-file Verilog output of a VexRiscv RV32 configuration, wired to a
 
 ## Other catalogued projects
 
-Catalogued repos tagged `soc-cpu` (129) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `soc-cpu` (130) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

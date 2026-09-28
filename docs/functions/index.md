@@ -30,7 +30,7 @@ Every reusable core found in the collection, grouped by function. Each function 
 | [DDR3 memory](ddr-memory.md) | Lightweight DDR3 AXI4 memory controller (ECP5) (ultraembedded__orangecrab) | 1 | 1 |
 | [PSRAM and HyperRAM](psram-hyperram.md) | Hackaday badge QPI-PSRAM PHY + cache (ECP5-native) (spritetm__hadbadge2019_fpgasoc) | 3 | 1 |
 | [SD card](sd-card.md) | ZipCPU sdspi SPI-mode SD controller (zipcpu__sdspi) | 4 | 1 |
-| [SPI flash](spi-flash.md) | spimemio SPI/QSPI flash XIP controller (yosyshq__picorv32) | 4 | 8 |
+| [SPI flash](spi-flash.md) | spimemio SPI/QSPI flash XIP controller (yosyshq__picorv32) | 4 | 9 |
 
 ## Interfaces
 
@@ -62,8 +62,8 @@ Every reusable core found in the collection, grouped by function. Each function 
 
 | Function | Best core | Alternatives | Projects using these cores |
 |---|---|---|---|
-| [RISC-V CPUs and SoCs](cpu-riscv.md) | PicoRV32 RISC-V core (yosyshq__picorv32) | 5 | 35 |
-| [Retro CPUs](cpu-retro.md) | cpu_6502 (Klaus Dormann-verified 6502 core) (chrismoos__m6502) | 5 | 32 |
+| [RISC-V CPUs and SoCs](cpu-riscv.md) | PicoRV32 RISC-V core (yosyshq__picorv32) | 6 | 37 |
+| [Retro CPUs](cpu-retro.md) | cpu_6502 (Klaus Dormann-verified 6502 core) (chrismoos__m6502) | 6 | 33 |
 | [Linux-capable SoCs](linux.md) | linux-on-litex-vexriscv (ULX3S board target) (litex-hub__linux-on-litex-vexriscv) | 4 | 0 |
 
 ## Clocks and misc

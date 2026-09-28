@@ -2,7 +2,7 @@
  "schema": "ulx3s-klod/core-usage/v1",
  "generator": ".claude/skills/review-gateware-project/scan_core_usage.py",
  "note": "Heuristic: file-name copies and module instantiations found in other clones; verify before relying on it.",
- "hdl_files_scanned": 17424,
+ "hdl_files_scanned": 17513,
  "usage": {
   "emard-vga2dvid-tmds": [
    {
@@ -1908,6 +1908,15 @@
     ]
    },
    {
+    "repo": "mmicko__fpga101-workshop",
+    "copy": [
+     "tutorials/12-RiscV/spimemio.v"
+    ],
+    "instance": [
+     "tutorials/12-RiscV/picosoc.v"
+    ]
+   },
+   {
     "repo": "nklabs__libnklabs-ulx3s",
     "copy": [
      "rtl/spimemio.v"
@@ -3309,6 +3318,14 @@
     ]
    },
    {
+    "repo": "mmicko__fpga101-workshop",
+    "copy": [],
+    "instance": [
+     "tutorials/12-RiscV/picosoc.v",
+     "tutorials/12-RiscV/z_picorv32.v"
+    ]
+   },
+   {
     "repo": "nklabs__libnklabs-ulx3s",
     "copy": [
      "rtl/picorv32.v"
@@ -3651,6 +3668,15 @@
     ]
    },
    {
+    "repo": "mmicko__fpga101-workshop",
+    "copy": [
+     "tutorials/11-Computer/i8080.v"
+    ],
+    "instance": [
+     "tutorials/11-Computer/altair.v"
+    ]
+   },
+   {
     "repo": "ulx3s__fpga-odysseus",
     "copy": [
      "tutorials/07-Computer/i8080.v"
@@ -3863,6 +3889,16 @@
     ],
     "instance": [
      "src/spectrum.v"
+    ]
+   },
+   {
+    "repo": "mmicko__fpga101-workshop",
+    "copy": [
+     "projects/galaksija/tv80_mcode.v",
+     "projects/galaksija/tv80n.v"
+    ],
+    "instance": [
+     "projects/galaksija/top.v"
     ]
    },
    {
@@ -4657,6 +4693,75 @@
   "marph91-yaaes": [],
   "greybadge25-aes-sha256-des": [],
   "xtrinch-sha256-miner": [],
-  "krishkc5-trng-ring-oscillator": []
+  "krishkc5-trng-ring-oscillator": [],
+  "mmicko-grom-cpu": [
+   {
+    "repo": "lawrie__ulx3s_examples",
+    "copy": [
+     "cpu/grom_computer.v",
+     "cpu/grom_cpu.v"
+    ],
+    "instance": [
+     "cpu/grom_computer.v",
+     "cpu/grom_computer_tb.v",
+     "cpu/grom_top.v"
+    ]
+   },
+   {
+    "repo": "lawrie__ulx4m_examples",
+    "copy": [
+     "softcore/grom/grom_computer.v",
+     "softcore/grom/grom_cpu.v"
+    ],
+    "instance": [
+     "softcore/grom/grom_computer.v",
+     "softcore/grom/grom_computer_tb.v",
+     "softcore/grom/grom_top.v"
+    ]
+   },
+   {
+    "repo": "ulx3s__fpga-odysseus",
+    "copy": [
+     "tutorials/06-CPU/grom_computer.v",
+     "tutorials/06-CPU/grom_cpu.v"
+    ],
+    "instance": [
+     "tutorials/06-CPU/grom_computer.v",
+     "tutorials/06-CPU/grom_computer_tb.v",
+     "tutorials/06-CPU/grom_top.v"
+    ]
+   }
+  ],
+  "mmicko-fpga101-picosoc": [
+   {
+    "repo": "daveshah1__up5k-demos",
+    "copy": [
+     "nes/up_spram.v"
+    ],
+    "instance": [
+     "nes/cart_mem.v"
+    ]
+   },
+   {
+    "repo": "wifiboy__ok-ice40pro",
+    "copy": [
+     "ok-nes-vga-src/up_spram.v"
+    ],
+    "instance": [
+     "ok-nes-vga-src/cart_mem.v"
+    ]
+   },
+   {
+    "repo": "wuxx__icesugar",
+    "copy": [
+     "src/advanced/up5k-demos/nes/up_spram.v",
+     "src/advanced/up5k-demos/neshdmi/up_spram.v"
+    ],
+    "instance": [
+     "src/advanced/up5k-demos/nes/cart_mem.v",
+     "src/advanced/up5k-demos/neshdmi/cart_mem.v"
+    ]
+   }
+  ]
  }
 }

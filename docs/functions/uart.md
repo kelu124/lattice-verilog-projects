@@ -110,5 +110,5 @@ Small dedicated, board-independent UART tx/rx pair with a well-specified README 
 
 ## Other catalogued projects
 
-Catalogued repos tagged `uart` (155) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `uart` (156) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

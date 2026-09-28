@@ -135,5 +135,5 @@ SpinalHDL VGA sync-timing generator and clock-cycle counter components, proven o
 
 ## Other catalogued projects
 
-Catalogued repos tagged `video-vga` (14), `vga` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
+Catalogued repos tagged `video-vga` (15), `vga` (1) are listed in the [full catalogue](../methodology/catalogue.md#index-by-function).
 {% endraw %}

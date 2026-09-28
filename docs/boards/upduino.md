@@ -44,6 +44,7 @@ Cores whose source repo, or a repo that copies/instantiates them, targets this b
 
 | Core | Function | Source repo |
 |---|---|---|
+| FPGA 101 PicoSoC with LCD text console and MicroPython | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | mmicko__fpga101-workshop |
 | PicoRV32 RISC-V core | [cpu-riscv](https://github.com/kelu124/ulx3s-klod/blob/main/functions/cpu-riscv.md) | yosyshq__picorv32 |
 | Sigma-delta DAC (up5k-demos) | [dac](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dac.md) | daveshah1__up5k-demos |
 | CORDIC sin/cos core | [dsp](https://github.com/kelu124/ulx3s-klod/blob/main/functions/dsp.md) | osresearch__up5k |

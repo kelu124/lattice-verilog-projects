@@ -1212,7 +1212,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Runners-up: osresearch/risc8 (AVR-compatible core), nkrackow/SingularitySurfer lock-in amplifier (DSP), mmicko/fpga101-workshop,\nICE-V-Wireless/ICE-V-Wireless, emeb/ice-dongle, tinyvision-ai-inc/Vision-FPGA-SoM, igor-m/UPduino-Mecrisp-Ice."
+     "text": "Runners-up: osresearch/risc8 (AVR-compatible core), nkrackow/SingularitySurfer lock-in amplifier (DSP), mmicko/fpga101-workshop (cloned + catalogued 2026-09-28, with a review page),\nICE-V-Wireless/ICE-V-Wireless, emeb/ice-dongle, tinyvision-ai-inc/Vision-FPGA-SoM, igor-m/UPduino-Mecrisp-Ice."
     }
    ]
   },

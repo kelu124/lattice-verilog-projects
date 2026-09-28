@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-28
+- [x] Clone + catalogue mmicko/fpga101-workshop: catalogue row, review page cataloguing the 20 exercises + PicoSoC/MicroPython, cores grom CPU and fpga101 PicoSoC; grom origin resolved (lawrie review), Odysseus lineage recorded → commit "review(mmicko__fpga101-workshop): catalogue the FPGA 101 exercises and PicoSoC"
 - [x] Contribute page (data/pages/contributing.json → docs/contributing.md + root CONTRIBUTING.md): Claude Code workflow with CLAUDE.md, .claude memory and skills, manual workflow, rules → commit "docs(contrib): add a contribute page and CONTRIBUTING.md"
 - [x] Review README and the site home page (intro now points to Cores by function; index links; README data/main-files rows, Pages note, review workflow); handoff in TODO → commit "docs(repo): polish README and site home, handoff for a fresh session"
 - [x] GitHub Pages site (just-the-docs, English) built around reusable cores by function: data/functions.json (33), data/cores.json (153 cores from 5 research agents, paths verified), data/core_usage.json (scan_core_usage.py, 481 uses), data/boards.json (16 boards, 3 families), guides (toolchain, porting iCE40→ECP5, DFU), reviews, methodology linking GitHub materials; gen_site.py + check_data.py + make check/usage/docs; skills, memory, README updated → commit "docs(site): generate a just-the-docs site of reusable cores by function"

@@ -2,6 +2,17 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — review(mmicko__fpga101-workshop): catalogue the FPGA 101 exercises and PicoSoC
+- **What**: cloned + pinned mmicko/fpga101-workshop (iCE40 UP5K FPGA101 badge, Hackaday Belgrade 2018, MIT).
+  Catalogue row (377 repos); review page `data/projects/mmicko__fpga101-workshop.json` with a table of the 20
+  exercises (path, topic, SB_* primitives, testbench) plus tests/ and the Galaksija project; 2 new cores in
+  `data/cores.json`: `mmicko-grom-cpu` (cpu-retro, used by lawrie ULX3S/ULX4M examples and fpga-odysseus) and
+  `mmicko-fpga101-picosoc` (cpu-riscv, SPRAM + LCD text console + MicroPython port); i8080 core notes its origin.
+  Found `ulx3s__fpga-odysseus` is the same author's ULX3S follow-up (10 identical files): its `fork_of` updated.
+  Resolved the lawrie__ulx3s_examples open question "origin of the grom CPU". Usage rescanned, site rebuilt,
+  counts updated (README, MEMORY, projects, reusable-cores), survey runner-up note, source-lists row.
+- **Why**: owner asked whether the repo was captured, then to catalogue its 20 exercises and PicoSoC examples.
+
 ## 2026-09-28 — docs(contrib): add a contribute page and CONTRIBUTING.md
 - **What**: `data/pages/contributing.json` (kind `contribute`): what to contribute, how the repo is organised for
   Claude (CLAUDE.md, `.claude/memory`, `.claude/skills`, TODO/DONE/COMMIT_LOG, data/, docs/), the skills table,

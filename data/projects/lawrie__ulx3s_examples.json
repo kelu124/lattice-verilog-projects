@@ -189,7 +189,7 @@
        "Top module": "`grom_top`",
        "Language": "Verilog",
        "Vendor primitives": "none",
-       "License": "none found; origin of \"grom\" not identified — unknown"
+       "License": "MIT via its origin: identical to mmicko__fpga101-workshop tutorials/10-CPU/grom_cpu.v (Miodrag Milanović, 2018)"
       }
      ]
     },
@@ -207,7 +207,7 @@
      "ordered": false,
      "items": [
       "Repo-level license is genuinely absent (verified, no `LICENSE`/`COPYING` anywhere), but several\nreused-from-elsewhere files carry GPL-3.0 (`sdram.v` ×2) or other copyleft-adjacent terms — anyone\nreusing those two files specifically should treat them as GPL-3.0-or-later, not \"no license\".",
-      "Origin/authorship of the \"grom\" CPU (`cpu/grom_*.v`) is unknown — no header, no README, not found\nelsewhere in the reusable-cores survey.",
+      "Resolved 2026-09-28: the \"grom\" CPU (`cpu/grom_*.v`) is byte-identical to mmicko__fpga101-workshop\n`tutorials/10-CPU/grom_cpu.v` (Miodrag Milanović, MIT), via ulx3s__fpga-odysseus.",
       "`test68/fx68k.v` license is unknown (no header in this copy); the fx68k core is well-known upstream\n(originally by Jorge Cwik / aka \"Torlus\", historically used in MiSTer cores) but the specific licensing\nterms for this file were not verifiable from the file itself.",
       "`audio/piano/audio.v` and `audio/sound/audio.v` were not read in detail (out of scope: no reuse claim\nin the catalogue row for them); contents unverified beyond directory listing.",
       "`hdmi/tmds_encoder.v` and `fake_differential.v` have no explicit license comment (only `vga2dvid.v` in\nthe same directory states MIT) — unclear whether they inherit the same terms."

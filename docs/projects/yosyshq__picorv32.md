@@ -1,7 +1,7 @@
 ---
 title: "yosyshq__picorv32"
 parent: "Project reviews"
-nav_order: 17
+nav_order: 18
 ---
 <!-- Generated from data/projects/yosyshq__picorv32.json by .claude/skills/documentation/gen_site.py; do not edit. -->
 

@@ -6,7 +6,7 @@ metadata:
 ---
 
 Since 2026-09-28 the map of reusable cores is **data**, not this file:
-- [`data/cores.json`](../../data/cores.json): 153 cores in 33 functions ([`data/functions.json`](../../data/functions.json)),
+- [`data/cores.json`](../../data/cores.json): 155 cores in 33 functions ([`data/functions.json`](../../data/functions.json)),
   one `best` per function plus alternatives; each with repo, file paths (verified in the clone), top module,
   language, license, FPGA/primitives, tests, ULX3S notes. Researched by 5 agents from the clones, the 18 reviews
   and the catalogue.

@@ -255,7 +255,7 @@ The picks favour reusable Verilog blocks and board example sets on the open flow
 19. **NUSGreyhats/greybadge25**: new ECP5 LFE5U-25F badge with open-flow gateware (2026).
 20. **machdyne/fpga-dac**: sigma-delta DAC/PCM player with ECP5 lpfs (12k/45k), a small reusable block.
 
-Runners-up: osresearch/risc8 (AVR-compatible core), nkrackow/SingularitySurfer lock-in amplifier (DSP), mmicko/fpga101-workshop,
+Runners-up: osresearch/risc8 (AVR-compatible core), nkrackow/SingularitySurfer lock-in amplifier (DSP), mmicko/fpga101-workshop (cloned + catalogued 2026-09-28, with a review page),
 ICE-V-Wireless/ICE-V-Wireless, emeb/ice-dongle, tinyvision-ai-inc/Vision-FPGA-SoM, igor-m/UPduino-Mecrisp-Ice.
 
 ## Notes, gaps, rate limits

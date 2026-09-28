@@ -105,7 +105,7 @@ sdram16 sim` / `make -C sdram8 sim` fail with a missing-file error. `basics/sum_
 | USB 1.1 low-speed HID host | `usbhost/{usbh_sie.v,usbh_host_hid.v,usb_phy.v,...}`, near-duplicate in `usbemard/` | `UsbhSie` / `ulx3s_usbhost_test` | Verilog (vhd2vl-translated from VHDL) | none found in the translated Verilog | **BSD** (vhd2vl header notes "License=BSD" for the underlying VHDL; the vhd2vl tool itself is separately GPLv2 but that covers only the translator, not this output) |
 | Intel 8080-compatible CPU ("Altair" machine) | `computer/i8080.v`, `computer/altair.v` | `i8080` / `altair` | Verilog | none | **modified BSD** (`i8080.v` header: "Bashkiria-2M FPGA REPLICA... distributed under modified BSD license", Dmitry Tselikov; `LICENSE.TXT` it references is not included in this repo) |
 | Motorola 68000 core (verification only, no top) | `test68/fx68k.v`, `fx68kAlu.v` | `fx68k` | Verilog | none | none found (no header in these files) |
-| Toy 8-bit "grom" CPU + computer | `cpu/grom_cpu.v`, `grom_computer.v`, `grom_top.v` | `grom_top` | Verilog | none | none found; origin of "grom" not identified — unknown |
+| Toy 8-bit "grom" CPU + computer | `cpu/grom_cpu.v`, `grom_computer.v`, `grom_top.v` | `grom_top` | Verilog | none | MIT via its origin: identical to mmicko__fpga101-workshop tutorials/10-CPU/grom_cpu.v (Miodrag Milanović, 2018) |
 
 To drop any of these into a new ULX3S design: keep the 25 MHz `clk_25mhz` input and instantiate the
 board's standard `ulx3s_v20.lpf` port names (`btn`, `led`, `gpdi_dp`/`gpdi_dn`, `sd_*`, `gp`/`gn`, etc.);
@@ -122,8 +122,8 @@ carry real per-file license headers even though there is no repo-level `LICENSE`
 - Repo-level license is genuinely absent (verified, no `LICENSE`/`COPYING` anywhere), but several
   reused-from-elsewhere files carry GPL-3.0 (`sdram.v` ×2) or other copyleft-adjacent terms — anyone
   reusing those two files specifically should treat them as GPL-3.0-or-later, not "no license".
-- Origin/authorship of the "grom" CPU (`cpu/grom_*.v`) is unknown — no header, no README, not found
-  elsewhere in the reusable-cores survey.
+- Resolved 2026-09-28: the "grom" CPU (`cpu/grom_*.v`) is byte-identical to mmicko__fpga101-workshop
+  `tutorials/10-CPU/grom_cpu.v` (Miodrag Milanović, MIT), via ulx3s__fpga-odysseus.
 - `test68/fx68k.v` license is unknown (no header in this copy); the fx68k core is well-known upstream
   (originally by Jorge Cwik / aka "Torlus", historically used in MiSTer cores) but the specific licensing
   terms for this file were not verifiable from the file itself.

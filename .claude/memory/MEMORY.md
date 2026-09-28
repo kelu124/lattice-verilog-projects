@@ -1,7 +1,7 @@
 - [Project goal](project-goal.md) — why this repo exists: cloneable memory of all ULX3S work, to help build new things
 - [Project registry](projects.md) — every ULX3S project: functions, toolchain, target, last update, review status + candidates queue
-- [Catalogue](../../data/catalogue.json) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 376 repos (292 ULX3S/ULX4M + 26 on other ECP5 boards + 58 non-ECP5: iCE40 UP5K, HX8K/HX4K) (render: gen_catalogue.py; moved from catalogue.tsv 2026-09-28)
-- [Reusable cores](reusable-cores.md) — pointer to data/cores.json (153 cores by function, best + alternatives, usage in data/core_usage.json) + cross-project facts
+- [Catalogue](../../data/catalogue.json) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 377 repos (292 ULX3S/ULX4M + 26 on other ECP5 boards + 59 non-ECP5: iCE40 UP5K, HX8K/HX4K) (render: gen_catalogue.py; moved from catalogue.tsv 2026-09-28)
+- [Reusable cores](reusable-cores.md) — pointer to data/cores.json (155 cores by function, best + alternatives, usage in data/core_usage.json) + cross-project facts
 - [Shallow clones rule](shallow-clones.md) — all clones --depth 1 (owner rule); history stats in history.tsv; gateware-only submodules via clone.sh --submodule
 - [Fetched submodules](submodules.tsv) — allowlist of gateware submodules fetched inside clones (slug, path, url, commit, reason)
 - [Pinned sources](sources.tsv) — upstream repos cloned in original_sources/ with pinned commits (restore with clone.sh --restore)
