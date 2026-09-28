@@ -39,6 +39,8 @@ ultraembedded__ecpix-5	src/riscv	https://github.com/ultraembedded/riscv.git	c17c
 ulx3s__hazard3	example_soc/libfpga	https://github.com/ulx3s/Hazard3-libfpga/	2c430246892d52c41c610bfdb2afc88992986e00	libfpga peripherals/build scripts needed by the ULX3S example SoC (Verilog)
 wren6991__hazard3-swd-soc	lib/libfpga	https://github.com/Wren6991/libfpga.git	061d96dc5625681e05a46f1a0d141a9af4891e1b	libfpga peripherals (Verilog) for the SWD SoC
 wren6991__hazard3-swd-soc	lib/opendap	https://github.com/Wren6991/OpenDAP.git	0fdf995be06c9f26379d811d08d0cbc104f34c03	OpenDAP SWD debug probe core
+wren6991__riscboy	hdl/hazard5	https://github.com/Wren6991/Hazard5.git	b402a6ba32a6465daf1b26c3fdf6a26957846b97	Hazard5 RISC-V CPU core that RISCBoy is built around
+wren6991__riscboy	hdl/libfpga	https://github.com/Wren6991/libfpga.git	9e39280a6dc160068b5263c286d379134053db8f	libfpga: busfabric, UART, SPI, memories used by the RISCBoy SoC
 wuxx__icesugar	src/advanced/iceZ0mb1e	https://github.com/wuxx/iceZ0mb1e.git	5a5d25e3006fb52fa0ae7d0a106617ac3492ee5f	TV80 Z80 SoC for iCE40 (Verilog, fork of abnoname/iceZ0mb1e)
 wuxx__icesugar	src/advanced/up5k_6502	https://github.com/wuxx/up5k_6502.git	28862a7c3f9633e8a284980141e862cb3076b420	6502 system for UP5K (Verilog, fork of emeb/up5k_6502)
 wuxx__icesugar	src/advanced/up5k-demos	https://github.com/wuxx/up5k-demos.git	93e942e1c3acc6303648de82516fbe1044a92ab5	UltraPlus demos (Verilog, fork of lawrie/up5k-demos)

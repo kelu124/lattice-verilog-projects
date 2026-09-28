@@ -1,6 +1,6 @@
 # iCE40 HX4K / HX8K gateware survey (from awesome-latticeFPGAs)
 
-**Status 2026-09-28:** owner approved adding HX4K/HX8K gateware and demos to the catalogue; the 20 recommended repos are NOT cloned yet (next session). Skip abnoname/iceZ0mb1e (already present as the wuxx__icesugar submodule).
+**Status 2026-09-28:** owner approved adding HX4K/HX8K gateware and demos to the catalogue; 19 of the 20 recommended repos were cloned and catalogued on 2026-09-28 (abnoname/iceZ0mb1e skipped: already present as the wuxx__icesugar submodule). See `docs/catalogue.md`.
 
 Date: 2026-09-28. Source list: `kelu124/awesome-latticeFPGAs` Readme.md (HEAD), sections `## HX4K`, `## HX8K`
 and `Other commercial products / HX8K`. HX4K is the same die as HX8K (yosys/nextpnr use `--hx8k`).

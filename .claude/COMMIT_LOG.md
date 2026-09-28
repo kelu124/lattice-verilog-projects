@@ -2,6 +2,19 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(catalogue): catalogue 19 iCE40 HX8K/HX4K repos and 3 pending rows
+- **What**: wrote the 3 rows pending since the last session (gatecat__trellisboard ECP5 85F, mostly PCB + LiteX platform;
+  zipcpu__sdspi vendor-neutral SD SPI/SDIO cores with ~60 formal proofs; toasterllc__mdccode iCE40 HX8K camera glue +
+  MCU firmware). Shallow-cloned + pinned 19 of the 20 recommended repos of `docs/hx-boards-survey.md` (iceZ0mb1e skipped,
+  already a submodule), fetched RISCBoy's `hdl/hazard5` and `hdl/libfpga` submodules; 5 Sonnet subagents wrote the rows
+  incl. `make_tests`. catalogue.tsv 336 → 358 rows (= sources.tsv), docs/catalogue.md regenerated; counts in README,
+  MEMORY, projects.md, reusable-cores.md (+5 rows: sdspi, picorv32/Hazard5, crtc6845, MiST scandoubler, iceboy);
+  survey status line. Ran `prune.py --apply --all` on the new clones: 527 MB deleted, 15 GB free.
+- **Why**: owner's handoff checklist steps 3–4 (approved HX8K/HX4K batch).
+- **Notes**: wren6991__riscboy has a real ULX3S target (`synth/ULX3S.mk`, 85F) but its build scripts submodule
+  (fpgascripts, not gateware) is not fetched. Test harnesses outside Makefiles (un0rick run_sim, MDCCode Sim.sh, icozip
+  .sby) are in notes only; scanner backlog item extended. MDCCode `Sim/` is LTspice, not HDL.
+
 ## 2026-09-28 — skill(clone): add prune.py and prune non-gateware files from clones
 - **What**: `.claude/skills/clone-original-source/prune.py` (dry run by default, `--apply`, `--all` or slugs) deletes
   bitstreams, build outputs (rpt/log/sdf/ncd/vcd, yosys JSON, trellis .config, icestorm .asc), tool binaries, PCB/3D

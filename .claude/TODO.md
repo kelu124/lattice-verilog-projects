@@ -1,28 +1,16 @@
 # TODO
 
-## Start here next session (handoff 2026-09-28, in this order)
-1. Resume protocol (CLAUDE.md). Check `git status` is clean and `df -h /` (~11 GB free on 2026-09-28).
-2. ~~Prune clones~~ done 2026-09-28 (prune.py, 5 GB freed).
-3. **Write the 3 missing catalogue rows** (gatecat__trellisboard, zipcpu__sdspi, toasterllc__mdccode): sources.tsv has 339
-   pins vs 336 rows. One subagent, mixed-family rules (`NOT ECP5` for non-ECP5), fill `make_tests` via scan_make_tests.py.
-4. **HX8K/HX4K batch** (owner approved): clone the 20 recommended repos of `docs/hx-boards-survey.md` minus
-   abnoname/iceZ0mb1e; fetch gateware-only submodules (`clone.sh --submodule`); catalogue with ~4 subagents (5 repos each),
-   FPGA column `iCE40 HX8K (NOT ECP5)` / `iCE40 HX4K (NOT ECP5)`, plus `make_tests`; merge, regenerate, update counts in
-   README/MEMORY/projects/reusable-cores, commit, push.
-5. Then continue with "Next" below.
-
 ## In progress
 
 ## Next
-- [ ] Write catalogue rows for gatecat__trellisboard, zipcpu__sdspi, toasterllc__mdccode (cloned + pinned 2026-09-28; the agent was stopped by a classifier outage). For MDCCode look only at Code/ICE40, Sim, Other/ExampleSDRAMControllers; run scan_make_tests.py for make_tests. Mixed-family brief rules: non-ECP5 rows say `NOT ECP5` (added 2026-09-28)
-- [ ] Clone + catalogue the 20 recommended repos of docs/hx-boards-survey.md (owner approved; skip abnoname/iceZ0mb1e; FPGA column `iCE40 HX8K (NOT ECP5)`; fetch gateware submodules only; fill make_tests too) (added 2026-09-28)
 - [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)
 - [ ] Clone the remaining candidates in projects.md (litex-boards, SaxonSoc, neorv32-setups, fujprog, had2019-playground, ulx4m-ls) (added 2026-09-27)
 - [ ] Harvest the "Gitee examples" section of ulx3s.github.io (added 2026-09-27)
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)
 
 ## Backlog
-- [ ] scan_make_tests.py blind spots: tests run via Python orchestrators (Hazard3 test/sim/test.py), default `all`/`run` targets, shell scripts (apple-one tools/iverilog/*.sh); extend it (added 2026-09-28)
+- [ ] Consider the HX survey honourable mentions (glasgow, BlackIce-II, apollo11_fpga, nanoV, dsp_ice, Centurion, BeagleWire, fpga-3-softcores) (added 2026-09-28)
+- [ ] scan_make_tests.py blind spots: tests run via Python orchestrators (Hazard3 test/sim/test.py), default `all`/`run` targets, shell scripts (apple-one tools/iverilog/*.sh, kelu124__un0rick sim/icarus/run_sim, toasterllc__mdccode Code/ICE40/Sim.sh), .sby files not driven by make (zipcpu__icozip bench/formal); extend it (added 2026-09-28)
 - [ ] scan_tests.sh misses CMake/Verilator harnesses (CMakeLists.txt, verilator/ dirs), e.g. bit-hack__icesid; extend it and re-run (added 2026-09-28)
 - [ ] Clone items 15–24 (except 21, done) of the "recommended" list in docs/ecp5-boards-survey.md if wanted (added 2026-09-27)
 - [ ] Nested gateware submodules not fetched (clone.sh --submodule only takes top-level paths): z386 CPU (gojimmypi__z80386-ulx3s-doom third_party/z386_MiSTer/src/z386), ACoreBase CPU (chiplet__acorechip-ulx3s ACoreChip/…) (added 2026-09-27)

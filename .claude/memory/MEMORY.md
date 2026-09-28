@@ -1,6 +1,6 @@
 - [Project goal](project-goal.md) — why this repo exists: cloneable memory of all ULX3S work, to help build new things
 - [Project registry](projects.md) — every ULX3S project: functions, toolchain, target, last update, review status + candidates queue
-- [Catalogue](catalogue.tsv) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 336 repos (290 ULX3S/ULX4M + 16 on other ECP5 boards + 30 non-ECP5, mostly iCE40 UP5K) (render: gen_catalogue.py)
+- [Catalogue](catalogue.tsv) — per-repo FPGA/toolchain/HDL/license/functions/reuse/tests for all 358 repos (291 ULX3S/ULX4M + 17 on other ECP5 boards + 50 non-ECP5: iCE40 UP5K, HX8K/HX4K) (render: gen_catalogue.py)
 - [Reusable cores](reusable-cores.md) — best source repo for each building block (PLL, DVI, ESP32 OSD, USB host, SDRAM, displays, CPUs, Linux)
 - [Shallow clones rule](shallow-clones.md) — all clones --depth 1 (owner rule); history stats in history.tsv; gateware-only submodules via clone.sh --submodule
 - [Fetched submodules](submodules.tsv) — allowlist of gateware submodules fetched inside clones (slug, path, url, commit, reason)
@@ -14,5 +14,5 @@
 - [ULX5M board](ulx5m-board.md) — ULX5M-GS is GateMate CCGM1A1 (not ECP5): .ccf constraints, nextpnr-himbaechel + gmpack, 1.8 V GPIO; excluded from the catalogue by owner
 - [ECP5 boards survey](../../docs/ecp5-boards-survey.md) — 114 non-ULX3S ECP5 board repos (OrangeCrab, LUNA, iCESugar-Pro, HAD2019, Colorlight…) found 2026-09-27; top 14 + #21 (ecp5-mini-projects) + pergola_projects cloned
 - [Lattice boards survey](../../docs/lattice-boards-survey.md) — gateware for UP5K/ECP5 boards from kelu124/awesome-latticeFPGAs (2026-09-28), 20 recommended, all cloned + catalogued 2026-09-28
-- [HX8K/HX4K survey](../../docs/hx-boards-survey.md) — gateware for iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (2026-09-28), 20 recommended, owner approved adding them, NOT cloned yet
+- [HX8K/HX4K survey](../../docs/hx-boards-survey.md) — gateware for iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (2026-09-28), 20 recommended; 19 cloned + catalogued 2026-09-28 (iceZ0mb1e already a submodule)
 - [Prune clones rule](prune-clones.md) — owner: delete non-gateware files (tools, bitstreams, PCB, PDFs, images) from local clones, never commit to them; report space saved; `prune.py --apply --all` after each clone batch (first run freed 5 GB)

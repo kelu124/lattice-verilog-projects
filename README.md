@@ -26,13 +26,13 @@ and runs `claude` here picks up exactly where the work stopped.
 
 [`docs/catalogue.md`](docs/catalogue.md) is generated from
 [`.claude/memory/catalogue.tsv`](.claude/memory/catalogue.tsv) (one row per repo) by
-`.claude/skills/review-gateware-project/gen_catalogue.py`. It currently covers **336 repos**:
+`.claude/skills/review-gateware-project/gen_catalogue.py`. It currently covers **358 repos**:
 
-- **290 ULX3S / ULX4M** repos: the ulx3s.github.io project list plus a GitHub-wide search;
-- **16 on other ECP5 boards**: OrangeCrab, iCESugar-Pro, Hackaday 2019 badge, Colorlight,
+- **291 ULX3S / ULX4M** repos: the ulx3s.github.io project list plus a GitHub-wide search (and RISCBoy, found via the HX survey);
+- **17 on other ECP5 boards**: TrellisBoard, OrangeCrab, iCESugar-Pro, Hackaday 2019 badge, Colorlight,
   ECPIX-5, Versa ECP5-5G, IcePi Zero, LUNA, ECP5 Mini, Pergola, GreyBadge 2025, Machdyne…;
-- **30 non-ECP5** repos, mostly **iCE40 UP5K** (iCEBreaker, UPduino, iCESugar, Fomu, MCH2022 badge,
-  reDIP-SID, pico-ice…), found via [awesome-latticeFPGAs](https://github.com/kelu124/awesome-latticeFPGAs) and GitHub.
+- **50 non-ECP5** repos: **iCE40 UP5K** (iCEBreaker, UPduino, iCESugar, Fomu, MCH2022 badge, reDIP-SID,
+  pico-ice…), **iCE40 HX8K/HX4K** (PicoRV32, iceboy, BlackIce, IcoBoard, Alhambra II, un0rick…) and ZipCPU sdspi, found via [awesome-latticeFPGAs](https://github.com/kelu124/awesome-latticeFPGAs) and GitHub.
   Any row whose FPGA is not an ECP5 says **`NOT ECP5`** in the FPGA column: iCE40 cores use `SB_*`
   primitives and need porting.
 

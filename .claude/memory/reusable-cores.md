@@ -5,7 +5,7 @@ metadata:
   type: reference
 ---
 
-From the 2026-09-27 survey of 336 repos (290 ULX3S/ULX4M + 16 on other ECP5 boards + 30 non-ECP5, mostly iCE40 UP5K); iCE40 cores use SB_* primitives and need porting (details in `docs/catalogue.md`, source `catalogue.tsv`).
+From the 2026-09-27/28 survey of 358 repos (291 ULX3S/ULX4M + 17 on other ECP5 boards + 50 non-ECP5, iCE40 UP5K and HX8K/HX4K); iCE40 cores use SB_* primitives and need porting (details in `docs/catalogue.md`, source `catalogue.tsv`).
 Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalogue-fields]].
 
 | Need | Best source (language, license) | Also |
@@ -40,6 +40,11 @@ Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalog
 | E1 telecom line interface | osmocom__osmo-e1-hardware `gateware/cores/no2e1` (Verilog, iCE40 SB_IO, author says easy to adapt) | — |
 | iCE40 cores library (no2fpga: USB, HyperRAM, QPI PSRAM, cache, HUB75) | smunaut__ice40-playground `cores/no2*` (Verilog; iCE40 SB_* IO in no2ice40, logic mostly portable; check each core's license) | — |
 | SID (C64 sound) | bit-hack__icesid `icesid/*.v` (Verilog, CERN-OHL-S-2.0, no SB_* primitives: portable) | — |
+| SD card controller (SPI + SDIO/eMMC, Wishbone) | zipcpu__sdspi `rtl/{spi,sdio}/` (Verilog, GPL-3.0, vendor-neutral, ~60 SymbiYosys proofs) | — |
+| RISC-V reference core + SoC | yosyshq__picorv32 `picorv32.v`, `picosoc/` (Verilog, ISC, no vendor primitives; self-checking `make test`) | Hazard5 in wren6991__riscboy `hdl/hazard5` (RISCBoy also has a ULX3S 85F target, `synth/ULX3S.mk`) |
+| 6845 CRTC / MDA-CGA video | schlae__graphics-gremlin `verilog/crtc6845.v` (Verilog, CC-BY-SA-4.0, primitive-free) | MC6845 + SAA5050 teletext in hoglet67__ice40beeb |
+| Scandoubler (15 kHz RGB → VGA) | hoglet67__ice40beeb `src/mist_scandoubler.v` (from MiST, GPL-3.0-or-later, portable) | — |
+| Game Boy (SM83 CPU + PPU), formally verified | msinger__iceboy (SystemVerilog, CERN-OHL-W-2.0, SymbiYosys per-instruction proofs) | — |
 | Linux on ULX3S | linux-on-litex-vexriscv (`./make.py --board=ulx3s`); kianV (85F); SaxonSoc (docker recipes stale since 2020) | — |
 
 Cross-project facts:
