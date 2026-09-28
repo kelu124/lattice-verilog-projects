@@ -11,13 +11,13 @@ Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalog
 | Need | Best source (language, license) | Also |
 |---|---|---|
 | Parametric ECP5 PLL | emard__ulx3s-misc `examples/ecp5pll/hdl/{sv,vhd}/ecp5pll` (SV/VHDL, BSD header) | copied into many lawrie/splinedrive repos |
-| DVI/HDMI out (TMDS) | emard__ulx3s-misc `examples/dvi/hdl/{vga2dvid,tmds_encoder}.vhd` + `fake_differential.v` (BSD) | Verilog: lawrie__apple-one `rtl/boards/ulx3s/` (Apache-2.0), splinedrive__my_hdmi_device (ISC), doctorwkt tic-tac-toe `HDMI/` (GPL-3.0), Silice `projects/common/hdmi.si` (MIT) |
+| DVI/HDMI out (TMDS) | emard__ulx3s-misc `examples/dvi/hdl/{vga2dvid,tmds_encoder}.vhd` (MIT, Mike Field) + `fake_differential.v` (BSD); page `docs/projects/emard__ulx3s-misc.md` | Verilog: lawrie__apple-one `rtl/boards/ulx3s/` (Apache-2.0), splinedrive__my_hdmi_device (ISC), doctorwkt tic-tac-toe `HDMI/` (GPL-3.0), Silice `projects/common/hdmi.si` (MIT) |
 | HDMI with audio | emard__papilio-arcade `scramble_rel001_papilio/source/vga/` av_hdmi (VHDL) | — |
-| ESP32 SPI OSD + ROM/disk loading | lawrie__ulx3s_sms `src/osd/` (osd.v, spi_osd.v, spirw_slave_v.v) + `esp32/osd` MicroPython; same stack in nes_ecp5, trs_80, apple2fpga | the de-facto way to load games/disks from SD via the ESP32 |
+| ESP32 SPI OSD + ROM/disk loading | lawrie__ulx3s_sms `src/osd/` (osd.v, spi_osd.v, spirw_slave_v.v) + `esp32/osd` MicroPython; same stack in nes_ecp5, trs_80, apple2fpga. No vendor primitives; osd.v/spi_osd.v have no license header (spirw_slave_v.v BSD); page `docs/projects/lawrie__ulx3s_sms.md` | the de-facto way to load games/disks from SD via the ESP32 |
 | ESP32 ↔ FPGA SPI RAM | emard__uk101onfpga `rtl_emard/spi_ram/spi_ram_slave.vhd`; ulx3s-misc `examples/spi_ram` | — |
 | USB 1.1 HID host (US2: keyboard/gamepad) | emard__ulx3s-misc `examples/usb/usbhost` (usbh_sie.v, usbh_host_hid) (mixed, GPL/MIT parts) | Verilog + gamepad decoders: emard__nes_ecp5 `usb/`; VHDL: hdl4fpga `library/usb` |
 | USB device (CDC serial) | ulx3s-misc `examples/usb/usbcdc` (VHDL); osresearch__spispy `verilog/usb/` (TinyFPGA stack, Verilog) | f32c `rtl/soc/usb_serial` |
-| SDRAM controller | ulx3s-misc `examples/sdram/` (pnru, mist, 16bit, memtest_mister); lawrie__ulx3s_examples `sdram16/sdram.v` (none found) | Linux-grade: splinedrive__kianriscv `engineering/sdram/` (ISC/Apache); cache: emard__oberon `hdl/cache_controller.v`; VHDL: f32c `rtl/soc/sdram*.vhd` (BSD-2) |
+| SDRAM controller | ulx3s-misc `examples/sdram/` (pnru public domain, mistery GPL-3.0, 16bit LGPL-2.1, memtest_mister); lawrie__ulx3s_examples `sdram16/sdram.v` (GPL-3.0-or-later, MiST) | Linux-grade: splinedrive__kianriscv `engineering/sdram/` (ISC/Apache); cache: emard__oberon `hdl/cache_controller.v`; VHDL: f32c `rtl/soc/sdram*.vhd` (MIT); multi-generation SDR/DDR/DDR2/DDR3: hdl4fpga `library/sdram/sdram_ctlr.vhd` (MIT) |
 | ST7789 / SSD1331 / SSD1351 displays | ulx3s-misc `examples/spi_display/hdl` (Verilog+VHDL) | lawrie__ulx3s_examples `st7789/`; Silice `oled_*.si`; SpinalHDL: lawrie__slabboy `ST7789.scala` |
 | PS/2 keyboard/mouse | lawrie__ulx3s_examples `ps2/`, `ps2port/` | ulx3s-misc `examples/ps2` |
 | Audio | SPDIF: f32c `rtl/soc/spdif_tx.vhd` (BSD-2); I2S: ulx3s-misc `examples/audio`; PSG: lawrie__ulx3s_sms `src/sn76489.v` | synth: emard__synthowheel (BSD) |
@@ -45,6 +45,7 @@ Paths are relative to `original_sources/<slug>/`. Licenses matter; see [[catalog
 | 6845 CRTC / MDA-CGA video | schlae__graphics-gremlin `verilog/crtc6845.v` (Verilog, CC-BY-SA-4.0, primitive-free) | MC6845 + SAA5050 teletext in hoglet67__ice40beeb |
 | Scandoubler (15 kHz RGB → VGA) | hoglet67__ice40beeb `src/mist_scandoubler.v` (from MiST, GPL-3.0-or-later, portable) | — |
 | Game Boy (SM83 CPU + PPU), formally verified | msinger__iceboy (SystemVerilog, CERN-OHL-W-2.0, SymbiYosys per-instruction proofs) | — |
+| USB DFU bootloader (US2) | emard__had2019-playground `projects/bootloader/` (PicoRV32 + ECP5 USB core, BSD-3/LGPL-3.0+; `1d50:614b`, user image at 0x200000) | see `docs/DFUs.md` |
 | Linux on ULX3S | linux-on-litex-vexriscv (`./make.py --board=ulx3s`); kianV (85F); SaxonSoc (docker recipes stale since 2020) | — |
 
 Cross-project facts:
@@ -55,6 +56,9 @@ Cross-project facts:
   Porting them to the open flow usually means ghdl-yosys-plugin (VHDL). f32c's own trellis attempts are marked not working.
 - **`--25k` + `--idcode 0x21111043`** is a common trick: build for 25k and load it on a 12F (same die).
 - Many ulx3s.github.io entries have two copies; the preferred ones are recorded in `catalogue.tsv` `fork_of`.
+
+Full review pages with per-block reuse notes (module, ports, primitives, license, ULX3S changes) exist for 15 of these repos
+in `docs/projects/`; pin maps of every LPF in the collection are in `docs/lpf-catalogue.json`.
 
 **How to apply:** when a user wants to build X, look up X here first, check its license, then open the repo's
 row in `docs/catalogue.md`. Add rows here whenever a review finds a better or new reusable block.

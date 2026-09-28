@@ -16,3 +16,5 @@
 - [Lattice boards survey](../../docs/lattice-boards-survey.md) — gateware for UP5K/ECP5 boards from kelu124/awesome-latticeFPGAs (2026-09-28), 20 recommended, all cloned + catalogued 2026-09-28
 - [HX8K/HX4K survey](../../docs/hx-boards-survey.md) — gateware for iCE40 HX8K/HX4K boards of awesome-latticeFPGAs (2026-09-28), 20 recommended; 19 cloned + catalogued 2026-09-28 (iceZ0mb1e already a submodule)
 - [Prune clones rule](prune-clones.md) — owner: delete non-gateware files (tools, bitstreams, PCB, PDFs, images) from local clones, never commit to them; report space saved; `prune.py --apply --all` after each clone batch (first run freed 5 GB)
+- [LPF catalogue](../../docs/lpf-catalogue.json) — every LPF in the clones (883 files, 455 distinct): URL at pinned commit, board/rev by pin match, FPGA size/LUTs, chips; regenerate with gen_lpf_catalogue.py after cloning
+- [DFU bootloaders](../../docs/DFUs.md) — USB DFU on ULX3S/ULX4M (had2019-playground bootloader, 1d50:614b, user image 0x200000, alt settings) and other boards

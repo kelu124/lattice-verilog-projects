@@ -2,6 +2,24 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — docs(reuse): add DFU guide, LPF catalogue and 15 reusable-core pages
+- **What**: `docs/DFUs.md` (1 agent): USB DFU bootloaders and flows; ULX3S/ULX4M US2 bootloader from the newly cloned
+  `emard__had2019-playground` (PicoRV32 + ECP5 USB core, 1d50:614b, alts 0–5, user image 0x200000, PROGRAMN reboot,
+  recovery via ulx3s__hazard3-doom), plus OrangeCrab, Fomu, no2bootloader, pico-ice, BlackIce, Machdyne. 15 pages in
+  `docs/projects/` (5 Sonnet agents, template + "Reusable blocks" tables): ulx3s-misc, ulx3s_examples, ulx3s_sms, f32c,
+  hdl4fpga, silice, usb_cdc, smoldvi, ecp5_hdmi_audio_video, sdspi, picorv32, m6502, ice40-playground, ultraembedded
+  orangecrab, hadbadge2019_fpgasoc. New `gen_lpf_catalogue.py` → `docs/lpf-catalogue.json` + `.md`: 883 LPFs, 455
+  distinct, per-copy URL at the pinned commit, device + LUTs with evidence, board/rev by (signal, site) match against
+  emard/ulx3s reference LPFs, chips from signal names, part numbers from comments. Catalogue row for had2019-playground
+  (359 rows); license/reuse corrections from the reviews (ulx3s-misc, ulx3s_examples, ulx3s_sms, f32c, hdl4fpga,
+  picorv32, sdspi, ice40-playground); reusable-cores (DVI MIT, SDRAM licenses, OSD, DFU row); projects.md registry,
+  README start-here, MEMORY index, review skill.
+- **Why**: owner asked for a DFU document, full docs pages for the most reusable gateware, and an LPF catalogue as JSON
+  (URL, FPGA type, LUTs, board, rev, last update, chips).
+- **Notes**: per-file dates are unknown in shallow clones, so the JSON gives the repo's pinned commit date. Pin-match
+  board inference only covers ULX3S revisions; other boards come from path/catalogue keywords. One page agent's forks
+  overwrote each other before reconciling; pages were checked for structure afterwards.
+
 ## 2026-09-28 — docs(repo): document clone pruning and the HX8K/HX4K batch in README, memory, skills
 - **What**: README (scope now includes iCE40 HX8K/HX4K, HX survey status, a pruning paragraph + command after
   `--restore`, skills row); CLAUDE.md (prune after each clone batch and in the resume protocol); skills github-survey

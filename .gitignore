@@ -5,3 +5,4 @@ original_sources/*
 *.config
 *_out.json
 build/
+__pycache__/

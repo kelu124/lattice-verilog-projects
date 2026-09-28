@@ -3,7 +3,9 @@
 ## In progress
 
 ## Next
-- [ ] Write full docs pages for the most reusable repos: emard__ulx3s-misc, lawrie__ulx3s_examples, f32c__f32c, sylefeb__silice, hdl4fpga__hdl4fpga (only catalogued so far) (added 2026-09-27)
+- [ ] DFU follow-ups (docs/DFUs.md open questions): clone smunaut/had2019-playground original, no2bootloader, OrangeCrab bootloader, foboot, tinydfu to verify their layouts; which board emard__esp32ecp5 dfu.py targets; ULX4M DFU entry (BTN3 vs SW1 disagreement) (added 2026-09-28)
+- [ ] Docs pages follow-ups: open questions at the end of each new docs/projects/*.md (15 pages, 2026-09-28); license-verify the ulx3s-misc dirs only listed (usbhid, ch376, qspi, jtag_slave, dvi_in, dvi_osd, ov7670_dvi, adxl355) (added 2026-09-28)
+- [ ] LPF catalogue: 134 ULX3S LPFs have unknown revision (<90 % pin match: renamed signals); consider matching on sites only, and a PCF catalogue for the iCE40 repos (added 2026-09-28)
 - [ ] Clone the remaining candidates in projects.md (litex-boards, SaxonSoc, neorv32-setups, fujprog, had2019-playground, ulx4m-ls) (added 2026-09-27)
 - [ ] Harvest the "Gitee examples" section of ulx3s.github.io (added 2026-09-27)
 - [ ] Build a wider list of ULX3S projects: GitHub search "ulx3s", topic `ulx3s`, Hackaday/Crowd Supply pages, radiona.org (added 2026-09-27)

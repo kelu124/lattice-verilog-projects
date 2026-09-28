@@ -19,7 +19,9 @@ and runs `claude` here picks up exactly where the work stopped.
 | Find the best existing core for a function (PLL, DVI, USB, SDRAM, HyperRAM, CPU, Linux…) | [`.claude/memory/reusable-cores.md`](.claude/memory/reusable-cores.md) |
 | Browse every catalogued repo (FPGA, toolchain, HDL, license, functions, tests, reuse) | [`docs/catalogue.md`](docs/catalogue.md) |
 | Learn the ULX3S hardware: pins, signal names, constraint files, build and load, pitfalls | [`docs/board-reference.md`](docs/board-reference.md) |
-| Read a full review of a project | [`docs/projects/`](docs/projects/) — [emard/ulx3s](docs/projects/emard__ulx3s.md), [ulx3s-bin](docs/projects/emard__ulx3s-bin.md), [openFPGALoader](docs/projects/trabucayre__openfpgaloader.md) |
+| Read a full review of a project, with per-block reuse notes (module, ports, primitives, license, what to change for ULX3S) | [`docs/projects/`](docs/projects/): 18 pages, e.g. [ulx3s-misc](docs/projects/emard__ulx3s-misc.md), [ulx3s_sms OSD](docs/projects/lawrie__ulx3s_sms.md), [f32c](docs/projects/f32c__f32c.md), [hdl4fpga](docs/projects/hdl4fpga__hdl4fpga.md), [Silice](docs/projects/sylefeb__silice.md), [usb_cdc](docs/projects/ulixxe__usb_cdc.md), [ecp5_hdmi_audio_video](docs/projects/danodus__ecp5_hdmi_audio_video.md), [sdspi](docs/projects/zipcpu__sdspi.md), [PicoRV32](docs/projects/yosyshq__picorv32.md), [no2fpga cores](docs/projects/smunaut__ice40-playground.md), [HAD2019 SoC](docs/projects/spritetm__hadbadge2019_fpgasoc.md) |
+| Load bitstreams over USB (DFU), or add a DFU bootloader to a design | [`docs/DFUs.md`](docs/DFUs.md): the ULX3S/ULX4M US2 bootloader (source, alt settings, flash layout, recovery) and the OrangeCrab, Fomu, no2bootloader, pico-ice, BlackIce flows |
+| Find a pin map (LPF) for a board/revision, or see which peripherals a design constrains | [`docs/lpf-catalogue.md`](docs/lpf-catalogue.md) + [`lpf-catalogue.json`](docs/lpf-catalogue.json): all 883 LPFs (455 distinct) with URL, board/rev, FPGA size and LUTs, chips (SDRAM, flash, SD, ESP32, HDMI…) |
 | See how the collection was found, and what is not cloned yet | the surveys below |
 
 ## The catalogue
@@ -78,6 +80,7 @@ freed 5 GB.
 | [`.claude/memory/board-hardware.md`](.claude/memory/board-hardware.md), [`board-revisions.md`](.claude/memory/board-revisions.md), [`toolchain-and-programming.md`](.claude/memory/toolchain-and-programming.md) | Distilled ULX3S hardware, revision and toolchain knowledge |
 | [`.claude/memory/projects.md`](.claude/memory/projects.md) | Project registry: status and the queue of candidates still to review |
 | [`.claude/memory/source-lists.md`](.claude/memory/source-lists.md) | Where each batch of repos came from, and when |
+| [`.claude/skills/review-gateware-project/gen_lpf_catalogue.py`](.claude/skills/review-gateware-project/gen_lpf_catalogue.py) | Regenerates the LPF catalogue from the clones |
 | [`.claude/skills/`](.claude/skills/) | Repeatable workflows: GitHub survey, clone + prune, review/catalogue, document, commit, TODO/DONE |
 | [`.claude/TODO.md`](.claude/TODO.md), [`DONE.md`](.claude/DONE.md), [`COMMIT_LOG.md`](.claude/COMMIT_LOG.md) | Open work, finished work, and the why of each commit |
 

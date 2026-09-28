@@ -37,7 +37,7 @@ ulx3s-bin, openFPGALoader, plus 68 of the 69 ulx3s.github.io "Projects and examp
 (11, forks with own commits) and the 2 ULX4M-specific repos in E; first pass by read-only agents over
 Makefiles, LPFs, READMEs, license files and a testbench heuristic; not built — and for this last batch
 of 64, several turned out to have no real ULX3S/ULX4M build despite matching the survey, see
-`docs/catalogue.md`'s notes). Only the three below also have a full docs page (`reviewed`); the
+`docs/catalogue.md`'s notes). Only the 18 in the detail blocks below also have a full docs page (`reviewed`); the
 rest are `catalogued`. The GitHub survey found ≈297 candidates in total; the remaining ~78 (category C,
 multi-board, and E minus the 2 ULX4M repos) are listed in `docs/github-survey.md` but not yet cloned —
 skipped deliberately since they are not primarily about ULX3S/ULX4M devices.
@@ -72,6 +72,24 @@ Cross-project map of reusable cores: [[reusable-cores]].
   `ulx3s_esp` (ESP32-S3 USB-JTAG, added 2025, working status unverified), `ulx4m_dfu`, `ulx2s`.
 - Reuse: the default programmer to recommend. Page: `docs/projects/trabucayre__openfpgaloader.md`.
 
+## Reviewed 2026-09-28 (most reusable gateware; full pages)
+- `emard__ulx3s-misc`: reference ULX3S peripheral examples: ecp5pll, DVI, USB host/CDC, SDRAM, SPI displays, ESP32 SPI RAM, ADC, FM. Page: `docs/projects/emard__ulx3s-misc.md`.
+- `lawrie__ulx3s_examples`: ~100 Verilog examples: PS/2, ST7789, PicoRV32 SD menu, HDMI, SDRAM. Page: `docs/projects/lawrie__ulx3s_examples.md`.
+- `lawrie__ulx3s_sms`: Sega Master System + the ESP32 SPI OSD stack (src/osd/) reused by many retro ports. Page: `docs/projects/lawrie__ulx3s_sms.md`.
+- `f32c__f32c`: MIPS/RISC-V SoC, ULX3S self-test; BSD peripherals (SPDIF, FM/RDS, DVI); Diamond, trellis not working. Page: `docs/projects/f32c__f32c.md`.
+- `hdl4fpga__hdl4fpga`: ScopeIO, SDR..DDR3 controller, full Ethernet stack (MIT), Diamond only. Page: `docs/projects/hdl4fpga__hdl4fpga.md`.
+- `sylefeb__silice`: Silice language + ULX3S framework, HDMI/SDRAM/RISC-V cores in .si (compile step needed). Page: `docs/projects/sylefeb__silice.md`.
+- `ulixxe__usb_cdc`: portable USB CDC-ACM device (MIT, no vendor primitives, 48 MHz); no ULX3S example in repo. Page: `docs/projects/ulixxe__usb_cdc.md`.
+- `wren6991__smoldvi`: tiny DVI encoder (CC0); ECP5 needs an ODDRX1F ddr_out. Page: `docs/projects/wren6991__smoldvi.md`.
+- `danodus__ecp5_hdmi_audio_video`: HDMI with audio, ULX3S top, ECP5-native serializer (MIT). Page: `docs/projects/danodus__ecp5_hdmi_audio_video.md`.
+- `zipcpu__sdspi`: SD SPI/SDIO/eMMC Wishbone cores (GPL-3.0), SPI mode drop-in for ULX3S sd_* pins. Page: `docs/projects/zipcpu__sdspi.md`.
+- `yosyshq__picorv32`: RISC-V core + PicoSoC (ISC), portable; iCE40 tops only. Page: `docs/projects/yosyshq__picorv32.md`.
+- `chrismoos__m6502`: SystemVerilog 6502 with tests (MIT), ULX3S 85F bring-up top. Page: `docs/projects/chrismoos__m6502.md`.
+- `smunaut__ice40-playground`: no2fpga cores (USB, HyperRAM, QPI, cache, HUB75) with SB_*→ECP5 porting map. Page: `docs/projects/smunaut__ice40-playground.md`.
+- `ultraembedded__orangecrab`: DDR3 AXI controller for ECP5 (Apache-2.0), OrangeCrab memtest. Page: `docs/projects/ultraembedded__orangecrab.md`.
+- `spritetm__hadbadge2019_fpgasoc`: HAD2019 badge SoC: QPI PSRAM cache, ECP5 USB FS PHY, video/audio (per-file licenses). Page: `docs/projects/spritetm__hadbadge2019_fpgasoc.md`.
+- `emard__had2019-playground` (cloned + catalogued 2026-09-28): source of the ULX3S/ULX4M US2 DFU bootloader. Page: `docs/DFUs.md`.
+
 ## Candidates (known, not cloned yet)
 | Slug | Why it matters (unverified) |
 |---|---|
@@ -80,7 +98,7 @@ Cross-project map of reusable cores: [[reusable-cores]].
 | tinyfpga__tinyfpga-bootloader | USB bootloader (US2) |
 | emard__fleafpga-jtag | JTAG programmer for .vme files |
 | emard__ulx2s | Predecessor board |
-| emard__had2019-playground, smunaut__had2019-playground | DFU bootloader source |
+| smunaut__had2019-playground | original HAD2019 badge DFU bootloader (emard fork cloned 2026-09-28) |
 | intergalaktik__ulx4m-ls | ULX4M successor board |
 | litex-hub__litex-boards | `radiona_ulx3s` platform/target used by linux-on-litex |
 | alangarf__apple-one, basman74__oberon_sdram | upstreams of already-cloned forks |

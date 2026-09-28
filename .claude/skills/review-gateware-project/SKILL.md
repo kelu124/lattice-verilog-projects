@@ -46,7 +46,8 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
 7a. **make_tests**: run `.claude/skills/review-gateware-project/scan_make_tests.py original_sources/<slug>` for candidate
    Makefile targets that run a simulator, then read those Makefiles and fill the `make_tests` column (see catalogue-fields).
 7b. **Catalogue**: add or update the slug's row in `.claude/memory/catalogue.tsv` (all columns), then
-   run `.claude/skills/review-gateware-project/gen_catalogue.py` to regenerate `docs/catalogue.md`.
+   run `.claude/skills/review-gateware-project/gen_catalogue.py` to regenerate `docs/catalogue.md`, and
+   `gen_lpf_catalogue.py` to refresh `docs/lpf-catalogue.{json,md}` (all LPFs in the clones).
    If the repo offers a better reusable block, update `.claude/memory/reusable-cores.md`.
 8. **Write** `docs/projects/<slug>.md` (skill `documentation` template) and
    update the project's row + detail block in `.claude/memory/projects.md`
