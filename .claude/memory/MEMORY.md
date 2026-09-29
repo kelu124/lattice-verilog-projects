@@ -21,3 +21,4 @@
 - [Data/docs layout](data-docs-layout.md) — owner rules: data is JSON in data/; docs/ is a generated just-the-docs GitHub Pages site built around reusable cores by function, 16 board pages in 3 families, guides, reviews, methodology (`make check usage docs`)
 - [ECP5 SERDES and storage](ecp5-serdes-storage.md) — no open M.2/NVMe SSD design on ECP5-5G; LiteSATA works on ECPIX-5; PCIe endpoint-only PoCs; TinyFPGA EX never shipped (surveys 2026-09-28)
 - [Lattice RF / DSP / FFT](lattice-rf-dsp.md) — open SDR, lock-in, VNA, WSPR, LoRa and FFT gateware on Lattice (mostly UP5K), lineages and gaps (surveys 2026-09-28)
+- [Owner working style](owner-working-style.md) — parallel agents welcome; bookkeeping before push; push only when asked; English for published content; keep the TODO handoff current

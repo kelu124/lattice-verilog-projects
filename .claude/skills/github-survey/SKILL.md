@@ -31,3 +31,15 @@ Last run: 2026-09-27 → `docs/methodology/github-survey.md` (≈297 candidates 
 5. Clone the chosen ones with the `clone-original-source` skill, then catalogue them (review skill, step 7b),
    then prune the new clones (`prune.py --apply --all`) and report the space saved.
    **Check free disk space first** (`df -h`): on 2026-09-27 the disk was 98 % full.
+
+## Topic surveys (added 2026-09-28)
+
+The same method is used for topic surveys that are not ULX3S-specific: ECP5-5G SERDES/storage, TinyFPGA EX / ECPIX-5 /
+Cynthion, FFT on Lattice, RF/DSP on Lattice, Gitee/ulx3s.github.io harvest. Give one research agent the topic, the
+queries to start from, the evidence rule (HDL + a Lattice constraint/build file) and the diff against `sources.tsv`;
+it writes `<topic>_survey.md` + `<topic>_candidates.json` in the scratchpad. Import the page with
+`.claude/skills/documentation/md2json.py <topic>_survey.md data/pages/<topic>-survey.json --kind survey`, set a
+`nav_title`, then clone + catalogue the candidates (review skill, "Batch cataloguing with agents") and log the run in
+`.claude/memory/source-lists.md`. Unauthenticated search shares one hourly quota across parallel agents: expect retries;
+code search needs `gh auth login` (not available).
+

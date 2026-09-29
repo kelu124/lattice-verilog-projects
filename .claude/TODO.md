@@ -7,7 +7,8 @@ State: 523 repos catalogued (= 523 pins), 218 reusable cores in 34 functions, 18
    (needed by `make check`/`usage`/`lpfs`; `make docs` alone works without clones except PCF lists on board pages).
 2. GitHub Pages: owner enables it (Settings → Pages → main, /docs) if not done; then check the first build at
    https://kelu124.github.io/lattice-verilog-projects/ (nav, search, core anchors, raw wrapper) and fix what breaks.
-3. Then pick from "Next" (licensing pass on cores, board descriptions, DFU follow-ups…).
+3. Large batches: use `clone_batch.sh` + the agent briefs (review skill, "Batch cataloguing with agents").
+4. Then pick from "Next" (licensing pass on cores, board descriptions, DFU follow-ups…).
 
 ## In progress
 

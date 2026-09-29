@@ -60,3 +60,25 @@ description: End-to-end workflow to review one ULX3S gateware project — clone 
    (reusable cores, common pitfalls) → a memory file + `MEMORY.md` pointer.
 10. **Close**: TODO → DONE, `.claude/COMMIT_LOG.md` entry, commit
     `review(<slug>): ...` (skill `committing`).
+
+## Batch cataloguing with agents (used 2026-09-28 for ~150 repos)
+
+For more than ~5 repos, orchestrate instead of doing it serially:
+1. **Clone**: write `owner/repo` (or full URLs) to a list and run
+   `.claude/skills/clone-original-source/clone_batch.sh list.txt` (clone + pin + prune each repo). For every
+   `SUBMODULES` line, list `.gitmodules` and fetch only gateware ones with `clone.sh --submodule` (skill
+   `clone-original-source` rule 6).
+2. **Split** the slugs into parts of 4–17 (smaller for big or RF/DSP repos) and give each part to one Sonnet agent with
+   the two briefs in `agent-briefs/`: `catalogue-row.md` (15-field TSV rows) and `core-record.md` (cores JSON,
+   `rank: alternative` unless the agent is asked to pick a best). Tell each agent its output paths in the scratchpad,
+   the context (survey section, known relations/forks, which submodules were fetched) and to name helper scripts
+   uniquely (the scratchpad is shared; one run saw a clobbered script).
+3. **Validate** every output before merging: `awk -F'\t' '{print NF}' rows.tsv` = 15 everywhere, the cores JSON
+   parses, ids are new, files exist (check_data does it after the merge).
+4. **Merge**: `gen_catalogue.py --merge a.tsv --merge b.tsv ...`, append the core records to `data/cores.json`
+   (sorted by function order), then `make check usage lpfs docs`. `make check` errors of the form "pinned but has no
+   row" count exactly the repos still being catalogued.
+5. **Surveys** (research agents, see skill `github-survey`) write `<topic>_survey.md` + `<topic>_candidates.json`;
+   import the page with `documentation/md2json.py ... --kind survey`, clone the candidates, then catalogue as above.
+6. Close as usual (memory counts, source-lists row, TODO/DONE, COMMIT_LOG, one commit per batch).
+

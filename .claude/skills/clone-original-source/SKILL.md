@@ -31,6 +31,9 @@ description: Clone (or restore) an upstream ULX3S gateware repository into origi
 8. **Prune** after cloning (owner rule, memory `prune-clones.md`): `prune.py --apply --all` deletes
    non-gateware files (bitstreams, build outputs, tools, PCB/3D, PDFs, big images/archives) from the working
    trees, never commits. Per-slug folders go in `prune.tsv` (`delete`/`keep`). Dry run without `--apply`.
+9. **Other forges**: GitLab and Codeberg URLs work with `clone.sh` (slug = owner__repo). Gitee clones work but can
+   fail once with a GnuTLS error: re-run. `clone.sh` clones the **default branch** only: repos whose ULX3S work is on
+   another branch (gregdavill/foboot `OrangeCrab`, ulx3s/ttsky-verilog-template `ulx3s`) need branch support (TODO).
 
 ## Commands
 
@@ -43,6 +46,9 @@ description: Clone (or restore) an upstream ULX3S gateware repository into origi
 
 # Fetch one gateware submodule (shallow, pinned in submodules.tsv)
 .claude/skills/clone-original-source/clone.sh --submodule <owner>__<repo> <path> "<why it is gateware>"
+
+# Clone many (clone + pin + prune each; prints SUBMODULES for repos that declare some)
+.claude/skills/clone-original-source/clone_batch.sh list.txt   # lines: owner/repo or full URL
 
 # Pull latest upstream for one slug and re-pin
 .claude/skills/clone-original-source/clone.sh --update <owner>__<repo>

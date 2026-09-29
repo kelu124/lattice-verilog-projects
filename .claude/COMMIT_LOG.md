@@ -2,6 +2,15 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-28 — skill(repo): record the multi-agent batch workflow and working style
+- **What**: `.claude/skills/clone-original-source/clone_batch.sh` (clone + pin + prune a list, flags submodules);
+  agent briefs `.claude/skills/review-gateware-project/agent-briefs/{catalogue-row,core-record}.md` (were only in the
+  session scratchpad); review skill section "Batch cataloguing with agents" (split, validate, merge, surveys); clone
+  skill notes on GitLab/Codeberg/Gitee and default-branch-only; github-survey skill "Topic surveys"; CLAUDE.md pointer;
+  memory `owner-working-style.md`; TODO handoff step.
+- **Why**: owner asked to update skills and memory before committing and pushing, so the next session can reuse the
+  workflow that catalogued ~150 repos with ~20 agents on 2026-09-28.
+
 ## 2026-09-28 — docs(catalogue): catalogue groups C/E, candidates, DFU bootloaders, RF and FFT designs
 - **What**: cloned (shallow, pruned per repo) + catalogued 125 repos with ~20 Sonnet agents: GitHub survey group C (68 +
   hyperram-test) and remaining E (9), registry candidates (fujprog, TinyFPGA-Bootloader, LibXSVF-ESP, FleaFPGA-JTAG,

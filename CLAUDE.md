@@ -65,7 +65,8 @@ exact state it was left in. Do **not** rely on the per-user memory in
   `unknown`, never guessed.
 - **TODO / DONE** → skill `todo-done`. Every task discovered goes in `.claude/TODO.md`;
   when finished it moves to `.claude/DONE.md` with the date and commit.
-- **Reviewing a project** → skill `review-gateware-project`. The end-to-end
+- **Reviewing a project** → skill `review-gateware-project` (for many repos: its "Batch cataloguing with agents"
+  section, `clone_batch.sh`, and the agent briefs in `.claude/skills/review-gateware-project/agent-briefs/`). The end-to-end
   workflow that ties all of the above together and updates `projects.md`.
 
 ## Memory rules

@@ -1,6 +1,7 @@
 # DONE
 
 ## 2026-09-28
+- [x] Record the batch workflow in skills (clone_batch.sh, agent briefs, review/clone/github-survey skills) and the owner's working style in memory → commit "skill(repo): record the multi-agent batch workflow and working style"
 - [x] Batches 1–5 of the TODO + owner extras: registry candidates (9), DFU bootloaders (4, guide verified), GitHub survey groups C (68) and E (9), ulx3s.github.io/Gitee harvest (4 new), lit3rick (review page), RF/DSP survey (15), FFT survey (15); 20 agents; 398 → 523 repos, 173 → 218 cores; 3 survey pages → commit "docs(catalogue): catalogue groups C/E, candidates, DFU bootloaders, RF and FFT designs"
 - [x] Follow the GitHub rename to kelu124/lattice-verilog-projects: remote, generator URLs, Pages URL, titles, README, memory → commit "chore(repo): switch links to the renamed lattice-verilog-projects repo"
 - [x] Root contribute.md (generated from data/pages/contributing.json) referenced in the README; CONTRIBUTING.md becomes a pointer → commit "docs(contrib): add contribute.md and reference it in the README"
