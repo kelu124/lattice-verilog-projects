@@ -1,5 +1,8 @@
 # DONE
 
+## 2026-09-29
+- [x] Replace the old repo name ulx3s-klod everywhere (skills, CLAUDE.md, schema ids, data, generated site); agent briefs no longer hard-code the local path → commit "chore(repo): replace the old ulx3s-klod name throughout the repo"
+
 ## 2026-09-28
 - [x] Record the batch workflow in skills (clone_batch.sh, agent briefs, review/clone/github-survey skills) and the owner's working style in memory → commit "skill(repo): record the multi-agent batch workflow and working style"
 - [x] Batches 1–5 of the TODO + owner extras: registry candidates (9), DFU bootloaders (4, guide verified), GitHub survey groups C (68) and E (9), ulx3s.github.io/Gitee harvest (4 new), lit3rick (review page), RF/DSP survey (15), FFT survey (15); 20 agents; 398 → 523 repos, 173 → 218 cores; 3 survey pages → commit "docs(catalogue): catalogue groups C/E, candidates, DFU bootloaders, RF and FFT designs"

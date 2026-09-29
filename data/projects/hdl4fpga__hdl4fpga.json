@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "project",
  "slug": "hdl4fpga__hdl4fpga",
  "title": "hdl4fpga (`hdl4fpga__hdl4fpga`)",

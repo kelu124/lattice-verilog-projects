@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/cores/v1",
+ "schema": "lattice-verilog-projects/cores/v1",
  "description": "Reusable gateware cores by function (see data/functions.json). files are paths in the upstream repo at the commit pinned in .claude/memory/sources.tsv. usage_patterns feed scan_core_usage.py (-> data/core_usage.json). Researched 2026-09-28 by 5 agents from the clones, reviews and catalogue; every file path verified to exist.",
  "cores": [
   {

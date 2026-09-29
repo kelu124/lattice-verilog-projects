@@ -1,9 +1,9 @@
-# Core-record brief for agents (ulx3s-klod)
+# Core-record brief for agents (lattice-verilog-projects)
 
 Give this file to an agent with the function ids (or repos) to cover and an output path in the scratchpad.
 The orchestrator appends the records to `data/cores.json` after validating them, then runs `make check usage docs`.
 
-Repo: /home/kelu/projets/ulx3s-klod — a knowledge base of FPGA gateware for the ULX3S (Lattice ECP5, 25 MHz clock,
+Repo: the repository root (the directory containing CLAUDE.md) — a knowledge base of FPGA gateware for the ULX3S (Lattice ECP5, 25 MHz clock,
 SDR SDRAM, GPDI HDMI port, ESP32, US2 USB, SD card, MAX11125 ADC, OLED header) and other small Lattice boards (ECP5,
 iCE40 UP5K, iCE40 HX8K/HX4K). Its public site will present **reusable cores organised by function**, each linking to
 the original files upstream, plus the projects that use them.

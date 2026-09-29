@@ -1,9 +1,9 @@
-# Catalogue-row brief for agents (ulx3s-klod)
+# Catalogue-row brief for agents (lattice-verilog-projects)
 
 Give this file to a cataloguing agent together with its slugs and an output path in the scratchpad.
 The rows are merged with `gen_catalogue.py --merge ROWS.tsv` (see SKILL.md, "Batch cataloguing with agents").
 
-Repo root: /home/kelu/projets/ulx3s-klod. Clones are in `original_sources/<slug>/` (shallow, READ-ONLY: never edit,
+Repo root: the repository root (the directory containing CLAUDE.md; run agents from there). Clones are in `original_sources/<slug>/` (shallow, READ-ONLY: never edit,
 build, run make, or git-commit inside them; do not run simulators). Nothing is executed except read-only shell
 commands (ls, find, grep, cat, git log -1) and the two scanners below.
 

@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "project",
  "slug": "f32c__f32c",
  "title": "f32c retargetable RISC-V/MIPS SoC (`f32c__f32c`)",

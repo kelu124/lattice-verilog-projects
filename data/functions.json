@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/functions/v1",
+ "schema": "lattice-verilog-projects/functions/v1",
  "description": "Function taxonomy of the site: each reusable core in data/cores.json lists one or more of these ids; catalogue_tags map to data/catalogue.json functions tags.",
  "functions": [
   {

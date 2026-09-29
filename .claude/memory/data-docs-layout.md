@@ -36,5 +36,7 @@ The round-trip md → JSON → md was verified lossless on all 24 pages at migra
 **Repo renamed (2026-09-28):** GitHub repo `kelu124/ulx3s-klod` → **`kelu124/lattice-verilog-projects`**
 (remote `git@github.com:kelu124/lattice-verilog-projects.git`); site URL
 **https://kelu124.github.io/lattice-verilog-projects/**. Generators (`REPO_URL` in gen_site.py, gen_catalogue.py,
-gen_lpf_catalogue.py) use the new name. "ulx3s-klod" remains the internal project name in skills/CLAUDE.md and the
-local folder name; old links in COMMIT_LOG history are left as they were.
+gen_lpf_catalogue.py) use the new name. Since 2026-09-29 the old name was also replaced in the skills, CLAUDE.md,
+the JSON schema ids (`lattice-verilog-projects/page/v1` …) and the data; only the README "formerly" note, this note
+and COMMIT_LOG history keep "ulx3s-klod". The owner's local checkout folder may still be named `ulx3s-klod`;
+skills and agent briefs no longer hard-code that path.

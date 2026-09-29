@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "project",
  "slug": "trabucayre__openfpgaloader",
  "title": "openFPGALoader (`trabucayre__openfpgaloader`)",

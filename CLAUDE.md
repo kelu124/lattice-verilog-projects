@@ -1,4 +1,4 @@
-# CLAUDE.md — ulx3s-klod
+# CLAUDE.md — lattice-verilog-projects
 
 This repo is a **knowledge base about gateware developed for the ULX3S board**
 (Radiona ULX3S, Lattice ECP5 FPGA: LFE5U-12F/25F/45F/85F). It records which

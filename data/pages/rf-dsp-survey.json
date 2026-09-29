@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "survey",
  "slug": "rf-dsp-survey",
  "title": "RF and signal-processing gateware on Lattice FPGAs",

@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/catalogue/v1",
+ "schema": "lattice-verilog-projects/catalogue/v1",
  "description": "One object per cloned upstream repo (slug = original_sources/<slug>, pinned in .claude/memory/sources.tsv). Rendered to docs/catalogue.md by .claude/skills/review-gateware-project/gen_catalogue.py.",
  "fields": {
   "slug": "owner__repo, lower-case",

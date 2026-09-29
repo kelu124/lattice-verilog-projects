@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Markdown <-> JSON page model for ulx3s-klod (shared by md2json.py and gen_site.py).
+"""Markdown <-> JSON page model for lattice-verilog-projects (shared by md2json.py and gen_site.py).
 
-Page JSON (schema "ulx3s-klod/page/v1"):
+Page JSON (schema "lattice-verilog-projects/page/v1"):
   {"schema", "kind", "slug", "title", "description", "fields": {..} | absent, "blocks": [..], "sections": [..]}
   section = {"title", "blocks": [..], "sections": [..]}   (nested by heading level: ## -> ### -> ####)
   block   = {"type": "paragraph", "text"}
@@ -14,7 +14,7 @@ after the title becomes the "fields" object (project pages).
 """
 import re
 
-SCHEMA = "ulx3s-klod/page/v1"
+SCHEMA = "lattice-verilog-projects/page/v1"
 LIST_RE = re.compile(r"^(\s*)([-*+]|\d+[.)])\s+(.*)$")
 FENCE_RE = re.compile(r"^(\s*)(```+|~~~+)\s*(\S*)\s*$")
 HEAD_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")

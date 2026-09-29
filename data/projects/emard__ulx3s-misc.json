@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "project",
  "slug": "emard__ulx3s-misc",
  "title": "ULX3S miscellaneous/advanced examples (`emard__ulx3s-misc`)",

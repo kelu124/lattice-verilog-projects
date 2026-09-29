@@ -242,7 +242,7 @@ def main():
         e["luts_seen"] = [LUTS[d] for d in devs if d in LUTS] or None
     total = sum(e["copy_count"] for e in entries)
     doc = {"generated": datetime.date.today().isoformat(),
-           "schema": "ulx3s-klod/lpfs/v1", "generator": ".claude/skills/review-gateware-project/scan_lpfs.py",
+           "schema": "lattice-verilog-projects/lpfs/v1", "generator": ".claude/skills/review-gateware-project/scan_lpfs.py",
            "notes": ["One entry per distinct LPF content; `copies` lists every repo/path with a URL at the pinned commit.",
                      "Per-file last-change dates are unknown (shallow clones): `repo_last_commit` is the repo's pinned commit date.",
                      "`board`/`board_rev` come from matching (signal, site) pairs against emard/ulx3s reference LPFs when >= 90 %, else from the path or the repo's catalogue row (see `board_evidence`).",

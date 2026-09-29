@@ -1,6 +1,6 @@
 ---
 name: committing
-description: Rules for making git commits in ulx3s-klod — message format, what goes together in one commit, and the mandatory .claude/COMMIT_LOG.md entry recording what was done and why. Use before every commit.
+description: Rules for making git commits in lattice-verilog-projects — message format, what goes together in one commit, and the mandatory .claude/COMMIT_LOG.md entry recording what was done and why. Use before every commit.
 ---
 
 # Committing rules

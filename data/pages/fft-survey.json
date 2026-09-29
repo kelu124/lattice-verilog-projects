@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "survey",
  "slug": "fft-survey",
  "title": "FFT gateware on Lattice FPGAs",

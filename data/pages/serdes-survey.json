@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "survey",
  "slug": "serdes-survey",
  "title": "ECP5-5G / ECP5UM SERDES survey: PCIe, SATA, NVMe/M.2 and other links",

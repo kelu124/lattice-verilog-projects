@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "guide",
  "slug": "porting-ice40-to-ecp5",
  "title": "Porting iCE40 cores to ECP5",

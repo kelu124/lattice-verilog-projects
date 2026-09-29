@@ -2,6 +2,14 @@
 
 Newest first. One entry per meaningful commit: what was done and why (see skill `committing`).
 
+## 2026-09-29 — chore(repo): replace the old ulx3s-klod name throughout the repo
+- **What**: "ulx3s-klod" → "lattice-verilog-projects" in CLAUDE.md, all skill descriptions and texts, the page model
+  (`mdjson.SCHEMA` and every `schema` id in data/*.json: `lattice-verilog-projects/{page,cores,lpfs,…}/v1`),
+  generators, survey text, agent briefs (which now say "the repository root" instead of the local absolute path);
+  site regenerated. Kept on purpose: the README "formerly" note, the rename note in memory data-docs-layout.md
+  (updated) and COMMIT_LOG history.
+- **Why**: owner noted the repo changed name and asked to replace it everywhere in the repo.
+
 ## 2026-09-28 — skill(repo): record the multi-agent batch workflow and working style
 - **What**: `.claude/skills/clone-original-source/clone_batch.sh` (clone + pin + prune a list, flags submodules);
   agent briefs `.claude/skills/review-gateware-project/agent-briefs/{catalogue-row,core-record}.md` (were only in the

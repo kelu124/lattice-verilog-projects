@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/core-usage/v1",
+ "schema": "lattice-verilog-projects/core-usage/v1",
  "generator": ".claude/skills/review-gateware-project/scan_core_usage.py",
  "note": "Heuristic: file-name copies and module instantiations found in other clones; verify before relying on it.",
  "hdl_files_scanned": 25650,

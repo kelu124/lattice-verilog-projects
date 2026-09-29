@@ -1,6 +1,6 @@
 ---
 name: todo-done
-description: Rules for maintaining .claude/TODO.md (open work) and .claude/DONE.md (completed work log) in ulx3s-klod. Use whenever a task is discovered, started, finished, or abandoned.
+description: Rules for maintaining .claude/TODO.md (open work) and .claude/DONE.md (completed work log) in lattice-verilog-projects. Use whenever a task is discovered, started, finished, or abandoned.
 ---
 
 # TODO / DONE tracking

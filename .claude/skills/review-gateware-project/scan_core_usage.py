@@ -70,7 +70,7 @@ def main():
                     for cid in cids:
                         if slug != home[cid]:
                             hits[cid][slug]["instance"].append(path)
-    out = {"schema": "ulx3s-klod/core-usage/v1",
+    out = {"schema": "lattice-verilog-projects/core-usage/v1",
            "generator": ".claude/skills/review-gateware-project/scan_core_usage.py",
            "note": "Heuristic: file-name copies and module instantiations found in other clones; verify before relying on it.",
            "hdl_files_scanned": n, "usage": {}}

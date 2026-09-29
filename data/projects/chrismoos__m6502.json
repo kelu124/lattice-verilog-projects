@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "project",
  "slug": "chrismoos__m6502",
  "title": "m6502 (`chrismoos__m6502`)",

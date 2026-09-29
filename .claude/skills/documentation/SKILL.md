@@ -1,6 +1,6 @@
 ---
 name: documentation
-description: Rules for writing documentation in ulx3s-klod — data/ JSON is the source, docs/ is the generated GitHub Pages site; per-project page template; sourcing/accuracy rules. Use when writing or editing anything under data/, docs/ or the project registry.
+description: Rules for writing documentation in lattice-verilog-projects — data/ JSON is the source, docs/ is the generated GitHub Pages site; per-project page template; sourcing/accuracy rules. Use when writing or editing anything under data/, docs/ or the project registry.
 ---
 
 # Documentation rules
@@ -28,7 +28,7 @@ section that links to the raw material on GitHub. Site language: English.
 just-the-docs front matter (title/parent/grand_parent/nav_order) and a `{% raw %}` wrapper (Verilog `{{…}}` would
 break Liquid). `docs/_config.yml` holds the theme config (Pages source: main, `/docs`).
 
-Page JSON model (`documentation/mdjson.py`, schema `ulx3s-klod/page/v1`): `kind`, `slug`, `title`, optional
+Page JSON model (`documentation/mdjson.py`, schema `lattice-verilog-projects/page/v1`): `kind`, `slug`, `title`, optional
 `nav_title`/`nav_order`, `description` (one line for indexes), `fields` (project header table), `blocks` and nested
 `sections`. Blocks: `paragraph`, `table` (`columns` + `rows` as objects), `list`, `code`, `hr`. **Links in page
 text are written relative to the legacy flat layout** (`docs/<slug>.md` for data/pages, `docs/projects/` for

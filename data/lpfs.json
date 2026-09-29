@@ -1,6 +1,6 @@
 {
  "generated": "2026-09-28",
- "schema": "ulx3s-klod/lpfs/v1",
+ "schema": "lattice-verilog-projects/lpfs/v1",
  "generator": ".claude/skills/review-gateware-project/scan_lpfs.py",
  "notes": [
   "One entry per distinct LPF content; `copies` lists every repo/path with a URL at the pinned commit.",

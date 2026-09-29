@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "survey",
  "slug": "boards3-survey",
  "title": "TinyFPGA EX, ECPIX-5 and Cynthion gateware survey",

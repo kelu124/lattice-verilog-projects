@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "project",
  "slug": "spritetm__hadbadge2019_fpgasoc",
  "title": "Hackaday Supercon 2019 badge SoC (`spritetm__hadbadge2019_fpgasoc`)",

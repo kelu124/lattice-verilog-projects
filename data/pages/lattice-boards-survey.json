@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/page/v1",
+ "schema": "lattice-verilog-projects/page/v1",
  "kind": "survey",
  "slug": "lattice-boards-survey",
  "title": "UP5K and ECP5 boards from awesome-latticeFPGAs: gateware survey",
@@ -11,7 +11,7 @@
   },
   {
    "type": "paragraph",
-   "text": "Date: 2026-09-28. Research only. Nothing was cloned into ulx3s-klod."
+   "text": "Date: 2026-09-28. Research only. Nothing was cloned into lattice-verilog-projects."
   },
   {
    "type": "paragraph",

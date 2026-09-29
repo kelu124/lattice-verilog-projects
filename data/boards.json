@@ -1,5 +1,5 @@
 {
- "schema": "ulx3s-klod/boards/v1",
+ "schema": "lattice-verilog-projects/boards/v1",
  "description": "Curated board pages (most relevant boards per family). `match` is a regex over catalogue fields (board_rev, name, fpga, ulx3s_path) after removing 'not <board>' phrases; `page` = optional data/pages/<slug>.json used as the page body.",
  "families": [
   {

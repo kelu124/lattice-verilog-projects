@@ -419,7 +419,7 @@ def main():
                     "[Contribute](docs/contributing.md)).\n")
 
     # home
-    index = pages.get("index", {"title": "ulx3s-klod", "blocks": []})
+    index = pages.get("index", {"title": "lattice-verilog-projects", "blocks": []})
     n_users = len({u["repo"] for us in usage.values() for u in us})
     groups = defaultdict(list)
     for f in funcs:
